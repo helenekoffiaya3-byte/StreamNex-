@@ -27,8 +27,14 @@
 </section>
 
 <main id="channels">
-  <div class="chips" id="chips"></div>
-  <div id="container"></div>
+  <section class="channels-apps">
+    <h1 class="app-title">Chaînes & Apps</h1>
+    <div class="tile-wrap">
+      <div class="logo-grid" id="favGrid"></div>
+      <h2 class="all-title">Toutes les chaînes</h2>
+      <div class="logo-grid" id="allGrid"></div>
+    </div>
+  </section>
 </main>
 
 <div class="modal" id="modal" role="dialog" aria-modal="true" aria-label="Lecteur StreamLive">
@@ -55,23 +61,27 @@ let active='all';
 const container=document.getElementById('container'), chips=document.getElementById('chips'), search=document.getElementById('search');
 
 function initials(name){return name.split(/\s+/).map(x=>x[0]).join('').slice(0,3).toUpperCase()}
-function renderChips(){
- chips.innerHTML='<button class="chip '+(active==='all'?'active':'')+'" onclick="setCategory(\'all\')">Toutes</button>'+cats.slice(1).map(c=>'<button class="chip '+(active===c?'active':'')+'" onclick="setCategory(\''+c+'\')">'+labels[c]+'</button>').join('');
-}
+function slug(name){return name.toLowerCase().normalize('NFD').replace(/[\\u0300-\\u036f]/g,'').replace(/\\+/g,'plus').replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'')}
+function initials(name){return name.split(/\\s+/).map(x=>x[0]).join('').slice(0,3).toUpperCase()}
+const logos={
+  "RTI 1":"RTI 1","RTI 2":"RTI 2","NCI":"NCI","A+ Ivoire":"A+ Ivoire","Life TV":"Life TV","7info":"7info",
+  "France 2":"FRANCE 2","France 3":"FRANCE 3","France 5":"FRANCE 5","Arte":"ARTE","TF1":"TF1","Canal+":"CANAL+","M6":"M6",
+  "Disney Channel":"Disney Channel","Disney Junior":"Disney Junior","Disney XD":"Disney XD","Cartoon Network":"CARTOON NETWORK",
+  "Nickelodeon":"nickelodeon","Nick Jr.":"nick jr.","Gulli Africa":"GULLI AFRICA","Canal+ Kids":"CANAL+ KIDS","PBS Kids":"PBS KIDS",
+  "CNN":"CNN","CNN International":"CNN INTERNATIONAL","Fox News":"FOX NEWS","MSNBC":"MSNBC","BBC News":"BBC NEWS","Al Jazeera English":"AL JAZEERA","France 24":"FRANCE 24",
+  "Telemundo":"TELEMUNDO","Univision":"UNIVISION","HBO":"HBO","TNT":"TNT","AMC":"AMC","RTL 9":"RTL9",
+  "EMCI TV":"EMCI TV","Espérance TV":"ESPÉRANCE TV","KTO":"KTO","Top Chrétien":"TOP CHRÉTIEN","Hope Channel":"HOPE CHANNEL","Trace Gospel":"TRACE GOSPEL","EWTN":"EWTN"
+};
+function logoMarkup(c){return '<span class="wm-fallback">'+(logos[c.name]||initials(c.name))+'</span><img class="real-logo" alt="" loading="lazy" src="logos/'+slug(c.name)+'.png" onerror="this.remove()">'}
 function render(){
- const q=search.value.trim().toLowerCase();
- let list=channelsData.filter(c=>(active==='all'||c.cat===active)&&(!q||c.name.toLowerCase().includes(q)||c.type.toLowerCase().includes(q)));
- container.innerHTML='';
- if(!list.length){container.innerHTML='<div class="empty">Aucune chaîne trouvée.</div>';return}
- if(active==='all'&&!q){
-   cats.slice(1).forEach(cat=>createSection(labels[cat],list.filter(c=>c.cat===cat)));
- }else createSection('Résultats',list);
-}
-function createSection(title,list){
- const section=document.createElement('section');section.className='section';
- section.innerHTML='<h2>'+title+'</h2><div class="grid"></div>';const grid=section.querySelector('.grid');
- list.forEach(c=>{const card=document.createElement('article');card.className='channel';card.onclick=()=>openPlayer(c.name);card.innerHTML='<div class="thumb">'+initials(c.name)+'</div><div class="info"><div class="name">'+c.name+'</div><div class="type">'+c.type+'</div></div>';grid.appendChild(card)});
- container.appendChild(section);
+ const q=(document.getElementById('search')?.value||'').trim().toLowerCase();
+ let list=channelsData.filter(c=>(!q||c.name.toLowerCase().includes(q)||c.type.toLowerCase().includes(q)));
+ const fav=list.filter(c=>c.fav);
+ favGrid.innerHTML=''; allGrid.innerHTML='';
+ const add=(grid,c)=>{const card=document.createElement('article');card.className='logo-tile';card.title=c.name+' — '+c.type;card.innerHTML=logoMarkup(c);card.onclick=()=>openPlayer(c.name);grid.appendChild(card)};
+ fav.forEach(c=>add(favGrid,c)); list.forEach(c=>add(allGrid,c));
+ document.querySelector('.all-title').style.display=list.length?'block':'none';
+ if(!list.length) allGrid.innerHTML='<div class="empty">Aucune chaîne trouvée.</div>';
 }
 function setCategory(c){active=c;renderChips();render()}
 function openPlayer(name){document.getElementById('playerTitle').textContent=name;document.getElementById('modal').classList.add('open')}
