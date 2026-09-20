@@ -273,3 +273,29 @@ footer {
 @media (min-width: 700px) {
   .logo-grid { grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); }
 }
+
+
+/* Chaînes & Apps : catégories et responsive */
+.channels-categories {
+  padding: 12px 0 18px;
+  margin-bottom: 4px;
+}
+.category-label {
+  grid-column: 1 / -1;
+  color: var(--text-primary);
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin: 8px 0 -2px;
+}
+#allGrid > .logo-grid {
+  margin-bottom: 18px;
+}
+.logo-tile:focus-visible {
+  outline: 2px solid var(--accent-blue);
+  outline-offset: 2px;
+}
+@media (max-width: 699px) {
+  .logo-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+  .logo-tile { aspect-ratio: 1.12 / 1; }
+  .channels-categories { margin-left: 0; margin-right: 0; }
+}
