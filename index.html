@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="StreamLive — télévision en direct et catalogue de chaînes.">
+<title>StreamLive — TV en direct</title>
+<style>
+:root{--bg:#11141a;--card:#1c212c;--hover:#262c3a;--red:#e50914;--blue:#0072ff;--white:#fff;--muted:#a0a6b5;--border:#2e3545}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--white);font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif}
+header{position:sticky;top:0;z-index:20;display:flex;align-items:center;gap:20px;padding:14px 5%;background:rgba(17,20,26,.96);border-bottom:1px solid var(--border);backdrop-filter:blur(12px)}
+.logo{font-size:25px;font-weight:900;letter-spacing:-1px}.logo span{color:var(--red)}
+.search{flex:1;max-width:650px;margin:auto;display:flex;background:#0b0e13;border:1px solid var(--border);border-radius:10px;overflow:hidden}
+.search input{width:100%;border:0;outline:0;background:transparent;color:#fff;padding:12px 14px;font-size:15px}.search button{border:0;background:transparent;color:var(--muted);padding:0 15px;cursor:pointer}
+.live-btn,.primary{border:0;background:var(--red);color:#fff;border-radius:9px;padding:11px 16px;font-weight:800;cursor:pointer}
+.hero{min-height:420px;padding:70px 5%;display:flex;align-items:end;background:linear-gradient(90deg,#11141a 0%,rgba(17,20,26,.82) 42%,rgba(17,20,26,.18) 100%),linear-gradient(0deg,#11141a 0%,transparent 45%),url('https://images.unsplash.com/photo-1593784991095-a205069470b6?auto=format&fit=crop&w=1800&q=80') center/cover}
+.hero-content{max-width:650px}.badge{display:inline-block;background:var(--red);padding:6px 10px;border-radius:6px;font-size:12px;font-weight:900;text-transform:uppercase}.hero h1{font-size:clamp(38px,6vw,68px);margin:14px 0 8px}.hero p{color:#d3d7df;font-size:17px;line-height:1.55}.actions{display:flex;gap:10px;flex-wrap:wrap}.secondary{background:#fff;color:#11141a;border:0;border-radius:9px;padding:11px 16px;font-weight:800;cursor:pointer}
+main{padding:25px 5% 50px}.chips{display:flex;gap:9px;overflow:auto;padding:4px 0 22px}.chip{white-space:nowrap;border:1px solid var(--border);background:var(--card);color:#fff;border-radius:999px;padding:9px 15px;cursor:pointer}.chip.active,.chip:hover{background:var(--red);border-color:var(--red)}
+.section{margin:24px 0 34px}.section h2{font-size:22px;margin:0 0 14px}.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:14px}
+.channel{background:var(--card);border:1px solid var(--border);border-radius:12px;overflow:hidden;cursor:pointer;transition:.18s;min-height:185px}.channel:hover{transform:translateY(-3px);background:var(--hover);border-color:#46506a}
+.thumb{height:112px;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#252b38,#10131a);font-size:34px;font-weight:900}.thumb img{width:100%;height:100%;object-fit:cover}.info{padding:11px}.name{font-weight:850}.type{font-size:12px;color:var(--muted);margin-top:5px}
+.empty{text-align:center;color:var(--muted);padding:50px 10px}.modal{position:fixed;inset:0;z-index:50;display:none;align-items:center;justify-content:center;background:rgba(0,0,0,.82);padding:20px}.modal.open{display:flex}.player{width:min(920px,100%);background:#0b0e13;border:1px solid var(--border);border-radius:14px;overflow:hidden}.player-head{display:flex;justify-content:space-between;align-items:center;padding:14px 16px}.close{background:none;border:0;color:#fff;font-size:24px;cursor:pointer}.screen{aspect-ratio:16/9;background:#050608;display:flex;align-items:center;justify-content:center;text-align:center;padding:20px}.screen small{display:block;color:var(--muted);margin-top:8px}.player-note{padding:12px 16px;color:var(--muted);font-size:13px}
+footer{border-top:1px solid var(--border);padding:25px 5%;color:var(--muted);font-size:13px}
+@media(max-width:700px){header{gap:9px;padding:11px 4%}.logo{font-size:21px}.live-btn{padding:9px 10px}.hero{min-height:390px;padding:55px 4%}.hero p{font-size:15px}main{padding:20px 4%}.grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.thumb{height:95px}}
+</style>
+</head>
+<body>
+<header>
+  <div class="logo">Stream<span>Live</span></div>
+  <div class="search"><input id="search" placeholder="Rechercher une chaîne..." aria-label="Rechercher une chaîne"><button id="searchBtn" aria-label="Rechercher">⌕</button></div>
+  <button class="live-btn" id="directBtn">● DIRECT</button>
+</header>
+
+<section class="hero">
+  <div class="hero-content">
+    <span class="badge">En direct</span>
+    <h1>RTI 1</h1>
+    <p>Regardez vos chaînes préférées depuis StreamLive. Le catalogue distingue les chaînes disponibles des flux réellement autorisés.</p>
+    <div class="actions">
+      <button class="primary" onclick="openPlayer('RTI 1')">▶ Regarder en direct</button>
+      <button class="secondary" onclick="document.getElementById('channels').scrollIntoView({behavior:'smooth'})">Programme TV</button>
+    </div>
+  </div>
+</section>
+
+<main id="channels">
+  <div class="chips" id="chips"></div>
+  <div id="container"></div>
+</main>
+
+<div class="modal" id="modal" role="dialog" aria-modal="true" aria-label="Lecteur StreamLive">
+  <div class="player">
+    <div class="player-head"><strong id="playerTitle">StreamLive</strong><button class="close" onclick="closePlayer()" aria-label="Fermer">×</button></div>
+    <div class="screen"><div>▶<div id="playerStatus">Flux vidéo non configuré.</div><small>Ajoutez uniquement des flux officiels et autorisés (HLS, DASH ou intégration autorisée).</small></div></div>
+    <div class="player-note">Le lecteur est prêt pour recevoir les URL de streaming autorisées. Aucun faux flux n'est utilisé.</div>
+  </div>
+</div>
+
+<footer>© 2026 StreamLive — Plateforme de catalogue et lecture de flux autorisés.</footer>
+
+<script>
+const channelsData=[
+{cat:'national',name:'RTI 1',type:'Côte d’Ivoire'},{cat:'national',name:'RTI 2',type:'Côte d’Ivoire'},{cat:'national',name:'NCI',type:'Côte d’Ivoire'},{cat:'national',name:'A+ Ivoire',type:'Côte d’Ivoire'},{cat:'national',name:'Life TV',type:'Côte d’Ivoire'},{cat:'national',name:'France 2',type:'France'},{cat:'national',name:'TF1',type:'France'},{cat:'national',name:'ABC',type:'USA'},
+{cat:'info',name:'CNN',type:'Information'},{cat:'info',name:'Fox News',type:'Information'},{cat:'info',name:'MSNBC',type:'Information'},{cat:'info',name:'BBC News',type:'International'},{cat:'info',name:'Al Jazeera English',type:'International'},{cat:'info',name:'France 24',type:'International'},
+{cat:'kids',name:'Nickelodeon',type:'Jeunesse'},{cat:'kids',name:'Disney Channel',type:'Jeunesse'},{cat:'kids',name:'Cartoon Network',type:'Jeunesse'},{cat:'kids',name:'Gulli Africa',type:'Jeunesse'},{cat:'kids',name:'Canal+ Kids',type:'Jeunesse'},{cat:'kids',name:'PBS Kids',type:'Jeunesse'},
+{cat:'adultes',name:'Telemundo',type:'Divertissement'},{cat:'adultes',name:'Univision',type:'Divertissement'},{cat:'adultes',name:'HBO',type:'Premium'},{cat:'adultes',name:'TNT',type:'Films & séries'},{cat:'adultes',name:'AMC',type:'Films & séries'},{cat:'adultes',name:'RTL 9',type:'Films & séries'},
+{cat:'religion',name:'EMCI TV',type:'Chrétien'},{cat:'religion',name:'KTO',type:'Catholique'},{cat:'religion',name:'Top Chrétien',type:'Chrétien'},{cat:'religion',name:'Hope Channel',type:'Adventiste'},{cat:'religion',name:'Trace Gospel',type:'Gospel'},{cat:'religion',name:'EWTN',type:'Catholique'}
+];
+const labels={national:'Général / National',info:'Actualités',kids:'Jeunesse / Kids',adultes:'Divertissement',religion:'Religieux / Spirituel'};
+const cats=['all',...Object.keys(labels)];
+let active='all';
+const container=document.getElementById('container'), chips=document.getElementById('chips'), search=document.getElementById('search');
+
+function initials(name){return name.split(/\s+/).map(x=>x[0]).join('').slice(0,3).toUpperCase()}
+function renderChips(){
+ chips.innerHTML='<button class="chip '+(active==='all'?'active':'')+'" onclick="setCategory(\'all\')">Toutes</button>'+cats.slice(1).map(c=>'<button class="chip '+(active===c?'active':'')+'" onclick="setCategory(\''+c+'\')">'+labels[c]+'</button>').join('');
+}
+function render(){
+ const q=search.value.trim().toLowerCase();
+ let list=channelsData.filter(c=>(active==='all'||c.cat===active)&&(!q||c.name.toLowerCase().includes(q)||c.type.toLowerCase().includes(q)));
+ container.innerHTML='';
+ if(!list.length){container.innerHTML='<div class="empty">Aucune chaîne trouvée.</div>';return}
+ if(active==='all'&&!q){
+   cats.slice(1).forEach(cat=>createSection(labels[cat],list.filter(c=>c.cat===cat)));
+ }else createSection('Résultats',list);
+}
+function createSection(title,list){
+ const section=document.createElement('section');section.className='section';
+ section.innerHTML='<h2>'+title+'</h2><div class="grid"></div>';const grid=section.querySelector('.grid');
+ list.forEach(c=>{const card=document.createElement('article');card.className='channel';card.onclick=()=>openPlayer(c.name);card.innerHTML='<div class="thumb">'+initials(c.name)+'</div><div class="info"><div class="name">'+c.name+'</div><div class="type">'+c.type+'</div></div>';grid.appendChild(card)});
+ container.appendChild(section);
+}
+function setCategory(c){active=c;renderChips();render()}
+function openPlayer(name){document.getElementById('playerTitle').textContent=name;document.getElementById('modal').classList.add('open')}
+function closePlayer(){document.getElementById('modal').classList.remove('open')}
+search.addEventListener('input',render);document.getElementById('searchBtn').onclick=render;document.getElementById('directBtn').onclick=()=>openPlayer('RTI 1');
+document.getElementById('modal').addEventListener('click',e=>{if(e.target.id==='modal')closePlayer()});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closePlayer()});
+renderChips();render();
+</script>
+</body>
+</html>
