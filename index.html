@@ -56,11 +56,6 @@ const channelsData = [
   // 🇨🇮 National & Côte d'Ivoire
   {id:'nci',name:'NCI',category:'national',country:'🇨🇮',type:'Généraliste'},
   {id:'canal-plus-cote-divoire',name:'Canal+ Côte d’Ivoire',category:'national',country:'🇨🇮',type:'Généraliste'},
-  {id:'a-plus-ivoire',name:'A+ Ivoire',category:'national',country:'🇨🇮',type:'Séries & Novelas'},
-  {id:'life-tv',name:'Life TV',category:'national',country:'🇨🇮',type:'Divertissement'},
-  {id:'7info',name:'7info',category:'national',country:'🇨🇮',type:'Information'},
-  {id:'rti-1',name:'RTI 1',category:'national',country:'🇨🇮',type:'Généraliste'},
-  {id:'rti-2',name:'RTI 2',category:'national',country:'🇨🇮',type:'Culture & Jeunesse'},
   {id:'m6',name:'M6',category:'national',country:'🇫🇷',type:'Généraliste'},
   {id:'france-2',name:'France 2',category:'national',country:'🇫🇷',type:'Généraliste'},
   {id:'france-3',name:'France 3',category:'national',country:'🇫🇷',type:'Généraliste'},
@@ -101,7 +96,7 @@ const channelsData = [
   {id:'dw',name:'DW',category:'info',country:'🇩🇪',type:'Information'},
   {id:'euronews',name:'Euronews',category:'info',country:'🌍',type:'Information'},
   {id:'nhk-world',name:'NHK World',category:'info',country:'🇯🇵',type:'Information'},
-  {id:'cgtN',name:'CGTN',category:'info',country:'🇨🇳',type:'Information'},
+  {id:'cgtn',name:'CGTN',category:'info',country:'🇨🇳',type:'Information'},
   {id:'trt-world',name:'TRT World',category:'info',country:'🇹🇷',type:'Information'},
   {id:'i24news',name:'i24NEWS',category:'info',country:'🌍',type:'Information'},
 
@@ -197,6 +192,10 @@ const channelsData = [
   {id:'trace-gospel',name:'Trace Gospel',category:'religion',country:'🌍',type:'Gospel'},
   {id:'ewtn',name:'EWTN',category:'religion',country:'🌍',type:'Catholique'}
 ];
+
+const channelsDataWithMetadata = channelsData.map(c => ({...c, logo:`assets/logos/${c.id}.png`, source:'À configurer'}));
+channelsData.length = 0;
+channelsData.push(...channelsDataWithMetadata);
 
 const categoryLabels = {
   national:'🇨🇮 National & Côte d’Ivoire',
