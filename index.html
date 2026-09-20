@@ -27,12 +27,14 @@
 </section>
 
 <main id="channels">
-  <section class="channels-apps">
-    <h1 class="app-title">Chaînes & Apps</h1>
+  <section class="channels-apps" aria-labelledby="channels-title">
+    <h1 class="app-title" id="channels-title">Chaînes & Apps</h1>
     <div class="tile-wrap">
+      <div class="categories-nav channels-categories" id="channelChips" aria-label="Catégories de chaînes"></div>
+      <h2 class="section-title">⭐ Favoris</h2>
       <div class="logo-grid" id="favGrid"></div>
       <h2 class="all-title">Toutes les chaînes</h2>
-      <div class="logo-grid" id="allGrid"></div>
+      <div id="allGrid"></div>
     </div>
   </section>
 </main>
@@ -41,55 +43,268 @@
   <div class="player">
     <div class="player-head"><strong id="playerTitle">StreamLive</strong><button class="close" onclick="closePlayer()" aria-label="Fermer">×</button></div>
     <div class="screen"><div>▶<div id="playerStatus">Flux vidéo non configuré.</div><small>Ajoutez uniquement des flux officiels et autorisés (HLS, DASH ou intégration autorisée).</small></div></div>
-    <div class="player-note">Le lecteur est prêt pour recevoir les URL de streaming autorisées. Aucun faux flux n'est utilisé.</div>
-  </div>
-</div>
+    <div class="player-note">Le lecteur est pr<script>
+const channelsData = [
+  // ⭐ Favoris / accès rapide
+  {id:'rti-1',name:'RTI 1',category:'national',country:'🇨🇮',type:'Généraliste',fav:true},
+  {id:'rti-2',name:'RTI 2',category:'national',country:'🇨🇮',type:'Culture & Jeunesse',fav:true},
+  {id:'la-3',name:'La 3',category:'national',country:'🇨🇮',type:'Chaîne TV',fav:true},
+  {id:'a-plus-ivoire',name:'A+ Ivoire',category:'national',country:'🇨🇮',type:'Séries & Novelas',fav:true},
+  {id:'life-tv',name:'Life TV',category:'national',country:'🇨🇮',type:'Divertissement',fav:true},
+  {id:'7info',name:'7info',category:'info',country:'🇨🇮',type:'Information',fav:true},
 
-<footer>© 2026 StreamLive — Plateforme de catalogue et lecture de flux autorisés.</footer>
+  // 🇨🇮 National & Côte d'Ivoire
+  {id:'nci',name:'NCI',category:'national',country:'🇨🇮',type:'Généraliste'},
+  {id:'canal-plus-cote-divoire',name:'Canal+ Côte d’Ivoire',category:'national',country:'🇨🇮',type:'Généraliste'},
+  {id:'a-plus-ivoire',name:'A+ Ivoire',category:'national',country:'🇨🇮',type:'Séries & Novelas'},
+  {id:'life-tv',name:'Life TV',category:'national',country:'🇨🇮',type:'Divertissement'},
+  {id:'7info',name:'7info',category:'national',country:'🇨🇮',type:'Information'},
+  {id:'rti-1',name:'RTI 1',category:'national',country:'🇨🇮',type:'Généraliste'},
+  {id:'rti-2',name:'RTI 2',category:'national',country:'🇨🇮',type:'Culture & Jeunesse'},
+  {id:'m6',name:'M6',category:'national',country:'🇫🇷',type:'Généraliste'},
+  {id:'france-2',name:'France 2',category:'national',country:'🇫🇷',type:'Généraliste'},
+  {id:'france-3',name:'France 3',category:'national',country:'🇫🇷',type:'Généraliste'},
+  {id:'france-5',name:'France 5',category:'national',country:'🇫🇷',type:'Culture & Découverte'},
+  {id:'arte',name:'Arte',category:'national',country:'🇫🇷🇩🇪',type:'Culture & Généraliste'},
+  {id:'tf1',name:'TF1',category:'national',country:'🇫🇷',type:'Généraliste'},
+  {id:'canal-plus',name:'Canal+',category:'national',country:'🇫🇷',type:'Généraliste'},
+  {id:'tmc',name:'TMC',category:'national',country:'🇫🇷',type:'Généraliste'},
+  {id:'tfx',name:'TFX',category:'national',country:'🇫🇷',type:'Généraliste'},
+  {id:'w9',name:'W9',category:'national',country:'🇫🇷',type:'Divertissement'},
+  {id:'6ter',name:'6ter',category:'national',country:'🇫🇷',type:'Généraliste'},
+  {id:'tv5-monde',name:'TV5 Monde',category:'national',country:'🌍',type:'Généraliste francophone'},
+  {id:'sunu-yeuf',name:'Sunu Yeuf',category:'national',country:'🌍',type:'Divertissement'},
+  {id:'zacu-tv',name:'Zacu TV',category:'national',country:'🌍',type:'Divertissement'},
+  {id:'maboke-tv',name:'Maboke TV',category:'national',country:'🌍',type:'Divertissement'},
 
-<script>
-const channelsData=[
-{cat:'national',name:'RTI 1',type:'Côte d’Ivoire'},{cat:'national',name:'RTI 2',type:'Côte d’Ivoire'},{cat:'national',name:'NCI',type:'Côte d’Ivoire'},{cat:'national',name:'A+ Ivoire',type:'Côte d’Ivoire'},{cat:'national',name:'Life TV',type:'Côte d’Ivoire'},{cat:'national',name:'France 2',type:'France'},{cat:'national',name:'TF1',type:'France'},{cat:'national',name:'ABC',type:'USA'},
-{cat:'info',name:'CNN',type:'Information'},{cat:'info',name:'Fox News',type:'Information'},{cat:'info',name:'MSNBC',type:'Information'},{cat:'info',name:'BBC News',type:'International'},{cat:'info',name:'Al Jazeera English',type:'International'},{cat:'info',name:'France 24',type:'International'},
-{cat:'kids',name:'Nickelodeon',type:'Jeunesse'},{cat:'kids',name:'Disney Channel',type:'Jeunesse'},{cat:'kids',name:'Cartoon Network',type:'Jeunesse'},{cat:'kids',name:'Gulli Africa',type:'Jeunesse'},{cat:'kids',name:'Canal+ Kids',type:'Jeunesse'},{cat:'kids',name:'PBS Kids',type:'Jeunesse'},
-{cat:'adultes',name:'Telemundo',type:'Divertissement'},{cat:'adultes',name:'Univision',type:'Divertissement'},{cat:'adultes',name:'HBO',type:'Premium'},{cat:'adultes',name:'TNT',type:'Films & séries'},{cat:'adultes',name:'AMC',type:'Films & séries'},{cat:'adultes',name:'RTL 9',type:'Films & séries'},
-{cat:'religion',name:'EMCI TV',type:'Chrétien'},{cat:'religion',name:'Espérance TV',type:'Chrétien — Côte d’Ivoire'},{cat:'religion',name:'KTO',type:'Catholique'},{cat:'religion',name:'Top Chrétien',type:'Chrétien'},{cat:'religion',name:'Hope Channel',type:'Adventiste'},{cat:'religion',name:'Trace Gospel',type:'Gospel'},{cat:'religion',name:'EWTN',type:'Catholique'}
+  // 📰 Information
+  {id:'cnn',name:'CNN',category:'info',country:'🇺🇸',type:'Information'},
+  {id:'cnn-international',name:'CNN International',category:'info',country:'🌍',type:'Information'},
+  {id:'fox-news',name:'Fox News',category:'info',country:'🇺🇸',type:'Information'},
+  {id:'msnbc',name:'MSNBC',category:'info',country:'🇺🇸',type:'Information'},
+  {id:'newsnation',name:'NewsNation',category:'info',country:'🇺🇸',type:'Information'},
+  {id:'newsmax',name:'Newsmax',category:'info',country:'🇺🇸',type:'Information'},
+  {id:'oan',name:'OAN',category:'info',country:'🇺🇸',type:'Information'},
+  {id:'cnbc',name:'CNBC',category:'info',country:'🇺🇸',type:'Économie & Finance'},
+  {id:'fox-business',name:'Fox Business',category:'info',country:'🇺🇸',type:'Économie & Finance'},
+  {id:'bloomberg-tv',name:'Bloomberg TV',category:'info',country:'🌍',type:'Économie & Finance'},
+  {id:'hln',name:'HLN',category:'info',country:'🇺🇸',type:'Information'},
+  {id:'c-span',name:'C-SPAN',category:'info',country:'🇺🇸',type:'Actualités'},
+  {id:'the-weather-channel',name:'The Weather Channel',category:'info',country:'🇺🇸',type:'Météo'},
+  {id:'abc-news-live',name:'ABC News Live',category:'info',country:'🇺🇸',type:'Information'},
+  {id:'nbc-news-now',name:'NBC News NOW',category:'info',country:'🇺🇸',type:'Information'},
+  {id:'cbs-news-24-7',name:'CBS News 24/7',category:'info',country:'🇺🇸',type:'Information'},
+  {id:'bbc-news',name:'BBC News',category:'info',country:'🇬🇧',type:'Information'},
+  {id:'sky-news',name:'Sky News',category:'info',country:'🇬🇧',type:'Information'},
+  {id:'al-jazeera',name:'Al Jazeera',category:'info',country:'🌍',type:'Information'},
+  {id:'france-24',name:'France 24',category:'info',country:'🇫🇷',type:'Info 24/7'},
+  {id:'dw',name:'DW',category:'info',country:'🇩🇪',type:'Information'},
+  {id:'euronews',name:'Euronews',category:'info',country:'🌍',type:'Information'},
+  {id:'nhk-world',name:'NHK World',category:'info',country:'🇯🇵',type:'Information'},
+  {id:'cgtN',name:'CGTN',category:'info',country:'🇨🇳',type:'Information'},
+  {id:'trt-world',name:'TRT World',category:'info',country:'🇹🇷',type:'Information'},
+  {id:'i24news',name:'i24NEWS',category:'info',country:'🌍',type:'Information'},
+
+  // 🎈 Jeunesse & Enfants
+  {id:'nickelodeon',name:'Nickelodeon',category:'kids',country:'🌍',type:'Jeunesse'},
+  {id:'nick-jr',name:'Nick Jr.',category:'kids',country:'🌍',type:'Petite enfance'},
+  {id:'nicktoons',name:'Nicktoons',category:'kids',country:'🌍',type:'Animation'},
+  {id:'teennick',name:'TeenNick',category:'kids',country:'🌍',type:'Ados'},
+  {id:'nickelodeon-junior',name:'Nickelodeon Junior',category:'kids',country:'🌍',type:'Petite enfance'},
+  {id:'nickelodeon-teen',name:'Nickelodeon Teen',category:'kids',country:'🌍',type:'Ados'},
+  {id:'nickelodeon-afrique',name:'Nickelodeon Afrique',category:'kids',country:'🌍',type:'Jeunesse'},
+  {id:'disney-channel',name:'Disney Channel',category:'kids',country:'🌍',type:'Jeunesse'},
+  {id:'disney-junior',name:'Disney Junior',category:'kids',country:'🌍',type:'Petite enfance'},
+  {id:'disney-xd',name:'Disney XD',category:'kids',country:'🌍',type:'Jeunesse'},
+  {id:'disney-channel-afrique',name:'Disney Channel Afrique',category:'kids',country:'🌍',type:'Jeunesse'},
+  {id:'cartoon-network',name:'Cartoon Network',category:'kids',country:'🌍',type:'Animation'},
+  {id:'boomerang',name:'Boomerang',category:'kids',country:'🌍',type:'Animation'},
+  {id:'boing',name:'Boing',category:'kids',country:'🌍',type:'Jeunesse'},
+  {id:'universal-kids',name:'Universal Kids',category:'kids',country:'🇺🇸',type:'Jeunesse'},
+  {id:'pbs-kids',name:'PBS Kids',category:'kids',country:'🇺🇸',type:'Éducatif'},
+  {id:'discovery-family',name:'Discovery Family',category:'kids',country:'🇺🇸',type:'Famille'},
+  {id:'hallmark-family',name:'Hallmark Family',category:'kids',country:'🇺🇸',type:'Famille'},
+  {id:'freeform',name:'Freeform',category:'kids',country:'🇺🇸',type:'Jeunesse & Divertissement'},
+  {id:'gulli',name:'Gulli',category:'kids',country:'🇫🇷',type:'Jeunesse'},
+  {id:'gulli-max',name:'Gulli Max',category:'kids',country:'🇫🇷',type:'Jeunesse'},
+  {id:'gulli-africa',name:'Gulli Africa',category:'kids',country:'🌍',type:'Jeunesse'},
+  {id:'canal-kids',name:'Canal+ Kids',category:'kids',country:'🌍',type:'Jeunesse'},
+  {id:'teletoon-plus',name:'Télétoon+',category:'kids',country:'🇫🇷',type:'Animation'},
+  {id:'piwi-plus',name:'Piwi+',category:'kids',country:'🇫🇷',type:'Petite enfance'},
+  {id:'canal-j',name:'Canal J',category:'kids',country:'🇫🇷',type:'Jeunesse'},
+  {id:'tiji',name:'Tiji',category:'kids',country:'🇫🇷',type:'Petite enfance'},
+  {id:'a-plus-kids',name:'A+ Kids',category:'kids',country:'🌍',type:'Jeunesse'},
+  {id:'mangas',name:'Mangas',category:'kids',country:'🇫🇷',type:'Animation & Manga'},
+  {id:'j-one',name:'J-One',category:'kids',country:'🇫🇷',type:'Anime & Pop culture'},
+  {id:'okoo',name:'Okoo',category:'kids',country:'🇫🇷',type:'Jeunesse'},
+  {id:'tfou',name:'Tfou',category:'kids',country:'🇫🇷',type:'Jeunesse'},
+  {id:'zouzous',name:'Zouzous',category:'kids',country:'🇫🇷',type:'Petite enfance'},
+
+  // 🎬 Films, Séries & Novelas
+  {id:'a-plus',name:'A+',category:'films',country:'🌍',type:'Séries & Divertissement'},
+  {id:'novelas-plus',name:'Novelas+',category:'films',country:'🌍',type:'Novelas'},
+  {id:'rtl-9',name:'RTL 9',category:'films',country:'🇫🇷',type:'Films & Action'},
+  {id:'sci-fi',name:'Sci-Fi',category:'films',country:'🇫🇷',type:'Séries & Science-fiction'},
+  {id:'13eme-rue',name:'13ème Rue',category:'films',country:'🇫🇷',type:'Séries & Thriller'},
+  {id:'nollywood-tv',name:'Nollywood TV',category:'films',country:'🌍',type:'Films africains'},
+  {id:'m6-films',name:'M6 Films',category:'films',country:'🇫🇷',type:'Films & Séries'},
+  {id:'telemundo',name:'Telemundo',category:'films',country:'🇺🇸',type:'Novelas & Séries'},
+  {id:'univision',name:'Univision',category:'films',country:'🇺🇸',type:'Séries & Divertissement'},
+  {id:'unimas',name:'UniMás',category:'films',country:'🇺🇸',type:'Divertissement'},
+  {id:'estrella-tv',name:'Estrella TV',category:'films',country:'🇺🇸',type:'Divertissement'},
+  {id:'galavision',name:'Galavisión',category:'films',country:'🇺🇸',type:'Séries & Divertissement'},
+  {id:'hallmark-drama',name:'Hallmark Drama',category:'films',country:'🇺🇸',type:'Drame'},
+  {id:'lifetime',name:'Lifetime',category:'films',country:'🇺🇸',type:'Séries & Films'},
+  {id:'hbo',name:'HBO',category:'films',country:'🇺🇸',type:'Premium'},
+  {id:'tnt',name:'TNT',category:'films',country:'🇺🇸',type:'Films & Séries'},
+  {id:'tbs',name:'TBS',category:'films',country:'🇺🇸',type:'Comédie & Divertissement'},
+  {id:'usa-network',name:'USA Network',category:'films',country:'🇺🇸',type:'Séries'},
+  {id:'paramount-network',name:'Paramount Network',category:'films',country:'🇺🇸',type:'Films & Séries'},
+  {id:'amc',name:'AMC',category:'films',country:'🇺🇸',type:'Séries & Films'},
+  {id:'fx',name:'FX',category:'films',country:'🇺🇸',type:'Séries'},
+  {id:'fxx',name:'FXX',category:'films',country:'🇺🇸',type:'Comédie'},
+  {id:'syfy',name:'Syfy',category:'films',country:'🇺🇸',type:'Science-fiction'},
+  {id:'starz',name:'Starz',category:'films',country:'🇺🇸',type:'Premium'},
+  {id:'cinemax',name:'Cinemax',category:'films',country:'🇺🇸',type:'Films'},
+  {id:'showtime',name:'Showtime',category:'films',country:'🇺🇸',type:'Premium'},
+  {id:'mgm-plus',name:'MGM+',category:'films',country:'🇺🇸',type:'Films & Séries'},
+  {id:'tcm',name:'TCM',category:'films',country:'🇺🇸',type:'Cinéma classique'},
+  {id:'ifc',name:'IFC',category:'films',country:'🇺🇸',type:'Films & Comédie'},
+  {id:'sundance-tv',name:'Sundance TV',category:'films',country:'🇺🇸',type:'Cinéma & Séries'},
+  {id:'ion',name:'Ion',category:'films',country:'🇺🇸',type:'Séries'},
+  {id:'movies',name:'Movies!',category:'films',country:'🇺🇸',type:'Films'},
+  {id:'comet',name:'Comet',category:'films',country:'🇺🇸',type:'Science-fiction'},
+  {id:'charge',name:'Charge!',category:'films',country:'🇺🇸',type:'Action'},
+  {id:'grit',name:'Grit',category:'films',country:'🇺🇸',type:'Films d’action'},
+  {id:'gettv',name:'getTV',category:'films',country:'🇺🇸',type:'Films classiques'},
+  {id:'heroes-icons',name:'Heroes & Icons',category:'films',country:'🇺🇸',type:'Séries classiques'},
+  {id:'tubi',name:'Tubi',category:'films',country:'🇺🇸',type:'Streaming'},
+  {id:'pluto-tv',name:'Pluto TV',category:'films',country:'🇺🇸',type:'Streaming'},
+  {id:'peacock',name:'Peacock',category:'films',country:'🇺🇸',type:'Streaming'},
+
+  // 🎵 Sport & Divertissement
+  {id:'bravo',name:'Bravo',category:'divertissement',country:'🌍',type:'Divertissement'},
+  {id:'cuisines',name:'Cuisines',category:'divertissement',country:'🌍',type:'Cuisine'},
+  {id:'mtv',name:'MTV',category:'divertissement',country:'🌍',type:'Musique'},
+  {id:'z-magic',name:'Z Magic',category:'divertissement',country:'🌍',type:'Séries indiennes'},
+
+  // 🙏 Spirituel & Religieux
+  {id:'emci-tv',name:'EMCI TV',category:'religion',country:'🌍',type:'Évangélique'},
+  {id:'esperance-tv',name:'Espérance TV',category:'religion',country:'🌍',type:'Chrétien'},
+  {id:'kto',name:'KTO',category:'religion',country:'🇫🇷',type:'Catholique'},
+  {id:'top-chretien',name:'Top Chrétien',category:'religion',country:'🌍',type:'Chrétien'},
+  {id:'hope-channel',name:'Hope Channel',category:'religion',country:'🌍',type:'Adventiste'},
+  {id:'trace-gospel',name:'Trace Gospel',category:'religion',country:'🌍',type:'Gospel'},
+  {id:'ewtn',name:'EWTN',category:'religion',country:'🌍',type:'Catholique'}
 ];
-const labels={national:'Général / National',info:'Actualités',kids:'Jeunesse / Kids',adultes:'Divertissement',religion:'Religieux / Spirituel'};
-const cats=['all',...Object.keys(labels)];
-let active='all';
-const container=document.getElementById('container'), chips=document.getElementById('chips'), search=document.getElementById('search');
 
-function initials(name){return name.split(/\s+/).map(x=>x[0]).join('').slice(0,3).toUpperCase()}
-function slug(name){return name.toLowerCase().normalize('NFD').replace(/[\\u0300-\\u036f]/g,'').replace(/\\+/g,'plus').replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'')}
-function initials(name){return name.split(/\\s+/).map(x=>x[0]).join('').slice(0,3).toUpperCase()}
-const logos={
-  "RTI 1":"RTI 1","RTI 2":"RTI 2","NCI":"NCI","A+ Ivoire":"A+ Ivoire","Life TV":"Life TV","7info":"7info",
-  "France 2":"FRANCE 2","France 3":"FRANCE 3","France 5":"FRANCE 5","Arte":"ARTE","TF1":"TF1","Canal+":"CANAL+","M6":"M6",
-  "Disney Channel":"Disney Channel","Disney Junior":"Disney Junior","Disney XD":"Disney XD","Cartoon Network":"CARTOON NETWORK",
-  "Nickelodeon":"nickelodeon","Nick Jr.":"nick jr.","Gulli Africa":"GULLI AFRICA","Canal+ Kids":"CANAL+ KIDS","PBS Kids":"PBS KIDS",
-  "CNN":"CNN","CNN International":"CNN INTERNATIONAL","Fox News":"FOX NEWS","MSNBC":"MSNBC","BBC News":"BBC NEWS","Al Jazeera English":"AL JAZEERA","France 24":"FRANCE 24",
-  "Telemundo":"TELEMUNDO","Univision":"UNIVISION","HBO":"HBO","TNT":"TNT","AMC":"AMC","RTL 9":"RTL9",
-  "EMCI TV":"EMCI TV","Espérance TV":"ESPÉRANCE TV","KTO":"KTO","Top Chrétien":"TOP CHRÉTIEN","Hope Channel":"HOPE CHANNEL","Trace Gospel":"TRACE GOSPEL","EWTN":"EWTN"
+const categoryLabels = {
+  national:'🇨🇮 National & Côte d’Ivoire',
+  info:'📰 Information',
+  kids:'🎈 Jeunesse & Enfants',
+  films:'🎬 Films, Séries & Novelas',
+  religion:'🙏 Spirituel & Religieux',
+  divertissement:'⚽ Sport & Divertissement'
 };
-function logoMarkup(c){return '<span class="wm-fallback">'+(logos[c.name]||initials(c.name))+'</span><img class="real-logo" alt="" loading="lazy" src="logos/'+slug(c.name)+'.png" onerror="this.remove()">'}
-function render(){
- const q=(document.getElementById('search')?.value||'').trim().toLowerCase();
- let list=channelsData.filter(c=>(!q||c.name.toLowerCase().includes(q)||c.type.toLowerCase().includes(q)));
- const fav=list.filter(c=>c.fav);
- favGrid.innerHTML=''; allGrid.innerHTML='';
- const add=(grid,c)=>{const card=document.createElement('article');card.className='logo-tile';card.title=c.name+' — '+c.type;card.innerHTML=logoMarkup(c);card.onclick=()=>openPlayer(c.name);grid.appendChild(card)};
- fav.forEach(c=>add(favGrid,c)); list.forEach(c=>add(allGrid,c));
- document.querySelector('.all-title').style.display=list.length?'block':'none';
- if(!list.length) allGrid.innerHTML='<div class="empty">Aucune chaîne trouvée.</div>';
+const categoryOrder = ['national','info','kids','films','religion','divertissement'];
+const categoryChips = document.getElementById('channelChips');
+const favGrid = document.getElementById('favGrid');
+const allGrid = document.getElementById('allGrid');
+const search = document.getElementById('search');
+let activeCategory = 'all';
+
+function slug(name){
+  return name.toLowerCase().normalize('NFD')
+    .replace(/[\u0300-\u036f]/g,'')
+    .replace(/\+/g,'plus')
+    .replace(/[^a-z0-9]+/g,'-')
+    .replace(/^-|-$/g,'');
 }
-function setCategory(c){active=c;renderChips();render()}
-function openPlayer(name){document.getElementById('playerTitle').textContent=name;document.getElementById('modal').classList.add('open')}
-function closePlayer(){document.getElementById('modal').classList.remove('open')}
-search.addEventListener('input',render);document.getElementById('searchBtn').onclick=render;document.getElementById('directBtn').onclick=()=>openPlayer('RTI 1');
+
+function initials(name){
+  return name.split(/\s+/).map(x=>x[0]).join('').slice(0,3).toUpperCase();
+}
+
+function logoMarkup(c){
+  return '<span class="wm-fallback">'+initials(c.name)+'</span>' +
+         '<img class="real-logo" alt="'+c.name+' — logo" loading="lazy" src="assets/logos/'+c.id+'.png" ' +
+         'onload="this.parentElement.classList.add(\'has-img\')" onerror="this.remove()">';
+}
+
+function renderChips(){
+  categoryChips.innerHTML='';
+  const items=[['all','Toutes'],...categoryOrder.map(c=>[c,categoryLabels[c]])];
+  items.forEach(([id,label])=>{
+    const button=document.createElement('button');
+    button.type='button';
+    button.className='category-chip'+(activeCategory===id?' active':'');
+    button.textContent=label;
+    button.onclick=()=>{activeCategory=id;renderChips();render();};
+    categoryChips.appendChild(button);
+  });
+}
+
+function addTile(grid,c){
+  const card=document.createElement('article');
+  card.className='logo-tile';
+  card.setAttribute('tabindex','0');
+  card.setAttribute('role','button');
+  card.setAttribute('aria-label','Ouvrir '+c.name);
+  card.title=c.name+' — '+c.type+' — '+c.country;
+  card.innerHTML=logoMarkup(c);
+  card.onclick=()=>openPlayer(c.name);
+  card.onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();openPlayer(c.name);}};
+  grid.appendChild(card);
+}
+
+function render(){
+  const q=(search?.value||'').trim().toLowerCase();
+  const filtered=channelsData.filter(c=>{
+    const matchesCategory=activeCategory==='all'||c.category===activeCategory;
+    const haystack=(c.name+' '+c.type+' '+c.country+' '+categoryLabels[c.category]).toLowerCase();
+    return matchesCategory && (!q||haystack.includes(q));
+  });
+
+  favGrid.innerHTML='';
+  allGrid.innerHTML='';
+
+  const favorites=filtered.filter(c=>c.fav);
+  if(favorites.length){
+    favorites.forEach(c=>addTile(favGrid,c));
+  } else {
+    favGrid.innerHTML='<div class="empty">Aucun favori dans cette sélection.</div>';
+  }
+
+  if(!filtered.length){
+    document.querySelector('.all-title').style.display='block';
+    allGrid.innerHTML='<div class="empty">Aucune chaîne trouvée.</div>';
+    return;
+  }
+
+  document.querySelector('.all-title').style.display='block';
+
+  categoryOrder.forEach(category=>{
+    const list=filtered.filter(c=>c.category===category);
+    if(!list.length) return;
+    const title=document.createElement('h3');
+    title.className='category-label';
+    title.textContent=categoryLabels[category];
+    allGrid.appendChild(title);
+
+    const grid=document.createElement('div');
+    grid.className='logo-grid';
+    list.forEach(c=>addTile(grid,c));
+    allGrid.appendChild(grid);
+  });
+}
+
+search.addEventListener('input',render);
+document.getElementById('searchBtn').onclick=render;
+document.getElementById('directBtn').onclick=()=>openPlayer('RTI 1');
 document.getElementById('modal').addEventListener('click',e=>{if(e.target.id==='modal')closePlayer()});
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closePlayer()});
-renderChips();render();
+renderChips();
+render();
 </script>
 </body>
 </html>
