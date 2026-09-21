@@ -71,6 +71,11 @@ const channelsData = [
   {id:'sunu-yeuf',name:'Sunu Yeuf',category:'national',country:'🌍',type:'Divertissement'},
   {id:'zacu-tv',name:'Zacu TV',category:'national',country:'🌍',type:'Divertissement'},
   {id:'maboke-tv',name:'Maboke TV',category:'national',country:'🌍',type:'Divertissement'},
+  {id:'zbc',name:'ZBC',category:'national',country:'🌍',type:'Télévision'},
+  {id:'peche-sons',name:'Pêche & Sons',category:'national',country:'🌍',type:'Divertissement'},
+  {id:'mgm-tv',name:'MGM TV',category:'national',country:'🌍',type:'Films & Séries'},
+  {id:'vifi-tv',name:'VIFI TV',category:'national',country:'🌍',type:'Télévision'},
+  {id:'magc-tv',name:'MAGC TV',category:'national',country:'🌍',type:'Télévision'},
 
   // 📰 Information
   {id:'cnn',name:'CNN',category:'info',country:'🇺🇸',type:'Information'},
@@ -187,15 +192,20 @@ const channelsData = [
 
   // 🙏 Spirituel & Religieux
   {id:'emci-tv',name:'EMCI TV',category:'biblical',country:'🌍',type:'Évangélique'},
-  {id:'esperance-tv',name:'Espérance TV',category:'religion',country:'🌍',type:'Chrétien'},
-  {id:'kto',name:'KTO',category:'religion',country:'🇫🇷',type:'Catholique'},
-  {id:'top-chretien',name:'Top Chrétien',category:'religion',country:'🌍',type:'Chrétien'},
-  {id:'hope-channel',name:'Hope Channel',category:'religion',country:'🌍',type:'Adventiste'},
-  {id:'trace-gospel',name:'Trace Gospel',category:'religion',country:'🌍',type:'Gospel'},
-  {id:'ewtn',name:'EWTN',category:'religion',country:'🌍',type:'Catholique'}
+  {id:'esperance-tv',name:'Espérance TV',category:'biblical',country:'🌍',type:'Chrétien'},
+  {id:'kto',name:'KTO',category:'biblical',country:'🇫🇷',type:'Catholique'},
+  {id:'top-chretien',name:'Top Chrétien',category:'biblical',country:'🌍',type:'Chrétien'},
+  {id:'hope-channel',name:'Hope Channel',category:'biblical',country:'🌍',type:'Adventiste'},
+  {id:'trace-gospel',name:'Trace Gospel',category:'biblical',country:'🌍',type:'Gospel'},
+  {id:'ewtn',name:'EWTN',category:'biblical',country:'🌍',type:'Catholique'}
 ];
 
-const channelsDataWithMetadata = channelsData.map(c => ({...c, logo:`assets/logos/${c.id}.png`, source:'À configurer'}));
+const uniqueByName = new Map();
+channelsData.forEach(c => {
+  const key = c.name.trim().toLowerCase();
+  if (!uniqueByName.has(key)) uniqueByName.set(key, c);
+});
+const channelsDataWithMetadata = [...uniqueByName.values()].map(c => ({...c, logo:`assets/logos/${c.id}.png`, source:'À configurer'}));
 channelsData.length = 0;
 channelsData.push(...channelsDataWithMetadata);
 
@@ -227,9 +237,30 @@ function initials(name){
 }
 
 function logoMarkup(c){
-  return '<span class="wm-fallback">'+initials(c.name)+'</span>' +
-         '<img class="real-logo" alt="'+c.name+' — logo" loading="lazy" src="assets/logos/'+c.id+'.png" ' +
-         'onload="this.parentElement.classList.add(\'has-img\')" onerror="this.remove()">';
+  const fallback=initials(c.name);
+  const logoDomainById={
+    'rti-1':'rti.ci','rti-2':'rti.ci','la-3':'rti.ci','a-plus-ivoire':'canalplus.com','life-tv':'lifetv.ci','nci':'nci.ci',
+    'canal-plus-cote-divoire':'canalplus.com','m6':'m6.fr','france-2':'france.tv','france-3':'france.tv','france-5':'france.tv','arte':'arte.tv','tf1':'tf1.fr',
+    'canal-plus':'canalplus.com','tmc':'tf1.fr','tfx':'tf1.fr','w9':'w9.fr','6ter':'6play.fr','tv5-monde':'tv5monde.com',
+    'cnn':'cnn.com','cnn-international':'cnn.com','fox-news':'foxnews.com','msnbc':'msnbc.com','newsnation':'newsnationnow.com','newsmax':'newsmax.com','oan':'oann.com',
+    'cnbc':'cnbc.com','fox-business':'foxbusiness.com','hln':'cnn.com','c-span':'c-span.org','the-weather-channel':'weather.com','abc-news-live':'abcnews.go.com',
+    'nbc-news-now':'nbcnews.com','cbs-news-24-7':'cbsnews.com','bbc-news':'bbc.com','sky-news':'news.sky.com','al-jazeera':'aljazeera.com','france-24':'france24.com',
+    'dw':'dw.com','euronews':'euronews.com','nhk-world':'nhk.or.jp','cgtn':'cgtn.com','trt-world':'trtworld.com','i24news':'i24news.tv',
+    'nickelodeon':'nick.com','nick-jr':'nickjr.com','disney-channel':'disneychannel.disney.com','disney-junior':'disneyjunior.disney.com',
+    'cartoon-network':'cartoonnetwork.com','boomerang':'boomerang.com','gulli':'gulli.fr','canal-kids':'canalplus.com','teletoon-plus':'teletoonplus.fr','piwi-plus':'piwi.fr',
+    'hbo':'hbo.com','tnt':'tntdrama.com','tbs':'tbs.com','usa-network':'usanetwork.com','paramount-network':'paramountnetwork.com','amc':'amc.com','fx':'fxnetworks.com',
+    'fxx':'fxnetworks.com','syfy':'syfy.com','starz':'starz.com','cinemax':'cinemax.com','showtime':'showtime.com','mgm-plus':'mgmplus.com','tcm':'tcm.com',
+    'ifc':'ifc.com','sundance-tv':'sundancetv.com','tubi':'tubitv.com','pluto-tv':'pluto.tv','peacock':'peacocktv.com',
+    'emci-tv':'emcitv.com','kto':'ktotv.com','hope-channel':'hopechannel.com','ewtn':'ewtn.com','mtv':'mtv.com'
+  };
+  const domain=logoDomainById[c.id];
+  const simpleSlug=c.id.replace(/[^a-z0-9]/g,'');
+  const primary=domain ? 'https://www.google.com/s2/favicons?domain='+domain+'&sz=128' : 'https://cdn.simpleicons.org/'+simpleSlug+'?viewbox=auto';
+  const secondary=domain ? 'https://cdn.simpleicons.org/'+simpleSlug+'?viewbox=auto' : '';
+  const fallbackHandler=secondary ? "this.onerror=null;this.src='"+secondary+"'" : "this.remove()";
+  return '<span class="wm-fallback">'+fallback+'</span>'+
+         '<img class="real-logo" alt="'+c.name+' — logo" loading="lazy" src="'+primary+'" '+
+         'onload="this.parentElement.classList.add(\'has-img\')" onerror="'+fallbackHandler+'">';
 }
 
 function renderChips(){
