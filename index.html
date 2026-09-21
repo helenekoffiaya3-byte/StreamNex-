@@ -102,6 +102,7 @@ const channelsData = [
 
   // 🎈 Jeunesse & Enfants
   {id:'nickelodeon',name:'Nickelodeon',category:'kids',country:'🌍',type:'Jeunesse'},
+  {id:'nickelodeon-music',name:'Nickelodeon Music',category:'kids',country:'🌍',type:'Musique jeunesse'},
   {id:'nick-jr',name:'Nick Jr.',category:'kids',country:'🌍',type:'Petite enfance'},
   {id:'nicktoons',name:'Nicktoons',category:'kids',country:'🌍',type:'Animation'},
   {id:'teennick',name:'TeenNick',category:'kids',country:'🌍',type:'Ados'},
@@ -128,6 +129,7 @@ const channelsData = [
   {id:'piwi-plus',name:'Piwi+',category:'kids',country:'🇫🇷',type:'Petite enfance'},
   {id:'canal-j',name:'Canal J',category:'kids',country:'🇫🇷',type:'Jeunesse'},
   {id:'tiji',name:'Tiji',category:'kids',country:'🇫🇷',type:'Petite enfance'},
+  {id:'tivi5',name:'Tivi5',category:'kids',country:'🌍',type:'Jeunesse'},
   {id:'a-plus-kids',name:'A+ Kids',category:'kids',country:'🌍',type:'Jeunesse'},
   {id:'mangas',name:'Mangas',category:'kids',country:'🇫🇷',type:'Animation & Manga'},
   {id:'j-one',name:'J-One',category:'kids',country:'🇫🇷',type:'Anime & Pop culture'},
@@ -178,13 +180,13 @@ const channelsData = [
   {id:'peacock',name:'Peacock',category:'films',country:'🇺🇸',type:'Streaming'},
 
   // 🎵 Sport & Divertissement
-  {id:'bravo',name:'Bravo',category:'divertissement',country:'🌍',type:'Divertissement'},
-  {id:'cuisines',name:'Cuisines',category:'divertissement',country:'🌍',type:'Cuisine'},
-  {id:'mtv',name:'MTV',category:'divertissement',country:'🌍',type:'Musique'},
-  {id:'z-magic',name:'Z Magic',category:'divertissement',country:'🌍',type:'Séries indiennes'},
+  {id:'bravo',name:'Bravo',category:'films',country:'🌍',type:'Divertissement'},
+  {id:'cuisines',name:'Cuisines',category:'films',country:'🌍',type:'Cuisine'},
+  {id:'mtv',name:'MTV',category:'films',country:'🌍',type:'Musique'},
+  {id:'z-magic',name:'Z Magic',category:'films',country:'🌍',type:'Séries indiennes'},
 
   // 🙏 Spirituel & Religieux
-  {id:'emci-tv',name:'EMCI TV',category:'religion',country:'🌍',type:'Évangélique'},
+  {id:'emci-tv',name:'EMCI TV',category:'biblical',country:'🌍',type:'Évangélique'},
   {id:'esperance-tv',name:'Espérance TV',category:'religion',country:'🌍',type:'Chrétien'},
   {id:'kto',name:'KTO',category:'religion',country:'🇫🇷',type:'Catholique'},
   {id:'top-chretien',name:'Top Chrétien',category:'religion',country:'🌍',type:'Chrétien'},
@@ -202,10 +204,10 @@ const categoryLabels = {
   info:'📰 Information',
   kids:'🎈 Jeunesse & Enfants',
   films:'🎬 Films, Séries & Novelas',
-  religion:'🙏 Spirituel & Religieux',
-  divertissement:'⚽ Sport & Divertissement'
+  adults:'🔞 Adultes',
+  biblical:'✝️ Biblical'
 };
-const categoryOrder = ['national','info','kids','films','religion','divertissement'];
+const categoryOrder = ['national','adults','films','kids','info','biblical'];
 const categoryChips = document.getElementById('channelChips');
 const favGrid = document.getElementById('favGrid');
 const allGrid = document.getElementById('allGrid');
