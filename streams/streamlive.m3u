@@ -1,425 +1,425 @@
 #EXTM3U
 
 # StreamLive — playlist IPTV/HLS
-# Les URLs de flux ci-dessous sont volontairement des placeholders.
-# Remplacez uniquement les URLs HTTPS par des flux dont vous détenez les droits.
+# Convention HLS StreamLive : https://streamlive.com/live/{channel-id}/index.m3u8
+# Chaque URL doit pointer vers un flux HLS réellement hébergé et autorisé.
 
 #EXTINF:-1 tvg-id="rti-1" tvg-name="RTI 1" tvg-logo="https://raw.githubusercontent.com/helenekoffiaya3-byte/Streamlive/main/assets/logos/rti-1.png" group-title="National",RTI 1
-https://YOUR-STREAM-DOMAIN.example/live/rti-1/index.m3u8
+https://streamlive.com/live/rti-1/index.m3u8
 
 #EXTINF:-1 tvg-id="rti-2" tvg-name="RTI 2" tvg-logo="https://raw.githubusercontent.com/helenekoffiaya3-byte/Streamlive/main/assets/logos/rti-2.png" group-title="National",RTI 2
-https://YOUR-STREAM-DOMAIN.example/live/rti-2/index.m3u8
+https://streamlive.com/live/rti-2/index.m3u8
 
 #EXTINF:-1 tvg-id="la-3" tvg-name="La 3" tvg-logo="https://raw.githubusercontent.com/helenekoffiaya3-byte/Streamlive/main/assets/logos/la-3.png" group-title="National",La 3
-https://YOUR-STREAM-DOMAIN.example/live/la-3/index.m3u8
+https://streamlive.com/live/la-3/index.m3u8
 
 #EXTINF:-1 tvg-id="a-plus-ivoire" tvg-name="A+ Ivoire" tvg-logo="https://raw.githubusercontent.com/helenekoffiaya3-byte/Streamlive/main/assets/logos/a-plus-ivoire.png" group-title="National",A+ Ivoire
-https://YOUR-STREAM-DOMAIN.example/live/a-plus-ivoire/index.m3u8
+https://streamlive.com/live/a-plus-ivoire/index.m3u8
 
 #EXTINF:-1 tvg-id="life-tv" tvg-name="Life TV" tvg-logo="https://raw.githubusercontent.com/helenekoffiaya3-byte/Streamlive/main/assets/logos/life-tv.png" group-title="National",Life TV
-https://YOUR-STREAM-DOMAIN.example/live/life-tv/index.m3u8
+https://streamlive.com/live/life-tv/index.m3u8
 
 #EXTINF:-1 tvg-id="7info" tvg-name="7info" tvg-logo="https://raw.githubusercontent.com/helenekoffiaya3-byte/Streamlive/main/assets/logos/7info.png" group-title="Info",7info
-https://YOUR-STREAM-DOMAIN.example/live/7info/index.m3u8
+https://streamlive.com/live/7info/index.m3u8
 
 #EXTINF:-1 tvg-id="nci" tvg-name="NCI" tvg-logo="https://raw.githubusercontent.com/helenekoffiaya3-byte/Streamlive/main/assets/logos/nci.png" group-title="National",NCI
-https://YOUR-STREAM-DOMAIN.example/live/nci/index.m3u8
+https://streamlive.com/live/nci/index.m3u8
 
 #EXTINF:-1 tvg-id="canal-plus-cote-divoire" tvg-name="Canal+ Côte d’Ivoire" tvg-logo="https://raw.githubusercontent.com/helenekoffiaya3-byte/Streamlive/main/assets/logos/canal-plus-cote-divoire.png" group-title="National",Canal+ Côte d’Ivoire
-https://YOUR-STREAM-DOMAIN.example/live/canal-plus-cote-divoire/index.m3u8
+https://streamlive.com/live/canal-plus-cote-divoire/index.m3u8
 
 #EXTINF:-1 tvg-id="m6" tvg-name="M6" tvg-logo="https://raw.githubusercontent.com/helenekoffiaya3-byte/Streamlive/main/assets/logos/m6.png" group-title="National",M6
-https://YOUR-STREAM-DOMAIN.example/live/m6/index.m3u8
+https://streamlive.com/live/m6/index.m3u8
 
 #EXTINF:-1 tvg-id="france-2" tvg-name="France 2" tvg-logo="https://raw.githubusercontent.com/helenekoffiaya3-byte/Streamlive/main/assets/logos/france-2.png" group-title="National",France 2
-https://YOUR-STREAM-DOMAIN.example/live/france-2/index.m3u8
+https://streamlive.com/live/france-2/index.m3u8
 
 #EXTINF:-1 tvg-id="france-3" tvg-name="France 3" tvg-logo="https://raw.githubusercontent.com/helenekoffiaya3-byte/Streamlive/main/assets/logos/france-3.png" group-title="National",France 3
-https://YOUR-STREAM-DOMAIN.example/live/france-3/index.m3u8
+https://streamlive.com/live/france-3/index.m3u8
 
 #EXTINF:-1 tvg-id="france-5" tvg-name="France 5" tvg-logo="https://raw.githubusercontent.com/helenekoffiaya3-byte/Streamlive/main/assets/logos/france-5.png" group-title="National",France 5
-https://YOUR-STREAM-DOMAIN.example/live/france-5/index.m3u8
+https://streamlive.com/live/france-5/index.m3u8
 
 #EXTINF:-1 tvg-id="arte" tvg-name="Arte" tvg-logo="https://raw.githubusercontent.com/helenekoffiaya3-byte/Streamlive/main/assets/logos/arte.png" group-title="National",Arte
-https://YOUR-STREAM-DOMAIN.example/live/arte/index.m3u8
+https://streamlive.com/live/arte/index.m3u8
 
 #EXTINF:-1 tvg-id="tf1" tvg-name="TF1" tvg-logo="https://raw.githubusercontent.com/helenekoffiaya3-byte/Streamlive/main/assets/logos/tf1.png" group-title="National",TF1
-https://YOUR-STREAM-DOMAIN.example/live/tf1/index.m3u8
+https://streamlive.com/live/tf1/index.m3u8
 
 #EXTINF:-1 tvg-id="canal-plus" tvg-name="Canal+" tvg-logo="https://raw.githubusercontent.com/helenekoffiaya3-byte/Streamlive/main/assets/logos/canal-plus.png" group-title="National",Canal+
-https://YOUR-STREAM-DOMAIN.example/live/canal-plus/index.m3u8
+https://streamlive.com/live/canal-plus/index.m3u8
 
 #EXTINF:-1 tvg-id="tmc" tvg-name="TMC" tvg-logo="https://raw.githubusercontent.com/helenekoffiaya3-byte/Streamlive/main/assets/logos/tmc.png" group-title="National",TMC
-https://YOUR-STREAM-DOMAIN.example/live/tmc/index.m3u8
+https://streamlive.com/live/tmc/index.m3u8
 
 #EXTINF:-1 tvg-id="tfx" tvg-name="TFX" tvg-logo="https://raw.githubusercontent.com/helenekoffiaya3-byte/Streamlive/main/assets/logos/tfx.png" group-title="National",TFX
-https://YOUR-STREAM-DOMAIN.example/live/tfx/index.m3u8
+https://streamlive.com/live/tfx/index.m3u8
 
 #EXTINF:-1 tvg-id="w9" tvg-name="W9" tvg-logo="https://raw.githubusercontent.com/helenekoffiaya3-byte/Streamlive/main/assets/logos/w9.png" group-title="National",W9
-https://YOUR-STREAM-DOMAIN.example/live/w9/index.m3u8
+https://streamlive.com/live/w9/index.m3u8
 
 #EXTINF:-1 tvg-id="6ter" tvg-name="6ter" tvg-logo="https://raw.githubusercontent.com/helenekoffiaya3-byte/Streamlive/main/assets/logos/6ter.png" group-title="National",6ter
-https://YOUR-STREAM-DOMAIN.example/live/6ter/index.m3u8
+https://streamlive.com/live/6ter/index.m3u8
 
 #EXTINF:-1 tvg-id="tv5-monde" tvg-name="TV5 Monde" tvg-logo="https://raw.githubusercontent.com/helenekoffiaya3-byte/Streamlive/main/assets/logos/tv5-monde.png" group-title="National",TV5 Monde
-https://YOUR-STREAM-DOMAIN.example/live/tv5-monde/index.m3u8
+https://streamlive.com/live/tv5-monde/index.m3u8
 
 #EXTINF:-1 tvg-id="sunu-yeuf" tvg-name="Sunu Yeuf" tvg-logo="https://raw.githubusercontent.com/helenekoffiaya3-byte/Streamlive/main/assets/logos/sunu-yeuf.png" group-title="National",Sunu Yeuf
-https://YOUR-STREAM-DOMAIN.example/live/sunu-yeuf/index.m3u8
+https://streamlive.com/live/sunu-yeuf/index.m3u8
 
 #EXTINF:-1 tvg-id="zacu-tv" tvg-name="Zacu TV" tvg-logo="https://raw.githubusercontent.com/helenekoffiaya3-byte/Streamlive/main/assets/logos/zacu-tv.png" group-title="National",Zacu TV
-https://YOUR-STREAM-DOMAIN.example/live/zacu-tv/index.m3u8
+https://streamlive.com/live/zacu-tv/index.m3u8
 
 #EXTINF:-1 tvg-id="maboke-tv" tvg-name="Maboke TV" tvg-logo="https://raw.githubusercontent.com/helenekoffiaya3-byte/Streamlive/main/assets/logos/maboke-tv.png" group-title="National",Maboke TV
-https://YOUR-STREAM-DOMAIN.example/live/maboke-tv/index.m3u8
+https://streamlive.com/live/maboke-tv/index.m3u8
 
 #EXTINF:-1 tvg-id="zbc" tvg-name="ZBC" tvg-logo="https://raw.githubusercontent.com/helenekoffiaya3-byte/Streamlive/main/assets/logos/zbc.png" group-title="National",ZBC
-https://YOUR-STREAM-DOMAIN.example/live/zbc/index.m3u8
+https://streamlive.com/live/zbc/index.m3u8
 
 #EXTINF:-1 tvg-id="peche-sons" tvg-name="Pêche & Sons" tvg-logo="https://raw.githubusercontent.com/helenekoffiaya3-byte/Streamlive/main/assets/logos/peche-sons.png" group-title="National",Pêche & Sons
-https://YOUR-STREAM-DOMAIN.example/live/peche-sons/index.m3u8
+https://streamlive.com/live/peche-sons/index.m3u8
 
 #EXTINF:-1 tvg-id="mgm-tv" tvg-name="MGM TV" tvg-logo="https://raw.githubusercontent.com/helenekoffiaya3-byte/Streamlive/main/assets/logos/mgm-tv.png" group-title="National",MGM TV
-https://YOUR-STREAM-DOMAIN.example/live/mgm-tv/index.m3u8
+https://streamlive.com/live/mgm-tv/index.m3u8
 
 #EXTINF:-1 tvg-id="vifi-tv" tvg-name="VIFI TV" tvg-logo="https://raw.githubusercontent.com/helenekoffiaya3-byte/Streamlive/main/assets/logos/vifi-tv.png" group-title="National",VIFI TV
-https://YOUR-STREAM-DOMAIN.example/live/vifi-tv/index.m3u8
+https://streamlive.com/live/vifi-tv/index.m3u8
 
 #EXTINF:-1 tvg-id="magc-tv" tvg-name="MAGC TV" tvg-logo="https://raw.githubusercontent.com/helenekoffiaya3-byte/Streamlive/main/assets/logos/magc-tv.png" group-title="National",MAGC TV
-https://YOUR-STREAM-DOMAIN.example/live/magc-tv/index.m3u8
+https://streamlive.com/live/magc-tv/index.m3u8
 
 #EXTINF:-1 tvg-id="cnn" tvg-name="CNN" tvg-logo="https://raw.githubusercontent.com/helenekoffiaya3-byte/Streamlive/main/assets/logos/cnn.png" group-title="Info",CNN
-https://YOUR-STREAM-DOMAIN.example/live/cnn/index.m3u8
+https://streamlive.com/live/cnn/index.m3u8
 
 #EXTINF:-1 tvg-id="cnn-international" tvg-name="CNN International" tvg-logo="https://raw.githubusercontent.com/helenekoffiaya3-byte/Streamlive/main/assets/logos/cnn-international.png" group-title="Info",CNN International
-https://YOUR-STREAM-DOMAIN.example/live/cnn-international/index.m3u8
+https://streamlive.com/live/cnn-international/index.m3u8
 
 #EXTINF:-1 tvg-id="fox-news" tvg-name="Fox News" tvg-logo="https://raw.githubusercontent.com/helenekoffiaya3-byte/Streamlive/main/assets/logos/fox-news.png" group-title="Info",Fox News
-https://YOUR-STREAM-DOMAIN.example/live/fox-news/index.m3u8
+https://streamlive.com/live/fox-news/index.m3u8
 
 #EXTINF:-1 tvg-id="msnbc" tvg-name="MSNBC" tvg-logo="https://raw.githubusercontent.com/helenekoffiaya3-byte/Streamlive/main/assets/logos/msnbc.png" group-title="Info",MSNBC
-https://YOUR-STREAM-DOMAIN.example/live/msnbc/index.m3u8
+https://streamlive.com/live/msnbc/index.m3u8
 
 #EXTINF:-1 tvg-id="newsnation" tvg-name="NewsNation" tvg-logo="https://raw.githubusercontent.com/helenekoffiaya3-byte/Streamlive/main/assets/logos/newsnation.png" group-title="Info",NewsNation
-https://YOUR-STREAM-DOMAIN.example/live/newsnation/index.m3u8
+https://streamlive.com/live/newsnation/index.m3u8
 
 #EXTINF:-1 tvg-id="newsmax" tvg-name="Newsmax" tvg-logo="https://raw.githubusercontent.com/helenekoffiaya3-byte/Streamlive/main/assets/logos/newsmax.png" group-title="Info",Newsmax
-https://YOUR-STREAM-DOMAIN.example/live/newsmax/index.m3u8
+https://streamlive.com/live/newsmax/index.m3u8
 
 #EXTINF:-1 tvg-id="oan" tvg-name="OAN" tvg-logo="https://raw.githubusercontent.com/helenekoffiaya3-byte/Streamlive/main/assets/logos/oan.png" group-title="Info",OAN
-https://YOUR-STREAM-DOMAIN.example/live/oan/index.m3u8
+https://streamlive.com/live/oan/index.m3u8
 
 #EXTINF:-1 tvg-id="cnbc" tvg-name="CNBC" tvg-logo="https://raw.githubusercontent.com/helenekoffiaya3-byte/Streamlive/main/assets/logos/cnbc.png" group-title="Info",CNBC
-https://YOUR-STREAM-DOMAIN.example/live/cnbc/index.m3u8
+https://streamlive.com/live/cnbc/index.m3u8
 
 #EXTINF:-1 tvg-id="fox-business" tvg-name="Fox Business" tvg-logo="https://raw.githubusercontent.com/helenekoffiaya3-byte/Streamlive/main/assets/logos/fox-business.png" group-title="Info",Fox Business
-https://YOUR-STREAM-DOMAIN.example/live/fox-business/index.m3u8
+https://streamlive.com/live/fox-business/index.m3u8
 
 #EXTINF:-1 tvg-id="bloomberg-tv" tvg-name="Bloomberg TV" tvg-logo="https://raw.githubusercontent.com/helenekoffiaya3-byte/Streamlive/main/assets/logos/bloomberg-tv.png" group-title="Info",Bloomberg TV
-https://YOUR-STREAM-DOMAIN.example/live/bloomberg-tv/index.m3u8
+https://streamlive.com/live/bloomberg-tv/index.m3u8
 
 #EXTINF:-1 tvg-id="hln" tvg-name="HLN" tvg-logo="https://raw.githubusercontent.com/helenekoffiaya3-byte/Streamlive/main/assets/logos/hln.png" group-title="Info",HLN
-https://YOUR-STREAM-DOMAIN.example/live/hln/index.m3u8
+https://streamlive.com/live/hln/index.m3u8
 
 #EXTINF:-1 tvg-id="c-span" tvg-name="C-SPAN" tvg-logo="https://raw.githubusercontent.com/helenekoffiaya3-byte/Streamlive/main/assets/logos/c-span.png" group-title="Info",C-SPAN
-https://YOUR-STREAM-DOMAIN.example/live/c-span/index.m3u8
+https://streamlive.com/live/c-span/index.m3u8
 
 #EXTINF:-1 tvg-id="the-weather-channel" tvg-name="The Weather Channel" tvg-logo="https://raw.githubusercontent.com/helenekoffiaya3-byte/Streamlive/main/assets/logos/the-weather-channel.png" group-title="Info",The Weather Channel
-https://YOUR-STREAM-DOMAIN.example/live/the-weather-channel/index.m3u8
+https://streamlive.com/live/the-weather-channel/index.m3u8
 
 #EXTINF:-1 tvg-id="abc-news-live" tvg-name="ABC News Live" tvg-logo="https://raw.githubusercontent.com/helenekoffiaya3-byte/Streamlive/main/assets/logos/abc-news-live.png" group-title="Info",ABC News Live
-https://YOUR-STREAM-DOMAIN.example/live/abc-news-live/index.m3u8
+https://streamlive.com/live/abc-news-live/index.m3u8
 
 #EXTINF:-1 tvg-id="nbc-news-now" tvg-name="NBC News NOW" tvg-logo="https://raw.githubusercontent.com/helenekoffiaya3-byte/Streamlive/main/assets/logos/nbc-news-now.png" group-title="Info",NBC News NOW
-https://YOUR-STREAM-DOMAIN.example/live/nbc-news-now/index.m3u8
+https://streamlive.com/live/nbc-news-now/index.m3u8
 
 #EXTINF:-1 tvg-id="cbs-news-24-7" tvg-name="CBS News 24/7" tvg-logo="https://raw.githubusercontent.com/helenekoffiaya3-byte/Streamlive/main/assets/logos/cbs-news-24-7.png" group-title="Info",CBS News 24/7
-https://YOUR-STREAM-DOMAIN.example/live/cbs-news-24-7/index.m3u8
+https://streamlive.com/live/cbs-news-24-7/index.m3u8
 
 #EXTINF:-1 tvg-id="bbc-news" tvg-name="BBC News" tvg-logo="https://raw.githubusercontent.com/helenekoffiaya3-byte/Streamlive/main/assets/logos/bbc-news.png" group-title="Info",BBC News
-https://YOUR-STREAM-DOMAIN.example/live/bbc-news/index.m3u8
+https://streamlive.com/live/bbc-news/index.m3u8
 
 #EXTINF:-1 tvg-id="sky-news" tvg-name="Sky News" tvg-logo="https://raw.githubusercontent.com/helenekoffiaya3-byte/Streamlive/main/assets/logos/sky-news.png" group-title="Info",Sky News
-https://YOUR-STREAM-DOMAIN.example/live/sky-news/index.m3u8
+https://streamlive.com/live/sky-news/index.m3u8
 
 #EXTINF:-1 tvg-id="al-jazeera" tvg-name="Al Jazeera" tvg-logo="https://raw.githubusercontent.com/helenekoffiaya3-byte/Streamlive/main/assets/logos/al-jazeera.png" group-title="Info",Al Jazeera
-https://YOUR-STREAM-DOMAIN.example/live/al-jazeera/index.m3u8
+https://streamlive.com/live/al-jazeera/index.m3u8
 
 #EXTINF:-1 tvg-id="france-24" tvg-name="France 24" tvg-logo="https://raw.githubusercontent.com/helenekoffiaya3-byte/Streamlive/main/assets/logos/france-24.png" group-title="Info",France 24
-https://YOUR-STREAM-DOMAIN.example/live/france-24/index.m3u8
+https://streamlive.com/live/france-24/index.m3u8
 
 #EXTINF:-1 tvg-id="dw" tvg-name="DW" tvg-logo="https://raw.githubusercontent.com/helenekoffiaya3-byte/Streamlive/main/assets/logos/dw.png" group-title="Info",DW
-https://YOUR-STREAM-DOMAIN.example/live/dw/index.m3u8
+https://streamlive.com/live/dw/index.m3u8
 
 #EXTINF:-1 tvg-id="euronews" tvg-name="Euronews" tvg-logo="https://raw.githubusercontent.com/helenekoffiaya3-byte/Streamlive/main/assets/logos/euronews.png" group-title="Info",Euronews
-https://YOUR-STREAM-DOMAIN.example/live/euronews/index.m3u8
+https://streamlive.com/live/euronews/index.m3u8
 
 #EXTINF:-1 tvg-id="nhk-world" tvg-name="NHK World" tvg-logo="https://raw.githubusercontent.com/helenekoffiaya3-byte/Streamlive/main/assets/logos/nhk-world.png" group-title="Info",NHK World
-https://YOUR-STREAM-DOMAIN.example/live/nhk-world/index.m3u8
+https://streamlive.com/live/nhk-world/index.m3u8
 
 #EXTINF:-1 tvg-id="cgtn" tvg-name="CGTN" tvg-logo="https://raw.githubusercontent.com/helenekoffiaya3-byte/Streamlive/main/assets/logos/cgtn.png" group-title="Info",CGTN
-https://YOUR-STREAM-DOMAIN.example/live/cgtn/index.m3u8
+https://streamlive.com/live/cgtn/index.m3u8
 
 #EXTINF:-1 tvg-id="trt-world" tvg-name="TRT World" tvg-logo="https://raw.githubusercontent.com/helenekoffiaya3-byte/Streamlive/main/assets/logos/trt-world.png" group-title="Info",TRT World
-https://YOUR-STREAM-DOMAIN.example/live/trt-world/index.m3u8
+https://streamlive.com/live/trt-world/index.m3u8
 
 #EXTINF:-1 tvg-id="i24news" tvg-name="i24NEWS" tvg-logo="https://raw.githubusercontent.com/helenekoffiaya3-byte/Streamlive/main/assets/logos/i24news.png" group-title="Info",i24NEWS
-https://YOUR-STREAM-DOMAIN.example/live/i24news/index.m3u8
+https://streamlive.com/live/i24news/index.m3u8
 
 #EXTINF:-1 tvg-id="nickelodeon" tvg-name="Nickelodeon" tvg-logo="https://raw.githubusercontent.com/helenekoffiaya3-byte/Streamlive/main/assets/logos/nickelodeon.png" group-title="Jeunesse",Nickelodeon
-https://YOUR-STREAM-DOMAIN.example/live/nickelodeon/index.m3u8
+https://streamlive.com/live/nickelodeon/index.m3u8
 
 #EXTINF:-1 tvg-id="nickelodeon-music" tvg-name="Nickelodeon Music" tvg-logo="https://raw.githubusercontent.com/helenekoffiaya3-byte/Streamlive/main/assets/logos/nickelodeon-music.png" group-title="Jeunesse",Nickelodeon Music
-https://YOUR-STREAM-DOMAIN.example/live/nickelodeon-music/index.m3u8
+https://streamlive.com/live/nickelodeon-music/index.m3u8
 
 #EXTINF:-1 tvg-id="nick-jr" tvg-name="Nick Jr." tvg-logo="https://raw.githubusercontent.com/helenekoffiaya3-byte/Streamlive/main/assets/logos/nick-jr.png" group-title="Jeunesse",Nick Jr.
-https://YOUR-STREAM-DOMAIN.example/live/nick-jr/index.m3u8
+https://streamlive.com/live/nick-jr/index.m3u8
 
 #EXTINF:-1 tvg-id="nicktoons" tvg-name="Nicktoons" tvg-logo="https://raw.githubusercontent.com/helenekoffiaya3-byte/Streamlive/main/assets/logos/nicktoons.png" group-title="Jeunesse",Nicktoons
-https://YOUR-STREAM-DOMAIN.example/live/nicktoons/index.m3u8
+https://streamlive.com/live/nicktoons/index.m3u8
 
 #EXTINF:-1 tvg-id="teennick" tvg-name="TeenNick" tvg-logo="https://raw.githubusercontent.com/helenekoffiaya3-byte/Streamlive/main/assets/logos/teennick.png" group-title="Jeunesse",TeenNick
-https://YOUR-STREAM-DOMAIN.example/live/teennick/index.m3u8
+https://streamlive.com/live/teennick/index.m3u8
 
 #EXTINF:-1 tvg-id="nickelodeon-junior" tvg-name="Nickelodeon Junior" tvg-logo="https://raw.githubusercontent.com/helenekoffiaya3-byte/Streamlive/main/assets/logos/nickelodeon-junior.png" group-title="Jeunesse",Nickelodeon Junior
-https://YOUR-STREAM-DOMAIN.example/live/nickelodeon-junior/index.m3u8
+https://streamlive.com/live/nickelodeon-junior/index.m3u8
 
 #EXTINF:-1 tvg-id="nickelodeon-teen" tvg-name="Nickelodeon Teen" tvg-logo="https://raw.githubusercontent.com/helenekoffiaya3-byte/Streamlive/main/assets/logos/nickelodeon-teen.png" group-title="Jeunesse",Nickelodeon Teen
-https://YOUR-STREAM-DOMAIN.example/live/nickelodeon-teen/index.m3u8
+https://streamlive.com/live/nickelodeon-teen/index.m3u8
 
 #EXTINF:-1 tvg-id="nickelodeon-afrique" tvg-name="Nickelodeon Afrique" tvg-logo="https://raw.githubusercontent.com/helenekoffiaya3-byte/Streamlive/main/assets/logos/nickelodeon-afrique.png" group-title="Jeunesse",Nickelodeon Afrique
-https://YOUR-STREAM-DOMAIN.example/live/nickelodeon-afrique/index.m3u8
+https://streamlive.com/live/nickelodeon-afrique/index.m3u8
 
 #EXTINF:-1 tvg-id="disney-channel" tvg-name="Disney Channel" tvg-logo="https://raw.githubusercontent.com/helenekoffiaya3-byte/Streamlive/main/assets/logos/disney-channel.png" group-title="Jeunesse",Disney Channel
-https://YOUR-STREAM-DOMAIN.example/live/disney-channel/index.m3u8
+https://streamlive.com/live/disney-channel/index.m3u8
 
 #EXTINF:-1 tvg-id="disney-junior" tvg-name="Disney Junior" tvg-logo="https://raw.githubusercontent.com/helenekoffiaya3-byte/Streamlive/main/assets/logos/disney-junior.png" group-title="Jeunesse",Disney Junior
-https://YOUR-STREAM-DOMAIN.example/live/disney-junior/index.m3u8
+https://streamlive.com/live/disney-junior/index.m3u8
 
 #EXTINF:-1 tvg-id="disney-xd" tvg-name="Disney XD" tvg-logo="https://raw.githubusercontent.com/helenekoffiaya3-byte/Streamlive/main/assets/logos/disney-xd.png" group-title="Jeunesse",Disney XD
-https://YOUR-STREAM-DOMAIN.example/live/disney-xd/index.m3u8
+https://streamlive.com/live/disney-xd/index.m3u8
 
 #EXTINF:-1 tvg-id="disney-channel-afrique" tvg-name="Disney Channel Afrique" tvg-logo="https://raw.githubusercontent.com/helenekoffiaya3-byte/Streamlive/main/assets/logos/disney-channel-afrique.png" group-title="Jeunesse",Disney Channel Afrique
-https://YOUR-STREAM-DOMAIN.example/live/disney-channel-afrique/index.m3u8
+https://streamlive.com/live/disney-channel-afrique/index.m3u8
 
 #EXTINF:-1 tvg-id="cartoon-network" tvg-name="Cartoon Network" tvg-logo="https://raw.githubusercontent.com/helenekoffiaya3-byte/Streamlive/main/assets/logos/cartoon-network.png" group-title="Jeunesse",Cartoon Network
-https://YOUR-STREAM-DOMAIN.example/live/cartoon-network/index.m3u8
+https://streamlive.com/live/cartoon-network/index.m3u8
 
 #EXTINF:-1 tvg-id="boomerang" tvg-name="Boomerang" tvg-logo="https://raw.githubusercontent.com/helenekoffiaya3-byte/Streamlive/main/assets/logos/boomerang.png" group-title="Jeunesse",Boomerang
-https://YOUR-STREAM-DOMAIN.example/live/boomerang/index.m3u8
+https://streamlive.com/live/boomerang/index.m3u8
 
 #EXTINF:-1 tvg-id="boing" tvg-name="Boing" tvg-logo="https://raw.githubusercontent.com/helenekoffiaya3-byte/Streamlive/main/assets/logos/boing.png" group-title="Jeunesse",Boing
-https://YOUR-STREAM-DOMAIN.example/live/boing/index.m3u8
+https://streamlive.com/live/boing/index.m3u8
 
 #EXTINF:-1 tvg-id="universal-kids" tvg-name="Universal Kids" tvg-logo="https://raw.githubusercontent.com/helenekoffiaya3-byte/Streamlive/main/assets/logos/universal-kids.png" group-title="Jeunesse",Universal Kids
-https://YOUR-STREAM-DOMAIN.example/live/universal-kids/index.m3u8
+https://streamlive.com/live/universal-kids/index.m3u8
 
 #EXTINF:-1 tvg-id="pbs-kids" tvg-name="PBS Kids" tvg-logo="https://raw.githubusercontent.com/helenekoffiaya3-byte/Streamlive/main/assets/logos/pbs-kids.png" group-title="Jeunesse",PBS Kids
-https://YOUR-STREAM-DOMAIN.example/live/pbs-kids/index.m3u8
+https://streamlive.com/live/pbs-kids/index.m3u8
 
 #EXTINF:-1 tvg-id="discovery-family" tvg-name="Discovery Family" tvg-logo="https://raw.githubusercontent.com/helenekoffiaya3-byte/Streamlive/main/assets/logos/discovery-family.png" group-title="Jeunesse",Discovery Family
-https://YOUR-STREAM-DOMAIN.example/live/discovery-family/index.m3u8
+https://streamlive.com/live/discovery-family/index.m3u8
 
 #EXTINF:-1 tvg-id="hallmark-family" tvg-name="Hallmark Family" tvg-logo="https://raw.githubusercontent.com/helenekoffiaya3-byte/Streamlive/main/assets/logos/hallmark-family.png" group-title="Jeunesse",Hallmark Family
-https://YOUR-STREAM-DOMAIN.example/live/hallmark-family/index.m3u8
+https://streamlive.com/live/hallmark-family/index.m3u8
 
 #EXTINF:-1 tvg-id="freeform" tvg-name="Freeform" tvg-logo="https://raw.githubusercontent.com/helenekoffiaya3-byte/Streamlive/main/assets/logos/freeform.png" group-title="Jeunesse",Freeform
-https://YOUR-STREAM-DOMAIN.example/live/freeform/index.m3u8
+https://streamlive.com/live/freeform/index.m3u8
 
 #EXTINF:-1 tvg-id="gulli" tvg-name="Gulli" tvg-logo="https://raw.githubusercontent.com/helenekoffiaya3-byte/Streamlive/main/assets/logos/gulli.png" group-title="Jeunesse",Gulli
-https://YOUR-STREAM-DOMAIN.example/live/gulli/index.m3u8
+https://streamlive.com/live/gulli/index.m3u8
 
 #EXTINF:-1 tvg-id="gulli-max" tvg-name="Gulli Max" tvg-logo="https://raw.githubusercontent.com/helenekoffiaya3-byte/Streamlive/main/assets/logos/gulli-max.png" group-title="Jeunesse",Gulli Max
-https://YOUR-STREAM-DOMAIN.example/live/gulli-max/index.m3u8
+https://streamlive.com/live/gulli-max/index.m3u8
 
 #EXTINF:-1 tvg-id="gulli-africa" tvg-name="Gulli Africa" tvg-logo="https://raw.githubusercontent.com/helenekoffiaya3-byte/Streamlive/main/assets/logos/gulli-africa.png" group-title="Jeunesse",Gulli Africa
-https://YOUR-STREAM-DOMAIN.example/live/gulli-africa/index.m3u8
+https://streamlive.com/live/gulli-africa/index.m3u8
 
 #EXTINF:-1 tvg-id="canal-kids" tvg-name="Canal+ Kids" tvg-logo="https://raw.githubusercontent.com/helenekoffiaya3-byte/Streamlive/main/assets/logos/canal-kids.png" group-title="Jeunesse",Canal+ Kids
-https://YOUR-STREAM-DOMAIN.example/live/canal-kids/index.m3u8
+https://streamlive.com/live/canal-kids/index.m3u8
 
 #EXTINF:-1 tvg-id="teletoon-plus" tvg-name="Télétoon+" tvg-logo="https://raw.githubusercontent.com/helenekoffiaya3-byte/Streamlive/main/assets/logos/teletoon-plus.png" group-title="Jeunesse",Télétoon+
-https://YOUR-STREAM-DOMAIN.example/live/teletoon-plus/index.m3u8
+https://streamlive.com/live/teletoon-plus/index.m3u8
 
 #EXTINF:-1 tvg-id="piwi-plus" tvg-name="Piwi+" tvg-logo="https://raw.githubusercontent.com/helenekoffiaya3-byte/Streamlive/main/assets/logos/piwi-plus.png" group-title="Jeunesse",Piwi+
-https://YOUR-STREAM-DOMAIN.example/live/piwi-plus/index.m3u8
+https://streamlive.com/live/piwi-plus/index.m3u8
 
 #EXTINF:-1 tvg-id="canal-j" tvg-name="Canal J" tvg-logo="https://raw.githubusercontent.com/helenekoffiaya3-byte/Streamlive/main/assets/logos/canal-j.png" group-title="Jeunesse",Canal J
-https://YOUR-STREAM-DOMAIN.example/live/canal-j/index.m3u8
+https://streamlive.com/live/canal-j/index.m3u8
 
 #EXTINF:-1 tvg-id="tiji" tvg-name="Tiji" tvg-logo="https://raw.githubusercontent.com/helenekoffiaya3-byte/Streamlive/main/assets/logos/tiji.png" group-title="Jeunesse",Tiji
-https://YOUR-STREAM-DOMAIN.example/live/tiji/index.m3u8
+https://streamlive.com/live/tiji/index.m3u8
 
 #EXTINF:-1 tvg-id="tivi5" tvg-name="Tivi5" tvg-logo="https://raw.githubusercontent.com/helenekoffiaya3-byte/Streamlive/main/assets/logos/tivi5.png" group-title="Jeunesse",Tivi5
-https://YOUR-STREAM-DOMAIN.example/live/tivi5/index.m3u8
+https://streamlive.com/live/tivi5/index.m3u8
 
 #EXTINF:-1 tvg-id="a-plus-kids" tvg-name="A+ Kids" tvg-logo="https://raw.githubusercontent.com/helenekoffiaya3-byte/Streamlive/main/assets/logos/a-plus-kids.png" group-title="Jeunesse",A+ Kids
-https://YOUR-STREAM-DOMAIN.example/live/a-plus-kids/index.m3u8
+https://streamlive.com/live/a-plus-kids/index.m3u8
 
 #EXTINF:-1 tvg-id="mangas" tvg-name="Mangas" tvg-logo="https://raw.githubusercontent.com/helenekoffiaya3-byte/Streamlive/main/assets/logos/mangas.png" group-title="Jeunesse",Mangas
-https://YOUR-STREAM-DOMAIN.example/live/mangas/index.m3u8
+https://streamlive.com/live/mangas/index.m3u8
 
 #EXTINF:-1 tvg-id="j-one" tvg-name="J-One" tvg-logo="https://raw.githubusercontent.com/helenekoffiaya3-byte/Streamlive/main/assets/logos/j-one.png" group-title="Jeunesse",J-One
-https://YOUR-STREAM-DOMAIN.example/live/j-one/index.m3u8
+https://streamlive.com/live/j-one/index.m3u8
 
 #EXTINF:-1 tvg-id="okoo" tvg-name="Okoo" tvg-logo="https://raw.githubusercontent.com/helenekoffiaya3-byte/Streamlive/main/assets/logos/okoo.png" group-title="Jeunesse",Okoo
-https://YOUR-STREAM-DOMAIN.example/live/okoo/index.m3u8
+https://streamlive.com/live/okoo/index.m3u8
 
 #EXTINF:-1 tvg-id="tfou" tvg-name="Tfou" tvg-logo="https://raw.githubusercontent.com/helenekoffiaya3-byte/Streamlive/main/assets/logos/tfou.png" group-title="Jeunesse",Tfou
-https://YOUR-STREAM-DOMAIN.example/live/tfou/index.m3u8
+https://streamlive.com/live/tfou/index.m3u8
 
 #EXTINF:-1 tvg-id="zouzous" tvg-name="Zouzous" tvg-logo="https://raw.githubusercontent.com/helenekoffiaya3-byte/Streamlive/main/assets/logos/zouzous.png" group-title="Jeunesse",Zouzous
-https://YOUR-STREAM-DOMAIN.example/live/zouzous/index.m3u8
+https://streamlive.com/live/zouzous/index.m3u8
 
 #EXTINF:-1 tvg-id="a-plus" tvg-name="A+" tvg-logo="https://raw.githubusercontent.com/helenekoffiaya3-byte/Streamlive/main/assets/logos/a-plus.png" group-title="Films",A+
-https://YOUR-STREAM-DOMAIN.example/live/a-plus/index.m3u8
+https://streamlive.com/live/a-plus/index.m3u8
 
 #EXTINF:-1 tvg-id="novelas-plus" tvg-name="Novelas+" tvg-logo="https://raw.githubusercontent.com/helenekoffiaya3-byte/Streamlive/main/assets/logos/novelas-plus.png" group-title="Films",Novelas+
-https://YOUR-STREAM-DOMAIN.example/live/novelas-plus/index.m3u8
+https://streamlive.com/live/novelas-plus/index.m3u8
 
 #EXTINF:-1 tvg-id="rtl-9" tvg-name="RTL 9" tvg-logo="https://raw.githubusercontent.com/helenekoffiaya3-byte/Streamlive/main/assets/logos/rtl-9.png" group-title="Films",RTL 9
-https://YOUR-STREAM-DOMAIN.example/live/rtl-9/index.m3u8
+https://streamlive.com/live/rtl-9/index.m3u8
 
 #EXTINF:-1 tvg-id="sci-fi" tvg-name="Sci-Fi" tvg-logo="https://raw.githubusercontent.com/helenekoffiaya3-byte/Streamlive/main/assets/logos/sci-fi.png" group-title="Films",Sci-Fi
-https://YOUR-STREAM-DOMAIN.example/live/sci-fi/index.m3u8
+https://streamlive.com/live/sci-fi/index.m3u8
 
 #EXTINF:-1 tvg-id="13eme-rue" tvg-name="13ème Rue" tvg-logo="https://raw.githubusercontent.com/helenekoffiaya3-byte/Streamlive/main/assets/logos/13eme-rue.png" group-title="Films",13ème Rue
-https://YOUR-STREAM-DOMAIN.example/live/13eme-rue/index.m3u8
+https://streamlive.com/live/13eme-rue/index.m3u8
 
 #EXTINF:-1 tvg-id="nollywood-tv" tvg-name="Nollywood TV" tvg-logo="https://raw.githubusercontent.com/helenekoffiaya3-byte/Streamlive/main/assets/logos/nollywood-tv.png" group-title="Films",Nollywood TV
-https://YOUR-STREAM-DOMAIN.example/live/nollywood-tv/index.m3u8
+https://streamlive.com/live/nollywood-tv/index.m3u8
 
 #EXTINF:-1 tvg-id="m6-films" tvg-name="M6 Films" tvg-logo="https://raw.githubusercontent.com/helenekoffiaya3-byte/Streamlive/main/assets/logos/m6-films.png" group-title="Films",M6 Films
-https://YOUR-STREAM-DOMAIN.example/live/m6-films/index.m3u8
+https://streamlive.com/live/m6-films/index.m3u8
 
 #EXTINF:-1 tvg-id="telemundo" tvg-name="Telemundo" tvg-logo="https://raw.githubusercontent.com/helenekoffiaya3-byte/Streamlive/main/assets/logos/telemundo.png" group-title="Films",Telemundo
-https://YOUR-STREAM-DOMAIN.example/live/telemundo/index.m3u8
+https://streamlive.com/live/telemundo/index.m3u8
 
 #EXTINF:-1 tvg-id="univision" tvg-name="Univision" tvg-logo="https://raw.githubusercontent.com/helenekoffiaya3-byte/Streamlive/main/assets/logos/univision.png" group-title="Films",Univision
-https://YOUR-STREAM-DOMAIN.example/live/univision/index.m3u8
+https://streamlive.com/live/univision/index.m3u8
 
 #EXTINF:-1 tvg-id="unimas" tvg-name="UniMás" tvg-logo="https://raw.githubusercontent.com/helenekoffiaya3-byte/Streamlive/main/assets/logos/unimas.png" group-title="Films",UniMás
-https://YOUR-STREAM-DOMAIN.example/live/unimas/index.m3u8
+https://streamlive.com/live/unimas/index.m3u8
 
 #EXTINF:-1 tvg-id="estrella-tv" tvg-name="Estrella TV" tvg-logo="https://raw.githubusercontent.com/helenekoffiaya3-byte/Streamlive/main/assets/logos/estrella-tv.png" group-title="Films",Estrella TV
-https://YOUR-STREAM-DOMAIN.example/live/estrella-tv/index.m3u8
+https://streamlive.com/live/estrella-tv/index.m3u8
 
 #EXTINF:-1 tvg-id="galavision" tvg-name="Galavisión" tvg-logo="https://raw.githubusercontent.com/helenekoffiaya3-byte/Streamlive/main/assets/logos/galavision.png" group-title="Films",Galavisión
-https://YOUR-STREAM-DOMAIN.example/live/galavision/index.m3u8
+https://streamlive.com/live/galavision/index.m3u8
 
 #EXTINF:-1 tvg-id="hallmark-drama" tvg-name="Hallmark Drama" tvg-logo="https://raw.githubusercontent.com/helenekoffiaya3-byte/Streamlive/main/assets/logos/hallmark-drama.png" group-title="Films",Hallmark Drama
-https://YOUR-STREAM-DOMAIN.example/live/hallmark-drama/index.m3u8
+https://streamlive.com/live/hallmark-drama/index.m3u8
 
 #EXTINF:-1 tvg-id="lifetime" tvg-name="Lifetime" tvg-logo="https://raw.githubusercontent.com/helenekoffiaya3-byte/Streamlive/main/assets/logos/lifetime.png" group-title="Films",Lifetime
-https://YOUR-STREAM-DOMAIN.example/live/lifetime/index.m3u8
+https://streamlive.com/live/lifetime/index.m3u8
 
 #EXTINF:-1 tvg-id="hbo" tvg-name="HBO" tvg-logo="https://raw.githubusercontent.com/helenekoffiaya3-byte/Streamlive/main/assets/logos/hbo.png" group-title="Films",HBO
-https://YOUR-STREAM-DOMAIN.example/live/hbo/index.m3u8
+https://streamlive.com/live/hbo/index.m3u8
 
 #EXTINF:-1 tvg-id="tnt" tvg-name="TNT" tvg-logo="https://raw.githubusercontent.com/helenekoffiaya3-byte/Streamlive/main/assets/logos/tnt.png" group-title="Films",TNT
-https://YOUR-STREAM-DOMAIN.example/live/tnt/index.m3u8
+https://streamlive.com/live/tnt/index.m3u8
 
 #EXTINF:-1 tvg-id="tbs" tvg-name="TBS" tvg-logo="https://raw.githubusercontent.com/helenekoffiaya3-byte/Streamlive/main/assets/logos/tbs.png" group-title="Films",TBS
-https://YOUR-STREAM-DOMAIN.example/live/tbs/index.m3u8
+https://streamlive.com/live/tbs/index.m3u8
 
 #EXTINF:-1 tvg-id="usa-network" tvg-name="USA Network" tvg-logo="https://raw.githubusercontent.com/helenekoffiaya3-byte/Streamlive/main/assets/logos/usa-network.png" group-title="Films",USA Network
-https://YOUR-STREAM-DOMAIN.example/live/usa-network/index.m3u8
+https://streamlive.com/live/usa-network/index.m3u8
 
 #EXTINF:-1 tvg-id="paramount-network" tvg-name="Paramount Network" tvg-logo="https://raw.githubusercontent.com/helenekoffiaya3-byte/Streamlive/main/assets/logos/paramount-network.png" group-title="Films",Paramount Network
-https://YOUR-STREAM-DOMAIN.example/live/paramount-network/index.m3u8
+https://streamlive.com/live/paramount-network/index.m3u8
 
 #EXTINF:-1 tvg-id="amc" tvg-name="AMC" tvg-logo="https://raw.githubusercontent.com/helenekoffiaya3-byte/Streamlive/main/assets/logos/amc.png" group-title="Films",AMC
-https://YOUR-STREAM-DOMAIN.example/live/amc/index.m3u8
+https://streamlive.com/live/amc/index.m3u8
 
 #EXTINF:-1 tvg-id="fx" tvg-name="FX" tvg-logo="https://raw.githubusercontent.com/helenekoffiaya3-byte/Streamlive/main/assets/logos/fx.png" group-title="Films",FX
-https://YOUR-STREAM-DOMAIN.example/live/fx/index.m3u8
+https://streamlive.com/live/fx/index.m3u8
 
 #EXTINF:-1 tvg-id="fxx" tvg-name="FXX" tvg-logo="https://raw.githubusercontent.com/helenekoffiaya3-byte/Streamlive/main/assets/logos/fxx.png" group-title="Films",FXX
-https://YOUR-STREAM-DOMAIN.example/live/fxx/index.m3u8
+https://streamlive.com/live/fxx/index.m3u8
 
 #EXTINF:-1 tvg-id="syfy" tvg-name="Syfy" tvg-logo="https://raw.githubusercontent.com/helenekoffiaya3-byte/Streamlive/main/assets/logos/syfy.png" group-title="Films",Syfy
-https://YOUR-STREAM-DOMAIN.example/live/syfy/index.m3u8
+https://streamlive.com/live/syfy/index.m3u8
 
 #EXTINF:-1 tvg-id="starz" tvg-name="Starz" tvg-logo="https://raw.githubusercontent.com/helenekoffiaya3-byte/Streamlive/main/assets/logos/starz.png" group-title="Films",Starz
-https://YOUR-STREAM-DOMAIN.example/live/starz/index.m3u8
+https://streamlive.com/live/starz/index.m3u8
 
 #EXTINF:-1 tvg-id="cinemax" tvg-name="Cinemax" tvg-logo="https://raw.githubusercontent.com/helenekoffiaya3-byte/Streamlive/main/assets/logos/cinemax.png" group-title="Films",Cinemax
-https://YOUR-STREAM-DOMAIN.example/live/cinemax/index.m3u8
+https://streamlive.com/live/cinemax/index.m3u8
 
 #EXTINF:-1 tvg-id="showtime" tvg-name="Showtime" tvg-logo="https://raw.githubusercontent.com/helenekoffiaya3-byte/Streamlive/main/assets/logos/showtime.png" group-title="Films",Showtime
-https://YOUR-STREAM-DOMAIN.example/live/showtime/index.m3u8
+https://streamlive.com/live/showtime/index.m3u8
 
 #EXTINF:-1 tvg-id="mgm-plus" tvg-name="MGM+" tvg-logo="https://raw.githubusercontent.com/helenekoffiaya3-byte/Streamlive/main/assets/logos/mgm-plus.png" group-title="Films",MGM+
-https://YOUR-STREAM-DOMAIN.example/live/mgm-plus/index.m3u8
+https://streamlive.com/live/mgm-plus/index.m3u8
 
 #EXTINF:-1 tvg-id="tcm" tvg-name="TCM" tvg-logo="https://raw.githubusercontent.com/helenekoffiaya3-byte/Streamlive/main/assets/logos/tcm.png" group-title="Films",TCM
-https://YOUR-STREAM-DOMAIN.example/live/tcm/index.m3u8
+https://streamlive.com/live/tcm/index.m3u8
 
 #EXTINF:-1 tvg-id="ifc" tvg-name="IFC" tvg-logo="https://raw.githubusercontent.com/helenekoffiaya3-byte/Streamlive/main/assets/logos/ifc.png" group-title="Films",IFC
-https://YOUR-STREAM-DOMAIN.example/live/ifc/index.m3u8
+https://streamlive.com/live/ifc/index.m3u8
 
 #EXTINF:-1 tvg-id="sundance-tv" tvg-name="Sundance TV" tvg-logo="https://raw.githubusercontent.com/helenekoffiaya3-byte/Streamlive/main/assets/logos/sundance-tv.png" group-title="Films",Sundance TV
-https://YOUR-STREAM-DOMAIN.example/live/sundance-tv/index.m3u8
+https://streamlive.com/live/sundance-tv/index.m3u8
 
 #EXTINF:-1 tvg-id="ion" tvg-name="Ion" tvg-logo="https://raw.githubusercontent.com/helenekoffiaya3-byte/Streamlive/main/assets/logos/ion.png" group-title="Films",Ion
-https://YOUR-STREAM-DOMAIN.example/live/ion/index.m3u8
+https://streamlive.com/live/ion/index.m3u8
 
 #EXTINF:-1 tvg-id="movies" tvg-name="Movies!" tvg-logo="https://raw.githubusercontent.com/helenekoffiaya3-byte/Streamlive/main/assets/logos/movies.png" group-title="Films",Movies!
-https://YOUR-STREAM-DOMAIN.example/live/movies/index.m3u8
+https://streamlive.com/live/movies/index.m3u8
 
 #EXTINF:-1 tvg-id="comet" tvg-name="Comet" tvg-logo="https://raw.githubusercontent.com/helenekoffiaya3-byte/Streamlive/main/assets/logos/comet.png" group-title="Films",Comet
-https://YOUR-STREAM-DOMAIN.example/live/comet/index.m3u8
+https://streamlive.com/live/comet/index.m3u8
 
 #EXTINF:-1 tvg-id="charge" tvg-name="Charge!" tvg-logo="https://raw.githubusercontent.com/helenekoffiaya3-byte/Streamlive/main/assets/logos/charge.png" group-title="Films",Charge!
-https://YOUR-STREAM-DOMAIN.example/live/charge/index.m3u8
+https://streamlive.com/live/charge/index.m3u8
 
 #EXTINF:-1 tvg-id="grit" tvg-name="Grit" tvg-logo="https://raw.githubusercontent.com/helenekoffiaya3-byte/Streamlive/main/assets/logos/grit.png" group-title="Films",Grit
-https://YOUR-STREAM-DOMAIN.example/live/grit/index.m3u8
+https://streamlive.com/live/grit/index.m3u8
 
 #EXTINF:-1 tvg-id="gettv" tvg-name="getTV" tvg-logo="https://raw.githubusercontent.com/helenekoffiaya3-byte/Streamlive/main/assets/logos/gettv.png" group-title="Films",getTV
-https://YOUR-STREAM-DOMAIN.example/live/gettv/index.m3u8
+https://streamlive.com/live/gettv/index.m3u8
 
 #EXTINF:-1 tvg-id="heroes-icons" tvg-name="Heroes & Icons" tvg-logo="https://raw.githubusercontent.com/helenekoffiaya3-byte/Streamlive/main/assets/logos/heroes-icons.png" group-title="Films",Heroes & Icons
-https://YOUR-STREAM-DOMAIN.example/live/heroes-icons/index.m3u8
+https://streamlive.com/live/heroes-icons/index.m3u8
 
 #EXTINF:-1 tvg-id="tubi" tvg-name="Tubi" tvg-logo="https://raw.githubusercontent.com/helenekoffiaya3-byte/Streamlive/main/assets/logos/tubi.png" group-title="Films",Tubi
-https://YOUR-STREAM-DOMAIN.example/live/tubi/index.m3u8
+https://streamlive.com/live/tubi/index.m3u8
 
 #EXTINF:-1 tvg-id="pluto-tv" tvg-name="Pluto TV" tvg-logo="https://raw.githubusercontent.com/helenekoffiaya3-byte/Streamlive/main/assets/logos/pluto-tv.png" group-title="Films",Pluto TV
-https://YOUR-STREAM-DOMAIN.example/live/pluto-tv/index.m3u8
+https://streamlive.com/live/pluto-tv/index.m3u8
 
 #EXTINF:-1 tvg-id="peacock" tvg-name="Peacock" tvg-logo="https://raw.githubusercontent.com/helenekoffiaya3-byte/Streamlive/main/assets/logos/peacock.png" group-title="Films",Peacock
-https://YOUR-STREAM-DOMAIN.example/live/peacock/index.m3u8
+https://streamlive.com/live/peacock/index.m3u8
 
 #EXTINF:-1 tvg-id="bravo" tvg-name="Bravo" tvg-logo="https://raw.githubusercontent.com/helenekoffiaya3-byte/Streamlive/main/assets/logos/bravo.png" group-title="Films",Bravo
-https://YOUR-STREAM-DOMAIN.example/live/bravo/index.m3u8
+https://streamlive.com/live/bravo/index.m3u8
 
 #EXTINF:-1 tvg-id="cuisines" tvg-name="Cuisines" tvg-logo="https://raw.githubusercontent.com/helenekoffiaya3-byte/Streamlive/main/assets/logos/cuisines.png" group-title="Films",Cuisines
-https://YOUR-STREAM-DOMAIN.example/live/cuisines/index.m3u8
+https://streamlive.com/live/cuisines/index.m3u8
 
 #EXTINF:-1 tvg-id="mtv" tvg-name="MTV" tvg-logo="https://raw.githubusercontent.com/helenekoffiaya3-byte/Streamlive/main/assets/logos/mtv.png" group-title="Films",MTV
-https://YOUR-STREAM-DOMAIN.example/live/mtv/index.m3u8
+https://streamlive.com/live/mtv/index.m3u8
 
 #EXTINF:-1 tvg-id="z-magic" tvg-name="Z Magic" tvg-logo="https://raw.githubusercontent.com/helenekoffiaya3-byte/Streamlive/main/assets/logos/z-magic.png" group-title="Films",Z Magic
-https://YOUR-STREAM-DOMAIN.example/live/z-magic/index.m3u8
+https://streamlive.com/live/z-magic/index.m3u8
 
 #EXTINF:-1 tvg-id="emci-tv" tvg-name="EMCI TV" tvg-logo="https://raw.githubusercontent.com/helenekoffiaya3-byte/Streamlive/main/assets/logos/emci-tv.png" group-title="Biblical",EMCI TV
-https://YOUR-STREAM-DOMAIN.example/live/emci-tv/index.m3u8
+https://streamlive.com/live/emci-tv/index.m3u8
 
 #EXTINF:-1 tvg-id="esperance-tv" tvg-name="Espérance TV" tvg-logo="https://raw.githubusercontent.com/helenekoffiaya3-byte/Streamlive/main/assets/logos/esperance-tv.png" group-title="Biblical",Espérance TV
-https://YOUR-STREAM-DOMAIN.example/live/esperance-tv/index.m3u8
+https://streamlive.com/live/esperance-tv/index.m3u8
 
 #EXTINF:-1 tvg-id="kto" tvg-name="KTO" tvg-logo="https://raw.githubusercontent.com/helenekoffiaya3-byte/Streamlive/main/assets/logos/kto.png" group-title="Biblical",KTO
-https://YOUR-STREAM-DOMAIN.example/live/kto/index.m3u8
+https://streamlive.com/live/kto/index.m3u8
 
 #EXTINF:-1 tvg-id="top-chretien" tvg-name="Top Chrétien" tvg-logo="https://raw.githubusercontent.com/helenekoffiaya3-byte/Streamlive/main/assets/logos/top-chretien.png" group-title="Biblical",Top Chrétien
-https://YOUR-STREAM-DOMAIN.example/live/top-chretien/index.m3u8
+https://streamlive.com/live/top-chretien/index.m3u8
 
 #EXTINF:-1 tvg-id="hope-channel" tvg-name="Hope Channel" tvg-logo="https://raw.githubusercontent.com/helenekoffiaya3-byte/Streamlive/main/assets/logos/hope-channel.png" group-title="Biblical",Hope Channel
-https://YOUR-STREAM-DOMAIN.example/live/hope-channel/index.m3u8
+https://streamlive.com/live/hope-channel/index.m3u8
 
 #EXTINF:-1 tvg-id="trace-gospel" tvg-name="Trace Gospel" tvg-logo="https://raw.githubusercontent.com/helenekoffiaya3-byte/Streamlive/main/assets/logos/trace-gospel.png" group-title="Biblical",Trace Gospel
-https://YOUR-STREAM-DOMAIN.example/live/trace-gospel/index.m3u8
+https://streamlive.com/live/trace-gospel/index.m3u8
 
 #EXTINF:-1 tvg-id="ewtn" tvg-name="EWTN" tvg-logo="https://raw.githubusercontent.com/helenekoffiaya3-byte/Streamlive/main/assets/logos/ewtn.png" group-title="Biblical",EWTN
-https://YOUR-STREAM-DOMAIN.example/live/ewtn/index.m3u8
+https://streamlive.com/live/ewtn/index.m3u8
