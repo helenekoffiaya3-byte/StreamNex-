@@ -48,6 +48,7 @@ nav a:hover { color:var(--text); }
 .catalog-list { display:grid; gap:10px; }
 .catalog-card { display:flex; gap:14px; align-items:center; padding:14px; background:var(--card); border:1px solid var(--border); border-radius:10px; }
 .catalog-card h4 { margin:0 0 4px; }
+.catalog-poster { width:140px; aspect-ratio:16/9; object-fit:cover; border-radius:8px; background:var(--bg); flex:0 0 auto; }
 .catalog-card p { margin:0; color:var(--muted); font-size:.82rem; }
 .catalog-card button { margin-left:auto; padding:8px 13px; border:0; border-radius:8px; background:var(--green); color:#00160d; font-weight:700; cursor:pointer; }
 .catalog-card button:disabled { opacity:.45; cursor:not-allowed; }
