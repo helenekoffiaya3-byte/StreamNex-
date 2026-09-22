@@ -195,6 +195,27 @@ app.get('/api/channels/:id/programs', (req, res) => {
   });
 });
 
+app.get('/api/catalog/:channelId', (req, res) => {
+  const channel = CHANNELS.find(item => item.id === req.params.channelId);
+  if (!channel) {
+    return res.status(404).json({
+      success: false,
+      error: 'Chaîne non trouvée.'
+    });
+  }
+
+  const { getProgramsByChannel } = require('./models/program-db');
+  const programs = getProgramsByChannel(channel.id);
+
+  return res.json({
+    success: true,
+    channelId: channel.id,
+    available: programs.length > 0,
+    count: programs.length,
+    programs
+  });
+});
+
 app.get('/api/channels/:id/catalog', (req, res) => {
   const channel = CHANNELS.find(item => item.id === req.params.id);
   if (!channel) {
@@ -348,6 +369,17 @@ app.get('/api/programs/resolve-playback', (req, res) => {
   });
 });
 
+app.get('/api/epg/status', (_req, res) => {
+  const latestRun = getLatestSyncRun();
+
+  res.json({
+    success: true,
+    sourceConfigured: Boolean(process.env.SOURCE_EPG_URL?.trim()),
+    status: latestRun?.status || 'waiting_for_source',
+    lastSync: latestRun || null
+  });
+});
+
 app.get('/api/health', (_req, res) => {
   res.json({
     success: true,
@@ -362,6 +394,7 @@ app.get('/api/health', (_req, res) => {
   });
 });
 
+const { getLatestSyncRun } = require('./models/program-db');
 const { runEpgSync } = require('./services/epgRobot');
 const cron = require('node-cron');
 
