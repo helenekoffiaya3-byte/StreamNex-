@@ -92,6 +92,32 @@ function getProgramsByChannel(channelId, status = 'confirmed') {
   return rows.map(rowToProgram);
 }
 
+function getOccurrencesByChannel(channelId, fromIso = null, toIso = null) {
+  let sql = `
+    SELECT occurrence_id AS occurrenceId, program_id AS programId,
+           channel_id AS channelId, start_at AS startAt, end_at AS endAt,
+           subtitle, season_number AS seasonNumber,
+           episode_number AS episodeNumber, description, poster
+    FROM program_occurrences
+    JOIN programs ON programs.program_id = program_occurrences.program_id
+    WHERE program_occurrences.channel_id = ?
+      AND programs.status = 'confirmed'
+  `;
+  const params = [channelId];
+
+  if (fromIso) {
+    sql += ' AND (end_at IS NULL OR end_at >= ?)';
+    params.push(fromIso);
+  }
+  if (toIso) {
+    sql += ' AND start_at <= ?';
+    params.push(toIso);
+  }
+
+  sql += ' ORDER BY start_at';
+  return db.prepare(sql).all(...params);
+}
+
 function getProgramOccurrences(programId) {
   return db.prepare(`
     SELECT occurrence_id AS occurrenceId, program_id AS programId,
@@ -216,6 +242,7 @@ module.exports = {
   getProgram,
   getProgramsByChannel,
   getProgramOccurrences,
+  getOccurrencesByChannel,
   upsertProgram,
   addOccurrence,
   confirmEligiblePrograms,
