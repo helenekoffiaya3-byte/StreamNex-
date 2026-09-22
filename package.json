@@ -5,7 +5,8 @@
   "description": "StreamLive — catalogue TV et API de zap aléatoire HLS",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js"
+    "start": "node server.js",
+    "map-channels": "node lib/autoMapChannels.js"
   },
   "engines": {
     "node": ">=20"
