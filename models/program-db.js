@@ -276,6 +276,19 @@ function createSyncRun() {
   return result.lastInsertRowid;
 }
 
+function getLatestSyncRun() {
+  const row = db.prepare(`
+    SELECT id, started_at AS startedAt, completed_at AS completedAt,
+           status, imported_count AS importedCount,
+           confirmed_count AS confirmedCount, error
+    FROM sync_runs
+    ORDER BY id DESC
+    LIMIT 1
+  `).get();
+
+  return row || null;
+}
+
 function finishSyncRun(id, status, importedCount, confirmedCount, error = null) {
   db.prepare(`
     UPDATE sync_runs
