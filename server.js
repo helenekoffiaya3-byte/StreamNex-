@@ -70,16 +70,22 @@ app.use(express.static(__dirname));
 
 const CHANNEL_CONFIG = require('./config/channels');
 
-const STREAM_BASE_URL = process.env.STREAM_BASE_URL
-  ? process.env.STREAM_BASE_URL.replace(/\/$/, '')
-  : null;
+function validatePlaybackUrl(value) {
+  if (!value) return null;
+  try {
+    const url = new URL(String(value).trim());
+    return ['http:', 'https:'].includes(url.protocol) ? url.toString() : null;
+  } catch {
+    return null;
+  }
+}
 
 const CHANNELS = CHANNEL_CONFIG.map((channel, index) => ({
   ...channel,
   number: index + 1,
-  url: channel.productionUrl || (
-    STREAM_BASE_URL ? `${STREAM_BASE_URL}/${channel.id}/index.m3u8` : null
-  )
+  // Une URL de lecture doit provenir explicitement de la configuration réelle
+  // de la chaîne. Aucun fallback / chemin HLS n'est fabriqué par le serveur.
+  url: validatePlaybackUrl(channel.productionUrl)
 }));
 
 const userSessions = new Map();
@@ -314,42 +320,49 @@ app.get('/api/series/:id', (req, res) => {
 });
 
 app.get('/api/programs/resolve-playback', (req, res) => {
-  const { channelId, programId, occurrenceId } = req.query;
+  const channelId = String(req.query.channelId || '').trim();
+  const occurrenceId = Number(req.query.occurrenceId);
   const channel = CHANNELS.find(item => item.id === channelId);
 
   if (!channel) {
     return res.status(404).json({ success: false, error: 'Chaîne introuvable.' });
   }
 
+  // La résolution est toujours liée à une occurrence EPG existante.
+  // Le client ne peut pas fournir lui-même une URL VOD arbitraire.
+  if (!Number.isSafeInteger(occurrenceId) || occurrenceId <= 0) {
+    return res.status(400).json({
+      success: false,
+      error: 'Une occurrence EPG valide est requise.'
+    });
+  }
+
   const { getProgram, getOccurrenceById } = require('./models/program-db');
-  const program = programId ? getProgram(programId) : null;
-  const occurrence = occurrenceId ? getOccurrenceById(Number(occurrenceId)) : null;
+  const occurrence = getOccurrenceById(occurrenceId);
 
-  if (program && program.channelId !== channel.id) {
-    return res.status(400).json({ success: false, error: 'Le programme n’appartient pas à cette chaîne.' });
+  if (!occurrence) {
+    return res.status(404).json({ success: false, error: 'Occurrence EPG introuvable.' });
   }
 
-  if (occurrence && occurrence.channelId !== channel.id) {
-    return res.status(400).json({ success: false, error: 'L’occurrence n’appartient pas à cette chaîne.' });
+  if (occurrence.channelId !== channel.id) {
+    return res.status(403).json({
+      success: false,
+      error: 'Cette occurrence n’appartient pas à la chaîne demandée.'
+    });
   }
 
-  if (program && occurrence && occurrence.programId !== program.programId) {
-    return res.status(400).json({ success: false, error: 'L’occurrence ne correspond pas au programme.' });
-  }
-
-  if (program?.playbackUrl) {
-    return res.json({
-      success: true,
-      mode: 'VOD',
-      playbackUrl: program.playbackUrl,
-      programTitle: program.title
+  const program = getProgram(occurrence.programId);
+  if (!program || program.channelId !== channel.id || program.status !== 'confirmed') {
+    return res.status(404).json({
+      success: false,
+      error: 'Programme EPG confirmé introuvable.'
     });
   }
 
   const now = Date.now();
-  const startAt = occurrence ? Date.parse(occurrence.startAt) : NaN;
-  const endAt = occurrence?.endAt ? Date.parse(occurrence.endAt) : NaN;
-  const isLive = !Number.isNaN(startAt) &&
+  const startAt = Date.parse(occurrence.startAt);
+  const endAt = occurrence.endAt ? Date.parse(occurrence.endAt) : NaN;
+  const isLive = Number.isFinite(startAt) &&
     startAt <= now &&
     (Number.isNaN(endAt) || now < endAt);
 
@@ -358,7 +371,19 @@ app.get('/api/programs/resolve-playback', (req, res) => {
       success: true,
       mode: 'LIVE',
       playbackUrl: channel.url,
-      programTitle: occurrence.subtitle || program?.title || 'Titre non fourni par la source EPG'
+      programTitle: occurrence.title || occurrence.subtitle || program.title
+    });
+  }
+
+  // Une VOD est utilisable uniquement si elle a été enregistrée côté serveur
+  // par le robot/backend. Elle n'est jamais acceptée depuis req.query.
+  const vodUrl = validatePlaybackUrl(program.playbackUrl);
+  if (vodUrl) {
+    return res.json({
+      success: true,
+      mode: 'VOD',
+      playbackUrl: vodUrl,
+      programTitle: occurrence.title || occurrence.subtitle || program.title
     });
   }
 
@@ -366,8 +391,8 @@ app.get('/api/programs/resolve-playback', (req, res) => {
     success: true,
     mode: 'NONE',
     playbackUrl: null,
-    programTitle: occurrence?.subtitle || program?.title || 'Titre non fourni par la source EPG',
-    message: 'Aucune source vidéo à la demande autorisée pour ce contenu.'
+    programTitle: occurrence.title || occurrence.subtitle || program.title,
+    message: 'Aucune source vidéo réelle et autorisée n’est disponible pour cette occurrence.'
   });
 });
 
@@ -413,7 +438,7 @@ app.get('/api/health', (_req, res) => {
     service: 'StreamLive',
     channels: CHANNELS.length,
     configuredLiveStreams: CHANNELS.filter(channel => Boolean(channel.url)).length,
-    streamBaseUrlConfigured: Boolean(STREAM_BASE_URL),
+    streamBaseUrlConfigured: false,
     siteBaseUrl: process.env.SITE_BASE_URL || null,
     sessionStore: 'memory',
     sessionTtlMs: SESSION_TTL_MS,
