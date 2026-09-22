@@ -39,7 +39,7 @@ app.use(cors({
     if (!origin || allowedOrigins.includes(origin)) return callback(null, true);
     return callback(new Error('Accès CORS refusé.'));
   },
-  methods: ['GET', 'OPTIONS'],
+  methods: ['GET', 'POST', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization', 'X-Session-Id'],
   maxAge: 86400
 }));
@@ -373,13 +373,38 @@ app.get('/api/programs/resolve-playback', (req, res) => {
 
 app.get('/api/epg/status', (_req, res) => {
   const latestRun = getLatestSyncRun();
+  const automaticGuidesEnabled = process.env.EPG_USE_IPTV_ORG_GUIDES === 'true';
 
   res.json({
     success: true,
     sourceConfigured: Boolean(process.env.SOURCE_EPG_URL?.trim()),
-    status: latestRun?.status || 'waiting_for_source',
+    automaticGuidesEnabled,
+    status: latestRun?.status || (automaticGuidesEnabled ? 'waiting_for_sync' : 'waiting_for_source'),
     lastSync: latestRun || null
   });
+});
+
+app.post('/api/epg/sync', async (req, res) => {
+  const expectedToken = String(process.env.EPG_SYNC_TOKEN || '').trim();
+  const providedToken = String(req.get('X-EPG-Sync-Token') || '').trim();
+
+  if (!expectedToken || !providedToken || providedToken !== expectedToken) {
+    return res.status(401).json({
+      success: false,
+      error: 'Synchronisation EPG non autorisée.'
+    });
+  }
+
+  try {
+    const result = await runEpgSync();
+    return res.json({ success: true, ...result });
+  } catch (error) {
+    return res.status(502).json({
+      success: false,
+      error: 'La synchronisation EPG a échoué.',
+      detail: error.message
+    });
+  }
 });
 
 app.get('/api/health', (_req, res) => {
@@ -392,7 +417,9 @@ app.get('/api/health', (_req, res) => {
     siteBaseUrl: process.env.SITE_BASE_URL || null,
     sessionStore: 'memory',
     sessionTtlMs: SESSION_TTL_MS,
-    epgSourceConfigured: Boolean(process.env.SOURCE_EPG_URL)
+    epgSourceConfigured: Boolean(process.env.SOURCE_EPG_URL),
+    automaticEpgGuidesEnabled: process.env.EPG_USE_IPTV_ORG_GUIDES === 'true',
+    epgSyncEndpointProtected: Boolean(process.env.EPG_SYNC_TOKEN)
   });
 });
 
