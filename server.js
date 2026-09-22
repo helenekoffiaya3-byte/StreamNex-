@@ -284,22 +284,56 @@ app.get('/api/series/:id', (req, res) => {
 });
 
 app.get('/api/programs/resolve-playback', (req, res) => {
-  const { channelId, programId } = req.query;
+  const { channelId, programId, occurrenceId } = req.query;
   const channel = CHANNELS.find(item => item.id === channelId);
 
   if (!channel) {
     return res.status(404).json({ success: false, error: 'Chaîne introuvable.' });
   }
 
-  const { getProgram } = require('./models/program-db');
+  const { getProgram, getOccurrenceById } = require('./models/program-db');
   const program = programId ? getProgram(programId) : null;
-  const playbackUrl = program?.playbackUrl || null;
+  const occurrence = occurrenceId ? getOccurrenceById(Number(occurrenceId)) : null;
 
-  res.json({
+  if (program && program.channelId !== channel.id) {
+    return res.status(400).json({ success: false, error: 'Le programme n’appartient pas à cette chaîne.' });
+  }
+
+  if (occurrence && occurrence.channelId !== channel.id) {
+    return res.status(400).json({ success: false, error: 'L’occurrence n’appartient pas à cette chaîne.' });
+  }
+
+  if (program?.playbackUrl) {
+    return res.json({
+      success: true,
+      mode: 'VOD',
+      playbackUrl: program.playbackUrl,
+      programTitle: program.title
+    });
+  }
+
+  const now = Date.now();
+  const startAt = occurrence ? Date.parse(occurrence.startAt) : NaN;
+  const endAt = occurrence?.endAt ? Date.parse(occurrence.endAt) : NaN;
+  const isLive = !Number.isNaN(startAt) &&
+    startAt <= now &&
+    (Number.isNaN(endAt) || now < endAt);
+
+  if (isLive) {
+    return res.json({
+      success: true,
+      mode: 'LIVE',
+      playbackUrl: channel.url,
+      programTitle: occurrence.subtitle || program?.title || 'Direct Télévisé'
+    });
+  }
+
+  return res.json({
     success: true,
-    mode: playbackUrl ? 'VOD' : 'LIVE',
-    playbackUrl: playbackUrl || channel.url,
-    programTitle: program?.title || 'Direct Télévisé'
+    mode: 'NONE',
+    playbackUrl: null,
+    programTitle: occurrence?.subtitle || program?.title || 'Programme',
+    message: 'Aucune source vidéo à la demande autorisée pour ce contenu.'
   });
 });
 
