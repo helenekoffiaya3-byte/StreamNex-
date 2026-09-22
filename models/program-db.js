@@ -31,6 +31,8 @@ CREATE TABLE IF NOT EXISTS programs (
   status TEXT NOT NULL DEFAULT 'pending' CHECK(status IN ('pending','confirmed','archived')),
   first_seen_at TEXT NOT NULL,
   last_seen_at TEXT NOT NULL,
+  observed_first_seen_at TEXT,
+  observed_last_seen_at TEXT,
   occurrences_count INTEGER NOT NULL DEFAULT 0,
   distinct_days_count INTEGER NOT NULL DEFAULT 0,
   is_recurring INTEGER NOT NULL DEFAULT 0,
@@ -75,6 +77,8 @@ ensureColumn('programs', 'poster_source_url', 'TEXT');
 ensureColumn('programs', 'poster_source_type', 'TEXT');
 ensureColumn('program_occurrences', 'poster_source_url', 'TEXT');
 ensureColumn('program_occurrences', 'poster_source_type', 'TEXT');
+ensureColumn('programs', 'observed_first_seen_at', 'TEXT');
+ensureColumn('programs', 'observed_last_seen_at', 'TEXT');
 
 function rowToProgram(row) {
   if (!row) return null;
@@ -86,8 +90,8 @@ function rowToProgram(row) {
     description: row.description,
     poster: row.poster,
     status: row.status,
-    firstSeenAt: row.first_seen_at,
-    lastSeenAt: row.last_seen_at,
+    firstSeenAt: row.observed_first_seen_at || null,
+    lastSeenAt: row.observed_last_seen_at || null,
     occurrencesCount: row.occurrences_count,
     distinctDaysCount: row.distinct_days_count,
     isRecurring: Boolean(row.is_recurring),
@@ -153,7 +157,8 @@ function getProgramOccurrences(programId) {
     SELECT occurrence_id AS occurrenceId, program_id AS programId,
            channel_id AS channelId, start_at AS startAt, end_at AS endAt,
            subtitle, season_number AS seasonNumber,
-           episode_number AS episodeNumber, description, poster
+           episode_number AS episodeNumber, description, poster,
+           poster_source_url AS posterSourceUrl, poster_source_type AS posterSourceType
     FROM program_occurrences
     WHERE program_id = ?
     ORDER BY start_at
@@ -260,15 +265,15 @@ function addOccurrence(programId, occurrence) {
           WHEN status = 'confirmed' AND ? >= 3 THEN 1
           ELSE 0
         END,
-        first_seen_at = ?,
-        last_seen_at = ?
+        observed_first_seen_at = ?,
+        observed_last_seen_at = ?
     WHERE program_id = ?
   `).run(
     stats.count,
     stats.distinctDays,
     stats.distinctDays,
-    stats.firstSeenAt || new Date().toISOString(),
-    stats.lastSeenAt || new Date().toISOString(),
+    stats.firstSeenAt || null,
+    stats.lastSeenAt || null,
     programId
   );
 }
@@ -280,10 +285,11 @@ function confirmEligiblePrograms() {
     SELECT program_id
     FROM programs
     WHERE status = 'pending'
-      AND first_seen_at <= ?
-      AND last_seen_at IS NOT NULL
+      AND observed_first_seen_at IS NOT NULL
+      AND observed_first_seen_at <= ?
+      AND observed_last_seen_at IS NOT NULL
       AND distinct_days_count >= 3
-      AND (julianday(last_seen_at) - julianday(first_seen_at)) >= 3
+      AND (julianday(observed_last_seen_at) - julianday(observed_first_seen_at)) >= 3
   `).all(threshold);
 
   const update = db.prepare(`
