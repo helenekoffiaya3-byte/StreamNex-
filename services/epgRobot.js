@@ -30,7 +30,7 @@ function asArray(value) {
 function textValue(value) {
   if (value == null) return '';
   if (typeof value === 'string' || typeof value === 'number') return String(value);
-  return String(value['#text'] ?? value._ ?? '');
+  return String(value['#text'] ?? value._ ?? '').trim();
 }
 
 function slugify(value) {
@@ -50,12 +50,12 @@ function parseXmltvDate(value) {
   if (!match) return null;
 
   const digits = match[1];
-  const isoBase = `${digits.slice(0,4)}-${digits.slice(4,6)}-${digits.slice(6,8)}T${digits.slice(8,10)}:${digits.slice(10,12)}:${digits.slice(12,14)}`;
+  const base = `${digits.slice(0, 4)}-${digits.slice(4, 6)}-${digits.slice(6, 8)}T${digits.slice(8, 10)}:${digits.slice(10, 12)}:${digits.slice(12, 14)}`;
   const zone = match[2] && match[2] !== 'Z'
-    ? `${match[2].slice(0,3)}:${match[2].slice(3)}`
+    ? `${match[2].slice(0, 3)}:${match[2].slice(3)}`
     : 'Z';
 
-  const date = new Date(isoBase + zone);
+  const date = new Date(base + zone);
   return Number.isNaN(date.getTime()) ? null : date.toISOString();
 }
 
@@ -63,27 +63,39 @@ function parseEpisode(value) {
   const raw = textValue(value);
   if (!raw) return { seasonNumber: null, episodeNumber: null };
 
-  const xmltvNs = raw.split('.');
-  if (xmltvNs.length >= 2 && /^\d+$/.test(xmltvNs[0]) && /^\d+$/.test(xmltvNs[1])) {
+  const ns = raw.match(/^(\d+)\s*\.\s*(\d+)/);
+  if (ns) {
     return {
-      seasonNumber: Number(xmltvNs[0]) + 1,
-      episodeNumber: Number(xmltvNs[1]) + 1
+      seasonNumber: Number(ns[1]) + 1,
+      episodeNumber: Number(ns[2]) + 1
     };
   }
 
-  const match = raw.match(/S(\d+)\s*E(\d+)/i);
-  if (match) {
-    return { seasonNumber: Number(match[1]), episodeNumber: Number(match[2]) };
+  const onscreen = raw.match(/S(\d+)\s*E(\d+)/i);
+  if (onscreen) {
+    return {
+      seasonNumber: Number(onscreen[1]),
+      episodeNumber: Number(onscreen[2])
+    };
   }
 
   return { seasonNumber: null, episodeNumber: null };
 }
 
-function detectType(title, raw) {
+function detectType(raw) {
   const category = textValue(asArray(raw.category)[0]).toLowerCase();
-  if (/news|journal|information|actualité|jt/.test(category + ' ' + title.toLowerCase())) return 'news';
-  if (/series|série|soap|feuilleton/.test(category + ' ' + title.toLowerCase()) || raw['episode-num'] || raw['series-id']) return 'series';
-  if (/movie|film|cinéma/.test(category + ' ' + title.toLowerCase())) return 'movie';
+
+  if (/news|journal|information|actualité|jt/.test(category)) return 'news';
+  if (/movie|film|cinéma/.test(category)) return 'movie';
+
+  if (
+    raw['episode-num'] ||
+    raw['series-id'] ||
+    /series|série|soap|feuilleton/.test(category)
+  ) {
+    return 'series';
+  }
+
   return 'show';
 }
 
@@ -97,7 +109,7 @@ async function runEpgSync() {
   let importedCount = 0;
 
   if (!SOURCE_EPG_URL) {
-    const message = 'SOURCE_EPG_URL non configurée. Synchronisation ignorée.';
+    const message = 'SOURCE_EPG_URL non configurée. Aucune donnée EPG ne sera créée.';
     finishSyncRun(syncId, 'skipped', 0, 0, message);
     console.warn('[Robot EPG]', message);
     return { skipped: true, importedCount: 0, confirmedCount: 0 };
@@ -114,6 +126,8 @@ async function runEpgSync() {
     }
 
     const xml = await response.text();
+    if (!xml.trim()) throw new Error('La source EPG a renvoyé un document vide.');
+
     const parser = new XMLParser({
       ignoreAttributes: false,
       attributeNamePrefix: '@_',
@@ -125,20 +139,20 @@ async function runEpgSync() {
     const rawPrograms = asArray(parsed?.tv?.programme);
 
     for (const raw of rawPrograms) {
-      const sourceChannelId = raw['@_channel'];
+      const sourceChannelId = String(raw['@_channel'] || '').trim();
       const channelId = resolveChannelId(sourceChannelId);
       if (!channelId) continue;
 
-      const title = textValue(asArray(raw.title)[0]).trim();
+      const title = textValue(asArray(raw.title)[0]);
       const startAt = parseXmltvDate(raw['@_start']);
       if (!title || !startAt) continue;
 
       const endAt = parseXmltvDate(raw['@_stop']);
-      const description = textValue(asArray(raw.desc)[0]).trim();
-      const subtitle = textValue(asArray(raw['sub-title'])[0]).trim();
-      const poster = raw.icon?.['@_src'] || null;
+      const description = textValue(asArray(raw.desc)[0]);
+      const subtitle = textValue(asArray(raw['sub-title'])[0]);
+      const poster = raw.icon && raw.icon['@_src'] ? String(raw.icon['@_src']) : null;
       const episode = parseEpisode(asArray(raw['episode-num'])[0]);
-      const type = detectType(title, raw);
+      const type = detectType(raw);
       const programId = `${channelId}-${slugify(title)}`;
 
       upsertProgram({
@@ -154,7 +168,7 @@ async function runEpgSync() {
         channelId,
         startAt,
         endAt,
-        subtitle,
+        subtitle: subtitle || null,
         seasonNumber: episode.seasonNumber,
         episodeNumber: episode.episodeNumber,
         description,
@@ -167,11 +181,11 @@ async function runEpgSync() {
     const confirmedCount = confirmEligiblePrograms();
     finishSyncRun(syncId, 'success', importedCount, confirmedCount);
 
-    console.log(`[Robot EPG] OK: ${importedCount} occurrences importées, ${confirmedCount} programmes confirmés.`);
+    console.log(`[Robot EPG] OK: ${importedCount} occurrences réelles importées, ${confirmedCount} programmes confirmés.`);
     return { skipped: false, importedCount, confirmedCount };
   } catch (error) {
     finishSyncRun(syncId, 'error', importedCount, 0, error.message);
-    console.error('[Robot EPG] Erreur:', error);
+    console.error('[Robot EPG] Erreur:', error.message);
     throw error;
   }
 }
