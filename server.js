@@ -114,23 +114,227 @@ app.get('/api/stream/random', shuffleLimiter, (req, res) => {
     return res.status(500).json({ success: false, error: 'Chaîne introuvable.' });
   }
 
-  res.json({ success: true, channel, remainingCount: pool.length, totalCount: CHANNELS.length, cycleComplete: pool.length === 0 });
+  res.json({
+    success: true,
+    channel,
+    remainingCount: pool.length,
+    totalCount: CHANNELS.length,
+    cycleComplete: pool.length === 0
+  });
 });
 
 app.get('/api/stream/channels', (_req, res) => {
   const channels = CHANNELS.map((channel, index) => ({
-    ...channel,
+    id: channel.id,
+    name: channel.name,
+    group: channel.group,
     number: index + 1,
     streamUrl: channel.url,
-    channelUrl: (process.env.SITE_BASE_URL || 'https://streamlive.com').replace(/\/$/, '') + '/channel/' + channel.id,
-    logoUrl: '/assets/logos/' + channel.id + '.png'
+    channelUrl: (process.env.SITE_BASE_URL || '').replace(/\/$/, '') + '/channel/' + channel.id,
+    logoUrl: channel.logoUrl || '/assets/logos/' + channel.id + '.png'
   }));
 
-  res.json({ success: true, count: channels.length, totalCount: channels.length, channels });
+  res.json({
+    success: true,
+    count: channels.length,
+    totalCount: channels.length,
+    channels
+  });
+});
+
+app.get('/api/channels/:id', (req, res) => {
+  const channel = CHANNELS.find(item => item.id === req.params.id);
+  if (!channel) {
+    return res.status(404).json({ success: false, message: 'Chaîne non trouvée.' });
+  }
+
+  const { getProgramsByChannel } = require('./models/program-db');
+  const programs = getProgramsByChannel(channel.id);
+
+  res.json({
+    success: true,
+    channel: {
+      id: channel.id,
+      name: channel.name,
+      group: channel.group,
+      number: channel.number,
+      logoUrl: channel.logoUrl || '/assets/logos/' + channel.id + '.png',
+      streamUrl: channel.url,
+      programs
+    }
+  });
+});
+
+app.get('/api/channels/:id/programs', (req, res) => {
+  const channel = CHANNELS.find(item => item.id === req.params.id);
+  if (!channel) {
+    return res.status(404).json({ success: false, error: 'Chaîne non trouvée.' });
+  }
+
+  const { getProgramsByChannel } = require('./models/program-db');
+  const programs = getProgramsByChannel(channel.id);
+  const now = new Date();
+
+  res.json({
+    success: true,
+    channelId: channel.id,
+    programs,
+    epg: programs,
+    fetchedAt: now.toISOString()
+  });
+});
+
+app.get('/api/channels/:id/catalog', (req, res) => {
+  const channel = CHANNELS.find(item => item.id === req.params.id);
+  if (!channel) {
+    return res.status(404).json({ success: false, error: 'Chaîne non trouvée.' });
+  }
+
+  const { getProgramsByChannel } = require('./models/program-db');
+  const programs = getProgramsByChannel(channel.id);
+
+  res.json({
+    success: true,
+    channelId: channel.id,
+    count: programs.length,
+    programs
+  });
+});
+
+app.get('/api/programs/:id', (req, res) => {
+  const { getProgram, getProgramOccurrences } = require('./models/program-db');
+  const program = getProgram(req.params.id);
+
+  if (!program) {
+    return res.status(404).json({ success: false, message: 'Contenu introuvable.' });
+  }
+
+  const channel = CHANNELS.find(item => item.id === program.channelId);
+  const occurrences = getProgramOccurrences(program.programId);
+
+  res.json({
+    success: true,
+    program: {
+      ...program,
+      liveStreamUrl: channel?.url || null,
+      occurrences
+    }
+  });
+});
+
+app.get('/api/programs/:id/episodes', (req, res) => {
+  const { getProgram, getProgramOccurrences } = require('./models/program-db');
+  const program = getProgram(req.params.id);
+
+  if (!program) {
+    return res.status(404).json({ success: false, error: 'Programme introuvable.' });
+  }
+
+  const episodes = getProgramOccurrences(program.programId)
+    .filter(item => item.seasonNumber != null && item.episodeNumber != null)
+    .map(item => ({
+      ...item,
+      playbackUrl: null
+    }));
+
+  res.json({
+    success: true,
+    programId: program.programId,
+    title: program.title,
+    episodes
+  });
+});
+
+app.get('/api/series/:id', (req, res) => {
+  const { getProgram, getProgramOccurrences } = require('./models/program-db');
+  const program = getProgram(req.params.id);
+
+  if (!program || program.type !== 'series') {
+    return res.status(404).json({ success: false, error: 'Série introuvable.' });
+  }
+
+  const occurrences = getProgramOccurrences(program.programId);
+  const seasons = new Map();
+
+  for (const item of occurrences) {
+    if (item.seasonNumber == null || item.episodeNumber == null) continue;
+    if (!seasons.has(item.seasonNumber)) seasons.set(item.seasonNumber, []);
+    seasons.get(item.seasonNumber).push({
+      episodeNumber: item.episodeNumber,
+      title: item.subtitle || `Épisode ${item.episodeNumber}`,
+      description: item.description,
+      poster: item.poster,
+      playbackUrl: null
+    });
+  }
+
+  res.json({
+    success: true,
+    series: {
+      ...program,
+      seasons: Array.from(seasons.entries()).map(([seasonNumber, episodes]) => ({
+        seasonNumber,
+        episodes: episodes.sort((a,b) => a.episodeNumber - b.episodeNumber)
+      }))
+    }
+  });
+});
+
+app.get('/api/programs/resolve-playback', (req, res) => {
+  const { channelId, programId } = req.query;
+  const channel = CHANNELS.find(item => item.id === channelId);
+
+  if (!channel) {
+    return res.status(404).json({ success: false, error: 'Chaîne introuvable.' });
+  }
+
+  const { getProgram } = require('./models/program-db');
+  const program = programId ? getProgram(programId) : null;
+  const playbackUrl = program?.playbackUrl || null;
+
+  res.json({
+    success: true,
+    mode: playbackUrl ? 'VOD' : 'LIVE',
+    playbackUrl: playbackUrl || channel.url,
+    programTitle: program?.title || 'Direct Télévisé'
+  });
 });
 
 app.get('/api/health', (_req, res) => {
-  res.json({ success: true, service: 'StreamLive', channels: CHANNELS.length, streamBaseUrl: STREAM_BASE_URL, siteBaseUrl: process.env.SITE_BASE_URL || 'https://streamlive.com', sessionStore: 'memory', sessionTtlMs: SESSION_TTL_MS });
+  res.json({
+    success: true,
+    service: 'StreamLive',
+    channels: CHANNELS.length,
+    streamBaseUrl: STREAM_BASE_URL,
+    siteBaseUrl: process.env.SITE_BASE_URL || null,
+    sessionStore: 'memory',
+    sessionTtlMs: SESSION_TTL_MS,
+    epgSourceConfigured: Boolean(process.env.SOURCE_EPG_URL)
+  });
+});
+
+const { runEpgSync } = require('./services/epgRobot');
+const cron = require('node-cron');
+
+const EPG_SYNC_CRON = process.env.EPG_SYNC_CRON || '0 */6 * * *';
+if (cron.validate(EPG_SYNC_CRON)) {
+  cron.schedule(EPG_SYNC_CRON, () => {
+    runEpgSync().catch(error => {
+      console.error('[Robot EPG] Synchronisation planifiée échouée:', error.message);
+    });
+  });
+} else {
+  console.error('[Robot EPG] EPG_SYNC_CRON invalide:', EPG_SYNC_CRON);
+}
+
+if (process.env.EPG_SYNC_ON_START !== 'false') {
+  runEpgSync().catch(error => {
+    console.error('[Robot EPG] Synchronisation au démarrage échouée:', error.message);
+  });
+}
+
+app.get('/channel/:id', (_req, res) => {
+  res.sendFile(require('path').join(__dirname, 'public', 'channel.html'));
 });
 
 app.listen(PORT, () => {
