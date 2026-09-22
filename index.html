@@ -46,7 +46,7 @@
       <strong id="playerTitle">StreamLive</strong>
       <button class="close" onclick="closePlayer()" aria-label="Fermer">×</button>
     </div>
-    <div style="padding:10px 14px;border-bottom:1px solid rgba(255,255,255,.08)"><button class="random-zap" type="button" onclick="playNextRandomStream()">🎲 Zap aléatoire</button></div>
+    <div style="padding:10px 14px;border-bottom:1px solid rgba(255,255,255,.08)"><button class="random-zap" id="shuffleBtn" type="button" aria-pressed="false" onclick="toggleShuffle()">🎲 Zap aléatoire</button></div>
     <div class="screen">
       <video id="streamVideo" controls playsinline preload="metadata" style="width:100%;height:100%;background:#000;display:none"></video>
       <div id="playerEmpty" style="text-align:center;padding:24px">
@@ -318,7 +318,8 @@ function openPlayer(channelOrName){
       if(data.fatal){
         video.style.display='none';
         empty.style.display='block';
-        status.textContent='Flux indisponible ou non accessible.';
+        status.textContent='Flux indisponible. Recherche d’une autre chaîne…';
+        if(shuffleMode) scheduleRandomFallback();
       }
     });
   } else if(video.canPlayType('application/vnd.apple.mpegurl')){
@@ -338,14 +339,25 @@ function openPlayer(channelOrName){
   }
 }
 
-async function playNextRandomStream(){
+let shuffleMode = false;
+let shuffleLoading = false;
+let shuffleRemaining = 140;
+let shuffleTimer = null;
+
+function getStreamSessionId(){
   const sessionKey='streamlive_session_id';
   let sessionId=sessionStorage.getItem(sessionKey);
   if(!sessionId){
     sessionId='user_'+crypto.randomUUID();
     sessionStorage.setItem(sessionKey,sessionId);
   }
+  return sessionId;
+}
 
+async function playNextRandomStream(options={}){
+  if(shuffleLoading) return;
+  shuffleLoading=true;
+  const sessionId=getStreamSessionId();
   let channel=null;
   try{
     const response=await fetch('/api/stream/random?sessionId='+encodeURIComponent(sessionId),{headers:{Accept:'application/json'}});
@@ -353,16 +365,52 @@ async function playNextRandomStream(){
     const data=await response.json();
     if(!data.success) throw new Error(data.error||'Flux indisponible');
     channel=data.channel;
+    shuffleRemaining=Number(data.remainingCount)||0;
   }catch(error){
-    // Fallback utile quand le frontend est servi sans le serveur Express.
     const pool=channelsData.filter(c=>c.streamUrl);
     channel=pool[Math.floor(Math.random()*pool.length)]||channelsData[0];
+    shuffleRemaining=0;
+  }finally{
+    shuffleLoading=false;
   }
+  if(channel){
+    openPlayer(channel);
+    if(options.auto){
+      const status=document.getElementById('playerStatus');
+      if(status) status.textContent='Zap automatique : '+channel.name;
+    }
+  }
+}
 
-  if(channel) openPlayer(channel);
+function toggleShuffle(){
+  shuffleMode=!shuffleMode;
+  const button=document.getElementById('shuffleBtn');
+  if(button){
+    button.textContent=shuffleMode ? '⏹ Shuffle actif' : '🎲 Zap aléatoire';
+    button.setAttribute('aria-pressed',String(shuffleMode));
+  }
+  if(shuffleMode){
+    playNextRandomStream();
+  }else if(shuffleTimer){
+    clearTimeout(shuffleTimer);
+    shuffleTimer=null;
+  }
+}
+
+function scheduleRandomFallback(){
+  if(!shuffleMode || shuffleLoading) return;
+  if(shuffleTimer) clearTimeout(shuffleTimer);
+  shuffleTimer=setTimeout(()=>{
+    shuffleTimer=null;
+    playNextRandomStream({auto:true});
+  },700);
 }
 
 function closePlayer(){
+  if(shuffleTimer){
+    clearTimeout(shuffleTimer);
+    shuffleTimer=null;
+  }
   const modal=document.getElementById('modal');
   const video=document.getElementById('streamVideo');
   video.pause();
@@ -442,6 +490,14 @@ function render(){
     allGrid.appendChild(grid);
   });
 }
+
+const streamVideoElement=document.getElementById('streamVideo');
+streamVideoElement.addEventListener('ended',()=>{
+  if(shuffleMode) scheduleRandomFallback();
+});
+streamVideoElement.addEventListener('error',()=>{
+  if(shuffleMode) scheduleRandomFallback();
+});
 
 search.addEventListener('input',render);
 document.getElementById('searchBtn').onclick=render;
