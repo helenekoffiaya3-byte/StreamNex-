@@ -870,13 +870,16 @@ setInterval(pruneSessions, Math.min(SESSION_TTL_MS, 5 * 60 * 1000)).unref();
 
 function getSessionPool(sessionId) {
   const key = String(sessionId || 'default').slice(0, 128);
-  let pool = userSessions.get(key);
-  if (!Array.isArray(pool) || pool.length === 0) {
-    pool = CHANNELS.map(channel => channel.id);
-    userSessions.set(key, { pool, lastAccess: Date.now() });
+  let session = userSessions.get(key);
+
+  if (!session || !Array.isArray(session.pool) || session.pool.length === 0) {
+    session = { pool: CHANNELS.map(channel => channel.id), lastAccess: Date.now() };
+    userSessions.set(key, session);
+  } else {
+    session.lastAccess = Date.now();
   }
-  pool.lastAccess = Date.now();
-  return { key, pool: pool.pool };
+
+  return { key, pool: session.pool };
 }
 
 app.get('/api/stream/random', (req, res) => {
