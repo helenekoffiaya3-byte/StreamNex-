@@ -79,6 +79,20 @@
       const card = document.createElement('article');
       card.className = 'catalog-card';
 
+      const card = document.createElement('article');
+      card.className = 'catalog-card';
+
+      if (program.poster) {
+        const poster = document.createElement('img');
+        poster.className = 'catalog-poster';
+        poster.src = program.poster;
+        poster.alt = program.title;
+        poster.loading = 'lazy';
+        poster.referrerPolicy = 'no-referrer';
+        poster.addEventListener('error', () => poster.remove(), { once: true });
+        card.appendChild(poster);
+      }
+
       const info = document.createElement('div');
       const title = document.createElement('h4');
       title.textContent = program.title;
@@ -87,10 +101,15 @@
       meta.textContent = program.type + ' • ' + program.occurrencesCount + ' occurrence(s)';
       info.append(title, meta);
 
+      const currentOccurrence = occurrences.find(item =>
+        item.programId === program.programId && isLiveNow(item)
+      );
+
       const button = document.createElement('button');
       button.type = 'button';
-      button.textContent = '▶ Regarder';
-      button.addEventListener('click', () => handleWatch(program));
+      button.textContent = program.playbackUrl || currentOccurrence ? '▶ Regarder' : 'Indisponible';
+      button.disabled = !program.playbackUrl && !currentOccurrence;
+      if (!button.disabled) button.addEventListener('click', () => handleWatch(program));
 
       card.append(info, button);
       container.appendChild(card);
@@ -127,7 +146,7 @@
       info.className = 'epg-info';
 
       const title = document.createElement('h4');
-      title.textContent = occurrence.subtitle || occurrence.description || 'Titre non fourni par la source EPG';
+      title.textContent = occurrence.title || occurrence.subtitle || 'Titre non fourni par la source EPG';
 
       const desc = document.createElement('p');
       if (occurrence.seasonNumber != null && occurrence.episodeNumber != null) {
@@ -160,10 +179,9 @@
 
   function updateProgram(program, isLive) {
     $('currentProgramTitle').textContent =
-      program.subtitle || program.title || program.description || 'Titre non fourni par la source EPG';
+      program.title || program.subtitle || 'Titre non fourni par la source EPG';
     $('currentProgramTime').textContent = formatRange(program.startAt, program.endAt);
-    $('currentProgramDesc').textContent =
-      program.description || 'Description non fournie par la source EPG.';
+    $('currentProgramDesc').textContent = program.description || '';
     $('liveBadge').textContent = isLive ? 'LIVE' : 'PROGRAMME';
   }
 
