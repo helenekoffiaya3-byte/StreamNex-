@@ -144,7 +144,7 @@ async function fetchXml(url) {
   return xml;
 }
 
-function importXmltv(xml, allowedChannels = null) {
+function importXmltv(xml, channelResolver = null) {
   const parser = new XMLParser({
     ignoreAttributes: false,
     attributeNamePrefix: '@_',
@@ -158,9 +158,9 @@ function importXmltv(xml, allowedChannels = null) {
 
   for (const raw of rawPrograms) {
     const sourceChannelId = String(raw['@_channel'] || '').trim();
-    if (allowedChannels && !allowedChannels.has(sourceChannelId)) continue;
+    if (channelResolver && !channelResolver.has(sourceChannelId)) continue;
 
-    const channelId = resolveChannelId(sourceChannelId);
+    const channelId = channelResolver?.get(sourceChannelId) || resolveChannelId(sourceChannelId);
     if (!channelId) continue;
 
     const title = textValue(asArray(raw.title)[0]);
@@ -232,8 +232,10 @@ async function runEpgSync() {
       }
 
       const sourceGroups = new Map();
+      const sourceToLocal = new Map();
 
       for (const mapping of map.mappings) {
+        sourceToLocal.set(mapping.iptvOrgChannelId, mapping.streamliveChannelId);
         for (const guide of mapping.guides || []) {
           for (const source of guide.sources || []) {
             if (!source.url) continue;
@@ -248,7 +250,12 @@ async function runEpgSync() {
 
       for (const [sourceUrl, sourceChannelIds] of sourceGroups) {
         const xml = await fetchXml(sourceUrl);
-        importedCount += importXmltv(xml, sourceChannelIds);
+        const resolver = new Map();
+        for (const sourceChannelId of sourceChannelIds) {
+          const localChannelId = sourceToLocal.get(sourceChannelId);
+          if (localChannelId) resolver.set(sourceChannelId, localChannelId);
+        }
+        importedCount += importXmltv(xml, resolver);
       }
     }
 
