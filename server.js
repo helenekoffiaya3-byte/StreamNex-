@@ -3,6 +3,7 @@ const cors = require('cors');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
+const STREAM_BASE_URL = (process.env.STREAM_BASE_URL || 'https://streamlive.com/live').replace(/\/$/, '');
 
 app.use(cors());
 app.use(express.json());
@@ -851,16 +852,31 @@ const CHANNELS = [
   }
 ];
 
+// STREAM_BASE_URL controls the public HLS origin returned by the API.
+for (const channel of CHANNELS) {
+  channel.url = STREAM_BASE_URL + '/' + channel.id + '/index.m3u8';
+}
+
 const userSessions = new Map();
+const SESSION_TTL_MS = Number(process.env.SESSION_TTL_MS || 30 * 60 * 1000);
+
+function pruneSessions(){
+  const now=Date.now();
+  for(const [key,session] of userSessions){
+    if(now-session.lastAccess > SESSION_TTL_MS) userSessions.delete(key);
+  }
+}
+setInterval(pruneSessions, Math.min(SESSION_TTL_MS, 5 * 60 * 1000)).unref();
 
 function getSessionPool(sessionId) {
   const key = String(sessionId || 'default').slice(0, 128);
   let pool = userSessions.get(key);
   if (!Array.isArray(pool) || pool.length === 0) {
     pool = CHANNELS.map(channel => channel.id);
-    userSessions.set(key, pool);
+    userSessions.set(key, { pool, lastAccess: Date.now() });
   }
-  return { key, pool };
+  pool.lastAccess = Date.now();
+  return { key, pool: pool.pool };
 }
 
 app.get('/api/stream/random', (req, res) => {
@@ -873,7 +889,7 @@ app.get('/api/stream/random', (req, res) => {
     return res.status(500).json({ success: false, error: 'Chaîne introuvable.' });
   }
 
-  res.json({ success: true, channel, remainingCount: pool.length });
+  res.json({ success: true, channel, remainingCount: pool.length, totalCount: CHANNELS.length, cycleComplete: pool.length === 0 });
 });
 
 app.get('/api/stream/channels', (_req, res) => {
@@ -881,7 +897,7 @@ app.get('/api/stream/channels', (_req, res) => {
 });
 
 app.get('/api/health', (_req, res) => {
-  res.json({ success: true, service: 'StreamLive', channels: CHANNELS.length });
+  res.json({ success: true, service: 'StreamLive', channels: CHANNELS.length, streamBaseUrl: STREAM_BASE_URL, sessionStore: 'memory', sessionTtlMs: SESSION_TTL_MS });
 });
 
 app.listen(PORT, () => {
