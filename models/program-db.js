@@ -206,9 +206,6 @@ function addOccurrence(programId, occurrence) {
     occurrence.poster || null
   );
 
-  // Seules les diffusions déjà commencées constituent une observation réelle.
-  // Les programmes futurs restent disponibles dans l'EPG, mais ne peuvent pas
-  // servir à confirmer la récurrence avant leur diffusion effective.
   const nowIso = new Date().toISOString();
   const stats = db.prepare(`
     SELECT
@@ -227,7 +224,10 @@ function addOccurrence(programId, occurrence) {
     UPDATE programs
     SET occurrences_count = ?,
         distinct_days_count = ?,
-        is_recurring = CASE WHEN ? >= 2 THEN 1 ELSE 0 END,
+        is_recurring = CASE
+          WHEN status = 'confirmed' AND ? >= 3 THEN 1
+          ELSE 0
+        END,
         first_seen_at = ?,
         last_seen_at = ?
     WHERE program_id = ?
