@@ -7,7 +7,6 @@ const { xss } = require('express-xss-sanitizer');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
-const STREAM_BASE_URL = (process.env.STREAM_BASE_URL || 'https://streamlive.com/live').replace(/\/$/, '');
 
 app.disable('x-powered-by');
 
