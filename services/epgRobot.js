@@ -9,7 +9,19 @@ const {
 
 const CHANNEL_CONFIG = require('../config/channels');
 
-const SOURCE_EPG_URL = process.env.SOURCE_EPG_URL || null;
+const SOURCE_EPG_URL = process.env.SOURCE_EPG_URL?.trim() || null;
+
+function validateEpgSourceUrl(value) {
+  if (!value) return null;
+
+  try {
+    const url = new URL(value);
+    if (!['http:', 'https:'].includes(url.protocol)) return null;
+    return url;
+  } catch {
+    return null;
+  }
+}
 const CHANNEL_MAP = parseChannelMap(process.env.EPG_CHANNEL_MAP_JSON);
 
 function parseChannelMap(value) {
@@ -108,15 +120,19 @@ async function runEpgSync() {
   const syncId = createSyncRun();
   let importedCount = 0;
 
-  if (!SOURCE_EPG_URL) {
-    const message = 'SOURCE_EPG_URL non configurée. Aucune donnée EPG ne sera créée.';
+  const sourceUrl = validateEpgSourceUrl(SOURCE_EPG_URL);
+
+  if (!sourceUrl) {
+    const message = SOURCE_EPG_URL
+      ? 'SOURCE_EPG_URL invalide. Utilisez une URL HTTP(S) réelle et autorisée. Aucune donnée EPG ne sera créée.'
+      : 'SOURCE_EPG_URL non configurée. Aucune donnée EPG ne sera créée.';
     finishSyncRun(syncId, 'skipped', 0, 0, message);
     console.warn('[Robot EPG]', message);
     return { skipped: true, importedCount: 0, confirmedCount: 0 };
   }
 
   try {
-    const response = await fetch(SOURCE_EPG_URL, {
+    const response = await fetch(sourceUrl, {
       headers: { accept: 'application/xml,text/xml,*/*' },
       signal: AbortSignal.timeout(30000)
     });
