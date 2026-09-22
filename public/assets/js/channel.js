@@ -264,7 +264,7 @@
     if (program.isRecurring) addMeta(meta, 'Programme confirmé');
 
     if (program.poster) {
-      $('programHero').style.setProperty('--hero-image', 'url(' + CSS.escape(program.poster) + ')');
+      $('programHero').style.setProperty('--hero-image', 'url(' + program.poster.replace(/'/g, "\\\\'") + ')');
     } else {
       $('programHero').style.removeProperty('--hero-image');
     }
@@ -430,7 +430,9 @@
   }
 
   function updateProgramText(occurrence) {
-    $('currentProgramTitle')?.replaceChildren();
+    const program = programs.find(p => p.programId === occurrence.programId);
+    if ($('programTitle') && program) $('programTitle').textContent = program.title || '';
+    if ($('programDesc')) $('programDesc').textContent = occurrence.description || program?.description || '';
   }
 
   async function resolveAndPlay(occurrenceId) {
