@@ -6,6 +6,7 @@
   const $ = id => document.getElementById(id);
   let hls = null;
   let channel = null;
+  let occurrences = [];
 
   if (!channelId) {
     window.location.href = '/';
@@ -14,38 +15,48 @@
 
   document.addEventListener('DOMContentLoaded', async () => {
     setupFavorite();
+
     try {
       await loadChannel();
       await loadSchedule();
       await loadCatalog();
     } catch (error) {
-      console.error('[Channel] ', error);
-      $('currentProgramTitle').textContent = 'Erreur de chargement';
-      $('currentProgramDesc').textContent = 'Impossible de récupérer les données de cette chaîne.';
+      console.error('[Channel]', error);
+      $('currentProgramTitle').textContent = 'Données indisponibles';
+      $('currentProgramDesc').textContent = 'Les données réelles de cette chaîne ne sont pas disponibles.';
     }
   });
 
   async function api(url) {
     const response = await fetch(url, { headers: { Accept: 'application/json' } });
     const data = await response.json();
-    if (!response.ok || data.success === false) throw new Error(data.message || data.error || 'Erreur API');
+    if (!response.ok || data.success === false) {
+      throw new Error(data.message || data.error || 'Erreur API');
+    }
     return data;
   }
 
   async function loadChannel() {
     const data = await api('/api/channels/' + encodeURIComponent(channelId));
     channel = data.channel;
+
     document.title = 'StreamLive — ' + channel.name;
     $('channelName').textContent = channel.name;
     $('channelMeta').textContent = 'Groupe : ' + channel.group + ' • Canal ' + String(channel.number).padStart(2, '0');
     $('channelLogo').src = channel.logoUrl;
     $('channelLogo').alt = channel.name;
-    play(channel.streamUrl, true);
+
+    if (channel.streamUrl) {
+      play(channel.streamUrl, true);
+    } else {
+      setUnavailable('Flux direct non configuré pour cette chaîne.');
+    }
   }
 
   async function loadSchedule() {
     const data = await api('/api/channels/' + encodeURIComponent(channelId) + '/programs');
-    const occurrences = Array.isArray(data.occurrences) ? data.occurrences : [];
+    occurrences = Array.isArray(data.occurrences) ? data.occurrences : [];
+
     $('epgDate').textContent = new Intl.DateTimeFormat('fr-FR', { dateStyle: 'medium' }).format(new Date());
     renderEPG(occurrences);
   }
@@ -59,7 +70,7 @@
     if (!programs.length) {
       const p = document.createElement('p');
       p.className = 'empty-msg';
-      p.textContent = 'Aucun programme habituel confirmé pour le moment.';
+      p.textContent = 'Aucun programme habituel confirmé par la source EPG.';
       container.appendChild(p);
       return;
     }
@@ -71,15 +82,15 @@
       const info = document.createElement('div');
       const title = document.createElement('h4');
       title.textContent = program.title;
+
       const meta = document.createElement('p');
       meta.textContent = program.type + ' • ' + program.occurrencesCount + ' occurrence(s)';
       info.append(title, meta);
 
       const button = document.createElement('button');
       button.type = 'button';
-      button.textContent = program.playbackUrl ? '▶ Regarder' : 'Voir le programme';
-      button.disabled = !program.playbackUrl;
-      if (program.playbackUrl) button.addEventListener('click', () => selectContent(program.programId));
+      button.textContent = '▶ Regarder';
+      button.addEventListener('click', () => handleWatch(program));
 
       card.append(info, button);
       container.appendChild(card);
@@ -93,21 +104,13 @@
     if (!items.length) {
       const p = document.createElement('p');
       p.className = 'empty-msg';
-      p.textContent = 'Aucun programme EPG disponible.';
+      p.textContent = 'Aucun programme EPG réel disponible.';
       container.appendChild(p);
       return;
     }
 
     const now = Date.now();
-    let current = null;
-
-    for (const occurrence of items) {
-      const start = Date.parse(occurrence.startAt);
-      const end = Date.parse(occurrence.endAt || '');
-      if (!Number.isNaN(start) && start <= now && (!Number.isNaN(end) ? now < end : true)) {
-        current = occurrence;
-      }
-    }
+    const current = items.find(item => isLiveNow(item)) || null;
 
     if (current) updateProgram(current, true);
 
@@ -122,12 +125,17 @@
 
       const info = document.createElement('span');
       info.className = 'epg-info';
+
       const title = document.createElement('h4');
-      title.textContent = occurrence.subtitle || 'Programme';
+      title.textContent = occurrence.subtitle || occurrence.description || 'Titre non fourni par la source EPG';
+
       const desc = document.createElement('p');
-      desc.textContent = occurrence.seasonNumber != null
-        ? 'S' + occurrence.seasonNumber + ' • E' + occurrence.episodeNumber
-        : formatRange(occurrence.startAt, occurrence.endAt);
+      if (occurrence.seasonNumber != null && occurrence.episodeNumber != null) {
+        desc.textContent = 'S' + occurrence.seasonNumber + ' • E' + occurrence.episodeNumber;
+      } else {
+        desc.textContent = formatRange(occurrence.startAt, occurrence.endAt);
+      }
+
       info.append(title, desc);
 
       const status = document.createElement('span');
@@ -135,31 +143,82 @@
       status.textContent = current?.occurrenceId === occurrence.occurrenceId ? '▶' : '';
 
       item.append(time, info, status);
-      item.addEventListener('click', () => {
+
+      item.addEventListener('click', async () => {
         document.querySelectorAll('.epg-item').forEach(el => el.classList.remove('active'));
         item.classList.add('active');
-        updateProgram(occurrence, current?.occurrenceId === occurrence.occurrenceId);
-        if (current?.occurrenceId === occurrence.occurrenceId || isLiveNow(occurrence)) {
-          play(channel.streamUrl, true);
-        }
+
+        const live = isLiveNow(occurrence);
+        updateProgram(occurrence, live);
+
+        await resolveAndPlay(occurrence.programId, occurrence.occurrenceId);
       });
+
       container.appendChild(item);
     }
   }
 
   function updateProgram(program, isLive) {
-    $('currentProgramTitle').textContent = program.subtitle || 'Programme';
+    $('currentProgramTitle').textContent =
+      program.subtitle || program.title || program.description || 'Titre non fourni par la source EPG';
     $('currentProgramTime').textContent = formatRange(program.startAt, program.endAt);
-    $('currentProgramDesc').textContent = program.description || 'Pas de description disponible.';
+    $('currentProgramDesc').textContent =
+      program.description || 'Description non fournie par la source EPG.';
     $('liveBadge').textContent = isLive ? 'LIVE' : 'PROGRAMME';
   }
 
-  async function selectContent(programId) {
-    const data = await api('/api/programs/' + encodeURIComponent(programId));
-    const program = data.program;
-    if (program.playbackUrl) {
-      play(program.playbackUrl, false);
-      updateProgram({ subtitle: program.title, description: program.description }, false);
+  async function handleWatch(program) {
+    const currentOccurrence = occurrences.find(
+      item => item.programId === program.programId && isLiveNow(item)
+    );
+
+    await resolveAndPlay(
+      program.programId,
+      currentOccurrence ? currentOccurrence.occurrenceId : null
+    );
+  }
+
+  async function resolveAndPlay(programId, occurrenceId) {
+    const query = new URLSearchParams({
+      channelId,
+      programId
+    });
+
+    if (occurrenceId != null) query.set('occurrenceId', String(occurrenceId));
+
+    try {
+      const data = await api('/api/programs/resolve-playback?' + query.toString());
+
+      if (data.mode === 'VOD' || data.mode === 'LIVE') {
+        play(data.playbackUrl, data.mode === 'LIVE');
+        $('statusMessage')?.replaceChildren();
+        return;
+      }
+
+      setUnavailable(data.message || 'Non disponible à la demande.');
+    } catch (error) {
+      console.error('[Channel playback]', error);
+      setUnavailable('Source vidéo non disponible.');
+    }
+  }
+
+  function setUnavailable(message) {
+    if (hls) {
+      hls.destroy();
+      hls = null;
+    }
+
+    const video = $('videoPlayer');
+    video.pause();
+    video.removeAttribute('src');
+    video.load();
+
+    $('liveBadge').textContent = 'INDISPONIBLE';
+
+    const status = $('statusMessage');
+    if (status) {
+      status.className = 'status-badge unavailable';
+      status.textContent = message;
     }
   }
 
@@ -167,26 +226,38 @@
     const start = Date.parse(item.startAt);
     const end = Date.parse(item.endAt || '');
     const now = Date.now();
-    return !Number.isNaN(start) && start <= now && (Number.isNaN(end) || now < end);
+
+    return !Number.isNaN(start) &&
+      start <= now &&
+      (Number.isNaN(end) || now < end);
   }
 
   function play(url, live) {
-    if (!url) return;
+    if (!url) {
+      setUnavailable('Aucune source vidéo autorisée.');
+      return;
+    }
+
     $('liveBadge').textContent = live ? 'LIVE' : 'VOD';
 
     if (hls) {
       hls.destroy();
       hls = null;
     }
-    $('videoPlayer').removeAttribute('src');
+
+    const video = $('videoPlayer');
+    video.removeAttribute('src');
+    video.load();
 
     if (window.Hls && Hls.isSupported()) {
       hls = new Hls({ enableWorker: true, lowLatencyMode: true });
       hls.loadSource(url);
-      hls.attachMedia($('videoPlayer'));
+      hls.attachMedia(video);
+
       hls.on(Hls.Events.MANIFEST_PARSED, () => {
-        $('videoPlayer').play().catch(() => {});
+        video.play().catch(() => {});
       });
+
       hls.on(Hls.Events.ERROR, (_event, data) => {
         if (!data.fatal) return;
         if (data.type === Hls.ErrorTypes.NETWORK_ERROR) hls.startLoad();
@@ -195,17 +266,22 @@
       return;
     }
 
-    if ($('videoPlayer').canPlayType('application/vnd.apple.mpegurl')) {
-      $('videoPlayer').src = url;
-      $('videoPlayer').addEventListener('loadedmetadata', () => {
-        $('videoPlayer').play().catch(() => {});
+    if (video.canPlayType('application/vnd.apple.mpegurl')) {
+      video.src = url;
+      video.addEventListener('loadedmetadata', () => {
+        video.play().catch(() => {});
       }, { once: true });
     }
   }
 
   function formatTime(value) {
     const d = new Date(value);
-    return Number.isNaN(d.getTime()) ? '--:--' : new Intl.DateTimeFormat('fr-FR', { hour: '2-digit', minute: '2-digit' }).format(d);
+    return Number.isNaN(d.getTime())
+      ? '--:--'
+      : new Intl.DateTimeFormat('fr-FR', {
+          hour: '2-digit',
+          minute: '2-digit'
+        }).format(d);
   }
 
   function formatRange(start, end) {
@@ -216,8 +292,10 @@
     const key = 'streamlive-favorite-' + channelId;
     const button = $('favBtn');
     const active = localStorage.getItem(key) === '1';
+
     button.classList.toggle('active', active);
     button.textContent = active ? '♥ Favori' : '♡ Favoris';
+
     button.addEventListener('click', () => {
       const next = localStorage.getItem(key) !== '1';
       localStorage.setItem(key, next ? '1' : '0');
