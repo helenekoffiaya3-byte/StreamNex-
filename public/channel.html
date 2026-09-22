@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>StreamLive — Chaîne</title>
+  <meta name="description" content="Direct, programme TV, séries et films StreamLive.">
+  <link rel="stylesheet" href="/public/assets/css/channel.css">
+  <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+</head>
+<body>
+  <header class="app-header">
+    <a class="logo" href="/">Stream<span>Live</span></a>
+    <nav>
+      <a href="/">Accueil</a>
+      <a href="/channels">Chaînes</a>
+      <a href="/shuffle" class="shuffle">🎲 Shuffle</a>
+    </nav>
+  </header>
+
+  <main class="channel-layout">
+    <section class="main-content">
+      <div class="player-wrapper">
+        <video id="videoPlayer" controls playsinline></video>
+        <span class="badge-live" id="liveBadge">LIVE</span>
+      </div>
+
+      <section class="channel-details">
+        <div class="channel-header">
+          <img id="channelLogo" class="channel-logo" alt="">
+          <div>
+            <h1 id="channelName">Chargement…</h1>
+            <p id="channelMeta" class="channel-group"></p>
+          </div>
+          <button id="favBtn" class="btn-favorite" type="button">♡ Favoris</button>
+        </div>
+        <hr class="divider">
+        <div class="current-program">
+          <span class="tag">Lecture</span>
+          <h2 id="currentProgramTitle">Sélectionnez un programme</h2>
+          <p id="currentProgramTime" class="time-range"></p>
+          <p id="currentProgramDesc" class="description"></p>
+        </div>
+      </section>
+
+      <section class="vod-section">
+        <h3>Programmes habituels</h3>
+        <div id="catalogContainer" class="catalog-list">
+          <p class="empty-msg">Chargement du catalogue…</p>
+        </div>
+      </section>
+    </section>
+
+    <aside class="sidebar-epg">
+      <div class="epg-header">
+        <h3>Programme TV</h3>
+        <span id="epgDate" class="epg-date">Aujourd’hui</span>
+      </div>
+      <div id="epgContainer" class="epg-timeline">
+        <p class="empty-msg">Chargement…</p>
+      </div>
+    </aside>
+  </main>
+
+  <script src="/public/assets/js/channel.js"></script>
+</body>
+</html>
