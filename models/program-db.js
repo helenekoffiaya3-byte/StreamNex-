@@ -11,6 +11,13 @@ const db = new Database(dbPath);
 db.pragma('journal_mode = WAL');
 db.pragma('foreign_keys = ON');
 
+function ensureColumn(table, column, definition) {
+  const columns = db.prepare('PRAGMA table_info(' + table + ')').all();
+  if (!columns.some(item => item.name === column)) {
+    db.exec('ALTER TABLE ' + table + ' ADD COLUMN ' + column + ' ' + definition);
+  }
+}
+
 db.exec(`
 CREATE TABLE IF NOT EXISTS programs (
   program_id TEXT PRIMARY KEY,
@@ -19,6 +26,8 @@ CREATE TABLE IF NOT EXISTS programs (
   type TEXT NOT NULL DEFAULT 'show',
   description TEXT NOT NULL DEFAULT '',
   poster TEXT,
+  poster_source_url TEXT,
+  poster_source_type TEXT,
   status TEXT NOT NULL DEFAULT 'pending' CHECK(status IN ('pending','confirmed','archived')),
   first_seen_at TEXT NOT NULL,
   last_seen_at TEXT NOT NULL,
@@ -39,6 +48,8 @@ CREATE TABLE IF NOT EXISTS program_occurrences (
   episode_number INTEGER,
   description TEXT NOT NULL DEFAULT '',
   poster TEXT,
+  poster_source_url TEXT,
+  poster_source_type TEXT,
   UNIQUE(program_id, start_at),
   FOREIGN KEY(program_id) REFERENCES programs(program_id) ON DELETE CASCADE
 );
@@ -60,6 +71,11 @@ CREATE TABLE IF NOT EXISTS sync_runs (
 );
 `);
 
+ensureColumn('programs', 'poster_source_url', 'TEXT');
+ensureColumn('programs', 'poster_source_type', 'TEXT');
+ensureColumn('program_occurrences', 'poster_source_url', 'TEXT');
+ensureColumn('program_occurrences', 'poster_source_type', 'TEXT');
+
 function rowToProgram(row) {
   if (!row) return null;
   return {
@@ -75,7 +91,9 @@ function rowToProgram(row) {
     occurrencesCount: row.occurrences_count,
     distinctDaysCount: row.distinct_days_count,
     isRecurring: Boolean(row.is_recurring),
-    playbackUrl: row.playback_url
+    playbackUrl: row.playback_url,
+    posterSourceUrl: row.poster_source_url || null,
+    posterSourceType: row.poster_source_type || null
   };
 }
 
@@ -96,7 +114,8 @@ function getOccurrencesByChannel(channelId, fromIso = null, toIso = null) {
     SELECT occurrence_id AS occurrenceId, program_id AS programId,
            channel_id AS channelId, start_at AS startAt, end_at AS endAt,
            subtitle, season_number AS seasonNumber,
-           episode_number AS episodeNumber, description, poster
+           episode_number AS episodeNumber, description, poster,
+           poster_source_url AS posterSourceUrl, poster_source_type AS posterSourceType
     FROM program_occurrences
     JOIN programs ON programs.program_id = program_occurrences.program_id
     WHERE program_occurrences.channel_id = ?
@@ -148,6 +167,7 @@ function upsertProgram(entry) {
     db.prepare(`
       INSERT INTO programs (
         program_id, channel_id, title, type, description, poster,
+        poster_source_url, poster_source_type,
         status, first_seen_at, last_seen_at, occurrences_count,
         distinct_days_count, is_recurring, playback_url
       ) VALUES (?, ?, ?, ?, ?, ?, 'pending', ?, ?, 0, 0, 0, ?)
@@ -158,6 +178,8 @@ function upsertProgram(entry) {
       entry.type,
       entry.description || '',
       entry.poster || null,
+      entry.posterSourceUrl || null,
+      entry.posterSourceType || null,
       now,
       now,
       entry.playbackUrl || null
@@ -167,12 +189,16 @@ function upsertProgram(entry) {
       UPDATE programs
       SET description = CASE WHEN ? <> '' THEN ? ELSE description END,
           poster = COALESCE(?, poster),
+          poster_source_url = COALESCE(?, poster_source_url),
+          poster_source_type = COALESCE(?, poster_source_type),
           playback_url = COALESCE(?, playback_url)
       WHERE program_id = ?
     `).run(
       entry.description || '',
       entry.description || '',
       entry.poster || null,
+      entry.posterSourceUrl || null,
+      entry.posterSourceType || null,
       entry.playbackUrl || null,
       entry.programId
     );
@@ -185,15 +211,18 @@ function addOccurrence(programId, occurrence) {
   db.prepare(`
     INSERT INTO program_occurrences (
       program_id, channel_id, start_at, end_at, subtitle,
-      season_number, episode_number, description, poster
-    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+      season_number, episode_number, description, poster,
+      poster_source_url, poster_source_type
+    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
     ON CONFLICT(program_id, start_at) DO UPDATE SET
       end_at = excluded.end_at,
       subtitle = excluded.subtitle,
       season_number = excluded.season_number,
       episode_number = excluded.episode_number,
       description = excluded.description,
-      poster = excluded.poster
+      poster = COALESCE(excluded.poster, program_occurrences.poster),
+      poster_source_url = COALESCE(excluded.poster_source_url, program_occurrences.poster_source_url),
+      poster_source_type = COALESCE(excluded.poster_source_type, program_occurrences.poster_source_type)
   `).run(
     programId,
     occurrence.channelId,
@@ -203,7 +232,9 @@ function addOccurrence(programId, occurrence) {
     occurrence.seasonNumber ?? null,
     occurrence.episodeNumber ?? null,
     occurrence.description || '',
-    occurrence.poster || null
+    occurrence.poster || null,
+    occurrence.posterSourceUrl || null,
+    occurrence.posterSourceType || null
   );
 
   const nowIso = new Date().toISOString();
