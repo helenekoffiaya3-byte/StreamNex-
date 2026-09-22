@@ -46,6 +46,7 @@
       <strong id="playerTitle">StreamLive</strong>
       <button class="close" onclick="closePlayer()" aria-label="Fermer">×</button>
     </div>
+    <div style="padding:10px 14px;border-bottom:1px solid rgba(255,255,255,.08)"><button class="random-zap" type="button" onclick="playNextRandomStream()">🎲 Zap aléatoire</button></div>
     <div class="screen">
       <video id="streamVideo" controls playsinline preload="metadata" style="width:100%;height:100%;background:#000;display:none"></video>
       <div id="playerEmpty" style="text-align:center;padding:24px">
@@ -335,6 +336,30 @@ function openPlayer(channelOrName){
   } else {
     status.textContent='Ce navigateur ne prend pas en charge HLS.';
   }
+}
+
+async function playNextRandomStream(){
+  const sessionKey='streamlive_session_id';
+  let sessionId=sessionStorage.getItem(sessionKey);
+  if(!sessionId){
+    sessionId='user_'+crypto.randomUUID();
+    sessionStorage.setItem(sessionKey,sessionId);
+  }
+
+  let channel=null;
+  try{
+    const response=await fetch('/api/stream/random?sessionId='+encodeURIComponent(sessionId),{headers:{Accept:'application/json'}});
+    if(!response.ok) throw new Error('API indisponible');
+    const data=await response.json();
+    if(!data.success) throw new Error(data.error||'Flux indisponible');
+    channel=data.channel;
+  }catch(error){
+    // Fallback utile quand le frontend est servi sans le serveur Express.
+    const pool=channelsData.filter(c=>c.streamUrl);
+    channel=pool[Math.floor(Math.random()*pool.length)]||channelsData[0];
+  }
+
+  if(channel) openPlayer(channel);
 }
 
 function closePlayer(){
