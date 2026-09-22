@@ -11,6 +11,7 @@ const {
 
 const CHANNEL_CONFIG = require('../config/channels');
 const EPG_MAP_FILE = path.join(__dirname, '..', 'config', 'epg-map.json');
+const OFFICIAL_GUIDES_FILE = path.join(__dirname, '..', 'config', 'official-guides.json');
 const IPTV_CHANNELS_URL = 'https://iptv-org.github.io/api/channels.json';
 const IPTV_GUIDES_URL = 'https://iptv-org.github.io/api/guides.json';
 
@@ -29,6 +30,7 @@ function validateEpgSourceUrl(value) {
 }
 const CHANNEL_MAP = parseChannelMap(process.env.EPG_CHANNEL_MAP_JSON);
 const USE_IPTV_ORG_GUIDES = process.env.EPG_USE_IPTV_ORG_GUIDES === 'true';
+const ALLOW_PUBLISHED_FALLBACK = process.env.EPG_ALLOW_PUBLISHED_FALLBACK === 'true';
 
 function parseChannelMap(value) {
   if (!value) return {};
@@ -120,6 +122,33 @@ function detectType(raw) {
 function resolveChannelId(sourceChannelId) {
   const mapped = CHANNEL_MAP[sourceChannelId] || sourceChannelId;
   return CHANNEL_CONFIG.some(channel => channel.id === mapped) ? mapped : null;
+}
+
+function loadOfficialGuides() {
+  if (!fs.existsSync(OFFICIAL_GUIDES_FILE)) return new Map();
+
+  try {
+    const parsed = JSON.parse(fs.readFileSync(OFFICIAL_GUIDES_FILE, 'utf8'));
+    const mappings = Array.isArray(parsed) ? parsed : parsed?.mappings;
+    if (!Array.isArray(mappings)) return new Map();
+
+    const result = new Map();
+    for (const item of mappings) {
+      const channelId = String(item?.streamliveChannelId || '').trim();
+      const guideUrl = validateEpgSourceUrl(item?.guideUrl)?.toString() || null;
+      if (!channelId || !guideUrl) continue;
+      if (!CHANNEL_CONFIG.some(channel => channel.id === channelId)) continue;
+      result.set(channelId, {
+        guideUrl,
+        website: validateEpgSourceUrl(item?.officialWebsite)?.toString() || null,
+        sourceType: String(item?.sourceType || 'official-xmltv').trim() || 'official-xmltv'
+      });
+    }
+    return result;
+  } catch (error) {
+    console.error('[Robot EPG] official-guides.json invalide:', error.message);
+    return new Map();
+  }
 }
 
 function loadIptvOrgMap() {
@@ -255,7 +284,7 @@ async function fetchXml(url) {
   return buffer.toString('utf8');
 }
 
-function importXmltv(xml, channelResolver = null) {
+function importXmltv(xml, channelResolver = null, sourceType = 'published-epg') {
   const parser = new XMLParser({
     ignoreAttributes: false,
     attributeNamePrefix: '@_',
@@ -281,7 +310,7 @@ function importXmltv(xml, channelResolver = null) {
     const endAt = parseXmltvDate(raw['@_stop']);
     const description = textValue(asArray(raw.desc)[0]);
     const subtitle = textValue(asArray(raw['sub-title'])[0]);
-    const poster = raw.icon && raw.icon['@_src'] ? String(raw.icon['@_src']) : null;
+    const poster = validateEpgSourceUrl(raw.icon?.['@_src'])?.toString() || null;
     const episode = parseEpisode(asArray(raw['episode-num'])[0]);
     const type = detectType(raw);
     const programId = `${channelId}-${slugify(title)}`;
@@ -292,7 +321,9 @@ function importXmltv(xml, channelResolver = null) {
       title,
       type,
       description,
-      poster
+      poster,
+      posterSourceUrl: poster,
+      posterSourceType: poster ? sourceType : null
     });
 
     addOccurrence(programId, {
@@ -303,7 +334,9 @@ function importXmltv(xml, channelResolver = null) {
       seasonNumber: episode.seasonNumber,
       episodeNumber: episode.episodeNumber,
       description,
-      poster
+      poster,
+      posterSourceUrl: poster,
+      posterSourceType: poster ? sourceType : null
     });
 
     importedCount += 1;
@@ -317,11 +350,12 @@ async function runEpgSync() {
   let importedCount = 0;
 
   const configuredSource = validateEpgSourceUrl(SOURCE_EPG_URL);
+  const officialGuides = loadOfficialGuides();
 
-  if (!configuredSource && !USE_IPTV_ORG_GUIDES) {
+  if (!configuredSource && officialGuides.size === 0 && !ALLOW_PUBLISHED_FALLBACK) {
     const message = SOURCE_EPG_URL
       ? 'SOURCE_EPG_URL invalide. Utilisez une URL HTTP(S) réelle et autorisée. Aucune donnée EPG ne sera créée.'
-      : 'SOURCE_EPG_URL non configurée. Le robot reste en veille. Aucune donnée EPG ne sera créée.';
+      : 'Aucune source EPG officielle vérifiée n’est configurée. Le robot reste en veille. Aucune donnée EPG ne sera créée.';
 
     finishSyncRun(syncId, 'skipped', 0, 0, message);
     console.warn('[Robot EPG]', message);
@@ -331,8 +365,23 @@ async function runEpgSync() {
   try {
     if (configuredSource) {
       const xml = await fetchXml(configuredSource);
-      importedCount += importXmltv(xml);
+      importedCount += importXmltv(xml, null, 'configured-epg');
+    } else if (officialGuides.size > 0) {
+      for (const channel of CHANNEL_CONFIG) {
+        const official = officialGuides.get(channel.id);
+        if (!official) continue;
+
+        const xml = await fetchXml(official.guideUrl);
+        const resolver = new Map();
+        resolver.set(channel.id, channel.id);
+        importedCount += importXmltv(xml, resolver, official.sourceType);
+      }
     } else {
+      if (!USE_IPTV_ORG_GUIDES || !ALLOW_PUBLISHED_FALLBACK) {
+        finishSyncRun(syncId, 'skipped', 0, 0, 'Aucune source EPG officielle vérifiée disponible.');
+        return { skipped: true, importedCount: 0, confirmedCount: 0 };
+      }
+
       const map = await getIptvOrgMap();
       const mappedCount = map.mappings.filter(item => item.iptvOrgChannelId && (item.guides || []).some(guide => (guide.sources || []).length)).length;
       console.log(`[Robot EPG] Sources de guides disponibles : ${mappedCount}/${CHANNEL_CONFIG.length} chaînes.`);
