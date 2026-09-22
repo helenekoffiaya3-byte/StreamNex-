@@ -316,5 +316,6 @@ module.exports = {
   addOccurrence,
   confirmEligiblePrograms,
   createSyncRun,
-  finishSyncRun
+  finishSyncRun,
+  getLatestSyncRun
 };
