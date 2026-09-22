@@ -101,12 +101,21 @@
       const currentOccurrence = occurrences.find(item =>
         item.programId === program.programId && isLiveNow(item)
       );
+      const programOccurrence = currentOccurrence || occurrences.find(item =>
+        item.programId === program.programId
+      );
 
       const button = document.createElement('button');
       button.type = 'button';
       button.textContent = program.playbackUrl || currentOccurrence ? '▶ Regarder' : 'Indisponible';
       button.disabled = !program.playbackUrl && !currentOccurrence;
-      if (!button.disabled) button.addEventListener('click', () => handleWatch(program));
+      if (!button.disabled && programOccurrence) {
+        button.addEventListener('click', () => handleWatch(program, programOccurrence));
+      } else if (program.playbackUrl) {
+        // Pas d'occurrence EPG : aucune résolution de lecture côté client.
+        button.disabled = true;
+        button.textContent = 'Indisponible';
+      }
 
       card.append(info, button);
       container.appendChild(card);
@@ -182,24 +191,29 @@
     $('liveBadge').textContent = isLive ? 'LIVE' : 'PROGRAMME';
   }
 
-  async function handleWatch(program) {
-    const currentOccurrence = occurrences.find(
+  async function handleWatch(program, selectedOccurrence = null) {
+    const occurrence = selectedOccurrence || occurrences.find(
       item => item.programId === program.programId && isLiveNow(item)
-    );
+    ) || occurrences.find(item => item.programId === program.programId);
 
-    await resolveAndPlay(
-      program.programId,
-      currentOccurrence ? currentOccurrence.occurrenceId : null
-    );
+    if (!occurrence) {
+      setUnavailable('Aucune occurrence EPG réelle disponible pour ce contenu.');
+      return;
+    }
+
+    await resolveAndPlay(program.programId, occurrence.occurrenceId); 
   }
 
   async function resolveAndPlay(programId, occurrenceId) {
+    if (occurrenceId == null) {
+      setUnavailable('Occurrence EPG requise pour la lecture.');
+      return;
+    }
+
     const query = new URLSearchParams({
       channelId,
-      programId
+      occurrenceId: String(occurrenceId)
     });
-
-    if (occurrenceId != null) query.set('occurrenceId', String(occurrenceId));
 
     try {
       const data = await api('/api/programs/resolve-playback?' + query.toString());
