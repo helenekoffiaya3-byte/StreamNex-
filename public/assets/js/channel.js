@@ -79,9 +79,6 @@
       const card = document.createElement('article');
       card.className = 'catalog-card';
 
-      const card = document.createElement('article');
-      card.className = 'catalog-card';
-
       if (program.poster) {
         const poster = document.createElement('img');
         poster.className = 'catalog-poster';
