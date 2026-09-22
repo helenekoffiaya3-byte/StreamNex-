@@ -101,6 +101,21 @@ function rowToProgram(row) {
   };
 }
 
+function normalizeOccurrence(row) {
+  if (!row) return null;
+  const start = Date.parse(row.startAt);
+  const end = row.endAt ? Date.parse(row.endAt) : NaN;
+  return {
+    ...row,
+    durationMinutes: Number.isFinite(start) && Number.isFinite(end) && end > start
+      ? Math.round((end - start) / 60000)
+      : null,
+    poster: row.poster || null,
+    posterSourceUrl: row.posterSourceUrl || null,
+    posterSourceType: row.posterSourceType || null
+  };
+}
+
 function getProgram(programId) {
   return rowToProgram(db.prepare('SELECT * FROM programs WHERE program_id = ?').get(programId));
 }
@@ -116,7 +131,8 @@ function getProgramsByChannel(channelId, status = 'confirmed') {
 function getOccurrencesByChannel(channelId, fromIso = null, toIso = null) {
   let sql = `
     SELECT occurrence_id AS occurrenceId, program_id AS programId,
-           channel_id AS channelId, start_at AS startAt, end_at AS endAt,
+           programs.title AS title,
+           channel_id AS channelId, start_at AS startAt, end_at AS endAt
            subtitle, season_number AS seasonNumber,
            episode_number AS episodeNumber, description, poster,
            poster_source_url AS posterSourceUrl, poster_source_type AS posterSourceType
@@ -137,12 +153,13 @@ function getOccurrencesByChannel(channelId, fromIso = null, toIso = null) {
   }
 
   sql += ' ORDER BY start_at';
-  return db.prepare(sql).all(...params);
+  return db.prepare(sql).all(...params).map(normalizeOccurrence);
 }
 
 function getOccurrenceById(occurrenceId) {
   return db.prepare(`
     SELECT occurrence_id AS occurrenceId, program_id AS programId,
+           programs.title AS title,
            channel_id AS channelId, start_at AS startAt, end_at AS endAt,
            subtitle, season_number AS seasonNumber,
            episode_number AS episodeNumber, description, poster,
@@ -160,9 +177,10 @@ function getProgramOccurrences(programId) {
            episode_number AS episodeNumber, description, poster,
            poster_source_url AS posterSourceUrl, poster_source_type AS posterSourceType
     FROM program_occurrences
-    WHERE program_id = ?
+    JOIN programs ON programs.program_id = program_occurrences.program_id
+    WHERE program_occurrences.program_id = ?
     ORDER BY start_at
-  `).all(programId);
+  `).all(programId).map(normalizeOccurrence);
 }
 
 function upsertProgram(entry) {
