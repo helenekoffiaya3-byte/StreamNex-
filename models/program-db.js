@@ -206,15 +206,22 @@ function addOccurrence(programId, occurrence) {
     occurrence.poster || null
   );
 
+  // Seules les diffusions déjà commencées constituent une observation réelle.
+  // Les programmes futurs restent disponibles dans l'EPG, mais ne peuvent pas
+  // servir à confirmer la récurrence avant leur diffusion effective.
+  const nowIso = new Date().toISOString();
   const stats = db.prepare(`
     SELECT
       COUNT(*) AS count,
-      COUNT(DISTINCT substr(start_at, 1, 10)) AS distinctDays,
-      MIN(start_at) AS firstSeenAt,
-      MAX(start_at) AS lastSeenAt
+      COUNT(CASE WHEN start_at <= ? THEN 1 END) AS observedCount,
+      COUNT(DISTINCT CASE
+        WHEN start_at <= ? THEN substr(start_at, 1, 10)
+      END) AS distinctDays,
+      MIN(CASE WHEN start_at <= ? THEN start_at END) AS firstSeenAt,
+      MAX(CASE WHEN start_at <= ? THEN start_at END) AS lastSeenAt
     FROM program_occurrences
     WHERE program_id = ?
-  `).get(programId);
+  `).get(nowIso, nowIso, nowIso, nowIso, programId);
 
   db.prepare(`
     UPDATE programs
@@ -228,8 +235,8 @@ function addOccurrence(programId, occurrence) {
     stats.count,
     stats.distinctDays,
     stats.distinctDays,
-    stats.firstSeenAt,
-    stats.lastSeenAt,
+    stats.firstSeenAt || new Date().toISOString(),
+    stats.lastSeenAt || new Date().toISOString(),
     programId
   );
 }
@@ -242,7 +249,9 @@ function confirmEligiblePrograms() {
     FROM programs
     WHERE status = 'pending'
       AND first_seen_at <= ?
+      AND last_seen_at IS NOT NULL
       AND distinct_days_count >= 3
+      AND (julianday(last_seen_at) - julianday(first_seen_at)) >= 3
   `).all(threshold);
 
   const update = db.prepare(`
