@@ -192,6 +192,7 @@ function buildAutomaticIptvOrgMap(remoteChannels, guides) {
     mappings.push({
       streamliveChannelId: local.id,
       streamliveName: local.name,
+      officialWebsite: remote.website || null,
       iptvOrgChannelId: remote.id,
       guides: (guideByChannel.get(remote.id) || []).map(source => ({ sources: [source] }))
     });
@@ -202,7 +203,7 @@ function buildAutomaticIptvOrgMap(remoteChannels, guides) {
 
 async function getIptvOrgMap() {
   const localMap = loadIptvOrgMap();
-  if (localMap?.mappings?.length) return localMap;
+  if (localMap?.mappings?.length >= CHANNEL_CONFIG.length) return localMap;
 
   const [channels, guides] = await Promise.all([
     fetchJson(IPTV_CHANNELS_URL),
@@ -214,8 +215,15 @@ async function getIptvOrgMap() {
   }
 
   const generated = buildAutomaticIptvOrgMap(channels, guides);
+  const result = {
+    generatedAt: new Date().toISOString(),
+    provider: 'iptv-org/api',
+    providerChannelsUrl: IPTV_CHANNELS_URL,
+    providerGuidesUrl: IPTV_GUIDES_URL,
+    mappings: generated.mappings
+  };
   console.log(`[Robot EPG] Mapping automatique : ${generated.mappings.length}/${CHANNEL_CONFIG.length} chaînes configurées, ${generated.ambiguous.length} ambiguës.`);
-  return { generatedAt: new Date().toISOString(), mappings: generated.mappings };
+  return result;
 }
 
 async function fetchJson(url) {
@@ -326,6 +334,8 @@ async function runEpgSync() {
       importedCount += importXmltv(xml);
     } else {
       const map = await getIptvOrgMap();
+      const mappedCount = map.mappings.filter(item => item.iptvOrgChannelId && (item.guides || []).some(guide => (guide.sources || []).length)).length;
+      console.log(`[Robot EPG] Sources de guides disponibles : ${mappedCount}/${CHANNEL_CONFIG.length} chaînes.`);
 
       const sourceGroups = new Map();
       const sourceToLocal = new Map();
