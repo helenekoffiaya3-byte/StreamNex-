@@ -11,6 +11,8 @@ const {
 
 const CHANNEL_CONFIG = require('../config/channels');
 const EPG_MAP_FILE = path.join(__dirname, '..', 'config', 'epg-map.json');
+const IPTV_CHANNELS_URL = 'https://iptv-org.github.io/api/channels.json';
+const IPTV_GUIDES_URL = 'https://iptv-org.github.io/api/guides.json';
 
 const SOURCE_EPG_URL = process.env.SOURCE_EPG_URL?.trim() || null;
 
@@ -131,17 +133,118 @@ function loadIptvOrgMap() {
   }
 }
 
+function normalize(value) {
+  return String(value || '')
+    .normalize('NFKD')
+    .replace(/[\\u0300-\\u036f]/g, '')
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '');
+}
+
+function buildAutomaticIptvOrgMap(remoteChannels, guides) {
+  const guideByChannel = new Map();
+
+  for (const guide of guides) {
+    const channelId = String(guide?.channel || '').trim();
+    if (!channelId || !Array.isArray(guide.sources)) continue;
+
+    const sources = guide.sources.map(source => {
+      try {
+        const url = new URL(String(source?.url || '').trim());
+        if (!['http:', 'https:'].includes(url.protocol)) return null;
+        return { url: url.toString(), format: source?.format || null, host: source?.host || null };
+      } catch {
+        return null;
+      }
+    }).filter(Boolean);
+
+    if (sources.length) guideByChannel.set(channelId, sources);
+  }
+
+  const mappings = [];
+  const ambiguous = [];
+
+  for (const local of CHANNEL_CONFIG) {
+    const localId = normalize(local.id);
+    const localName = normalize(local.name);
+    const candidates = remoteChannels.map(remote => {
+      const ids = [remote.id, ...(Array.isArray(remote.alt_names) ? remote.alt_names : [])].map(normalize);
+      const name = normalize(remote.name);
+      let score = 0;
+      if (localId && ids.includes(localId)) score = 100;
+      else if (localName && (name === localName || ids.includes(localName))) score = 95;
+      return { remote, score };
+    }).filter(item => item.score > 0).sort((a, b) => b.score - a.score);
+
+    if (!candidates.length) {
+      mappings.push({ streamliveChannelId: local.id, streamliveName: local.name, iptvOrgChannelId: null, guides: [] });
+      continue;
+    }
+
+    const best = candidates.filter(item => item.score === candidates[0].score);
+    if (best.length > 1) {
+      ambiguous.push(local.id);
+      mappings.push({ streamliveChannelId: local.id, streamliveName: local.name, iptvOrgChannelId: null, guides: [] });
+      continue;
+    }
+
+    const remote = candidates[0].remote;
+    mappings.push({
+      streamliveChannelId: local.id,
+      streamliveName: local.name,
+      iptvOrgChannelId: remote.id,
+      guides: (guideByChannel.get(remote.id) || []).map(source => ({ sources: [source] }))
+    });
+  }
+
+  return { mappings, ambiguous };
+}
+
+async function getIptvOrgMap() {
+  const localMap = loadIptvOrgMap();
+  if (localMap?.mappings?.length) return localMap;
+
+  const [channels, guides] = await Promise.all([
+    fetchJson(IPTV_CHANNELS_URL),
+    fetchJson(IPTV_GUIDES_URL)
+  ]);
+
+  if (!Array.isArray(channels) || !Array.isArray(guides)) {
+    throw new Error('Les APIs iptv-org channels.json/guides.json sont invalides.');
+  }
+
+  const generated = buildAutomaticIptvOrgMap(channels, guides);
+  console.log(`[Robot EPG] Mapping automatique : ${generated.mappings.length}/${CHANNEL_CONFIG.length} chaînes configurées, ${generated.ambiguous.length} ambiguës.`);
+  return { generatedAt: new Date().toISOString(), mappings: generated.mappings };
+}
+
+async function fetchJson(url) {
+  const response = await fetch(url, {
+    headers: { accept: 'application/json' },
+    signal: AbortSignal.timeout(30000)
+  });
+  if (!response.ok) throw new Error(`Source JSON HTTP ${response.status}: ${url}`);
+  return response.json();
+}
+
 async function fetchXml(url) {
   const response = await fetch(url, {
-    headers: { accept: 'application/xml,text/xml,*/*' },
+    headers: { accept: 'application/xml,text/xml,application/gzip,*/*' },
     signal: AbortSignal.timeout(30000)
   });
 
   if (!response.ok) throw new Error(`Source EPG HTTP ${response.status}: ${url}`);
 
-  const xml = await response.text();
-  if (!xml.trim()) throw new Error(`Source EPG vide: ${url}`);
-  return xml;
+  const buffer = Buffer.from(await response.arrayBuffer());
+  if (!buffer.length) throw new Error(`Source EPG vide: ${url}`);
+
+  const isGzip = buffer[0] === 0x1f && buffer[1] === 0x8b;
+  if (isGzip) {
+    const zlib = require('zlib');
+    return zlib.gunzipSync(buffer).toString('utf8');
+  }
+
+  return buffer.toString('utf8');
 }
 
 function importXmltv(xml, channelResolver = null) {
@@ -222,14 +325,7 @@ async function runEpgSync() {
       const xml = await fetchXml(configuredSource);
       importedCount += importXmltv(xml);
     } else {
-      const map = loadIptvOrgMap();
-
-      if (!map) {
-        const message = 'EPG_USE_IPTV_ORG_GUIDES=true mais config/epg-map.json est absent ou invalide. Exécutez npm run map-channels. Aucune donnée EPG ne sera créée.';
-        finishSyncRun(syncId, 'skipped', 0, 0, message);
-        console.warn('[Robot EPG]', message);
-        return { skipped: true, importedCount: 0, confirmedCount: 0 };
-      }
+      const map = await getIptvOrgMap();
 
       const sourceGroups = new Map();
       const sourceToLocal = new Map();
