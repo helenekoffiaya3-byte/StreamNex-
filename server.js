@@ -40,7 +40,7 @@ app.use(cors({
     return callback(new Error('Accès CORS refusé.'));
   },
   methods: ['GET', 'POST', 'OPTIONS'],
-  allowedHeaders: ['Content-Type', 'Authorization', 'X-Session-Id'],
+  allowedHeaders: ['Content-Type', 'Authorization', 'X-Session-Id', 'X-EPG-Sync-Token'],
   maxAge: 86400
 }));
 
