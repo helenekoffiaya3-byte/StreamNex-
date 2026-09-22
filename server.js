@@ -4,13 +4,14 @@ const helmet = require('helmet');
 const { rateLimit } = require('express-rate-limit');
 const hpp = require('hpp');
 const { xss } = require('express-xss-sanitizer');
+const path = require('path');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 
 app.disable('x-powered-by');
 
-const allowedOrigins = (process.env.CORS_ORIGINS || 'http://localhost:3000,https://streamlive.com')
+const allowedOrigins = (process.env.CORS_ORIGINS || 'http://localhost:3000')
   .split(',')
   .map(origin => origin.trim())
   .filter(Boolean);
@@ -19,11 +20,11 @@ app.use(helmet({
   contentSecurityPolicy: {
     directives: {
       defaultSrc: ["'self'"],
-      scriptSrc: ["'self'", "https://cdn.jsdelivr.net", "'unsafe-inline'"],
+      scriptSrc: ["'self'", 'https://cdn.jsdelivr.net', "'unsafe-inline'"],
       styleSrc: ["'self'", "'unsafe-inline'"],
-      imgSrc: ["'self'", "data:", "https:"],
-      mediaSrc: ["'self'", "blob:", "http:", "https:"],
-      connectSrc: ["'self'", "http:", "https:", "ws:", "wss:"],
+      imgSrc: ["'self'", 'data:', 'https:'],
+      mediaSrc: ["'self'", 'blob:', 'http:', 'https:'],
+      connectSrc: ["'self'", 'http:', 'https:', 'ws:', 'wss:'],
       objectSrc: ["'none'"],
       frameAncestors: ["'self'"]
     }
@@ -63,30 +64,32 @@ const shuffleLimiter = rateLimit({
 });
 
 app.use('/api', globalLimiter);
-
 app.use(express.static(__dirname));
 
 const CHANNEL_CONFIG = require('./config/channels');
 
-const STREAM_BASE_URL = (
-  process.env.STREAM_BASE_URL || 'http://localhost:8080/live'
-).replace(/\/$/, '');
+const STREAM_BASE_URL = process.env.STREAM_BASE_URL
+  ? process.env.STREAM_BASE_URL.replace(/\/$/, '')
+  : null;
 
 const CHANNELS = CHANNEL_CONFIG.map((channel, index) => ({
   ...channel,
   number: index + 1,
-  url: channel.productionUrl || `${STREAM_BASE_URL}/${channel.id}/index.m3u8`
+  url: channel.productionUrl || (
+    STREAM_BASE_URL ? `${STREAM_BASE_URL}/${channel.id}/index.m3u8` : null
+  )
 }));
 
 const userSessions = new Map();
 const SESSION_TTL_MS = Number(process.env.SESSION_TTL_MS || 30 * 60 * 1000);
 
-function pruneSessions(){
-  const now=Date.now();
-  for(const [key,session] of userSessions){
-    if(now-session.lastAccess > SESSION_TTL_MS) userSessions.delete(key);
+function pruneSessions() {
+  const now = Date.now();
+  for (const [key, session] of userSessions) {
+    if (now - session.lastAccess > SESSION_TTL_MS) userSessions.delete(key);
   }
 }
+
 setInterval(pruneSessions, Math.min(SESSION_TTL_MS, 5 * 60 * 1000)).unref();
 
 function getSessionPool(sessionId) {
@@ -94,7 +97,10 @@ function getSessionPool(sessionId) {
   let session = userSessions.get(key);
 
   if (!session || !Array.isArray(session.pool) || session.pool.length === 0) {
-    session = { pool: CHANNELS.map(channel => channel.id), lastAccess: Date.now() };
+    session = {
+      pool: CHANNELS.map(channel => channel.id),
+      lastAccess: Date.now()
+    };
     userSessions.set(key, session);
   } else {
     session.lastAccess = Date.now();
@@ -115,7 +121,10 @@ app.get('/api/stream/random', shuffleLimiter, (req, res) => {
 
   res.json({
     success: true,
-    channel,
+    channel: {
+      ...channel,
+      streamUrl: channel.url
+    },
     remainingCount: pool.length,
     totalCount: CHANNELS.length,
     cycleComplete: pool.length === 0
@@ -123,11 +132,11 @@ app.get('/api/stream/random', shuffleLimiter, (req, res) => {
 });
 
 app.get('/api/stream/channels', (_req, res) => {
-  const channels = CHANNELS.map((channel, index) => ({
+  const channels = CHANNELS.map(channel => ({
     id: channel.id,
     name: channel.name,
     group: channel.group,
-    number: index + 1,
+    number: channel.number,
     streamUrl: channel.url,
     channelUrl: (process.env.SITE_BASE_URL || '').replace(/\/$/, '') + '/channel/' + channel.id,
     logoUrl: channel.logoUrl || '/assets/logos/' + channel.id + '.png'
@@ -212,14 +221,13 @@ app.get('/api/programs/:id', (req, res) => {
   }
 
   const channel = CHANNELS.find(item => item.id === program.channelId);
-  const occurrences = getProgramOccurrences(program.programId);
 
   res.json({
     success: true,
     program: {
       ...program,
       liveStreamUrl: channel?.url || null,
-      occurrences
+      occurrences: getProgramOccurrences(program.programId)
     }
   });
 });
@@ -263,9 +271,9 @@ app.get('/api/series/:id', (req, res) => {
     if (!seasons.has(item.seasonNumber)) seasons.set(item.seasonNumber, []);
     seasons.get(item.seasonNumber).push({
       episodeNumber: item.episodeNumber,
-      title: item.subtitle || `Épisode ${item.episodeNumber}`,
-      description: item.description,
-      poster: item.poster,
+      title: item.subtitle || null,
+      description: item.description || null,
+      poster: item.poster || null,
       playbackUrl: null
     });
   }
@@ -276,7 +284,7 @@ app.get('/api/series/:id', (req, res) => {
       ...program,
       seasons: Array.from(seasons.entries()).map(([seasonNumber, episodes]) => ({
         seasonNumber,
-        episodes: episodes.sort((a,b) => a.episodeNumber - b.episodeNumber)
+        episodes: episodes.sort((a, b) => a.episodeNumber - b.episodeNumber)
       }))
     }
   });
@@ -302,6 +310,10 @@ app.get('/api/programs/resolve-playback', (req, res) => {
     return res.status(400).json({ success: false, error: 'L’occurrence n’appartient pas à cette chaîne.' });
   }
 
+  if (program && occurrence && occurrence.programId !== program.programId) {
+    return res.status(400).json({ success: false, error: 'L’occurrence ne correspond pas au programme.' });
+  }
+
   if (program?.playbackUrl) {
     return res.json({
       success: true,
@@ -318,12 +330,12 @@ app.get('/api/programs/resolve-playback', (req, res) => {
     startAt <= now &&
     (Number.isNaN(endAt) || now < endAt);
 
-  if (isLive) {
+  if (isLive && channel.url) {
     return res.json({
       success: true,
       mode: 'LIVE',
       playbackUrl: channel.url,
-      programTitle: occurrence.subtitle || program?.title || 'Direct Télévisé'
+      programTitle: occurrence.subtitle || program?.title || 'Titre non fourni par la source EPG'
     });
   }
 
@@ -331,7 +343,7 @@ app.get('/api/programs/resolve-playback', (req, res) => {
     success: true,
     mode: 'NONE',
     playbackUrl: null,
-    programTitle: occurrence?.subtitle || program?.title || 'Programme',
+    programTitle: occurrence?.subtitle || program?.title || 'Titre non fourni par la source EPG',
     message: 'Aucune source vidéo à la demande autorisée pour ce contenu.'
   });
 });
@@ -341,7 +353,8 @@ app.get('/api/health', (_req, res) => {
     success: true,
     service: 'StreamLive',
     channels: CHANNELS.length,
-    streamBaseUrl: STREAM_BASE_URL,
+    configuredLiveStreams: CHANNELS.filter(channel => Boolean(channel.url)).length,
+    streamBaseUrlConfigured: Boolean(STREAM_BASE_URL),
     siteBaseUrl: process.env.SITE_BASE_URL || null,
     sessionStore: 'memory',
     sessionTtlMs: SESSION_TTL_MS,
@@ -353,6 +366,7 @@ const { runEpgSync } = require('./services/epgRobot');
 const cron = require('node-cron');
 
 const EPG_SYNC_CRON = process.env.EPG_SYNC_CRON || '0 */6 * * *';
+
 if (cron.validate(EPG_SYNC_CRON)) {
   cron.schedule(EPG_SYNC_CRON, () => {
     runEpgSync().catch(error => {
@@ -369,10 +383,13 @@ if (process.env.EPG_SYNC_ON_START !== 'false') {
   });
 }
 
-app.get('/channel/:id', (_req, res) => {
-  res.sendFile(require('path').join(__dirname, 'public', 'channel.html'));
+app.get('/channel/:id', (req, res) => {
+  if (!CHANNELS.some(channel => channel.id === req.params.id)) {
+    return res.status(404).send('Chaîne non trouvée.');
+  }
+  res.sendFile(path.join(__dirname, 'public', 'channel.html'));
 });
 
 app.listen(PORT, () => {
-  console.log(`StreamLive backend actif sur http://localhost:${PORT}`);
+  console.log(`StreamLive backend actif sur le port ${PORT}`);
 });
