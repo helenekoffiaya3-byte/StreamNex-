@@ -4,65 +4,76 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>StreamLive — Chaîne</title>
-  <meta name="description" content="Direct, programme TV, séries et films StreamLive.">
+  <meta name="description" content="Programme TV réel fourni par la source EPG StreamLive.">
   <link rel="stylesheet" href="/public/assets/css/channel.css">
-  <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+  <script src="https://cdn.jsdelivr.net/npm/hls.js@1.5.20"></script>
 </head>
 <body>
-  <header class="app-header">
-    <a class="logo" href="/">Stream<span>Live</span></a>
-    <nav>
-      <a href="/">Accueil</a>
-      <a href="/channels">Chaînes</a>
-      <a href="/shuffle" class="shuffle">🎲 Shuffle</a>
+  <div id="channel-view" class="view">
+    <header class="hero" id="hero">
+      <button class="icon-btn back-btn" id="backBtn" type="button" aria-label="Retour">‹</button>
+      <button class="icon-btn cast-btn" type="button" aria-label="Caster" disabled>⇱</button>
+      <div class="hero-fade"></div>
+      <img class="hero-logo" id="channelLogo" alt="">
+    </header>
+
+    <main class="rows" id="rows">
+      <section class="state-block" id="channelState">Chargement des programmes réels…</section>
+    </main>
+
+    <button class="see-all-btn" id="openProgramsBtn" type="button">Films &amp; Séries — voir tout ›</button>
+
+    <nav class="bottom-nav" aria-label="Navigation">
+      <a class="nav-item" href="/"><span class="nav-icon">⌂</span>Accueil</a>
+      <button class="nav-item" type="button" disabled><span class="nav-icon">⌕</span>Recherche</button>
+      <button class="nav-item" type="button" disabled><span class="nav-icon">▭</span>En direct</button>
+      <span class="nav-item active"><span class="nav-icon">▦</span>Chaînes &amp; Apps</span>
+      <button class="nav-item" type="button" disabled><span class="nav-icon">•••</span>En plus</button>
     </nav>
-  </header>
+  </div>
 
-  <main class="channel-layout">
-    <section class="main-content">
-      <div class="player-wrapper">
-        <video id="videoPlayer" controls playsinline></video>
-        <span class="badge-live" id="liveBadge">LIVE</span>
-        <div id="statusMessage" class="status-badge" aria-live="polite"></div>
+  <div id="program-view" class="view program-view hidden" aria-hidden="true">
+    <header class="program-hero" id="programHero">
+      <div class="hero-fade"></div>
+      <button class="icon-btn close-btn" id="closeProgramBtn" type="button" aria-label="Fermer">✕</button>
+    </header>
+    <div class="program-body">
+      <h1 class="program-title" id="programTitle"></h1>
+      <p class="program-meta" id="programMeta"></p>
+      <button class="play-btn" id="playBtn" type="button" disabled><span class="play-icon">▶</span><span id="playLabel">Lecture indisponible</span></button>
+      <p class="program-desc" id="programDesc"></p>
+      <p class="program-credits" id="programCredits"></p>
+
+      <div class="tabs" id="programTabs">
+        <button class="tab-btn active" type="button" data-tab="episodes">Épisodes</button>
+        <button class="tab-btn" type="button" data-tab="more">À voir aussi</button>
       </div>
-
-      <section class="channel-details">
-        <div class="channel-header">
-          <img id="channelLogo" class="channel-logo" alt="">
-          <div>
-            <h1 id="channelName">Chargement…</h1>
-            <p id="channelMeta" class="channel-group"></p>
-          </div>
-          <button id="favBtn" class="btn-favorite" type="button">♡ Favoris</button>
-        </div>
-        <hr class="divider">
-        <div class="current-program">
-          <span class="tag">Lecture</span>
-          <h2 id="currentProgramTitle">Sélectionnez un programme</h2>
-          <p id="currentProgramTime" class="time-range"></p>
-          <p id="currentProgramDesc" class="description"></p>
-        </div>
-      </section>
-
-      <section class="vod-section">
-        <h3>Programmes habituels</h3>
-        <div id="catalogContainer" class="catalog-list">
-          <p class="empty-msg">Chargement du catalogue…</p>
-        </div>
-      </section>
-    </section>
-
-    <aside class="sidebar-epg">
-      <div class="epg-header">
-        <h3>Programme TV</h3>
-        <span id="epgDate" class="epg-date">Aujourd’hui</span>
+      <div class="tab-panel" id="tab-episodes">
+        <div class="season-tabs" id="seasonTabs"></div>
+        <p class="season-count" id="seasonCount"></p>
+        <div class="episode-list" id="episodeList"></div>
       </div>
-      <div id="epgContainer" class="epg-timeline">
-        <p class="empty-msg">Chargement…</p>
+      <div class="tab-panel hidden" id="tab-more">
+        <p class="empty-msg">Aucune recommandation fournie par la source EPG.</p>
       </div>
-    </aside>
-  </main>
+    </div>
+  </div>
 
+  <div id="programs-view" class="view programs-view hidden" aria-hidden="true">
+    <header class="programs-header">
+      <button class="icon-btn back-btn" id="closeProgramsBtn" type="button" aria-label="Retour">‹</button>
+      <h1 class="programs-title">Films &amp; Séries</h1>
+    </header>
+    <div class="filter-tabs" id="filterTabs">
+      <button class="filter-btn active" type="button" data-filter="all">Tous</button>
+      <button class="filter-btn" type="button" data-filter="film">Films</button>
+      <button class="filter-btn" type="button" data-filter="serie">Séries</button>
+      <button class="filter-btn" type="button" data-filter="novela">Novelas</button>
+    </div>
+    <div class="poster-grid" id="posterGrid"></div>
+  </div>
+
+  <div class="toast hidden" id="toast" role="status" aria-live="polite"></div>
   <script src="/public/assets/js/channel.js"></script>
 </body>
 </html>
