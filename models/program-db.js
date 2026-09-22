@@ -141,7 +141,8 @@ function getOccurrenceById(occurrenceId) {
     SELECT occurrence_id AS occurrenceId, program_id AS programId,
            channel_id AS channelId, start_at AS startAt, end_at AS endAt,
            subtitle, season_number AS seasonNumber,
-           episode_number AS episodeNumber, description, poster
+           episode_number AS episodeNumber, description, poster,
+           poster_source_url AS posterSourceUrl, poster_source_type AS posterSourceType
     FROM program_occurrences
     WHERE occurrence_id = ?
   `).get(occurrenceId);
@@ -170,7 +171,7 @@ function upsertProgram(entry) {
         poster_source_url, poster_source_type,
         status, first_seen_at, last_seen_at, occurrences_count,
         distinct_days_count, is_recurring, playback_url
-      ) VALUES (?, ?, ?, ?, ?, ?, 'pending', ?, ?, 0, 0, 0, ?)
+      ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, 'pending', ?, ?, 0, 0, 0, ?)
     `).run(
       entry.programId,
       entry.channelId,
