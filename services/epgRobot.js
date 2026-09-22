@@ -140,6 +140,7 @@ function loadOfficialGuides() {
       if (!CHANNEL_CONFIG.some(channel => channel.id === channelId)) continue;
       result.set(channelId, {
         guideUrl,
+        sourceChannelId: String(item?.sourceChannelId || channelId).trim(),
         website: validateEpgSourceUrl(item?.officialWebsite)?.toString() || null,
         sourceType: String(item?.sourceType || 'official-xmltv').trim() || 'official-xmltv'
       });
@@ -373,7 +374,7 @@ async function runEpgSync() {
 
         const xml = await fetchXml(official.guideUrl);
         const resolver = new Map();
-        resolver.set(channel.id, channel.id);
+        resolver.set(official.sourceChannelId, channel.id);
         importedCount += importXmltv(xml, resolver, official.sourceType);
       }
     } else {
