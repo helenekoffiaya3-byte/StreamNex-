@@ -118,6 +118,17 @@ function getOccurrencesByChannel(channelId, fromIso = null, toIso = null) {
   return db.prepare(sql).all(...params);
 }
 
+function getOccurrenceById(occurrenceId) {
+  return db.prepare(`
+    SELECT occurrence_id AS occurrenceId, program_id AS programId,
+           channel_id AS channelId, start_at AS startAt, end_at AS endAt,
+           subtitle, season_number AS seasonNumber,
+           episode_number AS episodeNumber, description, poster
+    FROM program_occurrences
+    WHERE occurrence_id = ?
+  `).get(occurrenceId);
+}
+
 function getProgramOccurrences(programId) {
   return db.prepare(`
     SELECT occurrence_id AS occurrenceId, program_id AS programId,
@@ -242,6 +253,7 @@ module.exports = {
   getProgram,
   getProgramsByChannel,
   getProgramOccurrences,
+  getOccurrenceById,
   getOccurrencesByChannel,
   upsertProgram,
   addOccurrence,
