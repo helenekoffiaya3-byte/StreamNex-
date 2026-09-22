@@ -84,12 +84,11 @@ function getProgram(programId) {
 }
 
 function getProgramsByChannel(channelId, status = 'confirmed') {
-  const rows = db.prepare(`
+  return db.prepare(`
     SELECT * FROM programs
     WHERE channel_id = ? AND status = ?
     ORDER BY title COLLATE NOCASE
-  `).all(channelId, status);
-  return rows.map(rowToProgram);
+  `).all(channelId, status).map(rowToProgram);
 }
 
 function getOccurrencesByChannel(channelId, fromIso = null, toIso = null) {
@@ -142,8 +141,8 @@ function getProgramOccurrences(programId) {
 }
 
 function upsertProgram(entry) {
-  const now = new Date().toISOString();
   const existing = db.prepare('SELECT * FROM programs WHERE program_id = ?').get(entry.programId);
+  const now = new Date().toISOString();
 
   if (!existing) {
     db.prepare(`
@@ -153,8 +152,14 @@ function upsertProgram(entry) {
         distinct_days_count, is_recurring, playback_url
       ) VALUES (?, ?, ?, ?, ?, ?, 'pending', ?, ?, 0, 0, 0, ?)
     `).run(
-      entry.programId, entry.channelId, entry.title, entry.type,
-      entry.description || '', entry.poster || null, now, now,
+      entry.programId,
+      entry.channelId,
+      entry.title,
+      entry.type,
+      entry.description || '',
+      entry.poster || null,
+      now,
+      now,
       entry.playbackUrl || null
     );
   } else {
@@ -162,12 +167,13 @@ function upsertProgram(entry) {
       UPDATE programs
       SET description = CASE WHEN ? <> '' THEN ? ELSE description END,
           poster = COALESCE(?, poster),
-          last_seen_at = ?,
           playback_url = COALESCE(?, playback_url)
       WHERE program_id = ?
     `).run(
-      entry.description || '', entry.description || '',
-      entry.poster || null, now, entry.playbackUrl || null,
+      entry.description || '',
+      entry.description || '',
+      entry.poster || null,
+      entry.playbackUrl || null,
       entry.programId
     );
   }
@@ -189,15 +195,23 @@ function addOccurrence(programId, occurrence) {
       description = excluded.description,
       poster = excluded.poster
   `).run(
-    programId, occurrence.channelId, occurrence.startAt,
-    occurrence.endAt || null, occurrence.subtitle || null,
-    occurrence.seasonNumber ?? null, occurrence.episodeNumber ?? null,
-    occurrence.description || '', occurrence.poster || null
+    programId,
+    occurrence.channelId,
+    occurrence.startAt,
+    occurrence.endAt || null,
+    occurrence.subtitle || null,
+    occurrence.seasonNumber ?? null,
+    occurrence.episodeNumber ?? null,
+    occurrence.description || '',
+    occurrence.poster || null
   );
 
   const stats = db.prepare(`
-    SELECT COUNT(*) AS count,
-           COUNT(DISTINCT substr(start_at, 1, 10)) AS distinctDays
+    SELECT
+      COUNT(*) AS count,
+      COUNT(DISTINCT substr(start_at, 1, 10)) AS distinctDays,
+      MIN(start_at) AS firstSeenAt,
+      MAX(start_at) AS lastSeenAt
     FROM program_occurrences
     WHERE program_id = ?
   `).get(programId);
@@ -207,27 +221,41 @@ function addOccurrence(programId, occurrence) {
     SET occurrences_count = ?,
         distinct_days_count = ?,
         is_recurring = CASE WHEN ? >= 2 THEN 1 ELSE 0 END,
+        first_seen_at = ?,
         last_seen_at = ?
     WHERE program_id = ?
   `).run(
-    stats.count, stats.distinctDays,
-    stats.distinctDays, new Date().toISOString(), programId
+    stats.count,
+    stats.distinctDays,
+    stats.distinctDays,
+    stats.firstSeenAt,
+    stats.lastSeenAt,
+    programId
   );
 }
 
 function confirmEligiblePrograms() {
-  const threshold = Date.now() - (3 * 24 * 60 * 60 * 1000);
+  const threshold = new Date(Date.now() - 3 * 24 * 60 * 60 * 1000).toISOString();
+
   const rows = db.prepare(`
-    SELECT * FROM programs
+    SELECT program_id
+    FROM programs
     WHERE status = 'pending'
       AND first_seen_at <= ?
-      AND is_recurring = 1
-  `).all(new Date(threshold).toISOString());
+      AND distinct_days_count >= 3
+  `).all(threshold);
 
-  const update = db.prepare('UPDATE programs SET status = \'confirmed\' WHERE program_id = ?');
+  const update = db.prepare(`
+    UPDATE programs
+    SET status = 'confirmed',
+        is_recurring = 1
+    WHERE program_id = ?
+  `);
+
   const transaction = db.transaction(() => {
     for (const row of rows) update.run(row.program_id);
   });
+
   transaction();
   return rows.length;
 }
@@ -245,7 +273,14 @@ function finishSyncRun(id, status, importedCount, confirmedCount, error = null) 
     SET completed_at = ?, status = ?, imported_count = ?,
         confirmed_count = ?, error = ?
     WHERE id = ?
-  `).run(new Date().toISOString(), status, importedCount, confirmedCount, error, id);
+  `).run(
+    new Date().toISOString(),
+    status,
+    importedCount,
+    confirmedCount,
+    error,
+    id
+  );
 }
 
 module.exports = {
