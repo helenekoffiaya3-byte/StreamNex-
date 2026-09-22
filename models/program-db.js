@@ -132,7 +132,7 @@ function getOccurrencesByChannel(channelId, fromIso = null, toIso = null) {
   let sql = `
     SELECT occurrence_id AS occurrenceId, program_id AS programId,
            programs.title AS title,
-           channel_id AS channelId, start_at AS startAt, end_at AS endAt
+           channel_id AS channelId, start_at AS startAt, end_at AS endAt,
            subtitle, season_number AS seasonNumber,
            episode_number AS episodeNumber, description, poster,
            poster_source_url AS posterSourceUrl, poster_source_type AS posterSourceType
@@ -165,8 +165,11 @@ function getOccurrenceById(occurrenceId) {
            episode_number AS episodeNumber, description, poster,
            poster_source_url AS posterSourceUrl, poster_source_type AS posterSourceType
     FROM program_occurrences
+    JOIN programs ON programs.program_id = program_occurrences.program_id
     WHERE occurrence_id = ?
   `).get(occurrenceId);
+
+  return normalizeOccurrence(row);
 }
 
 function getProgramOccurrences(programId) {
