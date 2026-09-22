@@ -171,16 +171,19 @@ app.get('/api/channels/:id/programs', (req, res) => {
     return res.status(404).json({ success: false, error: 'Chaîne non trouvée.' });
   }
 
-  const { getProgramsByChannel } = require('./models/program-db');
+  const { getProgramsByChannel, getOccurrencesByChannel } = require('./models/program-db');
   const programs = getProgramsByChannel(channel.id);
-  const now = new Date();
+  const from = new Date(Date.now() - 24 * 60 * 60 * 1000).toISOString();
+  const to = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toISOString();
+  const occurrences = getOccurrencesByChannel(channel.id, from, to);
 
   res.json({
     success: true,
     channelId: channel.id,
     programs,
-    epg: programs,
-    fetchedAt: now.toISOString()
+    occurrences,
+    epg: occurrences,
+    fetchedAt: new Date().toISOString()
   });
 });
 
