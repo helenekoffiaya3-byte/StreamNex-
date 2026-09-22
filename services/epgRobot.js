@@ -1,3 +1,5 @@
+const fs = require('fs');
+const path = require('path');
 const { XMLParser } = require('fast-xml-parser');
 const {
   upsertProgram,
@@ -8,6 +10,7 @@ const {
 } = require('../models/program-db');
 
 const CHANNEL_CONFIG = require('../config/channels');
+const EPG_MAP_FILE = path.join(__dirname, '..', 'config', 'epg-map.json');
 
 const SOURCE_EPG_URL = process.env.SOURCE_EPG_URL?.trim() || null;
 
@@ -23,6 +26,7 @@ function validateEpgSourceUrl(value) {
   }
 }
 const CHANNEL_MAP = parseChannelMap(process.env.EPG_CHANNEL_MAP_JSON);
+const USE_IPTV_ORG_GUIDES = process.env.EPG_USE_IPTV_ORG_GUIDES === 'true';
 
 function parseChannelMap(value) {
   if (!value) return {};
@@ -116,82 +120,136 @@ function resolveChannelId(sourceChannelId) {
   return CHANNEL_CONFIG.some(channel => channel.id === mapped) ? mapped : null;
 }
 
+function loadIptvOrgMap() {
+  if (!fs.existsSync(EPG_MAP_FILE)) return null;
+  try {
+    const parsed = JSON.parse(fs.readFileSync(EPG_MAP_FILE, 'utf8'));
+    return parsed && Array.isArray(parsed.mappings) ? parsed : null;
+  } catch (error) {
+    console.error('[Robot EPG] epg-map.json invalide:', error.message);
+    return null;
+  }
+}
+
+async function fetchXml(url) {
+  const response = await fetch(url, {
+    headers: { accept: 'application/xml,text/xml,*/*' },
+    signal: AbortSignal.timeout(30000)
+  });
+
+  if (!response.ok) throw new Error(`Source EPG HTTP ${response.status}: ${url}`);
+
+  const xml = await response.text();
+  if (!xml.trim()) throw new Error(`Source EPG vide: ${url}`);
+  return xml;
+}
+
+function importXmltv(xml, allowedChannels = null) {
+  const parser = new XMLParser({
+    ignoreAttributes: false,
+    attributeNamePrefix: '@_',
+    textNodeName: '#text',
+    trimValues: true
+  });
+
+  const parsed = parser.parse(xml);
+  const rawPrograms = asArray(parsed?.tv?.programme);
+  let importedCount = 0;
+
+  for (const raw of rawPrograms) {
+    const sourceChannelId = String(raw['@_channel'] || '').trim();
+    if (allowedChannels && !allowedChannels.has(sourceChannelId)) continue;
+
+    const channelId = resolveChannelId(sourceChannelId);
+    if (!channelId) continue;
+
+    const title = textValue(asArray(raw.title)[0]);
+    const startAt = parseXmltvDate(raw['@_start']);
+    if (!title || !startAt) continue;
+
+    const endAt = parseXmltvDate(raw['@_stop']);
+    const description = textValue(asArray(raw.desc)[0]);
+    const subtitle = textValue(asArray(raw['sub-title'])[0]);
+    const poster = raw.icon && raw.icon['@_src'] ? String(raw.icon['@_src']) : null;
+    const episode = parseEpisode(asArray(raw['episode-num'])[0]);
+    const type = detectType(raw);
+    const programId = `${channelId}-${slugify(title)}`;
+
+    upsertProgram({
+      programId,
+      channelId,
+      title,
+      type,
+      description,
+      poster
+    });
+
+    addOccurrence(programId, {
+      channelId,
+      startAt,
+      endAt,
+      subtitle: subtitle || null,
+      seasonNumber: episode.seasonNumber,
+      episodeNumber: episode.episodeNumber,
+      description,
+      poster
+    });
+
+    importedCount += 1;
+  }
+
+  return importedCount;
+}
+
 async function runEpgSync() {
   const syncId = createSyncRun();
   let importedCount = 0;
 
-  const sourceUrl = validateEpgSourceUrl(SOURCE_EPG_URL);
+  const configuredSource = validateEpgSourceUrl(SOURCE_EPG_URL);
 
-  if (!sourceUrl) {
+  if (!configuredSource && !USE_IPTV_ORG_GUIDES) {
     const message = SOURCE_EPG_URL
       ? 'SOURCE_EPG_URL invalide. Utilisez une URL HTTP(S) réelle et autorisée. Aucune donnée EPG ne sera créée.'
-      : 'SOURCE_EPG_URL non configurée. Aucune donnée EPG ne sera créée.';
+      : 'SOURCE_EPG_URL non configurée. Le robot reste en veille. Aucune donnée EPG ne sera créée.';
+
     finishSyncRun(syncId, 'skipped', 0, 0, message);
     console.warn('[Robot EPG]', message);
     return { skipped: true, importedCount: 0, confirmedCount: 0 };
   }
 
   try {
-    const response = await fetch(sourceUrl, {
-      headers: { accept: 'application/xml,text/xml,*/*' },
-      signal: AbortSignal.timeout(30000)
-    });
+    if (configuredSource) {
+      const xml = await fetchXml(configuredSource);
+      importedCount += importXmltv(xml);
+    } else {
+      const map = loadIptvOrgMap();
 
-    if (!response.ok) {
-      throw new Error(`Source EPG HTTP ${response.status}`);
-    }
+      if (!map) {
+        const message = 'EPG_USE_IPTV_ORG_GUIDES=true mais config/epg-map.json est absent ou invalide. Exécutez npm run map-channels. Aucune donnée EPG ne sera créée.';
+        finishSyncRun(syncId, 'skipped', 0, 0, message);
+        console.warn('[Robot EPG]', message);
+        return { skipped: true, importedCount: 0, confirmedCount: 0 };
+      }
 
-    const xml = await response.text();
-    if (!xml.trim()) throw new Error('La source EPG a renvoyé un document vide.');
+      const sourceGroups = new Map();
 
-    const parser = new XMLParser({
-      ignoreAttributes: false,
-      attributeNamePrefix: '@_',
-      textNodeName: '#text',
-      trimValues: true
-    });
+      for (const mapping of map.mappings) {
+        for (const guide of mapping.guides || []) {
+          for (const source of guide.sources || []) {
+            if (!source.url) continue;
 
-    const parsed = parser.parse(xml);
-    const rawPrograms = asArray(parsed?.tv?.programme);
+            if (!sourceGroups.has(source.url)) {
+              sourceGroups.set(source.url, new Set());
+            }
+            sourceGroups.get(source.url).add(mapping.iptvOrgChannelId);
+          }
+        }
+      }
 
-    for (const raw of rawPrograms) {
-      const sourceChannelId = String(raw['@_channel'] || '').trim();
-      const channelId = resolveChannelId(sourceChannelId);
-      if (!channelId) continue;
-
-      const title = textValue(asArray(raw.title)[0]);
-      const startAt = parseXmltvDate(raw['@_start']);
-      if (!title || !startAt) continue;
-
-      const endAt = parseXmltvDate(raw['@_stop']);
-      const description = textValue(asArray(raw.desc)[0]);
-      const subtitle = textValue(asArray(raw['sub-title'])[0]);
-      const poster = raw.icon && raw.icon['@_src'] ? String(raw.icon['@_src']) : null;
-      const episode = parseEpisode(asArray(raw['episode-num'])[0]);
-      const type = detectType(raw);
-      const programId = `${channelId}-${slugify(title)}`;
-
-      upsertProgram({
-        programId,
-        channelId,
-        title,
-        type,
-        description,
-        poster
-      });
-
-      addOccurrence(programId, {
-        channelId,
-        startAt,
-        endAt,
-        subtitle: subtitle || null,
-        seasonNumber: episode.seasonNumber,
-        episodeNumber: episode.episodeNumber,
-        description,
-        poster
-      });
-
-      importedCount += 1;
+      for (const [sourceUrl, sourceChannelIds] of sourceGroups) {
+        const xml = await fetchXml(sourceUrl);
+        importedCount += importXmltv(xml, sourceChannelIds);
+      }
     }
 
     const confirmedCount = confirmEligiblePrograms();
