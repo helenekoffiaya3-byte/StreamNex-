@@ -4,6 +4,7 @@ const { XMLParser } = require('fast-xml-parser');
 const {
   upsertProgram,
   addOccurrence,
+  replaceEpgSnapshot,
   confirmEligiblePrograms,
   createSyncRun,
   finishSyncRun,
@@ -408,7 +409,7 @@ async function importXmltv(xml, channelResolver = null, sourceType = 'published-
 
   const parsed = parser.parse(xml);
   const rawPrograms = asArray(parsed?.tv?.programme);
-  let importedCount = 0;
+  const entries = [];
 
   for (const raw of rawPrograms) {
     const sourceChannelId = String(raw['@_channel'] || '').trim();
@@ -435,36 +436,66 @@ async function importXmltv(xml, channelResolver = null, sourceType = 'published-
       validateStreamUrl(rawPlaybackUrl, 'ANY')
     ]);
 
-    upsertProgram({
-      programId,
-      channelId,
-      title,
-      type,
-      description,
-      poster,
-      posterSourceUrl: poster,
-      posterSourceType: poster ? sourceType : null,
-      playbackUrl
+    entries.push({
+      program: {
+        programId,
+        channelId,
+        title,
+        type,
+        description,
+        poster,
+        posterSourceUrl: poster,
+        posterSourceType: poster ? sourceType : null,
+        playbackUrl
+      },
+      occurrence: {
+        channelId,
+        startAt,
+        endAt,
+        subtitle: subtitle || null,
+        seasonNumber: episode.seasonNumber,
+        episodeNumber: episode.episodeNumber,
+        description,
+        poster,
+        posterSourceUrl: poster,
+        posterSourceType: poster ? sourceType : null,
+        playbackUrl
+      }
     });
-
-    addOccurrence(programId, {
-      channelId,
-      startAt,
-      endAt,
-      subtitle: subtitle || null,
-      seasonNumber: episode.seasonNumber,
-      episodeNumber: episode.episodeNumber,
-      description,
-      poster,
-      posterSourceUrl: poster,
-      posterSourceType: poster ? sourceType : null,
-      playbackUrl
-    });
-
-    importedCount += 1;
   }
 
-  return importedCount;
+  return entries;
+}
+
+function validateEpgSnapshot(entries) {
+  if (!Array.isArray(entries) || entries.length === 0) {
+    throw new Error('La source EPG ne contient aucune occurrence exploitable. Ancien EPG conservé.');
+  }
+
+  const knownChannels = new Set(CHANNEL_CONFIG.map(channel => channel.id));
+  const seen = new Set();
+
+  for (const entry of entries) {
+    const channelId = entry?.program?.channelId;
+    const occurrenceChannelId = entry?.occurrence?.channelId;
+    const startAt = entry?.occurrence?.startAt;
+
+    if (!knownChannels.has(channelId) || channelId !== occurrenceChannelId) {
+      throw new Error('Validation EPG échouée : canal orphelin ou incohérent.');
+    }
+
+    const key = entry.program.programId + '\\u0000' + startAt;
+    if (seen.has(key)) {
+      throw new Error('Validation EPG échouée : occurrence dupliquée.');
+    }
+    seen.add(key);
+  }
+
+  return {
+    entries,
+    channelCount: new Set(entries.map(entry => entry.program.channelId)).size,
+    programCount: new Set(entries.map(entry => entry.program.programId)).size
+  };
 }
 
 async function runEpgSync() {
@@ -490,9 +521,11 @@ async function runEpgSync() {
   }
 
   try {
+    let snapshot = [];
+
     if (configuredSource) {
       const xml = await fetchXml(configuredSource);
-      importedCount += await importXmltv(xml, null, 'configured-epg');
+      snapshot = await importXmltv(xml, null, 'configured-epg');
     } else if (officialGuides.size > 0) {
       for (const channel of CHANNEL_CONFIG) {
         const official = officialGuides.get(channel.id);
@@ -501,7 +534,7 @@ async function runEpgSync() {
         const xml = await fetchXml(official.guideUrl);
         const resolver = new Map();
         resolver.set(official.sourceChannelId, channel.id);
-        importedCount += await importXmltv(xml, resolver, official.sourceType);
+        snapshot.push(...await importXmltv(xml, resolver, official.sourceType));
       }
     } else {
       if (!USE_IPTV_ORG_GUIDES || !ALLOW_PUBLISHED_FALLBACK) {
@@ -537,9 +570,13 @@ async function runEpgSync() {
           const localChannelId = sourceToLocal.get(sourceChannelId);
           if (localChannelId) resolver.set(sourceChannelId, localChannelId);
         }
-        importedCount += await importXmltv(xml, resolver);
+        snapshot.push(...await importXmltv(xml, resolver));
       }
     }
+
+    const validated = validateEpgSnapshot(snapshot);
+    const result = replaceEpgSnapshot(validated.entries);
+    importedCount = result.importedCount;
 
     const confirmedCount = confirmEligiblePrograms();
     finishSyncRun(syncId, 'success', importedCount, confirmedCount);
