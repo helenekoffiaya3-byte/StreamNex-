@@ -242,7 +242,7 @@ app.get('/api/channels/:id/catalog', (req, res) => {
 });
 
 app.get('/api/programs/:id', (req, res) => {
-  const { getProgram, getProgramOccurrences } = require('./models/program-db');
+  const { getProgram, getProgramOccurrences, getChannelPlaybackUrl } = require('./models/program-db');
   const program = getProgram(req.params.id);
 
   if (!program) {
