@@ -1,14 +1,15 @@
 {
-  "version": 1,
-  "policy": "strict-official-only",
+  "version": 2,
+  "policy": "community-aggregated-public",
   "sources": [
     {
       "id": "official-fr-epg",
-      "name": "Official French EPG Feed",
+      "name": "Community French EPG",
       "url": "https://iptv-org.github.io/epg/guides/fr/programme-tv.net.epg.xml.gz",
       "format": "xmltv",
       "language": "fr",
-      "license": "public-domain"
+      "license": "unspecified",
+      "source_type": "community-aggregated"
     }
   ],
   "mappings": {
@@ -72,5 +73,7 @@
       "enabled": true,
       "guide_source": "official-fr-epg"
     }
-  }
+  },
+  "policy_note": "Données agrégées par la communauté iptv-org. Cette source n'est pas affiliée directement aux diffuseurs officiels.",
+  "verification_status": "structure-validated"
 }
