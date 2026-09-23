@@ -715,7 +715,7 @@ app.get('/api/health', (_req, res) => {
     service: 'StreamLive',
     channels: CHANNELS.length,
     configuredLiveStreams: CHANNELS.filter(channel => Boolean(require('./models/program-db').getChannelPlaybackUrl(channel.id))).length,
-    streamBaseUrlConfigured: false,
+    streamBaseUrlConfigured: Boolean(String(process.env.STREAM_BASE_URL || '').trim()),
     siteBaseUrl: process.env.SITE_BASE_URL || null,
     sessionStore: 'memory',
     sessionTtlMs: SESSION_TTL_MS,
