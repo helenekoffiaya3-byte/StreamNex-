@@ -5,7 +5,7 @@
     {
       "id": "official-fr-epg",
       "name": "Official French EPG Feed",
-      "url": "https://iptv-org.github.io/epg/guides/fr/programme-tv.net.epg.xml",
+      "url": "https://iptv-org.github.io/epg/guides/fr/programme-tv.net.epg.xml.gz",
       "format": "xmltv",
       "language": "fr",
       "license": "public-domain"
