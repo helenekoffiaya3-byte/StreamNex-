@@ -6,7 +6,8 @@ const {
   addOccurrence,
   confirmEligiblePrograms,
   createSyncRun,
-  finishSyncRun
+  finishSyncRun,
+  upsertChannel
 } = require('../models/program-db');
 
 const CHANNEL_CONFIG = require('../config/channels');
