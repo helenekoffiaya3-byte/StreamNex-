@@ -1,6 +1,6 @@
 services:
   nginx-hls:
-    image: tiangolo/nginx-rtmp:latest
+    image: tiangolo/nginx-rtmp@sha256:b7d453e3f69f150cda40f969c6176a8ee108405cfb9c3daf56e9908d2b4e6b5f
     container_name: streamlive_nginx
     restart: unless-stopped
     ports:
