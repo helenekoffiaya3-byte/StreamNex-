@@ -362,6 +362,11 @@ function loadOfficialGuides() {
 
   try {
     const parsed = JSON.parse(fs.readFileSync(OFFICIAL_GUIDES_FILE, 'utf8'));
+    const policy = String(parsed?.policy || '').trim();
+    const communityPolicy = policy === 'community-aggregated-public';
+    const officialPolicy = policy === 'strict-official-only';
+    if (!officialPolicy && !(communityPolicy && ALLOW_PUBLISHED_FALLBACK)) return new Map();
+
     const sources = new Map((Array.isArray(parsed?.sources) ? parsed.sources : [])
       .map(source => [String(source?.id || '').trim(), source]));
     const mappings = parsed?.mappings && !Array.isArray(parsed.mappings)
