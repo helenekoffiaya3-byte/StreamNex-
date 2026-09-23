@@ -255,7 +255,7 @@ app.get('/api/programs/:id', (req, res) => {
     success: true,
     program: {
       ...program,
-      liveStreamUrl: channel?.url || null,
+      liveStreamUrl: validatePlaybackUrl(getChannelPlaybackUrl(program.channelId)),
       occurrences: getProgramOccurrences(program.programId)
     }
   });
@@ -437,7 +437,7 @@ app.get('/api/health', (_req, res) => {
     success: true,
     service: 'StreamLive',
     channels: CHANNELS.length,
-    configuredLiveStreams: CHANNELS.filter(channel => Boolean(channel.url)).length,
+    configuredLiveStreams: CHANNELS.filter(channel => Boolean(require('./models/program-db').getChannelPlaybackUrl(channel.id))).length,
     streamBaseUrlConfigured: false,
     siteBaseUrl: process.env.SITE_BASE_URL || null,
     sessionStore: 'memory',
