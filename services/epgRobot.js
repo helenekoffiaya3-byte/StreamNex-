@@ -371,7 +371,7 @@ async function fetchXml(url) {
   return buffer.toString('utf8');
 }
 
-function importXmltv(xml, channelResolver = null, sourceType = 'published-epg') {
+async function importXmltv(xml, channelResolver = null, sourceType = 'published-epg') {
   const parser = new XMLParser({
     ignoreAttributes: false,
     attributeNamePrefix: '@_',
@@ -398,9 +398,15 @@ function importXmltv(xml, channelResolver = null, sourceType = 'published-epg') 
     const description = textValue(asArray(raw.desc)[0]);
     const subtitle = textValue(asArray(raw['sub-title'])[0]);
     const rawPoster = validateEpgSourceUrl(raw.icon?.['@_src'])?.toString() || null;
+    const rawPlaybackUrl = textValue(asArray(raw.url)[0]) || null;
     const episode = parseEpisode(asArray(raw['episode-num'])[0]);
     const type = detectType(raw);
     const programId = `${channelId}-${slugify(title)}`;
+
+    const [poster, playbackUrl] = await Promise.all([
+      validateImageUrl(rawPoster),
+      validateStreamUrl(rawPlaybackUrl, 'ANY')
+    ]);
 
     upsertProgram({
       programId,
@@ -410,7 +416,8 @@ function importXmltv(xml, channelResolver = null, sourceType = 'published-epg') 
       description,
       poster,
       posterSourceUrl: poster,
-      posterSourceType: poster ? sourceType : null
+      posterSourceType: poster ? sourceType : null,
+      playbackUrl
     });
 
     addOccurrence(programId, {
@@ -423,7 +430,8 @@ function importXmltv(xml, channelResolver = null, sourceType = 'published-epg') 
       description,
       poster,
       posterSourceUrl: poster,
-      posterSourceType: poster ? sourceType : null
+      posterSourceType: poster ? sourceType : null,
+      playbackUrl
     });
 
     importedCount += 1;
@@ -452,7 +460,7 @@ async function runEpgSync() {
   try {
     if (configuredSource) {
       const xml = await fetchXml(configuredSource);
-      importedCount += importXmltv(xml, null, 'configured-epg');
+      importedCount += await importXmltv(xml, null, 'configured-epg');
     } else if (officialGuides.size > 0) {
       for (const channel of CHANNEL_CONFIG) {
         const official = officialGuides.get(channel.id);
@@ -461,7 +469,7 @@ async function runEpgSync() {
         const xml = await fetchXml(official.guideUrl);
         const resolver = new Map();
         resolver.set(official.sourceChannelId, channel.id);
-        importedCount += importXmltv(xml, resolver, official.sourceType);
+        importedCount += await importXmltv(xml, resolver, official.sourceType);
       }
     } else {
       if (!USE_IPTV_ORG_GUIDES || !ALLOW_PUBLISHED_FALLBACK) {
@@ -497,7 +505,7 @@ async function runEpgSync() {
           const localChannelId = sourceToLocal.get(sourceChannelId);
           if (localChannelId) resolver.set(sourceChannelId, localChannelId);
         }
-        importedCount += importXmltv(xml, resolver);
+        importedCount += await importXmltv(xml, resolver);
       }
     }
 
