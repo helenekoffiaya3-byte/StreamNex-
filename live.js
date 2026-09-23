@@ -52,9 +52,9 @@
       const data = await api('/api/live/channels');
       state.channels = Array.isArray(data.channels) ? data.channels : [];
       state.updatedAt = data.fetchedAt || null;
-      syncSelectedWithFreshData();
+      const selectedChanged = syncSelectedWithFreshData();
       renderChannels();
-      renderMultiLive();
+      if (selectedChanged || state.selected.size === 0 && !state.updatedAt) renderMultiLive();
     } catch (error) {
       console.error('[StreamLive LIVE]', error);
       if (!state.channels.length) {
@@ -64,14 +64,17 @@
   }
 
   function syncSelectedWithFreshData() {
+    let changed = false;
     for (const [channelId, item] of state.selected) {
       const fresh = state.channels.find(channel => channel.id === channelId);
       if (!fresh || !fresh.liveAvailable || !fresh.occurrence) {
         removeSelected(channelId);
+        changed = true;
       } else {
         item.channel = fresh;
       }
     }
+    return changed;
   }
 
   function filteredChannels() {
@@ -262,7 +265,7 @@
       video.controls = true;
       video.playsInline = true;
       video.autoplay = true;
-      video.muted = false;
+      video.muted = true;
       video.preload = 'metadata';
       item.video = video;
 
