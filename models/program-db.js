@@ -241,8 +241,8 @@ function addOccurrence(programId, occurrence) {
     INSERT INTO program_occurrences (
       program_id, channel_id, start_at, end_at, subtitle,
       season_number, episode_number, description, poster,
-      poster_source_url, poster_source_type
-    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+      poster_source_url, poster_source_type, playback_url
+    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
     ON CONFLICT(program_id, start_at) DO UPDATE SET
       end_at = excluded.end_at,
       subtitle = excluded.subtitle,
