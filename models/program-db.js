@@ -154,15 +154,15 @@ function getProgramsByChannel(channelId, status = 'confirmed') {
 
 function getOccurrencesByChannel(channelId, fromIso = null, toIso = null) {
   let sql = `
-    SELECT occurrence_id AS occurrenceId, program_id AS programId,
+    SELECT po.occurrence_id AS occurrenceId, po.program_id AS programId,
            programs.title AS title,
-           channel_id AS channelId, start_at AS startAt, end_at AS endAt,
-           subtitle, season_number AS seasonNumber,
-           episode_number AS episodeNumber, description, poster,
-           poster_source_url AS posterSourceUrl, poster_source_type AS posterSourceType, playback_url AS playbackUrl
-    FROM program_occurrences
-    JOIN programs ON programs.program_id = program_occurrences.program_id
-    WHERE program_occurrences.channel_id = ?
+           po.channel_id AS channelId, po.start_at AS startAt, po.end_at AS endAt,
+           po.subtitle, po.season_number AS seasonNumber,
+           po.episode_number AS episodeNumber, po.description, po.poster,
+           po.poster_source_url AS posterSourceUrl, po.poster_source_type AS posterSourceType, po.playback_url AS playbackUrl
+    FROM program_occurrences AS po
+    JOIN programs ON programs.program_id = po.program_id
+    WHERE po.channel_id = ?
       AND programs.status = 'confirmed'
   `;
   const params = [channelId];
