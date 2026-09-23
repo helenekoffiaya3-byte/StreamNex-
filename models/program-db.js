@@ -6,9 +6,11 @@ const dataDir = process.env.STREAMLIVE_DATA_DIR || path.join(__dirname, '..', 'd
 fs.mkdirSync(dataDir, { recursive: true });
 
 const dbPath = process.env.STREAMLIVE_DB_PATH || path.join(dataDir, 'streamlive.sqlite');
-const db = new Database(dbPath);
+const db = new Database(dbPath, { timeout: 7000 });
 
 db.pragma('journal_mode = WAL');
+db.pragma('synchronous = NORMAL');
+db.pragma('busy_timeout = 7000');
 db.pragma('foreign_keys = ON');
 
 function ensureColumn(table, column, definition) {
