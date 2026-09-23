@@ -445,7 +445,12 @@ async function runEpgSync() {
   const syncId = createSyncRun();
   let importedCount = 0;
 
-  for (const channel of CHANNEL_CONFIG) {\n    const liveUrl = await validateStreamUrl(channel.productionUrl || null, 'HLS');\n    upsertChannel(channel.id, channel.name, liveUrl);\n  }\n\n  const configuredSource = validateEpgSourceUrl(SOURCE_EPG_URL);
+  for (const channel of CHANNEL_CONFIG) {
+    const liveUrl = await validateStreamUrl(channel.productionUrl || null, 'HLS');
+    upsertChannel(channel.id, channel.name, liveUrl);
+  }
+
+  const configuredSource = validateEpgSourceUrl(SOURCE_EPG_URL);
   const officialGuides = loadOfficialGuides();
 
   if (!configuredSource && officialGuides.size === 0 && !ALLOW_PUBLISHED_FALLBACK) {
