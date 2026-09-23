@@ -127,12 +127,28 @@ app.get('/api/stream/random', shuffleLimiter, (req, res) => {
     return res.status(500).json({ success: false, error: 'Chaîne introuvable.' });
   }
 
+  const { getOccurrencesByChannel } = require('./models/program-db');
+  const now = Date.now();
+  const occurrence = getOccurrencesByChannel(
+    channel.id,
+    new Date(Date.now() - 24 * 60 * 60 * 1000).toISOString(),
+    new Date(Date.now() + 24 * 60 * 60 * 1000).toISOString()
+  ).find(item => {
+    const start = Date.parse(item.startAt);
+    const end = item.endAt ? Date.parse(item.endAt) : NaN;
+    return Number.isFinite(start) && start <= now && (Number.isNaN(end) || now < end);
+  });
+
   res.json({
     success: true,
     channel: {
-      ...channel,
-      streamUrl: validatePlaybackUrl(require('./models/program-db').getChannelPlaybackUrl(channel.id))
+      id: channel.id,
+      name: channel.name,
+      group: channel.group,
+      number: channel.number,
+      logoUrl: channel.logoUrl || '/assets/logos/' + channel.id + '.png'
     },
+    occurrenceId: occurrence?.occurrenceId || null,
     remainingCount: pool.length,
     totalCount: CHANNELS.length,
     cycleComplete: pool.length === 0
@@ -175,7 +191,6 @@ app.get('/api/channels/:id', (req, res) => {
       group: channel.group,
       number: channel.number,
       logoUrl: channel.logoUrl || '/assets/logos/' + channel.id + '.png',
-      streamUrl: validatePlaybackUrl(getChannelPlaybackUrl(channel.id)),
       programs
     }
   });
@@ -255,7 +270,6 @@ app.get('/api/programs/:id', (req, res) => {
     success: true,
     program: {
       ...program,
-      liveStreamUrl: validatePlaybackUrl(getChannelPlaybackUrl(program.channelId)),
       occurrences: getProgramOccurrences(program.programId)
     }
   });
