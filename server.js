@@ -366,7 +366,9 @@ app.get('/api/programs/resolve-playback', (req, res) => {
     startAt <= now &&
     (Number.isNaN(endAt) || now < endAt);
 
-  const liveStreamUrl = validatePlaybackUrl(getChannelPlaybackUrl(channel.id));\n\n  if (isLive && liveStreamUrl) {
+  const liveStreamUrl = validatePlaybackUrl(getChannelPlaybackUrl(channel.id));
+
+  if (isLive && liveStreamUrl) {
     return res.json({
       success: true,
       mode: 'LIVE',
