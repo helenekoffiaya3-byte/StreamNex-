@@ -636,8 +636,28 @@ app.get('/api/download/media', (req, res) => {
     return res.status(416).end();
   }
 
-  let start = match[1] ? Number(match[1]) : stat.size - Number(match[2]);
-  let end = match[2] ? Number(match[2]) : stat.size - 1;
+  const hasStart = match[1] !== '';
+  const hasEnd = match[2] !== '';
+  let start;
+  let end;
+
+  if (!hasStart && !hasEnd) {
+    res.setHeader('Content-Range', 'bytes */' + stat.size);
+    return res.status(416).end();
+  }
+
+  if (!hasStart) {
+    const suffixLength = Number(match[2]);
+    if (!Number.isSafeInteger(suffixLength) || suffixLength <= 0) {
+      res.setHeader('Content-Range', 'bytes */' + stat.size);
+      return res.status(416).end();
+    }
+    start = Math.max(0, stat.size - suffixLength);
+    end = stat.size - 1;
+  } else {
+    start = Number(match[1]);
+    end = hasEnd ? Number(match[2]) : stat.size - 1;
+  }
 
   if (!Number.isSafeInteger(start) || !Number.isSafeInteger(end) || start < 0 || end < start || start >= stat.size) {
     res.setHeader('Content-Range', 'bytes */' + stat.size);
