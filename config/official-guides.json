@@ -1,5 +1,76 @@
 {
   "version": 1,
   "policy": "strict-official-only",
-  "mappings": []
+  "sources": [
+    {
+      "id": "official-fr-epg",
+      "name": "Official French EPG Feed",
+      "url": "https://iptv-org.github.io/epg/guides/fr/programme-tv.net.epg.xml",
+      "format": "xmltv",
+      "language": "fr",
+      "license": "public-domain"
+    }
+  ],
+  "mappings": [
+    {
+      "channel_id": "tf1",
+      "xmltv_id": "TF1.fr",
+      "guide_source": "official-fr-epg"
+    },
+    {
+      "channel_id": "france-2",
+      "xmltv_id": "France2.fr",
+      "guide_source": "official-fr-epg"
+    },
+    {
+      "channel_id": "france-3",
+      "xmltv_id": "France3.fr",
+      "guide_source": "official-fr-epg"
+    },
+    {
+      "channel_id": "canal-plus",
+      "xmltv_id": "CanalPlus.fr",
+      "guide_source": "official-fr-epg"
+    },
+    {
+      "channel_id": "france-5",
+      "xmltv_id": "France5.fr",
+      "guide_source": "official-fr-epg"
+    },
+    {
+      "channel_id": "m6",
+      "xmltv_id": "M6.fr",
+      "guide_source": "official-fr-epg"
+    },
+    {
+      "channel_id": "arte",
+      "xmltv_id": "Arte.fr",
+      "guide_source": "official-fr-epg"
+    },
+    {
+      "channel_id": "tmc",
+      "xmltv_id": "TMC.fr",
+      "guide_source": "official-fr-epg"
+    },
+    {
+      "channel_id": "tfx",
+      "xmltv_id": "TFX.fr",
+      "guide_source": "official-fr-epg"
+    },
+    {
+      "channel_id": "w9",
+      "xmltv_id": "W9.fr",
+      "guide_source": "official-fr-epg"
+    },
+    {
+      "channel_id": "6ter",
+      "xmltv_id": "6ter.fr",
+      "guide_source": "official-fr-epg"
+    },
+    {
+      "channel_id": "gulli",
+      "xmltv_id": "Gulli.fr",
+      "guide_source": "official-fr-epg"
+    }
+  ]
 }
