@@ -7,6 +7,7 @@ const { rateLimit } = require('express-rate-limit');
 const hpp = require('hpp');
 const { xss } = require('express-xss-sanitizer');
 const path = require('path');
+const fs = require('fs');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -578,6 +579,77 @@ if (process.env.EPG_SYNC_ON_START !== 'false') {
     console.error('[Robot EPG] Synchronisation au démarrage échouée:', error.message);
   });
 }
+
+app.get('/api/download/media', (req, res) => {
+  if (req.method !== 'GET') {
+    return res.status(405).json({ success: false, error: 'Méthode non autorisée.' });
+  }
+
+  const expectedToken = String(process.env.STREAMLIVE_DOWNLOAD_TOKEN || '').trim();
+  const auth = String(req.get('Authorization') || '');
+  if (!expectedToken || auth !== 'Bearer ' + expectedToken) {
+    return res.status(401).json({ success: false, error: 'Téléchargement non autorisé.' });
+  }
+
+  const id = String(req.query.id || '').trim();
+  if (!/^[A-Za-z0-9_-]{1,128}$/.test(id)) {
+    return res.status(400).json({ success: false, error: 'Identifiant média invalide.' });
+  }
+
+  const mediaRoot = path.resolve(process.env.STREAMLIVE_MEDIA_DIR || path.join(__dirname, 'storage', 'videos'));
+  const filePath = path.resolve(mediaRoot, id + '.mp4');
+  const relative = path.relative(mediaRoot, filePath);
+
+  if (relative.startsWith('..' + path.sep) || path.isAbsolute(relative)) {
+    return res.status(400).json({ success: false, error: 'Chemin média invalide.' });
+  }
+
+  if (!fs.existsSync(filePath)) {
+    return res.status(404).json({ success: false, error: 'Fichier vidéo introuvable.' });
+  }
+
+  let stat;
+  try {
+    stat = fs.statSync(filePath);
+  } catch {
+    return res.status(404).json({ success: false, error: 'Fichier vidéo introuvable.' });
+  }
+
+  if (!stat.isFile()) {
+    return res.status(404).json({ success: false, error: 'Média indisponible.' });
+  }
+
+  const range = req.headers.range;
+  res.setHeader('Accept-Ranges', 'bytes');
+  res.setHeader('Content-Type', 'video/mp4');
+  res.setHeader('Content-Disposition', 'attachment; filename="streamlive_' + id + '.mp4"');
+  res.setHeader('Access-Control-Expose-Headers', 'Content-Disposition, Content-Length, Content-Range');
+
+  if (!range) {
+    res.setHeader('Content-Length', stat.size);
+    return fs.createReadStream(filePath).pipe(res);
+  }
+
+  const match = /^bytes=(\d*)-(\d*)$/.exec(range);
+  if (!match) {
+    res.setHeader('Content-Range', 'bytes */' + stat.size);
+    return res.status(416).end();
+  }
+
+  let start = match[1] ? Number(match[1]) : stat.size - Number(match[2]);
+  let end = match[2] ? Number(match[2]) : stat.size - 1;
+
+  if (!Number.isSafeInteger(start) || !Number.isSafeInteger(end) || start < 0 || end < start || start >= stat.size) {
+    res.setHeader('Content-Range', 'bytes */' + stat.size);
+    return res.status(416).end();
+  }
+
+  end = Math.min(end, stat.size - 1);
+  res.status(206);
+  res.setHeader('Content-Range', 'bytes ' + start + '-' + end + '/' + stat.size);
+  res.setHeader('Content-Length', end - start + 1);
+  return fs.createReadStream(filePath, { start, end }).pipe(res);
+});
 
 app.get('/live', (_req, res) => {
   res.sendFile(path.join(__dirname, 'live.html'));
