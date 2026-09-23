@@ -50,6 +50,22 @@ jobs:
           test "$(curl -s -o /dev/null -w '%{http_code}' 'http://127.0.0.1:3000/api/download/media?id=test')" = "401"
           curl -fsSI http://127.0.0.1:3000/sw.js
 
+      - name: Security qualification
+        run: |
+          set -eux
+          test "$(docker compose -f docker-compose.yml -f docker-compose.ci.yml exec -T streamlive-app id -u | tr -d '\r')" != "0"
+          test "$(curl -s -o /dev/null -w '%{http_code}' http://127.0.0.1:3000/package.json)" = "404"
+          test "$(curl -s -o /dev/null -w '%{http_code}' http://127.0.0.1:3000/data/streamlive.sqlite)" = "404"
+          test "$(curl -s -o /dev/null -w '%{http_code}' http://127.0.0.1:8080/.env)" = "403"
+          for i in 1 2 3 4 5 6; do
+            code="$(curl -s -o /dev/null -w '%{http_code}' -X POST http://127.0.0.1:3000/api/auth/login -H 'Content-Type: application/json' --data '{"username":"ci-user","password":"wrong-password"}')"
+            if [ "$i" -le 5 ]; then
+              test "$code" = "401"
+            else
+              test "$code" = "429"
+            fi
+          done
+
       - name: EPG mapping qualification
         run: |
           set -eux
