@@ -74,7 +74,7 @@ async function validateStreamUrl(value, expectedType = 'ANY') {
   }
 
   const target = url.toString();
-  const looksHls = expectedType === 'HLS' || /\\.m3u8(?:$|[?#])/i.test(url.pathname + url.search);
+  const looksHls = expectedType === 'HLS' || /\.m3u8(?:$|[?#])/i.test(url.pathname + url.search);
 
   try {
     let head = null;
@@ -148,7 +148,8 @@ async function validateImageUrl(value) {
     return null;
   }
 }
-\nfunction parseXmltvDate(value) {
+
+function parseXmltvDate(value) {
   const raw = String(value || '').trim();
   if (!raw) return null;
 
