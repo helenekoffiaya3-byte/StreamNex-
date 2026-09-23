@@ -1,0 +1,46 @@
+name: Docker integration test
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  docker-integration:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Build image
+        run: docker build --progress=plain -t streamlive-app .
+
+      - name: Start container
+        run: |
+          docker run -d --name streamlive-test -p 3000:3000 --env-file .env.example streamlive-app
+          for i in $(seq 1 30); do
+            if curl -fsS http://127.0.0.1:3000/api/health >/tmp/health.json; then
+              cat /tmp/health.json
+              exit 0
+            fi
+            sleep 2
+          done
+          docker logs streamlive-test
+          exit 1
+
+      - name: Integration checks
+        run: |
+          set -eux
+          curl -fsS http://127.0.0.1:3000/api/health
+          curl -fsS http://127.0.0.1:3000/live >/tmp/live.html
+          grep -q "StreamLive" /tmp/live.html
+          test "$(curl -s -o /dev/null -w '%{http_code}' 'http://127.0.0.1:3000/api/download/media?id=test')" = "401"
+          curl -fsSI http://127.0.0.1:3000/sw.js
+
+      - name: Container logs on failure
+        if: failure()
+        run: docker logs streamlive-test
+
+      - name: Stop container
+        if: always()
+        run: docker rm -f streamlive-test || true
