@@ -579,6 +579,10 @@ if (process.env.EPG_SYNC_ON_START !== 'false') {
   });
 }
 
+app.get('/live', (_req, res) => {
+  res.sendFile(path.join(__dirname, 'live.html'));
+});
+
 app.get('/channel/:id', (req, res) => {
   if (!CHANNELS.some(channel => channel.id === req.params.id)) {
     return res.status(404).send('Chaîne non trouvée.');
