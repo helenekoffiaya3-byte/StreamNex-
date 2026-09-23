@@ -1,80 +1,24 @@
-(() => {
+(()=>{ 
 'use strict';
-const state={channels:[],live:[],replays:[],activeCategory:'all',query:''};
+const state={channels:[],live:[],replays:[],activeCategory:'all',query:'',hero:null};
 let player=null;
 const labels={all:'Toutes',National:'🇨🇮 National',Info:'📰 Information',Jeunesse:'🎈 Jeunesse',Films:'🎬 Films & Séries',Biblical:'✝️ Biblical'};
 const $=id=>document.getElementById(id);
-
-function initPlayer(){
- if(player)return player;
- player=new StreamLivePlayer({videoId:'streamVideo',modalId:'modal',titleId:'playerTitle',statusId:'playerStatus',noteId:'playerNote',emptyId:'playerEmpty'});
- window.streamLivePlayer=player;
- return player;
-}
+function initPlayer(){if(player)return player;player=new StreamLivePlayer({videoId:'streamVideo',modalId:'modal',titleId:'playerTitle',statusId:'playerStatus',noteId:'playerNote',emptyId:'playerEmpty'});window.streamLivePlayer=player;return player;}
 function esc(v){return String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
 function time(v){if(!v)return '';const d=new Date(v);return Number.isNaN(d.getTime())?'':d.toLocaleTimeString('fr-FR',{hour:'2-digit',minute:'2-digit'});}
 function meta(x){const t=[time(x.startAt),time(x.endAt)].filter(Boolean).join(' - ');const e=x.seasonNumber!=null&&x.episodeNumber!=null?'S'+x.seasonNumber+' E'+x.episodeNumber:'';return [t,e].filter(Boolean).join(' • ');}
-function card(x){
- const poster=x.poster?'<img src="'+esc(x.poster)+'" alt="" loading="lazy">':'<div class="poster-fallback">'+esc((x.title||'?').slice(0,1).toUpperCase())+'</div>';
- return '<article class="program-card" tabindex="0" role="button" data-channel-id="'+esc(x.channelId)+'" data-occurrence-id="'+esc(x.occurrenceId)+'"><div class="program-poster">'+poster+'<span class="program-tag">'+(x.mode==='LIVE'?'DIRECT':'VOD')+'</span></div><div class="program-card-body"><strong>'+esc(x.title||x.channelName)+'</strong><span>'+esc(x.channelName)+(meta(x)?' • '+esc(meta(x)):'')+'</span></div></article>';
-}
-function bind(root){
- root.querySelectorAll('.program-card').forEach(el=>{
-  const open=()=>{const x=state.live.concat(state.replays).find(i=>String(i.channelId)===el.dataset.channelId&&String(i.occurrenceId)===el.dataset.occurrenceId);if(x)initPlayer().selectProgram(x.channelId,x.occurrenceId,x.title||x.channelName,x.mode+' • '+x.channelName,x.poster||null);};
-  el.onclick=open;el.onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();open();}};
- });
-}
-function renderEpg(){
- const live=$('liveRow'),rep=$('replayRow');
- live.innerHTML=state.live.length?state.live.map(card).join(''):'<div class="empty">Aucun direct avec une source vidéo réelle disponible.</div>';
- rep.innerHTML=state.replays.length?state.replays.map(card).join(''):'<div class="empty">Aucun replay avec une source vidéo réelle disponible.</div>';
- bind(live);bind(rep);
-}
-function logo(c){
- const initials=esc((c.name||'?').split(/\s+/).map(x=>x[0]).join('').slice(0,3).toUpperCase());
- return c.logoUrl?'<span class="wm-fallback">'+initials+'</span><img class="real-logo" alt="'+esc(c.name)+' — logo" loading="lazy" src="'+esc(c.logoUrl)+'" onload="this.parentElement.classList.add(\'has-img\')" onerror="this.remove()">':'<span class="wm-fallback">'+initials+'</span>';
-}
-function renderChannels(){
- const chips=$('channelChips'),fav=$('favGrid'),all=$('allGrid'),q=state.query.toLowerCase();
- const filtered=state.channels.filter(c=>(state.activeCategory==='all'||c.group===state.activeCategory)&&(!q||(c.name+' '+c.group).toLowerCase().includes(q)));
- chips.innerHTML=Object.entries(labels).map(([id,label])=>'<button type="button" class="category-chip'+(state.activeCategory===id?' active':'')+'" data-category="'+esc(id)+'">'+esc(label)+'</button>').join('');
- chips.querySelectorAll('button').forEach(b=>b.onclick=()=>{state.activeCategory=b.dataset.category;renderChannels();});
- fav.innerHTML='<div class="empty">Aucun favori enregistré.</div>';all.innerHTML='';
- ['National','Info','Jeunesse','Films','Biblical'].forEach(group=>{
-  const list=filtered.filter(c=>c.group===group);if(!list.length)return;
-  const title=document.createElement('h3');title.className='category-label';title.textContent=labels[group]||group;all.appendChild(title);
-  const grid=document.createElement('div');grid.className='logo-grid';
-  list.forEach(c=>{const el=document.createElement('article');el.className='logo-tile';el.tabIndex=0;el.setAttribute('role','button');el.setAttribute('aria-label','Ouvrir '+c.name);el.innerHTML=logo(c);el.onclick=()=>playChannelById(c.id);el.onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();playChannelById(c.id);}};grid.appendChild(el);});
-  all.appendChild(grid);
- });
- if(!filtered.length)all.innerHTML='<div class="empty">Aucune chaîne trouvée.</div>';
-}
-async function loadChannels(){
- const r=await fetch('/api/stream/channels',{headers:{Accept:'application/json'}}),d=await r.json();
- if(!r.ok||!d.success)throw new Error(d.error||'Catalogue indisponible.');
- state.channels=Array.isArray(d.channels)?d.channels:[];renderChannels();
-}
-async function loadEpg(){
- const r=await fetch('/api/epg/vitrine',{headers:{Accept:'application/json'}}),d=await r.json();
- if(!r.ok||!d.success)throw new Error(d.error||'EPG indisponible.');
- state.live=Array.isArray(d.live)?d.live:[];state.replays=Array.isArray(d.replays)?d.replays:[];renderEpg();
-}
-async function playChannelById(channelId){
- try{
-  const r=await fetch('/api/channels/'+encodeURIComponent(channelId)+'/programs',{headers:{Accept:'application/json'}}),d=await r.json();
-  if(!r.ok||!d.success)throw new Error(d.error||'Programme TV indisponible.');
-  const now=Date.now(),o=(d.occurrences||[]).find(x=>{const s=Date.parse(x.startAt),e=x.endAt?Date.parse(x.endAt):NaN;return Number.isFinite(s)&&s<=now&&(Number.isNaN(e)||now<e);});
-  const c=state.channels.find(x=>x.id===channelId);
-  initPlayer().selectProgram(channelId,o?.occurrenceId,o?.title||o?.subtitle||c?.name||'Programme',o?meta(o):'Aucun programme EPG en cours',o?.poster||null);
- }catch(e){initPlayer().showError(e.message||'Programme TV indisponible.');}
-}
+function card(x){const poster=x.poster?'<img src="'+esc(x.poster)+'" alt="" loading="lazy">':'<div class="poster-fallback">'+esc((x.title||x.channelName||'?').slice(0,1).toUpperCase())+'</div>';return '<article class="program-card" tabindex="0" role="button" data-channel-id="'+esc(x.channelId)+'" data-occurrence-id="'+esc(x.occurrenceId)+'"><div class="program-poster">'+poster+'<span class="program-tag">'+(x.mode==='LIVE'?'DIRECT':'VOD')+'</span><button class="card-download" type="button" title="Télécharger">⇩</button></div><div class="program-card-body"><strong>'+esc(x.title||x.channelName)+'</strong><span>'+esc(x.channelName)+(meta(x)?' • '+esc(meta(x)):'')+'</span></div></article>';}
+function bind(root){root.querySelectorAll('.program-card').forEach(el=>{const open=()=>{const x=state.live.concat(state.replays).find(i=>String(i.channelId)===el.dataset.channelId&&String(i.occurrenceId)===el.dataset.occurrenceId);if(x)initPlayer().selectProgram(x.channelId,x.occurrenceId,x.title||x.channelName,x.mode+' • '+x.channelName,x.poster||null);};el.onclick=e=>{if(e.target.closest('.card-download'))return;open();};el.onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();open();}};el.querySelector('.card-download')?.addEventListener('click',async e=>{e.stopPropagation();const x=state.replays.find(i=>String(i.channelId)===el.dataset.channelId&&String(i.occurrenceId)===el.dataset.occurrenceId);if(!x)return;await downloadMedia(String(x.occurrenceId),x.title||x.channelName,el.querySelector('.card-download'));});});}
+function renderEpg(){const live=$('liveRow'),rep=$('replayRow');live.innerHTML=state.live.length?state.live.slice(0,8).map(x=>'<article class="live-card" data-channel-id="'+esc(x.channelId)+'" data-occurrence-id="'+esc(x.occurrenceId)+'"><div class="live-card-top"><span class="live-pulse">● DIRECT</span><span>'+esc(x.channelGroup||'TV')+'</span></div><div class="live-card-art">'+(x.poster?'<img src="'+esc(x.poster)+'" alt="" loading="lazy">':'<span>'+esc((x.channelName||'?').slice(0,2).toUpperCase())+'</span>')+'</div><div class="live-card-body"><strong>'+esc(x.channelName)+'</strong><span>'+esc(x.title||'Programme en cours')+'</span><small>'+esc(meta(x))+'</small></div></article>').join(''):'<div class="empty">Aucun direct avec une source vidéo réelle disponible.</div>';rep.innerHTML=state.replays.length?state.replays.slice(0,12).map(card).join(''):'<div class="empty">Aucun replay avec une source vidéo réelle disponible.</div>';bind(rep);live.querySelectorAll('.live-card').forEach(el=>el.onclick=()=>initPlayer().selectProgram(el.dataset.channelId,el.dataset.occurrenceId,el.querySelector('strong').textContent,'LIVE • '+el.querySelector('span:nth-of-type(2)').textContent,null));}
+function logo(c){const initials=esc((c.name||'?').split(/\s+/).map(x=>x[0]).join('').slice(0,3).toUpperCase());return c.logoUrl?'<span>'+initials+'</span><img alt="'+esc(c.name)+' — logo" loading="lazy" src="'+esc(c.logoUrl)+'" onerror="this.remove()">':'<span>'+initials+'</span>';}
+function renderChannels(){const chips=$('channelChips'),all=$('allGrid'),q=state.query.toLowerCase();const filtered=state.channels.filter(c=>(state.activeCategory==='all'||c.group===state.activeCategory)&&(!q||(c.name+' '+c.group).toLowerCase().includes(q)));chips.innerHTML=Object.entries(labels).map(([id,label])=>'<button type="button" class="category-chip'+(state.activeCategory===id?' active':'')+'" data-category="'+esc(id)+'">'+esc(label)+'</button>').join('');chips.querySelectorAll('button').forEach(b=>b.onclick=()=>{state.activeCategory=b.dataset.category;renderChannels();});all.innerHTML='';filtered.forEach(c=>{const el=document.createElement('button');el.type='button';el.className='premium-channel';el.innerHTML='<div class="premium-channel-logo">'+logo(c)+'</div><div><strong>'+esc(c.name)+'</strong><small>'+esc(labels[c.group]||c.group)+(c.liveAvailable?' • DIRECT':'')+'</small></div>';el.onclick=()=>playChannelById(c.id);all.appendChild(el);});if(!filtered.length)all.innerHTML='<div class="empty">Aucune chaîne trouvée.</div>';$('catalogueCount').textContent=filtered.length+' chaînes';}
+async function loadChannels(){const r=await fetch('/api/stream/channels',{headers:{Accept:'application/json'}}),d=await r.json();if(!r.ok||!d.success)throw Error(d.error||'Catalogue indisponible.');state.channels=Array.isArray(d.channels)?d.channels:[];renderChannels();}
+async function loadEpg(){const r=await fetch('/api/epg/vitrine',{headers:{Accept:'application/json'}}),d=await r.json();if(!r.ok||!d.success)throw Error(d.error||'EPG indisponible.');state.live=Array.isArray(d.live)?d.live:[];state.replays=Array.isArray(d.replays)?d.replays:[];state.hero=state.live[0]||state.replays[0]||null;renderEpg();renderHero();}
+async function playChannelById(channelId){try{const r=await fetch('/api/channels/'+encodeURIComponent(channelId)+'/programs',{headers:{Accept:'application/json'}}),d=await r.json();if(!r.ok||!d.success)throw Error(d.error||'Programme TV indisponible.');const now=Date.now(),o=(d.occurrences||[]).find(x=>{const s=Date.parse(x.startAt),e=x.endAt?Date.parse(x.endAt):NaN;return Number.isFinite(s)&&s<=now&&(Number.isNaN(e)||now<e);});const c=state.channels.find(x=>x.id===channelId);initPlayer().selectProgram(channelId,o?.occurrenceId,o?.title||o?.subtitle||c?.name||'Programme',o?meta(o):'Aucun programme EPG en cours',o?.poster||null);}catch(e){initPlayer().showError(e.message||'Programme TV indisponible.');}}
+function renderHero(){const x=state.hero;if(!x)return;const title=$('heroTitle'),desc=$('heroDescription'),m=$('heroMeta');title.textContent=x.title||x.channelName||'StreamLive';desc.textContent=x.channelName?(x.title||'Programme actuellement diffusé')+' — disponible sur '+x.channelName+'.':'Découvrez les programmes StreamLive.';m.innerHTML='<span class="live-pill">'+(x.mode==='LIVE'?'● EN DIRECT':'VOD')+'</span><span>'+esc(x.channelName||'StreamLive')+'</span><span>HD</span>';if(x.poster)$('heroBackdrop').style.backgroundImage='url("'+String(x.poster).replace(/"/g,'%22')+'")';$('heroDirectBtn').onclick=e=>{e.preventDefault();if(x.mode==='LIVE')initPlayer().selectProgram(x.channelId,x.occurrenceId,x.title||x.channelName,'LIVE • '+x.channelName,x.poster||null);else initPlayer().selectProgram(x.channelId,x.occurrenceId,x.title||x.channelName,'VOD • '+x.channelName,x.poster||null);};$('heroDownloadBtn').onclick=()=>downloadMedia(String(x.occurrenceId),x.title||x.channelName,$('heroDownloadBtn'));}
+async function downloadMedia(mediaId,title,button){if(!mediaId)return;const old=button?.textContent;if(button){button.disabled=true;button.textContent='Téléchargement…';}try{const mod=await import('/lib/downloadManager.js');const result=await mod.processMediaDownload({mediaId,title,onProgress:p=>{if(button)button.textContent='Téléchargement '+p+'%';}});if(button)button.textContent=result.savedTo==='cancelled'?'Enregistré hors-ligne':'✓ Téléchargé';window.dispatchEvent(new CustomEvent('streamlive:offline-updated'));}catch(e){if(button)button.textContent='Erreur';alert(e.message||'Téléchargement impossible.');}finally{setTimeout(()=>{if(button){button.disabled=false;button.textContent=old||'⇩ Télécharger';}},1800);}}
+async function playOffline(id){const mod=await import('/lib/downloadManager.js');const item=await mod.getOfflineMedia(id);if(!item)throw Error('Média hors-ligne introuvable.');const url=URL.createObjectURL(item.blob);const p=initPlayer();p.open?.();const v=$('streamVideo');$('playerEmpty').style.display='none';v.style.display='block';v.src=url;v.play().catch(()=>{});$('playerTitle').textContent=item.title||'Hors-ligne';$('playerNote').textContent='Lecture locale — aucun réseau requis';v.onended=()=>URL.revokeObjectURL(url);}
+async function renderOffline(){const box=$('offlineLibrary');if(!box)return;try{const mod=await import('/lib/downloadManager.js');const items=await mod.listOfflineMedia();box.innerHTML=items.length?items.map(i=>'<article class="offline-item"><div><strong>'+esc(i.title)+'</strong><small>'+esc(i.savedAt?new Date(i.savedAt).toLocaleString('fr-FR'):'')+'</small></div><div><button class="offline-play" data-id="'+esc(i.id)+'">▶ Lire</button><button class="offline-delete" data-id="'+esc(i.id)+'">Supprimer</button></div></article>').join(''):'<div class="empty">Aucun téléchargement local.</div>';box.querySelectorAll('.offline-play').forEach(b=>b.onclick=()=>playOffline(b.dataset.id));box.querySelectorAll('.offline-delete').forEach(b=>b.onclick=async()=>{await mod.deleteOfflineMedia(b.dataset.id);renderOffline();});}catch(e){box.innerHTML='<div class="empty">Le stockage hors-ligne n’est pas disponible sur cet appareil.</div>';}}
 function closePlayer(){initPlayer().close();}
-$('search').addEventListener('input',e=>{state.query=e.target.value||'';renderChannels();});
-$('searchBtn').onclick=renderChannels;
-$('directBtn').onclick=()=>{const x=state.live[0];if(x)initPlayer().selectProgram(x.channelId,x.occurrenceId,x.title||x.channelName,'LIVE • '+x.channelName,x.poster||null);else initPlayer().showError('Aucun direct disponible.');};
-$('heroDirectBtn')?.addEventListener('click',()=>$('directBtn').click());
-$('modal').addEventListener('click',e=>{if(e.target.id==='modal')closePlayer();});
-document.addEventListener('keydown',e=>{if(e.key==='Escape')closePlayer();});
-window.playChannelById=playChannelById;window.closePlayer=closePlayer;initPlayer();
-Promise.all([loadChannels(),loadEpg()]).catch(e=>{console.error('[StreamLive]',e);$('liveRow').innerHTML='<div class="empty">EPG indisponible pour le moment.</div>';$('replayRow').innerHTML='<div class="empty">EPG indisponible pour le moment.</div>';});
-})();
+$('search').addEventListener('input',e=>{state.query=e.target.value||'';renderChannels();});$('search').addEventListener('keydown',e=>{if(e.key==='Enter')$('catalogue').scrollIntoView({behavior:'smooth'});});$('modal').addEventListener('click',e=>{if(e.target.id==='modal')closePlayer();});document.addEventListener('keydown',e=>{if(e.key==='Escape')closePlayer();});$('openOfflineBtn').onclick=()=>renderOffline();window.playChannelById=playChannelById;window.closePlayer=closePlayer;initPlayer();window.addEventListener('streamlive:offline-updated',renderOffline);Promise.all([loadChannels(),loadEpg(),renderOffline()]).catch(e=>{console.error('[StreamLive]',e);});})();
