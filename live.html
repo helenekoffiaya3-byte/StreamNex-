@@ -69,5 +69,10 @@
 
   <script src="/live.js"></script>
   <script type="module" src="/offline.js"></script>
+  <script>
+    if ("serviceWorker" in navigator) {
+      window.addEventListener("load", () => navigator.serviceWorker.register("/sw.js").catch(err => console.warn("[StreamLive SW]", err)));
+    }
+  </script>
 </body>
 </html>
