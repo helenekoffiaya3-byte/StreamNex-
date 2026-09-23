@@ -185,7 +185,7 @@ function parseCookieHeader(value) {
 function getBearerToken(req) {
   const authorization = String(req.get('Authorization') || '').trim();
   if (authorization) {
-    const match = /^Bearer\\s+(.+)$/i.exec(authorization);
+    const match = /^Bearer\s+(.+)$/i.exec(authorization);
     if (match) return match[1].trim();
   }
 
@@ -197,7 +197,7 @@ function hasMediaDownloadPermission(claims) {
   if (claims.role === 'admin') return true;
   const permissions = [
     ...(Array.isArray(claims.permissions) ? claims.permissions : []),
-    ...(typeof claims.scope === 'string' ? claims.scope.split(/\\s+/) : [])
+    ...(typeof claims.scope === 'string' ? claims.scope.split(/\s+/) : [])
   ].map(value => String(value).trim());
 
   return permissions.includes('media:download') ||
