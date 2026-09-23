@@ -1,5 +1,6 @@
 (()=>{ 
 'use strict';
+if('serviceWorker' in navigator){window.addEventListener('load',()=>navigator.serviceWorker.register('/sw.js').catch(e=>console.warn('[StreamLive SW]',e)));}
 const state={channels:[],live:[],replays:[],activeCategory:'all',query:'',hero:null};
 let player=null;
 const labels={all:'Toutes',National:'🇨🇮 National',Info:'📰 Information',Jeunesse:'🎈 Jeunesse',Films:'🎬 Films & Séries',Biblical:'✝️ Biblical'};
