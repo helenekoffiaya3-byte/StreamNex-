@@ -65,90 +65,147 @@ function slugify(value) {
 }
 
 
-async function validateStreamUrl(value, expectedType = 'ANY') {
-  if (!value || typeof value !== 'string') return null;
-  let url;
-  try {
-    url = new URL(value.trim());
-    if (!['http:', 'https:'].includes(url.protocol)) return null;
-  } catch {
-    return null;
-  }
+const dns = require('node:dns').promises;
+const net = require('node:net');
 
-  const target = url.toString();
-  const looksHls = expectedType === 'HLS' || /\.m3u8(?:$|[?#])/i.test(url.pathname + url.search);
+const MAX_SAFE_REDIRECTS = 5;
+const BLOCKED_IPV4_RANGES = [
+  /^0\./,
+  /^10\./,
+  /^100\.(6[4-9]|[7-9]\d)\./,
+  /^127\./,
+  /^169\.254\./,
+  /^172\.(1[6-9]|2\d|3[0-1])\./,
+  /^192\.0\.0\./,
+  /^192\.0\.2\./,
+  /^192\.168\./,
+  /^198\.18\./,
+  /^198\.19\./,
+  /^198\.51\.100\./,
+  /^203\.0\.113\./,
+  /^224\./,
+  /^225\./,
+  /^226\./,
+  /^227\./,
+  /^228\./,
+  /^229\./,
+  /^230\./,
+  /^231\./,
+  /^232\./,
+  /^233\./,
+  /^234\./,
+  /^235\./,
+  /^236\./,
+  /^237\./,
+  /^238\./,
+  /^239\./,
+  /^240\./,
+  /^241\./,
+  /^242\./,
+  /^243\./,
+  /^244\./,
+  /^245\./,
+  /^246\./,
+  /^247\./,
+  /^248\./,
+  /^249\./,
+  /^250\./,
+  /^251\./,
+  /^252\./,
+  /^253\./,
+  /^254\./,
+  /^255\./
+];
 
-  try {
-    let head = null;
-    try {
-      head = await fetch(target, {
-        method: 'HEAD',
-        redirect: 'follow',
-        signal: AbortSignal.timeout(5000)
-      });
-    } catch {}
+function isBlockedIp(address) {
+  const ip = String(address || '').toLowerCase();
+  if (net.isIPv4(ip)) return BLOCKED_IPV4_RANGES.some(pattern => pattern.test(ip));
+  if (!net.isIPv6(ip)) return true;
 
-    const headType = (head?.headers.get('content-type') || '').toLowerCase();
-    const headOk = Boolean(head && head.status >= 200 && head.status < 400);
+  const normalized = ip.replace(/^\[|\]$/g, '');
+  if (
+    normalized === '::' ||
+    normalized === '::1' ||
+    normalized.startsWith('fe8') ||
+    normalized.startsWith('fe9') ||
+    normalized.startsWith('fea') ||
+    normalized.startsWith('feb') ||
+    normalized.startsWith('fc') ||
+    normalized.startsWith('fd') ||
+    normalized.startsWith('ff')
+  ) return true;
 
-    if (looksHls || !headOk || !headType || headType.includes('text/html')) {
-      const response = await fetch(target, {
-        headers: { Range: 'bytes=0-4095', Accept: '*/*' },
-        redirect: 'follow',
-        signal: AbortSignal.timeout(7000)
-      });
-      if (response.status < 200 || response.status >= 400) return null;
+  const mappedV4 = normalized.match(/^::ffff:(?:0:)?([0-9a-f.]+)$/i);
+  if (mappedV4 && net.isIPv4(mappedV4[1])) return isBlockedIp(mappedV4[1]);
 
-      const contentType = (response.headers.get('content-type') || '').toLowerCase();
-      const sample = Buffer.from(await response.arrayBuffer()).toString('utf8', 0, 8192);
-
-      if (looksHls) {
-        return sample.includes('#EXTM3U') || contentType.includes('mpegurl') || contentType.includes('vnd.apple.mpegurl')
-          ? target
-          : null;
-      }
-
-      if (contentType.startsWith('video/') || contentType.includes('octet-stream')) return target;
-      return null;
-    }
-
-    if (looksHls) {
-      const response = await fetch(target, {
-        headers: { Range: 'bytes=0-4095', Accept: '*/*' },
-        redirect: 'follow',
-        signal: AbortSignal.timeout(7000)
-      });
-      if (response.status < 200 || response.status >= 400) return null;
-      const contentType = (response.headers.get('content-type') || '').toLowerCase();
-      const sample = Buffer.from(await response.arrayBuffer()).toString('utf8', 0, 8192);
-      return sample.includes('#EXTM3U') || contentType.includes('mpegurl') || contentType.includes('vnd.apple.mpegurl')
-        ? target
-        : null;
-    }
-
-    return headType.startsWith('video/') || headType.includes('octet-stream') ? target : null;
-  } catch {
-    return null;
-  }
+  return false;
 }
 
-async function validateImageUrl(value) {
-  if (!value || typeof value !== 'string') return null;
-  try {
-    const url = new URL(value.trim());
-    if (!['http:', 'https:'].includes(url.protocol)) return null;
-    const response = await fetch(url, {
-      method: 'HEAD',
-      redirect: 'follow',
-      signal: AbortSignal.timeout(5000)
-    });
-    const contentType = (response.headers.get('content-type') || '').toLowerCase();
-    return response.status >= 200 && response.status < 400 && contentType.startsWith('image/')
-      ? url.toString()
-      : null;
-  } catch {
-    return null;
+function hasForbiddenHostname(hostname) {
+  const host = String(hostname || '').toLowerCase().replace(/\.$/, '');
+  return !host ||
+    host === 'localhost' ||
+    host.endsWith('.localhost') ||
+    host.endsWith('.local') ||
+    host.endsWith('.internal') ||
+    host.endsWith('.home.arpa');
+}
+
+async function validateSafeUrl(urlString) {
+  const parsed = new URL(String(urlString || '').trim());
+  if (!['http:', 'https:'].includes(parsed.protocol)) {
+    throw new Error('Protocole distant non autorisé.');
   }
+  if (parsed.username || parsed.password) {
+    throw new Error('Les identifiants intégrés aux URLs distantes sont interdits.');
+  }
+
+  const hostname = parsed.hostname.replace(/^\[|\]$/g, '');
+  if (hasForbiddenHostname(hostname)) {
+    throw new Error(`Hôte local/interne interdit : ${hostname}`);
+  }
+
+  if (net.isIP(hostname)) {
+    if (isBlockedIp(hostname)) throw new Error(`Adresse IP interne/réservée interdite : ${hostname}`);
+    return parsed;
+  }
+
+  const resolved = await dns.lookup(hostname, { all: true, verbatim: true });
+  if (!resolved.length) throw new Error(`Impossible de résoudre l'hôte : ${hostname}`);
+  if (resolved.some(record => isBlockedIp(record.address))) {
+    throw new Error(`Le domaine ${hostname} résout vers une adresse interne/réservée.`);
+  }
+
+  return parsed;
+}
+
+async function safeFetch(urlString, options = {}, redirectCount = 0) {
+  if (redirectCount > MAX_SAFE_REDIRECTS) {
+    throw new Error('Nombre maximal de redirections dépassé.');
+  }
+
+  const parsed = await validateSafeUrl(urlString);
+  const requestOptions = { ...options, redirect: 'manual' };
+  const response = await fetch(parsed, requestOptions);
+
+  if (![301, 302, 303, 307, 308].includes(response.status)) return response;
+
+  const location = response.headers.get('location');
+  if (!location) throw new Error('Redirection sans en-tête Location.');
+
+  const redirectUrl = new URL(location, parsed).toString();
+  const nextParsed = await validateSafeUrl(redirectUrl);
+  const nextOptions = { ...options };
+
+  if (nextParsed.origin !== parsed.origin) {
+    const headers = new Headers(nextOptions.headers || {});
+    headers.delete('authorization');
+    headers.delete('cookie');
+    headers.delete('proxy-authorization');
+    nextOptions.headers = headers;
+  }
+
+  return safeFetch(nextParsed.toString(), nextOptions, redirectCount + 1);
 }
 
 function parseXmltvDate(value) {
@@ -352,7 +409,7 @@ async function getIptvOrgMap() {
 }
 
 async function fetchJson(url) {
-  const response = await fetch(url, {
+  const response = await safeFetch(url, {
     headers: { accept: 'application/json' },
     signal: AbortSignal.timeout(30000)
   });
@@ -361,7 +418,7 @@ async function fetchJson(url) {
 }
 
 async function fetchXml(url) {
-  const response = await fetch(url, {
+  const response = await safeFetch(url, {
     headers: {
       accept: 'application/xml,text/xml,application/gzip,application/x-gzip,*/*'
     },
