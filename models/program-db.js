@@ -135,7 +135,7 @@ function getOccurrencesByChannel(channelId, fromIso = null, toIso = null) {
            channel_id AS channelId, start_at AS startAt, end_at AS endAt,
            subtitle, season_number AS seasonNumber,
            episode_number AS episodeNumber, description, poster,
-           poster_source_url AS posterSourceUrl, poster_source_type AS posterSourceType,
+           poster_source_url AS posterSourceUrl, poster_source_type AS posterSourceType, playback_url AS playbackUrl,
            playback_url AS playbackUrl
     FROM program_occurrences
     JOIN programs ON programs.program_id = program_occurrences.program_id
@@ -164,7 +164,7 @@ function getOccurrenceById(occurrenceId) {
            channel_id AS channelId, start_at AS startAt, end_at AS endAt,
            subtitle, season_number AS seasonNumber,
            episode_number AS episodeNumber, description, poster,
-           poster_source_url AS posterSourceUrl, poster_source_type AS posterSourceType
+           poster_source_url AS posterSourceUrl, poster_source_type AS posterSourceType, playback_url AS playbackUrl
     FROM program_occurrences
     JOIN programs ON programs.program_id = program_occurrences.program_id
     WHERE occurrence_id = ?
@@ -180,7 +180,7 @@ function getProgramOccurrences(programId) {
            channel_id AS channelId, start_at AS startAt, end_at AS endAt,
            subtitle, season_number AS seasonNumber,
            episode_number AS episodeNumber, description, poster,
-           poster_source_url AS posterSourceUrl, poster_source_type AS posterSourceType
+           poster_source_url AS posterSourceUrl, poster_source_type AS posterSourceType, playback_url AS playbackUrl
     FROM program_occurrences
     JOIN programs ON programs.program_id = program_occurrences.program_id
     WHERE program_occurrences.program_id = ?
