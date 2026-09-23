@@ -217,6 +217,54 @@ app.get('/api/channels/:id/programs', (req, res) => {
   });
 });
 
+app.get('/api/epg/vitrine', (_req, res) => {
+  const { getOccurrencesByChannel, getChannelPlaybackUrl } = require('./models/program-db');
+  const now = Date.now();
+  const from = new Date(now - 7 * 24 * 60 * 60 * 1000).toISOString();
+  const to = new Date(now + 24 * 60 * 60 * 1000).toISOString();
+  const live = [];
+  const replays = [];
+
+  for (const channel of CHANNELS) {
+    for (const occurrence of getOccurrencesByChannel(channel.id, from, to)) {
+      const start = Date.parse(occurrence.startAt);
+      const end = occurrence.endAt ? Date.parse(occurrence.endAt) : NaN;
+      if (!Number.isFinite(start)) continue;
+
+      const base = {
+        channelId: channel.id,
+        channelName: channel.name,
+        channelGroup: channel.group,
+        occurrenceId: occurrence.occurrenceId,
+        title: occurrence.title || occurrence.subtitle || null,
+        subtitle: occurrence.subtitle || null,
+        startAt: occurrence.startAt,
+        endAt: occurrence.endAt || null,
+        poster: occurrence.poster || null,
+        seasonNumber: occurrence.seasonNumber ?? null,
+        episodeNumber: occurrence.episodeNumber ?? null
+      };
+
+      const liveUrl = validatePlaybackUrl(getChannelPlaybackUrl(channel.id));
+      if (start <= now && (Number.isNaN(end) || now < end) && liveUrl) {
+        live.push({ ...base, mode: 'LIVE' });
+      } else if (Number.isFinite(end) && end <= now && validatePlaybackUrl(occurrence.playbackUrl)) {
+        replays.push({ ...base, mode: 'VOD' });
+      }
+    }
+  }
+
+  live.sort((a,b) => Date.parse(a.startAt) - Date.parse(b.startAt));
+  replays.sort((a,b) => Date.parse(b.startAt) - Date.parse(a.startAt));
+
+  res.json({
+    success: true,
+    fetchedAt: new Date().toISOString(),
+    live: live.slice(0, 30),
+    replays: replays.slice(0, 30)
+  });
+});
+
 app.get('/api/catalog/:channelId', (req, res) => {
   const channel = CHANNELS.find(item => item.id === req.params.channelId);
   if (!channel) {
