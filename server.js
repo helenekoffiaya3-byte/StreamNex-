@@ -337,7 +337,7 @@ app.get('/api/programs/resolve-playback', (req, res) => {
     });
   }
 
-  const { getProgram, getOccurrenceById } = require('./models/program-db');
+  const { getProgram, getOccurrenceById, getChannelPlaybackUrl } = require('./models/program-db');
   const occurrence = getOccurrenceById(occurrenceId);
 
   if (!occurrence) {
@@ -366,18 +366,18 @@ app.get('/api/programs/resolve-playback', (req, res) => {
     startAt <= now &&
     (Number.isNaN(endAt) || now < endAt);
 
-  if (isLive && channel.url) {
+  const liveStreamUrl = validatePlaybackUrl(getChannelPlaybackUrl(channel.id));\n\n  if (isLive && liveStreamUrl) {
     return res.json({
       success: true,
       mode: 'LIVE',
-      playbackUrl: channel.url,
+      playbackUrl: liveStreamUrl,
       programTitle: occurrence.title || occurrence.subtitle || program.title
     });
   }
 
   // Une VOD est utilisable uniquement si elle a été enregistrée côté serveur
   // par le robot/backend. Elle n'est jamais acceptée depuis req.query.
-  const vodUrl = validatePlaybackUrl(program.playbackUrl);
+  const vodUrl = validatePlaybackUrl(occurrence.playbackUrl) || validatePlaybackUrl(program.playbackUrl);
   if (vodUrl) {
     return res.json({
       success: true,
