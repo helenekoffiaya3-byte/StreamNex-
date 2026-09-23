@@ -161,7 +161,6 @@ app.get('/api/stream/channels', (_req, res) => {
     name: channel.name,
     group: channel.group,
     number: channel.number,
-    streamUrl: validatePlaybackUrl(require('./models/program-db').getChannelPlaybackUrl(channel.id)),
     channelUrl: (process.env.SITE_BASE_URL || '').replace(/\/$/, '') + '/channel/' + channel.id,
     logoUrl: channel.logoUrl || '/assets/logos/' + channel.id + '.png'
   }));
@@ -180,8 +179,8 @@ app.get('/api/channels/:id', (req, res) => {
     return res.status(404).json({ success: false, message: 'Chaîne non trouvée.' });
   }
 
-  const { getProgramsByChannel, getChannelPlaybackUrl } = require('./models/program-db');
-  const programs = getProgramsByChannel(channel.id);
+  const { getProgramsByChannel } = require('./models/program-db');
+  const programs = getProgramsByChannel(channel.id).map(program => ({ ...program, playbackUrl: null }));
 
   res.json({
     success: true,
@@ -206,7 +205,7 @@ app.get('/api/channels/:id/programs', (req, res) => {
   const programs = getProgramsByChannel(channel.id);
   const from = new Date(Date.now() - 24 * 60 * 60 * 1000).toISOString();
   const to = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toISOString();
-  const occurrences = getOccurrencesByChannel(channel.id, from, to);
+  const occurrences = getOccurrencesByChannel(channel.id, from, to).map(occurrence => ({ ...occurrence, playbackUrl: null }));
 
   res.json({
     success: true,
@@ -228,7 +227,7 @@ app.get('/api/catalog/:channelId', (req, res) => {
   }
 
   const { getProgramsByChannel } = require('./models/program-db');
-  const programs = getProgramsByChannel(channel.id);
+  const programs = getProgramsByChannel(channel.id).map(program => ({ ...program, playbackUrl: null }));
 
   return res.json({
     success: true,
@@ -246,7 +245,7 @@ app.get('/api/channels/:id/catalog', (req, res) => {
   }
 
   const { getProgramsByChannel } = require('./models/program-db');
-  const programs = getProgramsByChannel(channel.id);
+  const programs = getProgramsByChannel(channel.id).map(program => ({ ...program, playbackUrl: null }));
 
   res.json({
     success: true,
