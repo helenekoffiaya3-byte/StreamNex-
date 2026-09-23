@@ -50,6 +50,21 @@ jobs:
           test "$(curl -s -o /dev/null -w '%{http_code}' 'http://127.0.0.1:3000/api/download/media?id=test')" = "401"
           curl -fsSI http://127.0.0.1:3000/sw.js
 
+      - name: Channel stream audit (informational)
+        run: |
+          set -eux
+          docker compose -f docker-compose.yml -f docker-compose.ci.yml exec -T streamlive-app node scripts/check-channels.js
+          docker compose -f docker-compose.yml -f docker-compose.ci.yml cp streamlive-app:/usr/src/app/channels-health-report.json ./channels-health-report.json
+
+      - name: Upload channel stream audit
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: channels-health-report
+          path: channels-health-report.json
+          if-no-files-found: ignore
+          retention-days: 14
+
       - name: MP4 JWT and Range qualification
         run: |
           set -eux
