@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="description" content="StreamLive — toutes les chaînes en direct et multi-live.">
+  <title>StreamLive — En direct</title>
+  <link rel="stylesheet" href="/live.css">
+  <script src="https://cdn.jsdelivr.net/npm/hls.js@1.5.20"></script>
+</head>
+<body>
+  <header class="live-header">
+    <div class="brand">EN DIRECT</div>
+    <div class="header-actions">
+      <button id="refreshBtn" class="icon-btn" type="button" aria-label="Actualiser">↻</button>
+    </div>
+  </header>
+
+  <nav class="live-filters" id="groupNav" aria-label="Catégories">
+    <button class="filter active" type="button" data-group="all">TOUTES LES CHAÎNES</button>
+    <button class="filter" type="button" data-group="National">NATIONAL</button>
+    <button class="filter" type="button" data-group="Info">INFO</button>
+    <button class="filter" type="button" data-group="Jeunesse">JEUNESSE</button>
+    <button class="filter" type="button" data-group="Films">FILMS &amp; SÉRIES</button>
+    <button class="filter" type="button" data-group="Biblical">BIBLICAL</button>
+  </nav>
+
+  <main class="live-page">
+    <section class="multi-live" aria-labelledby="multiLiveTitle">
+      <div class="section-head">
+        <div>
+          <span class="eyebrow">LECTURE MULTIPLE</span>
+          <h1 id="multiLiveTitle">Multi-Live</h1>
+        </div>
+        <button id="clearMultiBtn" class="text-btn" type="button">Tout retirer</button>
+      </div>
+      <p id="multiLiveHint" class="section-note">Sélectionnez plusieurs chaînes ci-dessous pour les regarder en même temps.</p>
+      <div id="multiLiveGrid" class="multi-live-grid"></div>
+      <div id="multiLiveEmpty" class="empty-card">Aucune chaîne sélectionnée.</div>
+    </section>
+
+    <section class="channel-section" aria-labelledby="channelsTitle">
+      <div class="section-head">
+        <div>
+          <span class="eyebrow">PROGRAMME EN COURS</span>
+          <h2 id="channelsTitle">Toutes les chaînes</h2>
+        </div>
+        <span id="channelCount" class="count"></span>
+      </div>
+
+      <div class="live-search">
+        <input id="liveSearch" type="search" placeholder="Rechercher une chaîne..." autocomplete="off" aria-label="Rechercher une chaîne">
+      </div>
+
+      <div id="channelList" class="channel-list">
+        <div class="loading-card">Chargement des 140 chaînes…</div>
+      </div>
+    </section>
+  </main>
+
+  <nav class="bottom-nav" aria-label="Navigation principale">
+    <a class="nav-item" href="/"><span>⌂</span><small>Accueil</small></a>
+    <a class="nav-item active" href="/live"><span>▣</span><small>En direct</small></a>
+    <a class="nav-item" href="/#channels"><span>▦</span><small>Chaînes</small></a>
+    <a class="nav-item" href="#"><span>•••</span><small>En plus</small></a>
+  </nav>
+
+  <script src="/live.js"></script>
+</body>
+</html>
