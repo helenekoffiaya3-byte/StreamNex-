@@ -299,3 +299,42 @@ footer {
   .logo-tile { aspect-ratio: 1.12 / 1; }
   .channels-categories { margin-left: 0; margin-right: 0; }
 }
+
+/* Accès direct à la page LIVE */
+.live-btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+  text-decoration:none;
+  background:linear-gradient(135deg,var(--accent-red),#b20710);
+  color:#fff;
+  padding:8px 18px;
+  border-radius:20px;
+  font-weight:700;
+  border:0;
+  cursor:pointer;
+}
+.primary,.secondary{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+  text-decoration:none;
+}
+.primary{
+  background:#fff;
+  color:#000;
+  border:0;
+  border-radius:6px;
+  padding:12px 24px;
+  font-weight:700;
+}
+.secondary{
+  background:rgba(255,255,255,.12);
+  color:#fff;
+  border:1px solid rgba(255,255,255,.18);
+  border-radius:6px;
+  padding:12px 24px;
+  font-weight:700;
+}
