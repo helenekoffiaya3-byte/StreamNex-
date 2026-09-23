@@ -80,6 +80,31 @@ CREATE TABLE IF NOT EXISTS sync_runs (
 );
 `);
 
+db.exec(`
+CREATE TABLE IF NOT EXISTS users (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  uuid TEXT NOT NULL UNIQUE,
+  username TEXT NOT NULL UNIQUE COLLATE NOCASE,
+  email TEXT NOT NULL UNIQUE COLLATE NOCASE,
+  password_hash TEXT NOT NULL,
+  role TEXT NOT NULL DEFAULT 'user' CHECK(role IN ('admin','user','moderator')),
+  is_active INTEGER NOT NULL DEFAULT 1 CHECK(is_active IN (0,1)),
+  last_login_at TEXT,
+  created_at TEXT NOT NULL,
+  updated_at TEXT NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS user_permissions (
+  user_id INTEGER PRIMARY KEY,
+  permissions TEXT NOT NULL DEFAULT '["media:download"]',
+  FOREIGN KEY(user_id) REFERENCES users(id) ON DELETE CASCADE
+);
+
+CREATE INDEX IF NOT EXISTS idx_users_username ON users(username);
+CREATE INDEX IF NOT EXISTS idx_users_email ON users(email);
+CREATE INDEX IF NOT EXISTS idx_users_uuid ON users(uuid);
+`);
+
 ensureColumn('programs', 'poster_source_url', 'TEXT');
 ensureColumn('programs', 'poster_source_type', 'TEXT');
 ensureColumn('program_occurrences', 'poster_source_url', 'TEXT');
