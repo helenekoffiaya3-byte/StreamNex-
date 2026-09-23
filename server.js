@@ -9,6 +9,8 @@ const { xss } = require('express-xss-sanitizer');
 const path = require('path');
 const fs = require('fs');
 
+const authRouter = require('./routes/auth');
+
 const app = express();
 const PORT = process.env.PORT || 3000;
 
@@ -76,6 +78,7 @@ const shuffleLimiter = rateLimit({
 });
 
 app.use('/api', globalLimiter);
+app.use('/api/auth', authRouter);
 
 app.use((req, res, next) => {
   const pathname = String(req.path || '');
