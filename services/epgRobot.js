@@ -355,19 +355,44 @@ async function fetchJson(url) {
 
 async function fetchXml(url) {
   const response = await fetch(url, {
-    headers: { accept: 'application/xml,text/xml,application/gzip,*/*' },
+    headers: {
+      accept: 'application/xml,text/xml,application/gzip,application/x-gzip,*/*'
+    },
     signal: AbortSignal.timeout(30000)
   });
 
   if (!response.ok) throw new Error(`Source EPG HTTP ${response.status}: ${url}`);
 
-  const buffer = Buffer.from(await response.arrayBuffer());
+  const maxBytes = Number(process.env.EPG_MAX_DOWNLOAD_BYTES || 100 * 1024 * 1024);
+  if (!Number.isSafeInteger(maxBytes) || maxBytes <= 0) {
+    throw new Error('EPG_MAX_DOWNLOAD_BYTES invalide.');
+  }
+
+  const contentLength = Number(response.headers.get('content-length') || 0);
+  if (Number.isFinite(contentLength) && contentLength > maxBytes) {
+    throw new Error(`Source EPG trop volumineuse (${contentLength} octets > ${maxBytes}).`);
+  }
+
+  const chunks = [];
+  let totalBytes = 0;
+  for await (const chunk of response.body) {
+    totalBytes += chunk.length;
+    if (totalBytes > maxBytes) {
+      throw new Error(`Source EPG trop volumineuse (> ${maxBytes} octets).`);
+    }
+    chunks.push(Buffer.from(chunk));
+  }
+
+  const buffer = Buffer.concat(chunks);
   if (!buffer.length) throw new Error(`Source EPG vide: ${url}`);
 
   const isGzip = buffer[0] === 0x1f && buffer[1] === 0x8b;
-  if (isGzip) {
+  const contentEncoding = (response.headers.get('content-encoding') || '').toLowerCase();
+  if (isGzip || contentEncoding.includes('gzip')) {
     const zlib = require('zlib');
-    return zlib.gunzipSync(buffer).toString('utf8');
+    return (await new Promise((resolve, reject) => {
+      zlib.gunzip(buffer, (error, result) => error ? reject(error) : resolve(result));
+    })).toString('utf8');
   }
 
   return buffer.toString('utf8');
