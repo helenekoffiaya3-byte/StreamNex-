@@ -159,8 +159,7 @@ function getOccurrencesByChannel(channelId, fromIso = null, toIso = null) {
            channel_id AS channelId, start_at AS startAt, end_at AS endAt,
            subtitle, season_number AS seasonNumber,
            episode_number AS episodeNumber, description, poster,
-           poster_source_url AS posterSourceUrl, poster_source_type AS posterSourceType, playback_url AS playbackUrl,
-           playback_url AS playbackUrl
+           poster_source_url AS posterSourceUrl, poster_source_type AS posterSourceType, playback_url AS playbackUrl
     FROM program_occurrences
     JOIN programs ON programs.program_id = program_occurrences.program_id
     WHERE program_occurrences.channel_id = ?
@@ -288,7 +287,8 @@ function addOccurrence(programId, occurrence) {
     occurrence.description || '',
     occurrence.poster || null,
     occurrence.posterSourceUrl || null,
-    occurrence.posterSourceType || null
+    occurrence.posterSourceType || null,
+    occurrence.playbackUrl || null
   );
 
   const nowIso = new Date().toISOString();
@@ -403,5 +403,7 @@ module.exports = {
   confirmEligiblePrograms,
   createSyncRun,
   finishSyncRun,
-  getLatestSyncRun
+  getLatestSyncRun,
+  upsertChannel,
+  getChannelPlaybackUrl
 };
