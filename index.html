@@ -6,7 +6,7 @@
 <meta name="description" content="StreamLive — télévision en direct et catalogue de chaînes.">
 <title>StreamLive — TV en direct</title>
 <link rel="stylesheet" href="style.css">
-  <script src="https://cdn.jsdelivr.net/npm/hls.js@1.5.20"></script>
+  <script src="https://cdn.jsdelivr.net/npm/hls.js@1.5.20"></script>\n  <script src="/player.js"></script>
 </head>
 <body>
 <header>
@@ -55,7 +55,7 @@
         <small>Le lecteur utilise HLS (.m3u8). Le flux doit être public, autorisé et accessible en HTTPS.</small>
       </div>
     </div>
-    <div class="player-note" id="playerNote">StreamLive — lecteur HLS</div>
+    <div class="player-note" id="playerNote">StreamLive — résolution serveur LIVE/VOD</div>
   </div>
 </div>
 
@@ -279,185 +279,17 @@ function logoMarkup(c){
          'onload="this.parentElement.classList.add(\'has-img\')" onerror="'+fallbackHandler+'">';
 }
 
-async function openPlayer(channelOrName, occurrenceId=null){
-  const channel=typeof channelOrName==='string' ? channelsData.find(c=>c.name===channelOrName) : channelOrName;
-  if(!channel) return;
-  const modal=document.getElementById('modal');
-  const video=document.getElementById('streamVideo');
-  const empty=document.getElementById('playerEmpty');
-  const status=document.getElementById('playerStatus');
-  const note=document.getElementById('playerNote');
-  document.getElementById('playerTitle').textContent=channel.name;
-  modal.classList.add('open');
-  video.pause();
-  video.removeAttribute('src');
-  video.style.display='none';
-  empty.style.display='block';
-  status.textContent='Résolution du flux par le serveur…';
-  note.textContent='Flux non exposé au navigateur';
-
-  if(!occurrenceId){
-    status.textContent='Aucune occurrence EPG en direct disponible.';
-    return;
-  }
-
-  try{
-    const response=await fetch('/api/programs/resolve-playback?channelId='+encodeURIComponent(channel.id)+'&occurrenceId='+encodeURIComponent(occurrenceId),{headers:{Accept:'application/json'}});
-    const data=await response.json();
-    if(!response.ok || !data.success) throw new Error(data.error||'Résolution impossible');
-    if(data.mode==='NONE' || !data.playbackUrl){
-      status.textContent=data.message||'Aucune source vidéo réelle et autorisée n’est disponible.';
-      return;
-    }
-    const resolved=data.playbackUrl;
-    note.textContent=data.mode+' — flux résolu par le serveur';
-
-    if(window.Hls && Hls.isSupported()){
-      if(window.streamLiveHls) window.streamLiveHls.destroy();
-      const hls=new Hls({enableWorker:true,lowLatencyMode:true});
-      window.streamLiveHls=hls;
-      hls.loadSource(resolved);
-      hls.attachMedia(video);
-      hls.on(Hls.Events.MANIFEST_PARSED,()=>{
-        empty.style.display='none';
-        video.style.display='block';
-        video.play().catch(()=>{});
-      });
-      hls.on(Hls.Events.ERROR,(event,data)=>{
-        if(data.fatal){
-          video.style.display='none';
-          empty.style.display='block';
-          status.textContent='Flux indisponible.';
-          if(shuffleMode) scheduleRandomFallback();
-        }
-      });
-    } else if(video.canPlayType('application/vnd.apple.mpegurl')){
-      video.src=resolved;
-      video.onloadedmetadata=()=>{
-        empty.style.display='none';
-        video.style.display='block';
-        video.play().catch(()=>{});
-      };
-      video.onerror=()=>{
-        video.style.display='none';
-        empty.style.display='block';
-        status.textContent='Flux indisponible ou non accessible.';
-      };
-    } else {
-      status.textContent='Ce navigateur ne prend pas en charge HLS.';
-    }
-  }catch(error){
-    status.textContent=error.message||'Flux indisponible.';
-    note.textContent='Lecture indisponible';
-  }
-}
-
-
-async function playChannelById(channelId){
-  const channel=channelsData.find(c=>c.id===channelId);
-  if(!channel) return;
-  try{
-    const response=await fetch('/api/channels/'+encodeURIComponent(channel.id)+'/programs',{headers:{Accept:'application/json'}});
-    const data=await response.json();
-    if(!response.ok || !data.success) throw new Error(data.error||'Programme TV indisponible');
-    const now=Date.now();
-    const occurrence=(data.occurrences||[]).find(item=>{
-      const start=Date.parse(item.startAt);
-      const end=item.endAt?Date.parse(item.endAt):NaN;
-      return Number.isFinite(start)&&start<=now&&(Number.isNaN(end)||now<end);
-    });
-    await openPlayer(channel, occurrence?.occurrenceId || null);
-  }catch(error){
-    await openPlayer(channel,null);
-    document.getElementById('playerStatus').textContent=error.message||'Programme TV indisponible.';
-  }
-}
-
-let shuffleMode = false;
-let shuffleLoading = false;
-let shuffleRemaining = 140;
-let shuffleTimer = null;
-
-function getStreamSessionId(){
-  const sessionKey='streamlive_session_id';
-  let sessionId=sessionStorage.getItem(sessionKey);
-  if(!sessionId){
-    sessionId='user_'+crypto.randomUUID();
-    sessionStorage.setItem(sessionKey,sessionId);
-  }
-  return sessionId;
-}
-
-async function playNextRandomStream(options={}){
-  if(shuffleLoading) return;
-  shuffleLoading=true;
-  const sessionId=getStreamSessionId();
-  let channel=null;
-  try{
-    const response=await fetch('/api/stream/random?sessionId='+encodeURIComponent(sessionId),{headers:{Accept:'application/json'}});
-    if(!response.ok) throw new Error('API indisponible');
-    const data=await response.json();
-    if(!data.success) throw new Error(data.error||'Flux indisponible');
-    channel=data.channel;
-    shuffleRemaining=Number(data.remainingCount)||0;
-  }catch(error){
-    const pool=channelsData.filter(c=>c.streamUrl);
-    channel=pool[Math.floor(Math.random()*pool.length)]||channelsData[0];
-    shuffleRemaining=0;
-  }finally{
-    shuffleLoading=false;
-  }
-  if(channel){
-    openPlayer(channel);
-    if(options.auto){
-      const status=document.getElementById('playerStatus');
-      if(status) status.textContent='Zap automatique : '+channel.name;
-    }
-  }
-}
-
-function toggleShuffle(){
-  shuffleMode=!shuffleMode;
-  const button=document.getElementById('shuffleBtn');
-  if(button){
-    button.textContent=shuffleMode ? '⏹ Shuffle actif' : '🎲 Zap aléatoire';
-    button.setAttribute('aria-pressed',String(shuffleMode));
-  }
-  if(shuffleMode){
-    playNextRandomStream();
-  }else if(shuffleTimer){
-    clearTimeout(shuffleTimer);
-    shuffleTimer=null;
-  }
-}
-
-function scheduleRandomFallback(){
-  if(!shuffleMode || shuffleLoading) return;
-  if(shuffleTimer) clearTimeout(shuffleTimer);
-  shuffleTimer=setTimeout(()=>{
-    shuffleTimer=null;
-    playNextRandomStream({auto:true});
-  },700);
-}
-
-function closePlayer(){
-  if(shuffleTimer){
-    clearTimeout(shuffleTimer);
-    shuffleTimer=null;
-  }
-  const modal=document.getElementById('modal');
-  const video=document.getElementById('streamVideo');
-  video.pause();
-  video.removeAttribute('src');
-  video.load();
-  video.style.display='none';
-  if(window.streamLiveHls){
-    window.streamLiveHls.destroy();
-    window.streamLiveHls=null;
-  }
-  modal.classList.remove('open');
-}
-
+let streamLivePlayer=null;
+function initStreamLivePlayer(){if(streamLivePlayer)return streamLivePlayer;streamLivePlayer=new StreamLivePlayer({videoId:'streamVideo',modalId:'modal',titleId:'playerTitle',statusId:'playerStatus',noteId:'playerNote',emptyId:'playerEmpty'});window.streamLivePlayer=streamLivePlayer;return streamLivePlayer;}
+async function openPlayer(channelOrName,occurrenceId=null){const channel=typeof channelOrName==='string'?channelsData.find(c=>c.name===channelOrName):channelOrName;if(!channel)return;initStreamLivePlayer();return streamLivePlayer.selectProgram(channel.id,occurrenceId,channel.name,occurrenceId?'Programme EPG':'Aucun créneau EPG disponible',null);}
+async function playChannelById(channelId){const channel=channelsData.find(c=>c.id===channelId);if(!channel)return;try{const r=await fetch('/api/channels/'+encodeURIComponent(channel.id)+'/programs',{headers:{Accept:'application/json'}});const data=await r.json();if(!r.ok||!data.success)throw new Error(data.error||'Programme TV indisponible');const now=Date.now();const occurrence=(data.occurrences||[]).find(item=>{const start=Date.parse(item.startAt),end=item.endAt?Date.parse(item.endAt):NaN;return Number.isFinite(start)&&start<=now&&(Number.isNaN(end)||now<end);});initStreamLivePlayer();if(!occurrence)return streamLivePlayer.selectProgram(channel.id,null,channel.name,'Aucun programme en direct',null);return streamLivePlayer.selectProgram(channel.id,occurrence.occurrenceId,occurrence.title||occurrence.subtitle||channel.name,formatOccurrenceMeta(occurrence),occurrence.poster||null);}catch(error){initStreamLivePlayer();streamLivePlayer.showError(error.message||'Programme TV indisponible.');}}
+function formatOccurrenceMeta(o){const start=o.startAt?new Date(o.startAt).toLocaleTimeString('fr-FR',{hour:'2-digit',minute:'2-digit'}):'',end=o.endAt?new Date(o.endAt).toLocaleTimeString('fr-FR',{hour:'2-digit',minute:'2-digit'}):'';return [start&&end?'Direct • '+start+' - '+end:'Programme EPG',o.seasonNumber!=null&&o.episodeNumber!=null?'S'+o.seasonNumber+' E'+o.episodeNumber:''].filter(Boolean).join(' • ');}
+let shuffleMode=false,shuffleLoading=false,shuffleRemaining=140,shuffleTimer=null;
+function getStreamSessionId(){const k='streamlive_session_id';let id=sessionStorage.getItem(k);if(!id){id='user_'+crypto.randomUUID();sessionStorage.setItem(k,id);}return id;}
+async function playNextRandomStream(options={}){if(shuffleLoading)return;shuffleLoading=true;let channel=null,occurrenceId=null;try{const r=await fetch('/api/stream/random?sessionId='+encodeURIComponent(getStreamSessionId()),{headers:{Accept:'application/json'}});if(!r.ok)throw new Error('API indisponible');const data=await r.json();if(!data.success)throw new Error(data.error||'Flux indisponible');channel=data.channel;occurrenceId=data.occurrenceId||null;shuffleRemaining=Number(data.remainingCount)||0;}catch(error){initStreamLivePlayer();streamLivePlayer.showError(error.message||'Zap aléatoire indisponible.');return;}finally{shuffleLoading=false;}if(channel){await streamLivePlayer.selectProgram(channel.id,occurrenceId,channel.name,occurrenceId?'Programme EPG':'Aucun créneau EPG disponible',null);if(options.auto&&occurrenceId){const st=document.getElementById('playerStatus');if(st)st.textContent='Zap automatique : '+channel.name;}}}
+function toggleShuffle(){shuffleMode=!shuffleMode;window.shuffleMode=shuffleMode;const b=document.getElementById('shuffleBtn');if(b){b.textContent=shuffleMode?'⏹ Shuffle actif':'🎲 Zap aléatoire';b.setAttribute('aria-pressed',String(shuffleMode));}if(shuffleMode)playNextRandomStream();else if(shuffleTimer){clearTimeout(shuffleTimer);shuffleTimer=null;}}
+function scheduleRandomFallback(){if(!shuffleMode||shuffleLoading)return;if(shuffleTimer)clearTimeout(shuffleTimer);shuffleTimer=setTimeout(()=>{shuffleTimer=null;playNextRandomStream({auto:true});},700);}
+function closePlayer(){if(shuffleTimer){clearTimeout(shuffleTimer);shuffleTimer=null;}initStreamLivePlayer();streamLivePlayer.close();}
 function renderChips(){
   categoryChips.innerHTML='';
   const items=[['all','Toutes'],...categoryOrder.map(c=>[c,categoryLabels[c]])];
@@ -538,6 +370,7 @@ document.getElementById('searchBtn').onclick=render;
 document.getElementById('directBtn').onclick=()=>playChannelById('rti-1');
 document.getElementById('modal').addEventListener('click',e=>{if(e.target.id==='modal')closePlayer()});
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closePlayer()});
+initStreamLivePlayer();
 renderChips();
 render();
 </script>
