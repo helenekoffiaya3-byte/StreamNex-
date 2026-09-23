@@ -69,6 +69,136 @@ const shuffleLimiter = rateLimit({
 app.use('/api', globalLimiter);
 app.use(express.static(__dirname));
 
+const crypto = require('crypto');
+
+const AUTH_JWT_SECRET = String(process.env.STREAMLIVE_AUTH_JWT_SECRET || '').trim();
+const AUTH_JWT_ISSUER = String(process.env.STREAMLIVE_AUTH_JWT_ISSUER || '').trim();
+const AUTH_JWT_AUDIENCE = String(process.env.STREAMLIVE_AUTH_JWT_AUDIENCE || '').trim();
+
+function base64UrlDecode(value) {
+  return Buffer.from(String(value).replace(/-/g, '+').replace(/_/g, '/') + '='.repeat((4 - (String(value).length % 4)) % 4), 'base64');
+}
+
+function verifyJwt(token) {
+  if (!AUTH_JWT_SECRET) throw new Error('Authentification JWT non configurée.');
+
+  const parts = String(token || '').split('.');
+  if (parts.length !== 3) throw new Error('JWT invalide.');
+
+  const [encodedHeader, encodedPayload, encodedSignature] = parts;
+  let header;
+  let payload;
+  try {
+    header = JSON.parse(base64UrlDecode(encodedHeader).toString('utf8'));
+    payload = JSON.parse(base64UrlDecode(encodedPayload).toString('utf8'));
+  } catch {
+    throw new Error('JWT malformé.');
+  }
+
+  if (header.alg !== 'HS256' || header.typ !== 'JWT') {
+    throw new Error('Algorithme JWT non autorisé.');
+  }
+
+  const expected = crypto
+    .createHmac('sha256', AUTH_JWT_SECRET)
+    .update(encodedHeader + '.' + encodedPayload)
+    .digest();
+
+  let provided;
+  try {
+    provided = base64UrlDecode(encodedSignature);
+  } catch {
+    throw new Error('Signature JWT invalide.');
+  }
+
+  if (provided.length !== expected.length || !crypto.timingSafeEqual(provided, expected)) {
+    throw new Error('Signature JWT invalide.');
+  }
+
+  const now = Math.floor(Date.now() / 1000);
+  if (!payload.sub || typeof payload.sub !== 'string') throw new Error('JWT sans identifiant utilisateur.');
+  if (!Number.isSafeInteger(Number(payload.exp)) || Number(payload.exp) <= now) {
+    throw new Error('JWT expiré ou sans expiration.');
+  }
+  if (payload.nbf != null && Number(payload.nbf) > now) throw new Error('JWT pas encore valide.');
+
+  if (AUTH_JWT_ISSUER && payload.iss !== AUTH_JWT_ISSUER) {
+    throw new Error('Émetteur JWT invalide.');
+  }
+  if (AUTH_JWT_AUDIENCE) {
+    const audience = Array.isArray(payload.aud) ? payload.aud : [payload.aud];
+    if (!audience.includes(AUTH_JWT_AUDIENCE)) throw new Error('Audience JWT invalide.');
+  }
+
+  return payload;
+}
+
+function parseCookieHeader(value) {
+  const cookies = {};
+  for (const part of String(value || '').split(';')) {
+    const index = part.indexOf('=');
+    if (index <= 0) continue;
+    const key = part.slice(0, index).trim();
+    const val = part.slice(index + 1).trim();
+    if (key) cookies[key] = decodeURIComponent(val);
+  }
+  return cookies;
+}
+
+function getBearerToken(req) {
+  const authorization = String(req.get('Authorization') || '').trim();
+  if (authorization) {
+    const match = /^Bearer\\s+(.+)$/i.exec(authorization);
+    if (match) return match[1].trim();
+  }
+
+  const cookies = parseCookieHeader(req.get('Cookie') || '');
+  return cookies.streamlive_session || null;
+}
+
+function hasMediaDownloadPermission(claims) {
+  if (claims.role === 'admin') return true;
+  const permissions = [
+    ...(Array.isArray(claims.permissions) ? claims.permissions : []),
+    ...(typeof claims.scope === 'string' ? claims.scope.split(/\\s+/) : [])
+  ].map(value => String(value).trim());
+
+  return permissions.includes('media:download') ||
+    permissions.includes('download:media') ||
+    permissions.includes('download');
+}
+
+function requireMediaDownloadAuth(req, res, next) {
+  const token = getBearerToken(req);
+  if (!token) {
+    return res.status(401).json({
+      success: false,
+      error: 'Authentification requise.'
+    });
+  }
+
+  try {
+    const claims = verifyJwt(token);
+    if (!hasMediaDownloadPermission(claims)) {
+      return res.status(403).json({
+        success: false,
+        error: 'Droit de téléchargement insuffisant.'
+      });
+    }
+
+    req.auth = {
+      userId: claims.sub,
+      claims
+    };
+    return next();
+  } catch (error) {
+    return res.status(401).json({
+      success: false,
+      error: 'Session utilisateur invalide ou expirée.'
+    });
+  }
+}
+
 const CHANNEL_CONFIG = require('./config/channels');
 
 function validatePlaybackUrl(value) {
@@ -580,15 +710,9 @@ if (process.env.EPG_SYNC_ON_START !== 'false') {
   });
 }
 
-app.get('/api/download/media', (req, res) => {
+app.get('/api/download/media', requireMediaDownloadAuth, (req, res) => {
   if (req.method !== 'GET') {
     return res.status(405).json({ success: false, error: 'Méthode non autorisée.' });
-  }
-
-  const expectedToken = String(process.env.STREAMLIVE_DOWNLOAD_TOKEN || '').trim();
-  const auth = String(req.get('Authorization') || '');
-  if (!expectedToken || auth !== 'Bearer ' + expectedToken) {
-    return res.status(401).json({ success: false, error: 'Téléchargement non autorisé.' });
   }
 
   const id = String(req.query.id || '').trim();
