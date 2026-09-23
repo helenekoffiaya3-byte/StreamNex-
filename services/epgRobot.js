@@ -218,18 +218,25 @@ function loadOfficialGuides() {
 
   try {
     const parsed = JSON.parse(fs.readFileSync(OFFICIAL_GUIDES_FILE, 'utf8'));
-    const mappings = Array.isArray(parsed) ? parsed : parsed?.mappings;
-    if (!Array.isArray(mappings)) return new Map();
+    const sources = new Map((Array.isArray(parsed?.sources) ? parsed.sources : [])
+      .map(source => [String(source?.id || '').trim(), source]));
+    const mappings = parsed?.mappings && !Array.isArray(parsed.mappings)
+      ? Object.entries(parsed.mappings).map(([channelId, value]) => ({ channelId, ...value }))
+      : Array.isArray(parsed?.mappings) ? parsed.mappings : [];
 
     const result = new Map();
     for (const item of mappings) {
-      const channelId = String(item?.streamliveChannelId || '').trim();
-      const guideUrl = validateEpgSourceUrl(item?.guideUrl)?.toString() || null;
-      if (!channelId || !guideUrl) continue;
+      const channelId = String(item?.channelId || item?.streamliveChannelId || '').trim();
+      const source = sources.get(String(item?.guide_source || item?.guideSource || '').trim());
+      const guideUrl = validateEpgSourceUrl(item?.guideUrl || source?.url)?.toString() || null;
+      const sourceChannelId = String(item?.xmltv_id || item?.sourceChannelId || channelId).trim();
+
+      if (!channelId || !guideUrl || !sourceChannelId) continue;
       if (!CHANNEL_CONFIG.some(channel => channel.id === channelId)) continue;
+
       result.set(channelId, {
         guideUrl,
-        sourceChannelId: String(item?.sourceChannelId || channelId).trim(),
+        sourceChannelId,
         website: validateEpgSourceUrl(item?.officialWebsite)?.toString() || null,
         sourceType: String(item?.sourceType || 'official-xmltv').trim() || 'official-xmltv'
       });
@@ -240,7 +247,6 @@ function loadOfficialGuides() {
     return new Map();
   }
 }
-
 function loadIptvOrgMap() {
   if (!fs.existsSync(EPG_MAP_FILE)) return null;
   try {
@@ -527,14 +533,20 @@ async function runEpgSync() {
       const xml = await fetchXml(configuredSource);
       snapshot = await importXmltv(xml, null, 'configured-epg');
     } else if (officialGuides.size > 0) {
-      for (const channel of CHANNEL_CONFIG) {
-        const official = officialGuides.get(channel.id);
-        if (!official) continue;
+      const sourceGroups = new Map();
 
-        const xml = await fetchXml(official.guideUrl);
-        const resolver = new Map();
-        resolver.set(official.sourceChannelId, channel.id);
-        snapshot.push(...await importXmltv(xml, resolver, official.sourceType));
+      for (const [channelId, official] of officialGuides) {
+        if (!sourceGroups.has(official.guideUrl)) {
+          sourceGroups.set(official.guideUrl, []);
+        }
+        sourceGroups.get(official.guideUrl).push([official.sourceChannelId, channelId, official.sourceType]);
+      }
+
+      for (const [guideUrl, entries] of sourceGroups) {
+        const xml = await fetchXml(guideUrl);
+        const resolver = new Map(entries.map(([sourceChannelId, channelId]) => [sourceChannelId, channelId]));
+        const sourceType = entries[0]?.[2] || 'official-xmltv';
+        snapshot.push(...await importXmltv(xml, resolver, sourceType));
       }
     } else {
       if (!USE_IPTV_ORG_GUIDES || !ALLOW_PUBLISHED_FALLBACK) {
