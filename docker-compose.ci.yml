@@ -1,0 +1,4 @@
+services:
+  streamlive-app:
+    environment:
+      STREAMLIVE_AUTH_JWT_SECRET: streamlive-ci-secret
