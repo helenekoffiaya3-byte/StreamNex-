@@ -14,6 +14,9 @@ const authRouter = require('./routes/auth');
 const app = express();
 const PORT = process.env.PORT || 3000;
 
+// StreamLive is deployed behind Nginx. Trust exactly one proxy hop so rate limiting
+// uses the real client IP without trusting an arbitrary forwarded-IP chain.
+app.set('trust proxy', 1);
 app.disable('x-powered-by');
 
 const allowedOrigins = (process.env.CORS_ORIGINS || 'http://localhost:3000')
@@ -48,7 +51,7 @@ app.use(helmet({
 app.use(cors({
   origin(origin, callback) {
     if (!origin || allowedOrigins.includes(origin)) return callback(null, true);
-    return callback(new Error('Accès CORS refusé.'));
+    return callback(null, false);
   },
   methods: ['GET', 'POST', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization', 'X-Session-Id', 'X-EPG-Sync-Token'],
@@ -99,7 +102,28 @@ app.use((req, res, next) => {
   return next();
 });
 
-app.use(express.static(__dirname));
+// Never expose source, configuration, database, credentials, Docker metadata or
+// runtime storage through the root static directory.
+app.use((req, res, next) => {
+  const pathname = String(req.path || '');
+  const blocked = [
+    /^\/(?:data|storage|config|models|services|routes|scripts)(?:\/|$)/i,
+    /^\/(?:\.git|\.github)(?:\/|$)/i,
+    /(?:^|\/)\.env(?:\.|$)/i,
+    /\.(?:sqlite|sqlite3|db|pem|key|crt|log)$/i,
+    /^\/(?:Dockerfile(?:\..*)?|docker-compose(?:\..*)?|package(?:-lock)?\.json)$/
+  ];
+  if (blocked.some(pattern => pattern.test(pathname))) {
+    return res.status(404).end();
+  }
+  return next();
+});
+
+app.use(express.static(__dirname, {
+  dotfiles: 'deny',
+  fallthrough: true,
+  index: 'index.html'
+}));
 
 const crypto = require('crypto');
 
@@ -846,6 +870,69 @@ app.get('/channel/:id', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'channel.html'));
 });
 
-app.listen(PORT, () => {
+// JSON 404 for unknown API routes.
+app.use('/api', (_req, res) => {
+  res.status(404).json({ success: false, error: 'Route API introuvable.' });
+});
+
+// Centralized error handling. In production, internal stack traces are never
+// returned to clients.
+app.use((err, req, res, _next) => {
+  const status = Number.isInteger(err?.statusCode) && err.statusCode >= 400 && err.statusCode < 600
+    ? err.statusCode
+    : (Number.isInteger(err?.status) && err.status >= 400 && err.status < 600 ? err.status : 500);
+
+  console.error('[Express error]', {
+    method: req.method,
+    path: req.path,
+    status,
+    message: err?.message || String(err)
+  });
+
+  if (res.headersSent) return;
+
+  res.status(status).json({
+    success: false,
+    error: status === 413 ? 'PAYLOAD_TOO_LARGE' : 'INTERNAL_SERVER_ERROR',
+    message: process.env.NODE_ENV === 'production'
+      ? (status === 413 ? 'Requête trop volumineuse.' : 'Une erreur interne est survenue.')
+      : (err?.message || 'Erreur interne.')
+  });
+});
+
+const server = app.listen(PORT, () => {
   console.log(`StreamLive backend actif sur le port ${PORT}`);
+});
+
+// Fatal process errors must terminate the process so Docker can restart it.
+// Keeping a potentially corrupted Node process alive is unsafe.
+let shuttingDown = false;
+function gracefulShutdown(signal) {
+  if (shuttingDown) return;
+  shuttingDown = true;
+  console.log(`[StreamLive] Arrêt demandé: ${signal}`);
+
+  server.close(() => {
+    try {
+      require('./models/program-db').db.close();
+    } catch (error) {
+      console.error('[StreamLive] Fermeture SQLite échouée:', error.message);
+    }
+    process.exit(0);
+  });
+
+  setTimeout(() => process.exit(1), 10000).unref();
+}
+
+process.on('SIGTERM', () => gracefulShutdown('SIGTERM'));
+process.on('SIGINT', () => gracefulShutdown('SIGINT'));
+
+process.on('unhandledRejection', (reason) => {
+  console.error('[StreamLive] Unhandled rejection:', reason);
+  gracefulShutdown('unhandledRejection');
+});
+
+process.on('uncaughtException', (error) => {
+  console.error('[StreamLive] Uncaught exception:', error);
+  gracefulShutdown('uncaughtException');
 });
