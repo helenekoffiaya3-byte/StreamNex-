@@ -11,66 +11,66 @@
       "license": "public-domain"
     }
   ],
-  "mappings": [
-    {
-      "channel_id": "tf1",
+  "mappings": {
+    "tf1": {
       "xmltv_id": "TF1.fr",
+      "enabled": true,
       "guide_source": "official-fr-epg"
     },
-    {
-      "channel_id": "france-2",
+    "france-2": {
       "xmltv_id": "France2.fr",
+      "enabled": true,
       "guide_source": "official-fr-epg"
     },
-    {
-      "channel_id": "france-3",
+    "france-3": {
       "xmltv_id": "France3.fr",
+      "enabled": true,
       "guide_source": "official-fr-epg"
     },
-    {
-      "channel_id": "canal-plus",
+    "canal-plus": {
       "xmltv_id": "CanalPlus.fr",
+      "enabled": true,
       "guide_source": "official-fr-epg"
     },
-    {
-      "channel_id": "france-5",
+    "france-5": {
       "xmltv_id": "France5.fr",
+      "enabled": true,
       "guide_source": "official-fr-epg"
     },
-    {
-      "channel_id": "m6",
+    "m6": {
       "xmltv_id": "M6.fr",
+      "enabled": true,
       "guide_source": "official-fr-epg"
     },
-    {
-      "channel_id": "arte",
+    "arte": {
       "xmltv_id": "Arte.fr",
+      "enabled": true,
       "guide_source": "official-fr-epg"
     },
-    {
-      "channel_id": "tmc",
-      "xmltv_id": "TMC.fr",
-      "guide_source": "official-fr-epg"
-    },
-    {
-      "channel_id": "tfx",
-      "xmltv_id": "TFX.fr",
-      "guide_source": "official-fr-epg"
-    },
-    {
-      "channel_id": "w9",
+    "w9": {
       "xmltv_id": "W9.fr",
+      "enabled": true,
       "guide_source": "official-fr-epg"
     },
-    {
-      "channel_id": "6ter",
-      "xmltv_id": "6ter.fr",
+    "tmc": {
+      "xmltv_id": "TMC.fr",
+      "enabled": true,
       "guide_source": "official-fr-epg"
     },
-    {
-      "channel_id": "gulli",
+    "tfx": {
+      "xmltv_id": "TFX.fr",
+      "enabled": true,
+      "guide_source": "official-fr-epg"
+    },
+    "gulli": {
       "xmltv_id": "Gulli.fr",
+      "enabled": true,
+      "guide_source": "official-fr-epg"
+    },
+    "6ter": {
+      "xmltv_id": "6ter.fr",
+      "enabled": true,
       "guide_source": "official-fr-epg"
     }
-  ]
+  }
 }
