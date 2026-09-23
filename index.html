@@ -12,7 +12,7 @@
 <header>
   <div class="logo">Stream<span>Live</span></div>
   <div class="search"><input id="search" placeholder="Rechercher une chaîne..." aria-label="Rechercher une chaîne"><button id="searchBtn" aria-label="Rechercher">⌕</button></div>
-  <button class="live-btn" id="directBtn">● DIRECT</button>
+  <a class="live-btn" id="directBtn" href="/live">● DIRECT</a>
 </header>
 
 <section class="hero">
@@ -21,7 +21,7 @@
     <h1>TV en direct</h1>
     <p>Les programmes affichés proviennent du catalogue EPG réel. La lecture utilise uniquement une source vidéo résolue côté serveur.</p>
     <div class="actions">
-      <button class="primary" id="heroDirectBtn">▶ Regarder le direct</button>
+      <a class="primary" id="heroDirectBtn" href="/live">▶ Regarder le direct</a>
       <button class="secondary" onclick="document.getElementById('channels').scrollIntoView({behavior:'smooth'})">Programme TV</button>
     </div>
   </div>
