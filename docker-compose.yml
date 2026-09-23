@@ -12,11 +12,11 @@ services:
       - ./certbot/www:/var/www/certbot:ro
     security_opt:
       - no-new-privileges:true
-    cap_drop:
-      - ALL
-    cap_add:
-      - NET_BIND_SERVICE
+    # The tiangolo/nginx-rtmp entrypoint performs a startup chown/drop-privilege
+    # sequence, so removing all capabilities would break its initialization.
     pids_limit: 256
+    depends_on:
+      - streamlive-app
     mem_limit: 512m
     cpus: "1.00"
     networks:
@@ -45,8 +45,6 @@ services:
     pids_limit: 256
     mem_limit: 1024m
     cpus: "1.50"
-    depends_on:
-      - nginx-hls
     networks:
       - streamlive_net
 
