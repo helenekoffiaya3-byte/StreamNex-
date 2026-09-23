@@ -76,7 +76,7 @@ CREATE TABLE IF NOT EXISTS sync_runs (
 ensureColumn('programs', 'poster_source_url', 'TEXT');
 ensureColumn('programs', 'poster_source_type', 'TEXT');
 ensureColumn('program_occurrences', 'poster_source_url', 'TEXT');
-ensureColumn('program_occurrences', 'poster_source_type', 'TEXT');
+ensureColumn('program_occurrences', 'poster_source_type', 'TEXT');\nensureColumn('program_occurrences', 'playback_url', 'TEXT');
 ensureColumn('programs', 'observed_first_seen_at', 'TEXT');
 ensureColumn('programs', 'observed_last_seen_at', 'TEXT');
 
@@ -250,7 +250,7 @@ function addOccurrence(programId, occurrence) {
       description = excluded.description,
       poster = COALESCE(excluded.poster, program_occurrences.poster),
       poster_source_url = COALESCE(excluded.poster_source_url, program_occurrences.poster_source_url),
-      poster_source_type = COALESCE(excluded.poster_source_type, program_occurrences.poster_source_type)
+      poster_source_type = COALESCE(excluded.poster_source_type, program_occurrences.poster_source_type),\n      playback_url = COALESCE(excluded.playback_url, program_occurrences.playback_url)
   `).run(
     programId,
     occurrence.channelId,
