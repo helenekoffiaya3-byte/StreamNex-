@@ -21,7 +21,7 @@
     <h1>RTI 1</h1>
     <p>Regardez vos chaînes préférées depuis StreamLive. Le catalogue distingue les chaînes disponibles des flux réellement autorisés.</p>
     <div class="actions">
-      <button class="primary" onclick="openPlayer(channelsData.find(c=>c.id==='rti-1'))">▶ Regarder en direct</button>
+      <button class="primary" onclick="playChannelById('rti-1')">▶ Regarder en direct</button>
       <button class="secondary" onclick="document.getElementById('channels').scrollIntoView({behavior:'smooth'})">Programme TV</button>
     </div>
   </div>
@@ -221,7 +221,7 @@ channelsData.forEach(c => {
   const key = c.name.trim().toLowerCase();
   if (!uniqueByName.has(key)) uniqueByName.set(key, c);
 });
-const channelsDataWithMetadata = [...uniqueByName.values()].map(c => ({...c, logo:`assets/logos/${c.id}.png`, source:'StreamLive HLS', streamUrl:`https://streamlive.com/live/${c.id}/index.m3u8`}));
+const channelsDataWithMetadata = [...uniqueByName.values()].map(c => ({...c, logo:`assets/logos/${c.id}.png`}));
 channelsData.length = 0;
 channelsData.push(...channelsDataWithMetadata);
 
@@ -279,10 +279,8 @@ function logoMarkup(c){
          'onload="this.parentElement.classList.add(\'has-img\')" onerror="'+fallbackHandler+'">';
 }
 
-function openPlayer(channelOrName){
-  const channel=typeof channelOrName==='string'
-    ? channelsData.find(c=>c.name===channelOrName)
-    : channelOrName;
+async function openPlayer(channelOrName, occurrenceId=null){
+  const channel=typeof channelOrName==='string' ? channelsData.find(c=>c.name===channelOrName) : channelOrName;
   if(!channel) return;
   const modal=document.getElementById('modal');
   const video=document.getElementById('streamVideo');
@@ -295,47 +293,83 @@ function openPlayer(channelOrName){
   video.removeAttribute('src');
   video.style.display='none';
   empty.style.display='block';
-  status.textContent='Connexion au flux HLS…';
-  note.textContent=channel.streamUrl;
+  status.textContent='Résolution du flux par le serveur…';
+  note.textContent='Flux non exposé au navigateur';
 
-  if(!channel.streamUrl){
-    status.textContent='Flux non configuré.';
+  if(!occurrenceId){
+    status.textContent='Aucune occurrence EPG en direct disponible.';
     return;
   }
 
-  if(window.Hls && Hls.isSupported()){
-    if(window.streamLiveHls) window.streamLiveHls.destroy();
-    const hls=new Hls({enableWorker:true,lowLatencyMode:true});
-    window.streamLiveHls=hls;
-    hls.loadSource(channel.streamUrl);
-    hls.attachMedia(video);
-    hls.on(Hls.Events.MANIFEST_PARSED,()=>{
-      empty.style.display='none';
-      video.style.display='block';
-      video.play().catch(()=>{});
-    });
-    hls.on(Hls.Events.ERROR,(event,data)=>{
-      if(data.fatal){
+  try{
+    const response=await fetch('/api/programs/resolve-playback?channelId='+encodeURIComponent(channel.id)+'&occurrenceId='+encodeURIComponent(occurrenceId),{headers:{Accept:'application/json'}});
+    const data=await response.json();
+    if(!response.ok || !data.success) throw new Error(data.error||'Résolution impossible');
+    if(data.mode==='NONE' || !data.playbackUrl){
+      status.textContent=data.message||'Aucune source vidéo réelle et autorisée n’est disponible.';
+      return;
+    }
+    const resolved=data.playbackUrl;
+    note.textContent=data.mode+' — flux résolu par le serveur';
+
+    if(window.Hls && Hls.isSupported()){
+      if(window.streamLiveHls) window.streamLiveHls.destroy();
+      const hls=new Hls({enableWorker:true,lowLatencyMode:true});
+      window.streamLiveHls=hls;
+      hls.loadSource(resolved);
+      hls.attachMedia(video);
+      hls.on(Hls.Events.MANIFEST_PARSED,()=>{
+        empty.style.display='none';
+        video.style.display='block';
+        video.play().catch(()=>{});
+      });
+      hls.on(Hls.Events.ERROR,(event,data)=>{
+        if(data.fatal){
+          video.style.display='none';
+          empty.style.display='block';
+          status.textContent='Flux indisponible.';
+          if(shuffleMode) scheduleRandomFallback();
+        }
+      });
+    } else if(video.canPlayType('application/vnd.apple.mpegurl')){
+      video.src=resolved;
+      video.onloadedmetadata=()=>{
+        empty.style.display='none';
+        video.style.display='block';
+        video.play().catch(()=>{});
+      };
+      video.onerror=()=>{
         video.style.display='none';
         empty.style.display='block';
-        status.textContent='Flux indisponible. Recherche d’une autre chaîne…';
-        if(shuffleMode) scheduleRandomFallback();
-      }
+        status.textContent='Flux indisponible ou non accessible.';
+      };
+    } else {
+      status.textContent='Ce navigateur ne prend pas en charge HLS.';
+    }
+  }catch(error){
+    status.textContent=error.message||'Flux indisponible.';
+    note.textContent='Lecture indisponible';
+  }
+}
+
+
+async function playChannelById(channelId){
+  const channel=channelsData.find(c=>c.id===channelId);
+  if(!channel) return;
+  try{
+    const response=await fetch('/api/channels/'+encodeURIComponent(channel.id)+'/programs',{headers:{Accept:'application/json'}});
+    const data=await response.json();
+    if(!response.ok || !data.success) throw new Error(data.error||'Programme TV indisponible');
+    const now=Date.now();
+    const occurrence=(data.occurrences||[]).find(item=>{
+      const start=Date.parse(item.startAt);
+      const end=item.endAt?Date.parse(item.endAt):NaN;
+      return Number.isFinite(start)&&start<=now&&(Number.isNaN(end)||now<end);
     });
-  } else if(video.canPlayType('application/vnd.apple.mpegurl')){
-    video.src=channel.streamUrl;
-    video.onloadedmetadata=()=>{
-      empty.style.display='none';
-      video.style.display='block';
-      video.play().catch(()=>{});
-    };
-    video.onerror=()=>{
-      video.style.display='none';
-      empty.style.display='block';
-      status.textContent='Flux indisponible ou non accessible.';
-    };
-  } else {
-    status.textContent='Ce navigateur ne prend pas en charge HLS.';
+    await openPlayer(channel, occurrence?.occurrenceId || null);
+  }catch(error){
+    await openPlayer(channel,null);
+    document.getElementById('playerStatus').textContent=error.message||'Programme TV indisponible.';
   }
 }
 
@@ -445,8 +479,8 @@ function addTile(grid,c){
   card.setAttribute('aria-label','Ouvrir '+c.name);
   card.title=c.name+' — '+c.type+' — '+c.country;
   card.innerHTML=logoMarkup(c);
-  card.onclick=()=>openPlayer(c);
-  card.onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();openPlayer(c);}};
+  card.onclick=()=>playChannelById(c.id);
+  card.onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();playChannelById(c.id);}};
   grid.appendChild(card);
 }
 
@@ -501,7 +535,7 @@ streamVideoElement.addEventListener('error',()=>{
 
 search.addEventListener('input',render);
 document.getElementById('searchBtn').onclick=render;
-document.getElementById('directBtn').onclick=()=>openPlayer(channelsData.find(c=>c.id==='rti-1'));
+document.getElementById('directBtn').onclick=()=>playChannelById('rti-1');
 document.getElementById('modal').addEventListener('click',e=>{if(e.target.id==='modal')closePlayer()});
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closePlayer()});
 renderChips();
