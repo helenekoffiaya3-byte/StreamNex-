@@ -217,6 +217,52 @@ app.get('/api/channels/:id/programs', (req, res) => {
   });
 });
 
+app.get('/api/live/channels', (_req, res) => {
+  const { getOccurrencesByChannel, getChannelPlaybackUrl } = require('./models/program-db');
+  const now = Date.now();
+  const from = new Date(now - 24 * 60 * 60 * 1000).toISOString();
+  const to = new Date(now + 24 * 60 * 60 * 1000).toISOString();
+
+  const channels = CHANNELS.map(channel => {
+    const occurrences = getOccurrencesByChannel(channel.id, from, to);
+    const current = occurrences.find(occurrence => {
+      const start = Date.parse(occurrence.startAt);
+      const end = occurrence.endAt ? Date.parse(occurrence.endAt) : NaN;
+      return Number.isFinite(start) &&
+        start <= now &&
+        (Number.isNaN(end) || now < end);
+    }) || null;
+
+    const liveStreamUrl = validatePlaybackUrl(getChannelPlaybackUrl(channel.id));
+
+    return {
+      id: channel.id,
+      name: channel.name,
+      group: channel.group,
+      number: channel.number,
+      logoUrl: channel.logoUrl || '/assets/logos/' + channel.id + '.png',
+      liveAvailable: Boolean(current && liveStreamUrl),
+      occurrence: current ? {
+        occurrenceId: current.occurrenceId,
+        title: current.title || current.subtitle || null,
+        subtitle: current.subtitle || null,
+        startAt: current.startAt,
+        endAt: current.endAt || null,
+        poster: current.poster || null,
+        seasonNumber: current.seasonNumber ?? null,
+        episodeNumber: current.episodeNumber ?? null
+      } : null
+    };
+  });
+
+  res.json({
+    success: true,
+    fetchedAt: new Date().toISOString(),
+    count: channels.length,
+    channels
+  });
+});
+
 app.get('/api/epg/vitrine', (_req, res) => {
   const { getOccurrencesByChannel, getChannelPlaybackUrl } = require('./models/program-db');
   const now = Date.now();
