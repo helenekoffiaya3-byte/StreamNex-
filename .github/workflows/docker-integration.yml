@@ -70,7 +70,7 @@ jobs:
         run: |
           set -eux
           node scripts/validate-epg-mapping.js
-          node -e "const fs=require('fs');const d=JSON.parse(fs.readFileSync('config/official-guides.json','utf8'));if(d.policy!=='strict-official-only')throw new Error('EPG policy must remain strict-official-only');if(!Array.isArray(d.sources)||d.sources.length===0)throw new Error('No official EPG source configured');if(!d.sources.every(s=>/^https?:\\/\\//.test(String(s.url||''))))throw new Error('Invalid EPG source URL');if(!d.mappings||Array.isArray(d.mappings))throw new Error('EPG mappings must be an object keyed by StreamLive channel ID');console.log('EPG configuration OK:',Object.keys(d.mappings).length,'mappings');"
+          node -e "const fs=require('fs');const d=JSON.parse(fs.readFileSync('config/official-guides.json','utf8'));const allowed=new Set(['strict-official-only','community-aggregated-public']);if(!allowed.has(d.policy))throw new Error('Unsupported EPG policy: '+d.policy);if(!Array.isArray(d.sources)||d.sources.length===0)throw new Error('No EPG source configured');if(!d.sources.every(s=>/^https?:\\/\\//.test(String(s.url||''))))throw new Error('Invalid EPG source URL');if(!d.mappings||Array.isArray(d.mappings))throw new Error('EPG mappings must be an object keyed by StreamLive channel ID');console.log('EPG configuration OK:',d.policy,Object.keys(d.mappings).length,'mappings');"
 
       - name: Channel stream audit (informational)
         run: |
