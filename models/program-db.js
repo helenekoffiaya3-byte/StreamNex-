@@ -19,7 +19,14 @@ function ensureColumn(table, column, definition) {
 }
 
 db.exec(`
-CREATE TABLE IF NOT EXISTS channels (\n  channel_id TEXT PRIMARY KEY,\n  name TEXT NOT NULL,\n  live_stream_url TEXT,\n  updated_at TEXT NOT NULL\n);\n\nCREATE TABLE IF NOT EXISTS programs (
+CREATE TABLE IF NOT EXISTS channels (
+  channel_id TEXT PRIMARY KEY,
+  name TEXT NOT NULL,
+  live_stream_url TEXT,
+  updated_at TEXT NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS programs (
   program_id TEXT PRIMARY KEY,
   channel_id TEXT NOT NULL,
   title TEXT NOT NULL,
@@ -76,7 +83,8 @@ CREATE TABLE IF NOT EXISTS sync_runs (
 ensureColumn('programs', 'poster_source_url', 'TEXT');
 ensureColumn('programs', 'poster_source_type', 'TEXT');
 ensureColumn('program_occurrences', 'poster_source_url', 'TEXT');
-ensureColumn('program_occurrences', 'poster_source_type', 'TEXT');\nensureColumn('program_occurrences', 'playback_url', 'TEXT');
+ensureColumn('program_occurrences', 'poster_source_type', 'TEXT');
+ensureColumn('program_occurrences', 'playback_url', 'TEXT');
 ensureColumn('programs', 'observed_first_seen_at', 'TEXT');
 ensureColumn('programs', 'observed_last_seen_at', 'TEXT');
 
@@ -116,7 +124,23 @@ function normalizeOccurrence(row) {
   };
 }
 
-function upsertChannel(channelId, name, liveStreamUrl = null) {\n  db.prepare(`\n    INSERT INTO channels (channel_id, name, live_stream_url, updated_at)\n    VALUES (?, ?, ?, ?)\n    ON CONFLICT(channel_id) DO UPDATE SET\n      name = excluded.name,\n      live_stream_url = excluded.live_stream_url,\n      updated_at = excluded.updated_at\n  `).run(channelId, name, liveStreamUrl || null, new Date().toISOString());\n}\n\nfunction getChannelPlaybackUrl(channelId) {\n  const row = db.prepare('SELECT live_stream_url FROM channels WHERE channel_id = ?').get(channelId);\n  return row?.live_stream_url || null;\n}\n\nfunction getProgram(programId) {
+function upsertChannel(channelId, name, liveStreamUrl = null) {
+  db.prepare(`
+    INSERT INTO channels (channel_id, name, live_stream_url, updated_at)
+    VALUES (?, ?, ?, ?)
+    ON CONFLICT(channel_id) DO UPDATE SET
+      name = excluded.name,
+      live_stream_url = excluded.live_stream_url,
+      updated_at = excluded.updated_at
+  `).run(channelId, name, liveStreamUrl || null, new Date().toISOString());
+}
+
+function getChannelPlaybackUrl(channelId) {
+  const row = db.prepare('SELECT live_stream_url FROM channels WHERE channel_id = ?').get(channelId);
+  return row?.live_stream_url || null;
+}
+
+function getProgram(programId) {
   return rowToProgram(db.prepare('SELECT * FROM programs WHERE program_id = ?').get(programId));
 }
 
