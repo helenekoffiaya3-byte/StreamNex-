@@ -131,7 +131,7 @@ app.get('/api/stream/random', shuffleLimiter, (req, res) => {
     success: true,
     channel: {
       ...channel,
-      streamUrl: channel.url
+      streamUrl: validatePlaybackUrl(require('./models/program-db').getChannelPlaybackUrl(channel.id))
     },
     remainingCount: pool.length,
     totalCount: CHANNELS.length,
@@ -145,7 +145,7 @@ app.get('/api/stream/channels', (_req, res) => {
     name: channel.name,
     group: channel.group,
     number: channel.number,
-    streamUrl: channel.url,
+    streamUrl: validatePlaybackUrl(require('./models/program-db').getChannelPlaybackUrl(channel.id)),
     channelUrl: (process.env.SITE_BASE_URL || '').replace(/\/$/, '') + '/channel/' + channel.id,
     logoUrl: channel.logoUrl || '/assets/logos/' + channel.id + '.png'
   }));
@@ -164,7 +164,7 @@ app.get('/api/channels/:id', (req, res) => {
     return res.status(404).json({ success: false, message: 'Chaîne non trouvée.' });
   }
 
-  const { getProgramsByChannel } = require('./models/program-db');
+  const { getProgramsByChannel, getChannelPlaybackUrl } = require('./models/program-db');
   const programs = getProgramsByChannel(channel.id);
 
   res.json({
@@ -175,7 +175,7 @@ app.get('/api/channels/:id', (req, res) => {
       group: channel.group,
       number: channel.number,
       logoUrl: channel.logoUrl || '/assets/logos/' + channel.id + '.png',
-      streamUrl: channel.url,
+      streamUrl: validatePlaybackUrl(getChannelPlaybackUrl(channel.id)),
       programs
     }
   });
