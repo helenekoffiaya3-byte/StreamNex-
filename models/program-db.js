@@ -437,7 +437,7 @@ function replaceEpgSnapshot(entries) {
     }
   });
 
-  transaction();
+  transaction.immediate();
   return {
     importedCount: entries.length,
     programCount: programIds.size,
