@@ -1,4 +1,4 @@
-name: Docker integration test
+name: Docker full integration qualification
 
 on:
   push:
@@ -12,35 +12,58 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Build image
-        run: docker build --progress=plain -t streamlive-app .
+      - name: Build Compose stack
+        run: docker compose build
 
-      - name: Start container
+      - name: Start Compose stack
+        run: docker compose up -d
+
+      - name: Wait for application
         run: |
-          docker run -d --name streamlive-test -p 3000:3000 --env-file .env.example streamlive-app
-          for i in $(seq 1 30); do
+          for i in $(seq 1 45); do
             if curl -fsS http://127.0.0.1:3000/api/health >/tmp/health.json; then
               cat /tmp/health.json
               exit 0
             fi
             sleep 2
           done
-          docker logs streamlive-test
+          docker compose ps
+          docker compose logs --no-color
           exit 1
 
-      - name: Integration checks
+      - name: API and PWA qualification
         run: |
           set -eux
-          curl -fsS http://127.0.0.1:3000/api/health
+          curl -fsS http://127.0.0.1:3000/api/health | tee /tmp/health.json
+          grep -q '"channels":140' /tmp/health.json
+          grep -q '"streamBaseUrlConfigured":true' /tmp/health.json
+
           curl -fsS http://127.0.0.1:3000/live >/tmp/live.html
           grep -q "StreamLive" /tmp/live.html
+
+          curl -fsS http://127.0.0.1:3000/api/stream/channels >/tmp/channels.json
+          grep -q '"count":140' /tmp/channels.json
+
+          curl -fsS http://127.0.0.1:3000/api/live/channels >/tmp/live-channels.json
+          grep -q '"count":140' /tmp/live-channels.json
+
           test "$(curl -s -o /dev/null -w '%{http_code}' 'http://127.0.0.1:3000/api/download/media?id=test')" = "401"
           curl -fsSI http://127.0.0.1:3000/sw.js
 
+      - name: Nginx HLS qualification
+        run: |
+          set -eux
+          curl -fsSI http://127.0.0.1:8080/live/ || true
+          docker compose ps
+
+      - name: Compose status
+        if: always()
+        run: docker compose ps
+
       - name: Container logs on failure
         if: failure()
-        run: docker logs streamlive-test
+        run: docker compose logs --no-color
 
-      - name: Stop container
+      - name: Stop Compose stack
         if: always()
-        run: docker rm -f streamlive-test || true
+        run: docker compose down -v
