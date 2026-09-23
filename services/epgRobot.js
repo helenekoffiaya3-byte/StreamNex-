@@ -62,7 +62,93 @@ function slugify(value) {
     .replace(/^-+|-+$/g, '');
 }
 
-function parseXmltvDate(value) {
+
+async function validateStreamUrl(value, expectedType = 'ANY') {
+  if (!value || typeof value !== 'string') return null;
+  let url;
+  try {
+    url = new URL(value.trim());
+    if (!['http:', 'https:'].includes(url.protocol)) return null;
+  } catch {
+    return null;
+  }
+
+  const target = url.toString();
+  const looksHls = expectedType === 'HLS' || /\\.m3u8(?:$|[?#])/i.test(url.pathname + url.search);
+
+  try {
+    let head = null;
+    try {
+      head = await fetch(target, {
+        method: 'HEAD',
+        redirect: 'follow',
+        signal: AbortSignal.timeout(5000)
+      });
+    } catch {}
+
+    const headType = (head?.headers.get('content-type') || '').toLowerCase();
+    const headOk = Boolean(head && head.status >= 200 && head.status < 400);
+
+    if (looksHls || !headOk || !headType || headType.includes('text/html')) {
+      const response = await fetch(target, {
+        headers: { Range: 'bytes=0-4095', Accept: '*/*' },
+        redirect: 'follow',
+        signal: AbortSignal.timeout(7000)
+      });
+      if (response.status < 200 || response.status >= 400) return null;
+
+      const contentType = (response.headers.get('content-type') || '').toLowerCase();
+      const sample = Buffer.from(await response.arrayBuffer()).toString('utf8', 0, 8192);
+
+      if (looksHls) {
+        return sample.includes('#EXTM3U') || contentType.includes('mpegurl') || contentType.includes('vnd.apple.mpegurl')
+          ? target
+          : null;
+      }
+
+      if (contentType.startsWith('video/') || contentType.includes('octet-stream')) return target;
+      return null;
+    }
+
+    if (looksHls) {
+      const response = await fetch(target, {
+        headers: { Range: 'bytes=0-4095', Accept: '*/*' },
+        redirect: 'follow',
+        signal: AbortSignal.timeout(7000)
+      });
+      if (response.status < 200 || response.status >= 400) return null;
+      const contentType = (response.headers.get('content-type') || '').toLowerCase();
+      const sample = Buffer.from(await response.arrayBuffer()).toString('utf8', 0, 8192);
+      return sample.includes('#EXTM3U') || contentType.includes('mpegurl') || contentType.includes('vnd.apple.mpegurl')
+        ? target
+        : null;
+    }
+
+    return headType.startsWith('video/') || headType.includes('octet-stream') ? target : null;
+  } catch {
+    return null;
+  }
+}
+
+async function validateImageUrl(value) {
+  if (!value || typeof value !== 'string') return null;
+  try {
+    const url = new URL(value.trim());
+    if (!['http:', 'https:'].includes(url.protocol)) return null;
+    const response = await fetch(url, {
+      method: 'HEAD',
+      redirect: 'follow',
+      signal: AbortSignal.timeout(5000)
+    });
+    const contentType = (response.headers.get('content-type') || '').toLowerCase();
+    return response.status >= 200 && response.status < 400 && contentType.startsWith('image/')
+      ? url.toString()
+      : null;
+  } catch {
+    return null;
+  }
+}
+\nfunction parseXmltvDate(value) {
   const raw = String(value || '').trim();
   if (!raw) return null;
 
@@ -311,7 +397,7 @@ function importXmltv(xml, channelResolver = null, sourceType = 'published-epg') 
     const endAt = parseXmltvDate(raw['@_stop']);
     const description = textValue(asArray(raw.desc)[0]);
     const subtitle = textValue(asArray(raw['sub-title'])[0]);
-    const poster = validateEpgSourceUrl(raw.icon?.['@_src'])?.toString() || null;
+    const rawPoster = validateEpgSourceUrl(raw.icon?.['@_src'])?.toString() || null;
     const episode = parseEpisode(asArray(raw['episode-num'])[0]);
     const type = detectType(raw);
     const programId = `${channelId}-${slugify(title)}`;
@@ -350,7 +436,7 @@ async function runEpgSync() {
   const syncId = createSyncRun();
   let importedCount = 0;
 
-  const configuredSource = validateEpgSourceUrl(SOURCE_EPG_URL);
+  for (const channel of CHANNEL_CONFIG) {\n    const liveUrl = await validateStreamUrl(channel.productionUrl || null, 'HLS');\n    upsertChannel(channel.id, channel.name, liveUrl);\n  }\n\n  const configuredSource = validateEpgSourceUrl(SOURCE_EPG_URL);
   const officialGuides = loadOfficialGuides();
 
   if (!configuredSource && officialGuides.size === 0 && !ALLOW_PUBLISHED_FALLBACK) {
