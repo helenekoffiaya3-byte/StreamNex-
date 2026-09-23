@@ -7,7 +7,7 @@ const router = express.Router();
 
 const loginLimiter = rateLimit({
   windowMs: 15 * 60 * 1000,
-  limit: 10,
+  limit: 5,
   standardHeaders: 'draft-8',
   legacyHeaders: false,
   message: { success: false, error: 'Trop de tentatives de connexion. Réessayez plus tard.' }
@@ -22,8 +22,11 @@ router.post('/login', loginLimiter, async (req, res) => {
   const username = String(req.body?.username || req.body?.email || '').trim();
   const password = String(req.body?.password || '');
 
-  if (!username || !password) {
-    return res.status(400).json({ success: false, error: 'Identifiants requis.' });
+  if (!username || username.length < 3 || username.length > 254 || password.length < 8 || password.length > 128) {
+    return res.status(400).json({ success: false, error: 'Identifiants invalides.' });
+  }
+  if (!/^[^\u0000-\u001F\u007F]+$/.test(username)) {
+    return res.status(400).json({ success: false, error: 'Identifiant invalide.' });
   }
 
   const user = await verifyUserCredentials(username, password);
