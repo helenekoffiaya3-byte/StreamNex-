@@ -1,0 +1,25 @@
+name: Docker SQLite native build test
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'Dockerfile.sqlite-test'
+      - 'package.json'
+      - 'package-lock.json'
+      - '.github/workflows/docker-sqlite-test.yml'
+  workflow_dispatch:
+
+jobs:
+  docker-sqlite-test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Build SQLite test image
+        run: docker build -f Dockerfile.sqlite-test -t streamlive-sqlite-test .
+
+      - name: Verify better-sqlite3 loads
+        run: |
+          docker run --rm streamlive-sqlite-test node -e "const Database=require('better-sqlite3'); const db=new Database(':memory:'); db.prepare('SELECT 1 AS ok').get(); console.log('better-sqlite3 native module OK'); db.close()"
