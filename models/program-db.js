@@ -326,6 +326,125 @@ function addOccurrence(programId, occurrence) {
   );
 }
 
+function replaceEpgSnapshot(entries) {
+  if (!Array.isArray(entries)) throw new TypeError('Le snapshot EPG doit être un tableau.');
+
+  const channelIds = new Set();
+  const programIds = new Set();
+  const occurrenceKeys = new Set();
+
+  for (const entry of entries) {
+    const program = entry?.program;
+    const occurrence = entry?.occurrence;
+    if (!program || !occurrence) throw new Error('Snapshot EPG incomplet.');
+
+    if (!program.channelId || !occurrence.channelId || program.channelId !== occurrence.channelId) {
+      throw new Error('Snapshot EPG incohérent : canal programme/occurrence différent.');
+    }
+    if (!program.programId || !program.title || !occurrence.startAt) {
+      throw new Error('Snapshot EPG invalide : identifiants, titre ou date manquants.');
+    }
+
+    channelIds.add(program.channelId);
+    programIds.add(program.programId);
+    const key = program.programId + '\\u0000' + occurrence.startAt;
+    if (occurrenceKeys.has(key)) {
+      throw new Error('Snapshot EPG invalide : occurrence dupliquée.');
+    }
+    occurrenceKeys.add(key);
+  }
+
+  const transaction = db.transaction(() => {
+    db.prepare('DELETE FROM program_occurrences').run();
+    db.prepare('DELETE FROM programs').run();
+
+    const insertProgram = db.prepare(`
+      INSERT INTO programs (
+        program_id, channel_id, title, type, description, poster,
+        poster_source_url, poster_source_type, status,
+        first_seen_at, last_seen_at, observed_first_seen_at,
+        observed_last_seen_at, occurrences_count, distinct_days_count,
+        is_recurring, playback_url
+      ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, 'pending', ?, ?, ?, ?, 0, 0, 0, ?)
+    `);
+
+    const insertOccurrence = db.prepare(`
+      INSERT INTO program_occurrences (
+        program_id, channel_id, start_at, end_at, subtitle,
+        season_number, episode_number, description, poster,
+        poster_source_url, poster_source_type, playback_url
+      ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+    `);
+
+    const programs = new Map();
+    for (const entry of entries) {
+      const program = entry.program;
+      const occurrence = entry.occurrence;
+      if (!programs.has(program.programId)) {
+        programs.set(program.programId, program);
+      }
+      insertOccurrence.run(
+        program.programId,
+        occurrence.channelId,
+        occurrence.startAt,
+        occurrence.endAt || null,
+        occurrence.subtitle || null,
+        occurrence.seasonNumber ?? null,
+        occurrence.episodeNumber ?? null,
+        occurrence.description || '',
+        occurrence.poster || null,
+        occurrence.posterSourceUrl || null,
+        occurrence.posterSourceType || null,
+        occurrence.playbackUrl || null
+      );
+    }
+
+    const nowIso = new Date().toISOString();
+    for (const program of programs.values()) {
+      const stats = db.prepare(`
+        SELECT COUNT(*) AS count,
+               COUNT(CASE WHEN start_at <= ? THEN 1 END) AS observedCount,
+               COUNT(DISTINCT CASE WHEN start_at <= ? THEN substr(start_at, 1, 10) END) AS distinctDays,
+               MIN(CASE WHEN start_at <= ? THEN start_at END) AS firstSeenAt,
+               MAX(CASE WHEN start_at <= ? THEN start_at END) AS lastSeenAt
+        FROM program_occurrences
+        WHERE program_id = ?
+      `).get(nowIso, nowIso, nowIso, nowIso, program.programId);
+
+      insertProgram.run(
+        program.programId,
+        program.channelId,
+        program.title,
+        program.type || 'show',
+        program.description || '',
+        program.poster || null,
+        program.posterSourceUrl || null,
+        program.posterSourceType || null,
+        nowIso,
+        nowIso,
+        stats.firstSeenAt || null,
+        stats.lastSeenAt || null,
+        program.playbackUrl || null
+      );
+
+      db.prepare(`
+        UPDATE programs
+        SET occurrences_count = ?,
+            distinct_days_count = ?,
+            is_recurring = CASE WHEN ? >= 3 THEN 1 ELSE 0 END
+        WHERE program_id = ?
+      `).run(stats.count, stats.distinctDays, stats.distinctDays, program.programId);
+    }
+  });
+
+  transaction();
+  return {
+    importedCount: entries.length,
+    programCount: programIds.size,
+    channelCount: channelIds.size
+  };
+}
+
 function confirmEligiblePrograms() {
   const threshold = new Date(Date.now() - 3 * 24 * 60 * 60 * 1000).toISOString();
 
@@ -400,6 +519,7 @@ module.exports = {
   getOccurrencesByChannel,
   upsertProgram,
   addOccurrence,
+  replaceEpgSnapshot,
   confirmEligiblePrograms,
   createSyncRun,
   finishSyncRun,
