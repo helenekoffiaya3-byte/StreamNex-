@@ -26,13 +26,21 @@ app.use(helmet({
       scriptSrc: ["'self'", 'https://cdn.jsdelivr.net', "'unsafe-inline'"],
       styleSrc: ["'self'", "'unsafe-inline'"],
       imgSrc: ["'self'", 'data:', 'https:'],
-      mediaSrc: ["'self'", 'blob:', 'http:', 'https:'],
-      connectSrc: ["'self'", 'http:', 'https:', 'ws:', 'wss:'],
+      mediaSrc: ["'self'", 'blob:', 'https:'],
+      connectSrc: ["'self'", 'https:', 'wss:'],
       objectSrc: ["'none'"],
+      baseUri: ["'self'"],
+      formAction: ["'self'"],
       frameAncestors: ["'self'"]
     }
   },
-  crossOriginEmbedderPolicy: false
+  hsts: {
+    maxAge: 31536000,
+    includeSubDomains: true,
+    preload: false
+  },
+  crossOriginEmbedderPolicy: false,
+  referrerPolicy: { policy: 'strict-origin-when-cross-origin' }
 }));
 
 app.use(cors({
@@ -42,6 +50,7 @@ app.use(cors({
   },
   methods: ['GET', 'POST', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization', 'X-Session-Id', 'X-EPG-Sync-Token'],
+  credentials: true,
   maxAge: 86400
 }));
 
@@ -67,6 +76,26 @@ const shuffleLimiter = rateLimit({
 });
 
 app.use('/api', globalLimiter);
+
+app.use((req, res, next) => {
+  const pathname = String(req.path || '');
+  const isHlsAsset = pathname.endsWith('.m3u8') || pathname.endsWith('.ts');
+  if (!isHlsAsset) return next();
+
+  const origin = req.get('Origin');
+  if (origin && allowedOrigins.includes(origin)) {
+    res.setHeader('Access-Control-Allow-Origin', origin);
+    res.setHeader('Vary', 'Origin');
+  }
+  res.setHeader('Access-Control-Allow-Methods', 'GET, OPTIONS');
+  res.setHeader('Access-Control-Allow-Headers', 'Range, Origin, Accept, Content-Type');
+  res.setHeader('Access-Control-Expose-Headers', 'Content-Length, Content-Range, Accept-Ranges');
+  res.setHeader('Access-Control-Max-Age', '86400');
+
+  if (req.method === 'OPTIONS') return res.status(204).end();
+  return next();
+});
+
 app.use(express.static(__dirname));
 
 const crypto = require('crypto');
@@ -117,10 +146,12 @@ function verifyJwt(token) {
 
   const now = Math.floor(Date.now() / 1000);
   if (!payload.sub || typeof payload.sub !== 'string') throw new Error('JWT sans identifiant utilisateur.');
-  if (!Number.isSafeInteger(Number(payload.exp)) || Number(payload.exp) <= now) {
+  if (!Number.isSafeInteger(payload.exp) || payload.exp <= now) {
     throw new Error('JWT expiré ou sans expiration.');
   }
-  if (payload.nbf != null && Number(payload.nbf) > now) throw new Error('JWT pas encore valide.');
+  if (payload.nbf != null && (!Number.isSafeInteger(payload.nbf) || payload.nbf > now)) {
+    throw new Error('JWT pas encore valide.');
+  }
 
   if (AUTH_JWT_ISSUER && payload.iss !== AUTH_JWT_ISSUER) {
     throw new Error('Émetteur JWT invalide.');
@@ -140,7 +171,13 @@ function parseCookieHeader(value) {
     if (index <= 0) continue;
     const key = part.slice(0, index).trim();
     const val = part.slice(index + 1).trim();
-    if (key) cookies[key] = decodeURIComponent(val);
+    if (key) {
+      try {
+        cookies[key] = decodeURIComponent(val);
+      } catch {
+        cookies[key] = '';
+      }
+    }
   }
   return cookies;
 }
