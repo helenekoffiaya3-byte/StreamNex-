@@ -264,7 +264,7 @@ function requireMediaDownloadAuth(req, res, next) {
 }
 
 const CHANNEL_CONFIG = require('./config/channels');
-const { channelPrograms, unassignedPrograms, enrichProgram } = require('./config/catalog');
+const { channelPrograms, nickelodeonLiveAction, unassignedPrograms, enrichProgram } = require('./config/catalog');
 
 
 function validatePlaybackUrl(value) {
@@ -563,7 +563,7 @@ app.get('/api/channels/:id/catalog', (req, res) => {
   });
 });
 
-app.get('/api/catalog/reserve', (_req, res) => {
+app.get('/api/catalog/nickelodeon-live-action', (_req, res) => {\n  res.json({ success: true, count: nickelodeonLiveAction.length, category: 'nickelodeon-live-action', programs: nickelodeonLiveAction });\n});\n\napp.get('/api/catalog/reserve', (_req, res) => {
   res.json({
     success: true,
     count: unassignedPrograms.length,
