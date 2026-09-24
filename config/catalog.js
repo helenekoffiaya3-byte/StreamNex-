@@ -66,6 +66,65 @@ const FILM_METADATA = {
 
 // Schéma commun des séries : les saisons/épisodes peuvent être alimentés par l'EPG
 // et restent directement lisibles par l'interface VOD.
+const FILM_DESCRIPTIONS = {
+  'film-le-roi-lion': "Simba, jeune lion destiné à devenir roi, doit retrouver sa place après la mort de son père Mufasa.",
+  'film-aladdin': "Aladdin, un jeune homme pauvre, découvre une lampe magique et rencontre un génie capable d'exaucer ses vœux.",
+  'film-la-reine-des-neiges': "Elsa possède un pouvoir qui plonge son royaume dans un hiver éternel. Anna part à sa recherche pour sauver Arendelle.",
+  'film-zootopie': "Judy Hopps, première lapine policière de Zootopie, s'allie au renard Nick Wilde pour résoudre une mystérieuse affaire.",
+  'film-mulan': "Mulan prend la place de son père dans l'armée impériale et doit défendre la Chine tout en cachant son identité.",
+  'film-raiponce': "Raiponce, une jeune fille aux cheveux extraordinaires, quitte sa tour pour découvrir le monde et ses origines.",
+  'film-pirates-des-caraibes-maleddiction-du-black-pearl': "Le capitaine Jack Sparrow s'allie à Will Turner pour sauver Elizabeth Swann et récupérer le Black Pearl.",
+  'film-high-school-musical': "Troy et Gabriella découvrent leur passion commune pour la musique et bouleversent les habitudes de leur lycée.",
+  'film-hocus-pocus': "Trois sorcières reviennent à Salem après des siècles et menacent la ville lors de la nuit d'Halloween.",
+  'film-rasta-rockett': "Une équipe jamaïcaine de bobsleigh se forme contre toute attente et tente de participer aux Jeux olympiques.",
+  'film-bob-leponge-le-film': "Bob l'Éponge et Patrick partent dans une aventure pour retrouver la couronne du roi Neptune et sauver M. Krabs.",
+  'film-razmoket-a-paris': "Les Razmoket accompagnent leurs parents à Paris et vivent une nouvelle aventure pleine de péripéties.",
+  'film-jimmy-neutron-un-garcon-genial': "Jimmy Neutron doit sauver les adultes de Retroville après leur enlèvement par des extraterrestres.",
+  'film-rango': "Rango, un caméléon domestique, devient malgré lui le shérif d'une ville du désert confrontée à une mystérieuse pénurie d'eau.",
+  'film-teenage-mutant-ninja-turtles-mutant-mayhem': "Quatre tortues mutantes adolescentes cherchent à être acceptées par les humains tout en affrontant un mystérieux criminel.",
+  'film-chroniques-de-spiderwick': "Les frères Grace découvrent un monde fantastique peuplé de créatures lorsqu'ils emménagent dans une vieille demeure.",
+  'film-lemony-snicket': "Trois orphelins doivent échapper au comte Olaf, qui convoite leur fortune et tente de s'emparer de leur héritage.",
+  'film-dc-superman-1978': "Clark Kent découvre son héritage kryptonien et devient Superman pour protéger l'humanité.",
+  'film-dc-the-dark-knight': "Batman affronte le Joker, un criminel qui plonge Gotham dans une escalade de chaos et de violence.",
+  'film-dc-man-of-steel': "Clark Kent découvre ses origines kryptoniennes et doit choisir comment utiliser ses pouvoirs pour protéger la Terre.",
+  'film-dc-wonder-woman': "Diana quitte son île amazonienne et découvre le monde des humains en pleine Première Guerre mondiale.",
+  'film-dc-the-batman-2022': "Batman enquête sur une série de meurtres qui révèle une conspiration profondément enracinée à Gotham.",
+  'film-dc-batman-mask-of-the-phantasm': "Batman enquête sur l'apparition d'un mystérieux justicier qui exécute les criminels de Gotham.",
+  'film-dc-justice-league-dark': "Batman réunit des héros dotés de pouvoirs surnaturels pour combattre une menace magique.",
+  'film-dc-justice-league-flashpoint-paradox': "Flash modifie accidentellement la réalité et découvre un monde alternatif au bord de la guerre.",
+  'film-dc-teen-titans-go-le-film': "Les Teen Titans partent à Hollywood pour obtenir leur propre film et affrontent un ennemi capable de contrôler la réalité."
+};
+
+function buildSeriesSeasons(occurrences) {
+  const seasons = new Map();
+  for (const occurrence of (Array.isArray(occurrences) ? occurrences : [])) {
+    const seasonNumber = Number(occurrence.seasonNumber);
+    const episodeNumber = Number(occurrence.episodeNumber);
+    if (!Number.isInteger(seasonNumber) || seasonNumber < 1 || !Number.isInteger(episodeNumber) || episodeNumber < 1) continue;
+    if (!seasons.has(seasonNumber)) seasons.set(seasonNumber, new Map());
+    seasons.get(seasonNumber).set(episodeNumber, {
+      episode_number: episodeNumber,
+      title: occurrence.title || occurrence.subtitle || ('Épisode ' + episodeNumber),
+      description: occurrence.description || '',
+      duration: occurrence.durationMinutes ? (occurrence.durationMinutes + ' min') : null,
+      epg_id: occurrence.occurrenceId ? ('epg_occ_' + occurrence.occurrenceId) : null,
+      playback_url: null,
+      audio_tracks: [],
+      subtitles: []
+    });
+  }
+  return Array.from(seasons.entries()).sort(function(a,b){return a[0]-b[0];}).map(function(entry){
+    return { season_number: entry[0], episodes: Array.from(entry[1].values()).sort(function(a,b){return a.episode_number-b.episode_number;}) };
+  });
+}
+
+function enrichProgram(program, occurrences) {
+  const metadata = program.type === 'movie' ? (FILM_METADATA[program.programId] || {}) : (SERIES_METADATA[program.programId] || {});
+  const description = program.description || FILM_DESCRIPTIONS[program.programId] || (program.type === 'show' ? (program.title + ' — fiche catalogue StreamLive.') : '');
+  const seasons = program.type === 'movie' ? [] : buildSeriesSeasons(occurrences);
+  return Object.assign({}, program, metadata, { description: description, seasons: seasons.length ? seasons : (Array.isArray(program.seasons) ? program.seasons : []), audioTracks: Array.isArray(program.audioTracks) ? program.audioTracks : [], subtitles: Array.isArray(program.subtitles) ? program.subtitles : [] });
+}
+
 const SERIES_METADATA = {
   'bob-leponge': { country: 'États-Unis', actors: ['Tom Kenny', 'Clancy Brown', 'Bill Fagerbakke'] },
   'razmoket': { country: 'États-Unis', actors: ['Elizabeth Daily', 'Nancy Cartwright', 'Kath Soucie'] },
@@ -223,15 +282,10 @@ const DC_RESERVE = [
 function buildChannelPrograms() {
   const result = {};
   for (const [channelId, entries] of Object.entries(CHANNEL_CATALOG)) {
-    result[channelId] = entries.map(([id, title, type]) =>
-      makeProgram(id, title, type, { originalChannel: channelId })
-    );
+    result[channelId] = entries.map(([id, title, type]) => enrichProgram(makeProgram(id, title, type, { originalChannel: channelId })));
   }
   for (const [channelId, entries] of Object.entries(FILM_CATALOG)) {
-    result[channelId] = [...(result[channelId] || []), ...entries.map(program => ({
-      ...program,
-      originalChannel: channelId
-    }))];
+    result[channelId] = [...(result[channelId] || []), ...entries.map(program => enrichProgram({ ...program, originalChannel: channelId }))];
   }
   return result;
 }
