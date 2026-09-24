@@ -33,6 +33,36 @@ const makeProgram = (id, title, type = 'show', extra = {}) => ({
   ...extra
 });
 
+// Téléfilms Nickelodeon live-action : catalogue VOD/EPG, sans animation.
+const NICK_LIVE_ACTION = [
+  ["NICK-MA-001","iCarly va au Japon","iGo to Japan",2008,"Comédie, Jeunesse, Aventure","Carly, Sam et Freddie s'envolent pour le Japon après avoir été nommés à un prix international de web-émissions, mais leur voyage vire au désastre.",["Miranda Cosgrove","Jennette McCurdy","Nathan Kress","Jerry Trainor"]],
+  ["NICK-MA-002","iCarly & Victorious : Le Crossover","iParty with Victorious",2011,"Comédie, Musical, Jeunesse","Carly et ses amis découvrent que le nouveau petit ami de Carly sort aussi avec Tori Vega, ce qui mène à une fête géante inter-séries.",["Miranda Cosgrove","Victoria Justice","Jennette McCurdy","Leon Thomas III"]],
+  ["NICK-MA-003","Drake & Josh à Hollywood","Drake & Josh Go Hollywood",2006,"Comédie, Aventure","Drake et Josh se retrouvent à Los Angeles après une erreur qui les plonge dans une affaire de fausse monnaie.",["Drake Bell","Josh Peck","Miranda Cosgrove"]],
+  ["NICK-MA-004","Joyeux Noël Drake & Josh","Merry Christmas, Drake & Josh",2008,"Comédie, Famille, Noël","Drake et Josh doivent offrir le meilleur Noël possible à une famille d'accueil.",["Drake Bell","Josh Peck","Miranda Cosgrove"]],
+  ["NICK-MA-005","Professeur malgré lui","Gym Teacher: The Movie",2008,"Comédie","Un ancien athlète devenu professeur tente de motiver ses élèves et de retrouver sa réputation.",["Christopher Meloni","Nathan Kress"]],
+  ["NICK-MA-006","Spectacular!","Spectacular!",2009,"Comédie, Musical","Un jeune rockeur rejoint une chorale rivale pour participer à un concours national.",["Tammin Sursok","Nolan Gerard Funk","Victoria Justice"]],
+  ["NICK-MA-007","Le Vampire du quartier","The Boy Who Cried Werewolf",2010,"Comédie, Fantastique","Une adolescente hérite d'un manoir en Roumanie et découvre une mystérieuse transformation.",["Victoria Justice","Chase Ellison","Brooke Shields"]],
+  ["NICK-MA-008","Le Boycott d'Avoir Trop de Devoirs","Best Player",2011,"Comédie, Jeunesse","Deux joueurs s'affrontent pour devenir les meilleurs à un jeu vidéo en ligne.",["Jerry Trainor","Jennette McCurdy"]],
+  ["NICK-MA-009","Big Time Movie","Big Time Movie",2012,"Comédie, Action, Musical","Big Time Rush arrive à Londres et se retrouve mêlé à une mission d'espionnage.",["Kendall Schmidt","James Maslow","Carlos PenaVega","Logan Henderson"]],
+  ["NICK-MA-010","Rags","Rags",2012,"Comédie, Musical, Romance","Une relecture musicale du conte de Cendrillon centrée sur un jeune artiste.",["Keke Palmer","Max Schneider"]],
+  ["NICK-MA-011","Arnaque à la carte","Swindle",2013,"Comédie, Action","Un groupe d'adolescents prépare un casse pour récupérer une carte de baseball.",["Jennette McCurdy","Ariana Grande","Noah Crawford","Ciara Bravo"]],
+  ["NICK-MA-012","Nicky Deuce","Nicky Deuce",2013,"Comédie, Action","Un jeune garçon passe l'été à Brooklyn et se fait passer pour un caïd.",["Noah Munck","Steve Schirripa","Michael Imperioli"]],
+  ["NICK-MA-013","La Poisse !","Jinxed",2013,"Comédie, Famille","Une adolescente tente de briser une malédiction familiale.",["Ciara Bravo","Jacob Bertrand","Elena Kampouris"]],
+  ["NICK-MA-014","Santa Hunters","Santa Hunters",2014,"Comédie, Famille, Noël","Des enfants construisent un dispositif pour filmer le Père Noël.",["Benjamin Flores Jr.","Breanna Yde","Mace Coronel"]],
+  ["NICK-MA-015","One Crazy Cruise","One Crazy Cruise",2015,"Comédie","Une famille recomposée vit une aventure chaotique sur un bateau de croisière.",["Rio Mangini","Brec Bassinger","Ella Anderson"]],
+  ["NICK-MA-016","Rufus","Rufus",2016,"Comédie, Famille","Un chien devient humain grâce à une amulette magique et intègre l'école.",["Jace Norman","Davis Cleveland","Haley Tju"]],
+  ["NICK-MA-017","Rufus 2","Rufus 2",2017,"Comédie, Famille","Le chien devenu humain vit de nouvelles péripéties au collège.",["Jace Norman","Davis Cleveland","Haley Tju"]],
+  ["NICK-MA-018","Legends of the Hidden Temple","Legends of the Hidden Temple",2016,"Aventure, Action","Trois frères et sœurs se retrouvent au cœur d'une aventure inspirée du jeu télévisé.",["Isabela Merced","Colin Critchley","Jet Jurgensmeyer"]],
+  ["NICK-MA-019","Pris au piège","Blurt!",2018,"Comédie, Fantastique","Après un accident de réalité virtuelle, un collégien dit à voix haute tout ce qu'il pense.",["Jace Norman","JoJo Siwa","Daniella Perkins"]],
+  ["NICK-MA-020","Bixler High Private Eye","Bixler High Private Eye",2019,"Comédie, Mystère","Un jeune détective enquête sur la disparition de son père.",["Jace Norman","Ariel Martin"]],
+  ["NICK-MA-021","The J Team","The J Team",2021,"Musical, Famille","JoJo Siwa doit se réinventer après avoir été évincée de son académie de danse.",["JoJo Siwa","Tiera Skovbye","Kiara Groulx"]],
+  ["NICK-MA-022","Bienvenue chez les Loud : Le Film de Noël","A Loud House Christmas",2021,"Comédie, Famille, Noël","Lincoln prépare les fêtes avec sa grande famille.",["Wolfgang Schaeffer","Javier Muñoz","Brian Stepanek"]],
+  ["NICK-MA-023","Monster High : Le Film","Monster High: The Movie",2022,"Fantastique, Musical","Clawdeen Wolf intègre Monster High et tente de trouver sa place.",["Miia Harris","Ceci Balagot","Nayah Damasen"]],
+  ["NICK-MA-024","Monster High 2","Monster High 2",2023,"Fantastique, Musical","Clawdeen, Draculaura et Frankie affrontent de nouvelles menaces à Monster High.",["Miia Harris","Ceci Balagot","Nayah Damasen"]],
+  ["NICK-MA-025","A Really Haunted Loud House","A Really Haunted Loud House",2023,"Comédie, Famille, Fantastique","Lincoln et Clyde vivent une aventure surnaturelle pendant Halloween.",["Wolfgang Schaeffer","Jelah Ashed","Brian Stepanek"]],
+  ["NICK-MA-026","Le Retour des Thunderman","The Thundermans Return",2024,"Comédie, Super-héros, Famille","La famille Thunderman revient après la série originale pour une nouvelle mission.",["Kira Kosarin","Jack Griffo","Addison Riecke","Diego Velazquez"]]
+].map(x => makeProgram(x[0], x[1], "movie", { originalTitle:x[2], year:x[3], genre:x[4].split(", "), description:x[5], actors:x[6], country:"États-Unis", network:"Nickelodeon", category:"nickelodeon-live-action", epgId:"epg."+x[0].toLowerCase(), audioTracks:[], subtitles:[], streamEnabled:false, stream:{enabled:false,status:"INACTIVE"} }));
+
 // Métadonnées éditoriales des films demandées pour les fiches VOD.
 // Les URLs de lecture restent désactivées tant qu'un flux VOD autorisé n'est pas configuré.
 const FILM_METADATA = {
@@ -325,8 +355,9 @@ function assignProgramToChannel(channels, unassignedPrograms, programId, targetC
   return { success: true, updatedChannel: channel };
 }
 
-module.exports = {
+const nickelodeonLiveAction = NICK_LIVE_ACTION;\n\nmodule.exports = {
   channelPrograms,
+  nickelodeonLiveAction,
   unassignedPrograms,
   dcReserve: DC_RESERVE,
   assignProgramToChannel,
