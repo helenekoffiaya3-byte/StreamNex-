@@ -329,5 +329,7 @@ module.exports = {
   channelPrograms,
   unassignedPrograms,
   dcReserve: DC_RESERVE,
-  assignProgramToChannel
+  assignProgramToChannel,
+  enrichProgram,
+  buildSeriesSeasons
 };
