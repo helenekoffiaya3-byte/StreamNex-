@@ -264,7 +264,7 @@ function requireMediaDownloadAuth(req, res, next) {
 }
 
 const CHANNEL_CONFIG = require('./config/channels');
-const { channelPrograms, unassignedPrograms } = require('./config/catalog');
+const { channelPrograms, unassignedPrograms, enrichProgram } = require('./config/catalog');
 
 
 function validatePlaybackUrl(value) {
@@ -405,12 +405,13 @@ app.get('/api/channels/:id/programs', (req, res) => {
   const { getProgramsByChannel, getOccurrencesByChannel } = require('./models/program-db');
   const dbPrograms = getProgramsByChannel(channel.id);
   const staticPrograms = Array.isArray(channelPrograms[channel.id]) ? channelPrograms[channel.id] : [];
-  const programs = [...staticPrograms, ...dbPrograms].filter((program, index, list) =>
-    list.findIndex(item => item.programId === program.programId) === index
-  );
   const from = new Date(Date.now() - 24 * 60 * 60 * 1000).toISOString();
   const to = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toISOString();
   const occurrences = getOccurrencesByChannel(channel.id, from, to).map(occurrence => ({ ...occurrence, playbackUrl: null }));
+  const enrich = program => enrichProgram(program, occurrences);
+  const programs = [...staticPrograms, ...dbPrograms].map(enrich).filter((program, index, list) =>
+    list.findIndex(item => item.programId === program.programId) === index
+  );
 
   res.json({
     success: true,
