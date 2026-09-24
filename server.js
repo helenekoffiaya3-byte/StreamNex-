@@ -264,6 +264,8 @@ function requireMediaDownloadAuth(req, res, next) {
 }
 
 const CHANNEL_CONFIG = require('./config/channels');
+const { channelPrograms, unassignedPrograms } = require('./config/catalog');
+
 
 function validatePlaybackUrl(value) {
   if (!value) return null;
@@ -375,7 +377,11 @@ app.get('/api/channels/:id', (req, res) => {
   }
 
   const { getProgramsByChannel } = require('./models/program-db');
-  const programs = getProgramsByChannel(channel.id).map(program => ({ ...program, playbackUrl: null }));
+  const dbPrograms = getProgramsByChannel(channel.id).map(program => ({ ...program, playbackUrl: null }));
+  const staticPrograms = Array.isArray(channelPrograms[channel.id]) ? channelPrograms[channel.id] : [];
+  const programs = [...staticPrograms, ...dbPrograms].filter((program, index, list) =>
+    list.findIndex(item => item.programId === program.programId) === index
+  );
 
   res.json({
     success: true,
@@ -397,7 +403,11 @@ app.get('/api/channels/:id/programs', (req, res) => {
   }
 
   const { getProgramsByChannel, getOccurrencesByChannel } = require('./models/program-db');
-  const programs = getProgramsByChannel(channel.id);
+  const dbPrograms = getProgramsByChannel(channel.id);
+  const staticPrograms = Array.isArray(channelPrograms[channel.id]) ? channelPrograms[channel.id] : [];
+  const programs = [...staticPrograms, ...dbPrograms].filter((program, index, list) =>
+    list.findIndex(item => item.programId === program.programId) === index
+  );
   const from = new Date(Date.now() - 24 * 60 * 60 * 1000).toISOString();
   const to = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toISOString();
   const occurrences = getOccurrencesByChannel(channel.id, from, to).map(occurrence => ({ ...occurrence, playbackUrl: null }));
@@ -516,7 +526,11 @@ app.get('/api/catalog/:channelId', (req, res) => {
   }
 
   const { getProgramsByChannel } = require('./models/program-db');
-  const programs = getProgramsByChannel(channel.id).map(program => ({ ...program, playbackUrl: null }));
+  const dbPrograms = getProgramsByChannel(channel.id).map(program => ({ ...program, playbackUrl: null }));
+  const staticPrograms = Array.isArray(channelPrograms[channel.id]) ? channelPrograms[channel.id] : [];
+  const programs = [...staticPrograms, ...dbPrograms].filter((program, index, list) =>
+    list.findIndex(item => item.programId === program.programId) === index
+  );
 
   return res.json({
     success: true,
@@ -534,13 +548,25 @@ app.get('/api/channels/:id/catalog', (req, res) => {
   }
 
   const { getProgramsByChannel } = require('./models/program-db');
-  const programs = getProgramsByChannel(channel.id).map(program => ({ ...program, playbackUrl: null }));
+  const dbPrograms = getProgramsByChannel(channel.id).map(program => ({ ...program, playbackUrl: null }));
+  const staticPrograms = Array.isArray(channelPrograms[channel.id]) ? channelPrograms[channel.id] : [];
+  const programs = [...staticPrograms, ...dbPrograms].filter((program, index, list) =>
+    list.findIndex(item => item.programId === program.programId) === index
+  );
 
   res.json({
     success: true,
     channelId: channel.id,
     count: programs.length,
     programs
+  });
+});
+
+app.get('/api/catalog/reserve', (_req, res) => {
+  res.json({
+    success: true,
+    count: unassignedPrograms.length,
+    programs: unassignedPrograms
   });
 });
 
