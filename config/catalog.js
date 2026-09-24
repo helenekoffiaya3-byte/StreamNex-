@@ -355,7 +355,16 @@ function assignProgramToChannel(channels, unassignedPrograms, programId, targetC
   return { success: true, updatedChannel: channel };
 }
 
-const nickelodeonLiveAction = NICK_LIVE_ACTION;\n\nmodule.exports = {
+const nickelodeonLiveAction = NICK_LIVE_ACTION;
+
+nickelodeonLiveAction.push(makeProgram("NICK-MA-027", "A Fairly Odd Movie: Grow Up, Timmy Turner!", "movie", {
+  originalTitle: "A Fairly Odd Movie: Grow Up, Timmy Turner!", year: 2011,
+  genre: ["Comédie", "Fantastique", "Jeunesse"],
+  description: "Timmy Turner doit faire face aux conséquences de ses vœux alors qu’il approche de l’âge adulte.",
+  actors: ["Drake Bell", "Daniella Monet", "Jason Alexander", "Cheryl Hines"], country: "États-Unis",
+  network: "Nickelodeon", category: "nickelodeon-live-action", epgId: "epg.nick-ma-027",
+  audioTracks: [], subtitles: [], streamEnabled: false, stream: { enabled: false, status: "INACTIVE" }
+}));\n\nmodule.exports = {
   channelPrograms,
   nickelodeonLiveAction,
   unassignedPrograms,
