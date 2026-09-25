@@ -1036,24 +1036,41 @@ app.get('/api/health', (_req, res) => {
 
 const { getLatestSyncRun } = require('./models/program-db');
 const { runEpgSync } = require('./services/epgRobot');
+const { loadEditorialScheduleForRti1 } = require('./services/editorialLoader');
 const cron = require('node-cron');
 
 const EPG_SYNC_CRON = process.env.EPG_SYNC_CRON || '0 */6 * * *';
 
 if (cron.validate(EPG_SYNC_CRON)) {
-  cron.schedule(EPG_SYNC_CRON, () => {
-    runEpgSync().catch(error => {
+  cron.schedule(EPG_SYNC_CRON, async () => {
+    try {
+      await runEpgSync();
+      loadEditorialScheduleForRti1();
+    } catch (error) {
       console.error('[Robot EPG] Synchronisation planifiée échouée:', error.message);
-    });
+    }
   });
 } else {
   console.error('[Robot EPG] EPG_SYNC_CRON invalide:', EPG_SYNC_CRON);
 }
 
 if (process.env.EPG_SYNC_ON_START !== 'false') {
-  runEpgSync().catch(error => {
-    console.error('[Robot EPG] Synchronisation au démarrage échouée:', error.message);
-  });
+  runEpgSync()
+    .then(() => loadEditorialScheduleForRti1())
+    .catch(error => {
+      console.error('[Robot EPG] Synchronisation au démarrage échouée:', error.message);
+      try {
+        loadEditorialScheduleForRti1();
+      } catch (editorialError) {
+        console.error('[Editorial EPG] Chargement RTI 1 échoué:', editorialError.message);
+      }
+    });
+} else {
+  try {
+    loadEditorialScheduleForRti1();
+  } catch (error) {
+    console.error('[Editorial EPG] Chargement RTI 1 échoué:', error.message);
+  }
 }
 
 app.get('/api/download/media', requireMediaDownloadAuth, (req, res) => {
