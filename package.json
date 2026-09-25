@@ -17,7 +17,9 @@
     "validate:vod-files": "node scripts/validate-vod-files.js",
     "create:vod": "node scripts/create-vod-mp4.js",
     "create:rti1-vod": "node scripts/create-vod-mp4.js --all rti1",
-    "record:rti1": "node services/rti1Recorder.js"
+    "record:rti1": "node services/rti1Recorder.js",
+    "db:init-admin": "node scripts/init-admin.js",
+    "db:check": "node scripts/check-database.js"
   },
   "engines": {
     "node": ">=24"
