@@ -361,6 +361,7 @@ function requireMediaDownloadAuth(req, res, next) {
 
 const CHANNEL_CONFIG = require('./config/channels');
 const { channelPrograms, nickelodeonLiveAction, unassignedPrograms, enrichProgram } = require('./config/catalog');
+const { syncConfiguredChannels } = require('./models/program-db');
 
 
 function validatePlaybackUrl(value) {
@@ -392,6 +393,8 @@ const CHANNELS = CHANNEL_CONFIG.map((channel, index) => ({
   // de la chaîne. Aucun fallback / chemin HLS n'est fabriqué par le serveur.
   url: validatePlaybackUrl(channel.productionUrl)
 }));
+
+syncConfiguredChannels(CHANNELS);
 
 const userSessions = new Map();
 const SESSION_TTL_MS = Number(process.env.SESSION_TTL_MS || 30 * 60 * 1000);
