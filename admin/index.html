@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow,noarchive">
+<title>StreamLive — Administration privée</title>
+<link rel="stylesheet" href="/admin/admin.css">
+</head>
+<body>
+<main class="shell">
+<section id="login" class="card login">
+<div class="brand">STREAM<span>LIVE</span></div>
+<p class="eyebrow">ESPACE PRIVÉ</p>
+<h1>Base de données de production</h1>
+<p>Accès réservé à l'administrateur StreamLive.</p>
+<form id="form">
+<label>Email<input id="email" type="email" autocomplete="username" required></label>
+<label>Mot de passe<input id="password" type="password" autocomplete="current-password" required></label>
+<button>Connexion</button>
+</form>
+<p id="error" class="error"></p>
+</section>
+<section id="panel" hidden>
+<header><div><div class="brand">STREAM<span>LIVE</span></div><small>Base de données privée</small></div><button id="logout" class="secondary">Déconnexion</button></header>
+<div id="stats" class="grid"></div>
+<div class="card"><h2>Protection</h2><p>Les statistiques de la base sont accessibles uniquement après authentification administrateur. La base SQLite reste côté serveur.</p></div>
+</section>
+</main>
+<script src="/admin/admin.js"></script>
+</body>
+</html>
