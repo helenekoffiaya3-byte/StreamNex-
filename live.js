@@ -178,7 +178,7 @@ function stopAllFeed(){if(state.feedObserver)state.feedObserver.disconnect();for
 
 function toggleMulti(id){
  const c=state.channels.find(x=>x.id===id);if(!c?.liveAvailable||!c.occurrence?.occurrenceId)return;
- if(state.selected.has(id){
+ if(state.selected.has(id)){
    const item=state.selected.get(id);stopItem(item);state.selected.delete(id);
    if(state.master===id)state.master=state.selected.keys().next().value||null;
  }else{
