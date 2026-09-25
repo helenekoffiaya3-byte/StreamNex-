@@ -12,6 +12,7 @@ const path = require('path');
 const fs = require('fs');
 
 const authRouter = require('./routes/auth');
+const adminRouter = require('./routes/admin');
 const { requireAdminAuth } = require('./services/adminAuth');
 
 const app = express();
@@ -85,6 +86,7 @@ const shuffleLimiter = rateLimit({
 
 app.use('/api', globalLimiter);
 app.use('/api/auth', authRouter);
+app.use('/api/admin', adminRouter);
 
 app.use((req, res, next) => {
   const pathname = String(req.path || '');
