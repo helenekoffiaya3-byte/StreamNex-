@@ -46,7 +46,7 @@
     },
     {
       "id": "rti1-05",
-      "title": "Flash Info",
+      "title": "Flash Info 10h",
       "startTime": "10:00",
       "endTime": "10:15",
       "vodFile": "storage/vod/rti1/flash_10h.mp4",
@@ -66,6 +66,26 @@
     },
     {
       "id": "rti1-07",
+      "title": "Série Télévisée Ivoire",
+      "startTime": "11:35",
+      "endTime": "12:00",
+      "vodFile": "storage/vod/rti1/serie_ivoire.mp4",
+      "mediaUrl": "/vod/rti1/serie_ivoire.mp4",
+      "channel": "rti-1",
+      "category": "Série"
+    },
+    {
+      "id": "rti1-08",
+      "title": "C'Midi",
+      "startTime": "12:00",
+      "endTime": "13:00",
+      "vodFile": "storage/vod/rti1/c_midi.mp4",
+      "mediaUrl": "/vod/rti1/c_midi.mp4",
+      "channel": "rti-1",
+      "category": "Talk-show"
+    },
+    {
+      "id": "rti1-09",
       "title": "Le 13H (Journal Télévisé)",
       "startTime": "13:00",
       "endTime": "13:45",
@@ -75,17 +95,77 @@
       "category": "Information"
     },
     {
-      "id": "rti1-08",
-      "title": "C'est Midi",
+      "id": "rti1-10",
+      "title": "C'est Midi (La Suite)",
       "startTime": "13:45",
       "endTime": "15:00",
-      "vodFile": "storage/vod/rti1/cest_midi.mp4",
-      "mediaUrl": "/vod/rti1/cest_midi.mp4",
+      "vodFile": "storage/vod/rti1/cest_midi_suite.mp4",
+      "mediaUrl": "/vod/rti1/cest_midi_suite.mp4",
       "channel": "rti-1",
       "category": "Talk-show"
     },
     {
-      "id": "rti1-09",
+      "id": "rti1-11",
+      "title": "Flash Info 15h",
+      "startTime": "15:00",
+      "endTime": "15:15",
+      "vodFile": "storage/vod/rti1/flash_15h.mp4",
+      "mediaUrl": "/vod/rti1/flash_15h.mp4",
+      "channel": "rti-1",
+      "category": "Information"
+    },
+    {
+      "id": "rti1-12",
+      "title": "Téléfilm & Cinéma Afrique",
+      "startTime": "15:15",
+      "endTime": "16:30",
+      "vodFile": "storage/vod/rti1/telefilm_cinema_afrique.mp4",
+      "mediaUrl": "/vod/rti1/telefilm_cinema_afrique.mp4",
+      "channel": "rti-1",
+      "category": "Cinéma"
+    },
+    {
+      "id": "rti1-13",
+      "title": "RTI Enfant & Jeunesse",
+      "startTime": "16:30",
+      "endTime": "17:30",
+      "vodFile": "storage/vod/rti1/rti_enfant_jeunesse.mp4",
+      "mediaUrl": "/vod/rti1/rti_enfant_jeunesse.mp4",
+      "channel": "rti-1",
+      "category": "Jeunesse"
+    },
+    {
+      "id": "rti1-14",
+      "title": "Documentaire & Découvertes",
+      "startTime": "17:30",
+      "endTime": "18:00",
+      "vodFile": "storage/vod/rti1/documentaire_decouvertes.mp4",
+      "mediaUrl": "/vod/rti1/documentaire_decouvertes.mp4",
+      "channel": "rti-1",
+      "category": "Documentaire"
+    },
+    {
+      "id": "rti1-15",
+      "title": "Flash Info 18h",
+      "startTime": "18:00",
+      "endTime": "18:15",
+      "vodFile": "storage/vod/rti1/flash_18h.mp4",
+      "mediaUrl": "/vod/rti1/flash_18h.mp4",
+      "channel": "rti-1",
+      "category": "Information"
+    },
+    {
+      "id": "rti1-16",
+      "title": "Escale Familiale & Magazine Soir",
+      "startTime": "18:15",
+      "endTime": "20:00",
+      "vodFile": "storage/vod/rti1/escale_familiale.mp4",
+      "mediaUrl": "/vod/rti1/escale_familiale.mp4",
+      "channel": "rti-1",
+      "category": "Magazine"
+    },
+    {
+      "id": "rti1-17",
       "title": "Le 20H (Grand Journal)",
       "startTime": "20:00",
       "endTime": "20:50",
@@ -95,7 +175,7 @@
       "category": "Information"
     },
     {
-      "id": "rti1-10",
+      "id": "rti1-18",
       "title": "Allume la Télé",
       "startTime": "20:50",
       "endTime": "21:00",
@@ -105,7 +185,7 @@
       "category": "Divertissement"
     },
     {
-      "id": "rti1-11",
+      "id": "rti1-19",
       "title": "Face aux Électeurs",
       "startTime": "21:00",
       "endTime": "22:30",
@@ -115,7 +195,7 @@
       "category": "Politique"
     },
     {
-      "id": "rti1-12",
+      "id": "rti1-20",
       "title": "Nuit RTI 1 & Rediffusions",
       "startTime": "22:30",
       "endTime": "06:00",
