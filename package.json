@@ -13,7 +13,9 @@
     "validate:epg-full": "node scripts/validate-full-epg.js",
     "validate:api-epg": "node scripts/validate-api-epg.js",
     "validate:streamlive-schedule": "node scripts/validate-streamlive-schedule.js",
-    "generate:fallback": "node scripts/generate-fallback.js"
+    "generate:fallback": "node scripts/generate-fallback.js",
+    "validate:vod-files": "node scripts/validate-vod-files.js",
+    "create:vod": "node scripts/create-vod-mp4.js"
   },
   "engines": {
     "node": ">=24"
