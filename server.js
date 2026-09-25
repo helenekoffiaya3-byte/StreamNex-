@@ -1375,6 +1375,7 @@ const server = app.listen(PORT, () => {
 let shuttingDown = false;
 function gracefulShutdown(signal) {
   if (streamLiveHlsEngine) streamLiveHlsEngine.stop();
+  if (rti1HlsEngine) rti1HlsEngine.stop();
   if (shuttingDown) return;
   shuttingDown = true;
   console.log(`[StreamLive] Arrêt demandé: ${signal}`);
