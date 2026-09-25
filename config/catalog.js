@@ -31,6 +31,7 @@ const makeProgram = (id, title, type = 'show', extra = {}) => ({
   // Aucun fichier n'est exposé tant que downloadEnabled n'est pas true.
   downloadEnabled: false,
   videoFilePath: null,
+  channelId: extra.channelId ?? extra.originalChannel ?? null,
   originalChannel: extra.originalChannel ?? null,
   studio: extra.studio ?? null,
   category: extra.category ?? (type === 'movie' ? 'film' : 'programme'),
@@ -156,8 +157,9 @@ function enrichProgram(program, occurrences) {
   const metadata = program.type === 'movie' ? (FILM_METADATA[program.programId] || {}) : (SERIES_METADATA[program.programId] || {});
   const description = program.description || FILM_DESCRIPTIONS[program.programId] || (program.type === 'show' ? (program.title + ' — fiche catalogue StreamLive.') : '');
   const seasons = program.type === 'movie' ? [] : buildSeriesSeasons(occurrences);
-  const epgId = program.epgId || (program.originalChannel ? ('epg.' + program.originalChannel + '.' + program.programId) : null);
-  return Object.assign({}, program, metadata, { epgId: epgId, description: description, seasons: seasons.length ? seasons : (Array.isArray(program.seasons) ? program.seasons : []), audioTracks: Array.isArray(program.audioTracks) ? program.audioTracks : [], subtitles: Array.isArray(program.subtitles) ? program.subtitles : [] });
+  const channelId = program.channelId || program.originalChannel || null;
+  const epgId = program.epgId || (channelId ? ('epg.' + channelId + '.' + program.programId) : null);
+  return Object.assign({}, program, metadata, { channelId: channelId, epgId: epgId, description: description, seasons: seasons.length ? seasons : (Array.isArray(program.seasons) ? program.seasons : []), audioTracks: Array.isArray(program.audioTracks) ? program.audioTracks : [], subtitles: Array.isArray(program.subtitles) ? program.subtitles : [] });
 }
 
 const SERIES_METADATA = {
