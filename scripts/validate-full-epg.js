@@ -7,8 +7,8 @@ const { generateFullCatalogPrograms, CATEGORY_TEMPLATES } = require("../utils/ep
 const EXPECTED_CHANNELS = 140;
 const EXPECTED_PROGRAMS_PER_CHANNEL = 20;
 const EXPECTED_GROUPS = {
-  National: 28,
-  Info: 26,
+  National: 27,
+  Info: 27,
   Jeunesse: 35,
   Films: 44,
   Biblical: 7
