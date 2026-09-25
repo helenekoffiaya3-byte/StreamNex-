@@ -1087,6 +1087,27 @@ app.get('/api/editorial/rti1/current', (_req, res) => {
   }
 });
 
+app.get('/api/editorial/rti1/replays', (req, res) => {
+  try {
+    const { getReplayMedia } = require('./models/program-db');
+    const limit = Math.min(500, Math.max(1, Number(req.query.limit) || 100));
+    const replays = getReplayMedia({
+      channelId: 'rti-1',
+      programId: req.query.programId ? String(req.query.programId).slice(0, 128) : null,
+      limit
+    });
+    return res.json({
+      success: true,
+      channelId: 'rti-1',
+      count: replays.length,
+      replays
+    });
+  } catch (error) {
+    console.error('[API] RTI 1 replays:', error);
+    return res.status(500).json({ success: false, error: 'Replay catalog unavailable' });
+  }
+});
+
 app.get('/api/editorial/rti1/schedule', (_req, res) => {
   try {
     const { loadRti1Schedule, validateRti1Schedule, TIMEZONE } = require('./services/rti1Scheduler');
