@@ -683,7 +683,7 @@ app.get('/api/live/channels', (_req, res) => {
         (Number.isNaN(end) || now < end);
     }) || null;
 
-    const liveStreamUrl = validatePlaybackUrl(getChannelPlaybackUrl(channel.id));
+    const liveStreamUrl = channel.id === 'rti-1' && rti1HlsEngine?.isReady() ? '/hls/rti1/stream.m3u8' : validatePlaybackUrl(getChannelPlaybackUrl(channel.id));
 
     return {
       id: channel.id,
