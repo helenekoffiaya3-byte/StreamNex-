@@ -2,6 +2,7 @@ require('dotenv').config();
 
 const express = require('express');
 const { generateProgramsForChannel } = require('./utils/epgGenerator');
+const { generateFullCatalogPrograms } = require('./utils/epgFullGenerator');
 const cors = require('cors');
 const helmet = require('helmet');
 const { rateLimit } = require('express-rate-limit');
@@ -488,14 +489,20 @@ app.get('/api/channels/:id/programs', (req, res) => {
   let programs = [...staticPrograms, ...dbPrograms].map(enrich).filter((program, index, list) =>
     list.findIndex(item => item.programId === program.programId) === index
   );
-  // Fallback uniquement pour les chaînes sans grille fixe/DB.
-  // Ces programmes sont explicitement synthétiques et ne créent aucune disponibilité LIVE.
-  if (!programs.length) programs = generateProgramsForChannel(channel);
+
+  // Grille EPG complète : 20 créneaux sur 24 h pour chaque chaîne.
+  // La grille synthétique est éditoriale uniquement et ne crée jamais de LIVE.
+  // Les programmes statiques/DB restent accessibles via /api/channels/:id et
+  // /api/catalog/:channelId ; cette route fournit une grille EPG normalisée.
+  const fullPrograms = generateFullCatalogPrograms(channel, { count: 20 });
 
   res.json({
     success: true,
     channelId: channel.id,
-    programs,
+    programs: fullPrograms,
+    programCount: fullPrograms.length,
+    source: "synthetic-full-epg",
+    staticProgramCount: programs.length,
     occurrences,
     epg: occurrences,
     fetchedAt: new Date().toISOString()
