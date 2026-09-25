@@ -245,3 +245,15 @@ h1,h2{margin:0;font-size:24px;line-height:1.1}
 .multi-slot-empty{display:flex;align-items:center;justify-content:center;min-height:140px;background:#0b0b0d;border:1px dashed #444;color:var(--muted);font-weight:800;cursor:pointer}
 .multi-slot-empty:hover{border-color:var(--green);color:#fff}
 @media(max-width:700px){.multi-picker{max-height:84vh}.multi-picker-list{max-height:calc(84vh - 150px)}.multi-slot-empty{min-height:100px}}
+
+/* Sélecteur de chaîne Multi-Live */
+.modal-hidden{display:none}
+#channel-modal:not(.modal-hidden){display:flex;position:fixed;inset:0;z-index:110;align-items:center;justify-content:center;padding:18px}
+#channel-modal .modal-backdrop{position:absolute;inset:0;background:rgba(0,0,0,.8)}
+#channel-modal .modal-content{position:relative;z-index:1;background:var(--surface);border:1px solid var(--line);border-radius:12px;width:min(400px,90vw);max-height:80vh;display:flex;flex-direction:column;overflow:hidden}
+#channel-modal .modal-header{display:flex;justify-content:space-between;align-items:center;padding:15px;border-bottom:1px solid var(--line)}
+#channel-modal .modal-header h3{margin:0;color:#fff;font-size:18px}
+#channel-modal .channel-list{padding:15px;overflow-y:auto;display:flex;flex-direction:column;gap:10px}
+.channel-item-btn{background:var(--surface-2);color:#fff;border:1px solid var(--line);padding:12px;border-radius:7px;cursor:pointer;text-align:left}
+.channel-item-btn:hover:not(:disabled){border-color:#666;background:#29292f}
+.channel-item-btn:disabled{opacity:.45;cursor:not-allowed}
