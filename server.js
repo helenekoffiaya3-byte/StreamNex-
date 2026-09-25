@@ -1141,7 +1141,7 @@ app.get('/api/replay', (req, res) => {
   }
 });
 
-app.get('/api/db/stats', (_req, res) => {
+app.get('/api/db/stats', requireAdminAuth, (_req, res) => {
   try {
     const { db } = require('./models/program-db');
     const stats = {
