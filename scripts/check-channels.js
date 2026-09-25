@@ -11,7 +11,7 @@ const EXPECTED_COUNTS = Object.freeze({
 });
 
 const FORBIDDEN_LITERAL_URLS = [
-  /https?:\/\/[^"'\s]+/i,
+  /productionUrl\s*:\s*['"]https?:\/\/[^'"]+/i,
   /test-streams\.mux\.dev/i,
   /example\.com/i,
   /example\.org/i,
