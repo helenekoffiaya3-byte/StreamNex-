@@ -4,7 +4,7 @@ const { spawn } = require('child_process');
 const fs = require('fs');
 const path = require('path');
 const { getActiveRti1Program, loadRti1Schedule, validateRti1Schedule } = require('./rti1Scheduler');
-const { addOccurrence } = require('../models/program-db');
+const { db, addOccurrence, registerRecording, finalizeRecording, failRecording } = require('../models/program-db');
 
 const TIMEZONE = 'Africa/Abidjan';
 const CHANNEL_ID = 'rti-1';
@@ -81,6 +81,7 @@ class Rti1Recorder {
     this.process = null;
     this.timer = null;
     this.activeKey = null;
+    this.recordingId = null;
     this.stopping = false;
   }
 
@@ -130,6 +131,19 @@ class Rti1Recorder {
 
     this.activeKey = program.id + '@' + startAt.toISOString();
 
+    const occurrence = db.prepare(
+      'SELECT occurrence_id FROM program_occurrences WHERE program_id = ? AND start_at = ?'
+    ).get(program.id, startAt.toISOString());
+
+    this.recordingId = registerRecording({
+      programId: program.id,
+      occurrenceId: occurrence?.occurrence_id || null,
+      channelId: CHANNEL_ID,
+      sourceUrl: SOURCE_URL,
+      startedAt: new Date().toISOString(),
+      expectedDurationSeconds: durationSeconds
+    });
+
     const args = [
       '-hide_banner', '-loglevel', 'warning',
       '-reconnect', '1',
@@ -165,6 +179,7 @@ class Rti1Recorder {
       if (code === 0 && fs.existsSync(output.tempPath)) {
         try {
           fs.renameSync(output.tempPath, output.finalPath);
+          const stat = fs.statSync(output.finalPath);
           addOccurrence(program.id, {
             channelId: CHANNEL_ID,
             startAt: startAt.toISOString(),
@@ -172,12 +187,22 @@ class Rti1Recorder {
             description: program.description || '',
             playbackUrl: output.url
           });
+          finalizeRecording(this.recordingId, {
+            storagePath: path.relative(process.cwd(), output.finalPath),
+            publicUrl: output.url,
+            mimeType: 'video/mp4',
+            fileSize: stat.size,
+            durationSeconds: (endAt.getTime() - startAt.getTime()) / 1000,
+            recordedAt: new Date().toISOString(),
+            endedAt: new Date().toISOString()
+          });
           console.log('[RTI1 Recorder] Replay disponible:', output.url);
         } catch (error) {
           console.error('[RTI1 Recorder] Finalisation impossible:', error.message);
         }
       } else {
         console.error('[RTI1 Recorder] Capture échouée pour', program.id, 'code=', code);
+        if (this.recordingId) failRecording(this.recordingId, 'partial', 'FFmpeg exited before completing the scheduled recording.');
         try { fs.rmSync(output.tempPath, { force: true }); } catch {}
         if (TRANSCODE_FALLBACK && !this.stopping) {
           this.transcodeFallback(program, startAt, endAt, output);
@@ -186,6 +211,7 @@ class Rti1Recorder {
 
       if (!this.stopping) {
         this.activeKey = null;
+        this.recordingId = null;
         this.sync();
       }
     });
@@ -225,12 +251,22 @@ class Rti1Recorder {
       if (code === 0 && fs.existsSync(output.tempPath)) {
         try {
           fs.renameSync(output.tempPath, output.finalPath);
+          const stat = fs.statSync(output.finalPath);
           addOccurrence(program.id, {
             channelId: CHANNEL_ID,
             startAt: startAt.toISOString(),
             endAt: endAt.toISOString(),
             description: program.description || '',
             playbackUrl: output.url
+          });
+          finalizeRecording(this.recordingId, {
+            storagePath: path.relative(process.cwd(), output.finalPath),
+            publicUrl: output.url,
+            mimeType: 'video/mp4',
+            fileSize: stat.size,
+            durationSeconds: (endAt.getTime() - startAt.getTime()) / 1000,
+            recordedAt: new Date().toISOString(),
+            endedAt: new Date().toISOString()
           });
           console.log('[RTI1 Recorder] Replay disponible après transcodage:', output.url);
         } catch (error) {
