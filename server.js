@@ -408,6 +408,43 @@ app.get('/api/stream/channels', (_req, res) => {
   });
 });
 
+app.get('/api/channels', (_req, res) => {
+  const { getChannelPlaybackUrl, getOccurrencesByChannel } = require('./models/program-db');
+  const now = Date.now();
+  const channels = CHANNELS.map(channel => {
+    const occurrences = getOccurrencesByChannel(
+      channel.id,
+      new Date(now - 24 * 60 * 60 * 1000).toISOString(),
+      new Date(now + 24 * 60 * 60 * 1000).toISOString()
+    );
+    const current = occurrences.find(item => {
+      const start = Date.parse(item.startAt);
+      const end = item.endAt ? Date.parse(item.endAt) : NaN;
+      return Number.isFinite(start) && start <= now && (Number.isNaN(end) || now < end);
+    }) || null;
+    const playbackUrl = validatePlaybackUrl(getChannelPlaybackUrl(channel.id));
+    return {
+      id: channel.id,
+      name: channel.name,
+      group: channel.group,
+      number: channel.number,
+      logoUrl: channel.logoUrl || '/assets/logos/' + channel.id + '.png',
+      liveAvailable: Boolean(playbackUrl && current),
+      occurrence: current ? {
+        occurrenceId: current.occurrenceId,
+        programId: current.programId || null,
+        downloadEnabled: Boolean(resolveVodProgram(current.programId)?.downloadEnabled === true),
+        title: current.title || current.subtitle || null,
+        subtitle: current.subtitle || null,
+        startAt: current.startAt,
+        endAt: current.endAt || null
+      } : null,
+      channelUrl: (process.env.SITE_BASE_URL || '').replace(/\/$/, '') + '/channel/' + channel.id
+    };
+  });
+  res.json({ success: true, count: channels.length, channels });
+});
+
 app.get('/api/channels/:id', (req, res) => {
   const channel = CHANNELS.find(item => item.id === req.params.id);
   if (!channel) {
