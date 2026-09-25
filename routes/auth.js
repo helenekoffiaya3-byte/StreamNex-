@@ -85,3 +85,5 @@ router.post('/logout', (_req, res) => {
 });
 
 module.exports = router;
+
+// Private administration uses server-side authorization.
