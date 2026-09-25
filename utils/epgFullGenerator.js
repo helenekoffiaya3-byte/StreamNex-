@@ -126,6 +126,8 @@ function generateFullCatalogPrograms(channel, options = {}) {
       startAtTime: startTime,
       endAtTime: endTime,
       duration: `${durationMinutes} min`,
+      timezone: "Africa/Abidjan",
+      utcOffsetMinutes: 0,
       generated: true,
       source: "synthetic-full-epg",
       catalogEnabled: true,
