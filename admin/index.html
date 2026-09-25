@@ -10,21 +10,70 @@
 <body>
 <main class="shell">
 <section id="login" class="card login">
-<div class="brand">STREAM<span>LIVE</span></div>
-<p class="eyebrow">ESPACE PRIVÉ</p>
-<h1>Base de données de production</h1>
-<p>Accès réservé à l'administrateur StreamLive.</p>
-<form id="form">
-<label>Email<input id="email" type="email" autocomplete="username" required></label>
-<label>Mot de passe<input id="password" type="password" autocomplete="current-password" required></label>
-<button>Connexion</button>
-</form>
-<p id="error" class="error"></p>
+  <div class="brand">STREAM<span>LIVE</span></div>
+  <p class="eyebrow">ESPACE PRIVÉ</p>
+  <h1>Base de données de production</h1>
+  <p>Accès réservé à l'administrateur StreamLive.</p>
+  <form id="form">
+    <label>Email<input id="email" type="email" autocomplete="username" required></label>
+    <label>Mot de passe<input id="password" type="password" autocomplete="current-password" required></label>
+    <button>Connexion</button>
+  </form>
+  <p id="error" class="error"></p>
 </section>
+
 <section id="panel" hidden>
-<header><div><div class="brand">STREAM<span>LIVE</span></div><small>Base de données privée</small></div><button id="logout" class="secondary">Déconnexion</button></header>
+<header>
+  <div><div class="brand">STREAM<span>LIVE</span></div><small>Base de données privée</small></div>
+  <button id="logout" class="secondary">Déconnexion</button>
+</header>
+
 <div id="stats" class="grid"></div>
-<div class="card"><h2>Protection</h2><p>Les statistiques de la base sont accessibles uniquement après authentification administrateur. La base SQLite reste côté serveur.</p></div>
+
+<section class="card">
+  <div class="section-head">
+    <div><p class="eyebrow">CATALOGUE</p><h2>Chaînes</h2></div>
+    <span id="channelCount"></span>
+  </div>
+  <div id="channels" class="channels"></div>
+</section>
+
+<section id="channelPanel" class="card" hidden>
+  <div class="section-head">
+    <div><p class="eyebrow">PROGRAMMATION</p><h2 id="selectedChannel">Chaîne</h2></div>
+    <button id="closeChannel" class="secondary">Fermer</button>
+  </div>
+
+  <div class="split">
+    <div>
+      <h3>Programmes de cette chaîne</h3>
+      <div id="programs" class="programs"></div>
+      <form id="programForm" class="subcard">
+        <h3>Ajouter un programme</h3>
+        <label>Titre<input id="programTitle" required maxlength="200"></label>
+        <label>Type<select id="programType"><option value="show">Émission</option><option value="series">Série</option><option value="movie">Film</option><option value="news">Information</option><option value="sports">Sport</option><option value="documentary">Documentaire</option><option value="kids">Jeunesse</option></select></label>
+        <label>Description<textarea id="programDescription"></textarea></label>
+        <button>Ajouter le programme</button>
+      </form>
+    </div>
+
+    <div>
+      <h3>Programmer une diffusion</h3>
+      <form id="scheduleForm" class="subcard">
+        <label>Programme<select id="scheduleProgram" required></select></label>
+        <label>Type<select id="broadcastType"><option value="broadcast">Première diffusion</option><option value="rerun">Rediffusion</option></select></label>
+        <label>Date et heure de début<input id="startAt" type="datetime-local" required></label>
+        <label>Date et heure de fin<input id="endAt" type="datetime-local" required></label>
+        <label>Sous-titre / épisode<input id="subtitle"></label>
+        <button>Programmer</button>
+      </form>
+      <h3>Planning</h3>
+      <div id="schedule" class="schedule"></div>
+    </div>
+  </div>
+</section>
+
+<div class="card"><h2>Confidentialité</h2><p>Le catalogue et les horaires sont administrés côté serveur. Les routes d'administration sont protégées par le contrôle d'accès administrateur.</p></div>
 </section>
 </main>
 <script src="/admin/admin.js"></script>
