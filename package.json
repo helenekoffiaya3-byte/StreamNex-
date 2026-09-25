@@ -9,7 +9,8 @@
     "map-channels": "node lib/autoMapChannels.js",
     "check:channels": "node scripts/check-channels.js",
     "validate:epg": "node scripts/validate-epg-mapping.js",
-    "db:init": "node scripts/init-db.js"
+    "db:init": "node scripts/init-db.js",
+    "validate:epg-full": "node scripts/validate-full-epg.js"
   },
   "engines": {
     "node": ">=24"
