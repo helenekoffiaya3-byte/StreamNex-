@@ -282,19 +282,12 @@ function requireMediaDownloadAuth(req, res, next) {
   if (!token) {
     return res.status(401).json({
       success: false,
-      error: 'Authentification requise.'
+      error: 'Authentification requise pour télécharger.'
     });
   }
 
   try {
     const claims = verifyJwt(token);
-    if (!hasMediaDownloadPermission(claims)) {
-      return res.status(403).json({
-        success: false,
-        error: 'Droit de téléchargement insuffisant.'
-      });
-    }
-
     req.auth = {
       userId: claims.sub,
       claims
@@ -495,6 +488,10 @@ app.get('/api/live/channels', (_req, res) => {
       liveAvailable: Boolean(current && liveStreamUrl),
       occurrence: current ? {
         occurrenceId: current.occurrenceId,
+        programId: current.programId || null,
+        downloadEnabled: Boolean(
+          resolveVodProgram(current.programId)?.downloadEnabled === true
+        ),
         title: current.title || current.subtitle || null,
         subtitle: current.subtitle || null,
         startAt: current.startAt,
@@ -613,6 +610,26 @@ app.get('/api/catalog/nickelodeon-live-action', (_req, res) => {\n  res.json({ s
     success: true,
     count: unassignedPrograms.length,
     programs: unassignedPrograms
+  });
+});
+
+app.head('/api/vod/:id/download', vodDownloadLimiter, requireMediaDownloadAuth, (req, res) => {
+  const programId = String(req.params.id || '').trim();
+  const program = resolveVodProgram(programId);
+
+  if (!program) return res.status(404).end();
+  if (program.downloadEnabled !== true) return res.status(404).end();
+
+  const filePath = resolveVodFilePath(program);
+  if (!filePath) return res.status(404).end();
+
+  fs.stat(filePath, (statError, stat) => {
+    if (statError || !stat.isFile()) return res.status(404).end();
+    res.setHeader('Content-Type', 'video/mp4');
+    res.setHeader('Content-Disposition', `attachment; filename="${safeDownloadName(program.title, programId)}"`);
+    res.setHeader('Cache-Control', 'private, no-store');
+    res.setHeader('X-Content-Type-Options', 'nosniff');
+    return res.status(200).end();
   });
 });
 
