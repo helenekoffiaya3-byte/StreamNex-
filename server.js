@@ -748,8 +748,11 @@ app.get('/api/epg/vitrine', (_req, res) => {
       const liveUrl = validatePlaybackUrl(getChannelPlaybackUrl(channel.id));
       if (start <= now && (Number.isNaN(end) || now < end) && liveUrl) {
         live.push({ ...base, mode: 'LIVE' });
-      } else if (Number.isFinite(end) && end <= now && validatePlaybackUrl(occurrence.playbackUrl)) {
-        replays.push({ ...base, mode: 'VOD' });
+      } else if (Number.isFinite(end) && end <= now) {
+        const replayUrl = channel.id === 'rti-1'
+          ? resolveEditorialVodPath(occurrence.playbackUrl)?.url
+          : validatePlaybackUrl(occurrence.playbackUrl);
+        if (replayUrl) replays.push({ ...base, mode: 'VOD', playbackUrl: replayUrl });
       }
     }
   }
