@@ -1089,9 +1089,9 @@ app.get('/api/editorial/rti1/current', (_req, res) => {
 
 app.get('/api/editorial/rti1/replays', (req, res) => {
   try {
-    const { getReplayMedia } = require('./models/program-db');
+    const { getReplayCatalog } = require('./models/program-db');
     const limit = Math.min(500, Math.max(1, Number(req.query.limit) || 100));
-    const replays = getReplayMedia({
+    const replays = getReplayCatalog({
       channelId: 'rti-1',
       programId: req.query.programId ? String(req.query.programId).slice(0, 128) : null,
       limit
