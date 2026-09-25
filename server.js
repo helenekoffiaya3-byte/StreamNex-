@@ -121,6 +121,23 @@ app.use((req, res, next) => {
   return next();
 });
 
+app.get('/vod/*mediaPath', (req, res, next) => {
+  const mediaPath = Array.isArray(req.params.mediaPath)
+    ? req.params.mediaPath.join('/')
+    : String(req.params.mediaPath || '');
+  const logicalUrl = '/vod/' + mediaPath;
+  const resolved = resolveEditorialVodPath(logicalUrl);
+
+  if (!resolved) return res.status(404).end();
+  return res.sendFile(resolved.candidate, {
+    acceptRanges: true,
+    cacheControl: true,
+    maxAge: '1h'
+  }, error => {
+    if (error && !res.headersSent) next(error);
+  });
+});
+
 app.use(express.static(__dirname, {
   dotfiles: 'deny',
   fallthrough: true,
@@ -315,6 +332,18 @@ function validatePlaybackUrl(value) {
   } catch {
     return null;
   }
+}
+
+function resolveEditorialVodPath(value) {
+  const url = String(value || '').trim();
+  if (!/^\/vod\/(?:[a-zA-Z0-9._-]+\/)*[a-zA-Z0-9._-]+\.mp4$/i.test(url)) return null;
+
+  const relativePath = url.slice('/vod/'.length);
+  const candidate = path.resolve(VOD_MEDIA_ROOT, relativePath);
+  if (candidate !== VOD_MEDIA_ROOT && !candidate.startsWith(VOD_MEDIA_ROOT + path.sep)) return null;
+  if (!fs.existsSync(candidate)) return null;
+
+  return { candidate, url };
 }
 
 const CHANNELS = CHANNEL_CONFIG.map((channel, index) => ({
@@ -975,6 +1004,19 @@ app.get('/api/programs/resolve-playback', (req, res) => {
       success: true,
       mode: 'VOD',
       playbackUrl: vodUrl,
+      programTitle: occurrence.title || occurrence.subtitle || program.title
+    });
+  }
+
+  const editorialVod = program.sourceType === 'editorial-curated'
+    ? resolveEditorialVodPath(occurrence.playbackUrl || program.playbackUrl)
+    : null;
+
+  if (editorialVod) {
+    return res.json({
+      success: true,
+      mode: 'VOD',
+      playbackUrl: editorialVod.url,
       programTitle: occurrence.title || occurrence.subtitle || program.title
     });
   }
