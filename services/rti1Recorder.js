@@ -114,13 +114,12 @@ class Rti1Recorder {
     const remainingSeconds = Math.max(1, Math.ceil((endAt.getTime() - now.getTime()) / 1000));
     const key = program.id + '@' + startAt.toISOString();
 
-    if (this.activeKey === key && this.process) return;
-    if (this.activeKey === key && !this.process) return;
+    // FFmpeg reçoit -t avec la durée exacte restante. On le laisse donc
+    // terminer naturellement au changement de programme.
+    if (this.process) return;
+    if (this.activeKey === key) return;
 
-    this.stopCurrent(() => {
-      if (this.stopping) return;
-      this.startRecording(program, startAt, endAt, remainingSeconds);
-    });
+    this.startRecording(program, startAt, endAt, remainingSeconds);
   }
 
   startRecording(program, startAt, endAt, durationSeconds) {
