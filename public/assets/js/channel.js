@@ -110,7 +110,7 @@
 
     if (epgSource === 'synthetic-fallback' && programs.length) {
       rows.appendChild(makeRow('Grille EPG de secours', programs.map(p => p.programId)));
-      showState(epgWarning || 'Grille synthétique affichée : aucune occurrence EPG réelle disponible.');
+      appendState(epgWarning || 'Grille synthétique affichée : aucune occurrence EPG réelle disponible.');
     } else if (!rows.children.length) {
       showState('Aucun programme EPG réel disponible pour cette chaîne.');
     }
@@ -506,6 +506,13 @@
     block.className = 'state-block';
     block.textContent = message;
     rows.appendChild(block);
+  }
+
+  function appendState(message) {
+    const block = document.createElement('section');
+    block.className = 'state-block';
+    block.textContent = message;
+    $('rows').appendChild(block);
   }
 
   function showToast(message) {
