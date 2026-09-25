@@ -2,8 +2,22 @@ const fs = require('fs');
 const path = require('path');
 const { spawnSync } = require('child_process');
 
-const schedulePath = path.resolve(process.cwd(), 'config/editorial/streamlive-programs.json');
-const FFMPEG_PATH = process.env.FFMPEG_PATH || 'ffprobe';
+const CATALOGS = [
+  {
+    name: 'StreamLive',
+    path: path.resolve(process.cwd(), 'config/editorial/streamlive-programs.json')
+  },
+  {
+    name: 'RTI 1',
+    path: path.resolve(process.cwd(), 'config/editorial/rti1-programs.json')
+  }
+];
+
+const FFPROBE_PATH = process.env.FFPROBE_PATH || (
+  process.env.FFMPEG_PATH
+    ? path.join(path.dirname(process.env.FFMPEG_PATH), 'ffprobe')
+    : 'ffprobe'
+);
 
 function timeToMinutes(timeStr, isEndTime = false) {
   if (!/^([01]\d|2[0-3]):[0-5]\d$/.test(String(timeStr))) {
@@ -15,7 +29,7 @@ function timeToMinutes(timeStr, isEndTime = false) {
 }
 
 function inspectMediaFile(filePath) {
-  const result = spawnSync(FFMPEG_PATH, [
+  const result = spawnSync(FFPROBE_PATH, [
     '-v', 'error',
     '-show_entries', 'format=duration,format_name',
     '-show_entries', 'stream=codec_type,codec_name',
@@ -45,32 +59,27 @@ function inspectMediaFile(filePath) {
   }
 }
 
-function validateVodFiles() {
-  console.log('🔍 Vérification des fichiers VOD StreamLive...\n');
-
-  if (!fs.existsSync(schedulePath)) {
-    console.error('❌ Fichier de configuration introuvable:', schedulePath);
-    return 1;
-  }
-
-  const catalog = JSON.parse(fs.readFileSync(schedulePath, 'utf8'));
-  if (!Array.isArray(catalog.schedule)) {
-    console.error('❌ schedule absent ou invalide.');
-    return 1;
-  }
-
+function validateCatalog(catalog, name) {
   let missingFiles = 0;
   let invalidFiles = 0;
+
+  if (!Array.isArray(catalog.schedule)) {
+    console.error(`❌ [${name}] schedule absent ou invalide.`);
+    return { missingFiles: 0, invalidFiles: 1 };
+  }
+
+  console.log(`\n🔍 Vérification VOD — ${name}`);
 
   for (const prog of catalog.schedule) {
     const startMin = timeToMinutes(prog.startTime);
     const endMin = timeToMinutes(prog.endTime, true);
     const requiredDurationSec = (endMin - startMin) * 60;
-    const fullPath = path.resolve(process.cwd(), prog.vodFile || '');
-    const exists = fs.existsSync(fullPath);
+    const vodFile = String(prog.vodFile || '').trim();
+    const fullPath = path.resolve(process.cwd(), vodFile);
+    const exists = Boolean(vodFile) && fs.existsSync(fullPath);
 
     if (!exists) {
-      console.log(`❌ ${prog.id} | ${prog.startTime}-${prog.endTime} | ABSENT | ${prog.vodFile}`);
+      console.log(`❌ ${prog.id} | ${prog.startTime}-${prog.endTime} | ABSENT | ${vodFile || '(vodFile manquant)'}`);
       missingFiles++;
       continue;
     }
@@ -93,18 +102,40 @@ function validateVodFiles() {
     console.log(`✅ ${prog.id} | ${prog.startTime}-${prog.endTime} | ${Math.round(info.durationSeconds / 60)}m | video=${info.videoCodecs.join(',')} audio=${info.audioCodecs.join(',')}`);
   }
 
-  console.log('\n📊 Bilan');
-  console.log(`- Présents : ${catalog.schedule.length - missingFiles}/${catalog.schedule.length}`);
-  console.log(`- Manquants : ${missingFiles}`);
-  console.log(`- Invalides / trop courts : ${invalidFiles}`);
+  return { missingFiles, invalidFiles, total: catalog.schedule.length };
+}
 
-  if (missingFiles || invalidFiles) {
-    console.log('\n⚠️ La grille reste valide, mais certains créneaux utiliseront le fallback si celui-ci est activé.');
+function main() {
+  let totalMissing = 0;
+  let totalInvalid = 0;
+  let totalPrograms = 0;
+
+  for (const catalogInfo of CATALOGS) {
+    if (!fs.existsSync(catalogInfo.path)) {
+      console.error(`❌ [${catalogInfo.name}] fichier introuvable: ${catalogInfo.path}`);
+      totalInvalid++;
+      continue;
+    }
+
+    const catalog = JSON.parse(fs.readFileSync(catalogInfo.path, 'utf8'));
+    const result = validateCatalog(catalog, catalogInfo.name);
+    totalMissing += result.missingFiles;
+    totalInvalid += result.invalidFiles;
+    totalPrograms += result.total || 0;
+  }
+
+  console.log('\n📊 Bilan global');
+  console.log(`- Programmes contrôlés : ${totalPrograms}`);
+  console.log(`- Médias manquants : ${totalMissing}`);
+  console.log(`- Médias invalides / trop courts : ${totalInvalid}`);
+
+  if (totalMissing || totalInvalid) {
+    console.log('\n⚠️ Validation VOD échouée. Les fichiers physiques doivent être installés sur le serveur avant le passage en production.');
     return 1;
   }
 
-  console.log('\n🎉 Tous les médias VOD sont présents, lisibles et assez longs pour leurs créneaux.');
+  console.log('\n🎉 Tous les médias des deux chaînes sont présents, lisibles et assez longs.');
   return 0;
 }
 
-process.exitCode = validateVodFiles();
+process.exitCode = main();
