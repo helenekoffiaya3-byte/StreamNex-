@@ -213,6 +213,27 @@ function normalizeOccurrence(row) {
   };
 }
 
+function syncConfiguredChannels(channels) {
+  if (!Array.isArray(channels)) throw new TypeError('La configuration des chaînes doit être un tableau.');
+  const now = new Date().toISOString();
+  const statement = db.prepare(`
+    INSERT INTO channels (channel_id, name, live_stream_url, updated_at)
+    VALUES (?, ?, ?, ?)
+    ON CONFLICT(channel_id) DO UPDATE SET
+      name = excluded.name,
+      live_stream_url = excluded.live_stream_url,
+      updated_at = excluded.updated_at
+  `);
+  const transaction = db.transaction(() => {
+    for (const channel of channels) {
+      if (!channel?.id || !channel?.name) continue;
+      statement.run(channel.id, channel.name, channel.productionUrl || null, now);
+    }
+  });
+  transaction();
+  return channels.length;
+}
+
 function upsertChannel(channelId, name, liveStreamUrl = null) {
   db.prepare(`
     INSERT INTO channels (channel_id, name, live_stream_url, updated_at)
@@ -356,8 +377,8 @@ function addOccurrence(programId, occurrence) {
     INSERT INTO program_occurrences (
       program_id, channel_id, start_at, end_at, subtitle,
       season_number, episode_number, description, poster,
-      poster_source_url, poster_source_type, playback_url
-    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+      poster_source_url, poster_source_type, playback_url, broadcast_type
+    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
     ON CONFLICT(program_id, start_at) DO UPDATE SET
       end_at = excluded.end_at,
       subtitle = excluded.subtitle,
@@ -367,7 +388,8 @@ function addOccurrence(programId, occurrence) {
       poster = COALESCE(excluded.poster, program_occurrences.poster),
       poster_source_url = COALESCE(excluded.poster_source_url, program_occurrences.poster_source_url),
       poster_source_type = COALESCE(excluded.poster_source_type, program_occurrences.poster_source_type),
-      playback_url = COALESCE(excluded.playback_url, program_occurrences.playback_url)
+      playback_url = COALESCE(excluded.playback_url, program_occurrences.playback_url),
+      broadcast_type = excluded.broadcast_type
   `).run(
     programId,
     occurrence.channelId,
@@ -380,7 +402,8 @@ function addOccurrence(programId, occurrence) {
     occurrence.poster || null,
     occurrence.posterSourceUrl || null,
     occurrence.posterSourceType || null,
-    occurrence.playbackUrl || null
+    occurrence.playbackUrl || null,
+    occurrence.broadcastType || 'broadcast'
   );
 
   const nowIso = new Date().toISOString();
@@ -999,6 +1022,7 @@ module.exports = {
   finishSyncRun,
   getLatestSyncRun,
   upsertChannel,
+  syncConfiguredChannels,
   getChannelPlaybackUrl,
   registerRecording,
   finalizeRecording,
