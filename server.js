@@ -12,6 +12,7 @@ const path = require('path');
 const fs = require('fs');
 
 const authRouter = require('./routes/auth');
+const { requireAdminAuth } = require('./services/adminAuth');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
