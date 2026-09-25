@@ -4,100 +4,112 @@
   "timezone": "Africa/Abidjan",
   "schedule": [
     {
-      "id": "rti1-prog-01",
-      "title": "Journal Télévisé de 06h00",
-      "startTime": "06:00",
-      "endTime": "06:30",
-      "description": "L'essentiel de l'actualité nationale et internationale pour bien démarrer la journée.",
-      "category": "Information"
+      "id": "rti1-matin-01",
+      "title": "Matin Bonheur",
+      "startTime": "07:00",
+      "endTime": "08:00",
+      "description": "Votre magazine matinal de divertissement, de bien-être et de la vie quotidienne.",
+      "category": "Magazine",
+      "mediaUrl": "/vod/rti1/matin-bonheur.mp4"
+    },
+    {
+      "id": "rti1-info-01",
+      "title": "Flash Info",
+      "startTime": "10:00",
+      "endTime": "10:15",
+      "description": "L'essentiel de l'actualité en bref.",
+      "category": "Information",
+      "mediaUrl": "/vod/rti1/flash-info.mp4"
     },
     {
       "id": "rti1-prog-02",
-      "title": "Matin Bonheur",
-      "startTime": "06:30",
-      "endTime": "09:00",
-      "description": "Magazine matinal de divertissement, de bien-être et de conseils pratiques.",
-      "category": "Magazine"
+      "title": "Made in Africa",
+      "startTime": "10:05",
+      "endTime": "11:35",
+      "description": "Magazine culturel et valorisation des talents et initiatives du continent africain.",
+      "category": "Culture",
+      "mediaUrl": "/vod/rti1/made-in-africa.mp4"
     },
     {
       "id": "rti1-prog-03",
-      "title": "Série : Ma Famille (Rediffusion)",
-      "startTime": "09:00",
-      "endTime": "10:00",
-      "description": "Rediffusion éditoriale de la série Ma Famille.",
-      "category": "Série"
-    },
-    {
-      "id": "rti1-prog-04",
-      "title": "Documentaire Découverte : Les Trésors de Côte d'Ivoire",
-      "startTime": "10:00",
-      "endTime": "11:00",
-      "description": "Voyage éditorial au cœur des richesses culturelles, historiques et naturelles de la Côte d'Ivoire.",
-      "category": "Documentaire"
-    },
-    {
-      "id": "rti1-prog-05",
-      "title": "Le Grand Talk",
-      "startTime": "11:00",
-      "endTime": "12:00",
-      "description": "Émission éditoriale consacrée aux grands sujets de société et d'actualité.",
-      "category": "Talk-show"
-    },
-    {
-      "id": "rti1-prog-06",
-      "title": "Journal 13h00",
+      "title": "C'Midi",
       "startTime": "12:00",
       "endTime": "13:00",
-      "description": "Édition de la mi-journée.",
-      "category": "Information"
+      "description": "Le rendez-vous incontournable de la mi-journée, entre talk-show, débats et invités de marque.",
+      "category": "Talk-show",
+      "mediaUrl": "/vod/rti1/cmidi.mp4"
     },
     {
-      "id": "rti1-prog-07",
-      "title": "Cinéma Africain : Le Grand Écran",
+      "id": "rti1-info-02",
+      "title": "Le 13h00",
       "startTime": "13:00",
-      "endTime": "15:00",
-      "description": "Créneau éditorial consacré aux productions cinématographiques africaines.",
-      "category": "Cinéma"
+      "endTime": "13:45",
+      "description": "Le journal télévisé de la mi-journée sur RTI 1.",
+      "category": "Information",
+      "mediaUrl": "/vod/rti1/le-13h.mp4"
     },
     {
-      "id": "rti1-prog-08",
-      "title": "Divertissement Jeunesse : Le Monde des Enfants",
+      "id": "rti1-info-03",
+      "title": "Flash Info",
       "startTime": "15:00",
-      "endTime": "16:30",
-      "description": "Sélection éditoriale de programmes jeunesse.",
-      "category": "Jeunesse"
+      "endTime": "15:15",
+      "description": "Point d'information rapide de l'après-midi.",
+      "category": "Information",
+      "mediaUrl": "/vod/rti1/flash-info.mp4"
     },
     {
-      "id": "rti1-prog-09",
-      "title": "Cuisine d'Ici et d'Ailleurs",
-      "startTime": "16:30",
-      "endTime": "17:00",
-      "description": "Magazine culinaire éditorial.",
-      "category": "Lifestyle"
+      "id": "rti1-info-04",
+      "title": "Flash Info",
+      "startTime": "18:00",
+      "endTime": "18:15",
+      "description": "Le point de l'actualité avant les grandes éditions du soir.",
+      "category": "Information",
+      "mediaUrl": "/vod/rti1/flash-info.mp4"
     },
     {
-      "id": "rti1-prog-10",
-      "title": "Série dramatique : Cœurs Brisés",
-      "startTime": "17:00",
-      "endTime": "18:00",
-      "description": "Créneau éditorial de fiction dramatique.",
-      "category": "Série"
+      "id": "rti1-ser-01",
+      "title": "L'amour à mort",
+      "startTime": "19:00",
+      "endTime": "20:00",
+      "description": "Série dramatique et sentiments : rebondissements et passion au rendez-vous.",
+      "category": "Série",
+      "mediaUrl": "/vod/series/lamour-a-mort.mp4"
     },
     {
-      "id": "rti1-prog-11",
-      "title": "Le Journal de 20h00",
+      "id": "rti1-info-05",
+      "title": "Le 20h00",
       "startTime": "20:00",
-      "endTime": "21:00",
-      "description": "Édition principale du journal de la soirée.",
-      "category": "Information"
+      "endTime": "20:30",
+      "description": "Le grand journal principal d'information nationale et internationale.",
+      "category": "Information",
+      "mediaUrl": "/vod/rti1/le-20h.mp4"
     },
     {
-      "id": "rti1-prog-12",
-      "title": "Soirée Cinéma / Blockbuster",
+      "id": "rti1-div-01",
+      "title": "Allume la télé",
+      "startTime": "20:50",
+      "endTime": "21:50",
+      "description": "Divertissement et bonne humeur autour des moments forts de la télévision.",
+      "category": "Divertissement",
+      "mediaUrl": "/vod/rti1/allume-la-tele.mp4"
+    },
+    {
+      "id": "rti1-pol-01",
+      "title": "Face aux électeurs",
       "startTime": "21:00",
-      "endTime": "23:00",
-      "description": "Créneau éditorial de cinéma en soirée.",
-      "category": "Cinéma"
+      "endTime": "22:30",
+      "description": "Magazine politique, débats et confrontations d'idées.",
+      "category": "Politique",
+      "mediaUrl": "/vod/rti1/face-aux-electeurs.mp4"
+    },
+    {
+      "id": "rti1-info-06",
+      "title": "Le 23h00",
+      "startTime": "23:00",
+      "endTime": "23:30",
+      "description": "Le dernier journal d'information de la journée.",
+      "category": "Information",
+      "mediaUrl": "/vod/rti1/le-23h.mp4"
     }
   ]
 }
