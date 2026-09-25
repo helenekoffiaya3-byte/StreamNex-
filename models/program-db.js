@@ -12,6 +12,8 @@ db.pragma('journal_mode = WAL');
 db.pragma('synchronous = NORMAL');
 db.pragma('busy_timeout = 7000');
 db.pragma('foreign_keys = ON');
+db.pragma('trusted_schema = OFF');
+db.pragma('secure_delete = ON');
 
 function ensureColumn(table, column, definition) {
   const columns = db.prepare('PRAGMA table_info(' + table + ')').all();
