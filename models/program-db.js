@@ -170,6 +170,7 @@ ensureColumn('programs', 'poster_source_type', 'TEXT');
 ensureColumn('program_occurrences', 'poster_source_url', 'TEXT');
 ensureColumn('program_occurrences', 'poster_source_type', 'TEXT');
 ensureColumn('program_occurrences', 'playback_url', 'TEXT');
+ensureColumn('program_occurrences', 'broadcast_type', "TEXT NOT NULL DEFAULT 'broadcast'");
 ensureColumn('programs', 'observed_first_seen_at', 'TEXT');
 ensureColumn('programs', 'observed_last_seen_at', 'TEXT');
 ensureColumn('programs', 'source_type', "TEXT NOT NULL DEFAULT 'epg'");
@@ -207,7 +208,8 @@ function normalizeOccurrence(row) {
       : null,
     poster: row.poster || null,
     posterSourceUrl: row.posterSourceUrl || null,
-    posterSourceType: row.posterSourceType || null
+    posterSourceType: row.posterSourceType || null,
+    broadcastType: row.broadcastType || 'broadcast'
   };
 }
 
@@ -246,7 +248,7 @@ function getOccurrencesByChannel(channelId, fromIso = null, toIso = null) {
            po.channel_id AS channelId, po.start_at AS startAt, po.end_at AS endAt,
            po.subtitle, po.season_number AS seasonNumber,
            po.episode_number AS episodeNumber, po.description, po.poster,
-           po.poster_source_url AS posterSourceUrl, po.poster_source_type AS posterSourceType, po.playback_url AS playbackUrl
+           po.poster_source_url AS posterSourceUrl, po.poster_source_type AS posterSourceType, po.playback_url AS playbackUrl, po.broadcast_type AS broadcastType
     FROM program_occurrences AS po
     JOIN programs ON programs.program_id = po.program_id
     WHERE po.channel_id = ?
