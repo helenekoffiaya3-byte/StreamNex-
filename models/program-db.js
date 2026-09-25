@@ -614,6 +614,255 @@ module.exports = {
   getLatestSyncRun,
   upsertChannel,
 
+
+
+// Media-catalog extensions. These tables are additive so existing EPG data remains intact.
+db.exec(`
+CREATE TABLE IF NOT EXISTS episodes (
+  episode_id INTEGER PRIMARY KEY AUTOINCREMENT,
+  program_id TEXT NOT NULL,
+  series_id TEXT,
+  season_number INTEGER,
+  episode_number INTEGER,
+  title TEXT,
+  synopsis TEXT,
+  duration_seconds REAL,
+  created_at TEXT NOT NULL,
+  updated_at TEXT NOT NULL,
+  UNIQUE(program_id, season_number, episode_number),
+  FOREIGN KEY(program_id) REFERENCES programs(program_id) ON DELETE CASCADE
+);
+
+CREATE TABLE IF NOT EXISTS movies (
+  movie_id INTEGER PRIMARY KEY AUTOINCREMENT,
+  program_id TEXT NOT NULL UNIQUE,
+  original_title TEXT,
+  release_year INTEGER,
+  duration_seconds REAL,
+  synopsis TEXT,
+  created_at TEXT NOT NULL,
+  updated_at TEXT NOT NULL,
+  FOREIGN KEY(program_id) REFERENCES programs(program_id) ON DELETE CASCADE
+);
+
+CREATE TABLE IF NOT EXISTS series (
+  series_id TEXT PRIMARY KEY,
+  program_id TEXT,
+  title TEXT NOT NULL,
+  synopsis TEXT,
+  poster TEXT,
+  created_at TEXT NOT NULL,
+  updated_at TEXT NOT NULL,
+  FOREIGN KEY(program_id) REFERENCES programs(program_id) ON DELETE SET NULL
+);
+
+CREATE TABLE IF NOT EXISTS genres (
+  genre_id INTEGER PRIMARY KEY AUTOINCREMENT,
+  slug TEXT NOT NULL UNIQUE,
+  name TEXT NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS program_genres (
+  program_id TEXT NOT NULL,
+  genre_id INTEGER NOT NULL,
+  PRIMARY KEY(program_id, genre_id),
+  FOREIGN KEY(program_id) REFERENCES programs(program_id) ON DELETE CASCADE,
+  FOREIGN KEY(genre_id) REFERENCES genres(genre_id) ON DELETE CASCADE
+);
+
+CREATE TABLE IF NOT EXISTS persons (
+  person_id INTEGER PRIMARY KEY AUTOINCREMENT,
+  name TEXT NOT NULL,
+  role TEXT,
+  created_at TEXT NOT NULL,
+  UNIQUE(name, role)
+);
+
+CREATE TABLE IF NOT EXISTS program_persons (
+  program_id TEXT NOT NULL,
+  person_id INTEGER NOT NULL,
+  PRIMARY KEY(program_id, person_id),
+  FOREIGN KEY(program_id) REFERENCES programs(program_id) ON DELETE CASCADE,
+  FOREIGN KEY(person_id) REFERENCES persons(person_id) ON DELETE CASCADE
+);
+
+CREATE TABLE IF NOT EXISTS subtitles (
+  subtitle_id INTEGER PRIMARY KEY AUTOINCREMENT,
+  media_id INTEGER,
+  language TEXT NOT NULL,
+  label TEXT,
+  storage_path TEXT,
+  public_url TEXT,
+  mime_type TEXT DEFAULT 'text/vtt',
+  status TEXT NOT NULL DEFAULT 'available' CHECK(status IN ('pending','available','failed','deleted')),
+  created_at TEXT NOT NULL,
+  FOREIGN KEY(media_id) REFERENCES media_assets(media_id) ON DELETE CASCADE
+);
+
+CREATE TABLE IF NOT EXISTS audio_tracks (
+  audio_track_id INTEGER PRIMARY KEY AUTOINCREMENT,
+  media_id INTEGER,
+  language TEXT,
+  label TEXT,
+  codec TEXT,
+  channels INTEGER,
+  bitrate_kbps INTEGER,
+  status TEXT NOT NULL DEFAULT 'available' CHECK(status IN ('pending','available','failed','deleted')),
+  created_at TEXT NOT NULL,
+  FOREIGN KEY(media_id) REFERENCES media_assets(media_id) ON DELETE CASCADE
+);
+
+CREATE TABLE IF NOT EXISTS recording_segments (
+  segment_id INTEGER PRIMARY KEY AUTOINCREMENT,
+  recording_id INTEGER NOT NULL,
+  sequence_number INTEGER NOT NULL,
+  started_at TEXT NOT NULL,
+  ended_at TEXT,
+  duration_seconds REAL,
+  storage_path TEXT NOT NULL UNIQUE,
+  file_size INTEGER NOT NULL DEFAULT 0,
+  status TEXT NOT NULL DEFAULT 'recording' CHECK(status IN ('recording','partial','validating','available','failed')),
+  error TEXT,
+  created_at TEXT NOT NULL,
+  updated_at TEXT NOT NULL,
+  UNIQUE(recording_id, sequence_number),
+  FOREIGN KEY(recording_id) REFERENCES recordings(recording_id) ON DELETE CASCADE
+);
+
+CREATE TABLE IF NOT EXISTS replay_catalog (
+  replay_id INTEGER PRIMARY KEY AUTOINCREMENT,
+  program_id TEXT NOT NULL,
+  occurrence_id INTEGER,
+  media_id INTEGER NOT NULL,
+  channel_id TEXT NOT NULL,
+  broadcast_date TEXT NOT NULL,
+  title TEXT NOT NULL,
+  genre TEXT,
+  playback_url TEXT NOT NULL,
+  duration_seconds REAL,
+  status TEXT NOT NULL DEFAULT 'available' CHECK(status IN ('pending','available','hidden','deleted')),
+  published_at TEXT NOT NULL,
+  UNIQUE(media_id),
+  FOREIGN KEY(program_id) REFERENCES programs(program_id) ON DELETE CASCADE,
+  FOREIGN KEY(occurrence_id) REFERENCES program_occurrences(occurrence_id) ON DELETE SET NULL,
+  FOREIGN KEY(media_id) REFERENCES media_assets(media_id) ON DELETE CASCADE
+);
+
+CREATE INDEX IF NOT EXISTS idx_episodes_series_season_episode ON episodes(series_id, season_number, episode_number);
+CREATE INDEX IF NOT EXISTS idx_program_genres_genre ON program_genres(genre_id);
+CREATE INDEX IF NOT EXISTS idx_program_persons_person ON program_persons(person_id);
+CREATE INDEX IF NOT EXISTS idx_subtitles_media_status ON subtitles(media_id, status);
+CREATE INDEX IF NOT EXISTS idx_audio_tracks_media_status ON audio_tracks(media_id, status);
+CREATE INDEX IF NOT EXISTS idx_segments_recording_sequence ON recording_segments(recording_id, sequence_number);
+CREATE INDEX IF NOT EXISTS idx_segments_status ON recording_segments(status);
+CREATE INDEX IF NOT EXISTS idx_replay_catalog_channel_date ON replay_catalog(channel_id, broadcast_date);
+CREATE INDEX IF NOT EXISTS idx_replay_catalog_program ON replay_catalog(program_id);
+CREATE INDEX IF NOT EXISTS idx_replay_catalog_status ON replay_catalog(status);
+`);
+
+ensureColumn('recordings', 'state', "TEXT NOT NULL DEFAULT 'RECORDING'");
+ensureColumn('recordings', 'segment_count', 'INTEGER NOT NULL DEFAULT 0');
+ensureColumn('recordings', 'completed_at', 'TEXT');
+ensureColumn('recordings', 'master_sha256', 'TEXT');
+ensureColumn('recordings', 'master_storage_path', 'TEXT');
+
+function setRecordingState(recordingId, state, extra = {}) {
+  const allowed = new Set(['RECORDING', 'FINALIZING', 'VALIDATING', 'AVAILABLE', 'FAILED', 'PARTIAL']);
+  if (!allowed.has(state)) throw new Error('Etat d\'enregistrement invalide: ' + state);
+  const now = new Date().toISOString();
+  const fields = ['state = ?', 'updated_at = ?'];
+  const values = [state, now];
+  if (Object.prototype.hasOwnProperty.call(extra, 'status')) { fields.push('status = ?'); values.push(extra.status); }
+  if (Object.prototype.hasOwnProperty.call(extra, 'error')) { fields.push('error = ?'); values.push(extra.error); }
+  if (Object.prototype.hasOwnProperty.call(extra, 'completedAt')) { fields.push('completed_at = ?'); values.push(extra.completedAt); }
+  if (Object.prototype.hasOwnProperty.call(extra, 'segmentCount')) { fields.push('segment_count = ?'); values.push(extra.segmentCount); }
+  values.push(recordingId);
+  db.prepare('UPDATE recordings SET ' + fields.join(', ') + ' WHERE recording_id = ?').run(...values);
+}
+
+function addRecordingSegment(segment) {
+  const now = new Date().toISOString();
+  const result = db.prepare(`
+    INSERT INTO recording_segments (
+      recording_id, sequence_number, started_at, ended_at, duration_seconds,
+      storage_path, file_size, status, error, created_at, updated_at
+    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+    ON CONFLICT(recording_id, sequence_number) DO UPDATE SET
+      ended_at = excluded.ended_at,
+      duration_seconds = excluded.duration_seconds,
+      storage_path = excluded.storage_path,
+      file_size = excluded.file_size,
+      status = excluded.status,
+      error = excluded.error,
+      updated_at = excluded.updated_at
+  `).run(
+    segment.recordingId,
+    segment.sequenceNumber,
+    segment.startedAt,
+    segment.endedAt || null,
+    segment.durationSeconds ?? null,
+    segment.storagePath,
+    segment.fileSize || 0,
+    segment.status || 'available',
+    segment.error || null,
+    now,
+    now
+  );
+  return Number(result.lastInsertRowid);
+}
+
+function getRecordingSegments(recordingId) {
+  return db.prepare(`
+    SELECT segment_id AS segmentId, recording_id AS recordingId,
+           sequence_number AS sequenceNumber, started_at AS startedAt,
+           ended_at AS endedAt, duration_seconds AS durationSeconds,
+           storage_path AS storagePath, file_size AS fileSize,
+           status, error
+    FROM recording_segments
+    WHERE recording_id = ?
+    ORDER BY sequence_number
+  `).all(recordingId);
+}
+
+function publishReplay({ recordingId, mediaId, programId, occurrenceId, channelId, title, playbackUrl, durationSeconds, broadcastDate, genre = null }) {
+  const now = new Date().toISOString();
+  return db.prepare(`
+    INSERT INTO replay_catalog (
+      program_id, occurrence_id, media_id, channel_id, broadcast_date,
+      title, genre, playback_url, duration_seconds, status, published_at
+    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, 'available', ?)
+    ON CONFLICT(media_id) DO UPDATE SET
+      playback_url = excluded.playback_url,
+      duration_seconds = excluded.duration_seconds,
+      status = 'available',
+      published_at = excluded.published_at
+  `).run(
+    programId, occurrenceId || null, mediaId, channelId, broadcastDate,
+    title, genre, playbackUrl, durationSeconds ?? null, now
+  ).lastInsertRowid;
+}
+
+function getReplayCatalog({ channelId = null, programId = null, date = null, genre = null, limit = 100 } = {}) {
+  const safeLimit = Math.min(500, Math.max(1, Number(limit) || 100));
+  let sql = `
+    SELECT replay_id AS replayId, program_id AS programId,
+           occurrence_id AS occurrenceId, media_id AS mediaId,
+           channel_id AS channelId, broadcast_date AS broadcastDate,
+           title, genre, playback_url AS playbackUrl,
+           duration_seconds AS durationSeconds, published_at AS publishedAt
+    FROM replay_catalog
+    WHERE status = 'available'
+  `;
+  const params = [];
+  if (channelId) { sql += ' AND channel_id = ?'; params.push(channelId); }
+  if (programId) { sql += ' AND program_id = ?'; params.push(programId); }
+  if (date) { sql += ' AND broadcast_date = ?'; params.push(date); }
+  if (genre) { sql += ' AND genre = ?'; params.push(genre); }
+  sql += ' ORDER BY broadcast_date DESC, published_at DESC LIMIT ?';
+  params.push(safeLimit);
+  return db.prepare(sql).all(...params);
+}
+
 function registerRecording(recording) {
   const now = new Date().toISOString();
   const result = db.prepare(`
@@ -753,5 +1002,10 @@ function getReplayMedia({ channelId = null, programId = null, limit = 100 } = {}
   registerRecording,
   finalizeRecording,
   failRecording,
-  getReplayMedia
+  getReplayMedia,
+  setRecordingState,
+  addRecordingSegment,
+  getRecordingSegments,
+  publishReplay,
+  getReplayCatalog
 };
