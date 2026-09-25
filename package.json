@@ -16,7 +16,8 @@
     "generate:fallback": "node scripts/generate-fallback.js",
     "validate:vod-files": "node scripts/validate-vod-files.js",
     "create:vod": "node scripts/create-vod-mp4.js",
-    "create:rti1-vod": "node scripts/create-vod-mp4.js --all rti1"
+    "create:rti1-vod": "node scripts/create-vod-mp4.js --all rti1",
+    "record:rti1": "node services/rti1Recorder.js"
   },
   "engines": {
     "node": ">=24"
