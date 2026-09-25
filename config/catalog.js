@@ -235,7 +235,7 @@ const CHANNEL_CATALOG = {
     ['legende-de-korra', 'La Légende de Korra']
   ],
   'nickelodeon-junior': [
-    ['paw-patrol', 'Paw Patrol'], ['dora', 'Dora'], ['wonder-pets', 'Wonder Pets']
+    ['paw-patrol', 'Paw Patrol'], ['dora', 'Dora'], ['wonder-pets', 'Wonder Pets'],
     ['peppa-pig', 'Peppa Pig']
   ],
   'disney-channel': [
@@ -245,16 +245,24 @@ const CHANNEL_CATALOG = {
     ['owl-house', 'Owl House'], ['amphibia', 'Amphibia'], ['jessie', 'Jessie'],
     ['kc-clandestine', 'K.C. Clandestine']
   ],
+  'disney-xd': [
+    ['star-wars-rebels', 'Star Wars Rebels'], ['avengers-assemble', 'Marvel : Avengers Rassemblement'],
+    ['spider-man-disney-xd', 'Spider-Man'], ['ducktales-2017', 'DuckTales'],
+    ['kick-buttowski', 'Kick Buttowski : Suburban Daredevil'],
+    ['lab-rats', 'Lab Rats'], ['mighty-med', 'Mighty Med'],
+    ['pair-of-kings', 'Pair of Kings'], ['zack-cody-suite-life-on-deck', 'La Vie de croisière de Zack et Cody'],
+    ['phineas-ferb-milo', 'La Loi de Milo Murphy']
+  ],
   'disney-junior': [
     ['mickey-mouse-clubhouse', 'Mickey Mouse Clubhouse'], ['doc-mcstuffins', 'Doc McStuffins'],
-    ['pj-masks', 'PJ Masks'], ['sofia-the-first', 'Sofia the First']
+    ['pj-masks', 'PJ Masks'], ['sofia-the-first', 'Sofia the First'],
     ['bluey', 'Bluey']
   ],
   'cartoon-network': [
     ['gumball', 'Gumball'], ['adventure-time', 'Adventure Time'], ['teen-titans-go', 'Teen Titans Go!'],
     ['dexters-laboratory', "Dexter's Laboratory"], ['powerpuff-girls', 'Powerpuff Girls'],
     ['ben-10', 'Ben 10'], ['steven-universe', 'Steven Universe'], ['regular-show', 'Regular Show'],
-    ['craig-of-the-creek', 'Craig of the Creek'], ['we-bare-bears', 'We Bare Bears']
+    ['craig-of-the-creek', 'Craig of the Creek'], ['we-bare-bears', 'We Bare Bears'],
     ['hilda', 'Hilda'], ['trollhunters', 'Trollhunters']
   ],
   'tfou': [
@@ -267,7 +275,7 @@ const CHANNEL_CATALOG = {
     ['wakfu', 'Wakfu'], ['lou', 'Lou!'], ['1-jour-1-question', '1 jour, 1 question']
   ],
   'gulli': [
-    ['oggy-et-les-cafards', 'Oggy et les Cafards'], ['totally-spies', 'Totally Spies!'], ['code-lyoko', 'Code Lyoko']
+    ['oggy-et-les-cafards', 'Oggy et les Cafards'], ['totally-spies', 'Totally Spies!'], ['code-lyoko', 'Code Lyoko'],
     ['chica-vampiro', 'Chica Vampiro'], ['molang', 'Molang']
   ],
   'm6': [
@@ -277,13 +285,12 @@ const CHANNEL_CATALOG = {
     ['journal-televise-20h', 'Journal Télévisé 20H', 'news']
   ],
   'rti-2': [
-    ['rti2-info', 'RTI 2 Info', 'news'],
-    ['rti2-culture', 'RTI 2 Culture', 'show']
+    ['rti2-info', 'RTI 2 Info', 'news'], ['rti2-culture', 'RTI 2 Culture', 'show']
   ],
   'la-3': [
-    ['la3-magazine', 'La 3 Magazine', 'show'],
-    ['la3-culture', 'La 3 Culture', 'show']
-  ],};
+    ['la3-magazine', 'La 3 Magazine', 'show'], ['la3-culture', 'La 3 Culture', 'show']
+  ]
+};
 
 const UNASSIGNED_CATALOG = [];
 
