@@ -88,6 +88,11 @@ function getActiveStreamLiveProgram(schedule = loadStreamLiveSchedule(), now = n
   const activeProgram = schedule[activeIndex];
   const resolved = resolveVodFile(activeProgram.vodFile, baseDir);
   const mediaAvailable = Boolean(resolved && fs.existsSync(resolved.candidate));
+  const hlsEnabled = process.env.STREAMLIVE_HLS_ENABLED === 'true';
+  const hlsPath = path.resolve(baseDir, 'public', 'hls', 'streamlive.m3u8');
+  const hlsReady = hlsEnabled && fs.existsSync(hlsPath);
+  const fallbackPath = path.resolve(baseDir, 'storage', 'vod', 'fallback_slate.mp4');
+  const fallbackAvailable = Boolean(process.env.STREAMLIVE_HLS_FALLBACK === 'true' && fs.existsSync(fallbackPath));
   const nextProgram = schedule[(activeIndex + 1) % schedule.length];
 
   return {
@@ -95,11 +100,18 @@ function getActiveStreamLiveProgram(schedule = loadStreamLiveSchedule(), now = n
     type: 'editorial-curated',
     timezone: TIMEZONE,
     abidjanTime: formattedTime,
+    hls: {
+      enabled: hlsEnabled,
+      ready: hlsReady,
+      url: hlsReady ? '/hls/streamlive.m3u8' : null
+    },
     activeProgram: {
       ...activeProgram,
-      playbackUrl: resolved?.playbackUrl || null,
+      playbackUrl: hlsReady ? '/hls/streamlive.m3u8' : (resolved?.playbackUrl || null),
+      playbackMode: hlsReady ? 'HLS' : (mediaAvailable ? 'VOD' : (fallbackAvailable ? 'HLS_FALLBACK_PENDING' : null)),
       mediaAvailable,
-      canPlay: mediaAvailable
+      fallbackAvailable,
+      canPlay: hlsReady || mediaAvailable || fallbackAvailable
     },
     nextProgram
   };
