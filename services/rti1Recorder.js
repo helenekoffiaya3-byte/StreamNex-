@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 const { spawn } = require('child_process');
 const fs = require('fs');
 const path = require('path');
@@ -6,6 +8,7 @@ const { addOccurrence } = require('../models/program-db');
 
 const TIMEZONE = 'Africa/Abidjan';
 const CHANNEL_ID = 'rti-1';
+const RECORD_ENABLED = process.env.RTI1_RECORD_ENABLED !== 'false';
 const SOURCE_URL = String(process.env.RTI1_RECORD_SOURCE_URL || '').trim();
 const FFMPEG_PATH = process.env.FFMPEG_PATH || 'ffmpeg';
 const INTERVAL_MS = Math.max(5000, Number(process.env.RTI1_RECORD_INTERVAL_MS || 15000));
@@ -82,6 +85,10 @@ class Rti1Recorder {
   }
 
   start() {
+    if (!RECORD_ENABLED) {
+      console.log('[RTI1 Recorder] Désactivé par RTI1_RECORD_ENABLED=false.');
+      return;
+    }
     if (!SOURCE_URL) {
       console.warn('[RTI1 Recorder] RTI1_RECORD_SOURCE_URL absent: enregistrement automatique désactivé.');
       return;
