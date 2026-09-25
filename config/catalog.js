@@ -156,7 +156,8 @@ function enrichProgram(program, occurrences) {
   const metadata = program.type === 'movie' ? (FILM_METADATA[program.programId] || {}) : (SERIES_METADATA[program.programId] || {});
   const description = program.description || FILM_DESCRIPTIONS[program.programId] || (program.type === 'show' ? (program.title + ' — fiche catalogue StreamLive.') : '');
   const seasons = program.type === 'movie' ? [] : buildSeriesSeasons(occurrences);
-  return Object.assign({}, program, metadata, { description: description, seasons: seasons.length ? seasons : (Array.isArray(program.seasons) ? program.seasons : []), audioTracks: Array.isArray(program.audioTracks) ? program.audioTracks : [], subtitles: Array.isArray(program.subtitles) ? program.subtitles : [] });
+  const epgId = program.epgId || (program.originalChannel ? ('epg.' + program.originalChannel + '.' + program.programId) : null);
+  return Object.assign({}, program, metadata, { epgId: epgId, description: description, seasons: seasons.length ? seasons : (Array.isArray(program.seasons) ? program.seasons : []), audioTracks: Array.isArray(program.audioTracks) ? program.audioTracks : [], subtitles: Array.isArray(program.subtitles) ? program.subtitles : [] });
 }
 
 const SERIES_METADATA = {
@@ -268,13 +269,30 @@ const CHANNEL_CATALOG = {
   ],
   'rti-1': [
     ['journal-televise-20h', 'Journal Télévisé 20H', 'news']
+  ],
+  'rti-2': [
+    ['rti2-info', 'RTI 2 Info', 'news'],
+    ['rti2-culture', 'RTI 2 Culture', 'show']
+  ],
+  'la-3': [
+    ['la3-magazine', 'La 3 Magazine', 'show'],
+    ['la3-culture', 'La 3 Culture', 'show']
+  ],
+  'disney-junior': [
+    ['bluey', 'Bluey']
+  ],
+  'cartoon-network': [
+    ['hilda', 'Hilda'], ['trollhunters', 'Trollhunters']
+  ],
+  'gulli': [
+    ['chica-vampiro', 'Chica Vampiro'], ['molang', 'Molang']
+  ],
+  'nickelodeon-junior': [
+    ['peppa-pig', 'Peppa Pig']
   ]
 };
 
-const UNASSIGNED_CATALOG = [
-  ['bluey', 'Bluey'], ['hilda', 'Hilda'], ['trollhunters', 'Trollhunters'],
-  ['chica-vampiro', 'Chica Vampiro'], ['peppa-pig', 'Peppa Pig'], ['molang', 'Molang']
-];
+const UNASSIGNED_CATALOG = [];
 
 const FILM_CATALOG = {
   'disney-channel': [
