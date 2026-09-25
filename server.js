@@ -1108,6 +1108,55 @@ app.get('/api/editorial/rti1/replays', (req, res) => {
   }
 });
 
+app.get('/api/replay', (req, res) => {
+  try {
+    const { getReplayCatalog } = require('./models/program-db');
+    const clean = value => {
+      const text = String(value || '').trim();
+      return text ? text.slice(0, 128) : null;
+    };
+    const date = clean(req.query.date);
+    if (date && !/^\\d{4}-\\d{2}-\\d{2}$/.test(date)) {
+      return res.status(400).json({ success: false, error: 'Date invalide. Format attendu: YYYY-MM-DD.' });
+    }
+    const replays = getReplayCatalog({
+      channelId: clean(req.query.channel),
+      programId: clean(req.query.program),
+      date,
+      genre: clean(req.query.genre),
+      limit: Math.min(500, Math.max(1, Number(req.query.limit) || 100))
+    });
+    return res.json({ success: true, count: replays.length, replays });
+  } catch (error) {
+    console.error('[API] replay catalog:', error);
+    return res.status(500).json({ success: false, error: 'Replay catalog unavailable' });
+  }
+});
+
+app.get('/api/db/stats', (_req, res) => {
+  try {
+    const { db } = require('./models/program-db');
+    const stats = {
+      channels: db.prepare('SELECT COUNT(*) AS count FROM channels').get().count,
+      programs: db.prepare('SELECT COUNT(*) AS count FROM programs').get().count,
+      occurrences: db.prepare('SELECT COUNT(*) AS count FROM program_occurrences').get().count,
+      mediaAssets: db.prepare('SELECT COUNT(*) AS count FROM media_assets').get().count,
+      recordings: db.prepare('SELECT COUNT(*) AS count FROM recordings').get().count,
+      recordingSegments: db.prepare('SELECT COUNT(*) AS count FROM recording_segments').get().count,
+      replayCatalog: db.prepare('SELECT COUNT(*) AS count FROM replay_catalog').get().count,
+      episodes: db.prepare('SELECT COUNT(*) AS count FROM episodes').get().count,
+      movies: db.prepare('SELECT COUNT(*) AS count FROM movies').get().count,
+      series: db.prepare('SELECT COUNT(*) AS count FROM series').get().count,
+      subtitles: db.prepare('SELECT COUNT(*) AS count FROM subtitles').get().count,
+      audioTracks: db.prepare('SELECT COUNT(*) AS count FROM audio_tracks').get().count
+    };
+    return res.json({ success: true, database: 'sqlite', stats });
+  } catch (error) {
+    console.error('[API] db stats:', error);
+    return res.status(500).json({ success: false, error: 'Database statistics unavailable' });
+  }
+});
+
 app.get('/api/editorial/rti1/schedule', (_req, res) => {
   try {
     const { loadRti1Schedule, validateRti1Schedule, TIMEZONE } = require('./services/rti1Scheduler');
