@@ -9,6 +9,8 @@ async function init(){
  $("openMultiBtn")?.addEventListener("click",()=>{$("multiLiveSection")?.scrollIntoView({behavior:"smooth"});openMultiPicker()});
  $("closeMultiPickerBtn")?.addEventListener("click",closeMultiPicker);
  $("multiPickerModal")?.addEventListener("click",e=>{if(e.target.matches("[data-close-multi-picker]"))closeMultiPicker()});
+ $("channel-modal-close")?.addEventListener("click",closeChannelSelector);
+ $("channel-modal")?.addEventListener("click",e=>{if(e.target.matches("[data-close-channel-selector]"))closeChannelSelector()});
  $("multiPickerSearch")?.addEventListener("input",renderMultiPicker);
  $("liveSearch")?.addEventListener("input",e=>{state.query=e.target.value.trim().toLowerCase();renderChannels()});
  document.querySelectorAll(".filter").forEach(b=>b.addEventListener("click",()=>{
@@ -209,7 +211,7 @@ function renderMulti(){
  for(let slot=0;slot<state.layout;slot++){
    const id=ids[slot];
    if(id){renderMultiCard(grid,id,state.selected.get(id));continue}
-   const card=document.createElement("button");card.type="button";card.className="multi-slot-empty";card.textContent="+ Ajouter une chaîne";card.setAttribute("aria-label","Ajouter une chaîne au Multi-Live");card.addEventListener("click",openMultiPicker);grid.append(card);
+   const card=document.createElement("button");card.type="button";card.className="multi-slot-empty";card.textContent="+ Ajouter une chaîne";card.setAttribute("aria-label","Ajouter une chaîne au Multi-Live");card.addEventListener("click",()=>openChannelSelector(slot));grid.append(card);
  }
  if(empty)empty.style.display=state.selected.size?"none":"block";
  applyMaster();
@@ -241,6 +243,45 @@ async function openMultiPicker(){
  const input=$("multiPickerSearch");if(input){input.value="";renderMultiPicker();setTimeout(()=>input.focus(),0)}
 }
 
+let currentTargetCell=null;
+
+function openChannelSelector(cellIndex){
+ currentTargetCell=cellIndex;
+ const modal=$("channel-modal"),list=$("modal-channel-list");
+ if(!modal||!list)return;
+ modal.classList.remove("modal-hidden");modal.setAttribute("aria-hidden","false");
+ list.innerHTML='<div class="loading-card">Chargement des chaînes…</div>';
+ renderChannelSelectorList();
+}
+function renderChannelSelectorList(){
+ const list=$("modal-channel-list");if(!list)return;
+ list.replaceChildren();
+ const q=($("multiPickerSearch")?.value||"").trim().toLowerCase();
+ const channels=state.channels.filter(c=>!q||(c.name+" "+c.group).toLowerCase().includes(q));
+ channels.forEach(c=>{
+   const playable=Boolean(c.liveAvailable&&c.occurrence?.occurrenceId);
+   const b=document.createElement("button");b.type="button";b.className="channel-item-btn";b.disabled=!playable;
+   b.textContent=(playable?"▶ ":"")+" "+(c.name||c.id)+(playable?"":" — LIVE indisponible");
+   b.addEventListener("click",()=>{if(currentTargetCell==null)return;loadChannelInCell(currentTargetCell,c.id);closeChannelSelector()});
+   list.append(b);
+ });
+ if(!channels.length){const e=document.createElement("div");e.className="empty-card";e.textContent="Aucune chaîne trouvée.";list.append(e)}
+}
+function closeChannelSelector(){
+ const modal=$("channel-modal");if(modal){modal.classList.add("modal-hidden");modal.setAttribute("aria-hidden","true")}
+ currentTargetCell=null;
+}
+async function loadChannelInCell(cellIndex,channelId){
+ const ids=Array.from(state.selected.keys()),oldId=ids[cellIndex];
+ if(oldId===channelId)return;
+ if(oldId){const old=state.selected.get(oldId);stopItem(old);state.selected.delete(oldId);if(state.master===oldId)state.master=null}
+ if(state.selected.has(channelId))return;
+ const c=state.channels.find(x=>x.id===channelId);
+ if(!c?.liveAvailable||!c.occurrence?.occurrenceId)return;
+ state.selected.set(channelId,{channel:c,video:null,hls:null,request:0});
+ if(!state.master)state.master=channelId;
+ renderMulti();renderChannels();renderMultiPicker();
+}
 function closeMultiPicker(){const modal=$("multiPickerModal");if(!modal)return;modal.hidden=true;modal.setAttribute("aria-hidden","true")}
 
 function renderMultiPicker(){
