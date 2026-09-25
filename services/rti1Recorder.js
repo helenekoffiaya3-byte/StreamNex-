@@ -205,6 +205,7 @@ class Rti1Recorder {
         try { fs.rmSync(output.tempPath, { force: true }); } catch {}
         if (TRANSCODE_FALLBACK && !this.stopping) {
           this.transcodeFallback(program, startAt, endAt, output);
+          return;
         }
       }
 
