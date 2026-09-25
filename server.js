@@ -336,6 +336,13 @@ function requireMediaDownloadAuth(req, res, next) {
 
   try {
     const claims = verifyJwt(token);
+    if (!hasMediaDownloadPermission(claims)) {
+      return res.status(403).json({
+        success: false,
+        error: 'Permission de téléchargement média requise.'
+      });
+    }
+
     req.auth = {
       userId: claims.sub,
       claims
