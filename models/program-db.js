@@ -321,6 +321,43 @@ function getProgramOccurrences(programId) {
   `).all(programId).map(normalizeOccurrence);
 }
 
+function syncCatalogPrograms(programGroups, extraPrograms = []) {
+  const all = [];
+  if (programGroups && typeof programGroups === 'object') {
+    for (const programs of Object.values(programGroups)) {
+      if (Array.isArray(programs)) all.push(...programs);
+    }
+  }
+  if (Array.isArray(extraPrograms)) all.push(...extraPrograms);
+
+  const seen = new Set();
+  const transaction = db.transaction(() => {
+    for (const program of all) {
+      const channelId = program?.channelId || program?.originalChannel;
+      if (!program?.programId || !program?.title || !channelId || seen.has(program.programId)) continue;
+      seen.add(program.programId);
+      upsertProgram({
+        programId: program.programId,
+        channelId,
+        title: program.title,
+        type: program.type || 'show',
+        description: program.description || '',
+        poster: program.poster || null,
+        playbackUrl: program.playbackUrl || null,
+        sourceType: 'catalog'
+      });
+      db.prepare(`
+        UPDATE programs
+        SET status = 'confirmed',
+            source_type = 'catalog'
+        WHERE program_id = ?
+      `).run(program.programId);
+    }
+  });
+  transaction();
+  return seen.size;
+}
+
 function upsertProgram(entry) {
   const existing = db.prepare('SELECT * FROM programs WHERE program_id = ?').get(entry.programId);
   const now = new Date().toISOString();
@@ -1015,6 +1052,7 @@ module.exports = {
   getOccurrenceById,
   getOccurrencesByChannel,
   upsertProgram,
+  syncCatalogPrograms,
   addOccurrence,
   replaceEpgSnapshot,
   confirmEligiblePrograms,
