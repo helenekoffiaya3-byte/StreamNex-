@@ -80,6 +80,62 @@ CREATE TABLE IF NOT EXISTS sync_runs (
   confirmed_count INTEGER NOT NULL DEFAULT 0,
   error TEXT
 );
+
+CREATE TABLE IF NOT EXISTS media_assets (
+  media_id INTEGER PRIMARY KEY AUTOINCREMENT,
+  program_id TEXT,
+  occurrence_id INTEGER,
+  media_type TEXT NOT NULL DEFAULT 'video' CHECK(media_type IN ('video','audio','image','subtitle','other')),
+  storage_path TEXT NOT NULL UNIQUE,
+  public_url TEXT,
+  mime_type TEXT,
+  file_size INTEGER NOT NULL DEFAULT 0,
+  duration_seconds REAL,
+  video_codec TEXT,
+  audio_codec TEXT,
+  width INTEGER,
+  height INTEGER,
+  status TEXT NOT NULL DEFAULT 'pending' CHECK(status IN ('pending','available','failed','deleted')),
+  sha256 TEXT,
+  recorded_at TEXT,
+  created_at TEXT NOT NULL,
+  updated_at TEXT NOT NULL,
+  FOREIGN KEY(program_id) REFERENCES programs(program_id) ON DELETE SET NULL,
+  FOREIGN KEY(occurrence_id) REFERENCES program_occurrences(occurrence_id) ON DELETE SET NULL
+);
+
+CREATE TABLE IF NOT EXISTS recordings (
+  recording_id INTEGER PRIMARY KEY AUTOINCREMENT,
+  program_id TEXT NOT NULL,
+  occurrence_id INTEGER,
+  media_id INTEGER,
+  channel_id TEXT NOT NULL,
+  source_url TEXT,
+  started_at TEXT NOT NULL,
+  ended_at TEXT,
+  expected_duration_seconds REAL,
+  actual_duration_seconds REAL,
+  status TEXT NOT NULL DEFAULT 'recording' CHECK(status IN ('recording','finalizing','available','partial','failed')),
+  error TEXT,
+  created_at TEXT NOT NULL,
+  updated_at TEXT NOT NULL,
+  FOREIGN KEY(program_id) REFERENCES programs(program_id) ON DELETE CASCADE,
+  FOREIGN KEY(occurrence_id) REFERENCES program_occurrences(occurrence_id) ON DELETE SET NULL,
+  FOREIGN KEY(media_id) REFERENCES media_assets(media_id) ON DELETE SET NULL
+);
+
+CREATE INDEX IF NOT EXISTS idx_media_program_status
+  ON media_assets(program_id, status);
+CREATE INDEX IF NOT EXISTS idx_media_occurrence
+  ON media_assets(occurrence_id);
+CREATE INDEX IF NOT EXISTS idx_media_recorded_at
+  ON media_assets(recorded_at);
+CREATE INDEX IF NOT EXISTS idx_recordings_program_started
+  ON recordings(program_id, started_at);
+CREATE INDEX IF NOT EXISTS idx_recordings_status
+  ON recordings(status);
+CREATE INDEX IF NOT EXISTS idx_recordings_channel_started
+  ON recordings(channel_id, started_at);
 `);
 
 db.exec(`
@@ -557,5 +613,145 @@ module.exports = {
   finishSyncRun,
   getLatestSyncRun,
   upsertChannel,
-  getChannelPlaybackUrl
+
+function registerRecording(recording) {
+  const now = new Date().toISOString();
+  const result = db.prepare(`
+    INSERT INTO recordings (
+      program_id, occurrence_id, channel_id, source_url,
+      started_at, expected_duration_seconds, status, created_at, updated_at
+    ) VALUES (?, ?, ?, ?, ?, ?, 'recording', ?, ?)
+  `).run(
+    recording.programId,
+    recording.occurrenceId || null,
+    recording.channelId,
+    recording.sourceUrl || null,
+    recording.startedAt,
+    recording.expectedDurationSeconds ?? null,
+    now,
+    now
+  );
+  return Number(result.lastInsertRowid);
+}
+
+function finalizeRecording(recordingId, media) {
+  const now = new Date().toISOString();
+  const transaction = db.transaction(() => {
+    const recording = db.prepare('SELECT * FROM recordings WHERE recording_id = ?').get(recordingId);
+    if (!recording) throw new Error('Enregistrement introuvable: ' + recordingId);
+
+    const mediaResult = db.prepare(`
+      INSERT INTO media_assets (
+        program_id, occurrence_id, media_type, storage_path, public_url,
+        mime_type, file_size, duration_seconds, video_codec, audio_codec,
+        width, height, status, sha256, recorded_at, created_at, updated_at
+      ) VALUES (?, ?, 'video', ?, ?, ?, ?, ?, ?, ?, ?, ?, 'available', ?, ?, ?, ?)
+      ON CONFLICT(storage_path) DO UPDATE SET
+        program_id = excluded.program_id,
+        occurrence_id = excluded.occurrence_id,
+        public_url = excluded.public_url,
+        mime_type = excluded.mime_type,
+        file_size = excluded.file_size,
+        duration_seconds = excluded.duration_seconds,
+        video_codec = excluded.video_codec,
+        audio_codec = excluded.audio_codec,
+        width = excluded.width,
+        height = excluded.height,
+        status = 'available',
+        sha256 = excluded.sha256,
+        recorded_at = excluded.recorded_at,
+        updated_at = excluded.updated_at
+    `).run(
+      recording.program_id,
+      recording.occurrence_id || null,
+      media.storagePath,
+      media.publicUrl || null,
+      media.mimeType || 'video/mp4',
+      media.fileSize || 0,
+      media.durationSeconds ?? null,
+      media.videoCodec || null,
+      media.audioCodec || null,
+      media.width || null,
+      media.height || null,
+      media.sha256 || null,
+      media.recordedAt || now,
+      now,
+      now
+    );
+
+    const mediaRow = db.prepare('SELECT media_id FROM media_assets WHERE storage_path = ?').get(media.storagePath);
+    db.prepare(`
+      UPDATE recordings
+      SET media_id = ?, ended_at = ?, actual_duration_seconds = ?,
+          status = 'available', error = NULL, updated_at = ?
+      WHERE recording_id = ?
+    `).run(
+      mediaRow.media_id,
+      media.endedAt || now,
+      media.durationSeconds ?? null,
+      now,
+      recordingId
+    );
+
+    if (recording.occurrence_id) {
+      db.prepare('UPDATE program_occurrences SET playback_url = ? WHERE occurrence_id = ?')
+        .run(media.publicUrl || null, recording.occurrence_id);
+    }
+    return Number(mediaRow.media_id);
+  });
+  return transaction();
+}
+
+function failRecording(recordingId, status = 'failed', error = null) {
+  db.prepare(`
+    UPDATE recordings
+    SET status = ?, ended_at = ?, error = ?, updated_at = ?
+    WHERE recording_id = ?
+  `).run(status, new Date().toISOString(), error, new Date().toISOString(), recordingId);
+}
+
+function getReplayMedia({ channelId = null, programId = null, limit = 100 } = {}) {
+  const safeLimit = Math.min(500, Math.max(1, Number(limit) || 100));
+  let sql = `
+    SELECT
+      ma.media_id AS mediaId,
+      ma.program_id AS programId,
+      ma.occurrence_id AS occurrenceId,
+      p.title,
+      ma.public_url AS playbackUrl,
+      ma.storage_path AS storagePath,
+      ma.file_size AS fileSize,
+      ma.duration_seconds AS durationSeconds,
+      ma.video_codec AS videoCodec,
+      ma.audio_codec AS audioCodec,
+      ma.width,
+      ma.height,
+      ma.recorded_at AS recordedAt,
+      r.started_at AS startedAt,
+      r.ended_at AS endedAt,
+      r.status AS recordingStatus
+    FROM media_assets ma
+    JOIN programs p ON p.program_id = ma.program_id
+    LEFT JOIN recordings r ON r.media_id = ma.media_id
+    WHERE ma.media_type = 'video' AND ma.status = 'available'
+  `;
+  const params = [];
+  if (channelId) {
+    sql += ' AND p.channel_id = ?';
+    params.push(channelId);
+  }
+  if (programId) {
+    sql += ' AND ma.program_id = ?';
+    params.push(programId);
+  }
+  sql += ' ORDER BY COALESCE(ma.recorded_at, ma.created_at) DESC LIMIT ?';
+  params.push(safeLimit);
+  return db.prepare(sql).all(...params);
+}
+
+  getChannelPlaybackUrl,
+  registerRecording,
+  finalizeRecording,
+  failRecording,
+  getReplayMedia
 };
