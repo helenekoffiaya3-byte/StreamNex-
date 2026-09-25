@@ -500,6 +500,7 @@ app.get('/api/channels/:id/programs', (req, res) => {
         p.poster_source_url AS programPosterSourceUrl,
         p.poster_source_type AS programPosterSourceType,
         p.status AS status,
+        p.source_type AS sourceType,
         p.occurrences_count AS occurrencesCount,
         p.distinct_days_count AS distinctDaysCount,
         p.is_recurring AS isRecurring,
@@ -536,6 +537,7 @@ app.get('/api/channels/:id/programs', (req, res) => {
             posterSourceUrl: row.programPosterSourceUrl || row.posterSourceUrl || null,
             posterSourceType: row.programPosterSourceType || row.posterSourceType || null,
             status: row.status,
+            sourceType: row.sourceType || 'epg',
             occurrencesCount: row.occurrencesCount,
             distinctDaysCount: row.distinctDaysCount,
             isRecurring: Boolean(row.isRecurring),
@@ -565,8 +567,12 @@ app.get('/api/channels/:id/programs', (req, res) => {
         success: true,
         channelId: channel.id,
         name: channel.name,
-        source: 'real-epg-sync',
-        sourceDetail: 'sqlite',
+        source: [...programMap.values()].some(program => program.sourceType === 'editorial-curated')
+          ? 'editorial-curated'
+          : 'real-epg-sync',
+        sourceDetail: [...programMap.values()].some(program => program.sourceType === 'editorial-curated')
+          ? 'sqlite-editorial'
+          : 'sqlite',
         totalPrograms: programMap.size,
         programCount: programMap.size,
         programs: [...programMap.values()],
