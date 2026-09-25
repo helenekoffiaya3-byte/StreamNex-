@@ -30,7 +30,7 @@ async function waitForServer() {
   const deadline = Date.now() + 15000;
   while (Date.now() < deadline) {
     try {
-      return await fetch(\`http://127.0.0.1:\${port}/api/channels/a-plus-ivoire/programs\`);
+      return await fetch(`http://127.0.0.1:${port}/api/channels/a-plus-ivoire/programs`);
     } catch {
       await new Promise(resolve => setTimeout(resolve, 250));
     }
@@ -55,7 +55,7 @@ async function waitForServer() {
     assert.equal(body.programs.every(item => item.streamEnabled === false), true);
     assert.equal(body.programs.every(item => item.timezone === "Africa/Abidjan"), true);
 
-    const notFound = await fetch(\`http://127.0.0.1:\${port}/api/channels/does-not-exist/programs\`);
+    const notFound = await fetch(`http://127.0.0.1:${port}/api/channels/does-not-exist/programs`);
     assert.equal(notFound.status, 404);
     const errorBody = await notFound.json();
     assert.equal(errorBody.success, false);
