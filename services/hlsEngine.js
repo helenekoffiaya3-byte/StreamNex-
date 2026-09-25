@@ -1,0 +1,119 @@
+const { spawn } = require('child_process');
+const fs = require('fs');
+const path = require('path');
+const { getActiveStreamLiveProgram, loadStreamLiveSchedule } = require('./streamliveScheduler');
+
+class HLSEngine {
+  constructor({
+    schedule = loadStreamLiveSchedule(),
+    outputDir = path.join(process.cwd(), 'public', 'hls'),
+    ffmpegPath = process.env.FFMPEG_PATH || 'ffmpeg'
+  } = {}) {
+    this.schedule = schedule;
+    this.outputDir = path.resolve(outputDir);
+    this.ffmpegPath = ffmpegPath;
+    this.ffmpegProcess = null;
+    this.currentProgramId = null;
+    this.restartTimer = null;
+    this.running = false;
+    fs.mkdirSync(this.outputDir, { recursive: true });
+  }
+
+  timeToSeconds(value) {
+    const [hours, minutes] = String(value).split(':').map(Number);
+    return hours * 3600 + minutes * 60;
+  }
+
+  start() {
+    if (this.running) return this.sync();
+    this.running = true;
+    this.sync();
+  }
+
+  sync() {
+    if (!this.running) return;
+    const status = getActiveStreamLiveProgram(this.schedule);
+    if (!status.success) return this.stopProcess();
+
+    const program = status.activeProgram;
+    if (!program.canPlay || !program.absolutePath) {
+      this.currentProgramId = program.id;
+      return this.stopProcess();
+    }
+
+    if (this.currentProgramId !== program.id || !this.ffmpegProcess) {
+      this.runFFmpeg(program, this.calculateOffset(status.abidjanTime, program.startTime));
+    }
+  }
+
+  calculateOffset(current, start) {
+    return Math.max(0, this.timeToSeconds(current) - this.timeToSeconds(start));
+  }
+
+  runFFmpeg(program, offsetSeconds) {
+    this.stopProcess();
+    this.currentProgramId = program.id;
+
+    const playlistPath = path.join(this.outputDir, 'streamlive.m3u8');
+    const segmentPattern = path.join(this.outputDir, 'streamlive-%06d.ts');
+
+    const args = [
+      '-hide_banner', '-loglevel', 'warning',
+      '-ss', String(offsetSeconds),
+      '-re', '-i', program.absolutePath,
+      '-map', '0:v:0', '-map', '0:a:0?',
+      '-c:v', 'libx264', '-preset', process.env.STREAMLIVE_HLS_PRESET || 'veryfast',
+      '-tune', 'zerolatency', '-pix_fmt', 'yuv420p',
+      '-c:a', 'aac', '-b:a', '128k', '-ar', '44100',
+      '-f', 'hls', '-hls_time', '4', '-hls_list_size', '6',
+      '-hls_flags', 'delete_segments+omit_endlist+independent_segments',
+      '-hls_segment_filename', segmentPattern,
+      '-y', playlistPath
+    ];
+
+    const child = spawn(this.ffmpegPath, args, { stdio: ['ignore', 'ignore', 'pipe'] });
+    this.ffmpegProcess = child;
+
+    child.stderr.on('data', chunk => {
+      const message = String(chunk).trim();
+      if (message) console.warn('[HLS Engine]', message);
+    });
+
+    child.once('error', error => {
+      console.error('[HLS Engine] FFmpeg indisponible:', error.message);
+      if (this.ffmpegProcess === child) this.ffmpegProcess = null;
+    });
+
+    child.once('close', () => {
+      if (this.ffmpegProcess !== child || !this.running) return;
+      this.ffmpegProcess = null;
+      this.currentProgramId = null;
+      this.scheduleRestart(1000);
+    });
+  }
+
+  scheduleRestart(delay) {
+    clearTimeout(this.restartTimer);
+    this.restartTimer = setTimeout(() => {
+      this.restartTimer = null;
+      this.sync();
+    }, delay);
+  }
+
+  stopProcess() {
+    if (!this.ffmpegProcess) return;
+    const child = this.ffmpegProcess;
+    this.ffmpegProcess = null;
+    child.kill('SIGTERM');
+  }
+
+  stop() {
+    this.running = false;
+    clearTimeout(this.restartTimer);
+    this.restartTimer = null;
+    this.stopProcess();
+    this.currentProgramId = null;
+  }
+}
+
+module.exports = HLSEngine;
