@@ -17,6 +17,22 @@
       <img class="hero-logo" id="channelLogo" alt="">
     </header>
 
+    <section class="live-player-card" aria-label="Lecture en direct">
+      <div class="live-player">
+        <video id="main-live-video" controls playsinline preload="metadata"></video>
+        <div class="live-player-placeholder" id="live-player-placeholder">Chargement du programme en cours…</div>
+      </div>
+      <div class="live-player-info">
+        <div class="live-badge" id="live-badge">EN DIRECT</div>
+        <h1 id="current-program-title">Programme en cours</h1>
+        <div class="live-time" id="current-program-time">--:-- — --:--</div>
+        <div class="program-progress-track" aria-hidden="true">
+          <div class="program-progress-bar" id="program-progress-bar"></div>
+        </div>
+        <p id="current-program-description"></p>
+      </div>
+    </section>
+
     <main class="rows" id="rows">
       <section class="state-block" id="channelState">Chargement du programme TV…</section>
     </main>
@@ -74,6 +90,7 @@
   </div>
 
   <div class="toast hidden" id="toast" role="status" aria-live="polite"></div>
+  <script src="/public/assets/js/livePlayer.js"></script>
   <script src="/public/assets/js/channel.js"></script>
 </body>
 </html>
