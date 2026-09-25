@@ -8,7 +8,7 @@ class EditorialStreamLivePlayer {
     this.progress=document.getElementById("editorial-live-progress");
     this.next=document.getElementById("editorial-next");
     this.badge=document.getElementById("editorial-live-badge");
-    this.timer=null;this.progressTimer=null;this.hls=null;this.programId=null;
+    this.timer=null;this.progressTimer=null;this.hls=null;this.programId=null;this.activeProgram=null;
   }
   async init(){await this.sync();this.progressTimer=setInterval(()=>this.updateProgress(),1000)}
   async sync(){
@@ -22,15 +22,14 @@ class EditorialStreamLivePlayer {
   }
   render(d){
     const p=d.activeProgram;
-    this.title.textContent=p.title||"Programme en cours";
+    this.activeProgram=p;this.title.textContent=p.title||"Programme en cours";
     this.time.textContent=p.startTime+" — "+p.endTime;
     this.next.textContent="À suivre : "+(d.nextProgram?.title||"—")+" ("+(d.nextProgram?.startTime||"--:--")+")";
     this.badge.textContent="🔴 EN DIRECT";
     this.updateProgress(d.abidjanTime,p);
   }
   updateProgress(serverTime,p=null){
-    if(!p&&this.programId)return;
-    p=p||null;if(!p)return;
+    p=p||this.activeProgram;if(!p)return;
     const now=new Date();const parts=new Intl.DateTimeFormat("en-GB",{timeZone:"Africa/Abidjan",hour:"2-digit",minute:"2-digit",second:"2-digit",hour12:false}).formatToParts(now);
     const current=parts.filter(x=>["hour","minute","second"].includes(x.type)).reduce((a,x)=>a+(x.type==="hour"?Number(x.value)*3600:x.type==="minute"?Number(x.value)*60:Number(x.value)),0);
     const sec=s=>{const [h,m]=s.split(":").map(Number);return h*3600+m*60};
