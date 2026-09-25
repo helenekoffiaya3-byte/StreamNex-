@@ -114,6 +114,7 @@ ensureColumn('program_occurrences', 'poster_source_type', 'TEXT');
 ensureColumn('program_occurrences', 'playback_url', 'TEXT');
 ensureColumn('programs', 'observed_first_seen_at', 'TEXT');
 ensureColumn('programs', 'observed_last_seen_at', 'TEXT');
+ensureColumn('programs', 'source_type', "TEXT NOT NULL DEFAULT 'epg'");
 
 function rowToProgram(row) {
   if (!row) return null;
@@ -125,6 +126,7 @@ function rowToProgram(row) {
     description: row.description,
     poster: row.poster,
     status: row.status,
+    sourceType: row.source_type || 'epg',
     firstSeenAt: row.observed_first_seen_at || null,
     lastSeenAt: row.observed_last_seen_at || null,
     occurrencesCount: row.occurrences_count,
@@ -248,8 +250,8 @@ function upsertProgram(entry) {
         program_id, channel_id, title, type, description, poster,
         poster_source_url, poster_source_type,
         status, first_seen_at, last_seen_at, occurrences_count,
-        distinct_days_count, is_recurring, playback_url
-      ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, 'pending', ?, ?, 0, 0, 0, ?)
+        distinct_days_count, is_recurring, playback_url, source_type
+      ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, 'pending', ?, ?, 0, 0, 0, ?, ?)
     `).run(
       entry.programId,
       entry.channelId,
@@ -261,7 +263,8 @@ function upsertProgram(entry) {
       entry.posterSourceType || null,
       now,
       now,
-      entry.playbackUrl || null
+      entry.playbackUrl || null,
+      entry.sourceType || 'epg'
     );
   } else {
     db.prepare(`
@@ -270,7 +273,8 @@ function upsertProgram(entry) {
           poster = COALESCE(?, poster),
           poster_source_url = COALESCE(?, poster_source_url),
           poster_source_type = COALESCE(?, poster_source_type),
-          playback_url = COALESCE(?, playback_url)
+          playback_url = COALESCE(?, playback_url),
+          source_type = COALESCE(?, source_type)
       WHERE program_id = ?
     `).run(
       entry.description || '',
@@ -279,6 +283,7 @@ function upsertProgram(entry) {
       entry.posterSourceUrl || null,
       entry.posterSourceType || null,
       entry.playbackUrl || null,
+      entry.sourceType || null,
       entry.programId
     );
   }
