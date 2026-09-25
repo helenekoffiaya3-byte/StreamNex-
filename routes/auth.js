@@ -46,6 +46,7 @@ router.post('/login', loginLimiter, async (req, res) => {
     sub: String(user.uuid),
     user_id: user.id,
     username: user.username,
+    email: user.email,
     role: user.role,
     permissions: user.permissions,
     nbf: now
