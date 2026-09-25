@@ -84,6 +84,15 @@ function runCatalogAudit() {
     }
   }
 
+  const report = {
+    generatedAt: new Date().toISOString(),
+    total: Array.isArray(channels) ? channels.length : 0,
+    idsUnique: ids.size,
+    counts,
+    errors
+  };
+  fs.writeFileSync(path.join(__dirname, '..', 'channels-health-report.json'), JSON.stringify(report, null, 2));
+
   if (errors.length) {
     console.error('❌ ÉCHEC DE L’AUDIT DU CATALOGUE');
     for (const error of errors) console.error(`   - ${error}`);
