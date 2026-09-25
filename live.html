@@ -26,6 +26,23 @@
   </nav>
 
   <main class="live-page">
+    <section class="editorial-live" id="editorialStreamLive" aria-labelledby="editorialStreamLiveTitle">
+      <div class="editorial-live-head">
+        <div><span class="eyebrow">STREAMLIVE EDITORIAL</span><h2 id="editorialStreamLiveTitle">Direct 24 h</h2></div>
+        <span id="editorial-live-badge" class="editorial-live-badge">🔴 EN DIRECT</span>
+      </div>
+      <div class="editorial-live-player">
+        <video id="editorial-live-video" controls playsinline preload="metadata"></video>
+        <div id="editorial-live-placeholder" class="editorial-live-placeholder">Synchronisation du direct…</div>
+      </div>
+      <div class="editorial-live-meta">
+        <h3 id="editorial-live-title">Programme en cours</h3>
+        <div id="editorial-live-time" class="editorial-live-time">--:-- — --:--</div>
+        <div class="editorial-live-progress-track"><span id="editorial-live-progress" class="editorial-live-progress"></span></div>
+        <div id="editorial-next" class="editorial-next">À suivre : —</div>
+      </div>
+    </section>
+
     <section class="vertical-live" id="verticalLive" aria-label="Fil LIVE"><div class="section-head"><div><span class="eyebrow">FIL LIVE</span><h1>Regarder en direct</h1></div><span class="count">Swipe ↑ ↓</span></div><div id="liveFeed" class="live-feed"><div class="loading-card">Chargement du fil LIVE…</div></div></section>
 
     <section class="multi-live" id="multiLiveSection" aria-labelledby="multiLiveTitle">
@@ -94,6 +111,7 @@
   </nav>
 
   <script src="/live.js"></script>
+  <script src="/public/assets/js/editorialStreamLive.js"></script>
   <script type="module" src="/offline.js"></script>
   <script>
     if ("serviceWorker" in navigator) {
