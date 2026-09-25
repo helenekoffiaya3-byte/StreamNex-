@@ -41,6 +41,21 @@
       <div id="multiLiveEmpty" class="empty-card">Aucune chaîne sélectionnée.</div>
     </section>
 
+    <div id="multiPickerModal" class="multi-picker-modal" hidden aria-hidden="true">
+      <div class="multi-picker-backdrop" data-close-multi-picker></div>
+      <section class="multi-picker" role="dialog" aria-modal="true" aria-labelledby="multiPickerTitle">
+        <div class="multi-picker-head">
+          <div>
+            <span class="eyebrow">MULTI-LIVE</span>
+            <h2 id="multiPickerTitle">Choisir une chaîne</h2>
+          </div>
+          <button id="closeMultiPickerBtn" class="icon-btn" type="button" aria-label="Fermer">×</button>
+        </div>
+        <input id="multiPickerSearch" class="multi-picker-search" type="search" placeholder="Rechercher une chaîne..." autocomplete="off" aria-label="Rechercher une chaîne">
+        <div id="multiPickerList" class="multi-picker-list"></div>
+      </section>
+    </div>
+
     <section class="channel-section" aria-labelledby="channelsTitle">
       <div class="section-head">
         <div>
