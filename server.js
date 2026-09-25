@@ -1030,6 +1030,47 @@ app.get('/api/programs/resolve-playback', (req, res) => {
   });
 });
 
+app.get('/api/editorial/streamlive/current', (_req, res) => {
+  try {
+    const { getActiveStreamLiveProgram } = require('./services/streamliveScheduler');
+    const status = getActiveStreamLiveProgram();
+    return res.json(status);
+  } catch (error) {
+    return res.status(500).json({
+      success: false,
+      type: 'editorial-curated',
+      error: 'Grille StreamLive indisponible.',
+      message: process.env.NODE_ENV === 'production'
+        ? 'Erreur de configuration éditoriale.'
+        : error.message
+    });
+  }
+});
+
+app.get('/api/editorial/streamlive/schedule', (_req, res) => {
+  try {
+    const { loadStreamLiveSchedule, validateStreamLiveSchedule, TIMEZONE } = require('./services/streamliveScheduler');
+    const schedule = loadStreamLiveSchedule();
+    validateStreamLiveSchedule(schedule);
+    return res.json({
+      success: true,
+      name: 'StreamLive',
+      type: 'editorial-curated',
+      timezone: TIMEZONE,
+      count: schedule.length,
+      schedule
+    });
+  } catch (error) {
+    return res.status(500).json({
+      success: false,
+      error: 'Grille StreamLive invalide.',
+      message: process.env.NODE_ENV === 'production'
+        ? 'Erreur de configuration éditoriale.'
+        : error.message
+    });
+  }
+});
+
 app.get('/api/epg/status', (_req, res) => {
   const latestRun = getLatestSyncRun();
   const automaticGuidesEnabled = process.env.EPG_USE_IPTV_ORG_GUIDES === 'true';
