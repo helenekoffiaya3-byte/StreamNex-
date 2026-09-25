@@ -138,6 +138,24 @@ app.get('/vod/*mediaPath', (req, res, next) => {
   });
 });
 
+const STREAMLIVE_HLS_ENABLED = process.env.STREAMLIVE_HLS_ENABLED === 'true';
+const streamLiveHlsEngine = STREAMLIVE_HLS_ENABLED
+  ? new (require('./services/hlsEngine'))()
+  : null;
+
+app.use('/hls', express.static(path.join(__dirname, 'public', 'hls'), {
+  fallthrough: true,
+  index: false,
+  setHeaders(res) {
+    res.setHeader('Cache-Control', 'no-store, no-cache, must-revalidate, proxy-revalidate');
+  }
+}));
+
+if (streamLiveHlsEngine) {
+  streamLiveHlsEngine.start();
+  setInterval(() => streamLiveHlsEngine.sync(), 30_000).unref();
+}
+
 app.use(express.static(__dirname, {
   dotfiles: 'deny',
   fallthrough: true,
@@ -1296,6 +1314,7 @@ const server = app.listen(PORT, () => {
 // Keeping a potentially corrupted Node process alive is unsafe.
 let shuttingDown = false;
 function gracefulShutdown(signal) {
+  if (streamLiveHlsEngine) streamLiveHlsEngine.stop();
   if (shuttingDown) return;
   shuttingDown = true;
   console.log(`[StreamLive] Arrêt demandé: ${signal}`);
