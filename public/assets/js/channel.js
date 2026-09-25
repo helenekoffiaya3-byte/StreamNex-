@@ -108,6 +108,18 @@
       rows.appendChild(makeRow('À venir', [...new Set(upcoming.map(o => o.programId))]));
     }
 
+    const replay = occurrences
+      .filter(o => {
+        const end = Date.parse(o.endAt || '');
+        return Number.isFinite(end) && end <= Date.now() && Boolean(o.playbackUrl);
+      })
+      .sort((a, b) => Date.parse(b.endAt) - Date.parse(a.endAt))
+      .slice(0, 12);
+
+    if (replay.length) {
+      rows.appendChild(makeRow('Replay récent', [...new Set(replay.map(o => o.programId))], replay));
+    }
+
     if (epgSource === 'synthetic-fallback' && programs.length) {
       rows.appendChild(makeRow('Grille EPG de secours', programs.map(p => p.programId)));
       appendState(epgWarning || 'Grille synthétique affichée : aucune occurrence EPG réelle disponible.');
@@ -116,7 +128,7 @@
     }
   }
 
-  function makeRow(titleText, ids) {
+  function makeRow(titleText, ids, preferredOccurrences = []) {
     const section = document.createElement('section');
     section.className = 'row';
 
@@ -133,6 +145,7 @@
       if (!program) continue;
 
       const occurrence = occurrences.find(o => o.programId === id && isLiveNow(o))
+        || preferredOccurrences.find(o => o.programId === id)
         || occurrences.find(o => o.programId === id);
 
       const tile = document.createElement('button');
