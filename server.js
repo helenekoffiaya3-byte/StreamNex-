@@ -1,6 +1,7 @@
 require('dotenv').config();
 
 const express = require('express');
+const { generateProgramsForChannel } = require('./utils/epgGenerator');
 const cors = require('cors');
 const helmet = require('helmet');
 const { rateLimit } = require('express-rate-limit');
@@ -484,9 +485,12 @@ app.get('/api/channels/:id/programs', (req, res) => {
   const to = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toISOString();
   const occurrences = getOccurrencesByChannel(channel.id, from, to).map(occurrence => ({ ...occurrence, playbackUrl: null }));
   const enrich = program => enrichProgram(program, occurrences);
-  const programs = [...staticPrograms, ...dbPrograms].map(enrich).filter((program, index, list) =>
+  let programs = [...staticPrograms, ...dbPrograms].map(enrich).filter((program, index, list) =>
     list.findIndex(item => item.programId === program.programId) === index
   );
+  // Fallback uniquement pour les chaînes sans grille fixe/DB.
+  // Ces programmes sont explicitement synthétiques et ne créent aucune disponibilité LIVE.
+  if (!programs.length) programs = generateProgramsForChannel(channel);
 
   res.json({
     success: true,
