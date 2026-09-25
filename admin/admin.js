@@ -1,0 +1,8 @@
+const login=document.getElementById('login'),panel=document.getElementById('panel'),error=document.getElementById('error');
+async function api(url,options){const r=await fetch(url,{credentials:'include',...(options||{})});const d=await r.json().catch(()=>({success:false,error:'Réponse invalide.'}));if(!r.ok){const e=new Error(d.error||'Accès refusé.');e.status=r.status;throw e}return d}
+function showLogin(message=''){login.hidden=false;panel.hidden=true;error.textContent=message}
+function showPanel(){login.hidden=true;panel.hidden=false}
+async function load(){const d=await api('/api/db/stats');const labels={channels:'Chaînes',programs:'Programmes',occurrences:'Occurrences',mediaAssets:'Médias',recordings:'Enregistrements',recordingSegments:'Segments',replayCatalog:'Replays',episodes:'Épisodes',movies:'Films',series:'Séries',subtitles:'Sous-titres',audioTracks:'Pistes audio'};document.getElementById('stats').innerHTML=Object.entries(labels).map(([k,v])=>'<div class="stat"><b>'+Number(d.stats[k]||0).toLocaleString('fr-FR')+'</b><span>'+v+'</span></div>').join('');showPanel()}
+document.getElementById('form').addEventListener('submit',async e=>{e.preventDefault();error.textContent='';try{await api('/api/auth/login',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email:document.getElementById('email').value.trim(),password:document.getElementById('password').value})});await load()}catch(e){error.textContent=e.message}});
+document.getElementById('logout').addEventListener('click',async()=>{await api('/api/auth/logout',{method:'POST'});showLogin()});
+load().catch(e=>showLogin(e.status===401||e.status===403?'Connexion administrateur requise.':e.message));
