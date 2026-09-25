@@ -234,6 +234,7 @@ const CHANNEL_CATALOG = {
   ],
   'nickelodeon-junior': [
     ['paw-patrol', 'Paw Patrol'], ['dora', 'Dora'], ['wonder-pets', 'Wonder Pets']
+    ['peppa-pig', 'Peppa Pig']
   ],
   'disney-channel': [
     ['hannah-montana', 'Hannah Montana'], ['wizards-of-waverly-place', 'Wizards of Waverly Place'],
@@ -245,12 +246,14 @@ const CHANNEL_CATALOG = {
   'disney-junior': [
     ['mickey-mouse-clubhouse', 'Mickey Mouse Clubhouse'], ['doc-mcstuffins', 'Doc McStuffins'],
     ['pj-masks', 'PJ Masks'], ['sofia-the-first', 'Sofia the First']
+    ['bluey', 'Bluey']
   ],
   'cartoon-network': [
     ['gumball', 'Gumball'], ['adventure-time', 'Adventure Time'], ['teen-titans-go', 'Teen Titans Go!'],
     ['dexters-laboratory', "Dexter's Laboratory"], ['powerpuff-girls', 'Powerpuff Girls'],
     ['ben-10', 'Ben 10'], ['steven-universe', 'Steven Universe'], ['regular-show', 'Regular Show'],
     ['craig-of-the-creek', 'Craig of the Creek'], ['we-bare-bears', 'We Bare Bears']
+    ['hilda', 'Hilda'], ['trollhunters', 'Trollhunters']
   ],
   'tfou': [
     ['miraculous', 'Miraculous'], ['tchoupi-et-doudou', 'Tchoupi et Doudou']
@@ -263,6 +266,7 @@ const CHANNEL_CATALOG = {
   ],
   'gulli': [
     ['oggy-et-les-cafards', 'Oggy et les Cafards'], ['totally-spies', 'Totally Spies!'], ['code-lyoko', 'Code Lyoko']
+    ['chica-vampiro', 'Chica Vampiro'], ['molang', 'Molang']
   ],
   'm6': [
     ['martin-mystere', 'Martin Mystère'], ['inspecteur-gadget', 'Inspecteur Gadget']
@@ -277,20 +281,7 @@ const CHANNEL_CATALOG = {
   'la-3': [
     ['la3-magazine', 'La 3 Magazine', 'show'],
     ['la3-culture', 'La 3 Culture', 'show']
-  ],
-  'disney-junior': [
-    ['bluey', 'Bluey']
-  ],
-  'cartoon-network': [
-    ['hilda', 'Hilda'], ['trollhunters', 'Trollhunters']
-  ],
-  'gulli': [
-    ['chica-vampiro', 'Chica Vampiro'], ['molang', 'Molang']
-  ],
-  'nickelodeon-junior': [
-    ['peppa-pig', 'Peppa Pig']
-  ]
-};
+  ],};
 
 const UNASSIGNED_CATALOG = [];
 
