@@ -386,7 +386,9 @@ nickelodeonLiveAction.push(makeProgram("NICK-MA-027", "A Fairly Odd Movie: Grow 
   actors: ["Drake Bell", "Daniella Monet", "Jason Alexander", "Cheryl Hines"], country: "États-Unis",
   network: "Nickelodeon", category: "nickelodeon-live-action", epgId: "epg.nick-ma-027",
   audioTracks: [], subtitles: [], streamEnabled: false, stream: { enabled: false, status: "INACTIVE" }
-}));\n\nmodule.exports = {
+}));
+
+module.exports = {
   channelPrograms,
   nickelodeonLiveAction,
   unassignedPrograms,
