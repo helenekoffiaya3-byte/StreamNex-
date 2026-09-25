@@ -7,7 +7,7 @@ const ffmpeg = process.env.FFMPEG_PATH || 'ffmpeg';
 const args = process.argv.slice(2);
 const all = args.includes('--all') || args.includes('rti1');
 const targetFile = args.find(a => !a.startsWith('--') && a !== 'rti1') || 'storage/vod/cinema_nuit.mp4';
-const requestedDuration = Number.parseInt(args.find((a, i) => /^\\d+$/.test(a) && args[i - 1] !== '--duration'), 10);
+const requestedDuration = Number.parseInt(args.find((a, i) => /^\d+$/.test(a) && args[i - 1] !== '--duration'), 10);
 const requestedTitle = process.env.VOD_TITLE || 'StreamLive Test VOD';
 
 function durationSeconds(start, end) {
