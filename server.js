@@ -485,16 +485,24 @@ app.get('/api/channels/:id/programs', (req, res) => {
 
   try {
     // Priorité absolue aux occurrences réellement synchronisées dans SQLite.
-    // On inclut les programmes "pending" : ils proviennent déjà du robot EPG
+    // Les programmes "pending" sont inclus : ils proviennent déjà du robot EPG
     // et ne doivent pas être remplacés par une grille synthétique pendant leur
     // période de confirmation.
-    const realPrograms = db.prepare(`
+    const rows = db.prepare(`
       SELECT
         po.occurrence_id AS occurrenceId,
         po.program_id AS programId,
         po.channel_id AS channelId,
         p.title AS title,
         p.type AS type,
+        p.description AS programDescription,
+        p.poster AS programPoster,
+        p.poster_source_url AS programPosterSourceUrl,
+        p.poster_source_type AS programPosterSourceType,
+        p.status AS status,
+        p.occurrences_count AS occurrencesCount,
+        p.distinct_days_count AS distinctDaysCount,
+        p.is_recurring AS isRecurring,
         po.start_at AS startAt,
         po.end_at AS endAt,
         po.subtitle AS subtitle,
@@ -504,8 +512,7 @@ app.get('/api/channels/:id/programs', (req, res) => {
         po.poster AS poster,
         po.poster_source_url AS posterSourceUrl,
         po.poster_source_type AS posterSourceType,
-        po.playback_url AS playbackUrl,
-        p.status AS status
+        po.playback_url AS playbackUrl
       FROM program_occurrences AS po
       JOIN programs AS p ON p.program_id = po.program_id
       WHERE po.channel_id = ?
@@ -514,21 +521,63 @@ app.get('/api/channels/:id/programs', (req, res) => {
       ORDER BY po.start_at ASC
     `).all(channel.id, from, to);
 
-    if (realPrograms.length > 0) {
+    if (rows.length > 0) {
+      const programMap = new Map();
+
+      for (const row of rows) {
+        if (!programMap.has(row.programId)) {
+          programMap.set(row.programId, {
+            programId: row.programId,
+            channelId: row.channelId,
+            title: row.title,
+            type: row.type,
+            description: row.programDescription || row.description || '',
+            poster: row.programPoster || row.poster || null,
+            posterSourceUrl: row.programPosterSourceUrl || row.posterSourceUrl || null,
+            posterSourceType: row.programPosterSourceType || row.posterSourceType || null,
+            status: row.status,
+            occurrencesCount: row.occurrencesCount,
+            distinctDaysCount: row.distinctDaysCount,
+            isRecurring: Boolean(row.isRecurring),
+            playbackUrl: row.playbackUrl || null
+          });
+        }
+      }
+
+      const realOccurrences = rows.map(row => ({
+        occurrenceId: row.occurrenceId,
+        programId: row.programId,
+        channelId: row.channelId,
+        title: row.title,
+        startAt: row.startAt,
+        endAt: row.endAt,
+        subtitle: row.subtitle || null,
+        seasonNumber: row.seasonNumber,
+        episodeNumber: row.episodeNumber,
+        description: row.description || row.programDescription || '',
+        poster: row.poster || row.programPoster || null,
+        posterSourceUrl: row.posterSourceUrl || row.programPosterSourceUrl || null,
+        posterSourceType: row.posterSourceType || row.programPosterSourceType || null,
+        playbackUrl: row.playbackUrl || null
+      }));
+
       return res.json({
         success: true,
         channelId: channel.id,
         name: channel.name,
         source: 'real-epg-sync',
         sourceDetail: 'sqlite',
-        totalPrograms: realPrograms.length,
-        programs: realPrograms,
+        totalPrograms: programMap.size,
+        programCount: programMap.size,
+        programs: [...programMap.values()],
+        occurrences: realOccurrences,
+        epg: realOccurrences,
         warning: null,
         fetchedAt: new Date().toISOString()
       });
     }
 
-    // Aucun enregistrement EPG réel pour cette chaîne dans la fenêtre demandée :
+    // Aucun enregistrement EPG réel dans la fenêtre demandée :
     // la grille synthétique reste disponible, mais sa provenance est explicite.
     const syntheticPrograms = generateFullCatalogPrograms(channel, { count: 20 });
 
@@ -540,7 +589,10 @@ app.get('/api/channels/:id/programs', (req, res) => {
       sourceDetail: 'generated',
       warning: 'Grille EPG synthétique de secours : aucune occurrence EPG réelle disponible pour cette chaîne.',
       totalPrograms: syntheticPrograms.length,
+      programCount: syntheticPrograms.length,
       programs: syntheticPrograms,
+      occurrences: [],
+      epg: [],
       fetchedAt: new Date().toISOString()
     });
   } catch (error) {
