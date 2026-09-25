@@ -36,13 +36,26 @@ class HLSEngine {
     if (!status.success) return this.stopProcess();
 
     const program = status.activeProgram;
-    if (!program.canPlay || !program.absolutePath) {
+    const fallbackPath = path.resolve(process.cwd(), 'storage', 'vod', 'fallback_slate.mp4');
+    const useFallback = !program.canPlay || !program.absolutePath;
+    if (useFallback && process.env.STREAMLIVE_HLS_FALLBACK !== 'true') {
+      this.currentProgramId = program.id;
+      return this.stopProcess();
+    }
+
+    const inputPath = useFallback ? fallbackPath : program.absolutePath;
+    if (!fs.existsSync(inputPath)) {
       this.currentProgramId = program.id;
       return this.stopProcess();
     }
 
     if (this.currentProgramId !== program.id || !this.ffmpegProcess) {
-      this.runFFmpeg(program, this.calculateOffset(status.abidjanTime, program.startTime));
+      this.runFFmpeg(
+        program,
+        useFallback ? 0 : this.calculateOffset(status.abidjanTime, program.startTime),
+        inputPath,
+        useFallback
+      );
     }
   }
 
@@ -50,7 +63,7 @@ class HLSEngine {
     return Math.max(0, this.timeToSeconds(current) - this.timeToSeconds(start));
   }
 
-  runFFmpeg(program, offsetSeconds) {
+  runFFmpeg(program, offsetSeconds, inputPath = program.absolutePath, loopInput = false) {
     this.stopProcess();
     this.currentProgramId = program.id;
 
@@ -60,7 +73,9 @@ class HLSEngine {
     const args = [
       '-hide_banner', '-loglevel', 'warning',
       '-ss', String(offsetSeconds),
-      '-re', '-i', program.absolutePath,
+      '-re',
+      ...(loopInput ? ['-stream_loop', '-1'] : []),
+      '-i', inputPath,
       '-map', '0:v:0', '-map', '0:a:0?',
       '-c:v', 'libx264', '-preset', process.env.STREAMLIVE_HLS_PRESET || 'veryfast',
       '-tune', 'zerolatency', '-pix_fmt', 'yuv420p',
@@ -101,10 +116,24 @@ class HLSEngine {
   }
 
   stopProcess() {
-    if (!this.ffmpegProcess) return;
+    if (!this.ffmpegProcess) {
+      this.cleanupOutput();
+      return;
+    }
     const child = this.ffmpegProcess;
     this.ffmpegProcess = null;
     child.kill('SIGTERM');
+    this.cleanupOutput();
+  }
+
+  cleanupOutput() {
+    const playlist = path.join(this.outputDir, 'streamlive.m3u8');
+    try { if (fs.existsSync(playlist)) fs.rmSync(playlist, { force: true }); } catch {}
+    for (const file of fs.readdirSync(this.outputDir)) {
+      if (/^streamlive-\d+\.ts$/i.test(file)) {
+        try { fs.rmSync(path.join(this.outputDir, file), { force: true }); } catch {}
+      }
+    }
   }
 
   stop() {
