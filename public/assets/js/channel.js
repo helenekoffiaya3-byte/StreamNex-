@@ -13,6 +13,8 @@
   let currentOccurrence = null;
   let currentSeason = null;
   let hls = null;
+  let epgSource = null;
+  let epgWarning = null;
 
   if (!channelId) {
     window.location.replace('/');
@@ -75,6 +77,8 @@
     const data = await api('/api/channels/' + encodeURIComponent(channelId) + '/programs');
     occurrences = Array.isArray(data.occurrences) ? data.occurrences : [];
     programs = Array.isArray(data.programs) ? data.programs : [];
+    epgSource = data.source || null;
+    epgWarning = data.warning || null;
 
     renderChannelRows();
     renderEPG();
@@ -104,7 +108,12 @@
       rows.appendChild(makeRow('À venir', [...new Set(upcoming.map(o => o.programId))]));
     }
 
-    if (!rows.children.length) showState('Aucun programme EPG réel disponible pour cette chaîne.');
+    if (epgSource === 'synthetic-fallback' && programs.length) {
+      rows.appendChild(makeRow('Grille EPG de secours', programs.map(p => p.programId)));
+      showState(epgWarning || 'Grille synthétique affichée : aucune occurrence EPG réelle disponible.');
+    } else if (!rows.children.length) {
+      showState('Aucun programme EPG réel disponible pour cette chaîne.');
+    }
   }
 
   function makeRow(titleText, ids) {
