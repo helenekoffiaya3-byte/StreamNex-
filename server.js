@@ -479,36 +479,78 @@ app.get('/api/channels/:id/programs', (req, res) => {
     return res.status(404).json({ success: false, error: 'Chaîne non trouvée.' });
   }
 
-  const { getProgramsByChannel, getOccurrencesByChannel } = require('./models/program-db');
-  const dbPrograms = getProgramsByChannel(channel.id);
-  const staticPrograms = Array.isArray(channelPrograms[channel.id]) ? channelPrograms[channel.id] : [];
+  const { db } = require('./models/program-db');
   const from = new Date(Date.now() - 24 * 60 * 60 * 1000).toISOString();
   const to = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toISOString();
-  const occurrences = getOccurrencesByChannel(channel.id, from, to).map(occurrence => ({ ...occurrence, playbackUrl: null }));
-  const enrich = program => enrichProgram(program, occurrences);
-  let programs = [...staticPrograms, ...dbPrograms].map(enrich).filter((program, index, list) =>
-    list.findIndex(item => item.programId === program.programId) === index
-  );
 
-  // Grille EPG complète : 20 créneaux sur 24 h pour chaque chaîne.
-  // La grille synthétique est éditoriale uniquement et ne crée jamais de LIVE.
-  // Les programmes statiques/DB restent accessibles via /api/channels/:id et
-  // /api/catalog/:channelId ; cette route fournit une grille EPG normalisée.
-  const fullPrograms = generateFullCatalogPrograms(channel, { count: 20 });
+  try {
+    // Priorité absolue aux occurrences réellement synchronisées dans SQLite.
+    // On inclut les programmes "pending" : ils proviennent déjà du robot EPG
+    // et ne doivent pas être remplacés par une grille synthétique pendant leur
+    // période de confirmation.
+    const realPrograms = db.prepare(`
+      SELECT
+        po.occurrence_id AS occurrenceId,
+        po.program_id AS programId,
+        po.channel_id AS channelId,
+        p.title AS title,
+        p.type AS type,
+        po.start_at AS startAt,
+        po.end_at AS endAt,
+        po.subtitle AS subtitle,
+        po.season_number AS seasonNumber,
+        po.episode_number AS episodeNumber,
+        po.description AS description,
+        po.poster AS poster,
+        po.poster_source_url AS posterSourceUrl,
+        po.poster_source_type AS posterSourceType,
+        po.playback_url AS playbackUrl,
+        p.status AS status
+      FROM program_occurrences AS po
+      JOIN programs AS p ON p.program_id = po.program_id
+      WHERE po.channel_id = ?
+        AND (po.end_at IS NULL OR po.end_at >= ?)
+        AND po.start_at <= ?
+      ORDER BY po.start_at ASC
+    `).all(channel.id, from, to);
 
-  res.json({
-    success: true,
-    channelId: channel.id,
-    programs: fullPrograms,
-    programCount: fullPrograms.length,
-    source: "synthetic-full-epg",
-    staticProgramCount: programs.length,
-    occurrences,
-    epg: occurrences,
-    fetchedAt: new Date().toISOString()
-  });
+    if (realPrograms.length > 0) {
+      return res.json({
+        success: true,
+        channelId: channel.id,
+        name: channel.name,
+        source: 'real-epg-sync',
+        sourceDetail: 'sqlite',
+        totalPrograms: realPrograms.length,
+        programs: realPrograms,
+        warning: null,
+        fetchedAt: new Date().toISOString()
+      });
+    }
+
+    // Aucun enregistrement EPG réel pour cette chaîne dans la fenêtre demandée :
+    // la grille synthétique reste disponible, mais sa provenance est explicite.
+    const syntheticPrograms = generateFullCatalogPrograms(channel, { count: 20 });
+
+    return res.json({
+      success: true,
+      channelId: channel.id,
+      name: channel.name,
+      source: 'synthetic-fallback',
+      sourceDetail: 'generated',
+      warning: 'Grille EPG synthétique de secours : aucune occurrence EPG réelle disponible pour cette chaîne.',
+      totalPrograms: syntheticPrograms.length,
+      programs: syntheticPrograms,
+      fetchedAt: new Date().toISOString()
+    });
+  } catch (error) {
+    console.error(`Erreur lors de la récupération EPG pour ${channel.id}:`, error.message);
+    return res.status(500).json({
+      success: false,
+      error: 'Erreur interne du serveur lors du chargement de l’EPG.'
+    });
+  }
 });
-
 app.get('/api/live/channels', (_req, res) => {
   const { getOccurrencesByChannel, getChannelPlaybackUrl } = require('./models/program-db');
   const now = Date.now();
