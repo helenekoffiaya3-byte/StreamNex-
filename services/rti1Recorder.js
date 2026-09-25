@@ -169,6 +169,10 @@ class Rti1Recorder {
     child.once('error', error => {
       console.error('[RTI1 Recorder] FFmpeg indisponible:', error.message);
       if (this.process === child) this.process = null;
+      if (this.recordingId) failRecording(this.recordingId, 'failed', error.message);
+      this.recordingId = null;
+      this.activeKey = null;
+      if (!this.stopping) this.sync();
     });
 
     child.once('close', code => {
