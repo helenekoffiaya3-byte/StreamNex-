@@ -27,6 +27,10 @@ const makeProgram = (id, title, type = 'show', extra = {}) => ({
   catalogEnabled: true,
   streamEnabled: false,
   stream: { enabled: false, status: 'INACTIVE' },
+  // Téléchargement VOD explicite et séparé de la lecture LIVE.
+  // Aucun fichier n'est exposé tant que downloadEnabled n'est pas true.
+  downloadEnabled: false,
+  videoFilePath: null,
   originalChannel: extra.originalChannel ?? null,
   studio: extra.studio ?? null,
   category: extra.category ?? (type === 'movie' ? 'film' : 'programme'),
