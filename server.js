@@ -139,8 +139,14 @@ app.get('/vod/*mediaPath', (req, res, next) => {
 });
 
 const STREAMLIVE_HLS_ENABLED = process.env.STREAMLIVE_HLS_ENABLED === 'true';
+const RTI1_HLS_ENABLED = process.env.RTI1_HLS_ENABLED === 'true';
+
 const streamLiveHlsEngine = STREAMLIVE_HLS_ENABLED
   ? new (require('./services/hlsEngine'))()
+  : null;
+
+const rti1HlsEngine = RTI1_HLS_ENABLED
+  ? new (require('./services/rti1HlsEngine'))()
   : null;
 
 app.use('/hls', express.static(path.join(__dirname, 'public', 'hls'), {
@@ -154,6 +160,11 @@ app.use('/hls', express.static(path.join(__dirname, 'public', 'hls'), {
 if (streamLiveHlsEngine) {
   streamLiveHlsEngine.start();
   setInterval(() => streamLiveHlsEngine.sync(), 30_000).unref();
+}
+
+if (rti1HlsEngine) {
+  rti1HlsEngine.start();
+  setInterval(() => rti1HlsEngine.sync(), 30_000).unref();
 }
 
 app.use(express.static(__dirname, {
@@ -1003,7 +1014,9 @@ app.get('/api/programs/resolve-playback', (req, res) => {
     startAt <= now &&
     (Number.isNaN(endAt) || now < endAt);
 
-  const liveStreamUrl = validatePlaybackUrl(getChannelPlaybackUrl(channel.id));
+  const liveStreamUrl = channel.id === 'rti-1' && rti1HlsEngine?.isReady()
+    ? '/hls/rti1/stream.m3u8'
+    : validatePlaybackUrl(getChannelPlaybackUrl(channel.id));
 
   if (isLive && liveStreamUrl) {
     return res.json({
@@ -1046,6 +1059,53 @@ app.get('/api/programs/resolve-playback', (req, res) => {
     programTitle: occurrence.title || occurrence.subtitle || program.title,
     message: 'Aucune source vidéo réelle et autorisée n’est disponible pour cette occurrence.'
   });
+});
+
+app.get('/api/editorial/rti1/current', (_req, res) => {
+  try {
+    const { getActiveRti1Program } = require('./services/rti1Scheduler');
+    const status = getActiveRti1Program();
+    return res.json({
+      ...status,
+      hls: {
+        enabled: RTI1_HLS_ENABLED,
+        ready: Boolean(rti1HlsEngine?.isReady()),
+        url: rti1HlsEngine?.isReady() ? '/hls/rti1/stream.m3u8' : null
+      }
+    });
+  } catch (error) {
+    return res.status(500).json({
+      success: false,
+      channelId: 'rti-1',
+      type: 'editorial-curated',
+      error: 'Grille RTI 1 indisponible.',
+      message: process.env.NODE_ENV === 'production' ? 'Erreur de configuration éditoriale.' : error.message
+    });
+  }
+});
+
+app.get('/api/editorial/rti1/schedule', (_req, res) => {
+  try {
+    const { loadRti1Schedule, validateRti1Schedule, TIMEZONE } = require('./services/rti1Scheduler');
+    const schedule = loadRti1Schedule();
+    validateRti1Schedule(schedule);
+    return res.json({
+      success: true,
+      channelId: 'rti-1',
+      name: 'RTI 1',
+      type: 'editorial-curated',
+      timezone: TIMEZONE,
+      count: schedule.length,
+      hls: {
+        enabled: RTI1_HLS_ENABLED,
+        ready: Boolean(rti1HlsEngine?.isReady()),
+        url: rti1HlsEngine?.isReady() ? '/hls/rti1/stream.m3u8' : null
+      },
+      schedule
+    });
+  } catch (error) {
+    return res.status(500).json({ success: false, error: 'Grille RTI 1 invalide.' });
+  }
 });
 
 app.get('/api/editorial/streamlive/current', (_req, res) => {
