@@ -13,6 +13,20 @@ function isoForDate(date, hhmm, timezone) {
   return value.toISOString();
 }
 
+function normalizeEditorialMediaUrl(value) {
+  const url = String(value || '').trim();
+  if (!url) return null;
+  // Les chemins /vod/... sont des références éditoriales internes.
+  // Ils ne deviennent lisibles que si le backend confirme que le fichier existe.
+  if (/^\/vod\/(?:[a-zA-Z0-9._-]+\/)*[a-zA-Z0-9._-]+\.mp4$/i.test(url)) return url;
+  try {
+    const parsed = new URL(url);
+    return ['http:', 'https:'].includes(parsed.protocol) ? parsed.toString() : null;
+  } catch {
+    return null;
+  }
+}
+
 function loadEditorialScheduleForRti1({ date = new Date() } = {}) {
   const filePath = path.join(__dirname, '../config/editorial/rti1-programs.json');
   if (!fs.existsSync(filePath)) {
@@ -49,7 +63,7 @@ function loadEditorialScheduleForRti1({ date = new Date() } = {}) {
         title: prog.title,
         type: prog.category || 'show',
         description: prog.description || '',
-        playbackUrl: null,
+        playbackUrl: normalizeEditorialMediaUrl(prog.mediaUrl),
         sourceType: 'editorial-curated'
       });
 
@@ -58,7 +72,7 @@ function loadEditorialScheduleForRti1({ date = new Date() } = {}) {
         startAt,
         endAt,
         description: prog.description || '',
-        playbackUrl: null
+        playbackUrl: normalizeEditorialMediaUrl(prog.mediaUrl)
       });
 
       db.prepare("UPDATE programs SET status = 'confirmed', is_recurring = 1, source_type = 'editorial-curated' WHERE program_id = ?")
