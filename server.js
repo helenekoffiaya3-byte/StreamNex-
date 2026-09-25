@@ -220,6 +220,51 @@ function getBearerToken(req) {
   return cookies.streamlive_session || null;
 }
 
+const VOD_MEDIA_ROOT = path.resolve(
+  process.env.VOD_MEDIA_ROOT || path.join(__dirname, 'storage', 'vod')
+);
+
+const vodDownloadLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000,
+  limit: 10,
+  standardHeaders: 'draft-8',
+  legacyHeaders: false,
+  message: { success: false, error: 'Trop de téléchargements. Réessayez plus tard.' }
+});
+
+function safeDownloadName(title, fallbackId) {
+  const base = String(title || fallbackId || 'streamlive-video')
+    .normalize('NFKD')
+    .replace(/[\\u0300-\\u036f]/g, '')
+    .replace(/[^a-zA-Z0-9._-]+/g, '_')
+    .replace(/^\.+|\.+$/g, '')
+    .slice(0, 120);
+  return (base || 'streamlive-video') + '.mp4';
+}
+
+function resolveVodProgram(programId) {
+  const { getProgram } = require('./models/program-db');
+  const dbProgram = getProgram(programId);
+  if (dbProgram) return dbProgram;
+
+  const staticPrograms = Object.values(channelPrograms)
+    .flat()
+    .concat(nickelodeonLiveAction, unassignedPrograms)
+    .concat(require('./config/catalog').dcReserve || []);
+
+  return staticPrograms.find(item => item?.programId === programId) || null;
+}
+
+function resolveVodFilePath(program) {
+  const configured = program?.videoFilePath || program?.downloadFilePath;
+  if (!configured || typeof configured !== 'string' || path.isAbsolute(configured)) return null;
+
+  const root = VOD_MEDIA_ROOT;
+  const candidate = path.resolve(root, configured);
+  if (candidate !== root && !candidate.startsWith(root + path.sep)) return null;
+  return candidate;
+}
+
 function hasMediaDownloadPermission(claims) {
   if (claims.role === 'admin') return true;
   const permissions = [
@@ -568,6 +613,53 @@ app.get('/api/catalog/nickelodeon-live-action', (_req, res) => {\n  res.json({ s
     success: true,
     count: unassignedPrograms.length,
     programs: unassignedPrograms
+  });
+});
+
+app.get('/api/vod/:id/download', vodDownloadLimiter, requireMediaDownloadAuth, (req, res) => {
+  const programId = String(req.params.id || '').trim();
+  const program = resolveVodProgram(programId);
+
+  if (!program) {
+    return res.status(404).json({ success: false, error: 'Contenu VOD introuvable.' });
+  }
+
+  if (program.downloadEnabled !== true) {
+    return res.status(403).json({
+      success: false,
+      error: 'Le téléchargement n’est pas activé pour ce contenu.'
+    });
+  }
+
+  const filePath = resolveVodFilePath(program);
+  if (!filePath) {
+    return res.status(404).json({
+      success: false,
+      error: 'Fichier VOD non configuré.'
+    });
+  }
+
+  fs.stat(filePath, (statError, stat) => {
+    if (statError || !stat.isFile()) {
+      return res.status(404).json({
+        success: false,
+        error: 'Fichier MP4 non disponible sur le serveur.'
+      });
+    }
+
+    res.setHeader('Cache-Control', 'private, no-store');
+    res.setHeader('X-Content-Type-Options', 'nosniff');
+
+    return res.download(filePath, safeDownloadName(program.title, programId), error => {
+      if (error && !res.headersSent) {
+        console.error('[VOD download]', error);
+        return res.status(500).json({
+          success: false,
+          error: 'Erreur pendant le téléchargement.'
+        });
+      }
+      if (error) console.warn('[VOD download]', error.message);
+    });
   });
 });
 
