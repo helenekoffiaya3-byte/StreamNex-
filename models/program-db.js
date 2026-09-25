@@ -598,24 +598,6 @@ function finishSyncRun(id, status, importedCount, confirmedCount, error = null) 
   );
 }
 
-module.exports = {
-  db,
-  getProgram,
-  getProgramsByChannel,
-  getProgramOccurrences,
-  getOccurrenceById,
-  getOccurrencesByChannel,
-  upsertProgram,
-  addOccurrence,
-  replaceEpgSnapshot,
-  confirmEligiblePrograms,
-  createSyncRun,
-  finishSyncRun,
-  getLatestSyncRun,
-  upsertChannel,
-
-
-
 // Media-catalog extensions. These tables are additive so existing EPG data remains intact.
 db.exec(`
 CREATE TABLE IF NOT EXISTS episodes (
@@ -998,6 +980,21 @@ function getReplayMedia({ channelId = null, programId = null, limit = 100 } = {}
   return db.prepare(sql).all(...params);
 }
 
+module.exports = {
+  db,
+  getProgram,
+  getProgramsByChannel,
+  getProgramOccurrences,
+  getOccurrenceById,
+  getOccurrencesByChannel,
+  upsertProgram,
+  addOccurrence,
+  replaceEpgSnapshot,
+  confirmEligiblePrograms,
+  createSyncRun,
+  finishSyncRun,
+  getLatestSyncRun,
+  upsertChannel,
   getChannelPlaybackUrl,
   registerRecording,
   finalizeRecording,
