@@ -980,6 +980,8 @@ CREATE INDEX IF NOT EXISTS idx_replay_catalog_program ON replay_catalog(program_
 CREATE INDEX IF NOT EXISTS idx_replay_catalog_status ON replay_catalog(status);
 `);
 
+ensureColumn('program_occurrences', 'recording_status', "TEXT NOT NULL DEFAULT 'SCHEDULED'");
+
 ensureColumn('recordings', 'state', "TEXT NOT NULL DEFAULT 'RECORDING'");
 ensureColumn('recordings', 'segment_count', 'INTEGER NOT NULL DEFAULT 0');
 ensureColumn('recordings', 'completed_at', 'TEXT');
