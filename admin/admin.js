@@ -131,8 +131,22 @@ function renderSchedule(rows) {
     (row.broadcastType === 'rerun' ? 'Rediffusion' : 'Première diffusion') + ' · ' +
     localDate(row.startAt) + ' → ' + localDate(row.endAt) +
     (row.subtitle ? ' · ' + esc(row.subtitle) : '') +
-    '</small></div><button class="danger delete-slot" data-id="' + row.occurrenceId + '">Supprimer</button></div>'
+    '</small></div><div class="actions"><button class="secondary edit-slot" data-id="' + row.occurrenceId + '">Modifier</button><button class="danger delete-slot" data-id="' + row.occurrenceId + '">Supprimer</button></div></div>'
   ).join('');
+  document.querySelectorAll('.edit-slot').forEach(button => {
+    button.addEventListener('click', () => {
+      const row = rows.find(item => String(item.occurrenceId) === String(button.dataset.id));
+      if (!row) return;
+      document.getElementById('scheduleProgram').value = row.programId;
+      document.getElementById('broadcastType').value = row.broadcastType || 'broadcast';
+      document.getElementById('startAt').value = new Date(row.startAt).toISOString().slice(0,16);
+      document.getElementById('endAt').value = new Date(row.endAt).toISOString().slice(0,16);
+      document.getElementById('subtitle').value = row.subtitle || '';
+      document.getElementById('scheduleForm').dataset.editId = row.occurrenceId;
+      document.getElementById('scheduleForm').querySelector('button').textContent = 'Enregistrer la programmation';
+      document.getElementById('scheduleForm').scrollIntoView({behavior:'smooth'});
+    });
+  });
   document.querySelectorAll('.delete-slot').forEach(button => {
     button.addEventListener('click', async () => {
       if (!confirm('Supprimer cette programmation ?')) return;
@@ -238,19 +252,23 @@ document.getElementById('programForm').addEventListener('submit', async e => {
 document.getElementById('scheduleForm').addEventListener('submit', async e => {
   e.preventDefault();
   try {
-    await api('/api/admin/schedule', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        channelId: selectedChannelId,
-        programId: document.getElementById('scheduleProgram').value,
-        broadcastType: document.getElementById('broadcastType').value,
-        startAt: new Date(document.getElementById('startAt').value).toISOString(),
-        endAt: new Date(document.getElementById('endAt').value).toISOString(),
-        subtitle: document.getElementById('subtitle').value.trim()
-      })
+    const editId = e.target.dataset.editId;
+    const payload = {
+      channelId: selectedChannelId,
+      programId: document.getElementById('scheduleProgram').value,
+      broadcastType: document.getElementById('broadcastType').value,
+      startAt: new Date(document.getElementById('startAt').value).toISOString(),
+      endAt: new Date(document.getElementById('endAt').value).toISOString(),
+      subtitle: document.getElementById('subtitle').value.trim()
+    };
+    await api(editId ? '/api/admin/schedule/' + editId : '/api/admin/schedule', {
+      method: editId ? 'PUT' : 'POST',
+      headers: {'Content-Type':'application/json'},
+      body: JSON.stringify(payload)
     });
+    delete e.target.dataset.editId;
     e.target.reset();
+    e.target.querySelector('button').textContent = 'Programmer';
     await openChannel(selectedChannelId);
     await loadDashboard();
   } catch (e) {
