@@ -76,6 +76,52 @@ app.get('/api/programmes',(req,res)=>{
   for(const id of ids){if(!requireChannel(id))continue;data.push(...getProgrammes(id).map(p=>({...p}))); }
   res.json({success:true,count:data.length,programmes:data});
 });
+app.get('/api/programs/resolve-playback',(req,res)=>{
+  const c=requireChannel(req.query.channelId);
+  if(!c)return res.status(404).json({success:false,error:'Chaîne non trouvée.'});
+  const occurrence=getProgrammeByOccurrence(c.id,req.query.occurrenceId);
+  if(!occurrence)return res.status(404).json({success:false,error:'Occurrence de programme non trouvée.'});
+  const source=sourceFor(c);
+  const now=Date.now(),start=Date.parse(occurrence.startAt),end=Date.parse(occurrence.endAt);
+  if(source.url&&c.playbackMode!=='external'&&start<=now&&now<end){
+    return res.json({success:true,mode:'LIVE',playbackUrl:source.url,channelId:c.id,occurrenceId:occurrence.occurrenceId});
+  }
+  if(occurrence.playbackUrl){
+    return res.json({success:true,mode:'VOD',playbackUrl:occurrence.playbackUrl,channelId:c.id,occurrenceId:occurrence.occurrenceId});
+  }
+  return res.json({success:true,mode:'UNAVAILABLE',playbackUrl:null,channelId:c.id,occurrenceId:occurrence.occurrenceId,message:'Aucune lecture réelle configurée pour cette occurrence.'});
+});
+
+app.get('/api/live/channels',(_req,res)=>{
+  const checkedAt=new Date().toISOString();
+  const channels=CHANNELS.map(c=>{
+    const s=sourceFor(c),current=decorateOccurrence(getCurrentProgramme(c.id),c),next=decorateOccurrence(getNextProgramme(c.id),c);
+    return {id:c.id,name:c.name,group:c.group||'Autre',number:c.number??null,logoUrl:c.logoUrl||`/assets/logos/${c.id}.png`,playbackMode:c.playbackMode||'live',externalUrl:c.externalUrl||null,sourceId:s.sourceId,sourceStatus:s.status,sourceConfigured:Boolean(s.url),liveAvailable:Boolean(current&&s.url&&c.playbackMode!=='external'),playbackUrl:c.playbackMode==='external'?null:s.url||null,occurrence:current,next,checkedAt};
+  });
+  res.json({success:true,count:channels.length,channels});
+});
+app.get('/api/diffusion',(req,res)=>{
+  const list=req.query.channelId?[requireChannel(req.query.channelId)].filter(Boolean):CHANNELS;
+  res.json({success:true,count:list.length,diffusions:list.map(ch=>{
+    const s=sourceFor(ch),p=decorateOccurrence(getCurrentProgramme(ch.id),ch);
+    return {channelId:ch.id,channelName:ch.name,sourceId:s.sourceId,url:s.url,status:s.status,programme:p,live:Boolean(p&&s.url&&ch.playbackMode!=='external'),playbackMode:ch.playbackMode||'live'};
+  })});
+});
+app.get('/api/epg',(req,res)=>{
+  const list=req.query.channelId?[requireChannel(req.query.channelId)].filter(Boolean):CHANNELS;
+  const channels=list.map(c=>({channelId:c.id,name:c.name,current:decorateOccurrence(getCurrentProgramme(c.id),c),next:decorateOccurrence(getNextProgramme(c.id),c),programmes:getProgrammes(c.id)}));
+  res.json({success:true,count:channels.length,channels});
+});
+
+app.get('/channel/:id',(req,res)=>{
+  const c=requireChannel(req.params.id); if(!c)return res.status(404).send('Chaîne non trouvée.');
+  if(c.playbackMode==='external'&&c.externalUrl)return res.redirect(302,c.externalUrl);
+  res.sendFile(path.join(__dirname,'channel.html'));
+});
+
+app.use(express.static(__dirname,{dotfiles:'deny',index:'index.html',fallthrough:true}));
+app.use((req,res)=>res.status(404).json({success:false,error:'Ressource non trouvée.'}));
+app.listen(PORT,()=>console.log(`StreamLive core actif sur le port ${PORT} — ${CHANNELS.length} chaînes — sans base de données.`));
 app.get('/api/programs/:id',(req,res)=>{
   const p=getProgrammeById(req.params.id);
   if(!p)return res.status(404).json({success:false,error:'Programme non trouvé.'});
