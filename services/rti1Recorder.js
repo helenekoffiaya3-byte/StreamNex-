@@ -289,6 +289,10 @@ class Rti1Recorder {
 
       const sha256 = await sha256File(finalTemp);
       fs.renameSync(finalTemp, output.finalPath);
+
+      // L'occurrence peut ne pas encore exister si le processus d'enregistrement
+      // a démarré avant la synchronisation EPG. On la crée/actualise d'abord,
+      // puis on rattache explicitement le recording et le média à cette occurrence.
       addOccurrence(program.id, {
         channelId: CHANNEL_ID,
         startAt: startAt.toISOString(),
@@ -296,6 +300,15 @@ class Rti1Recorder {
         description: program.description || '',
         playbackUrl: output.url
       });
+      const occurrenceRow = db.prepare(
+        'SELECT occurrence_id FROM program_occurrences WHERE program_id = ? AND start_at = ?'
+      ).get(program.id, startAt.toISOString());
+      if (!occurrenceRow?.occurrence_id) {
+        throw new Error('Occurrence RTI 1 introuvable après création.');
+      }
+      db.prepare(
+        'UPDATE recordings SET occurrence_id = ?, updated_at = ? WHERE recording_id = ?'
+      ).run(occurrenceRow.occurrence_id, new Date().toISOString(), recordingId);
 
       const mediaId = finalizeRecording(recordingId, {
         storagePath: path.relative(process.cwd(), output.finalPath),
