@@ -539,7 +539,8 @@ app.get('/api/channels/:id', (req, res) => {
     return res.status(404).json({ success: false, message: 'Chaîne non trouvée.' });
   }
 
-  const { getProgramsByChannel } = require('./models/program-db');
+  const { getProgramsByChannel, getActiveBroadcastSourceForChannel } = require('./models/program-db');
+  const activeSource = getActiveBroadcastSourceForChannel(channel.id);
   const dbPrograms = getProgramsByChannel(channel.id).map(program => ({ ...program, playbackUrl: null }));
   const staticPrograms = Array.isArray(channelPrograms[channel.id]) ? channelPrograms[channel.id] : [];
   const programs = [...staticPrograms, ...dbPrograms].filter((program, index, list) =>
@@ -554,8 +555,39 @@ app.get('/api/channels/:id', (req, res) => {
       group: channel.group,
       number: channel.number,
       logoUrl: channel.logoUrl || '/assets/logos/' + channel.id + '.png',
+      sourceStatus: activeSource?.status || 'OFFLINE',
+      sourceId: activeSource?.sourceId || null,
       programs
     }
+  });
+});
+
+app.get('/api/channels/:id/source', (req, res) => {
+  const channel = CHANNELS.find(item => item.id === req.params.id);
+  if (!channel) return res.status(404).json({ success: false, error: 'Chaîne non trouvée.' });
+
+  const { getActiveBroadcastSourceForChannel, listBroadcastSources } = require('./models/program-db');
+  const sources = listBroadcastSources(channel.id);
+  const active = getActiveBroadcastSourceForChannel(channel.id);
+  return res.json({
+    success: true,
+    channelId: channel.id,
+    source: active ? {
+      sourceId: active.sourceId,
+      sourceType: active.sourceType,
+      url: active.sourceUrl,
+      status: active.status,
+      priority: active.priority,
+      lastCheckedAt: active.lastCheckedAt
+    } : null,
+    configuredSources: sources.map(source => ({
+      sourceId: source.sourceId,
+      sourceType: source.sourceType,
+      status: source.status,
+      enabled: Boolean(source.enabled),
+      priority: source.priority,
+      lastCheckedAt: source.lastCheckedAt
+    }))
   });
 });
 
@@ -669,20 +701,16 @@ app.get('/api/channels/:id/programs', (req, res) => {
       });
     }
 
-    // Aucun enregistrement EPG réel dans la fenêtre demandée :
-    // la grille synthétique reste disponible, mais sa provenance est explicite.
-    const syntheticPrograms = generateFullCatalogPrograms(channel, { count: 20 });
-
     return res.json({
       success: true,
       channelId: channel.id,
       name: channel.name,
-      source: 'synthetic-fallback',
-      sourceDetail: 'generated',
-      warning: 'Grille EPG synthétique de secours : aucune occurrence EPG réelle disponible pour cette chaîne.',
-      totalPrograms: syntheticPrograms.length,
-      programCount: syntheticPrograms.length,
-      programs: syntheticPrograms,
+      source: 'none',
+      sourceDetail: 'sqlite',
+      warning: 'Aucun programme réel synchronisé pour cette chaîne.',
+      totalPrograms: 0,
+      programCount: 0,
+      programs: [],
       occurrences: [],
       epg: [],
       fetchedAt: new Date().toISOString()
@@ -711,7 +739,11 @@ app.get('/api/live/channels', (_req, res) => {
         (Number.isNaN(end) || now < end);
     }) || null;
 
-    const liveStreamUrl = channel.id === 'rti-1' && rti1HlsEngine?.isReady() ? '/hls/rti1/stream.m3u8' : validatePlaybackUrl(getChannelPlaybackUrl(channel.id));
+    const { getActiveBroadcastSourceForChannel } = require('./models/program-db');
+    const activeSource = getActiveBroadcastSourceForChannel(channel.id);
+    const liveStreamUrl = channel.id === 'rti-1' && rti1HlsEngine?.isReady()
+      ? '/hls/rti1/stream.m3u8'
+      : validatePlaybackUrl(getChannelPlaybackUrl(channel.id));
 
     return {
       id: channel.id,
@@ -722,6 +754,8 @@ app.get('/api/live/channels', (_req, res) => {
       playbackMode: channel.playbackMode || 'live',
       externalUrl: channel.externalUrl || null,
       liveAvailable: Boolean(current && liveStreamUrl),
+      sourceStatus: activeSource?.status || 'OFFLINE',
+      sourceId: activeSource?.sourceId || null,
       occurrence: current ? {
         occurrenceId: current.occurrenceId,
         programId: current.programId || null,
@@ -1056,31 +1090,6 @@ app.get('/api/programs/resolve-playback', (req, res) => {
       success: true,
       mode: 'LIVE',
       playbackUrl: liveStreamUrl,
-      programTitle: occurrence.title || occurrence.subtitle || program.title
-    });
-  }
-
-  // Une VOD est utilisable uniquement si elle a été enregistrée côté serveur
-  // par le robot/backend. Elle n'est jamais acceptée depuis req.query.
-  const vodUrl = validatePlaybackUrl(occurrence.playbackUrl) || validatePlaybackUrl(program.playbackUrl);
-  if (vodUrl) {
-    return res.json({
-      success: true,
-      mode: 'VOD',
-      playbackUrl: vodUrl,
-      programTitle: occurrence.title || occurrence.subtitle || program.title
-    });
-  }
-
-  const editorialVod = program.sourceType === 'editorial-curated'
-    ? resolveEditorialVodPath(occurrence.playbackUrl || program.playbackUrl)
-    : null;
-
-  if (editorialVod) {
-    return res.json({
-      success: true,
-      mode: 'VOD',
-      playbackUrl: editorialVod.url,
       programTitle: occurrence.title || occurrence.subtitle || program.title
     });
   }
