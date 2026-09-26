@@ -17,6 +17,8 @@ const OUTPUT_ROOT = path.resolve(
   path.join(process.cwd(), 'storage', 'vod', 'rti1', 'archive')
 );
 const TRANSCODE_FALLBACK = process.env.RTI1_RECORD_TRANSCODE_FALLBACK === 'true';
+const HLS_ROOT = path.resolve(process.env.RTI1_REPLAY_HLS_ROOT || path.join(process.cwd(), 'public', 'hls', 'rti1-replays'));
+const HLS_PUBLIC_PREFIX = '/hls/rti1-replays';
 
 function safeName(value) {
   return String(value || 'program')
@@ -70,7 +72,9 @@ function outputFor(program, startAt) {
     dayDir,
     finalPath: path.join(dayDir, base + '.mp4'),
     tempPath: path.join(dayDir, '.' + base + '.recording.mp4'),
-    url: '/vod/rti1/archive/' + dateKey(startAt) + '/' + base + '.mp4'
+    url: '/vod/rti1/archive/' + dateKey(startAt) + '/' + base + '.mp4',
+    hlsDir: path.join(HLS_ROOT, dateKey(startAt), base),
+    hlsUrl: HLS_PUBLIC_PREFIX + '/' + dateKey(startAt) + '/' + base + '/playlist.m3u8'
   };
 }
 
@@ -288,6 +292,11 @@ class Rti1Recorder {
       }
 
       const sha256 = await sha256File(finalTemp);
+
+      // Le MP4 est validé avant toute publication HLS.
+      await generateReplayHls(finalTemp, output.hlsDir);
+      const hlsPlaylist = path.join(output.hlsDir, 'playlist.m3u8');
+      if (!fs.existsSync(hlsPlaylist)) throw new Error('Playlist HLS absente après génération.');
       fs.renameSync(finalTemp, output.finalPath);
 
       // L'occurrence peut ne pas encore exister si le processus d'enregistrement
@@ -312,7 +321,7 @@ class Rti1Recorder {
 
       const mediaId = finalizeRecording(recordingId, {
         storagePath: path.relative(process.cwd(), output.finalPath),
-        publicUrl: output.url,
+        publicUrl: output.hlsUrl,
         mimeType: 'video/mp4',
         fileSize: stat.size,
         durationSeconds: duration,
@@ -328,7 +337,7 @@ class Rti1Recorder {
         occurrenceId: db.prepare('SELECT occurrence_id FROM program_occurrences WHERE program_id = ? AND start_at = ?').get(program.id, startAt.toISOString())?.occurrence_id || null,
         channelId: CHANNEL_ID,
         title: program.title,
-        playbackUrl: output.url,
+        playbackUrl: output.hlsUrl,
         durationSeconds: duration,
         broadcastDate: startAt.toISOString().slice(0, 10),
         genre: program.category || null
@@ -379,6 +388,23 @@ function runProcess(command, args) {
     child.once('error', reject);
     child.once('close', code => code === 0 ? resolve() : reject(new Error(stderr.trim() || ('Process exited with code ' + code))));
   });
+}
+
+function generateReplayHls(inputMp4, outputDir) {
+  fs.rmSync(outputDir, { recursive: true, force: true });
+  fs.mkdirSync(outputDir, { recursive: true });
+  return runProcess(FFMPEG_PATH, [
+    '-hide_banner', '-loglevel', 'warning',
+    '-i', inputMp4,
+    '-map', '0:v:0', '-map', '0:a:0?',
+    '-c', 'copy',
+    '-f', 'hls',
+    '-hls_time', '10',
+    '-hls_list_size', '0',
+    '-hls_playlist_type', 'vod',
+    '-hls_flags', 'independent_segments+temp_file',
+    path.join(outputDir, 'playlist.m3u8')
+  ]);
 }
 
 function probeDuration(filePath) {
