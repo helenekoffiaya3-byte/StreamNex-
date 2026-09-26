@@ -52,6 +52,7 @@ function buildSchedule(feed) {
 function start(feedId) {
   const feed = getBroadcastFeed(feedId);
   if (!feed) throw new Error('Flux introuvable.');
+  if (!feed.loopEnabled) throw new Error('Le moteur de diffusion continue nécessite la boucle automatique pour couvrir la grille 24 h.');
   if (engines.has(feedId)) return status(feedId);
 
   const schedule = buildSchedule(feed);
