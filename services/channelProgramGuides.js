@@ -35,7 +35,7 @@ function buildDaySlots(channel, dayIndex) {
   if (!templates.length) return [];
 
   const slots = [];
-  const profile = dayProfile(dayIndex);
+  const profile = dayProfile(new Date(Date.UTC(2026, 0, 1 + dayIndex)));
   const sequence = profile === 'weekday'
     ? templates.map((_, index) => index)
     : (profile === 'saturday'
