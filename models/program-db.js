@@ -312,6 +312,23 @@ function syncConfiguredChannels(channels) {
     }
   });
   transaction();
+  for (const channel of channels) {
+    const sourceUrl = String(channel?.productionUrl || '').trim();
+    if (!channel?.id || !sourceUrl) continue;
+    const existing = db.prepare('SELECT source_id AS sourceId FROM broadcast_sources WHERE channel_id = ? ORDER BY priority ASC, source_id ASC LIMIT 1').get(channel.id);
+    if (!existing) {
+      createBroadcastSource({
+        sourceId: 'env-' + channel.id,
+        channelId: channel.id,
+        name: channel.name + ' — source configurée',
+        sourceType: /^https?:/i.test(sourceUrl) && /\.m3u8(?:$|\?)/i.test(sourceUrl) ? 'HLS' : 'HTTP',
+        sourceUrl,
+        enabled: true,
+        priority: 100,
+        status: 'CONFIGURED'
+      });
+    }
+  }
   return channels.length;
 }
 
@@ -406,10 +423,7 @@ function getActiveBroadcastSourceForChannel(channelId) {
     ORDER BY priority ASC, source_id ASC LIMIT 1`).get(channelId) || null;
 }
 function getChannelPlaybackUrl(channelId) {
-  const source = getActiveBroadcastSourceForChannel(channelId);
-  if (source?.sourceUrl) return source.sourceUrl;
-  const row = db.prepare('SELECT live_stream_url FROM channels WHERE channel_id = ?').get(channelId);
-  return row?.live_stream_url || null;
+  return getActiveBroadcastSourceForChannel(channelId)?.sourceUrl || null;
 }
 function listAdminChannels() {
   return db.prepare(`
