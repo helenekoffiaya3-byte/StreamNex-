@@ -208,7 +208,7 @@ router.post('/feeds', (req, res) => {
       loopEnabled:Boolean(req.body.loopEnabled),
       targetDurationSeconds:Number(req.body.targetDurationSeconds)||null
     }, items);
-    res.status(201).json({ success:true, feed, playbackUrl:'/hls/feeds/'+encodeURIComponent(feedId)+'/stream.m3u8', engineStatus: broadcastFeedEngine.status(feedId) });
+    res.status(201).json({ success:true, feed, playbackUrl:'/hls/feeds/'+encodeURIComponent(feedId)+'/streamlive.m3u8', engineStatus: broadcastFeedEngine.status(feedId) });
   } catch(error) {
     res.status(400).json({ success:false,error:error.message });
   }
