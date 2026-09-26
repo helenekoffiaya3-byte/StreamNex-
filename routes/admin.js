@@ -11,7 +11,12 @@ const {
   deleteAdminChannel,
   updateProgram,
   deleteProgram,
-  updateOccurrence
+  updateOccurrence,
+  searchProgramsAll,
+  createBroadcastFeed,
+  getBroadcastFeed,
+  listBroadcastFeeds,
+  deleteBroadcastFeed
 } = require('../models/program-db');
 const { requireAdminAuth, ADMIN_EMAIL } = require('../services/adminAuth');
 const CHANNELS = require('../config/channels');
@@ -156,6 +161,75 @@ router.delete('/channels/:channelId', (req, res) => {
   } catch (error) {
     res.status(409).json({ success: false, error: error.message });
   }
+});
+
+router.get('/programs/search', (req, res) => {
+  try {
+    const programs = searchProgramsAll({
+      query: String(req.query.q || '').trim(),
+      channelId: req.query.channelId ? String(req.query.channelId) : null,
+      type: req.query.type ? String(req.query.type) : null,
+      limit: Number(req.query.limit || 250)
+    });
+    res.json({ success: true, count: programs.length, programs });
+  } catch (error) {
+    res.status(400).json({ success: false, error: error.message });
+  }
+});
+
+router.get('/feeds', (_req, res) => {
+  res.json({ success: true, feeds: listBroadcastFeeds() });
+});
+
+router.get('/feeds/:feedId', (req, res) => {
+  const feed = getBroadcastFeed(req.params.feedId);
+  if (!feed) return res.status(404).json({ success: false, error: 'Flux introuvable.' });
+  res.json({ success: true, feed });
+});
+
+router.post('/feeds', (req, res) => {
+  try {
+    const name = String(req.body.name || '').trim();
+    const slug = String(req.body.slug || name).trim().toLowerCase().replace(/[^a-z0-9-]+/g, '-').replace(/^-|-$/g, '');
+    const items = Array.isArray(req.body.items) ? req.body.items : [];
+    if (!name || name.length > 200) return res.status(400).json({ success:false,error:'Nom du flux invalide.' });
+    if (!slug || slug.length > 120) return res.status(400).json({ success:false,error:'Identifiant du flux invalide.' });
+    if (!items.length) return res.status(400).json({ success:false,error:'Ajoutez au moins un programme au flux.' });
+    for (const item of items) {
+      const p = db.prepare('SELECT program_id FROM programs WHERE program_id = ? AND status <> \'archived\'').get(item.programId);
+      if (!p) return res.status(400).json({ success:false,error:'Programme introuvable : '+item.programId });
+    }
+    const feedId = 'feed-' + slug + '-' + Date.now().toString(36);
+    const feed = createBroadcastFeed({
+      feedId, name, slug, description:String(req.body.description||''),
+      channelId:req.body.channelId||null, mode:req.body.mode==='scheduled'?'scheduled':'playlist',
+      outputFormat:req.body.outputFormat==='json'?'json':'hls',
+      loopEnabled:Boolean(req.body.loopEnabled),
+      targetDurationSeconds:Number(req.body.targetDurationSeconds)||null
+    }, items);
+    res.status(201).json({ success:true, feed, playbackUrl:'/api/admin/feeds/'+encodeURIComponent(feedId)+'/manifest.m3u8' });
+  } catch(error) {
+    res.status(400).json({ success:false,error:error.message });
+  }
+});
+
+router.get('/feeds/:feedId/manifest.m3u8', (req, res) => {
+  const feed=getBroadcastFeed(req.params.feedId);
+  if(!feed) return res.status(404).send('#EXTM3U\n');
+  const playable=feed.items.filter(i=>i.playbackUrl);
+  res.type('application/vnd.apple.mpegurl');
+  let out='#EXTM3U\n#EXT-X-VERSION:3\n';
+  for(const item of playable){
+    if(item.durationSeconds) out+='#EXTINF:'+Number(item.durationSeconds).toFixed(3)+', '+item.title+'\n';
+    out+=(item.playbackUrl || '')+'\n';
+  }
+  if(feed.loopEnabled) out+='#EXT-X-PLAYLIST-TYPE:EVENT\n';
+  res.send(out);
+});
+
+router.delete('/feeds/:feedId', (req,res) => {
+  if(!deleteBroadcastFeed(req.params.feedId)) return res.status(404).json({success:false,error:'Flux introuvable.'});
+  res.json({success:true});
 });
 
 router.get('/channels/:channelId/programs', (req, res) => {
