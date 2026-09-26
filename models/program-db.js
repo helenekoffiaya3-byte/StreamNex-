@@ -1227,11 +1227,14 @@ function getBroadcastFeed(feedId) {
   if (!feed) return null;
   const items = db.prepare(`
     SELECT fi.position, fi.program_id AS programId, fi.occurrence_id AS occurrenceId,
-           fi.duration_seconds AS durationSeconds, fi.transition,
-           p.title, p.type, p.playback_url AS playbackUrl, c.name AS channelName
+           COALESCE(fi.duration_seconds, ma.duration_seconds) AS durationSeconds, fi.transition,
+           p.title, p.type,
+           COALESCE(p.playback_url, ma.public_url) AS playbackUrl,
+           c.name AS channelName
     FROM broadcast_feed_items fi
     JOIN programs p ON p.program_id = fi.program_id
     LEFT JOIN channels c ON c.channel_id = p.channel_id
+    LEFT JOIN media_assets ma ON ma.program_id = p.program_id AND ma.media_type = 'video' AND ma.status = 'available'
     WHERE fi.feed_id = ? ORDER BY fi.position
   `).all(feedId);
   return {
