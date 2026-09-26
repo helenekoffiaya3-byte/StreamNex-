@@ -972,6 +972,8 @@ CREATE INDEX IF NOT EXISTS idx_program_persons_person ON program_persons(person_
 CREATE INDEX IF NOT EXISTS idx_subtitles_media_status ON subtitles(media_id, status);
 CREATE INDEX IF NOT EXISTS idx_audio_tracks_media_status ON audio_tracks(media_id, status);
 CREATE INDEX IF NOT EXISTS idx_segments_recording_sequence ON recording_segments(recording_id, sequence_number);
+CREATE UNIQUE INDEX IF NOT EXISTS idx_media_assets_occurrence_unique
+  ON media_assets(occurrence_id) WHERE occurrence_id IS NOT NULL;
 CREATE INDEX IF NOT EXISTS idx_segments_status ON recording_segments(status);
 CREATE INDEX IF NOT EXISTS idx_replay_catalog_channel_date ON replay_catalog(channel_id, broadcast_date);
 CREATE INDEX IF NOT EXISTS idx_replay_catalog_program ON replay_catalog(program_id);
