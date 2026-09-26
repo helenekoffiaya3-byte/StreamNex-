@@ -53,14 +53,33 @@ async function searchAllPrograms() {
 }
 function renderGlobalPrograms() {
   document.getElementById('globalPrograms').innerHTML = globalPrograms.length
-    ? globalPrograms.map(p => '<button class="program-choice" data-id="'+esc(p.programId)+'"><span><b>'+esc(p.title)+'</b><small>'+esc(p.channelName||'Sans chaîne')+' · '+esc(p.type)+'</small></span><span>+</span></button>').join('')
+    ? globalPrograms.map(p => '<div class="program-choice"><span><b>'+esc(p.title)+'</b><small>'+esc(p.channelName||'Sans chaîne')+' · '+esc(p.type)+'</small></span><span class="program-actions"><button type="button" class="secondary add-program" data-id="'+esc(p.programId)+'">+</button><button type="button" class="primary broadcast-now" data-id="'+esc(p.programId)+'">Diffuser maintenant</button></span></div>').join('')
     : '<p class="muted">Aucun programme trouvé.</p>';
-  document.querySelectorAll('.program-choice').forEach(b => b.addEventListener('click', () => {
+
+  document.querySelectorAll('.add-program').forEach(b => b.addEventListener('click', () => {
     const p=globalPrograms.find(x=>x.programId===b.dataset.id);
     if(p && !selectedFeedPrograms.some(x=>x.programId===p.programId)) {
       selectedFeedPrograms.push({programId:p.programId,title:p.title,channelName:p.channelName,playbackUrl:p.playbackUrl});
       renderSelectedFeedPrograms();
     }
+  }));
+
+  document.querySelectorAll('.broadcast-now').forEach(b => b.addEventListener('click', async () => {
+    const p=globalPrograms.find(x=>x.programId===b.dataset.id);
+    if(!p) return;
+    b.disabled=true;
+    try {
+      const slug='direct-'+String(p.programId).toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'')+'-'+Date.now();
+      const created=await api('/api/admin/feeds',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({
+        name:'Direct · '+p.title, slug, description:'Diffusion immédiate depuis le catalogue StreamLive',
+        loopEnabled:true, items:[{programId:p.programId}]
+      })});
+      const started=await api('/api/admin/feeds/'+encodeURIComponent(created.feed.feedId)+'/start',{method:'POST'});
+      document.getElementById('feedResult').innerHTML='Diffusion démarrée : <b>'+esc(p.title)+'</b><br><code>'+esc(started.status.playbackUrl)+'</code>';
+      await loadFeeds();
+    } catch(e) {
+      alert(e.message || 'Impossible de démarrer la diffusion.');
+    } finally { b.disabled=false; }
   }));
 }
 function renderSelectedFeedPrograms() {
