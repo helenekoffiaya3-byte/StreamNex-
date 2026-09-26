@@ -1461,6 +1461,9 @@ const server = app.listen(PORT, () => {
 // Keeping a potentially corrupted Node process alive is unsafe.
 let shuttingDown = false;
 function gracefulShutdown(signal) {
+  try { require('./services/broadcastFeedEngine').stopAll(); } catch (error) {
+    console.error('[StreamLive] Arrêt des flux personnalisés échoué:', error.message);
+  }
   if (streamLiveHlsEngine) streamLiveHlsEngine.stop();
   if (rti1HlsEngine) rti1HlsEngine.stop();
   if (shuttingDown) return;
