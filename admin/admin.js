@@ -73,7 +73,7 @@ async function loadFeeds() {
   const d=await api('/api/admin/feeds');
   document.getElementById('feeds').innerHTML=(d.feeds||[]).map(f=>{
     const running=f.engineStatus==='RUNNING';
-    return '<div class="feed-card"><div><b>'+esc(f.name)+'</b><small>'+esc(f.slug)+' · '+f.itemCount+' programmes · moteur: '+esc(f.engineStatus||'STOPPED')+'</small><code>/hls/feeds/'+encodeURIComponent(f.feedId)+'/stream.m3u8</code></div><div class="actions"><button class="secondary toggle-feed" data-id="'+esc(f.feedId)+'" data-running="'+running+'">'+(running?'Arrêter':'Démarrer')+'</button><button class="secondary open-feed" data-url="/hls/feeds/'+encodeURIComponent(f.feedId)+'/stream.m3u8">Ouvrir le flux</button><button class="danger delete-feed" data-id="'+esc(f.feedId)+'">Supprimer</button></div></div>';
+    return '<div class="feed-card"><div><b>'+esc(f.name)+'</b><small>'+esc(f.slug)+' · '+f.itemCount+' programmes · moteur: '+esc(f.engineStatus||'STOPPED')+'</small><code>/hls/feeds/'+encodeURIComponent(f.feedId)+'/streamlive.m3u8</code></div><div class="actions"><button class="secondary toggle-feed" data-id="'+esc(f.feedId)+'" data-running="'+running+'">'+(running?'Arrêter':'Démarrer')+'</button><button class="secondary open-feed" data-url="/hls/feeds/'+encodeURIComponent(f.feedId)+'/streamlive.m3u8">Ouvrir le flux</button><button class="danger delete-feed" data-id="'+esc(f.feedId)+'">Supprimer</button></div></div>';
   }).join('') || '<p class="muted">Aucun flux créé.</p>';
   document.querySelectorAll('.toggle-feed').forEach(b=>b.addEventListener('click',async()=>{
     const action=b.dataset.running==='true'?'stop':'start';
