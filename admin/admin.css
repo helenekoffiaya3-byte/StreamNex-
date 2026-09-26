@@ -16,3 +16,13 @@ textarea,select{display:block;width:100%;margin-top:7px;padding:13px;border:1px 
 .programs,.schedule{display:grid;gap:8px}.program,.slot{display:flex;justify-content:space-between;gap:12px;align-items:center;background:#0d131a;border:1px solid #27313c;border-radius:10px;padding:12px}
 .program small,.slot small{display:block;color:#9ba7b4;margin-top:4px}.program>span{color:#00e676;font-size:12px}.danger{background:#432027;color:#ffb9c1;padding:8px 10px;font-size:12px}
 @media(max-width:720px){.split{grid-template-columns:1fr}.channels{grid-template-columns:repeat(2,minmax(0,1fr))}}
+
+.toolbar{display:grid;grid-template-columns:1fr 190px auto;gap:10px;margin:16px 0}
+.channel-row{display:grid;grid-template-columns:1fr auto;gap:8px;align-items:stretch}
+.channel-row .channel{width:100%}
+.channel-row .channel small{display:block;color:#9ba7b4;font-size:11px;margin-top:3px}
+.actions{display:flex;gap:6px;align-items:center}
+.formgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.check{display:flex;align-items:center;gap:8px}.check input{width:auto;margin:0}
+button.secondary{border:1px solid #35404c}
+@media(max-width:720px){.toolbar{grid-template-columns:1fr}.formgrid{grid-template-columns:1fr}.channel-row{grid-template-columns:1fr}.actions{flex-wrap:wrap}}
