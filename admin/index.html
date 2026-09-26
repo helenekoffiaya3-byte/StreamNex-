@@ -32,10 +32,30 @@
 
 <section class="card">
   <div class="section-head">
-    <div><p class="eyebrow">CATALOGUE</p><h2>Chaînes</h2></div>
+    <div><p class="eyebrow">CONSTRUCTEUR</p><h2>Ma base de données</h2></div>
     <span id="channelCount"></span>
   </div>
+  <p class="muted">Créez et personnalisez votre catalogue directement depuis ce site. Les données enregistrées ici sont persistées dans la base SQLite de production.</p>
+  <div class="toolbar">
+    <input id="channelSearch" placeholder="Rechercher une chaîne…">
+    <select id="groupFilter"><option value="">Tous les groupes</option></select>
+    <button id="newChannel">+ Nouvelle chaîne</button>
+  </div>
   <div id="channels" class="channels"></div>
+  <form id="channelForm" class="subcard" hidden>
+    <div class="section-head"><h3 id="channelFormTitle">Nouvelle chaîne</h3><button type="button" id="cancelChannel" class="secondary">Annuler</button></div>
+    <div class="formgrid">
+      <label>Identifiant<input id="channelId" required maxlength="120" pattern="[a-z0-9-]+" placeholder="ma-chaine"></label>
+      <label>Nom<input id="channelName" required maxlength="200"></label>
+      <label>Groupe<input id="channelGroup" value="Autre"></label>
+      <label>Ordre<input id="channelOrder" type="number" value="9999"></label>
+      <label>Logo URL<input id="channelLogo" placeholder="/assets/logos/ma-chaine.png"></label>
+      <label>Flux live autorisé<input id="channelStream" type="url" placeholder="https://..."></label>
+    </div>
+    <label>Description<textarea id="channelDescription"></textarea></label>
+    <label class="check"><input id="channelActive" type="checkbox" checked> Chaîne active</label>
+    <button>Enregistrer la chaîne</button>
+  </form>
 </section>
 
 <section id="channelPanel" class="card" hidden>
@@ -52,8 +72,10 @@
         <h3>Ajouter un programme</h3>
         <label>Titre<input id="programTitle" required maxlength="200"></label>
         <label>Type<select id="programType"><option value="show">Émission</option><option value="series">Série</option><option value="movie">Film</option><option value="news">Information</option><option value="sports">Sport</option><option value="documentary">Documentaire</option><option value="kids">Jeunesse</option></select></label>
+        <label>Affiche / poster URL<input id="programPoster"></label>
+        <label>URL vidéo / VOD<input id="programPlayback"></label>
         <label>Description<textarea id="programDescription"></textarea></label>
-        <button>Ajouter le programme</button>
+        <button id="programSubmit">Ajouter le programme</button>
       </form>
     </div>
 
