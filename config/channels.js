@@ -138,7 +138,7 @@ const CHANNELS = [
   { id: "top-chretien", name: "Top Chrétien", group: "Biblical", productionUrl: process.env.TOP_CHRETIEN_HLS_URL || null, streamEnabled: Boolean(process.env.TOP_CHRETIEN_HLS_URL) },
   { id: "hope-channel", name: "Hope Channel", group: "Biblical", productionUrl: process.env.HOPE_CHANNEL_HLS_URL || null, streamEnabled: Boolean(process.env.HOPE_CHANNEL_HLS_URL) },
   { id: "trace-gospel", name: "Trace Gospel", group: "Biblical", productionUrl: process.env.TRACE_GOSPEL_HLS_URL || null, streamEnabled: Boolean(process.env.TRACE_GOSPEL_HLS_URL) },
-  { id: "ewtn", name: "EWTN", group: "Biblical", productionUrl: process.env.EWTN_HLS_URL || null, streamEnabled: Boolean(process.env.EWTN_HLS_URL) }
+  { id: "ewtn", name: "EWTN", group: "Biblical", productionUrl: process.env.EWTN_HLS_URL || null, streamEnabled: Boolean(process.env.EWTN_HLS_URL) },
   { id: "c-plus-pop", name: "C+ Pop", group: "Films", productionUrl: process.env.C_PLUS_POP_HLS_URL || null, streamEnabled: Boolean(process.env.C_PLUS_POP_HLS_URL) },
   { id: "c-plus-magic", name: "C+ Magic", group: "Films", productionUrl: process.env.C_PLUS_MAGIC_HLS_URL || null, streamEnabled: Boolean(process.env.C_PLUS_MAGIC_HLS_URL) },
   { id: "c-plus-cinema", name: "C+ Cinema", group: "Films", productionUrl: process.env.C_PLUS_CINEMA_HLS_URL || null, streamEnabled: Boolean(process.env.C_PLUS_CINEMA_HLS_URL) },
