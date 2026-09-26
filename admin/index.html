@@ -95,6 +95,39 @@
   </div>
 </section>
 
+
+<section class="card" id="aiStudio">
+  <div class="section-head">
+    <div><p class="eyebrow">IA · STUDIO DE DIFFUSION</p><h2>Créateur de flux vidéo</h2></div>
+    <span>Catalogue global</span>
+  </div>
+  <p class="muted">Recherchez dans tous les programmes de toutes les chaînes, sélectionnez ceux que vous voulez et construisez votre propre programmation de diffusion.</p>
+  <div class="toolbar">
+    <input id="globalProgramSearch" placeholder="Rechercher un programme, film, série, émission…">
+    <select id="globalTypeFilter"><option value="">Tout</option><option value="show">Émissions</option><option value="series">Séries</option><option value="movie">Films</option><option value="news">Information</option><option value="sports">Sport</option><option value="documentary">Documentaires</option><option value="kids">Jeunesse</option></select>
+    <button id="searchAllPrograms">Rechercher dans Tout</button>
+  </div>
+  <div class="studio-grid">
+    <div class="subcard">
+      <div class="section-head"><h3>Programmes disponibles</h3><span id="globalProgramCount"></span></div>
+      <div id="globalPrograms" class="program-picker"></div>
+    </div>
+    <div class="subcard">
+      <h3>Mon flux</h3>
+      <label>Nom du flux<input id="feedName" placeholder="Ma chaîne personnalisée"></label>
+      <label>Identifiant<input id="feedSlug" placeholder="ma-chaine"></label>
+      <label>Description<textarea id="feedDescription"></textarea></label>
+      <label>Chaîne de sortie<select id="feedChannel"><option value="">Aucune — flux autonome</option></select></label>
+      <label class="check"><input id="feedLoop" type="checkbox"> Boucler automatiquement</label>
+      <div id="selectedFeedPrograms" class="program-picker"></div>
+      <button id="createFeed">Créer mon flux</button>
+      <p id="feedResult" class="muted"></p>
+    </div>
+  </div>
+  <h3>Mes flux créés</h3>
+  <div id="feeds" class="feeds"></div>
+</section>
+
 <div class="card"><h2>Confidentialité</h2><p>Le catalogue et les horaires sont administrés côté serveur. Les routes d'administration sont protégées par le contrôle d'accès administrateur.</p></div>
 </section>
 </main>
