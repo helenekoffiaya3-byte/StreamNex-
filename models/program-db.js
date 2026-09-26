@@ -26,7 +26,13 @@ db.exec(`
 CREATE TABLE IF NOT EXISTS channels (
   channel_id TEXT PRIMARY KEY,
   name TEXT NOT NULL,
+  group_name TEXT NOT NULL DEFAULT 'Autre',
+  description TEXT NOT NULL DEFAULT '',
+  logo_url TEXT,
   live_stream_url TEXT,
+  active INTEGER NOT NULL DEFAULT 1 CHECK(active IN (0,1)),
+  sort_order INTEGER NOT NULL DEFAULT 0,
+  admin_customized INTEGER NOT NULL DEFAULT 0 CHECK(admin_customized IN (0,1)),
   updated_at TEXT NOT NULL
 );
 
@@ -174,6 +180,12 @@ ensureColumn('program_occurrences', 'broadcast_type', "TEXT NOT NULL DEFAULT 'br
 ensureColumn('programs', 'observed_first_seen_at', 'TEXT');
 ensureColumn('programs', 'observed_last_seen_at', 'TEXT');
 ensureColumn('programs', 'source_type', "TEXT NOT NULL DEFAULT 'epg'");
+ensureColumn('channels', 'group_name', "TEXT NOT NULL DEFAULT 'Autre'");
+ensureColumn('channels', 'description', "TEXT NOT NULL DEFAULT ''");
+ensureColumn('channels', 'logo_url', 'TEXT');
+ensureColumn('channels', 'active', 'INTEGER NOT NULL DEFAULT 1');
+ensureColumn('channels', 'sort_order', 'INTEGER NOT NULL DEFAULT 0');
+ensureColumn('channels', 'admin_customized', 'INTEGER NOT NULL DEFAULT 0');
 
 function rowToProgram(row) {
   if (!row) return null;
@@ -217,38 +229,160 @@ function syncConfiguredChannels(channels) {
   if (!Array.isArray(channels)) throw new TypeError('La configuration des chaînes doit être un tableau.');
   const now = new Date().toISOString();
   const statement = db.prepare(`
-    INSERT INTO channels (channel_id, name, live_stream_url, updated_at)
-    VALUES (?, ?, ?, ?)
+    INSERT INTO channels (channel_id, name, group_name, description, logo_url, live_stream_url, active, sort_order, updated_at)
+    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
     ON CONFLICT(channel_id) DO UPDATE SET
-      name = excluded.name,
-      live_stream_url = excluded.live_stream_url,
+      name = CASE WHEN channels.admin_customized = 1 THEN channels.name ELSE excluded.name END,
+      live_stream_url = CASE WHEN channels.admin_customized = 1 THEN channels.live_stream_url ELSE excluded.live_stream_url END,
+      group_name = CASE WHEN channels.admin_customized = 1 THEN channels.group_name ELSE excluded.group_name END,
+      logo_url = CASE WHEN channels.admin_customized = 1 THEN channels.logo_url ELSE excluded.logo_url END,
       updated_at = excluded.updated_at
   `);
   const transaction = db.transaction(() => {
     for (const channel of channels) {
       if (!channel?.id || !channel?.name) continue;
-      statement.run(channel.id, channel.name, channel.productionUrl || null, now);
+      statement.run(
+        channel.id,
+        channel.name,
+        channel.group || 'Autre',
+        channel.description || '',
+        channel.logoUrl || null,
+        channel.productionUrl || null,
+        channel.active === false ? 0 : 1,
+        Number.isInteger(channel.number) ? channel.number : 0,
+        now
+      );
     }
   });
   transaction();
   return channels.length;
 }
 
-function upsertChannel(channelId, name, liveStreamUrl = null) {
+function upsertChannel(channelId, name, liveStreamUrl = null, options = {}) {
   db.prepare(`
-    INSERT INTO channels (channel_id, name, live_stream_url, updated_at)
-    VALUES (?, ?, ?, ?)
+    INSERT INTO channels (channel_id, name, group_name, description, logo_url, live_stream_url, active, sort_order, admin_customized, updated_at)
+    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
     ON CONFLICT(channel_id) DO UPDATE SET
       name = excluded.name,
+      group_name = excluded.group_name,
+      description = excluded.description,
+      logo_url = excluded.logo_url,
       live_stream_url = excluded.live_stream_url,
+      active = excluded.active,
+      sort_order = excluded.sort_order,
+      admin_customized = excluded.admin_customized,
       updated_at = excluded.updated_at
-  `).run(channelId, name, liveStreamUrl || null, new Date().toISOString());
+  `).run(
+    channelId,
+    name,
+    options.group || 'Autre',
+    options.description || '',
+    options.logoUrl || null,
+    liveStreamUrl || null,
+    options.active === false ? 0 : 1,
+    Number.isInteger(options.sortOrder) ? options.sortOrder : 0,
+    options.adminCustomized === false ? 0 : 1,
+    new Date().toISOString()
+  );
 }
 
 function getChannelPlaybackUrl(channelId) {
   const row = db.prepare('SELECT live_stream_url FROM channels WHERE channel_id = ?').get(channelId);
   return row?.live_stream_url || null;
 }
+function listAdminChannels() {
+  return db.prepare(`
+    SELECT channel_id AS id, name, group_name AS groupName, description,
+           logo_url AS logoUrl, live_stream_url AS liveStreamUrl,
+           active, sort_order AS sortOrder, admin_customized AS adminCustomized
+    FROM channels
+    ORDER BY sort_order ASC, name COLLATE NOCASE
+  `).all();
+}
+
+function getAdminChannel(channelId) {
+  return db.prepare(`
+    SELECT channel_id AS id, name, group_name AS groupName, description,
+           logo_url AS logoUrl, live_stream_url AS liveStreamUrl,
+           active, sort_order AS sortOrder, admin_customized AS adminCustomized
+    FROM channels WHERE channel_id = ?
+  `).get(channelId) || null;
+}
+
+function updateAdminChannel(channelId, values) {
+  const result = db.prepare(`
+    UPDATE channels
+    SET name = ?, group_name = ?, description = ?, logo_url = ?,
+        live_stream_url = ?, active = ?, sort_order = ?,
+        admin_customized = 1, updated_at = ?
+    WHERE channel_id = ?
+  `).run(
+    values.name,
+    values.groupName || 'Autre',
+    values.description || '',
+    values.logoUrl || null,
+    values.liveStreamUrl || null,
+    values.active === false ? 0 : 1,
+    Number.isInteger(values.sortOrder) ? values.sortOrder : 0,
+    new Date().toISOString(),
+    channelId
+  );
+  return result.changes ? getAdminChannel(channelId) : null;
+}
+
+function deleteAdminChannel(channelId) {
+  const hasPrograms = db.prepare('SELECT 1 FROM programs WHERE channel_id = ? LIMIT 1').get(channelId);
+  if (hasPrograms) throw new Error('Impossible de supprimer une chaîne qui contient encore des programmes.');
+  const result = db.prepare('DELETE FROM channels WHERE channel_id = ?').run(channelId);
+  return result.changes > 0;
+}
+
+function updateProgram(programId, values) {
+  const result = db.prepare(`
+    UPDATE programs
+    SET title = ?, type = ?, description = ?, poster = ?,
+        playback_url = ?, status = ?, source_type = ?
+    WHERE program_id = ?
+  `).run(
+    values.title,
+    values.type || 'show',
+    values.description || '',
+    values.poster || null,
+    values.playbackUrl || null,
+    values.status || 'confirmed',
+    values.sourceType || 'admin-curated',
+    programId
+  );
+  return result.changes ? getProgram(programId) : null;
+}
+
+function deleteProgram(programId) {
+  const result = db.prepare('DELETE FROM programs WHERE program_id = ?').run(programId);
+  return result.changes > 0;
+}
+
+function updateOccurrence(occurrenceId, values) {
+  const result = db.prepare(`
+    UPDATE program_occurrences
+    SET channel_id = ?, start_at = ?, end_at = ?, subtitle = ?,
+        season_number = ?, episode_number = ?, description = ?,
+        playback_url = ?, broadcast_type = ?
+    WHERE occurrence_id = ?
+  `).run(
+    values.channelId,
+    values.startAt,
+    values.endAt || null,
+    values.subtitle || null,
+    values.seasonNumber ?? null,
+    values.episodeNumber ?? null,
+    values.description || '',
+    values.playbackUrl || null,
+    values.broadcastType || 'broadcast',
+    occurrenceId
+  );
+  return result.changes ? getOccurrenceById(occurrenceId) : null;
+}
+
 
 function getProgram(programId) {
   return rowToProgram(db.prepare('SELECT * FROM programs WHERE program_id = ?').get(programId));
@@ -1062,6 +1196,13 @@ module.exports = {
   upsertChannel,
   syncConfiguredChannels,
   getChannelPlaybackUrl,
+  listAdminChannels,
+  getAdminChannel,
+  updateAdminChannel,
+  deleteAdminChannel,
+  updateProgram,
+  deleteProgram,
+  updateOccurrence,
   registerRecording,
   finalizeRecording,
   failRecording,
