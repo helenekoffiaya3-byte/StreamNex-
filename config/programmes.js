@@ -6,6 +6,9 @@ const editorialPath=path.join(__dirname,'editorial','rti1-programs.json');
 
 let editorial={};
 try{ editorial=JSON.parse(fs.readFileSync(editorialPath,'utf8')); }catch{ editorial={}; }
+const programmesPath=path.join(__dirname,'programmes.json');
+let catalogue={channels:{}};
+try{ catalogue=JSON.parse(fs.readFileSync(programmesPath,'utf8')); }catch{ catalogue={channels:{}}; }
 
 function localParts(date=new Date(),timezone=TZ){
   const parts=new Intl.DateTimeFormat('en-CA',{timeZone:timezone,year:'numeric',month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit',hourCycle:'h23'}).formatToParts(date);
@@ -21,8 +24,10 @@ function at(base,time,overnight=false){
   return d;
 }
 function weeklyFor(channelId){
+  const configured=catalogue.channels?.[channelId];
+  if(configured)return {timezone:configured.timezone||catalogue.timezone||TZ,weekly:configured.weekly||{}};
   if(channelId===editorial.channelId)return {timezone:editorial.timezone||TZ,weekly:editorial.weekly||{}};
-  return {timezone:TZ,weekly:{}};
+  return {timezone:catalogue.timezone||TZ,weekly:{}};
 }
 function programmesFor(channelId,date=new Date()){
   const cfg=weeklyFor(channelId); const lp=localParts(date,cfg.timezone); const base=baseUtc(lp); const list=cfg.weekly[sourceDay(base)]||[];
@@ -57,10 +62,8 @@ function getProgrammeByOccurrence(channelId,occurrenceId){
   return getOccurrences(channelId).find(p=>String(p.occurrenceId)===String(occurrenceId))||null;
 }
 function getProgrammeById(programId){
-  for(const c of Object.keys({[editorial.channelId]:true})) {
-    const found=programmesFor(c).find(p=>p.programId===programId);
-    if(found)return found;
-  }
+  const ids=new Set([editorial.channelId,...Object.keys(catalogue.channels||{})]);
+  for(const c of ids){const found=programmesFor(c).find(p=>p.programId===programId);if(found)return found;}
   return null;
 }
 module.exports={getProgrammes,getOccurrences,getCurrentProgramme,getNextProgramme,getProgrammeByOccurrence,getProgrammeById};
