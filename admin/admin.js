@@ -268,40 +268,26 @@ document.getElementById('form').addEventListener('submit', async e => {
 document.getElementById('programForm').addEventListener('submit', async e => {
   e.preventDefault();
   try {
-    const d = await api('/api/admin/programs', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        channelId: selectedChannelId,
-        title: document.getElementById('programTitle').value.trim(),
-        type: document.getElementById('programType').value,
-        poster: document.getElementById('programPoster').value.trim() || null,
-        playbackUrl: document.getElementById('programPlayback').value.trim() || null,
-        description: document.getElementById('programDescription').value.trim()
-      })
-    });
     const editId = e.target.dataset.editId;
+    const payload = {
+      channelId: selectedChannelId,
+      title: document.getElementById('programTitle').value.trim(),
+      type: document.getElementById('programType').value,
+      poster: document.getElementById('programPoster').value.trim() || null,
+      playbackUrl: document.getElementById('programPlayback').value.trim() || null,
+      description: document.getElementById('programDescription').value.trim()
+    };
     if (editId) {
-      await api('/api/admin/programs/' + encodeURIComponent(editId), {
-        method: 'PUT', headers: {'Content-Type':'application/json'},
-        body: JSON.stringify({
-          channelId: selectedChannelId,
-          title: document.getElementById('programTitle').value.trim(),
-          type: document.getElementById('programType').value,
-          poster: document.getElementById('programPoster').value.trim() || null,
-          playbackUrl: document.getElementById('programPlayback').value.trim() || null,
-          description: document.getElementById('programDescription').value.trim()
-        })
-      });
-      delete e.target.dataset.editId;
-      document.getElementById('programSubmit').textContent = 'Ajouter le programme';
+      await api('/api/admin/programs/' + encodeURIComponent(editId), {method:'PUT',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});
+    } else {
+      await api('/api/admin/programs', {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});
     }
+    delete e.target.dataset.editId;
+    document.getElementById('programSubmit').textContent='Ajouter le programme';
     e.target.reset();
     await openChannel(selectedChannelId);
     await loadDashboard();
-  } catch (e) {
-    alert(e.message);
-  }
+  } catch (e) { alert(e.message); }
 });
 
 document.getElementById('scheduleForm').addEventListener('submit', async e => {
