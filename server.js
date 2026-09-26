@@ -719,6 +719,8 @@ app.get('/api/live/channels', (_req, res) => {
       group: channel.group,
       number: channel.number,
       logoUrl: channel.logoUrl || '/assets/logos/' + channel.id + '.png',
+      playbackMode: channel.playbackMode || 'live',
+      externalUrl: channel.externalUrl || null,
       liveAvailable: Boolean(current && liveStreamUrl),
       occurrence: current ? {
         occurrenceId: current.occurrenceId,
@@ -1431,8 +1433,12 @@ app.get('/live', (_req, res) => {
 });
 
 app.get('/channel/:id', (req, res) => {
-  if (!CHANNELS.some(channel => channel.id === req.params.id)) {
+  const channel = CHANNELS.find(item => item.id === req.params.id);
+  if (!channel) {
     return res.status(404).send('Chaîne non trouvée.');
+  }
+  if (channel.playbackMode === 'external' && channel.externalUrl) {
+    return res.redirect(302, channel.externalUrl);
   }
   res.sendFile(path.join(__dirname, 'public', 'channel.html'));
 });
