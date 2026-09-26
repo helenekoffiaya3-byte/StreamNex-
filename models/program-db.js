@@ -144,6 +144,38 @@ CREATE INDEX IF NOT EXISTS idx_recordings_status
   ON recordings(status);
 CREATE INDEX IF NOT EXISTS idx_recordings_channel_started
   ON recordings(channel_id, started_at);
+
+CREATE TABLE IF NOT EXISTS broadcast_feeds (
+  feed_id TEXT PRIMARY KEY,
+  name TEXT NOT NULL,
+  slug TEXT NOT NULL UNIQUE,
+  description TEXT NOT NULL DEFAULT '',
+  channel_id TEXT,
+  mode TEXT NOT NULL DEFAULT 'playlist' CHECK(mode IN ('playlist','scheduled')),
+  active INTEGER NOT NULL DEFAULT 1 CHECK(active IN (0,1)),
+  output_format TEXT NOT NULL DEFAULT 'hls' CHECK(output_format IN ('hls','mp4','json')),
+  loop_enabled INTEGER NOT NULL DEFAULT 0 CHECK(loop_enabled IN (0,1)),
+  target_duration_seconds INTEGER,
+  created_at TEXT NOT NULL,
+  updated_at TEXT NOT NULL,
+  FOREIGN KEY(channel_id) REFERENCES channels(channel_id) ON DELETE SET NULL
+);
+
+CREATE TABLE IF NOT EXISTS broadcast_feed_items (
+  feed_id TEXT NOT NULL,
+  position INTEGER NOT NULL,
+  program_id TEXT NOT NULL,
+  occurrence_id INTEGER,
+  duration_seconds INTEGER,
+  transition TEXT NOT NULL DEFAULT 'cut',
+  created_at TEXT NOT NULL,
+  PRIMARY KEY(feed_id, position),
+  FOREIGN KEY(feed_id) REFERENCES broadcast_feeds(feed_id) ON DELETE CASCADE,
+  FOREIGN KEY(program_id) REFERENCES programs(program_id) ON DELETE CASCADE,
+  FOREIGN KEY(occurrence_id) REFERENCES program_occurrences(occurrence_id) ON DELETE SET NULL
+);
+
+CREATE INDEX IF NOT EXISTS idx_feed_items_program ON broadcast_feed_items(program_id);
 `);
 
 db.exec(`
@@ -1139,6 +1171,88 @@ function failRecording(recordingId, status = 'failed', error = null) {
   `).run(status, new Date().toISOString(), error, new Date().toISOString(), recordingId);
 }
 
+
+function searchProgramsAll({ query = '', channelId = null, type = null, limit = 250 } = {}) {
+  const safeLimit = Math.min(1000, Math.max(1, Number(limit) || 250));
+  let sql = `
+    SELECT p.*, c.name AS channel_name
+    FROM programs p
+    LEFT JOIN channels c ON c.channel_id = p.channel_id
+    WHERE p.status <> 'archived'
+  `;
+  const params = [];
+  if (query) {
+    sql += ` AND (p.title LIKE ? OR p.description LIKE ? OR p.program_id LIKE ?)`;
+    const q = '%' + String(query).slice(0, 200) + '%';
+    params.push(q, q, q);
+  }
+  if (channelId) { sql += ' AND p.channel_id = ?'; params.push(channelId); }
+  if (type) { sql += ' AND p.type = ?'; params.push(type); }
+  sql += ' ORDER BY p.title COLLATE NOCASE, c.name COLLATE NOCASE LIMIT ?';
+  params.push(safeLimit);
+  return db.prepare(sql).all(...params).map(row => ({ ...rowToProgram(row), channelName: row.channel_name }));
+}
+
+function createBroadcastFeed(values, items = []) {
+  const now = new Date().toISOString();
+  const transaction = db.transaction(() => {
+    db.prepare(`
+      INSERT INTO broadcast_feeds
+        (feed_id, name, slug, description, channel_id, mode, active, output_format, loop_enabled, target_duration_seconds, created_at, updated_at)
+      VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+    `).run(
+      values.feedId, values.name, values.slug, values.description || '', values.channelId || null,
+      values.mode || 'playlist', values.active === false ? 0 : 1, values.outputFormat || 'hls',
+      values.loopEnabled ? 1 : 0, values.targetDurationSeconds || null, now, now
+    );
+    const stmt = db.prepare(`
+      INSERT INTO broadcast_feed_items
+        (feed_id, position, program_id, occurrence_id, duration_seconds, transition, created_at)
+      VALUES (?, ?, ?, ?, ?, ?, ?)
+    `);
+    items.forEach((item, index) => stmt.run(values.feedId, index, item.programId, item.occurrenceId || null, item.durationSeconds || null, item.transition || 'cut', now));
+  });
+  transaction();
+  return getBroadcastFeed(values.feedId);
+}
+
+function getBroadcastFeed(feedId) {
+  const feed = db.prepare('SELECT * FROM broadcast_feeds WHERE feed_id = ?').get(feedId);
+  if (!feed) return null;
+  const items = db.prepare(`
+    SELECT fi.position, fi.program_id AS programId, fi.occurrence_id AS occurrenceId,
+           fi.duration_seconds AS durationSeconds, fi.transition,
+           p.title, p.type, p.playback_url AS playbackUrl, c.name AS channelName
+    FROM broadcast_feed_items fi
+    JOIN programs p ON p.program_id = fi.program_id
+    LEFT JOIN channels c ON c.channel_id = p.channel_id
+    WHERE fi.feed_id = ? ORDER BY fi.position
+  `).all(feedId);
+  return {
+    feedId: feed.feed_id, name: feed.name, slug: feed.slug, description: feed.description,
+    channelId: feed.channel_id, mode: feed.mode, active: Boolean(feed.active),
+    outputFormat: feed.output_format, loopEnabled: Boolean(feed.loop_enabled),
+    targetDurationSeconds: feed.target_duration_seconds,
+    createdAt: feed.created_at, updatedAt: feed.updated_at, items
+  };
+}
+
+function listBroadcastFeeds() {
+  return db.prepare(`
+    SELECT f.*, COUNT(i.position) AS itemCount
+    FROM broadcast_feeds f LEFT JOIN broadcast_feed_items i ON i.feed_id = f.feed_id
+    GROUP BY f.feed_id ORDER BY f.updated_at DESC
+  `).all().map(f => ({
+    feedId:f.feed_id,name:f.name,slug:f.slug,description:f.description,channelId:f.channel_id,
+    mode:f.mode,active:Boolean(f.active),outputFormat:f.output_format,loopEnabled:Boolean(f.loop_enabled),
+    targetDurationSeconds:f.target_duration_seconds,itemCount:Number(f.itemCount)
+  }));
+}
+
+function deleteBroadcastFeed(feedId) {
+  return db.prepare('DELETE FROM broadcast_feeds WHERE feed_id = ?').run(feedId).changes > 0;
+}
+
 function getReplayMedia({ channelId = null, programId = null, limit = 100 } = {}) {
   const safeLimit = Math.min(500, Math.max(1, Number(limit) || 100));
   let sql = `
@@ -1207,6 +1321,11 @@ module.exports = {
   finalizeRecording,
   failRecording,
   getReplayMedia,
+  searchProgramsAll,
+  createBroadcastFeed,
+  getBroadcastFeed,
+  listBroadcastFeeds,
+  deleteBroadcastFeed,
   setRecordingState,
   addRecordingSegment,
   getRecordingSegments,
