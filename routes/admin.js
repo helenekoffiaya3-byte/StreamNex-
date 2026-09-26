@@ -387,7 +387,7 @@ router.put('/schedule/:occurrenceId', (req, res) => {
   }
 });
 
-router.post('/schedule', (req, res) =>
+router.post('/schedule', (req, res) => {
   try {
     const channelId = String(req.body.channelId || '').trim();
     const programId = String(req.body.programId || '').trim();
