@@ -1,6 +1,18 @@
 const express = require('express');
 const { rateLimit } = require('express-rate-limit');
-const { db, syncConfiguredChannels, upsertProgram, addOccurrence } = require('../models/program-db');
+const {
+  db,
+  syncConfiguredChannels,
+  upsertChannel,
+  addOccurrence,
+  listAdminChannels,
+  getAdminChannel,
+  updateAdminChannel,
+  deleteAdminChannel,
+  updateProgram,
+  deleteProgram,
+  updateOccurrence
+} = require('../models/program-db');
 const { requireAdminAuth, ADMIN_EMAIL } = require('../services/adminAuth');
 const CHANNELS = require('../config/channels');
 
@@ -23,7 +35,7 @@ function normalizeIso(value, field) {
 }
 
 function channelExists(channelId) {
-  return CHANNELS.some(channel => channel.id === channelId);
+  return Boolean(getAdminChannel(channelId));
 }
 
 function validateScheduleWindow(channelId, startAt, endAt, excludeOccurrenceId = null) {
@@ -85,13 +97,65 @@ router.get('/dashboard', (_req, res) => {
 
 router.get('/channels', (_req, res) => {
   syncConfiguredChannels(CHANNELS);
-  const channels = db.prepare(`
-    SELECT c.channel_id AS id, c.name,
-           c.live_stream_url AS liveStreamUrl, c.updated_at AS updatedAt
-    FROM channels c
-    ORDER BY c.channel_id
-  `).all();
+  const channels = listAdminChannels();
   res.json({ success: true, count: channels.length, channels });
+});
+
+router.post('/channels', (req, res) => {
+  try {
+    const id = String(req.body.id || '').trim().toLowerCase().replace(/[^a-z0-9-]+/g, '-').replace(/^-|-$/g, '');
+    const name = String(req.body.name || '').trim();
+    if (!id || id.length > 120) return res.status(400).json({ success: false, error: 'Identifiant de chaîne invalide.' });
+    if (!name || name.length > 200) return res.status(400).json({ success: false, error: 'Nom de chaîne invalide.' });
+    if (getAdminChannel(id)) return res.status(409).json({ success: false, error: 'Cette chaîne existe déjà.' });
+    const channel = upsertChannel(id, name, req.body.liveStreamUrl || null, {
+      group: req.body.groupName,
+      description: req.body.description,
+      logoUrl: req.body.logoUrl,
+      active: req.body.active !== false,
+      sortOrder: Number.isInteger(req.body.sortOrder) ? req.body.sortOrder : 9999,
+      adminCustomized: true
+    });
+    res.status(201).json({ success: true, channel: getAdminChannel(id) || channel });
+  } catch (error) {
+    console.error('[API] admin create channel:', error);
+    res.status(400).json({ success: false, error: error.message || 'Impossible de créer la chaîne.' });
+  }
+});
+
+router.put('/channels/:channelId', (req, res) => {
+  try {
+    const channelId = req.params.channelId;
+    if (!getAdminChannel(channelId)) return res.status(404).json({ success: false, error: 'Chaîne introuvable.' });
+    const name = String(req.body.name || '').trim();
+    if (!name || name.length > 200) return res.status(400).json({ success: false, error: 'Nom de chaîne invalide.' });
+    const channel = updateAdminChannel(channelId, {
+      name,
+      groupName: String(req.body.groupName || 'Autre').trim(),
+      description: String(req.body.description || '').trim(),
+      logoUrl: req.body.logoUrl || null,
+      liveStreamUrl: req.body.liveStreamUrl || null,
+      active: req.body.active !== false,
+      sortOrder: Number.isInteger(req.body.sortOrder) ? req.body.sortOrder : 0
+    });
+    res.json({ success: true, channel });
+  } catch (error) {
+    console.error('[API] admin update channel:', error);
+    res.status(400).json({ success: false, error: error.message || 'Impossible de modifier la chaîne.' });
+  }
+});
+
+router.delete('/channels/:channelId', (req, res) => {
+  try {
+    const channelId = req.params.channelId;
+    if (CHANNELS.some(channel => channel.id === channelId)) {
+      return res.status(409).json({ success: false, error: 'Les 140 chaînes configurées ne peuvent pas être supprimées depuis cet outil.' });
+    }
+    if (!deleteAdminChannel(channelId)) return res.status(404).json({ success: false, error: 'Chaîne introuvable.' });
+    res.json({ success: true });
+  } catch (error) {
+    res.status(409).json({ success: false, error: error.message });
+  }
 });
 
 router.get('/channels/:channelId/programs', (req, res) => {
@@ -159,7 +223,74 @@ router.post('/programs', (req, res) => {
   }
 });
 
-router.post('/schedule', (req, res) => {
+router.put('/programs/:programId', (req, res) => {
+  try {
+    const programId = req.params.programId;
+    const existing = db.prepare('SELECT * FROM programs WHERE program_id = ?').get(programId);
+    if (!existing) return res.status(404).json({ success: false, error: 'Programme introuvable.' });
+    const title = String(req.body.title || '').trim();
+    if (!title || title.length > 200) return res.status(400).json({ success: false, error: 'Titre invalide.' });
+    const program = updateProgram(programId, {
+      title,
+      type: String(req.body.type || 'show'),
+      description: String(req.body.description || ''),
+      poster: req.body.poster || null,
+      playbackUrl: req.body.playbackUrl || null,
+      status: String(req.body.status || 'confirmed'),
+      sourceType: 'admin-curated'
+    });
+    res.json({ success: true, program });
+  } catch (error) {
+    console.error('[API] admin update program:', error);
+    res.status(400).json({ success: false, error: error.message || 'Impossible de modifier le programme.' });
+  }
+});
+
+router.delete('/programs/:programId', (req, res) => {
+  try {
+    if (!deleteProgram(req.params.programId)) return res.status(404).json({ success: false, error: 'Programme introuvable.' });
+    res.json({ success: true });
+  } catch (error) {
+    console.error('[API] admin delete program:', error);
+    res.status(409).json({ success: false, error: error.message || 'Impossible de supprimer le programme.' });
+  }
+});
+
+router.put('/schedule/:occurrenceId', (req, res) => {
+  try {
+    const occurrenceId = Number(req.params.occurrenceId);
+    if (!Number.isInteger(occurrenceId) || occurrenceId <= 0) return res.status(400).json({ success: false, error: 'Programmation invalide.' });
+    const existing = db.prepare('SELECT * FROM program_occurrences WHERE occurrence_id = ?').get(occurrenceId);
+    if (!existing) return res.status(404).json({ success: false, error: 'Programmation introuvable.' });
+    const channelId = String(req.body.channelId || existing.channel_id);
+    const startAt = normalizeIso(req.body.startAt, 'Date/heure de début');
+    const endAt = normalizeIso(req.body.endAt, 'Date/heure de fin');
+    if (!channelExists(channelId)) return res.status(400).json({ success: false, error: 'Chaîne introuvable.' });
+    if (Date.parse(endAt) <= Date.parse(startAt)) return res.status(400).json({ success: false, error: 'La fin doit être après le début.' });
+    const conflict = validateScheduleWindow(channelId, startAt, endAt, occurrenceId);
+    if (conflict) return res.status(409).json({ success: false, error: 'Conflit de programmation.', conflict });
+    const programId = String(req.body.programId || existing.program_id);
+    const program = db.prepare('SELECT * FROM programs WHERE program_id = ? AND channel_id = ?').get(programId, channelId);
+    if (!program) return res.status(400).json({ success: false, error: 'Programme introuvable pour cette chaîne.' });
+    const occurrence = updateOccurrence(occurrenceId, {
+      channelId,
+      startAt,
+      endAt,
+      subtitle: req.body.subtitle || null,
+      seasonNumber: Number.isInteger(req.body.seasonNumber) ? req.body.seasonNumber : null,
+      episodeNumber: Number.isInteger(req.body.episodeNumber) ? req.body.episodeNumber : null,
+      description: String(req.body.description || ''),
+      playbackUrl: req.body.playbackUrl || null,
+      broadcastType: req.body.broadcastType === 'rerun' ? 'rerun' : 'broadcast'
+    });
+    res.json({ success: true, occurrence });
+  } catch (error) {
+    console.error('[API] admin update schedule:', error);
+    res.status(400).json({ success: false, error: error.message || 'Impossible de modifier la programmation.' });
+  }
+});
+
+router.post('/schedule', (req, res) =>
   try {
     const channelId = String(req.body.channelId || '').trim();
     const programId = String(req.body.programId || '').trim();
