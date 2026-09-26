@@ -26,3 +26,12 @@ textarea,select{display:block;width:100%;margin-top:7px;padding:13px;border:1px 
 .check{display:flex;align-items:center;gap:8px}.check input{width:auto;margin:0}
 button.secondary{border:1px solid #35404c}
 @media(max-width:720px){.toolbar{grid-template-columns:1fr}.formgrid{grid-template-columns:1fr}.channel-row{grid-template-columns:1fr}.actions{flex-wrap:wrap}}
+
+.studio-grid{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(300px,.8fr);gap:16px}
+.program-picker{display:grid;gap:7px;max-height:480px;overflow:auto}
+.program-choice,.feed-item,.feed-card{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:10px 12px;border:1px solid #29333e;border-radius:10px;background:#10161d}
+.program-choice{text-align:left;width:100%;cursor:pointer}
+.program-choice:hover{border-color:#00ff88}
+.program-choice small,.feed-item small,.feed-card small{display:block;color:#8f9ba8;font-size:11px;margin-top:3px}
+.feed-item{margin-bottom:6px}.feed-card{margin:7px 0}
+@media(max-width:850px){.studio-grid{grid-template-columns:1fr}}
