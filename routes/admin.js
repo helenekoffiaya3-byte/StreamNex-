@@ -245,8 +245,14 @@ router.get('/feeds/:feedId/status', (req, res) => {
 });
 
 router.delete('/feeds/:feedId', (req,res) => {
-  if(!deleteBroadcastFeed(req.params.feedId)) return res.status(404).json({success:false,error:'Flux introuvable.'});
-  res.json({success:true});
+  try {
+    if (!getBroadcastFeed(req.params.feedId)) return res.status(404).json({ success:false, error:'Flux introuvable.' });
+    broadcastFeedEngine.stop(req.params.feedId);
+    deleteBroadcastFeed(req.params.feedId);
+    res.json({ success:true });
+  } catch (error) {
+    res.status(400).json({ success:false, error:error.message || 'Impossible de supprimer le flux.' });
+  }
 });
 
 router.get('/channels/:channelId/programs', (req, res) => {
