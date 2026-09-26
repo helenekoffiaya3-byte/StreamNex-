@@ -38,7 +38,8 @@ function buildSchedule(feed) {
       title: item.title,
       startTime: timeText(cursor),
       endTime: timeText(cursor + minutes),
-      vodFile: 'storage/vod/' + path.relative(VOD_ROOT, media).split(path.sep).join('/')
+      vodFile: 'storage/vod/' + path.relative(VOD_ROOT, media).split(path.sep).join('/'),
+      loopInput: true
     });
     cursor += minutes;
   }
