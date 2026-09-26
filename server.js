@@ -362,6 +362,7 @@ function requireMediaDownloadAuth(req, res, next) {
 const CHANNEL_CONFIG = require('./config/channels');
 const { channelPrograms, nickelodeonLiveAction, unassignedPrograms, enrichProgram } = require('./config/catalog');
 const { syncConfiguredChannels, syncCatalogPrograms } = require('./models/program-db');
+const { syncRti1WeeklyEpg } = require('./services/rti1WeeklyEpg');
 
 
 function validatePlaybackUrl(value) {
@@ -396,6 +397,12 @@ const CHANNELS = CHANNEL_CONFIG.map((channel, index) => ({
 
 syncConfiguredChannels(CHANNELS);
 syncCatalogPrograms(channelPrograms, nickelodeonLiveAction);
+try {
+  const rti1Epg = syncRti1WeeklyEpg({ days: 7 });
+  console.log('[RTI1 EPG] Grille 7 jours synchronisée:', rti1Epg);
+} catch (error) {
+  console.error('[RTI1 EPG] Synchronisation impossible:', error.message);
+}
 
 const userSessions = new Map();
 const SESSION_TTL_MS = Number(process.env.SESSION_TTL_MS || 30 * 60 * 1000);
