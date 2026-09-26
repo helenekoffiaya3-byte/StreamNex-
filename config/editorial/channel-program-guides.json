@@ -8582,6 +8582,340 @@
         ]
       ],
       "order": 140
+    },
+    {
+      "channelId": "c-plus-pop",
+      "name": "C+ Pop",
+      "group": "Films",
+      "timezone": "Africa/Abidjan",
+      "sourceType": "synthetic-guide-template",
+      "guideEnabled": true,
+      "playbackMode": "live",
+      "template": [
+        [
+          "Pop & cinéma",
+          "Divertissement",
+          120
+        ],
+        [
+          "Musique & divertissement",
+          "Série",
+          120
+        ],
+        [
+          "Séries & culture",
+          "Film",
+          120
+        ],
+        [
+          "Prime time",
+          "Divertissement",
+          120
+        ],
+        [
+          "Clips & découvertes",
+          "Divertissement",
+          180
+        ]
+      ],
+      "order": 141
+    },
+    {
+      "channelId": "c-plus-magic",
+      "name": "C+ Magic",
+      "group": "Films",
+      "timezone": "Africa/Abidjan",
+      "sourceType": "synthetic-guide-template",
+      "guideEnabled": true,
+      "playbackMode": "live",
+      "template": [
+        [
+          "Divertissement",
+          "Divertissement",
+          120
+        ],
+        [
+          "Séries",
+          "Série",
+          120
+        ],
+        [
+          "Cinéma familial",
+          "Film",
+          120
+        ],
+        [
+          "Jeunesse & famille",
+          "Divertissement",
+          120
+        ],
+        [
+          "Prime time",
+          "Divertissement",
+          180
+        ]
+      ],
+      "order": 142
+    },
+    {
+      "channelId": "c-plus-cinema",
+      "name": "C+ Cinema",
+      "group": "Films",
+      "timezone": "Africa/Abidjan",
+      "sourceType": "synthetic-guide-template",
+      "guideEnabled": true,
+      "playbackMode": "live",
+      "template": [
+        [
+          "Grand écran",
+          "Divertissement",
+          120
+        ],
+        [
+          "Cinéma contemporain",
+          "Série",
+          120
+        ],
+        [
+          "Classiques du cinéma",
+          "Film",
+          120
+        ],
+        [
+          "Magazine cinéma",
+          "Divertissement",
+          120
+        ],
+        [
+          "Prime cinéma",
+          "Divertissement",
+          180
+        ]
+      ],
+      "order": 143
+    },
+    {
+      "channelId": "c-plus-family",
+      "name": "C+ Family",
+      "group": "Films",
+      "timezone": "Africa/Abidjan",
+      "sourceType": "synthetic-guide-template",
+      "guideEnabled": true,
+      "playbackMode": "live",
+      "template": [
+        [
+          "Famille & jeunesse",
+          "Divertissement",
+          120
+        ],
+        [
+          "Séries familiales",
+          "Série",
+          120
+        ],
+        [
+          "Film familial",
+          "Film",
+          120
+        ],
+        [
+          "Animation",
+          "Divertissement",
+          120
+        ],
+        [
+          "Prime family",
+          "Divertissement",
+          180
+        ]
+      ],
+      "order": 144
+    },
+    {
+      "channelId": "c-plus-action",
+      "name": "C+ Action",
+      "group": "Films",
+      "timezone": "Africa/Abidjan",
+      "sourceType": "synthetic-guide-template",
+      "guideEnabled": true,
+      "playbackMode": "live",
+      "template": [
+        [
+          "Film d'action",
+          "Divertissement",
+          120
+        ],
+        [
+          "Séries d'action",
+          "Série",
+          120
+        ],
+        [
+          "Thriller",
+          "Film",
+          120
+        ],
+        [
+          "Policier",
+          "Divertissement",
+          120
+        ],
+        [
+          "Prime action",
+          "Divertissement",
+          180
+        ]
+      ],
+      "order": 145
+    },
+    {
+      "channelId": "action",
+      "name": "Action",
+      "group": "Films",
+      "timezone": "Africa/Abidjan",
+      "sourceType": "synthetic-guide-template",
+      "guideEnabled": true,
+      "playbackMode": "live",
+      "template": [
+        [
+          "Action",
+          "Divertissement",
+          120
+        ],
+        [
+          "Aventure",
+          "Série",
+          120
+        ],
+        [
+          "Thriller",
+          "Film",
+          120
+        ],
+        [
+          "Policier",
+          "Divertissement",
+          120
+        ],
+        [
+          "Film du soir",
+          "Divertissement",
+          180
+        ]
+      ],
+      "order": 146
+    },
+    {
+      "channelId": "tf1-series-films",
+      "name": "TF1 Séries Films",
+      "group": "Films",
+      "timezone": "Africa/Abidjan",
+      "sourceType": "synthetic-guide-template",
+      "guideEnabled": true,
+      "playbackMode": "live",
+      "template": [
+        [
+          "Séries françaises",
+          "Divertissement",
+          120
+        ],
+        [
+          "Séries internationales",
+          "Série",
+          120
+        ],
+        [
+          "Téléfilm",
+          "Film",
+          120
+        ],
+        [
+          "Film",
+          "Divertissement",
+          120
+        ],
+        [
+          "Prime time",
+          "Divertissement",
+          180
+        ]
+      ],
+      "order": 147
+    },
+    {
+      "channelId": "netflix",
+      "name": "Netflix",
+      "group": "Films",
+      "timezone": "Africa/Abidjan",
+      "sourceType": "external-redirect",
+      "guideEnabled": true,
+      "playbackMode": "external",
+      "externalUrl": "https://www.netflix.com/ci/",
+      "template": [
+        [
+          "Films Netflix",
+          "Divertissement",
+          120
+        ],
+        [
+          "Séries Netflix",
+          "Série",
+          120
+        ],
+        [
+          "Documentaires",
+          "Film",
+          120
+        ],
+        [
+          "Anime & animation",
+          "Divertissement",
+          120
+        ],
+        [
+          "Nouveautés",
+          "Divertissement",
+          180
+        ]
+      ],
+      "order": 148
+    },
+    {
+      "channelId": "s-plus-prime",
+      "name": "S+ Prime",
+      "group": "Films",
+      "timezone": "Africa/Abidjan",
+      "sourceType": "synthetic-guide-template",
+      "guideEnabled": true,
+      "playbackMode": "live",
+      "template": [
+        [
+          "Films & séries",
+          "Divertissement",
+          120
+        ],
+        [
+          "Prime time",
+          "Série",
+          120
+        ],
+        [
+          "Divertissement",
+          "Film",
+          120
+        ],
+        [
+          "Nouveautés",
+          "Divertissement",
+          120
+        ],
+        [
+          "Cinéma",
+          "Divertissement",
+          180
+        ]
+      ],
+      "order": 149
     }
   ]
 }
