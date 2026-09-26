@@ -54,7 +54,7 @@ class HLSEngine {
         program,
         useFallback ? 0 : this.calculateOffset(status.abidjanTime, program.startTime),
         inputPath,
-        useFallback
+        useFallback || program.loopInput === true
       );
     }
   }
