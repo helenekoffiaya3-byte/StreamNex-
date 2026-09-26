@@ -20,6 +20,7 @@ const {
 } = require('../models/program-db');
 const { requireAdminAuth, ADMIN_EMAIL } = require('../services/adminAuth');
 const CHANNELS = require('../config/channels');
+const broadcastFeedEngine = require('../services/broadcastFeedEngine');
 
 const router = express.Router();
 
@@ -207,24 +208,40 @@ router.post('/feeds', (req, res) => {
       loopEnabled:Boolean(req.body.loopEnabled),
       targetDurationSeconds:Number(req.body.targetDurationSeconds)||null
     }, items);
-    res.status(201).json({ success:true, feed, playbackUrl:'/api/admin/feeds/'+encodeURIComponent(feedId)+'/manifest.m3u8' });
+    res.status(201).json({ success:true, feed, playbackUrl:'/hls/feeds/'+encodeURIComponent(feedId)+'/stream.m3u8', engineStatus: broadcastFeedEngine.status(feedId) });
   } catch(error) {
     res.status(400).json({ success:false,error:error.message });
   }
 });
 
 router.get('/feeds/:feedId/manifest.m3u8', (req, res) => {
-  const feed=getBroadcastFeed(req.params.feedId);
-  if(!feed) return res.status(404).send('#EXTM3U\n');
-  const playable=feed.items.filter(i=>i.playbackUrl);
-  res.type('application/vnd.apple.mpegurl');
-  let out='#EXTM3U\n#EXT-X-VERSION:3\n';
-  for(const item of playable){
-    if(item.durationSeconds) out+='#EXTINF:'+Number(item.durationSeconds).toFixed(3)+', '+item.title+'\n';
-    out+=(item.playbackUrl || '')+'\n';
+  const status = broadcastFeedEngine.status(req.params.feedId);
+  if (!status) return res.status(404).send('#EXTM3U\n');
+  res.redirect(302, status.playbackUrl);
+});
+
+router.post('/feeds/:feedId/start', (req, res) => {
+  try {
+    const status = broadcastFeedEngine.start(req.params.feedId);
+    res.json({ success: true, status });
+  } catch (error) {
+    res.status(400).json({ success: false, error: error.message || 'Impossible de démarrer le flux.' });
   }
-  if(feed.loopEnabled) out+='#EXT-X-PLAYLIST-TYPE:EVENT\n';
-  res.send(out);
+});
+
+router.post('/feeds/:feedId/stop', (req, res) => {
+  try {
+    const status = broadcastFeedEngine.stop(req.params.feedId);
+    res.json({ success: true, status });
+  } catch (error) {
+    res.status(400).json({ success: false, error: error.message || 'Impossible d’arrêter le flux.' });
+  }
+});
+
+router.get('/feeds/:feedId/status', (req, res) => {
+  const status = broadcastFeedEngine.status(req.params.feedId);
+  if (!status) return res.status(404).json({ success: false, error: 'Flux introuvable.' });
+  res.json({ success: true, status });
 });
 
 router.delete('/feeds/:feedId', (req,res) => {
