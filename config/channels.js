@@ -139,6 +139,15 @@ const CHANNELS = [
   { id: "hope-channel", name: "Hope Channel", group: "Biblical", productionUrl: process.env.HOPE_CHANNEL_HLS_URL || null, streamEnabled: Boolean(process.env.HOPE_CHANNEL_HLS_URL) },
   { id: "trace-gospel", name: "Trace Gospel", group: "Biblical", productionUrl: process.env.TRACE_GOSPEL_HLS_URL || null, streamEnabled: Boolean(process.env.TRACE_GOSPEL_HLS_URL) },
   { id: "ewtn", name: "EWTN", group: "Biblical", productionUrl: process.env.EWTN_HLS_URL || null, streamEnabled: Boolean(process.env.EWTN_HLS_URL) }
+  { id: "c-plus-pop", name: "C+ Pop", group: "Films", productionUrl: process.env.C_PLUS_POP_HLS_URL || null, streamEnabled: Boolean(process.env.C_PLUS_POP_HLS_URL) },
+  { id: "c-plus-magic", name: "C+ Magic", group: "Films", productionUrl: process.env.C_PLUS_MAGIC_HLS_URL || null, streamEnabled: Boolean(process.env.C_PLUS_MAGIC_HLS_URL) },
+  { id: "c-plus-cinema", name: "C+ Cinema", group: "Films", productionUrl: process.env.C_PLUS_CINEMA_HLS_URL || null, streamEnabled: Boolean(process.env.C_PLUS_CINEMA_HLS_URL) },
+  { id: "c-plus-family", name: "C+ Family", group: "Films", productionUrl: process.env.C_PLUS_FAMILY_HLS_URL || null, streamEnabled: Boolean(process.env.C_PLUS_FAMILY_HLS_URL) },
+  { id: "c-plus-action", name: "C+ Action", group: "Films", productionUrl: process.env.C_PLUS_ACTION_HLS_URL || null, streamEnabled: Boolean(process.env.C_PLUS_ACTION_HLS_URL) },
+  { id: "action", name: "Action", group: "Films", productionUrl: process.env.ACTION_HLS_URL || null, streamEnabled: Boolean(process.env.ACTION_HLS_URL) },
+  { id: "tf1-series-films", name: "TF1 Séries Films", group: "Films", productionUrl: process.env.TF1_SERIES_FILMS_HLS_URL || null, streamEnabled: Boolean(process.env.TF1_SERIES_FILMS_HLS_URL) },
+  { id: "netflix", name: "Netflix", group: "Films", playbackMode: "external", externalUrl: "https://www.netflix.com/ci/", productionUrl: null, streamEnabled: false },
+  { id: "s-plus-prime", name: "S+ Prime", group: "Films", productionUrl: process.env.S_PLUS_PRIME_HLS_URL || null, streamEnabled: Boolean(process.env.S_PLUS_PRIME_HLS_URL) },
 ];
 
 module.exports = CHANNELS;
