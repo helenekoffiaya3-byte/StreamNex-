@@ -363,6 +363,7 @@ const CHANNEL_CONFIG = require('./config/channels');
 const { channelPrograms, nickelodeonLiveAction, unassignedPrograms, enrichProgram } = require('./config/catalog');
 const { syncConfiguredChannels, syncCatalogPrograms } = require('./models/program-db');
 const { syncRti1WeeklyEpg } = require('./services/rti1WeeklyEpg');
+const Rti1Recorder = require('./services/rti1Recorder');
 
 
 function validatePlaybackUrl(value) {
@@ -402,6 +403,12 @@ try {
   console.log('[RTI1 EPG] Grille 7 jours synchronisée:', rti1Epg);
 } catch (error) {
   console.error('[RTI1 EPG] Synchronisation impossible:', error.message);
+}
+
+let rti1Recorder = null;
+if (process.env.RTI1_RECORD_AUTOSTART === 'true') {
+  rti1Recorder = new Rti1Recorder();
+  rti1Recorder.start();
 }
 
 const userSessions = new Map();
@@ -1473,6 +1480,7 @@ function gracefulShutdown(signal) {
   }
   if (streamLiveHlsEngine) streamLiveHlsEngine.stop();
   if (rti1HlsEngine) rti1HlsEngine.stop();
+  if (rti1Recorder) rti1Recorder.stop();
   if (shuttingDown) return;
   shuttingDown = true;
   console.log(`[StreamLive] Arrêt demandé: ${signal}`);
