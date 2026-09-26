@@ -1,5 +1,6 @@
 const { loadRti1Schedule, getDaySchedule, occurrenceBounds, validateRti1Schedule } = require('./rti1Scheduler');
 const { upsertProgram, addOccurrence, db } = require('../models/program-db');
+const { syncChannelProgramGuides } = require('./channelProgramGuides');
 
 const CHANNEL_ID = 'rti-1';
 const WINDOW_DAYS = 7;
