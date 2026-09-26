@@ -218,6 +218,12 @@ ensureColumn('channels', 'logo_url', 'TEXT');
 ensureColumn('channels', 'active', 'INTEGER NOT NULL DEFAULT 1');
 ensureColumn('channels', 'sort_order', 'INTEGER NOT NULL DEFAULT 0');
 ensureColumn('channels', 'admin_customized', 'INTEGER NOT NULL DEFAULT 0');
+ensureColumn('broadcast_feeds', 'engine_status', "TEXT NOT NULL DEFAULT 'STOPPED'");
+ensureColumn('broadcast_feeds', 'engine_pid', 'INTEGER');
+ensureColumn('broadcast_feeds', 'engine_position', 'INTEGER');
+ensureColumn('broadcast_feeds', 'engine_program_id', 'TEXT');
+ensureColumn('broadcast_feeds', 'engine_last_error', 'TEXT');
+ensureColumn('broadcast_feeds', 'engine_started_at', 'TEXT');
 
 function rowToProgram(row) {
   if (!row) return null;
@@ -1233,6 +1239,12 @@ function getBroadcastFeed(feedId) {
     channelId: feed.channel_id, mode: feed.mode, active: Boolean(feed.active),
     outputFormat: feed.output_format, loopEnabled: Boolean(feed.loop_enabled),
     targetDurationSeconds: feed.target_duration_seconds,
+    engineStatus: feed.engine_status || 'STOPPED',
+    enginePid: feed.engine_pid || null,
+    enginePosition: feed.engine_position ?? null,
+    engineProgramId: feed.engine_program_id || null,
+    engineLastError: feed.engine_last_error || null,
+    engineStartedAt: feed.engine_started_at || null,
     createdAt: feed.created_at, updatedAt: feed.updated_at, items
   };
 }
@@ -1245,8 +1257,34 @@ function listBroadcastFeeds() {
   `).all().map(f => ({
     feedId:f.feed_id,name:f.name,slug:f.slug,description:f.description,channelId:f.channel_id,
     mode:f.mode,active:Boolean(f.active),outputFormat:f.output_format,loopEnabled:Boolean(f.loop_enabled),
-    targetDurationSeconds:f.target_duration_seconds,itemCount:Number(f.itemCount)
+    targetDurationSeconds:f.target_duration_seconds,itemCount:Number(f.itemCount),
+    engineStatus:f.engine_status || 'STOPPED',
+    enginePid:f.engine_pid || null,
+    enginePosition:f.engine_position ?? null,
+    engineProgramId:f.engine_program_id || null,
+    engineLastError:f.engine_last_error || null,
+    engineStartedAt:f.engine_started_at || null
   }));
+}
+
+function updateBroadcastFeedRuntime(feedId, values = {}) {
+  db.prepare(`
+    UPDATE broadcast_feeds
+    SET engine_status = ?, engine_pid = ?, engine_position = ?,
+        engine_program_id = ?, engine_last_error = ?, engine_started_at = ?,
+        updated_at = ?
+    WHERE feed_id = ?
+  `).run(
+    values.status || 'STOPPED',
+    values.pid ?? null,
+    values.currentPosition ?? null,
+    values.currentProgramId || null,
+    values.lastError || null,
+    values.startedAt || null,
+    values.updatedAt || new Date().toISOString(),
+    feedId
+  );
+  return getBroadcastFeed(feedId);
 }
 
 function deleteBroadcastFeed(feedId) {
@@ -1326,6 +1364,7 @@ module.exports = {
   getBroadcastFeed,
   listBroadcastFeeds,
   deleteBroadcastFeed,
+  updateBroadcastFeedRuntime,
   setRecordingState,
   addRecordingSegment,
   getRecordingSegments,
