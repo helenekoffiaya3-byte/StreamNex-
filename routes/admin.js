@@ -183,7 +183,7 @@ router.get('/channels/:channelId/programs', (req, res) => {
     ORDER BY po.start_at
   `).all(channelId);
 
-  res.json({ success: true, channel: CHANNELS.find(c => c.id === channelId), programs, occurrences });
+  res.json({ success: true, channel: getAdminChannel(channelId), programs, occurrences });
 });
 
 router.post('/programs', (req, res) => {
