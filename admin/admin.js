@@ -3,6 +3,8 @@ const panel = document.getElementById('panel');
 const error = document.getElementById('error');
 let selectedChannelId = null;
 let channelPrograms = [];
+let channels = [];
+let editingChannelId = null;
 
 async function api(url, options) {
   const r = await fetch(url, { credentials: 'include', ...(options || {}) });
@@ -61,16 +63,36 @@ async function loadDashboard() {
 
 async function loadChannels() {
   const d = await api('/api/admin/channels');
+  channels = d.channels || [];
   document.getElementById('channelCount').textContent = d.count + ' chaînes';
-  document.getElementById('channels').innerHTML = d.channels.map(channel =>
-    '<button class="channel" data-id="' + esc(channel.id) + '">' +
-      '<img src="/assets/logos/' + encodeURIComponent(channel.id) + '.png" alt="" onerror="this.style.display=\'none\'">' +
-      '<span>' + esc(channel.name) + '</span>' +
-    '</button>'
+  const groups = [...new Set(channels.map(c => c.groupName).filter(Boolean))].sort();
+  document.getElementById('groupFilter').innerHTML = '<option value="">Tous les groupes</option>' + groups.map(g => '<option>' + esc(g) + '</option>').join('');
+  renderChannels();
+}
+function renderChannels() {
+  const q = document.getElementById('channelSearch').value.trim().toLowerCase();
+  const g = document.getElementById('groupFilter').value;
+  const list = channels.filter(c => (!g || c.groupName === g) && (!q || (c.name + ' ' + c.id).toLowerCase().includes(q)));
+  document.getElementById('channels').innerHTML = list.map(c =>
+    '<div class="channel-row"><button class="channel" data-id="' + esc(c.id) + '"><img src="' + esc(c.logoUrl || '/assets/logos/' + c.id + '.png') + '" alt="" onerror="this.style.display=\'none\'"><span><b>' + esc(c.name) + '</b><small>' + esc(c.groupName || 'Autre') + '</small></span></button><button class="secondary edit-channel" data-id="' + esc(c.id) + '">Modifier</button></div>'
   ).join('');
-  document.querySelectorAll('.channel').forEach(button => {
-    button.addEventListener('click', () => openChannel(button.dataset.id));
-  });
+  document.querySelectorAll('.channel').forEach(b => b.addEventListener('click', () => openChannel(b.dataset.id)));
+  document.querySelectorAll('.edit-channel').forEach(b => b.addEventListener('click', () => editChannel(b.dataset.id)));
+}
+function editChannel(id) {
+  const c = channels.find(x => x.id === id); if (!c) return;
+  editingChannelId = id;
+  const f = document.getElementById('channelForm'); f.hidden = false;
+  document.getElementById('channelFormTitle').textContent = 'Modifier la chaîne';
+  document.getElementById('channelId').value = c.id; document.getElementById('channelId').disabled = true;
+  document.getElementById('channelName').value = c.name || '';
+  document.getElementById('channelGroup').value = c.groupName || 'Autre';
+  document.getElementById('channelOrder').value = c.sortOrder ?? 0;
+  document.getElementById('channelLogo').value = c.logoUrl || '';
+  document.getElementById('channelStream').value = c.liveStreamUrl || '';
+  document.getElementById('channelDescription').value = c.description || '';
+  document.getElementById('channelActive').checked = Boolean(c.active);
+  f.scrollIntoView({behavior:'smooth'});
 }
 
 async function openChannel(channelId) {
@@ -120,6 +142,40 @@ function renderSchedule(rows) {
     });
   });
 }
+
+document.getElementById('newChannel').addEventListener('click', () => {
+  editingChannelId = null;
+  const f = document.getElementById('channelForm'); f.hidden = false; f.reset();
+  document.getElementById('channelId').disabled = false;
+  document.getElementById('channelActive').checked = true;
+  document.getElementById('channelFormTitle').textContent = 'Nouvelle chaîne';
+});
+document.getElementById('cancelChannel').addEventListener('click', () => {
+  editingChannelId = null; document.getElementById('channelForm').hidden = true;
+});
+document.getElementById('channelSearch').addEventListener('input', renderChannels);
+document.getElementById('groupFilter').addEventListener('change', renderChannels);
+document.getElementById('channelForm').addEventListener('submit', async e => {
+  e.preventDefault();
+  const body = {
+    id: document.getElementById('channelId').value.trim(),
+    name: document.getElementById('channelName').value.trim(),
+    groupName: document.getElementById('channelGroup').value.trim(),
+    sortOrder: Number(document.getElementById('channelOrder').value || 0),
+    logoUrl: document.getElementById('channelLogo').value.trim() || null,
+    liveStreamUrl: document.getElementById('channelStream').value.trim() || null,
+    description: document.getElementById('channelDescription').value.trim(),
+    active: document.getElementById('channelActive').checked
+  };
+  try {
+    await api(editingChannelId ? '/api/admin/channels/' + encodeURIComponent(editingChannelId) : '/api/admin/channels', {
+      method: editingChannelId ? 'PUT' : 'POST',
+      headers: {'Content-Type':'application/json'}, body: JSON.stringify(body)
+    });
+    editingChannelId = null; e.target.hidden = true; document.getElementById('channelId').disabled = false;
+    await loadChannels(); await loadDashboard();
+  } catch (err) { alert(err.message); }
+});
 
 document.getElementById('form').addEventListener('submit', async e => {
   e.preventDefault();
