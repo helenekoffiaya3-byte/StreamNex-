@@ -9,6 +9,11 @@ const {
   getAdminChannel,
   updateAdminChannel,
   deleteAdminChannel,
+  createBroadcastSource,
+  getBroadcastSource,
+  listBroadcastSources,
+  updateBroadcastSource,
+  deleteBroadcastSource,
   updateProgram,
   deleteProgram,
   updateOccurrence,
@@ -42,6 +47,62 @@ function normalizeIso(value, field) {
 
 function channelExists(channelId) {
   return Boolean(getAdminChannel(channelId));
+}
+
+function normalizeSourceType(value) {
+  const type = String(value || '').trim().toUpperCase();
+  if (!['HLS', 'HTTP', 'HTTPS', 'RTMP', 'RTMPS', 'SRT'].includes(type)) throw new Error('Type de source invalide.');
+  return type;
+}
+
+function normalizeSourceUrl(value, sourceType) {
+  const raw = String(value || '').trim();
+  if (!raw || raw.length > 4096) throw new Error('URL de source invalide.');
+  let url;
+  try { url = new URL(raw); } catch { throw new Error('URL de source invalide.'); }
+  const protocols = sourceType === 'SRT' ? ['srt:']
+    : sourceType === 'RTMP' ? ['rtmp:']
+    : sourceType === 'RTMPS' ? ['rtmps:']
+    : ['http:', 'https:'];
+  if (!protocols.includes(url.protocol)) throw new Error('Le protocole de l’URL ne correspond pas au type de source.');
+  if (url.username || url.password) throw new Error('Les identifiants dans l’URL source sont interdits.');
+  return url.toString();
+}
+
+async function checkBroadcastSource(source) {
+  const checkedAt = new Date().toISOString();
+  if (['RTMP', 'RTMPS', 'SRT'].includes(source.sourceType)) {
+    return updateBroadcastSource(source.sourceId, {
+      status: 'CONFIGURED',
+      lastCheckedAt: checkedAt,
+      lastError: 'Contrôle HTTP indisponible pour ce protocole; le moteur de diffusion doit valider le flux.'
+    });
+  }
+  const controller = new AbortController();
+  const timer = setTimeout(() => controller.abort(), 8000);
+  try {
+    const response = await fetch(source.sourceUrl, {
+      method: 'GET',
+      redirect: 'error',
+      headers: { Accept: 'application/vnd.apple.mpegurl, application/x-mpegURL, text/plain, */*' },
+      signal: controller.signal
+    });
+    if (!response.ok) throw new Error('HTTP ' + response.status);
+    const contentType = String(response.headers.get('content-type') || '').toLowerCase();
+    const body = await response.text();
+    if (source.sourceType === 'HLS' && !(/#EXTM3U/i.test(body) || /mpegurl|vnd\.apple\.mpegurl/i.test(contentType))) {
+      throw new Error('La réponse ne ressemble pas à un manifeste HLS.');
+    }
+    return updateBroadcastSource(source.sourceId, { status: 'ONLINE', lastCheckedAt: checkedAt, lastError: null });
+  } catch (error) {
+    return updateBroadcastSource(source.sourceId, {
+      status: 'ERROR',
+      lastCheckedAt: checkedAt,
+      lastError: String(error?.message || error).slice(0, 500)
+    });
+  } finally {
+    clearTimeout(timer);
+  }
 }
 
 function validateScheduleWindow(channelId, startAt, endAt, excludeOccurrenceId = null) {
@@ -101,6 +162,84 @@ router.get('/dashboard', (_req, res) => {
   }
 });
 
+router.get('/sources', (req, res) => {
+  try {
+    const channelId = req.query.channelId ? String(req.query.channelId).trim() : null;
+    if (channelId && !channelExists(channelId)) return res.status(404).json({ success: false, error: 'Chaîne introuvable.' });
+    const sources = listBroadcastSources(channelId);
+    res.json({ success: true, count: sources.length, sources });
+  } catch {
+    res.status(500).json({ success: false, error: 'Impossible de charger les sources.' });
+  }
+});
+
+router.post('/sources', (req, res) => {
+  try {
+    const channelId = String(req.body.channelId || '').trim();
+    const name = String(req.body.name || '').trim();
+    if (!channelExists(channelId)) return res.status(400).json({ success: false, error: 'Chaîne introuvable.' });
+    if (!name || name.length > 200) return res.status(400).json({ success: false, error: 'Nom de source invalide.' });
+    const sourceType = normalizeSourceType(req.body.sourceType);
+    const sourceUrl = normalizeSourceUrl(req.body.sourceUrl, sourceType);
+    const sourceId = String(req.body.sourceId || ('src-' + channelId + '-' + Date.now().toString(36)))
+      .trim().toLowerCase().replace(/[^a-z0-9-]+/g, '-').replace(/^-|-$/g, '').slice(0, 120);
+    if (!sourceId) return res.status(400).json({ success: false, error: 'Identifiant source invalide.' });
+    if (getBroadcastSource(sourceId)) return res.status(409).json({ success: false, error: 'Cette source existe déjà.' });
+    const source = createBroadcastSource({
+      sourceId, channelId, name, sourceType, sourceUrl,
+      enabled: req.body.enabled !== false,
+      priority: Number.isInteger(req.body.priority) ? req.body.priority : 100
+    });
+    res.status(201).json({ success: true, source });
+  } catch (error) {
+    res.status(400).json({ success: false, error: error.message || 'Impossible de créer la source.' });
+  }
+});
+
+router.get('/sources/:sourceId', (req, res) => {
+  const source = getBroadcastSource(req.params.sourceId);
+  if (!source) return res.status(404).json({ success: false, error: 'Source introuvable.' });
+  res.json({ success: true, source });
+});
+
+router.patch('/sources/:sourceId', (req, res) => {
+  try {
+    const existing = getBroadcastSource(req.params.sourceId);
+    if (!existing) return res.status(404).json({ success: false, error: 'Source introuvable.' });
+    const sourceType = req.body.sourceType === undefined ? existing.sourceType : normalizeSourceType(req.body.sourceType);
+    const sourceUrl = req.body.sourceUrl === undefined ? existing.sourceUrl : normalizeSourceUrl(req.body.sourceUrl, sourceType);
+    const channelId = req.body.channelId === undefined ? existing.channelId : String(req.body.channelId).trim();
+    if (!channelExists(channelId)) return res.status(400).json({ success: false, error: 'Chaîne introuvable.' });
+    const changedUrl = req.body.sourceUrl !== undefined || req.body.sourceType !== undefined;
+    const source = updateBroadcastSource(req.params.sourceId, {
+      channelId,
+      name: req.body.name === undefined ? existing.name : String(req.body.name).trim(),
+      sourceType,
+      sourceUrl,
+      enabled: req.body.enabled === undefined ? Boolean(existing.enabled) : req.body.enabled === true,
+      priority: Number.isInteger(req.body.priority) ? req.body.priority : existing.priority,
+      status: changedUrl ? 'CONFIGURED' : existing.status,
+      lastCheckedAt: changedUrl ? null : existing.lastCheckedAt,
+      lastError: changedUrl ? null : existing.lastError
+    });
+    res.json({ success: true, source });
+  } catch (error) {
+    res.status(400).json({ success: false, error: error.message || 'Impossible de modifier la source.' });
+  }
+});
+
+router.delete('/sources/:sourceId', (req, res) => {
+  if (!deleteBroadcastSource(req.params.sourceId)) return res.status(404).json({ success: false, error: 'Source introuvable.' });
+  res.json({ success: true });
+});
+
+router.post('/sources/:sourceId/check', async (req, res) => {
+  const source = getBroadcastSource(req.params.sourceId);
+  if (!source) return res.status(404).json({ success: false, error: 'Source introuvable.' });
+  const sourceAfterCheck = await checkBroadcastSource(source);
+  res.json({ success: true, source: sourceAfterCheck });
+});
+
 router.get('/channels', (_req, res) => {
   syncConfiguredChannels(CHANNELS);
   const channels = listAdminChannels();
@@ -155,7 +294,7 @@ router.delete('/channels/:channelId', (req, res) => {
   try {
     const channelId = req.params.channelId;
     if (CHANNELS.some(channel => channel.id === channelId)) {
-      return res.status(409).json({ success: false, error: 'Les 140 chaînes configurées ne peuvent pas être supprimées depuis cet outil.' });
+      return res.status(409).json({ success: false, error: 'Les chaînes configurées ne peuvent pas être supprimées depuis cet outil.' });
     }
     if (!deleteAdminChannel(channelId)) return res.status(404).json({ success: false, error: 'Chaîne introuvable.' });
     res.json({ success: true });
