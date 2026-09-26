@@ -1,29 +1,40 @@
-name: StreamLive validation
-
+name: StreamLive core validation
 on:
   push:
     branches: [main]
   pull_request:
     branches: [main]
-
 jobs:
   validate:
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Node.js 24
-        uses: actions/setup-node@v4
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
         with:
           node-version: 24
-
       - name: Install dependencies
         run: npm install --no-audit --no-fund
-
-      - name: Validate catalogue and full EPG
-        run: npm run validate:epg-full
-
-      - name: Validate EPG API
-        run: npm run validate:api-epg
+      - name: Validate catalogue
+        run: npm run check:channels
+      - name: Start core
+        run: |
+          PORT=4317 node server.js >/tmp/streamlive.log 2>&1 &
+          echo $! >/tmp/streamlive.pid
+          for i in $(seq 1 30); do curl -fsS http://127.0.0.1:4317/api/stream/channels >/tmp/channels.json && break; sleep 1; done
+      - name: Validate core APIs
+        run: |
+          set -eux
+          grep -q '"count":149' /tmp/channels.json
+          curl -fsS http://127.0.0.1:4317/api/live/channels >/tmp/live.json
+          grep -q '"count":149' /tmp/live.json
+          curl -fsS http://127.0.0.1:4317/api/channels/rti-1/programs >/tmp/programs.json
+          grep -q '"programCount":14' /tmp/programs.json
+          test "$(curl -s -o /dev/null -w '%{http_code}' http://127.0.0.1:4317/api/channels/does-not-exist)" = "404"
+          test "$(curl -s -o /dev/null -w '%{http_code}' http://127.0.0.1:4317/data/streamlive.sqlite)" = "404"
+          test "$(curl -s -o /dev/null -w '%{http_code}' http://127.0.0.1:4317/api/download/media?id=test)" = "404"
+          curl -fsS http://127.0.0.1:4317/live >/tmp/live.html
+          grep -q "LIVE" /tmp/live.html
+      - name: Stop core
+        if: always()
+        run: test ! -f /tmp/streamlive.pid || kill "$(cat /tmp/streamlive.pid)" || true

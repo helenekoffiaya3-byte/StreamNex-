@@ -1,66 +1,18 @@
 services:
-  nginx-hls:
-    image: tiangolo/nginx-rtmp@sha256:b7d453e3f69f150cda40f969c6176a8ee108405cfb9c3daf56e9908d2b4e6b5f
-    container_name: streamlive_nginx
-    restart: unless-stopped
-    ports:
-      - "8080:80"
-    volumes:
-      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
-      - hls_data:/var/www/live
-      - ./certbot/www:/var/www/certbot:ro
-    security_opt:
-      - no-new-privileges:true
-    # The tiangolo/nginx-rtmp entrypoint performs a startup chown/drop-privilege
-    # sequence, so removing all capabilities would break its initialization.
-    pids_limit: 256
-    depends_on:
-      - streamlive-app
-    mem_limit: 512m
-    cpus: "1.00"
-    networks:
-      - streamlive_net
-
   streamlive-app:
     build: .
     container_name: streamlive_app
     restart: unless-stopped
     user: "node"
     ports:
-      - "127.0.0.1:3000:3000"
+      - "3000:3000"
     environment:
       PORT: 3000
       NODE_ENV: production
-      NODE_OPTIONS: --max-old-space-size=768
-      STREAM_BASE_URL: http://localhost:8080/live
-      SESSION_TTL_MS: 1800000
-    volumes:
-      - streamlive_data:/usr/src/app/data
-      - streamlive_media:/usr/src/app/storage/videos
     security_opt:
       - no-new-privileges:true
     cap_drop:
       - ALL
     pids_limit: 256
-    mem_limit: 1024m
-    cpus: "1.50"
-    networks:
-      - streamlive_net
-
-  stream-generator:
-    build: ./stream-generator
-    container_name: streamlive_generator
-    restart: unless-stopped
-    depends_on:
-      - nginx-hls
-    networks:
-      - streamlive_net
-
-volumes:
-  hls_data:
-  streamlive_data:
-  streamlive_media:
-
-networks:
-  streamlive_net:
-    driver: bridge
+    mem_limit: 512m
+    cpus: "1.00"

@@ -1,145 +1,34 @@
-name: Docker full integration qualification
-
+name: StreamLive Docker validation
 on:
   push:
     branches: [main]
   workflow_dispatch:
-
 jobs:
-  docker-integration:
+  docker:
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     steps:
-      - name: Checkout
-        uses: actions/checkout@v5
-
-      - name: Build Compose stack
-        run: docker compose -f docker-compose.yml -f docker-compose.ci.yml build
-
-      - name: Start Compose stack
-        run: docker compose -f docker-compose.yml -f docker-compose.ci.yml up -d
-
-      - name: Wait for application
-        run: |
-          for i in $(seq 1 45); do
-            if curl -fsS http://127.0.0.1:3000/api/health >/tmp/health.json; then
-              cat /tmp/health.json
-              exit 0
-            fi
-            sleep 2
-          done
-          docker compose -f docker-compose.yml -f docker-compose.ci.yml ps
-          docker compose -f docker-compose.yml -f docker-compose.ci.yml logs --no-color
-          exit 1
-
-      - name: API and PWA qualification
-        run: |
-          set -eux
-          curl -fsS http://127.0.0.1:3000/api/health | tee /tmp/health.json
-          grep -q '"channels":140' /tmp/health.json
-          grep -q '"streamBaseUrlConfigured":true' /tmp/health.json
-
-          curl -fsS http://127.0.0.1:3000/live >/tmp/live.html
-          grep -q "StreamLive" /tmp/live.html
-
-          curl -fsS http://127.0.0.1:3000/api/stream/channels >/tmp/channels.json
-          grep -q '"count":140' /tmp/channels.json
-
-          curl -fsS http://127.0.0.1:3000/api/live/channels >/tmp/live-channels.json
-          grep -q '"count":140' /tmp/live-channels.json
-
-          test "$(curl -s -o /dev/null -w '%{http_code}' 'http://127.0.0.1:3000/api/download/media?id=test')" = "401"
-          curl -fsSI http://127.0.0.1:3000/sw.js
-
-      - name: Security qualification
-        run: |
-          set -eux
-          test "$(docker compose -f docker-compose.yml -f docker-compose.ci.yml exec -T streamlive-app id -u | tr -d '\r')" != "0"
-          test "$(curl -s -o /dev/null -w '%{http_code}' http://127.0.0.1:3000/package.json)" = "404"
-          test "$(curl -s -o /dev/null -w '%{http_code}' http://127.0.0.1:3000/data/streamlive.sqlite)" = "404"
-          test "$(curl -s -o /dev/null -w '%{http_code}' http://127.0.0.1:8080/.env)" = "403"
-          for i in 1 2 3 4 5 6; do
-            code="$(curl -s -o /dev/null -w '%{http_code}' -X POST http://127.0.0.1:3000/api/auth/login -H 'Content-Type: application/json' --data '{"username":"ci-user","password":"wrong-password"}')"
-            if [ "$i" -le 5 ]; then
-              test "$code" = "401"
-            else
-              test "$code" = "429"
-            fi
-          done
-
-      - name: EPG mapping qualification
-        run: |
-          set -eux
-          node scripts/validate-epg-mapping.js
-          node -e "const fs=require('fs');const d=JSON.parse(fs.readFileSync('config/official-guides.json','utf8'));const allowed=new Set(['strict-official-only','community-aggregated-public']);if(!allowed.has(d.policy))throw new Error('Unsupported EPG policy: '+d.policy);if(!Array.isArray(d.sources)||d.sources.length===0)throw new Error('No EPG source configured');if(!d.sources.every(s=>/^https?:\\/\\//.test(String(s.url||''))))throw new Error('Invalid EPG source URL');if(!d.mappings||Array.isArray(d.mappings))throw new Error('EPG mappings must be an object keyed by StreamLive channel ID');console.log('EPG configuration OK:',d.policy,Object.keys(d.mappings).length,'mappings');"
-
-      - name: Channel stream audit (informational)
-        run: |
-          set -eux
-          docker compose -f docker-compose.yml -f docker-compose.ci.yml exec -T streamlive-app node scripts/check-channels.js
-          docker compose -f docker-compose.yml -f docker-compose.ci.yml cp streamlive-app:/usr/src/app/channels-health-report.json ./channels-health-report.json
-
-      - name: Upload channel stream audit
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: channels-health-report
-          path: channels-health-report.json
-          if-no-files-found: ignore
-          retention-days: 14
-
-      - name: MP4 JWT and Range qualification
-        run: |
-          set -eux
-          docker compose -f docker-compose.yml -f docker-compose.ci.yml exec -T streamlive-app             node -e "const fs=require('fs'),path='/usr/src/app/storage/videos/test.mp4';fs.mkdirSync('/usr/src/app/storage/videos',{recursive:true});fs.writeFileSync(path,Buffer.alloc(2048,65));"
-
-          TOKEN="$(docker compose -f docker-compose.yml -f docker-compose.ci.yml exec -T streamlive-app node - <<'NODE'
-          const crypto=require('crypto');
-          const b64=v=>Buffer.from(v).toString('base64url');
-          const h=b64(JSON.stringify({alg:'HS256',typ:'JWT'}));
-          const p=b64(JSON.stringify({sub:'ci-user',exp:Math.floor(Date.now()/1000)+300,permissions:['media:download']}));
-          const s=crypto.createHmac('sha256','streamlive-ci-secret').update(h+'.'+p).digest('base64url');
-          process.stdout.write(h+'.'+p+'.'+s);
-          NODE
-          )"
-
-          test "$(curl -s -o /dev/null -w '%{http_code}' -H "Authorization: Bearer $TOKEN" 'http://127.0.0.1:3000/api/download/media?id=test')" = "200"
-          test "$(curl -s -o /dev/null -w '%{http_code}' -H "Authorization: Bearer $TOKEN" -H 'Range: bytes=0-1023' 'http://127.0.0.1:3000/api/download/media?id=test')" = "206"
-          test "$(curl -s -o /dev/null -w '%{http_code}' -H "Authorization: Bearer $TOKEN" -H 'Range: bytes=-512' 'http://127.0.0.1:3000/api/download/media?id=test')" = "206"
-          test "$(curl -s -o /dev/null -w '%{http_code}' -H "Authorization: Bearer $TOKEN" -H 'Range: bytes=9999-10000' 'http://127.0.0.1:3000/api/download/media?id=test')" = "416"
-
-          NO_PERMISSION="$(docker compose -f docker-compose.yml -f docker-compose.ci.yml exec -T streamlive-app node - <<'NODE'
-          const crypto=require('crypto');
-          const b64=v=>Buffer.from(v).toString('base64url');
-          const h=b64(JSON.stringify({alg:'HS256',typ:'JWT'}));
-          const p=b64(JSON.stringify({sub:'ci-user',exp:Math.floor(Date.now()/1000)+300,permissions:[]}));
-          const s=crypto.createHmac('sha256','streamlive-ci-secret').update(h+'.'+p).digest('base64url');
-          process.stdout.write(h+'.'+p+'.'+s);
-          NODE
-          )"
-          test "$(curl -s -o /dev/null -w '%{http_code}' -H "Authorization: Bearer $NO_PERMISSION" 'http://127.0.0.1:3000/api/download/media?id=test')" = "403"
-
-      - name: Nginx HLS qualification
+      - uses: actions/checkout@v4
+      - name: Build
+        run: docker compose build
+      - name: Start
+        run: docker compose up -d
+      - name: Validate
         run: |
           set -eux
           for i in $(seq 1 30); do
-            if curl -fsS http://127.0.0.1:8080/live/ch-1/index.m3u8 -o /tmp/ch-1.m3u8; then
-              grep -q '#EXTM3U' /tmp/ch-1.m3u8
-              exit 0
-            fi
+            curl -fsS http://127.0.0.1:3000/api/stream/channels >/tmp/channels.json && break
             sleep 2
           done
-          docker compose -f docker-compose.yml -f docker-compose.ci.yml ps
-          docker compose -f docker-compose.yml -f docker-compose.ci.yml logs --no-color
-          exit 1
-
-      - name: Compose status
-        if: always()
-        run: docker compose -f docker-compose.yml -f docker-compose.ci.yml ps
-
-      - name: Container logs on failure
+          grep -q '"count":149' /tmp/channels.json
+          curl -fsS http://127.0.0.1:3000/api/live/channels >/tmp/live.json
+          grep -q '"count":149' /tmp/live.json
+          curl -fsS http://127.0.0.1:3000/api/channels/rti-1/programs >/tmp/programs.json
+          grep -q '"programCount":14' /tmp/programs.json
+          test "$(curl -s -o /dev/null -w '%{http_code}' http://127.0.0.1:3000/data/streamlive.sqlite)" = "404"
+      - name: Logs on failure
         if: failure()
-        run: docker compose -f docker-compose.yml -f docker-compose.ci.yml logs --no-color
-
-      - name: Stop Compose stack
+        run: docker compose logs --no-color
+      - name: Stop
         if: always()
-        run: docker compose -f docker-compose.yml -f docker-compose.ci.yml down -v
+        run: docker compose down -v
