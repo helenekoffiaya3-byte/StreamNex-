@@ -149,6 +149,7 @@ class Rti1Recorder {
       expectedDurationSeconds: durationSeconds
     });
     setRecordingState(this.recordingId, 'RECORDING', { status: 'recording' });
+    if (occurrence?.occurrence_id) db.prepare('UPDATE program_occurrences SET recording_status = ? WHERE occurrence_id = ?').run('RECORDING', occurrence.occurrence_id);
     this.recordingStartedAt = new Date().toISOString();
     this.segmentSequence = 0;
     this.startSegment(program, startAt, endAt, durationSeconds);
@@ -342,6 +343,7 @@ class Rti1Recorder {
         broadcastDate: startAt.toISOString().slice(0, 10),
         genre: program.category || null
       });
+      db.prepare('UPDATE program_occurrences SET recording_status = ? WHERE occurrence_id = ?').run('COMPLETED', occurrenceRow.occurrence_id);
       setRecordingState(recordingId, 'AVAILABLE', { status: 'available', completedAt: new Date().toISOString() });
       console.log('[RTI1 Recorder] Replay disponible:', output.url);
     } catch (error) {
