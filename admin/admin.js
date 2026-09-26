@@ -38,6 +38,56 @@ function localDate(value) {
   return new Date(value).toLocaleString('fr-FR', { dateStyle: 'short', timeStyle: 'short' });
 }
 
+let globalPrograms = [];
+let selectedFeedPrograms = [];
+
+async function searchAllPrograms() {
+  const q = document.getElementById('globalProgramSearch').value.trim();
+  const type = document.getElementById('globalTypeFilter').value;
+  const params = new URLSearchParams({q, limit:'500'});
+  if (type) params.set('type', type);
+  const d = await api('/api/admin/programs/search?' + params.toString());
+  globalPrograms = d.programs || [];
+  document.getElementById('globalProgramCount').textContent = d.count + ' résultats';
+  renderGlobalPrograms();
+}
+function renderGlobalPrograms() {
+  document.getElementById('globalPrograms').innerHTML = globalPrograms.length
+    ? globalPrograms.map(p => '<button class="program-choice" data-id="'+esc(p.programId)+'"><span><b>'+esc(p.title)+'</b><small>'+esc(p.channelName||'Sans chaîne')+' · '+esc(p.type)+'</small></span><span>+</span></button>').join('')
+    : '<p class="muted">Aucun programme trouvé.</p>';
+  document.querySelectorAll('.program-choice').forEach(b => b.addEventListener('click', () => {
+    const p=globalPrograms.find(x=>x.programId===b.dataset.id);
+    if(p && !selectedFeedPrograms.some(x=>x.programId===p.programId)) {
+      selectedFeedPrograms.push({programId:p.programId,title:p.title,channelName:p.channelName,playbackUrl:p.playbackUrl});
+      renderSelectedFeedPrograms();
+    }
+  }));
+}
+function renderSelectedFeedPrograms() {
+  document.getElementById('selectedFeedPrograms').innerHTML = selectedFeedPrograms.length
+    ? selectedFeedPrograms.map((p,i)=>'<div class="feed-item"><span><b>'+(i+1)+'. '+esc(p.title)+'</b><small>'+esc(p.channelName||'')+'</small></span><button type="button" class="danger remove-feed" data-index="'+i+'">×</button></div>').join('')
+    : '<p class="muted">Sélectionnez des programmes à gauche.</p>';
+  document.querySelectorAll('.remove-feed').forEach(b=>b.addEventListener('click',()=>{selectedFeedPrograms.splice(Number(b.dataset.index),1);renderSelectedFeedPrograms();}));
+}
+async function loadFeeds() {
+  const d=await api('/api/admin/feeds');
+  document.getElementById('feeds').innerHTML=(d.feeds||[]).map(f=>'<div class="feed-card"><div><b>'+esc(f.name)+'</b><small>'+esc(f.slug)+' · '+f.itemCount+' programmes · '+(f.active?'actif':'inactif')+'</small></div><button class="danger delete-feed" data-id="'+esc(f.feedId)+'">Supprimer</button></div>').join('') || '<p class="muted">Aucun flux créé.</p>';
+  document.querySelectorAll('.delete-feed').forEach(b=>b.addEventListener('click',async()=>{if(!confirm('Supprimer ce flux ?'))return;await api('/api/admin/feeds/'+encodeURIComponent(b.dataset.id),{method:'DELETE'});await loadFeeds();}));
+}
+async function createFeed() {
+  if(!selectedFeedPrograms.length) return alert('Sélectionnez au moins un programme.');
+  const name=document.getElementById('feedName').value.trim();
+  if(!name) return alert('Donnez un nom au flux.');
+  const slug=document.getElementById('feedSlug').value.trim() || name.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'');
+  const d=await api('/api/admin/feeds',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({
+    name,slug,description:document.getElementById('feedDescription').value.trim(),
+    channelId:document.getElementById('feedChannel').value||null,loopEnabled:document.getElementById('feedLoop').checked,
+    items:selectedFeedPrograms.map(p=>({programId:p.programId}))
+  })});
+  document.getElementById('feedResult').textContent='Flux créé : '+d.feed.name+' · plan de diffusion disponible côté serveur.';
+  selectedFeedPrograms=[]; renderSelectedFeedPrograms(); await loadFeeds();
+}
+
 async function loadDashboard() {
   const d = await api('/api/admin/dashboard');
   const labels = {
@@ -168,6 +218,9 @@ document.getElementById('cancelChannel').addEventListener('click', () => {
   editingChannelId = null; document.getElementById('channelForm').hidden = true;
 });
 document.getElementById('channelSearch').addEventListener('input', renderChannels);
+document.getElementById('searchAllPrograms').addEventListener('click', searchAllPrograms);
+document.getElementById('globalProgramSearch').addEventListener('keydown', e => { if(e.key==='Enter'){e.preventDefault();searchAllPrograms();} });
+document.getElementById('createFeed').addEventListener('click', createFeed);
 document.getElementById('groupFilter').addEventListener('change', renderChannels);
 document.getElementById('channelForm').addEventListener('submit', async e => {
   e.preventDefault();
@@ -187,7 +240,9 @@ document.getElementById('channelForm').addEventListener('submit', async e => {
       headers: {'Content-Type':'application/json'}, body: JSON.stringify(body)
     });
     editingChannelId = null; e.target.hidden = true; document.getElementById('channelId').disabled = false;
-    await loadChannels(); await loadDashboard();
+    await loadChannels();
+    document.getElementById('feedChannel').innerHTML='<option value="">Aucune — flux autonome</option>'+channels.map(x=>'<option value="'+esc(x.id)+'">'+esc(x.name)+'</option>').join('');
+    await searchAllPrograms(); await loadFeeds(); await loadDashboard();
   } catch (err) { alert(err.message); }
 });
 
