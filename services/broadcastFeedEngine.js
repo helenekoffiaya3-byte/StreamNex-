@@ -26,21 +26,25 @@ function buildSchedule(feed) {
 
   const schedule = [];
   let cursor = 0;
-  let guard = 0;
-  while (cursor < 1440 && guard < 200) {
-    const item = valid[guard % valid.length];
+  for (let index = 0; index < 15; index += 1) {
+    const item = valid[index % valid.length];
     const duration = Math.max(60, Number(item.durationSeconds || 1800) || 1800);
-    const minutes = Math.max(1, Math.min(Math.ceil(duration / 60), 1440 - cursor));
+    const remaining = 1440 - cursor;
+    if (remaining <= 0) break;
+    const minutes = index === 14 ? remaining : Math.max(1, Math.min(Math.ceil(duration / 60), remaining));
     const media = resolveLocalMedia(item.playbackUrl);
     schedule.push({
-      id: feed.feedId + '-' + guard,
+      id: feed.feedId + '-' + index,
       title: item.title,
       startTime: timeText(cursor),
       endTime: timeText(cursor + minutes),
       vodFile: 'storage/vod/' + path.relative(VOD_ROOT, media).split(path.sep).join('/')
     });
     cursor += minutes;
-    guard += 1;
+  }
+  if (schedule.length < 15) {
+    const last = schedule[schedule.length - 1];
+    last.endTime = '00:00';
   }
   return schedule;
 }
