@@ -2,207 +2,350 @@
   "channelId": "rti-1",
   "name": "RTI 1",
   "timezone": "Africa/Abidjan",
-  "type": "editorial-curated",
-  "schedule": [
-    {
-      "id": "rti1-01",
-      "title": "Météo & Ouverture d'Antenne",
-      "startTime": "06:00",
-      "endTime": "06:30",
-      "vodFile": "storage/vod/rti1/ouverture_meteo.mp4",
-      "mediaUrl": "/vod/rti1/ouverture_meteo.mp4",
-      "channel": "rti-1",
-      "category": "Information"
-    },
-    {
-      "id": "rti1-02",
-      "title": "Matin Bonheur",
-      "startTime": "06:30",
-      "endTime": "09:00",
-      "vodFile": "storage/vod/rti1/matin_bonheur.mp4",
-      "mediaUrl": "/vod/rti1/matin_bonheur.mp4",
-      "channel": "rti-1",
-      "category": "Magazine"
-    },
-    {
-      "id": "rti1-03",
-      "title": "Le Journal de 09h",
-      "startTime": "09:00",
-      "endTime": "09:30",
-      "vodFile": "storage/vod/rti1/jt_09h.mp4",
-      "mediaUrl": "/vod/rti1/jt_09h.mp4",
-      "channel": "rti-1",
-      "category": "Information"
-    },
-    {
-      "id": "rti1-04",
-      "title": "Série & Fiction Nationale",
-      "startTime": "09:30",
-      "endTime": "10:00",
-      "vodFile": "storage/vod/rti1/serie_matin.mp4",
-      "mediaUrl": "/vod/rti1/serie_matin.mp4",
-      "channel": "rti-1",
-      "category": "Série"
-    },
-    {
-      "id": "rti1-05",
-      "title": "Flash Info 10h",
-      "startTime": "10:00",
-      "endTime": "10:15",
-      "vodFile": "storage/vod/rti1/flash_10h.mp4",
-      "mediaUrl": "/vod/rti1/flash_10h.mp4",
-      "channel": "rti-1",
-      "category": "Information"
-    },
-    {
-      "id": "rti1-06",
-      "title": "Made in Africa",
-      "startTime": "10:15",
-      "endTime": "11:35",
-      "vodFile": "storage/vod/rti1/made_in_africa.mp4",
-      "mediaUrl": "/vod/rti1/made_in_africa.mp4",
-      "channel": "rti-1",
-      "category": "Culture"
-    },
-    {
-      "id": "rti1-07",
-      "title": "Série Télévisée Ivoire",
-      "startTime": "11:35",
-      "endTime": "12:00",
-      "vodFile": "storage/vod/rti1/serie_ivoire.mp4",
-      "mediaUrl": "/vod/rti1/serie_ivoire.mp4",
-      "channel": "rti-1",
-      "category": "Série"
-    },
-    {
-      "id": "rti1-08",
-      "title": "C'Midi",
-      "startTime": "12:00",
-      "endTime": "13:00",
-      "vodFile": "storage/vod/rti1/c_midi.mp4",
-      "mediaUrl": "/vod/rti1/c_midi.mp4",
-      "channel": "rti-1",
-      "category": "Talk-show"
-    },
-    {
-      "id": "rti1-09",
-      "title": "Le 13H (Journal Télévisé)",
-      "startTime": "13:00",
-      "endTime": "13:45",
-      "vodFile": "storage/vod/rti1/jt_13h.mp4",
-      "mediaUrl": "/vod/rti1/jt_13h.mp4",
-      "channel": "rti-1",
-      "category": "Information"
-    },
-    {
-      "id": "rti1-10",
-      "title": "C'est Midi (La Suite)",
-      "startTime": "13:45",
-      "endTime": "15:00",
-      "vodFile": "storage/vod/rti1/cest_midi_suite.mp4",
-      "mediaUrl": "/vod/rti1/cest_midi_suite.mp4",
-      "channel": "rti-1",
-      "category": "Talk-show"
-    },
-    {
-      "id": "rti1-11",
-      "title": "Flash Info 15h",
-      "startTime": "15:00",
-      "endTime": "15:15",
-      "vodFile": "storage/vod/rti1/flash_15h.mp4",
-      "mediaUrl": "/vod/rti1/flash_15h.mp4",
-      "channel": "rti-1",
-      "category": "Information"
-    },
-    {
-      "id": "rti1-12",
-      "title": "Téléfilm & Cinéma Afrique",
-      "startTime": "15:15",
-      "endTime": "16:30",
-      "vodFile": "storage/vod/rti1/telefilm_cinema_afrique.mp4",
-      "mediaUrl": "/vod/rti1/telefilm_cinema_afrique.mp4",
-      "channel": "rti-1",
-      "category": "Cinéma"
-    },
-    {
-      "id": "rti1-13",
-      "title": "RTI Enfant & Jeunesse",
-      "startTime": "16:30",
-      "endTime": "17:30",
-      "vodFile": "storage/vod/rti1/rti_enfant_jeunesse.mp4",
-      "mediaUrl": "/vod/rti1/rti_enfant_jeunesse.mp4",
-      "channel": "rti-1",
-      "category": "Jeunesse"
-    },
-    {
-      "id": "rti1-14",
-      "title": "Documentaire & Découvertes",
-      "startTime": "17:30",
-      "endTime": "18:00",
-      "vodFile": "storage/vod/rti1/documentaire_decouvertes.mp4",
-      "mediaUrl": "/vod/rti1/documentaire_decouvertes.mp4",
-      "channel": "rti-1",
-      "category": "Documentaire"
-    },
-    {
-      "id": "rti1-15",
-      "title": "Flash Info 18h",
-      "startTime": "18:00",
-      "endTime": "18:15",
-      "vodFile": "storage/vod/rti1/flash_18h.mp4",
-      "mediaUrl": "/vod/rti1/flash_18h.mp4",
-      "channel": "rti-1",
-      "category": "Information"
-    },
-    {
-      "id": "rti1-16",
-      "title": "Escale Familiale & Magazine Soir",
-      "startTime": "18:15",
-      "endTime": "20:00",
-      "vodFile": "storage/vod/rti1/escale_familiale.mp4",
-      "mediaUrl": "/vod/rti1/escale_familiale.mp4",
-      "channel": "rti-1",
-      "category": "Magazine"
-    },
-    {
-      "id": "rti1-17",
-      "title": "Le 20H (Grand Journal)",
-      "startTime": "20:00",
-      "endTime": "20:50",
-      "vodFile": "storage/vod/rti1/jt_20h.mp4",
-      "mediaUrl": "/vod/rti1/jt_20h.mp4",
-      "channel": "rti-1",
-      "category": "Information"
-    },
-    {
-      "id": "rti1-18",
-      "title": "Allume la Télé",
-      "startTime": "20:50",
-      "endTime": "21:00",
-      "vodFile": "storage/vod/rti1/allume_la_tele.mp4",
-      "mediaUrl": "/vod/rti1/allume_la_tele.mp4",
-      "channel": "rti-1",
-      "category": "Divertissement"
-    },
-    {
-      "id": "rti1-19",
-      "title": "Face aux Électeurs",
-      "startTime": "21:00",
-      "endTime": "22:30",
-      "vodFile": "storage/vod/rti1/face_aux_electeurs.mp4",
-      "mediaUrl": "/vod/rti1/face_aux_electeurs.mp4",
-      "channel": "rti-1",
-      "category": "Politique"
-    },
-    {
-      "id": "rti1-20",
-      "title": "Nuit RTI 1 & Rediffusions",
-      "startTime": "22:30",
-      "endTime": "06:00",
-      "vodFile": "storage/vod/rti1/nuit_rti1.mp4",
-      "mediaUrl": "/vod/rti1/nuit_rti1.mp4",
-      "channel": "rti-1",
-      "category": "Rediffusion"
-    }
-  ]
+  "type": "editorial-weekly",
+  "description": "Grille éditoriale de test sur 7 jours. Elle crée des occurrences EPG; aucun média ou flux n'est déclaré disponible sans enregistrement validé.",
+  "weekly": {
+    "mondayFriday": [
+      {
+        "id": "rti1-mf-01",
+        "startTime": "06:00",
+        "endTime": "06:05",
+        "title": "Ouverture de l'antenne & Météo",
+        "category": "Information",
+        "type": "show"
+      },
+      {
+        "id": "rti1-mf-02",
+        "startTime": "06:05",
+        "endTime": "09:00",
+        "title": "Matin Bonheur (Direct)",
+        "category": "Magazine",
+        "type": "show"
+      },
+      {
+        "id": "rti1-mf-03",
+        "startTime": "09:00",
+        "endTime": "09:15",
+        "title": "Le Journal de 09H",
+        "category": "Information",
+        "type": "show"
+      },
+      {
+        "id": "rti1-mf-04",
+        "startTime": "09:15",
+        "endTime": "12:00",
+        "title": "Séries africaines & Documentaires",
+        "category": "Série",
+        "type": "series"
+      },
+      {
+        "id": "rti1-mf-05",
+        "startTime": "12:00",
+        "endTime": "13:00",
+        "title": "C'Midi (Talk-show direct)",
+        "category": "Talk-show",
+        "type": "show"
+      },
+      {
+        "id": "rti1-mf-06",
+        "startTime": "13:00",
+        "endTime": "13:30",
+        "title": "Le Journal de 13H",
+        "category": "Information",
+        "type": "show"
+      },
+      {
+        "id": "rti1-mf-07",
+        "startTime": "13:30",
+        "endTime": "16:00",
+        "title": "Telenovelas / Séries (Saison/Épisode)",
+        "category": "Série",
+        "type": "series"
+      },
+      {
+        "id": "rti1-mf-08",
+        "startTime": "16:00",
+        "endTime": "18:00",
+        "title": "Émissions Jeunesse / Découverte",
+        "category": "Jeunesse",
+        "type": "show"
+      },
+      {
+        "id": "rti1-mf-09",
+        "startTime": "18:00",
+        "endTime": "19:30",
+        "title": "Divertissement / Humour",
+        "category": "Divertissement",
+        "type": "show"
+      },
+      {
+        "id": "rti1-mf-10",
+        "startTime": "19:30",
+        "endTime": "20:00",
+        "title": "RTI Info / Page Éco / Météo",
+        "category": "Information",
+        "type": "show"
+      },
+      {
+        "id": "rti1-mf-11",
+        "startTime": "20:00",
+        "endTime": "20:30",
+        "title": "Le Journal de 20H",
+        "category": "Information",
+        "type": "show"
+      },
+      {
+        "id": "rti1-mf-12",
+        "startTime": "20:30",
+        "endTime": "22:30",
+        "title": "Prime Time (Série, Film ou Magazine)",
+        "category": "Prime Time",
+        "type": "show"
+      },
+      {
+        "id": "rti1-mf-13",
+        "startTime": "22:30",
+        "endTime": "23:00",
+        "title": "Le Journal de la Nuit",
+        "category": "Information",
+        "type": "show"
+      },
+      {
+        "id": "rti1-mf-14",
+        "startTime": "23:00",
+        "endTime": "06:00",
+        "title": "Nuit RTI 1 (Rediffusions 13H/20H, Musique)",
+        "category": "Rediffusion",
+        "type": "show"
+      }
+    ],
+    "saturday": [
+      {
+        "id": "rti1-sat-01",
+        "startTime": "06:00",
+        "endTime": "06:05",
+        "title": "Ouverture de l'antenne & Météo",
+        "category": "Information",
+        "type": "show"
+      },
+      {
+        "id": "rti1-sat-02",
+        "startTime": "06:05",
+        "endTime": "09:00",
+        "title": "Émissions Jeunesse / Dessins animés",
+        "category": "Jeunesse",
+        "type": "show"
+      },
+      {
+        "id": "rti1-sat-03",
+        "startTime": "09:00",
+        "endTime": "09:15",
+        "title": "Flash Info / Rediffusions",
+        "category": "Information",
+        "type": "show"
+      },
+      {
+        "id": "rti1-sat-04",
+        "startTime": "09:15",
+        "endTime": "12:00",
+        "title": "Magazines Culturels / Musique",
+        "category": "Culture",
+        "type": "show"
+      },
+      {
+        "id": "rti1-sat-05",
+        "startTime": "12:00",
+        "endTime": "13:00",
+        "title": "Rediffusions de la semaine",
+        "category": "Rediffusion",
+        "type": "show"
+      },
+      {
+        "id": "rti1-sat-06",
+        "startTime": "13:00",
+        "endTime": "13:30",
+        "title": "Le Journal de 13H",
+        "category": "Information",
+        "type": "show"
+      },
+      {
+        "id": "rti1-sat-07",
+        "startTime": "13:30",
+        "endTime": "16:00",
+        "title": "Santé / Éducation / Débats",
+        "category": "Société",
+        "type": "show"
+      },
+      {
+        "id": "rti1-sat-08",
+        "startTime": "16:00",
+        "endTime": "18:00",
+        "title": "Sport (Championnats ou Magazines)",
+        "category": "Sport",
+        "type": "show"
+      },
+      {
+        "id": "rti1-sat-09",
+        "startTime": "18:00",
+        "endTime": "19:30",
+        "title": "Divertissement musical",
+        "category": "Musique",
+        "type": "show"
+      },
+      {
+        "id": "rti1-sat-10",
+        "startTime": "19:30",
+        "endTime": "20:00",
+        "title": "RTI Info / Météo",
+        "category": "Information",
+        "type": "show"
+      },
+      {
+        "id": "rti1-sat-11",
+        "startTime": "20:00",
+        "endTime": "20:30",
+        "title": "Le Journal de 20H",
+        "category": "Information",
+        "type": "show"
+      },
+      {
+        "id": "rti1-sat-12",
+        "startTime": "20:30",
+        "endTime": "22:30",
+        "title": "Grand Divertissement",
+        "category": "Divertissement",
+        "type": "show"
+      },
+      {
+        "id": "rti1-sat-13",
+        "startTime": "22:30",
+        "endTime": "23:00",
+        "title": "Le Journal de la Nuit",
+        "category": "Information",
+        "type": "show"
+      },
+      {
+        "id": "rti1-sat-14",
+        "startTime": "23:00",
+        "endTime": "06:00",
+        "title": "Nuit RTI 1 (Spectacles, Rediffusions)",
+        "category": "Rediffusion",
+        "type": "show"
+      }
+    ],
+    "sunday": [
+      {
+        "id": "rti1-sun-01",
+        "startTime": "06:00",
+        "endTime": "06:05",
+        "title": "Ouverture de l'antenne & Météo",
+        "category": "Information",
+        "type": "show"
+      },
+      {
+        "id": "rti1-sun-02",
+        "startTime": "06:05",
+        "endTime": "09:00",
+        "title": "Émissions Religieuses (Islam puis Christianisme)",
+        "category": "Religieux",
+        "type": "show"
+      },
+      {
+        "id": "rti1-sun-03",
+        "startTime": "09:00",
+        "endTime": "09:15",
+        "title": "Le Journal de 09H",
+        "category": "Information",
+        "type": "show"
+      },
+      {
+        "id": "rti1-sun-04",
+        "startTime": "09:15",
+        "endTime": "12:00",
+        "title": "Magazines Panafricains",
+        "category": "Culture",
+        "type": "show"
+      },
+      {
+        "id": "rti1-sun-05",
+        "startTime": "12:00",
+        "endTime": "13:00",
+        "title": "Documentaires / Société",
+        "category": "Documentaire",
+        "type": "show"
+      },
+      {
+        "id": "rti1-sun-06",
+        "startTime": "13:00",
+        "endTime": "13:30",
+        "title": "Le Journal de 13H",
+        "category": "Information",
+        "type": "show"
+      },
+      {
+        "id": "rti1-sun-07",
+        "startTime": "13:30",
+        "endTime": "16:00",
+        "title": "Émissions Politiques / Bilan de la semaine",
+        "category": "Politique",
+        "type": "show"
+      },
+      {
+        "id": "rti1-sun-08",
+        "startTime": "16:00",
+        "endTime": "18:00",
+        "title": "Dimanche Sport",
+        "category": "Sport",
+        "type": "show"
+      },
+      {
+        "id": "rti1-sun-09",
+        "startTime": "18:00",
+        "endTime": "19:30",
+        "title": "Magazines de Société",
+        "category": "Société",
+        "type": "show"
+      },
+      {
+        "id": "rti1-sun-10",
+        "startTime": "19:30",
+        "endTime": "20:00",
+        "title": "RTI Info / Météo",
+        "category": "Information",
+        "type": "show"
+      },
+      {
+        "id": "rti1-sun-11",
+        "startTime": "20:00",
+        "endTime": "20:30",
+        "title": "Le Journal de 20H",
+        "category": "Information",
+        "type": "show"
+      },
+      {
+        "id": "rti1-sun-12",
+        "startTime": "20:30",
+        "endTime": "22:30",
+        "title": "Grand Format (Film ou Documentaire)",
+        "category": "Prime Time",
+        "type": "show"
+      },
+      {
+        "id": "rti1-sun-13",
+        "startTime": "22:30",
+        "endTime": "23:00",
+        "title": "Le Journal de la Nuit",
+        "category": "Information",
+        "type": "show"
+      },
+      {
+        "id": "rti1-sun-14",
+        "startTime": "23:00",
+        "endTime": "06:00",
+        "title": "Nuit RTI 1 (Rediffusions, Musique)",
+        "category": "Rediffusion",
+        "type": "show"
+      }
+    ]
+  }
 }
