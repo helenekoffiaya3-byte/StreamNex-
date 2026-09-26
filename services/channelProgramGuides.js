@@ -30,12 +30,12 @@ function dayProfile(dayIndex) {
   return 'weekday';
 }
 
-function buildDaySlots(channel, dayIndex) {
+function buildDaySlots(channel, date) {
   const templates = channel.template || [];
   if (!templates.length) return [];
 
   const slots = [];
-  const profile = dayProfile(new Date(Date.UTC(2026, 0, 1 + dayIndex)));
+  const profile = dayProfile(date);
   const sequence = profile === 'weekday'
     ? templates.map((_, index) => index)
     : (profile === 'saturday'
@@ -95,7 +95,7 @@ function syncChannelProgramGuides({ from = new Date(), days = 7 } = {}) {
         const date = new Date(start);
         date.setUTCDate(start.getUTCDate() + dayIndex);
 
-        for (const slot of buildDaySlots(channel, dayIndex)) {
+        for (const slot of buildDaySlots(channel, date)) {
           const slug = slot.title
             .normalize('NFD')
             .replace(/[\u0300-\u036f]/g, '')
