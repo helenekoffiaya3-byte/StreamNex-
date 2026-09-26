@@ -116,7 +116,7 @@ function renderPrograms() {
     return;
   }
   el.innerHTML = channelPrograms.map(p =>
-    '<div class="program"><div><b>' + esc(p.title) + '</b><small>' + esc(p.type) + ' · ' + esc(p.status) + '</small></div><span>' + Number(p.occurrencesCount || 0) + ' diffusions</span></div>'
+    '<div class="program"><div><b>' + esc(p.title) + '</b><small>' + esc(p.type) + ' · ' + Number(p.occurrencesCount || 0) + ' diffusions</small></div><div class="actions"><button class="secondary edit-program" data-id="' + esc(p.programId) + '">Modifier</button><button class="danger delete-program" data-id="' + esc(p.programId) + '">Supprimer</button></div></div>'
   ).join('');
 }
 
@@ -206,12 +206,30 @@ document.getElementById('programForm').addEventListener('submit', async e => {
         channelId: selectedChannelId,
         title: document.getElementById('programTitle').value.trim(),
         type: document.getElementById('programType').value,
+        poster: document.getElementById('programPoster').value.trim() || null,
+        playbackUrl: document.getElementById('programPlayback').value.trim() || null,
         description: document.getElementById('programDescription').value.trim()
       })
     });
+    const editId = e.target.dataset.editId;
+    if (editId) {
+      await api('/api/admin/programs/' + encodeURIComponent(editId), {
+        method: 'PUT', headers: {'Content-Type':'application/json'},
+        body: JSON.stringify({
+          channelId: selectedChannelId,
+          title: document.getElementById('programTitle').value.trim(),
+          type: document.getElementById('programType').value,
+          poster: document.getElementById('programPoster').value.trim() || null,
+          playbackUrl: document.getElementById('programPlayback').value.trim() || null,
+          description: document.getElementById('programDescription').value.trim()
+        })
+      });
+      delete e.target.dataset.editId;
+      document.getElementById('programSubmit').textContent = 'Ajouter le programme';
+    }
     e.target.reset();
     await openChannel(selectedChannelId);
-    alert('Programme ajouté : ' + d.program.title);
+    await loadDashboard();
   } catch (e) {
     alert(e.message);
   }
