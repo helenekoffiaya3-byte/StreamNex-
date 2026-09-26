@@ -71,7 +71,16 @@ function renderSelectedFeedPrograms() {
 }
 async function loadFeeds() {
   const d=await api('/api/admin/feeds');
-  document.getElementById('feeds').innerHTML=(d.feeds||[]).map(f=>'<div class="feed-card"><div><b>'+esc(f.name)+'</b><small>'+esc(f.slug)+' · '+f.itemCount+' programmes · '+(f.active?'actif':'inactif')+'</small></div><button class="danger delete-feed" data-id="'+esc(f.feedId)+'">Supprimer</button></div>').join('') || '<p class="muted">Aucun flux créé.</p>';
+  document.getElementById('feeds').innerHTML=(d.feeds||[]).map(f=>{
+    const running=f.engineStatus==='RUNNING';
+    return '<div class="feed-card"><div><b>'+esc(f.name)+'</b><small>'+esc(f.slug)+' · '+f.itemCount+' programmes · moteur: '+esc(f.engineStatus||'STOPPED')+'</small><code>/hls/feeds/'+encodeURIComponent(f.feedId)+'/stream.m3u8</code></div><div class="actions"><button class="secondary toggle-feed" data-id="'+esc(f.feedId)+'" data-running="'+running+'">'+(running?'Arrêter':'Démarrer')+'</button><button class="secondary open-feed" data-url="/hls/feeds/'+encodeURIComponent(f.feedId)+'/stream.m3u8">Ouvrir le flux</button><button class="danger delete-feed" data-id="'+esc(f.feedId)+'">Supprimer</button></div></div>';
+  }).join('') || '<p class="muted">Aucun flux créé.</p>';
+  document.querySelectorAll('.toggle-feed').forEach(b=>b.addEventListener('click',async()=>{
+    const action=b.dataset.running==='true'?'stop':'start';
+    try { await api('/api/admin/feeds/'+encodeURIComponent(b.dataset.id)+'/'+action,{method:'POST'}); await loadFeeds(); }
+    catch(e){ alert(e.message); }
+  }));
+  document.querySelectorAll('.open-feed').forEach(b=>b.addEventListener('click',()=>window.open(b.dataset.url,'_blank','noopener')));
   document.querySelectorAll('.delete-feed').forEach(b=>b.addEventListener('click',async()=>{if(!confirm('Supprimer ce flux ?'))return;await api('/api/admin/feeds/'+encodeURIComponent(b.dataset.id),{method:'DELETE'});await loadFeeds();}));
 }
 async function createFeed() {
@@ -84,7 +93,7 @@ async function createFeed() {
     channelId:document.getElementById('feedChannel').value||null,loopEnabled:document.getElementById('feedLoop').checked,
     items:selectedFeedPrograms.map(p=>({programId:p.programId}))
   })});
-  document.getElementById('feedResult').textContent='Flux créé : '+d.feed.name+' · plan de diffusion disponible côté serveur.';
+  document.getElementById('feedResult').textContent='Flux créé : '+d.feed.name+' · moteur prêt. Démarrez-le pour produire le HLS.';
   selectedFeedPrograms=[]; renderSelectedFeedPrograms(); await loadFeeds();
 }
 
