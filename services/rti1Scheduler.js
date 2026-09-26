@@ -43,8 +43,8 @@ function seconds(value) {
 }
 
 function absoluteMediaPath(program) {
-  const relative = String(program.vodFile || '').replace(/^storage\\/vod\\//i, '');
-  if (!relative || !/^[A-Za-z0-9._/-]+\\.mp4$/i.test(relative)) return null;
+  const relative = String(program.vodFile || '').replace(/^storage\/vod\//i, '');
+  if (!relative || !/^[A-Za-z0-9._/-]+\.mp4$/i.test(relative)) return null;
   const candidate = path.resolve(VOD_ROOT, relative);
   if (candidate !== VOD_ROOT && !candidate.startsWith(VOD_ROOT + path.sep)) return null;
   return candidate;
