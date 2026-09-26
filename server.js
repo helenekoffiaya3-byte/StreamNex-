@@ -68,6 +68,7 @@ app.get('/api/diffusion',(req,res)=>{
   const list=c?[c]:CHANNELS;
   res.json({success:true,diffusions:list.map(ch=>{const s=sourceFor(ch),p=getCurrentProgramme(ch.id);return {channelId:ch.id,channelName:ch.name,sourceId:s.sourceId,url:s.url,status:s.status,programme:p?{programId:p.programId,title:p.title,startAt:p.startAt,endAt:p.endAt}:null,live:Boolean(p&&s.url&&ch.playbackMode!=='external')};})});
 });
+app.get('/live',(_req,res)=>res.sendFile(path.join(__dirname,'live.html')));
 app.get('/channel/:id',(req,res)=>{
   const c=requireChannel(req.params.id); if(!c)return res.status(404).send('Chaîne non trouvée.');
   if(c.playbackMode==='external'&&c.externalUrl)return res.redirect(302,c.externalUrl);
