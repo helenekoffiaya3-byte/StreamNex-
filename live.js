@@ -71,10 +71,11 @@ function createRow(c){
  const n=document.createElement("div");n.className="channel-name";n.innerHTML='<span class="channel-number">#'+esc(c.number)+"</span>"+esc(c.name);info.append(n);
  const t=document.createElement("div");t.className="program-title";t.textContent=c.occurrence?.title||"Aucun programme EPG en cours";info.append(t);
  const m=document.createElement("div");m.className="program-meta";m.textContent=c.occurrence?meta(c.occurrence):"Programme non fourni par la source EPG";info.append(m);
- const s=document.createElement("div");s.className="channel-state";s.textContent=c.liveAvailable?"Flux LIVE réel disponible":c.occurrence?"Programme détecté — flux LIVE non disponible":"Aucun programme EPG en cours";info.append(s);
+ const s=document.createElement("div");s.className="channel-state";s.textContent=c.playbackMode==="external"?"Service externe — ouverture du site officiel":c.liveAvailable?"Flux LIVE réel disponible":c.occurrence?"Programme détecté — flux LIVE non disponible":"Aucun programme EPG en cours";info.append(s);
  const actions=document.createElement("div");actions.className="channel-actions";
- const watch=button("watch-btn","▶ Regarder",!c.liveAvailable,()=>openFeed(c.id));
- const multi=button("multi-btn",state.selected.has(c.id)?"✓ Multi-Live":"+ Multi-Live",!c.liveAvailable,()=>toggleMulti(c.id));
+ const isExternal=c.playbackMode==="external"&&c.externalUrl;
+ const watch=button("watch-btn",isExternal?"↗ Ouvrir": "▶ Regarder",isExternal?false:!c.liveAvailable,()=>isExternal?window.location.assign(c.externalUrl):openFeed(c.id));
+ const multi=button("multi-btn",state.selected.has(c.id)?"✓ Multi-Live":"+ Multi-Live",isExternal||!c.liveAvailable,()=>toggleMulti(c.id));
  if(state.selected.has(c.id))multi.classList.add("selected");
  actions.append(watch,multi);row.append(poster,info,actions);return row;
 }
