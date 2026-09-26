@@ -176,6 +176,24 @@ CREATE TABLE IF NOT EXISTS broadcast_feed_items (
 );
 
 CREATE INDEX IF NOT EXISTS idx_feed_items_program ON broadcast_feed_items(program_id);
+
+CREATE TABLE IF NOT EXISTS broadcast_sources (
+  source_id TEXT PRIMARY KEY,
+  channel_id TEXT NOT NULL,
+  name TEXT NOT NULL,
+  source_type TEXT NOT NULL CHECK(source_type IN ('HLS','HTTP','HTTPS','RTMP','RTMPS','SRT')),
+  source_url TEXT NOT NULL,
+  enabled INTEGER NOT NULL DEFAULT 1 CHECK(enabled IN (0,1)),
+  priority INTEGER NOT NULL DEFAULT 100,
+  status TEXT NOT NULL DEFAULT 'CONFIGURED' CHECK(status IN ('CONFIGURED','ONLINE','OFFLINE','ERROR')),
+  last_checked_at TEXT,
+  last_error TEXT,
+  created_at TEXT NOT NULL,
+  updated_at TEXT NOT NULL,
+  FOREIGN KEY(channel_id) REFERENCES channels(channel_id) ON DELETE CASCADE
+);
+CREATE INDEX IF NOT EXISTS idx_broadcast_sources_channel ON broadcast_sources(channel_id, enabled, priority);
+CREATE INDEX IF NOT EXISTS idx_broadcast_sources_status ON broadcast_sources(status, enabled);
 `);
 
 db.exec(`
@@ -212,6 +230,7 @@ ensureColumn('program_occurrences', 'broadcast_type', "TEXT NOT NULL DEFAULT 'br
 ensureColumn('programs', 'observed_first_seen_at', 'TEXT');
 ensureColumn('programs', 'observed_last_seen_at', 'TEXT');
 ensureColumn('programs', 'source_type', "TEXT NOT NULL DEFAULT 'epg'");
+ensureColumn('recordings', 'source_id', 'TEXT');
 ensureColumn('channels', 'group_name', "TEXT NOT NULL DEFAULT 'Autre'");
 ensureColumn('channels', 'description', "TEXT NOT NULL DEFAULT ''");
 ensureColumn('channels', 'logo_url', 'TEXT');
@@ -324,7 +343,71 @@ function upsertChannel(channelId, name, liveStreamUrl = null, options = {}) {
   );
 }
 
+function createBroadcastSource(values) {
+  const now = new Date().toISOString();
+  const sourceId = String(values.sourceId || '').trim();
+  if (!sourceId) throw new Error('Identifiant source requis.');
+  db.prepare(`
+    INSERT INTO broadcast_sources (
+      source_id, channel_id, name, source_type, source_url,
+      enabled, priority, status, last_checked_at, last_error,
+      created_at, updated_at
+    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+  `).run(
+    sourceId, values.channelId, values.name, values.sourceType, values.sourceUrl,
+    values.enabled === false ? 0 : 1,
+    Number.isInteger(values.priority) ? values.priority : 100,
+    values.status || 'CONFIGURED', values.lastCheckedAt || null, values.lastError || null,
+    now, now
+  );
+  return getBroadcastSource(sourceId);
+}
+function getBroadcastSource(sourceId) {
+  return db.prepare(`SELECT source_id AS sourceId, channel_id AS channelId, name, source_type AS sourceType,
+    source_url AS sourceUrl, enabled, priority, status, last_checked_at AS lastCheckedAt,
+    last_error AS lastError, created_at AS createdAt, updated_at AS updatedAt
+    FROM broadcast_sources WHERE source_id = ?`).get(sourceId) || null;
+}
+function listBroadcastSources(channelId = null) {
+  const params = [];
+  let sql = `SELECT source_id AS sourceId, channel_id AS channelId, name, source_type AS sourceType,
+    source_url AS sourceUrl, enabled, priority, status, last_checked_at AS lastCheckedAt,
+    last_error AS lastError, created_at AS createdAt, updated_at AS updatedAt
+    FROM broadcast_sources`;
+  if (channelId) { sql += ' WHERE channel_id = ?'; params.push(channelId); }
+  sql += ' ORDER BY channel_id, priority ASC, name COLLATE NOCASE';
+  return db.prepare(sql).all(...params);
+}
+function updateBroadcastSource(sourceId, values) {
+  const existing = getBroadcastSource(sourceId);
+  if (!existing) return null;
+  db.prepare(`UPDATE broadcast_sources SET channel_id = ?, name = ?, source_type = ?, source_url = ?,
+    enabled = ?, priority = ?, status = ?, last_checked_at = ?, last_error = ?, updated_at = ?
+    WHERE source_id = ?`).run(
+    values.channelId ?? existing.channelId, values.name ?? existing.name,
+    values.sourceType ?? existing.sourceType, values.sourceUrl ?? existing.sourceUrl,
+    values.enabled === undefined ? existing.enabled : (values.enabled ? 1 : 0),
+    Number.isInteger(values.priority) ? values.priority : existing.priority,
+    values.status ?? existing.status,
+    values.lastCheckedAt === undefined ? existing.lastCheckedAt : values.lastCheckedAt,
+    values.lastError === undefined ? existing.lastError : values.lastError,
+    new Date().toISOString(), sourceId
+  );
+  return getBroadcastSource(sourceId);
+}
+function deleteBroadcastSource(sourceId) {
+  return db.prepare('DELETE FROM broadcast_sources WHERE source_id = ?').run(sourceId).changes > 0;
+}
+function getActiveBroadcastSourceForChannel(channelId) {
+  return db.prepare(`SELECT source_id AS sourceId, channel_id AS channelId, name, source_type AS sourceType,
+    source_url AS sourceUrl, enabled, priority, status, last_checked_at AS lastCheckedAt,
+    last_error AS lastError, created_at AS createdAt, updated_at AS updatedAt
+    FROM broadcast_sources WHERE channel_id = ? AND enabled = 1 AND status = 'ONLINE'
+    ORDER BY priority ASC, source_id ASC LIMIT 1`).get(channelId) || null;
+}
 function getChannelPlaybackUrl(channelId) {
+  const source = getActiveBroadcastSourceForChannel(channelId);
+  if (source?.sourceUrl) return source.sourceUrl;
   const row = db.prepare('SELECT live_stream_url FROM channels WHERE channel_id = ?').get(channelId);
   return row?.live_stream_url || null;
 }
@@ -1354,6 +1437,12 @@ module.exports = {
   getLatestSyncRun,
   upsertChannel,
   syncConfiguredChannels,
+  createBroadcastSource,
+  getBroadcastSource,
+  listBroadcastSources,
+  updateBroadcastSource,
+  deleteBroadcastSource,
+  getActiveBroadcastSourceForChannel,
   getChannelPlaybackUrl,
   listAdminChannels,
   getAdminChannel,
