@@ -91,13 +91,13 @@ function status(feedId) {
   const feed = getBroadcastFeed(feedId);
   if (!feed) return null;
   const entry = engines.get(feedId);
-  const playlist = path.join(ROOT, feedId, 'stream.m3u8');
+  const playlist = path.join(ROOT, feedId, 'streamlive.m3u8');
   return {
     feedId,
     status: entry ? 'RUNNING' : 'STOPPED',
     startedAt: entry?.startedAt || null,
     playlistReady: fs.existsSync(playlist),
-    playbackUrl: '/hls/feeds/' + encodeURIComponent(feedId) + '/stream.m3u8',
+    playbackUrl: '/hls/feeds/' + encodeURIComponent(feedId) + '/streamlive.m3u8',
     itemCount: feed.items.length
   };
 }
