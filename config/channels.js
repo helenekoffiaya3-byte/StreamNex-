@@ -172,6 +172,9 @@ const CHANNELS = [
   { id: "s-plus-prime", name: "S+ Prime", group: "Films", productionUrl: process.env.S_PLUS_PRIME_HLS_URL || null, streamEnabled: Boolean(process.env.S_PLUS_PRIME_HLS_URL) },
   { id: "s-plus-cine", name: "S+ Ciné", group: "Films", productionUrl: process.env.S_PLUS_CINE_HLS_URL || null, streamEnabled: Boolean(process.env.S_PLUS_CINE_HLS_URL) },
   { id: "s-plus-kids", name: "S+ Kids", group: "Jeunesse", productionUrl: process.env.S_PLUS_KIDS_HLS_URL || null, streamEnabled: Boolean(process.env.S_PLUS_KIDS_HLS_URL) },
+  { channelNumber: 171, id: "s-plus-prime", name: "S+ Prime", group: "S+ StreamLive", productionUrl: process.env.S_PLUS_PRIME_HLS_URL || null, streamEnabled: Boolean(process.env.S_PLUS_PRIME_HLS_URL) },
+  { channelNumber: 172, id: "s-plus-cine", name: "S+ Ciné", group: "S+ StreamLive", productionUrl: process.env.S_PLUS_CINE_HLS_URL || null, streamEnabled: Boolean(process.env.S_PLUS_CINE_HLS_URL) },
+  { channelNumber: 173, id: "s-plus-kids", name: "S+ Kids", group: "S+ StreamLive", productionUrl: process.env.S_PLUS_KIDS_HLS_URL || null, streamEnabled: Boolean(process.env.S_PLUS_KIDS_HLS_URL) },
 ];
 
 module.exports = CHANNELS;
