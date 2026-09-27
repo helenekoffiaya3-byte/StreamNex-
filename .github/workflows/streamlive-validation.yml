@@ -26,6 +26,7 @@ jobs:
         run: |
           set -eux
           grep -q '"count":184' /tmp/channels.json
+          node -e "const d=require('/tmp/channels.json'); const wanted=['s-plus-prime','s-plus-cine','s-plus-kids']; if(!wanted.every(id=>d.channels.some(c=>c.id===id&&c.group==='S+ StreamLive'))) process.exit(1); console.log('S+ StreamLive channels OK')"
           curl -fsS http://127.0.0.1:4317/api/health >/tmp/health.json
           grep -q '"database":false' /tmp/health.json
           curl -fsS http://127.0.0.1:4317/api/catalogue >/tmp/catalogue.json
