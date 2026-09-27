@@ -93,6 +93,7 @@ const CHANNELS = [
   { channelNumber: 92, id: "novelas-plus", name: "Novelas+", group: "Séries", productionUrl: process.env.NOVELAS_PLUS_HLS_URL || null, streamEnabled: Boolean(process.env.NOVELAS_PLUS_HLS_URL) },
   { channelNumber: 93, id: "paramount-network", name: "Paramount Network", group: "Séries", productionUrl: process.env.PARAMOUNT_NET_HLS_URL || null, streamEnabled: Boolean(process.env.PARAMOUNT_NET_HLS_URL) },
   { channelNumber: 94, id: "s-plus-premiere", name: "S+ Première", group: "Séries", productionUrl: process.env.S_PLUS_PREMIERE_HLS_URL || null, streamEnabled: Boolean(process.env.S_PLUS_PREMIERE_HLS_URL) },
+  { channelNumber: 95, id: "s-plus-avant-premiere", name: "S+ Avant Première", group: "S+ StreamLive", productionUrl: process.env.S_PLUS_AVANT_PREMIERE_HLS_URL || null, streamEnabled: Boolean(process.env.S_PLUS_AVANT_PREMIERE_HLS_URL) },
   { channelNumber: 96, id: "serie-club", name: "Série Club", group: "Séries", productionUrl: process.env.SERIE_CLUB_HLS_URL || null, streamEnabled: Boolean(process.env.SERIE_CLUB_HLS_URL) },
   { channelNumber: 97, id: "showtime", name: "Showtime", group: "Séries", productionUrl: process.env.SHOWTIME_HLS_URL || null, streamEnabled: Boolean(process.env.SHOWTIME_HLS_URL) },
   { channelNumber: 98, id: "starz", name: "Starz", group: "Séries", productionUrl: process.env.STARZ_HLS_URL || null, streamEnabled: Boolean(process.env.STARZ_HLS_URL) },
