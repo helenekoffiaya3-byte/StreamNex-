@@ -4,7 +4,7 @@
   "private":true,
   "description":"StreamLive — chaînes, sources, URLs, programmes, diffusion et LIVE.",
   "main":"server.js",
-  "scripts":{"start":"node server.js","check:channels":"node -e \"const c=require('./config/channels'); if(c.length!==149) process.exit(1); console.log('StreamLive catalogue OK:',c.length,'chaînes')\""},
+  "scripts":{"start":"node server.js","check:channels":"node -e \"const c=require('./config/channels'); if(c.length!==173) process.exit(1); console.log('StreamLive catalogue OK:',c.length,'chaînes')\""},
   "engines":{"node":">=24"},
   "dependencies":{"cors":"^2.8.5","dotenv":"^16.6.1","express":"^5.1.0","helmet":"^8.3.0"}
 }
