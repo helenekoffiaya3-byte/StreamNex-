@@ -20,13 +20,13 @@ jobs:
             curl -fsS http://127.0.0.1:3000/api/stream/channels >/tmp/channels.json && break
             sleep 2
           done
-          grep -q '"count":149' /tmp/channels.json
+          grep -q '"count":172' /tmp/channels.json
           curl -fsS http://127.0.0.1:3000/api/health >/tmp/health.json
           grep -q '"database":false' /tmp/health.json
           curl -fsS http://127.0.0.1:3000/api/catalogue >/tmp/catalogue.json
           grep -q '"multi-live"' /tmp/catalogue.json
           curl -fsS http://127.0.0.1:3000/api/live/channels >/tmp/live.json
-          grep -q '"count":149' /tmp/live.json
+          grep -q '"count":172' /tmp/live.json
           curl -fsS http://127.0.0.1:3000/api/channels/rti-1/programs >/tmp/programs.json
           grep -q '"programCount":14' /tmp/programs.json
           node -e "const d=require('/tmp/programs.json'); if(!d.success||!Array.isArray(d.occurrences)) process.exit(1); console.log('programme contract OK')"
