@@ -25,14 +25,14 @@ jobs:
       - name: Validate core APIs
         run: |
           set -eux
-          grep -q '"count":172' /tmp/channels.json
+          grep -q '"count":184' /tmp/channels.json
           curl -fsS http://127.0.0.1:4317/api/health >/tmp/health.json
           grep -q '"database":false' /tmp/health.json
           curl -fsS http://127.0.0.1:4317/api/catalogue >/tmp/catalogue.json
           grep -q '"multi-live"' /tmp/catalogue.json
           curl -fsS http://127.0.0.1:4317/api/channels/rti-1/source >/tmp/source.json
           curl -fsS http://127.0.0.1:4317/api/live/channels >/tmp/live.json
-          grep -q '"count":172' /tmp/live.json
+          grep -q '"count":184' /tmp/live.json
           curl -fsS http://127.0.0.1:4317/api/channels/rti-1/programs >/tmp/programs.json
           grep -q '"programCount":14' /tmp/programs.json
           node -e "const d=require('/tmp/programs.json'); if(!d.success||d.count===0&&d.programCount!==14||!Array.isArray(d.occurrences)) process.exit(1); console.log('programme contract OK')"
