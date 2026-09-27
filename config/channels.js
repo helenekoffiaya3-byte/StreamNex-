@@ -171,6 +171,18 @@ const CHANNELS = [
   { channelNumber: 171, id: "s-plus-prime", name: "S+ Prime", group: "S+ StreamLive", productionUrl: process.env.S_PLUS_PRIME_HLS_URL || null, streamEnabled: Boolean(process.env.S_PLUS_PRIME_HLS_URL) },
   { channelNumber: 172, id: "s-plus-cine", name: "S+ Ciné", group: "S+ StreamLive", productionUrl: process.env.S_PLUS_CINE_HLS_URL || null, streamEnabled: Boolean(process.env.S_PLUS_CINE_HLS_URL) },
   { channelNumber: 173, id: "s-plus-kids", name: "S+ Kids", group: "S+ StreamLive", productionUrl: process.env.S_PLUS_KIDS_HLS_URL || null, streamEnabled: Boolean(process.env.S_PLUS_KIDS_HLS_URL) },
+  { channelNumber: 174, id: "s-plus-fiction", name: "S+ Fiction", group: "S+ StreamLive", productionUrl: process.env.S_PLUS_FICTION_HLS_URL || null, streamEnabled: Boolean(process.env.S_PLUS_FICTION_HLS_URL) },
+  { channelNumber: 175, id: "s-plus-channel", name: "S+ Channel", group: "S+ StreamLive", productionUrl: process.env.S_PLUS_CHANNEL_HLS_URL || null, streamEnabled: Boolean(process.env.S_PLUS_CHANNEL_HLS_URL) },
+  { channelNumber: 176, id: "s-plus-music", name: "S+ Music", group: "S+ StreamLive", productionUrl: process.env.S_PLUS_MUSIC_HLS_URL || null, streamEnabled: Boolean(process.env.S_PLUS_MUSIC_HLS_URL) },
+  { channelNumber: 177, id: "s-plus-tv", name: "S+ TV", group: "S+ StreamLive", productionUrl: process.env.S_PLUS_TV_HLS_URL || null, streamEnabled: Boolean(process.env.S_PLUS_TV_HLS_URL) },
+  { channelNumber: 178, id: "s-plus-family", name: "S+ Family", group: "S+ StreamLive", productionUrl: process.env.S_PLUS_FAMILY_HLS_URL || null, streamEnabled: Boolean(process.env.S_PLUS_FAMILY_HLS_URL) },
+  { channelNumber: 179, id: "s-plus-sport-1", name: "S+ Sport 1", group: "S+ StreamLive", productionUrl: process.env.S_PLUS_SPORT_1_HLS_URL || null, streamEnabled: Boolean(process.env.S_PLUS_SPORT_1_HLS_URL) },
+  { channelNumber: 180, id: "s-plus-sport-2", name: "S+ Sport 2", group: "S+ StreamLive", productionUrl: process.env.S_PLUS_SPORT_2_HLS_URL || null, streamEnabled: Boolean(process.env.S_PLUS_SPORT_2_HLS_URL) },
+  { channelNumber: 181, id: "s-plus-sport-3", name: "S+ Sport 3", group: "S+ StreamLive", productionUrl: process.env.S_PLUS_SPORT_3_HLS_URL || null, streamEnabled: Boolean(process.env.S_PLUS_SPORT_3_HLS_URL) },
+  { channelNumber: 182, id: "s-plus-sport-4", name: "S+ Sport 4", group: "S+ StreamLive", productionUrl: process.env.S_PLUS_SPORT_4_HLS_URL || null, streamEnabled: Boolean(process.env.S_PLUS_SPORT_4_HLS_URL) },
+  { channelNumber: 183, id: "s-plus-sport-5", name: "S+ Sport 5", group: "S+ StreamLive", productionUrl: process.env.S_PLUS_SPORT_5_HLS_URL || null, streamEnabled: Boolean(process.env.S_PLUS_SPORT_5_HLS_URL) },
+  { channelNumber: 184, id: "s-plus-sport-6", name: "S+ Sport 6", group: "S+ StreamLive", productionUrl: process.env.S_PLUS_SPORT_6_HLS_URL || null, streamEnabled: Boolean(process.env.S_PLUS_SPORT_6_HLS_URL) },
+  { channelNumber: 185, id: "s-plus-movies", name: "S+ Movies", group: "S+ StreamLive", productionUrl: process.env.S_PLUS_MOVIES_HLS_URL || null, streamEnabled: Boolean(process.env.S_PLUS_MOVIES_HLS_URL) },
 ];
 
 module.exports = CHANNELS;
