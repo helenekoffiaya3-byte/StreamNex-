@@ -4,6 +4,7 @@ on:
     branches: [main]
   pull_request:
     branches: [main]
+  workflow_dispatch:
 jobs:
   validate:
     runs-on: ubuntu-latest
@@ -27,7 +28,8 @@ jobs:
         run: |
           set -eux
           grep -q '"count":189' /tmp/channels.json
-          node -e "const d=require('/tmp/channels.json'); const wanted=['s-plus-prime','s-plus-cine','s-plus-kids']; if(!wanted.every(id=>d.channels.some(c=>c.id===id&&c.group==='S+ StreamLive'))) process.exit(1); console.log('S+ StreamLive channels OK')"
+          node -e "const d=require('/tmp/channels.json'); const wanted=['s-plus-premiere','s-plus-docs','s-plus-prime','s-plus-cine','s-plus-kids','s-plus-fiction','s-plus-channel','s-plus-music','s-plus-tv','s-plus-family','s-plus-sport-1','s-plus-sport-2','s-plus-sport-3','s-plus-sport-4','s-plus-sport-5','s-plus-sport-6','s-plus-movies','s-plus-infosport','s-plus-infos','s-plus-media','s-plus-lloliwood','s-plus-bl']; const found=d.channels.filter(c=>wanted.includes(c.id)); if(d.count!==189||found.length!==wanted.length||!found.every(c=>c.group==='S+ StreamLive')) process.exit(1); const nums=d.channels.map(c=>c.number); const ids=d.channels.map(c=>c.id); if(new Set(nums).size!==nums.length||new Set(ids).size!==ids.length) process.exit(1); const ll=found.find(c=>c.id==='s-plus-lloliwood'); const bl=found.find(c=>c.id==='s-plus-bl'); if(!ll||ll.name!=='S+ LLOLIWOOD'||!bl||bl.name!=='S+ BL') process.exit(1); console.log('S+ StreamLive catalogue OK:',found.length,'channels')"
+          for id in s-plus-premiere s-plus-docs s-plus-prime s-plus-cine s-plus-kids s-plus-fiction s-plus-channel s-plus-music s-plus-tv s-plus-family s-plus-sport-1 s-plus-sport-2 s-plus-sport-3 s-plus-sport-4 s-plus-sport-5 s-plus-sport-6 s-plus-movies s-plus-infosport s-plus-infos s-plus-media s-plus-lloliwood s-plus-bl; do curl -fsS "http://127.0.0.1:4317/api/channels/$id/source" >/dev/null; done
           curl -fsS http://127.0.0.1:4317/api/health >/tmp/health.json
           grep -q '"database":false' /tmp/health.json
           curl -fsS http://127.0.0.1:4317/api/catalogue >/tmp/catalogue.json
