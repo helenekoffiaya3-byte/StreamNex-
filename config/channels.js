@@ -169,6 +169,9 @@ const CHANNELS = [
   { channelNumber: 168, id: "nollywood-tv", name: "Nollywood TV", group: "Nollywood", productionUrl: process.env.NOLLYWOOD_TV_HLS_URL || null, streamEnabled: Boolean(process.env.NOLLYWOOD_TV_HLS_URL) },
   { channelNumber: 169, id: "nollywood-tv-epic", name: "Nollywood TV Epic", group: "Nollywood", productionUrl: process.env.NOLLYWOOD_TV_EPIC_HLS_URL || null, streamEnabled: Boolean(process.env.NOLLYWOOD_TV_EPIC_HLS_URL) },
   { channelNumber: 170, id: "passion-bollywood", name: "Passion Bollywood", group: "Bollywood", productionUrl: process.env.PASSION_BOLLYWOOD_HLS_URL || null, streamEnabled: Boolean(process.env.PASSION_BOLLYWOOD_HLS_URL) }
+  { id: "s-plus-prime", name: "S+ Prime", group: "Films", productionUrl: process.env.S_PLUS_PRIME_HLS_URL || null, streamEnabled: Boolean(process.env.S_PLUS_PRIME_HLS_URL) },
+  { id: "s-plus-cine", name: "S+ Ciné", group: "Films", productionUrl: process.env.S_PLUS_CINE_HLS_URL || null, streamEnabled: Boolean(process.env.S_PLUS_CINE_HLS_URL) },
+  { id: "s-plus-kids", name: "S+ Kids", group: "Jeunesse", productionUrl: process.env.S_PLUS_KIDS_HLS_URL || null, streamEnabled: Boolean(process.env.S_PLUS_KIDS_HLS_URL) },
 ];
 
 module.exports = CHANNELS;
