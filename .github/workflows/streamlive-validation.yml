@@ -26,7 +26,7 @@ jobs:
       - name: Validate core APIs
         run: |
           set -eux
-          grep -q '"count":184' /tmp/channels.json
+          grep -q '"count":189' /tmp/channels.json
           node -e "const d=require('/tmp/channels.json'); const wanted=['s-plus-prime','s-plus-cine','s-plus-kids']; if(!wanted.every(id=>d.channels.some(c=>c.id===id&&c.group==='S+ StreamLive'))) process.exit(1); console.log('S+ StreamLive channels OK')"
           curl -fsS http://127.0.0.1:4317/api/health >/tmp/health.json
           grep -q '"database":false' /tmp/health.json
@@ -34,7 +34,7 @@ jobs:
           grep -q '"multi-live"' /tmp/catalogue.json
           curl -fsS http://127.0.0.1:4317/api/channels/rti-1/source >/tmp/source.json
           curl -fsS http://127.0.0.1:4317/api/live/channels >/tmp/live.json
-          grep -q '"count":184' /tmp/live.json
+          grep -q '"count":189' /tmp/live.json
           curl -fsS http://127.0.0.1:4317/api/channels/rti-1/programs >/tmp/programs.json
           grep -q '"programCount":14' /tmp/programs.json
           node -e "const d=require('/tmp/programs.json'); if(!d.success||d.count===0&&d.programCount!==14||!Array.isArray(d.occurrences)) process.exit(1); console.log('programme contract OK')"
