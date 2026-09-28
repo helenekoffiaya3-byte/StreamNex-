@@ -167,7 +167,6 @@ const CHANNELS = [
   { channelNumber: 168, id: "nollywood-tv", name: "Nollywood TV", group: "Nollywood", productionUrl: process.env.NOLLYWOOD_TV_HLS_URL || null, streamEnabled: Boolean(process.env.NOLLYWOOD_TV_HLS_URL) },
   { channelNumber: 169, id: "nollywood-tv-epic", name: "Nollywood TV Epic", group: "Nollywood", productionUrl: process.env.NOLLYWOOD_TV_EPIC_HLS_URL || null, streamEnabled: Boolean(process.env.NOLLYWOOD_TV_EPIC_HLS_URL) },
   { channelNumber: 170, id: "passion-bollywood", name: "Passion Bollywood", group: "Bollywood", productionUrl: process.env.PASSION_BOLLYWOOD_HLS_URL || null, streamEnabled: Boolean(process.env.PASSION_BOLLYWOOD_HLS_URL) },
-  { channelNumber: 191, id: "s-plus-jeunesse", name: "S+ Jeunesse", group: "S+ StreamLive", productionUrl: process.env.S_PLUS_JEUNESSE_HLS_URL || null, streamEnabled: Boolean(process.env.S_PLUS_JEUNESSE_HLS_URL) },
   { channelNumber: 171, id: "s-plus-prime", name: "S+ Prime", group: "S+ StreamLive", productionUrl: process.env.S_PLUS_PRIME_HLS_URL || null, streamEnabled: Boolean(process.env.S_PLUS_PRIME_HLS_URL) },
   { channelNumber: 172, id: "s-plus-cine", name: "S+ Ciné", group: "S+ StreamLive", productionUrl: process.env.S_PLUS_CINE_HLS_URL || null, streamEnabled: Boolean(process.env.S_PLUS_CINE_HLS_URL) },
   { channelNumber: 173, id: "s-plus-kids", name: "S+ Kids", group: "S+ StreamLive", productionUrl: process.env.S_PLUS_KIDS_HLS_URL || null, streamEnabled: Boolean(process.env.S_PLUS_KIDS_HLS_URL) },
@@ -188,6 +187,7 @@ const CHANNELS = [
   { channelNumber: 188, id: "s-plus-media", name: "S+ Media", group: "S+ StreamLive", productionUrl: process.env.S_PLUS_MEDIA_HLS_URL || null, streamEnabled: Boolean(process.env.S_PLUS_MEDIA_HLS_URL) },
   { channelNumber: 189, id: "s-plus-lloliwood", name: "S+ LLOLIWOOD", group: "S+ StreamLive", productionUrl: process.env.S_PLUS_LLOLIWOOD_HLS_URL || null, streamEnabled: Boolean(process.env.S_PLUS_LLOLIWOOD_HLS_URL) },
   { channelNumber: 190, id: "s-plus-bl", name: "S+ BL", group: "S+ StreamLive", productionUrl: process.env.S_PLUS_BL_HLS_URL || null, streamEnabled: Boolean(process.env.S_PLUS_BL_HLS_URL) },
+  { channelNumber: 191, id: "s-plus-jeunesse", name: "S+ Jeunesse", group: "S+ StreamLive", productionUrl: process.env.S_PLUS_JEUNESSE_HLS_URL || null, streamEnabled: Boolean(process.env.S_PLUS_JEUNESSE_HLS_URL) },
 ];
 
 module.exports = CHANNELS;
