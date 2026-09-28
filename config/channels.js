@@ -189,6 +189,30 @@ const CHANNELS = [
   { channelNumber: 189, id: "s-plus-lloliwood", name: "S+ LLOLIWOOD", group: "S+ StreamLive", productionUrl: process.env.S_PLUS_LLOLIWOOD_HLS_URL || null, streamEnabled: Boolean(process.env.S_PLUS_LLOLIWOOD_HLS_URL) },
   { channelNumber: 190, id: "s-plus-bl", name: "S+ BL", group: "S+ StreamLive", productionUrl: process.env.S_PLUS_BL_HLS_URL || null, streamEnabled: Boolean(process.env.S_PLUS_BL_HLS_URL) },
   { channelNumber: 191, id: "s-plus-jeunesse", name: "S+ Jeunesse", group: "S+ StreamLive", productionUrl: process.env.S_PLUS_JEUNESSE_HLS_URL || null, streamEnabled: Boolean(process.env.S_PLUS_JEUNESSE_HLS_URL) },
+
+  { channelNumber: 225, id: "berbere-jeunesse", name: "Berbère Jeunesse", group: "Jeunesse", productionUrl: process.env.BERBERE_JEUNESSE_HLS_URL || null, streamEnabled: Boolean(process.env.BERBERE_JEUNESSE_HLS_URL) },
+  { channelNumber: 226, id: "chaine-pere-noel", name: "La Chaîne du Père Noël", group: "Jeunesse", productionUrl: process.env.CHAINE_PERE_NOEL_HLS_URL || null, streamEnabled: Boolean(process.env.CHAINE_PERE_NOEL_HLS_URL) },
+
+  { channelNumber: 227, id: "disney-xd-france", name: "Disney XD France", group: "Jeunesse Archives", status: "HISTORICAL", productionUrl: null, streamEnabled: false },
+  { channelNumber: 228, id: "disney-xd-outre-mer", name: "Disney XD Afrique/Outre-mer", group: "Jeunesse Archives", status: "HISTORICAL", productionUrl: null, streamEnabled: false },
+  { channelNumber: 229, id: "disney-channel-plus-1-france", name: "Disney Channel +1 France", group: "Jeunesse Archives", status: "HISTORICAL", productionUrl: null, streamEnabled: false },
+  { channelNumber: 230, id: "disney-cinemagic-france", name: "Disney Cinemagic France", group: "Jeunesse Archives", status: "HISTORICAL", productionUrl: null, streamEnabled: false },
+  { channelNumber: 231, id: "disney-cinemagic-plus-1-france", name: "Disney Cinemagic +1 France", group: "Jeunesse Archives", status: "HISTORICAL", productionUrl: null, streamEnabled: false },
+  { channelNumber: 232, id: "playhouse-disney-france", name: "Playhouse Disney France", group: "Jeunesse Archives", status: "HISTORICAL", productionUrl: null, streamEnabled: false },
+  { channelNumber: 233, id: "toon-disney-france", name: "Toon Disney France", group: "Jeunesse Archives", status: "HISTORICAL", productionUrl: null, streamEnabled: false },
+  { channelNumber: 234, id: "jetix-france", name: "Jetix France", group: "Jeunesse Archives", status: "HISTORICAL", productionUrl: null, streamEnabled: false },
+  { channelNumber: 235, id: "fox-kids-france", name: "Fox Kids France", group: "Jeunesse Archives", status: "HISTORICAL", productionUrl: null, streamEnabled: false },
+  { channelNumber: 236, id: "disney-junior-plus-1-france", name: "Disney Junior +1 France", group: "Jeunesse Archives", status: "HISTORICAL", productionUrl: null, streamEnabled: false },
+  { channelNumber: 237, id: "disney-xd-plus-1-france", name: "Disney XD +1 France", group: "Jeunesse Archives", status: "HISTORICAL", productionUrl: null, streamEnabled: false },
+  { channelNumber: 238, id: "canal-plus-family", name: "Canal+ Family", group: "Jeunesse Archives", status: "HISTORICAL", productionUrl: null, streamEnabled: false },
+  { channelNumber: 239, id: "canal-plus-family-ouest", name: "Canal+ Family Ouest", group: "Jeunesse Archives", status: "HISTORICAL", productionUrl: null, streamEnabled: false },
+  { channelNumber: 240, id: "canal-plus-family-centre", name: "Canal+ Family Centre", group: "Jeunesse Archives", status: "HISTORICAL", productionUrl: null, streamEnabled: false },
+  { channelNumber: 241, id: "kidsco-france", name: "KidsCo France", group: "Jeunesse Archives", status: "HISTORICAL", productionUrl: null, streamEnabled: false },
+  { channelNumber: 242, id: "discovery-kids-france", name: "Discovery Kids France", group: "Jeunesse Archives", status: "HISTORICAL", productionUrl: null, streamEnabled: false },
+  { channelNumber: 243, id: "discovery-family-france", name: "Discovery Family France", group: "Jeunesse Archives", status: "HISTORICAL", productionUrl: null, streamEnabled: false },
+  { channelNumber: 244, id: "babyfirst-france", name: "BabyFirst France", group: "Jeunesse Archives", status: "HISTORICAL", productionUrl: null, streamEnabled: false },
+  { channelNumber: 245, id: "filles-tv", name: "Filles TV", group: "Jeunesse Archives", status: "HISTORICAL", productionUrl: null, streamEnabled: false },
+  { channelNumber: 246, id: "gong", name: "Gong", group: "Jeunesse Archives", status: "HISTORICAL", productionUrl: null, streamEnabled: false },
 ];
 
 module.exports = CHANNELS;
