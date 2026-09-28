@@ -209,7 +209,6 @@ const CHANNELS = [
   { channelNumber: 240, id: "canal-plus-family-centre", name: "Canal+ Family Centre", group: "Jeunesse Archives", status: "HISTORICAL", productionUrl: null, streamEnabled: false },
   { channelNumber: 241, id: "kidsco-france", name: "KidsCo France", group: "Jeunesse Archives", status: "HISTORICAL", productionUrl: null, streamEnabled: false },
   { channelNumber: 242, id: "discovery-kids-france", name: "Discovery Kids France", group: "Jeunesse Archives", status: "HISTORICAL", productionUrl: null, streamEnabled: false },
-  { channelNumber: 243, id: "discovery-family-france", name: "Discovery Family France", group: "Jeunesse Archives", status: "HISTORICAL", productionUrl: null, streamEnabled: false },
   { channelNumber: 244, id: "babyfirst-france", name: "BabyFirst France", group: "Jeunesse Archives", status: "HISTORICAL", productionUrl: null, streamEnabled: false },
   { channelNumber: 245, id: "filles-tv", name: "Filles TV", group: "Jeunesse Archives", status: "HISTORICAL", productionUrl: null, streamEnabled: false },
   { channelNumber: 246, id: "gong", name: "Gong", group: "Jeunesse Archives", status: "HISTORICAL", productionUrl: null, streamEnabled: false },
