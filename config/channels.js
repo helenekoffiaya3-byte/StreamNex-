@@ -191,6 +191,7 @@ const CHANNELS = [
   { channelNumber: 191, id: "s-plus-jeunesse", name: "S+ Jeunesse", group: "S+ StreamLive", productionUrl: process.env.S_PLUS_JEUNESSE_HLS_URL || null, streamEnabled: Boolean(process.env.S_PLUS_JEUNESSE_HLS_URL) },
 
   { channelNumber: 225, id: "berbere-jeunesse", name: "Berbère Jeunesse", group: "Jeunesse", productionUrl: process.env.BERBERE_JEUNESSE_HLS_URL || null, streamEnabled: Boolean(process.env.BERBERE_JEUNESSE_HLS_URL) },
+  { channelNumber: 226, id: "chaine-pere-noel", name: "La Chaîne du Père Noël", group: "Jeunesse", productionUrl: process.env.CHAINE_PERE_NOEL_HLS_URL || null, streamEnabled: Boolean(process.env.CHAINE_PERE_NOEL_HLS_URL) },
 ];
 
 module.exports = CHANNELS;
