@@ -53,22 +53,15 @@ function section(title,list,extra=''){
 function render(){
   const q=state.query.trim().toLowerCase();
   const all=state.channels.filter(c=>(c.name+' '+(c.group||'')).toLowerCase().includes(q));
-  const canal=all.filter(c=>/^canal\+/i.test(c.name)||/canal\+/i.test(c.name));
-  const ivoire=all.filter(c=>c.group==='National');
-  const used=new Set([...canal,...ivoire].map(c=>c.id));
-  const orderedGroups=['France','Information','Sport','Films & Cinéma','Séries','Jeunesse','International','Documentaires','Musique','Afrique / International','Biblique','Cuisine & Lifestyle','Nollywood','Bollywood','S+ StreamLive'];
+  const orderedGroups=['National','France','Information','Sport','Films & Cinéma','Séries','S+ StreamLive','Jeunesse','International','Documentaires','Musique','Afrique / International','Biblique','Cuisine & Lifestyle','Nollywood','Bollywood'];
   let html='';
-  html+=section('Les chaînes CANAL+',canal,'featured');
-  html+=section('Les chaînes Ivoiriennes',ivoire,'featured');
-  html+=section('Toutes les chaînes',all,'all');
   for(const g of orderedGroups){
-    const list=all.filter(c=>c.group===g&&!used.has(c.id));
-    if(list.length)html+=section(g,list);
+    html+=section(g,all.filter(c=>c.group===g));
   }
-  const remaining=all.filter(c=>!used.has(c.id)&&!orderedGroups.includes(c.group));
+  const remaining=all.filter(c=>!orderedGroups.includes(c.group));
   if(remaining.length)html+=section('Autres chaînes',remaining);
   const apps=state.apps.filter(a=>(a.name+' '+(a.group||'')).toLowerCase().includes(q));
-  html+=section('Apps & archives',apps,'apps-section');
+  if(apps.length)html+=section('Apps & archives',apps,'apps-section');
   $('#catalog').innerHTML=html||'<div class="empty">Aucune chaîne ou app trouvée.</div>';
   $('#catalog-status').textContent=state.query?all.length+' chaîne(s) trouvée(s)':state.channels.length+' chaînes · '+state.apps.length+' apps/archives';
 }
