@@ -13,8 +13,24 @@ const logoAliases={
   'm6':'m6','tf1':'tf1','arte':'arte','disney-channel':'disneychannel',
   'disney-junior':'disneyjunior','cartoon-network':'cartoonnetwork',
   'nickelodeon':'nickelodeon','gulli':'gulli','boing':'boing',
-  'boomrang':'boomerang','canal-j':'canalj','tiji':'tiji','piwi-plus':'piwi',
-  'tv5monde':'tv5monde','euronews-fr':'euronews','france-24-fr':'france24'
+  'boomerang':'boomerang','boomrang':'boomerang','canal-j':'canalj','tiji':'tiji','piwi-plus':'piwi',
+  'tv5monde':'tv5monde','euronews-fr':'euronews','france-24-fr':'france24',
+  'netflix':'netflix','peacock':'peacock','pluto-tv':'plutotv','tubi':'tubi','prime-video':'primevideo',
+  'apple-tv-plus':'appletv','disney-plus':'disneyplus','paramount-plus':'paramountplus','max':'max',
+  'spotify':'spotify','youtube':'youtube','amazon':'amazon','bbc-news':'bbc','bloomberg-tv':'bloomberg',
+  'cbs-news-24-7':'cbs','cnbc':'cnbc','cnn':'cnn','cnn-international':'cnn','fox-news':'fox','fox-business':'fox',
+  'msnbc':'msnbc','nbc-news-now':'nbc','sky-news':'skynews','al-jazeera':'aljazeera','dw':'dwcom',
+  'discovery':'discovery','warner-tv-next':'warnerbros','hbo':'hbo','hbo-max':'max','showtime':'showtime',
+  'paramount-network':'paramountplus','amc':'amc','fx':'fx','fxx':'fx','tnt':'tnt','tbs':'tbs',
+  'teletoon-plus':'teletoon','toonami':'toonami','cartoonito':'cartoonnetwork','dreamworks':'dreamworks',
+  'nicktoons':'nickelodeon','nickelodeon-junior':'nickelodeon','nickelodeon-teen':'nickelodeon',
+  'mangas':'mangas','tiji':'tiji','gulli-africa':'gulli','trace-africa':'trace','trace-ivoire':'trace',
+  'trace-gospel':'trace','mtv':'mtv','canal-j':'canalj','canal-plus-kids':'canalplus','canal-plus':'canalplus',
+  'action':'canalplus','rtl-9':'rtl','m6-films':'m6','w9':'w9','tfx':'tf1','tf1-series-films':'tf1',
+  'france-24':'france24','france-2':'france2','france-3':'france3','france-4':'france4','france-5':'france5',
+  'arte':'arte','m6':'m6','tf1':'tf1','6ter':'m6','gulli':'gulli','boing':'boing','piwi-plus':'piwi',
+  'rtI-1':'rti','rti-1':'rti','rti-2':'rti','nci':'nci','life-tv':'lifetv','la-3':'la3','a-plus-ivoire':'aplus',
+  'tv5-monde':'tv5monde','tv5monde':'tv5monde'
 };
 function slug(id,name){
   return logoAliases[id]||String(name||id).toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/&/g,'and').replace(/[^a-z0-9]+/g,'');
@@ -23,12 +39,21 @@ function initials(name){
   const p=String(name||'').trim().split(/\s+/).filter(Boolean);
   return (p.length===1?p[0].slice(0,3):p.slice(0,3).map(x=>x[0]).join('')).toUpperCase();
 }
+function svgLogo(c){
+  const label=String(c.name||'STREAMLIVE').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').slice(0,28);
+  const initials=esc(initials(c.name)).slice(0,8);
+  const hue=(String(c.id||c.name).split('').reduce((n,ch)=>n+ch.charCodeAt(0),0)%360);
+  const svg='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 150"><defs><linearGradient id="g" x1="0" x2="1"><stop stop-color="hsl('+hue+',80%,42%)"/><stop offset="1" stop-color="hsl('+(hue+55)+',85%,58%)"/></linearGradient></defs><rect width="320" height="150" rx="18" fill="url(#g)"/><circle cx="48" cy="48" r="24" fill="rgba(255,255,255,.22)"/><text x="48" y="57" text-anchor="middle" font-family="Arial,sans-serif" font-size="22" font-weight="900" fill="white">'+initials+'</text><text x="160" y="105" text-anchor="middle" font-family="Arial,sans-serif" font-size="25" font-weight="900" fill="white">'+label+'</text></svg>';
+  return 'data:image/svg+xml;charset=UTF-8,'+encodeURIComponent(svg);
+}
 function logoSources(c){
   const s=slug(c.id,c.name);
   return [
     c.logoUrl||'',
+    '/assets/logos/'+encodeURIComponent(c.id)+'.svg',
     '/assets/logos/'+encodeURIComponent(c.id)+'.png',
-    'https://cdn.simpleicons.org/'+encodeURIComponent(s)
+    'https://cdn.simpleicons.org/'+encodeURIComponent(s),
+    svgLogo(c)
   ].filter(Boolean);
 }
 function logoHtml(c){
