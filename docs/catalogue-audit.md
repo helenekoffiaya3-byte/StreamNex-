@@ -70,14 +70,6 @@ Pour les services externes, seule une URL explicitement présente dans le dépô
 À l'étape 2, les bouquets seront organisés sans supprimer les entrées auditées.
 
 
-## Étape 2 — Organisation des bouquets
+## Étape 27 — Organisation des bouquets
 
-**Statut : BOUQUETS_ASSIGNED**
-
-Les 233 chaînes TV sont désormais affectées à exactement un bouquet, sans suppression ni changement de numéro. L'affectation reprend les groupes existants du catalogue afin de ne pas inventer une classification éditoriale supplémentaire.
-
-Bouquets : **16**.
-
-Répartition : National 7, France 12, Information 28, Sport 13, Films & Cinéma 36, Séries 28, S+ StreamLive 23, Jeunesse 36, International 2, Documentaires 15, Musique 13, Afrique / International 9, Biblique 7, Cuisine & Lifestyle 1, Nollywood 2, Bollywood 1.
-
-Les **18 services vidéo** restent séparés des bouquets TV et continuent d'être exposés comme **Service vidéo** dans Catalogue → Chaînes / Apps.
+L'organisation et l'affectation des chaînes aux bouquets sont volontairement réservées à l'étape 27. Aucun bouquet n'est attribué pendant l'étape 1.
