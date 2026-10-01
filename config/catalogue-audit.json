@@ -14,8 +14,9 @@
     "channels": 233,
     "services": 5,
     "total": 238,
-    "duplicateIds": 234,
-    "duplicateChannelNumbers": 233,
+    "duplicateChannelIds": 0,
+    "duplicateChannelNumbers": 0,
+    "duplicateCatalogueIds": 0,
     "missingNumbers": [
       140,
       141,
@@ -72,7 +73,7 @@
       "existence": "UNVERIFIED",
       "nameVariant": null,
       "brandDuplicateDetected": false,
-      "verificationNote": "Présence dans le catalogue ne vaut pas preuve d'existence actuelle ni de disponibilité LIVE."
+      "verificationNote": "Le catalogue n'est pas une preuve d'existence actuelle; la disponibilité LIVE doit être vérifiée séparément."
     },
     {
       "id": "rti-2",
@@ -92,7 +93,7 @@
       "existence": "UNVERIFIED",
       "nameVariant": null,
       "brandDuplicateDetected": false,
-      "verificationNote": "Présence dans le catalogue ne vaut pas preuve d'existence actuelle ni de disponibilité LIVE."
+      "verificationNote": "Le catalogue n'est pas une preuve d'existence actuelle; la disponibilité LIVE doit être vérifiée séparément."
     },
     {
       "id": "la-3",
@@ -112,7 +113,7 @@
       "existence": "UNVERIFIED",
       "nameVariant": null,
       "brandDuplicateDetected": false,
-      "verificationNote": "Présence dans le catalogue ne vaut pas preuve d'existence actuelle ni de disponibilité LIVE."
+      "verificationNote": "Le catalogue n'est pas une preuve d'existence actuelle; la disponibilité LIVE doit être vérifiée séparément."
     },
     {
       "id": "a-plus-ivoire",
@@ -132,7 +133,7 @@
       "existence": "UNVERIFIED",
       "nameVariant": null,
       "brandDuplicateDetected": false,
-      "verificationNote": "Présence dans le catalogue ne vaut pas preuve d'existence actuelle ni de disponibilité LIVE."
+      "verificationNote": "Le catalogue n'est pas une preuve d'existence actuelle; la disponibilité LIVE doit être vérifiée séparément."
     },
     {
       "id": "life-tv",
@@ -152,7 +153,7 @@
       "existence": "UNVERIFIED",
       "nameVariant": null,
       "brandDuplicateDetected": false,
-      "verificationNote": "Présence dans le catalogue ne vaut pas preuve d'existence actuelle ni de disponibilité LIVE."
+      "verificationNote": "Le catalogue n'est pas une preuve d'existence actuelle; la disponibilité LIVE doit être vérifiée séparément."
     },
     {
       "id": "nci",
@@ -172,7 +173,7 @@
       "existence": "UNVERIFIED",
       "nameVariant": null,
       "brandDuplicateDetected": false,
-      "verificationNote": "Présence dans le catalogue ne vaut pas preuve d'existence actuelle ni de disponibilité LIVE."
+      "verificationNote": "Le catalogue n'est pas une preuve d'existence actuelle; la disponibilité LIVE doit être vérifiée séparément."
     },
     {
       "id": "canal-plus-cote-divoire",
@@ -192,7 +193,7 @@
       "existence": "UNVERIFIED",
       "nameVariant": null,
       "brandDuplicateDetected": false,
-      "verificationNote": "Présence dans le catalogue ne vaut pas preuve d'existence actuelle ni de disponibilité LIVE."
+      "verificationNote": "Le catalogue n'est pas une preuve d'existence actuelle; la disponibilité LIVE doit être vérifiée séparément."
     },
     {
       "id": "6ter",
@@ -212,7 +213,7 @@
       "existence": "UNVERIFIED",
       "nameVariant": null,
       "brandDuplicateDetected": false,
-      "verificationNote": "Présence dans le catalogue ne vaut pas preuve d'existence actuelle ni de disponibilité LIVE."
+      "verificationNote": "Le catalogue n'est pas une preuve d'existence actuelle; la disponibilité LIVE doit être vérifiée séparément."
     },
     {
       "id": "arte",
@@ -232,7 +233,7 @@
       "existence": "UNVERIFIED",
       "nameVariant": null,
       "brandDuplicateDetected": false,
-      "verificationNote": "Présence dans le catalogue ne vaut pas preuve d'existence actuelle ni de disponibilité LIVE."
+      "verificationNote": "Le catalogue n'est pas une preuve d'existence actuelle; la disponibilité LIVE doit être vérifiée séparément."
     },
     {
       "id": "canal-plus",
@@ -252,7 +253,7 @@
       "existence": "UNVERIFIED",
       "nameVariant": null,
       "brandDuplicateDetected": false,
-      "verificationNote": "Présence dans le catalogue ne vaut pas preuve d'existence actuelle ni de disponibilité LIVE."
+      "verificationNote": "Le catalogue n'est pas une preuve d'existence actuelle; la disponibilité LIVE doit être vérifiée séparément."
     },
     {
       "id": "france-2",
@@ -272,7 +273,7 @@
       "existence": "UNVERIFIED",
       "nameVariant": null,
       "brandDuplicateDetected": false,
-      "verificationNote": "Présence dans le catalogue ne vaut pas preuve d'existence actuelle ni de disponibilité LIVE."
+      "verificationNote": "Le catalogue n'est pas une preuve d'existence actuelle; la disponibilité LIVE doit être vérifiée séparément."
     },
     {
       "id": "france-3",
@@ -292,7 +293,7 @@
       "existence": "UNVERIFIED",
       "nameVariant": null,
       "brandDuplicateDetected": false,
-      "verificationNote": "Présence dans le catalogue ne vaut pas preuve d'existence actuelle ni de disponibilité LIVE."
+      "verificationNote": "Le catalogue n'est pas une preuve d'existence actuelle; la disponibilité LIVE doit être vérifiée séparément."
     },
     {
       "id": "france-4",
@@ -312,7 +313,7 @@
       "existence": "UNVERIFIED",
       "nameVariant": null,
       "brandDuplicateDetected": false,
-      "verificationNote": "Présence dans le catalogue ne vaut pas preuve d'existence actuelle ni de disponibilité LIVE."
+      "verificationNote": "Le catalogue n'est pas une preuve d'existence actuelle; la disponibilité LIVE doit être vérifiée séparément."
     },
     {
       "id": "france-5",
@@ -332,7 +333,7 @@
       "existence": "UNVERIFIED",
       "nameVariant": null,
       "brandDuplicateDetected": false,
-      "verificationNote": "Présence dans le catalogue ne vaut pas preuve d'existence actuelle ni de disponibilité LIVE."
+      "verificationNote": "Le catalogue n'est pas une preuve d'existence actuelle; la disponibilité LIVE doit être vérifiée séparément."
     },
     {
       "id": "m6",
@@ -352,7 +353,7 @@
       "existence": "UNVERIFIED",
       "nameVariant": null,
       "brandDuplicateDetected": false,
-      "verificationNote": "Présence dans le catalogue ne vaut pas preuve d'existence actuelle ni de disponibilité LIVE."
+      "verificationNote": "Le catalogue n'est pas une preuve d'existence actuelle; la disponibilité LIVE doit être vérifiée séparément."
     },
     {
       "id": "tf1",
@@ -372,7 +373,7 @@
       "existence": "UNVERIFIED",
       "nameVariant": null,
       "brandDuplicateDetected": false,
-      "verificationNote": "Présence dans le catalogue ne vaut pas preuve d'existence actuelle ni de disponibilité LIVE."
+      "verificationNote": "Le catalogue n'est pas une preuve d'existence actuelle; la disponibilité LIVE doit être vérifiée séparément."
     },
     {
       "id": "tfx",
@@ -392,7 +393,7 @@
       "existence": "UNVERIFIED",
       "nameVariant": null,
       "brandDuplicateDetected": false,
-      "verificationNote": "Présence dans le catalogue ne vaut pas preuve d'existence actuelle ni de disponibilité LIVE."
+      "verificationNote": "Le catalogue n'est pas une preuve d'existence actuelle; la disponibilité LIVE doit être vérifiée séparément."
     },
     {
       "id": "tmc",
@@ -412,7 +413,7 @@
       "existence": "UNVERIFIED",
       "nameVariant": null,
       "brandDuplicateDetected": false,
-      "verificationNote": "Présence dans le catalogue ne vaut pas preuve d'existence actuelle ni de disponibilité LIVE."
+      "verificationNote": "Le catalogue n'est pas une preuve d'existence actuelle; la disponibilité LIVE doit être vérifiée séparément."
     },
     {
       "id": "w9",
@@ -432,7 +433,7 @@
       "existence": "UNVERIFIED",
       "nameVariant": null,
       "brandDuplicateDetected": false,
-      "verificationNote": "Présence dans le catalogue ne vaut pas preuve d'existence actuelle ni de disponibilité LIVE."
+      "verificationNote": "Le catalogue n'est pas une preuve d'existence actuelle; la disponibilité LIVE doit être vérifiée séparément."
     },
     {
       "id": "7info",
@@ -440,7 +441,7 @@
       "name": "7info",
       "type": "CHANNEL",
       "country": "UNVERIFIED",
-      "region": "International",
+      "region": "UNVERIFIED",
       "language": "UNVERIFIED",
       "status": "CONFIGURED",
       "bouquet": null,
@@ -452,7 +453,7 @@
       "existence": "UNVERIFIED",
       "nameVariant": null,
       "brandDuplicateDetected": false,
-      "verificationNote": "Présence dans le catalogue ne vaut pas preuve d'existence actuelle ni de disponibilité LIVE."
+      "verificationNote": "Le catalogue n'est pas une preuve d'existence actuelle; la disponibilité LIVE doit être vérifiée séparément."
     },
     {
       "id": "abc-news-live",
@@ -460,7 +461,7 @@
       "name": "ABC News Live",
       "type": "CHANNEL",
       "country": "UNVERIFIED",
-      "region": "International",
+      "region": "UNVERIFIED",
       "language": "UNVERIFIED",
       "status": "CONFIGURED",
       "bouquet": null,
@@ -472,7 +473,7 @@
       "existence": "UNVERIFIED",
       "nameVariant": null,
       "brandDuplicateDetected": false,
-      "verificationNote": "Présence dans le catalogue ne vaut pas preuve d'existence actuelle ni de disponibilité LIVE."
+      "verificationNote": "Le catalogue n'est pas une preuve d'existence actuelle; la disponibilité LIVE doit être vérifiée séparément."
     },
     {
       "id": "al-jazeera",
@@ -480,7 +481,7 @@
       "name": "Al Jazeera",
       "type": "CHANNEL",
       "country": "UNVERIFIED",
-      "region": "International",
+      "region": "UNVERIFIED",
       "language": "UNVERIFIED",
       "status": "CONFIGURED",
       "bouquet": null,
@@ -492,7 +493,7 @@
       "existence": "UNVERIFIED",
       "nameVariant": null,
       "brandDuplicateDetected": false,
-      "verificationNote": "Présence dans le catalogue ne vaut pas preuve d'existence actuelle ni de disponibilité LIVE."
+      "verificationNote": "Le catalogue n'est pas une preuve d'existence actuelle; la disponibilité LIVE doit être vérifiée séparément."
     },
     {
       "id": "bbc-news",
@@ -500,7 +501,7 @@
       "name": "BBC News",
       "type": "CHANNEL",
       "country": "UNVERIFIED",
-      "region": "International",
+      "region": "UNVERIFIED",
       "language": "UNVERIFIED",
       "status": "CONFIGURED",
       "bouquet": null,
@@ -512,7 +513,7 @@
       "existence": "UNVERIFIED",
       "nameVariant": null,
       "brandDuplicateDetected": false,
-      "verificationNote": "Présence dans le catalogue ne vaut pas preuve d'existence actuelle ni de disponibilité LIVE."
+      "verificationNote": "Le catalogue n'est pas une preuve d'existence actuelle; la disponibilité LIVE doit être vérifiée séparément."
     },
     {
       "id": "bloomberg-tv",
@@ -520,7 +521,7 @@
       "name": "Bloomberg TV",
       "type": "CHANNEL",
       "country": "UNVERIFIED",
-      "region": "International",
+      "region": "UNVERIFIED",
       "language": "UNVERIFIED",
       "status": "CONFIGURED",
       "bouquet": null,
@@ -532,7 +533,7 @@
       "existence": "UNVERIFIED",
       "nameVariant": null,
       "brandDuplicateDetected": false,
-      "verificationNote": "Présence dans le catalogue ne vaut pas preuve d'existence actuelle ni de disponibilité LIVE."
+      "verificationNote": "Le catalogue n'est pas une preuve d'existence actuelle; la disponibilité LIVE doit être vérifiée séparément."
     },
     {
       "id": "c-span",
@@ -540,7 +541,7 @@
       "name": "C-SPAN",
       "type": "CHANNEL",
       "country": "UNVERIFIED",
-      "region": "International",
+      "region": "UNVERIFIED",
       "language": "UNVERIFIED",
       "status": "CONFIGURED",
       "bouquet": null,
@@ -552,7 +553,7 @@
       "existence": "UNVERIFIED",
       "nameVariant": null,
       "brandDuplicateDetected": false,
-      "verificationNote": "Présence dans le catalogue ne vaut pas preuve d'existence actuelle ni de disponibilité LIVE."
+      "verificationNote": "Le catalogue n'est pas une preuve d'existence actuelle; la disponibilité LIVE doit être vérifiée séparément."
     },
     {
       "id": "cbs-news-24-7",
@@ -560,7 +561,7 @@
       "name": "CBS News 24/7",
       "type": "CHANNEL",
       "country": "UNVERIFIED",
-      "region": "International",
+      "region": "UNVERIFIED",
       "language": "UNVERIFIED",
       "status": "CONFIGURED",
       "bouquet": null,
@@ -572,7 +573,7 @@
       "existence": "UNVERIFIED",
       "nameVariant": null,
       "brandDuplicateDetected": false,
-      "verificationNote": "Présence dans le catalogue ne vaut pas preuve d'existence actuelle ni de disponibilité LIVE."
+      "verificationNote": "Le catalogue n'est pas une preuve d'existence actuelle; la disponibilité LIVE doit être vérifiée séparément."
     },
     {
       "id": "cgtn",
@@ -580,7 +581,7 @@
       "name": "CGTN",
       "type": "CHANNEL",
       "country": "UNVERIFIED",
-      "region": "International",
+      "region": "UNVERIFIED",
       "language": "UNVERIFIED",
       "status": "CONFIGURED",
       "bouquet": null,
@@ -592,7 +593,7 @@
       "existence": "UNVERIFIED",
       "nameVariant": null,
       "brandDuplicateDetected": false,
-      "verificationNote": "Présence dans le catalogue ne vaut pas preuve d'existence actuelle ni de disponibilité LIVE."
+      "verificationNote": "Le catalogue n'est pas une preuve d'existence actuelle; la disponibilité LIVE doit être vérifiée séparément."
     },
     {
       "id": "cnbc",
@@ -600,7 +601,7 @@
       "name": "CNBC",
       "type": "CHANNEL",
       "country": "UNVERIFIED",
-      "region": "International",
+      "region": "UNVERIFIED",
       "language": "UNVERIFIED",
       "status": "CONFIGURED",
       "bouquet": null,
@@ -612,7 +613,7 @@
       "existence": "UNVERIFIED",
       "nameVariant": null,
       "brandDuplicateDetected": false,
-      "verificationNote": "Présence dans le catalogue ne vaut pas preuve d'existence actuelle ni de disponibilité LIVE."
+      "verificationNote": "Le catalogue n'est pas une preuve d'existence actuelle; la disponibilité LIVE doit être vérifiée séparément."
     },
     {
       "id": "cnn",
@@ -620,7 +621,7 @@
       "name": "CNN",
       "type": "CHANNEL",
       "country": "UNVERIFIED",
-      "region": "International",
+      "region": "UNVERIFIED",
       "language": "UNVERIFIED",
       "status": "CONFIGURED",
       "bouquet": null,
@@ -632,7 +633,7 @@
       "existence": "UNVERIFIED",
       "nameVariant": null,
       "brandDuplicateDetected": false,
-      "verificationNote": "Présence dans le catalogue ne vaut pas preuve d'existence actuelle ni de disponibilité LIVE."
+      "verificationNote": "Le catalogue n'est pas une preuve d'existence actuelle; la disponibilité LIVE doit être vérifiée séparément."
     },
     {
       "id": "cnn-international",
@@ -640,7 +641,7 @@
       "name": "CNN International",
       "type": "CHANNEL",
       "country": "UNVERIFIED",
-      "region": "International",
+      "region": "UNVERIFIED",
       "language": "UNVERIFIED",
       "status": "CONFIGURED",
       "bouquet": null,
@@ -652,7 +653,7 @@
       "existence": "UNVERIFIED",
       "nameVariant": null,
       "brandDuplicateDetected": false,
-      "verificationNote": "Présence dans le catalogue ne vaut pas preuve d'existence actuelle ni de disponibilité LIVE."
+      "verificationNote": "Le catalogue n'est pas une preuve d'existence actuelle; la disponibilité LIVE doit être vérifiée séparément."
     },
     {
       "id": "dw",
@@ -660,7 +661,7 @@
       "name": "DW",
       "type": "CHANNEL",
       "country": "UNVERIFIED",
-      "region": "International",
+      "region": "UNVERIFIED",
       "language": "UNVERIFIED",
       "status": "CONFIGURED",
       "bouquet": null,
@@ -672,7 +673,7 @@
       "existence": "UNVERIFIED",
       "nameVariant": null,
       "brandDuplicateDetected": false,
-      "verificationNote": "Présence dans le catalogue ne vaut pas preuve d'existence actuelle ni de disponibilité LIVE."
+      "verificationNote": "Le catalogue n'est pas une preuve d'existence actuelle; la disponibilité LIVE doit être vérifiée séparément."
     },
     {
       "id": "euronews",
@@ -680,7 +681,7 @@
       "name": "Euronews",
       "type": "CHANNEL",
       "country": "UNVERIFIED",
-      "region": "International",
+      "region": "UNVERIFIED",
       "language": "UNVERIFIED",
       "status": "CONFIGURED",
       "bouquet": null,
@@ -692,7 +693,7 @@
       "existence": "UNVERIFIED",
       "nameVariant": null,
       "brandDuplicateDetected": false,
-      "verificationNote": "Présence dans le catalogue ne vaut pas preuve d'existence actuelle ni de disponibilité LIVE."
+      "verificationNote": "Le catalogue n'est pas une preuve d'existence actuelle; la disponibilité LIVE doit être vérifiée séparément."
     },
     {
       "id": "fox-business",
@@ -700,7 +701,7 @@
       "name": "Fox Business",
       "type": "CHANNEL",
       "country": "UNVERIFIED",
-      "region": "International",
+      "region": "UNVERIFIED",
       "language": "UNVERIFIED",
       "status": "CONFIGURED",
       "bouquet": null,
@@ -712,7 +713,7 @@
       "existence": "UNVERIFIED",
       "nameVariant": null,
       "brandDuplicateDetected": false,
-      "verificationNote": "Présence dans le catalogue ne vaut pas preuve d'existence actuelle ni de disponibilité LIVE."
+      "verificationNote": "Le catalogue n'est pas une preuve d'existence actuelle; la disponibilité LIVE doit être vérifiée séparément."
     },
     {
       "id": "fox-news",
@@ -720,7 +721,7 @@
       "name": "Fox News",
       "type": "CHANNEL",
       "country": "UNVERIFIED",
-      "region": "International",
+      "region": "UNVERIFIED",
       "language": "UNVERIFIED",
       "status": "CONFIGURED",
       "bouquet": null,
@@ -732,7 +733,7 @@
       "existence": "UNVERIFIED",
       "nameVariant": null,
       "brandDuplicateDetected": false,
-      "verificationNote": "Présence dans le catalogue ne vaut pas preuve d'existence actuelle ni de disponibilité LIVE."
+      "verificationNote": "Le catalogue n'est pas une preuve d'existence actuelle; la disponibilité LIVE doit être vérifiée séparément."
     },
     {
       "id": "france-24",
@@ -740,7 +741,7 @@
       "name": "France 24",
       "type": "CHANNEL",
       "country": "UNVERIFIED",
-      "region": "International",
+      "region": "UNVERIFIED",
       "language": "UNVERIFIED",
       "status": "CONFIGURED",
       "bouquet": null,
@@ -752,7 +753,7 @@
       "existence": "UNVERIFIED",
       "nameVariant": null,
       "brandDuplicateDetected": false,
-      "verificationNote": "Présence dans le catalogue ne vaut pas preuve d'existence actuelle ni de disponibilité LIVE."
+      "verificationNote": "Le catalogue n'est pas une preuve d'existence actuelle; la disponibilité LIVE doit être vérifiée séparément."
     },
     {
       "id": "hln",
@@ -760,7 +761,7 @@
       "name": "HLN",
       "type": "CHANNEL",
       "country": "UNVERIFIED",
-      "region": "International",
+      "region": "UNVERIFIED",
       "language": "UNVERIFIED",
       "status": "CONFIGURED",
       "bouquet": null,
@@ -772,7 +773,7 @@
       "existence": "UNVERIFIED",
       "nameVariant": null,
       "brandDuplicateDetected": false,
-      "verificationNote": "Présence dans le catalogue ne vaut pas preuve d'existence actuelle ni de disponibilité LIVE."
+      "verificationNote": "Le catalogue n'est pas une preuve d'existence actuelle; la disponibilité LIVE doit être vérifiée séparément."
     },
     {
       "id": "i24news",
@@ -780,7 +781,7 @@
       "name": "i24NEWS",
       "type": "CHANNEL",
       "country": "UNVERIFIED",
-      "region": "International",
+      "region": "UNVERIFIED",
       "language": "UNVERIFIED",
       "status": "CONFIGURED",
       "bouquet": null,
@@ -792,7 +793,7 @@
       "existence": "UNVERIFIED",
       "nameVariant": null,
       "brandDuplicateDetected": false,
-      "verificationNote": "Présence dans le catalogue ne vaut pas preuve d'existence actuelle ni de disponibilité LIVE."
+      "verificationNote": "Le catalogue n'est pas une preuve d'existence actuelle; la disponibilité LIVE doit être vérifiée séparément."
     },
     {
       "id": "msnbc",
@@ -800,7 +801,7 @@
       "name": "MSNBC",
       "type": "CHANNEL",
       "country": "UNVERIFIED",
-      "region": "International",
+      "region": "UNVERIFIED",
       "language": "UNVERIFIED",
       "status": "CONFIGURED",
       "bouquet": null,
@@ -812,7 +813,7 @@
       "existence": "UNVERIFIED",
       "nameVariant": null,
       "brandDuplicateDetected": false,
-      "verificationNote": "Présence dans le catalogue ne vaut pas preuve d'existence actuelle ni de disponibilité LIVE."
+      "verificationNote": "Le catalogue n'est pas une preuve d'existence actuelle; la disponibilité LIVE doit être vérifiée séparément."
     },
     {
       "id": "nbc-news-now",
@@ -820,7 +821,7 @@
       "name": "NBC News NOW",
       "type": "CHANNEL",
       "country": "UNVERIFIED",
-      "region": "International",
+      "region": "UNVERIFIED",
       "language": "UNVERIFIED",
       "status": "CONFIGURED",
       "bouquet": null,
@@ -832,7 +833,7 @@
       "existence": "UNVERIFIED",
       "nameVariant": null,
       "brandDuplicateDetected": false,
-      "verificationNote": "Présence dans le catalogue ne vaut pas preuve d'existence actuelle ni de disponibilité LIVE."
+      "verificationNote": "Le catalogue n'est pas une preuve d'existence actuelle; la disponibilité LIVE doit être vérifiée séparément."
     },
     {
       "id": "newsmax",
@@ -840,7 +841,7 @@
       "name": "Newsmax",
       "type": "CHANNEL",
       "country": "UNVERIFIED",
-      "region": "International",
+      "region": "UNVERIFIED",
       "language": "UNVERIFIED",
       "status": "CONFIGURED",
       "bouquet": null,
@@ -852,7 +853,7 @@
       "existence": "UNVERIFIED",
       "nameVariant": null,
       "brandDuplicateDetected": false,
-      "verificationNote": "Présence dans le catalogue ne vaut pas preuve d'existence actuelle ni de disponibilité LIVE."
+      "verificationNote": "Le catalogue n'est pas une preuve d'existence actuelle; la disponibilité LIVE doit être vérifiée séparément."
     },
     {
       "id": "newsnation",
@@ -860,7 +861,7 @@
       "name": "NewsNation",
       "type": "CHANNEL",
       "country": "UNVERIFIED",
-      "region": "International",
+      "region": "UNVERIFIED",
       "language": "UNVERIFIED",
       "status": "CONFIGURED",
       "bouquet": null,
@@ -872,7 +873,7 @@
       "existence": "UNVERIFIED",
       "nameVariant": null,
       "brandDuplicateDetected": false,
-      "verificationNote": "Présence dans le catalogue ne vaut pas preuve d'existence actuelle ni de disponibilité LIVE."
+      "verificationNote": "Le catalogue n'est pas une preuve d'existence actuelle; la disponibilité LIVE doit être vérifiée séparément."
     },
     {
       "id": "nhk-world",
@@ -880,7 +881,7 @@
       "name": "NHK World",
       "type": "CHANNEL",
       "country": "UNVERIFIED",
-      "region": "International",
+      "region": "UNVERIFIED",
       "language": "UNVERIFIED",
       "status": "CONFIGURED",
       "bouquet": null,
@@ -892,7 +893,7 @@
       "existence": "UNVERIFIED",
       "nameVariant": null,
       "brandDuplicateDetected": false,
-      "verificationNote": "Présence dans le catalogue ne vaut pas preuve d'existence actuelle ni de disponibilité LIVE."
+      "verificationNote": "Le catalogue n'est pas une preuve d'existence actuelle; la disponibilité LIVE doit être vérifiée séparément."
     },
     {
       "id": "oan",
@@ -900,7 +901,7 @@
       "name": "OAN",
       "type": "CHANNEL",
       "country": "UNVERIFIED",
-      "region": "International",
+      "region": "UNVERIFIED",
       "language": "UNVERIFIED",
       "status": "CONFIGURED",
       "bouquet": null,
@@ -912,7 +913,7 @@
       "existence": "UNVERIFIED",
       "nameVariant": null,
       "brandDuplicateDetected": false,
-      "verificationNote": "Présence dans le catalogue ne vaut pas preuve d'existence actuelle ni de disponibilité LIVE."
+      "verificationNote": "Le catalogue n'est pas une preuve d'existence actuelle; la disponibilité LIVE doit être vérifiée séparément."
     },
     {
       "id": "sky-news",
@@ -920,7 +921,7 @@
       "name": "Sky News",
       "type": "CHANNEL",
       "country": "UNVERIFIED",
-      "region": "International",
+      "region": "UNVERIFIED",
       "language": "UNVERIFIED",
       "status": "CONFIGURED",
       "bouquet": null,
@@ -932,7 +933,7 @@
       "existence": "UNVERIFIED",
       "nameVariant": null,
       "brandDuplicateDetected": false,
-      "verificationNote": "Présence dans le catalogue ne vaut pas preuve d'existence actuelle ni de disponibilité LIVE."
+      "verificationNote": "Le catalogue n'est pas une preuve d'existence actuelle; la disponibilité LIVE doit être vérifiée séparément."
     },
     {
       "id": "the-weather-channel",
@@ -940,7 +941,7 @@
       "name": "The Weather Channel",
       "type": "CHANNEL",
       "country": "UNVERIFIED",
-      "region": "International",
+      "region": "UNVERIFIED",
       "language": "UNVERIFIED",
       "status": "CONFIGURED",
       "bouquet": null,
@@ -952,7 +953,7 @@
       "existence": "UNVERIFIED",
       "nameVariant": null,
       "brandDuplicateDetected": false,
-      "verificationNote": "Présence dans le catalogue ne vaut pas preuve d'existence actuelle ni de disponibilité LIVE."
+      "verificationNote": "Le catalogue n'est pas une preuve d'existence actuelle; la disponibilité LIVE doit être vérifiée séparément."
     },
     {
       "id": "trt-world",
@@ -960,7 +961,7 @@
       "name": "TRT World",
       "type": "CHANNEL",
       "country": "UNVERIFIED",
-      "region": "International",
+      "region": "UNVERIFIED",
       "language": "UNVERIFIED",
       "status": "CONFIGURED",
       "bouquet": null,
@@ -972,7 +973,7 @@
       "existence": "UNVERIFIED",
       "nameVariant": null,
       "brandDuplicateDetected": false,
-      "verificationNote": "Présence dans le catalogue ne vaut pas preuve d'existence actuelle ni de disponibilité LIVE."
+      "verificationNote": "Le catalogue n'est pas une preuve d'existence actuelle; la disponibilité LIVE doit être vérifiée séparément."
     },
     {
       "id": "infosport",
@@ -980,7 +981,7 @@
       "name": "Infosport",
       "type": "CHANNEL",
       "country": "UNVERIFIED",
-      "region": "International",
+      "region": "UNVERIFIED",
       "language": "UNVERIFIED",
       "status": "CONFIGURED",
       "bouquet": null,
@@ -992,7 +993,7 @@
       "existence": "UNVERIFIED",
       "nameVariant": null,
       "brandDuplicateDetected": false,
-      "verificationNote": "Présence dans le catalogue ne vaut pas preuve d'existence actuelle ni de disponibilité LIVE."
+      "verificationNote": "Le catalogue n'est pas une preuve d'existence actuelle; la disponibilité LIVE doit être vérifiée séparément."
     },
     {
       "id": "sport-1",
@@ -1000,7 +1001,7 @@
       "name": "Sport 1",
       "type": "CHANNEL",
       "country": "UNVERIFIED",
-      "region": "International",
+      "region": "UNVERIFIED",
       "language": "UNVERIFIED",
       "status": "CONFIGURED",
       "bouquet": null,
@@ -1012,7 +1013,7 @@
       "existence": "UNVERIFIED",
       "nameVariant": null,
       "brandDuplicateDetected": false,
-      "verificationNote": "Présence dans le catalogue ne vaut pas preuve d'existence actuelle ni de disponibilité LIVE."
+      "verificationNote": "Le catalogue n'est pas une preuve d'existence actuelle; la disponibilité LIVE doit être vérifiée séparément."
     },
     {
       "id": "sport-2",
@@ -1020,7 +1021,7 @@
       "name": "Sport 2",
       "type": "CHANNEL",
       "country": "UNVERIFIED",
-      "region": "International",
+      "region": "UNVERIFIED",
       "language": "UNVERIFIED",
       "status": "CONFIGURED",
       "bouquet": null,
@@ -1032,7 +1033,7 @@
       "existence": "UNVERIFIED",
       "nameVariant": null,
       "brandDuplicateDetected": false,
-      "verificationNote": "Présence dans le catalogue ne vaut pas preuve d'existence actuelle ni de disponibilité LIVE."
+      "verificationNote": "Le catalogue n'est pas une preuve d'existence actuelle; la disponibilité LIVE doit être vérifiée séparément."
     },
     {
       "id": "sport-3",
@@ -1040,7 +1041,7 @@
       "name": "Sport 3",
       "type": "CHANNEL",
       "country": "UNVERIFIED",
-      "region": "International",
+      "region": "UNVERIFIED",
       "language": "UNVERIFIED",
       "status": "CONFIGURED",
       "bouquet": null,
@@ -1052,7 +1053,7 @@
       "existence": "UNVERIFIED",
       "nameVariant": null,
       "brandDuplicateDetected": false,
-      "verificationNote": "Présence dans le catalogue ne vaut pas preuve d'existence actuelle ni de disponibilité LIVE."
+      "verificationNote": "Le catalogue n'est pas une preuve d'existence actuelle; la disponibilité LIVE doit être vérifiée séparément."
     },
     {
       "id": "sport-4",
@@ -1060,7 +1061,7 @@
       "name": "Sport 4",
       "type": "CHANNEL",
       "country": "UNVERIFIED",
-      "region": "International",
+      "region": "UNVERIFIED",
       "language": "UNVERIFIED",
       "status": "CONFIGURED",
       "bouquet": null,
@@ -1072,7 +1073,7 @@
       "existence": "UNVERIFIED",
       "nameVariant": null,
       "brandDuplicateDetected": false,
-      "verificationNote": "Présence dans le catalogue ne vaut pas preuve d'existence actuelle ni de disponibilité LIVE."
+      "verificationNote": "Le catalogue n'est pas une preuve d'existence actuelle; la disponibilité LIVE doit être vérifiée séparément."
     },
     {
       "id": "ab1",
@@ -1080,7 +1081,7 @@
       "name": "AB1",
       "type": "CHANNEL",
       "country": "UNVERIFIED",
-      "region": "International",
+      "region": "UNVERIFIED",
       "language": "UNVERIFIED",
       "status": "CONFIGURED",
       "bouquet": null,
@@ -1092,7 +1093,7 @@
       "existence": "UNVERIFIED",
       "nameVariant": null,
       "brandDuplicateDetected": false,
-      "verificationNote": "Présence dans le catalogue ne vaut pas preuve d'existence actuelle ni de disponibilité LIVE."
+      "verificationNote": "Le catalogue n'est pas une preuve d'existence actuelle; la disponibilité LIVE doit être vérifiée séparément."
     },
     {
       "id": "action",
@@ -1100,7 +1101,7 @@
       "name": "Action",
       "type": "CHANNEL",
       "country": "UNVERIFIED",
-      "region": "International",
+      "region": "UNVERIFIED",
       "language": "UNVERIFIED",
       "status": "CONFIGURED",
       "bouquet": null,
@@ -1112,7 +1113,7 @@
       "existence": "UNVERIFIED",
       "nameVariant": null,
       "brandDuplicateDetected": false,
-      "verificationNote": "Présence dans le catalogue ne vaut pas preuve d'existence actuelle ni de disponibilité LIVE."
+      "verificationNote": "Le catalogue n'est pas une preuve d'existence actuelle; la disponibilité LIVE doit être vérifiée séparément."
     },
     {
       "id": "c-plus-action",
@@ -1120,7 +1121,7 @@
       "name": "C+ Action",
       "type": "CHANNEL",
       "country": "UNVERIFIED",
-      "region": "International",
+      "region": "UNVERIFIED",
       "language": "UNVERIFIED",
       "status": "CONFIGURED",
       "bouquet": null,
@@ -1132,7 +1133,7 @@
       "existence": "UNVERIFIED",
       "nameVariant": null,
       "brandDuplicateDetected": false,
-      "verificationNote": "Présence dans le catalogue ne vaut pas preuve d'existence actuelle ni de disponibilité LIVE."
+      "verificationNote": "Le catalogue n'est pas une preuve d'existence actuelle; la disponibilité LIVE doit être vérifiée séparément."
     },
     {
       "id": "c-plus-cinema",
@@ -1140,7 +1141,7 @@
       "name": "C+ Cinema",
       "type": "CHANNEL",
       "country": "UNVERIFIED",
-      "region": "International",
+      "region": "UNVERIFIED",
       "language": "UNVERIFIED",
       "status": "CONFIGURED",
       "bouquet": null,
@@ -1152,7 +1153,7 @@
       "existence": "UNVERIFIED",
       "nameVariant": null,
       "brandDuplicateDetected": false,
-      "verificationNote": "Présence dans le catalogue ne vaut pas preuve d'existence actuelle ni de disponibilité LIVE."
+      "verificationNote": "Le catalogue n'est pas une preuve d'existence actuelle; la disponibilité LIVE doit être vérifiée séparément."
     },
     {
       "id": "c-plus-family",
@@ -1160,7 +1161,7 @@
       "name": "C+ Family",
       "type": "CHANNEL",
       "country": "UNVERIFIED",
-      "region": "International",
+      "region": "UNVERIFIED",
       "language": "UNVERIFIED",
       "status": "CONFIGURED",
       "bouquet": null,
@@ -1172,7 +1173,7 @@
       "existence": "UNVERIFIED",
       "nameVariant": null,
       "brandDuplicateDetected": false,
-      "verificationNote": "Présence dans le catalogue ne vaut pas preuve d'existence actuelle ni de disponibilité LIVE."
+      "verificationNote": "Le catalogue n'est pas une preuve d'existence actuelle; la disponibilité LIVE doit être vérifiée séparément."
     },
     {
       "id": "c-plus-magic",
@@ -1180,7 +1181,7 @@
       "name": "C+ Magic",
       "type": "CHANNEL",
       "country": "UNVERIFIED",
-      "region": "International",
+      "region": "UNVERIFIED",
       "language": "UNVERIFIED",
       "status": "CONFIGURED",
       "bouquet": null,
@@ -1192,7 +1193,7 @@
       "existence": "UNVERIFIED",
       "nameVariant": null,
       "brandDuplicateDetected": false,
-      "verificationNote": "Présence dans le catalogue ne vaut pas preuve d'existence actuelle ni de disponibilité LIVE."
+      "verificationNote": "Le catalogue n'est pas une preuve d'existence actuelle; la disponibilité LIVE doit être vérifiée séparément."
     },
     {
       "id": "c-plus-pop",
@@ -1200,7 +1201,7 @@
       "name": "C+ Pop",
       "type": "CHANNEL",
       "country": "UNVERIFIED",
-      "region": "International",
+      "region": "UNVERIFIED",
       "language": "UNVERIFIED",
       "status": "CONFIGURED",
       "bouquet": null,
@@ -1212,7 +1213,7 @@
       "existence": "UNVERIFIED",
       "nameVariant": null,
       "brandDuplicateDetected": false,
-      "verificationNote": "Présence dans le catalogue ne vaut pas preuve d'existence actuelle ni de disponibilité LIVE."
+      "verificationNote": "Le catalogue n'est pas une preuve d'existence actuelle; la disponibilité LIVE doit être vérifiée séparément."
     },
     {
       "id": "charge",
@@ -1220,7 +1221,7 @@
       "name": "Charge!",
       "type": "CHANNEL",
       "country": "UNVERIFIED",
-      "region": "International",
+      "region": "UNVERIFIED",
       "language": "UNVERIFIED",
       "status": "CONFIGURED",
       "bouquet": null,
@@ -1232,7 +1233,7 @@
       "existence": "UNVERIFIED",
       "nameVariant": null,
       "brandDuplicateDetected": false,
-      "verificationNote": "Présence dans le catalogue ne vaut pas preuve d'existence actuelle ni de disponibilité LIVE."
+      "verificationNote": "Le catalogue n'est pas une preuve d'existence actuelle; la disponibilité LIVE doit être vérifiée séparément."
     },
     {
       "id": "cinemax",
@@ -1240,7 +1241,7 @@
       "name": "Cinemax",
       "type": "CHANNEL",
       "country": "UNVERIFIED",
-      "region": "International",
+      "region": "UNVERIFIED",
       "language": "UNVERIFIED",
       "status": "CONFIGURED",
       "bouquet": null,
@@ -1252,7 +1253,7 @@
       "existence": "UNVERIFIED",
       "nameVariant": null,
       "brandDuplicateDetected": false,
-      "verificationNote": "Présence dans le catalogue ne vaut pas preuve d'existence actuelle ni de disponibilité LIVE."
+      "verificationNote": "Le catalogue n'est pas une preuve d'existence actuelle; la disponibilité LIVE doit être vérifiée séparément."
     },
     {
       "id": "comet",
@@ -1260,7 +1261,7 @@
       "name": "Comet",
       "type": "CHANNEL",
       "country": "UNVERIFIED",
-      "region": "International",
+      "region": "UNVERIFIED",
       "language": "UNVERIFIED",
       "status": "CONFIGURED",
       "bouquet": null,
@@ -1272,7 +1273,7 @@
       "existence": "UNVERIFIED",
       "nameVariant": null,
       "brandDuplicateDetected": false,
-      "verificationNote": "Présence dans le catalogue ne vaut pas preuve d'existence actuelle ni de disponibilité LIVE."
+      "verificationNote": "Le catalogue n'est pas une preuve d'existence actuelle; la disponibilité LIVE doit être vérifiée séparément."
     },
     {
       "id": "estrella-tv",
@@ -1280,7 +1281,7 @@
       "name": "Estrella TV",
       "type": "CHANNEL",
       "country": "UNVERIFIED",
-      "region": "International",
+      "region": "UNVERIFIED",
       "language": "UNVERIFIED",
       "status": "CONFIGURED",
       "bouquet": null,
@@ -1292,7 +1293,7 @@
       "existence": "UNVERIFIED",
       "nameVariant": null,
       "brandDuplicateDetected": false,
-      "verificationNote": "Présence dans le catalogue ne vaut pas preuve d'existence actuelle ni de disponibilité LIVE."
+      "verificationNote": "Le catalogue n'est pas une preuve d'existence actuelle; la disponibilité LIVE doit être vérifiée séparément."
     },
     {
       "id": "galavision",
@@ -1300,7 +1301,7 @@
       "name": "Galavisión",
       "type": "CHANNEL",
       "country": "UNVERIFIED",
-      "region": "International",
+      "region": "UNVERIFIED",
       "language": "UNVERIFIED",
       "status": "CONFIGURED",
       "bouquet": null,
@@ -1312,7 +1313,7 @@
       "existence": "UNVERIFIED",
       "nameVariant": null,
       "brandDuplicateDetected": false,
-      "verificationNote": "Présence dans le catalogue ne vaut pas preuve d'existence actuelle ni de disponibilité LIVE."
+      "verificationNote": "Le catalogue n'est pas une preuve d'existence actuelle; la disponibilité LIVE doit être vérifiée séparément."
     },
     {
       "id": "gettv",
@@ -1320,7 +1321,7 @@
       "name": "getTV",
       "type": "CHANNEL",
       "country": "UNVERIFIED",
-      "region": "International",
+      "region": "UNVERIFIED",
       "language": "UNVERIFIED",
       "status": "CONFIGURED",
       "bouquet": null,
@@ -1332,7 +1333,7 @@
       "existence": "UNVERIFIED",
       "nameVariant": null,
       "brandDuplicateDetected": false,
-      "verificationNote": "Présence dans le catalogue ne vaut pas preuve d'existence actuelle ni de disponibilité LIVE."
+      "verificationNote": "Le catalogue n'est pas une preuve d'existence actuelle; la disponibilité LIVE doit être vérifiée séparément."
     },
     {
       "id": "grit",
@@ -1340,7 +1341,7 @@
       "name": "Grit",
       "type": "CHANNEL",
       "country": "UNVERIFIED",
-      "region": "International",
+      "region": "UNVERIFIED",
       "language": "UNVERIFIED",
       "status": "CONFIGURED",
       "bouquet": null,
@@ -1352,7 +1353,7 @@
       "existence": "UNVERIFIED",
       "nameVariant": null,
       "brandDuplicateDetected": false,
-      "verificationNote": "Présence dans le catalogue ne vaut pas preuve d'existence actuelle ni de disponibilité LIVE."
+      "verificationNote": "Le catalogue n'est pas une preuve d'existence actuelle; la disponibilité LIVE doit être vérifiée séparément."
     },
     {
       "id": "m6-films",
@@ -1360,7 +1361,7 @@
       "name": "M6 Films",
       "type": "CHANNEL",
       "country": "UNVERIFIED",
-      "region": "International",
+      "region": "UNVERIFIED",
       "language": "UNVERIFIED",
       "status": "CONFIGURED",
       "bouquet": null,
@@ -1372,7 +1373,7 @@
       "existence": "UNVERIFIED",
       "nameVariant": null,
       "brandDuplicateDetected": false,
-      "verificationNote": "Présence dans le catalogue ne vaut pas preuve d'existence actuelle ni de disponibilité LIVE."
+      "verificationNote": "Le catalogue n'est pas une preuve d'existence actuelle; la disponibilité LIVE doit être vérifiée séparément."
     },
     {
       "id": "mgm-tv",
@@ -1380,7 +1381,7 @@
       "name": "MGM TV",
       "type": "CHANNEL",
       "country": "UNVERIFIED",
-      "region": "International",
+      "region": "UNVERIFIED",
       "language": "UNVERIFIED",
       "status": "CONFIGURED",
       "bouquet": null,
@@ -1392,7 +1393,7 @@
       "existence": "UNVERIFIED",
       "nameVariant": null,
       "brandDuplicateDetected": false,
-      "verificationNote": "Présence dans le catalogue ne vaut pas preuve d'existence actuelle ni de disponibilité LIVE."
+      "verificationNote": "Le catalogue n'est pas une preuve d'existence actuelle; la disponibilité LIVE doit être vérifiée séparément."
     },
     {
       "id": "movies",
@@ -1400,7 +1401,7 @@
       "name": "Movies!",
       "type": "CHANNEL",
       "country": "UNVERIFIED",
-      "region": "International",
+      "region": "UNVERIFIED",
       "language": "UNVERIFIED",
       "status": "CONFIGURED",
       "bouquet": null,
@@ -1412,7 +1413,7 @@
       "existence": "UNVERIFIED",
       "nameVariant": null,
       "brandDuplicateDetected": false,
-      "verificationNote": "Présence dans le catalogue ne vaut pas preuve d'existence actuelle ni de disponibilité LIVE."
+      "verificationNote": "Le catalogue n'est pas une preuve d'existence actuelle; la disponibilité LIVE doit être vérifiée séparément."
     },
     {
       "id": "netflix",
@@ -1420,7 +1421,7 @@
       "name": "Netflix",
       "type": "CHANNEL",
       "country": "UNVERIFIED",
-      "region": "International",
+      "region": "UNVERIFIED",
       "language": "UNVERIFIED",
       "status": "EXTERNAL",
       "bouquet": null,
@@ -1432,7 +1433,7 @@
       "existence": "UNVERIFIED",
       "nameVariant": null,
       "brandDuplicateDetected": false,
-      "verificationNote": "Présence dans le catalogue ne vaut pas preuve d'existence actuelle ni de disponibilité LIVE."
+      "verificationNote": "Le catalogue n'est pas une preuve d'existence actuelle; la disponibilité LIVE doit être vérifiée séparément."
     },
     {
       "id": "peacock",
@@ -1440,7 +1441,7 @@
       "name": "Peacock",
       "type": "CHANNEL",
       "country": "UNVERIFIED",
-      "region": "International",
+      "region": "UNVERIFIED",
       "language": "UNVERIFIED",
       "status": "CONFIGURED",
       "bouquet": null,
@@ -1452,7 +1453,7 @@
       "existence": "UNVERIFIED",
       "nameVariant": null,
       "brandDuplicateDetected": false,
-      "verificationNote": "Présence dans le catalogue ne vaut pas preuve d'existence actuelle ni de disponibilité LIVE."
+      "verificationNote": "Le catalogue n'est pas une preuve d'existence actuelle; la disponibilité LIVE doit être vérifiée séparément."
     },
     {
       "id": "pluto-tv",
@@ -1460,7 +1461,7 @@
       "name": "Pluto TV",
       "type": "CHANNEL",
       "country": "UNVERIFIED",
-      "region": "International",
+      "region": "UNVERIFIED",
       "language": "UNVERIFIED",
       "status": "CONFIGURED",
       "bouquet": null,
@@ -1472,7 +1473,7 @@
       "existence": "UNVERIFIED",
       "nameVariant": null,
       "brandDuplicateDetected": false,
-      "verificationNote": "Présence dans le catalogue ne vaut pas preuve d'existence actuelle ni de disponibilité LIVE."
+      "verificationNote": "Le catalogue n'est pas une preuve d'existence actuelle; la disponibilité LIVE doit être vérifiée séparément."
     },
     {
       "id": "rtl-9",
@@ -1480,7 +1481,7 @@
       "name": "RTL 9",
       "type": "CHANNEL",
       "country": "UNVERIFIED",
-      "region": "International",
+      "region": "UNVERIFIED",
       "language": "UNVERIFIED",
       "status": "CONFIGURED",
       "bouquet": null,
@@ -1492,7 +1493,7 @@
       "existence": "UNVERIFIED",
       "nameVariant": null,
       "brandDuplicateDetected": false,
-      "verificationNote": "Présence dans le catalogue ne vaut pas preuve d'existence actuelle ni de disponibilité LIVE."
+      "verificationNote": "Le catalogue n'est pas une preuve d'existence actuelle; la disponibilité LIVE doit être vérifiée séparément."
     },
     {
       "id": "sci-fi",
@@ -1500,7 +1501,7 @@
       "name": "Sci-Fi",
       "type": "CHANNEL",
       "country": "UNVERIFIED",
-      "region": "International",
+      "region": "UNVERIFIED",
       "language": "UNVERIFIED",
       "status": "CONFIGURED",
       "bouquet": null,
@@ -1512,7 +1513,7 @@
       "existence": "UNVERIFIED",
       "nameVariant": null,
       "brandDuplicateDetected": false,
-      "verificationNote": "Présence dans le catalogue ne vaut pas preuve d'existence actuelle ni de disponibilité LIVE."
+      "verificationNote": "Le catalogue n'est pas une preuve d'existence actuelle; la disponibilité LIVE doit être vérifiée séparément."
     },
     {
       "id": "tcm",
@@ -1520,7 +1521,7 @@
       "name": "TCM",
       "type": "CHANNEL",
       "country": "UNVERIFIED",
-      "region": "International",
+      "region": "UNVERIFIED",
       "language": "UNVERIFIED",
       "status": "CONFIGURED",
       "bouquet": null,
@@ -1532,7 +1533,7 @@
       "existence": "UNVERIFIED",
       "nameVariant": null,
       "brandDuplicateDetected": false,
-      "verificationNote": "Présence dans le catalogue ne vaut pas preuve d'existence actuelle ni de disponibilité LIVE."
+      "verificationNote": "Le catalogue n'est pas une preuve d'existence actuelle; la disponibilité LIVE doit être vérifiée séparément."
     },
     {
       "id": "telemundo",
@@ -1540,7 +1541,7 @@
       "name": "Telemundo",
       "type": "CHANNEL",
       "country": "UNVERIFIED",
-      "region": "International",
+      "region": "UNVERIFIED",
       "language": "UNVERIFIED",
       "status": "CONFIGURED",
       "bouquet": null,
@@ -1552,7 +1553,7 @@
       "existence": "UNVERIFIED",
       "nameVariant": null,
       "brandDuplicateDetected": false,
-      "verificationNote": "Présence dans le catalogue ne vaut pas preuve d'existence actuelle ni de disponibilité LIVE."
+      "verificationNote": "Le catalogue n'est pas une preuve d'existence actuelle; la disponibilité LIVE doit être vérifiée séparément."
     },
     {
       "id": "tubi",
@@ -1560,7 +1561,7 @@
       "name": "Tubi",
       "type": "CHANNEL",
       "country": "UNVERIFIED",
-      "region": "International",
+      "region": "UNVERIFIED",
       "language": "UNVERIFIED",
       "status": "CONFIGURED",
       "bouquet": null,
@@ -1572,7 +1573,7 @@
       "existence": "UNVERIFIED",
       "nameVariant": null,
       "brandDuplicateDetected": false,
-      "verificationNote": "Présence dans le catalogue ne vaut pas preuve d'existence actuelle ni de disponibilité LIVE."
+      "verificationNote": "Le catalogue n'est pas une preuve d'existence actuelle; la disponibilité LIVE doit être vérifiée séparément."
     },
     {
       "id": "unimas",
@@ -1580,7 +1581,7 @@
       "name": "UniMás",
       "type": "CHANNEL",
       "country": "UNVERIFIED",
-      "region": "International",
+      "region": "UNVERIFIED",
       "language": "UNVERIFIED",
       "status": "CONFIGURED",
       "bouquet": null,
@@ -1592,7 +1593,7 @@
       "existence": "UNVERIFIED",
       "nameVariant": null,
       "brandDuplicateDetected": false,
-      "verificationNote": "Présence dans le catalogue ne vaut pas preuve d'existence actuelle ni de disponibilité LIVE."
+      "verificationNote": "Le catalogue n'est pas une preuve d'existence actuelle; la disponibilité LIVE doit être vérifiée séparément."
     },
     {
       "id": "univision",
@@ -1600,7 +1601,7 @@
       "name": "Univision",
       "type": "CHANNEL",
       "country": "UNVERIFIED",
-      "region": "International",
+      "region": "UNVERIFIED",
       "language": "UNVERIFIED",
       "status": "CONFIGURED",
       "bouquet": null,
@@ -1612,7 +1613,7 @@
       "existence": "UNVERIFIED",
       "nameVariant": null,
       "brandDuplicateDetected": false,
-      "verificationNote": "Présence dans le catalogue ne vaut pas preuve d'existence actuelle ni de disponibilité LIVE."
+      "verificationNote": "Le catalogue n'est pas une preuve d'existence actuelle; la disponibilité LIVE doit être vérifiée séparément."
     },
     {
       "id": "13eme-rue",
@@ -1620,7 +1621,7 @@
       "name": "13ème Rue",
       "type": "CHANNEL",
       "country": "UNVERIFIED",
-      "region": "International",
+      "region": "UNVERIFIED",
       "language": "UNVERIFIED",
       "status": "CONFIGURED",
       "bouquet": null,
@@ -1632,7 +1633,7 @@
       "existence": "UNVERIFIED",
       "nameVariant": null,
       "brandDuplicateDetected": false,
-      "verificationNote": "Présence dans le catalogue ne vaut pas preuve d'existence actuelle ni de disponibilité LIVE."
+      "verificationNote": "Le catalogue n'est pas une preuve d'existence actuelle; la disponibilité LIVE doit être vérifiée séparément."
     },
     {
       "id": "amc",
@@ -1640,7 +1641,7 @@
       "name": "AMC",
       "type": "CHANNEL",
       "country": "UNVERIFIED",
-      "region": "International",
+      "region": "UNVERIFIED",
       "language": "UNVERIFIED",
       "status": "CONFIGURED",
       "bouquet": null,
@@ -1652,7 +1653,7 @@
       "existence": "UNVERIFIED",
       "nameVariant": null,
       "brandDuplicateDetected": false,
-      "verificationNote": "Présence dans le catalogue ne vaut pas preuve d'existence actuelle ni de disponibilité LIVE."
+      "verificationNote": "Le catalogue n'est pas une preuve d'existence actuelle; la disponibilité LIVE doit être vérifiée séparément."
     },
     {
       "id": "bravo",
@@ -1660,7 +1661,7 @@
       "name": "Bravo",
       "type": "CHANNEL",
       "country": "UNVERIFIED",
-      "region": "International",
+      "region": "UNVERIFIED",
       "language": "UNVERIFIED",
       "status": "CONFIGURED",
       "bouquet": null,
@@ -1672,7 +1673,7 @@
       "existence": "UNVERIFIED",
       "nameVariant": null,
       "brandDuplicateDetected": false,
-      "verificationNote": "Présence dans le catalogue ne vaut pas preuve d'existence actuelle ni de disponibilité LIVE."
+      "verificationNote": "Le catalogue n'est pas une preuve d'existence actuelle; la disponibilité LIVE doit être vérifiée séparément."
     },
     {
       "id": "freeform",
@@ -1680,7 +1681,7 @@
       "name": "Freeform",
       "type": "CHANNEL",
       "country": "UNVERIFIED",
-      "region": "International",
+      "region": "UNVERIFIED",
       "language": "UNVERIFIED",
       "status": "CONFIGURED",
       "bouquet": null,
@@ -1692,7 +1693,7 @@
       "existence": "UNVERIFIED",
       "nameVariant": null,
       "brandDuplicateDetected": false,
-      "verificationNote": "Présence dans le catalogue ne vaut pas preuve d'existence actuelle ni de disponibilité LIVE."
+      "verificationNote": "Le catalogue n'est pas une preuve d'existence actuelle; la disponibilité LIVE doit être vérifiée séparément."
     },
     {
       "id": "fx",
@@ -1700,7 +1701,7 @@
       "name": "FX",
       "type": "CHANNEL",
       "country": "UNVERIFIED",
-      "region": "International",
+      "region": "UNVERIFIED",
       "language": "UNVERIFIED",
       "status": "CONFIGURED",
       "bouquet": null,
@@ -1712,7 +1713,7 @@
       "existence": "UNVERIFIED",
       "nameVariant": null,
       "brandDuplicateDetected": false,
-      "verificationNote": "Présence dans le catalogue ne vaut pas preuve d'existence actuelle ni de disponibilité LIVE."
+      "verificationNote": "Le catalogue n'est pas une preuve d'existence actuelle; la disponibilité LIVE doit être vérifiée séparément."
     },
     {
       "id": "fxx",
@@ -1720,7 +1721,7 @@
       "name": "FXX",
       "type": "CHANNEL",
       "country": "UNVERIFIED",
-      "region": "International",
+      "region": "UNVERIFIED",
       "language": "UNVERIFIED",
       "status": "CONFIGURED",
       "bouquet": null,
@@ -1732,7 +1733,7 @@
       "existence": "UNVERIFIED",
       "nameVariant": null,
       "brandDuplicateDetected": false,
-      "verificationNote": "Présence dans le catalogue ne vaut pas preuve d'existence actuelle ni de disponibilité LIVE."
+      "verificationNote": "Le catalogue n'est pas une preuve d'existence actuelle; la disponibilité LIVE doit être vérifiée séparément."
     },
     {
       "id": "hallmark-drama",
@@ -1740,7 +1741,7 @@
       "name": "Hallmark Drama",
       "type": "CHANNEL",
       "country": "UNVERIFIED",
-      "region": "International",
+      "region": "UNVERIFIED",
       "language": "UNVERIFIED",
       "status": "CONFIGURED",
       "bouquet": null,
@@ -1752,7 +1753,7 @@
       "existence": "UNVERIFIED",
       "nameVariant": null,
       "brandDuplicateDetected": false,
-      "verificationNote": "Présence dans le catalogue ne vaut pas preuve d'existence actuelle ni de disponibilité LIVE."
+      "verificationNote": "Le catalogue n'est pas une preuve d'existence actuelle; la disponibilité LIVE doit être vérifiée séparément."
     },
     {
       "id": "hbo",
@@ -1760,7 +1761,7 @@
       "name": "HBO",
       "type": "CHANNEL",
       "country": "UNVERIFIED",
-      "region": "International",
+      "region": "UNVERIFIED",
       "language": "UNVERIFIED",
       "status": "CONFIGURED",
       "bouquet": null,
@@ -1772,7 +1773,7 @@
       "existence": "UNVERIFIED",
       "nameVariant": null,
       "brandDuplicateDetected": false,
-      "verificationNote": "Présence dans le catalogue ne vaut pas preuve d'existence actuelle ni de disponibilité LIVE."
+      "verificationNote": "Le catalogue n'est pas une preuve d'existence actuelle; la disponibilité LIVE doit être vérifiée séparément."
     },
     {
       "id": "heroes-icons",
@@ -1780,7 +1781,7 @@
       "name": "Heroes & Icons",
       "type": "CHANNEL",
       "country": "UNVERIFIED",
-      "region": "International",
+      "region": "UNVERIFIED",
       "language": "UNVERIFIED",
       "status": "CONFIGURED",
       "bouquet": null,
@@ -1792,7 +1793,7 @@
       "existence": "UNVERIFIED",
       "nameVariant": null,
       "brandDuplicateDetected": false,
-      "verificationNote": "Présence dans le catalogue ne vaut pas preuve d'existence actuelle ni de disponibilité LIVE."
+      "verificationNote": "Le catalogue n'est pas une preuve d'existence actuelle; la disponibilité LIVE doit être vérifiée séparément."
     },
     {
       "id": "ifc",
@@ -1800,7 +1801,7 @@
       "name": "IFC",
       "type": "CHANNEL",
       "country": "UNVERIFIED",
-      "region": "International",
+      "region": "UNVERIFIED",
       "language": "UNVERIFIED",
       "status": "CONFIGURED",
       "bouquet": null,
@@ -1812,7 +1813,7 @@
       "existence": "UNVERIFIED",
       "nameVariant": null,
       "brandDuplicateDetected": false,
-      "verificationNote": "Présence dans le catalogue ne vaut pas preuve d'existence actuelle ni de disponibilité LIVE."
+      "verificationNote": "Le catalogue n'est pas une preuve d'existence actuelle; la disponibilité LIVE doit être vérifiée séparément."
     },
     {
       "id": "ion",
@@ -1820,7 +1821,7 @@
       "name": "Ion",
       "type": "CHANNEL",
       "country": "UNVERIFIED",
-      "region": "International",
+      "region": "UNVERIFIED",
       "language": "UNVERIFIED",
       "status": "CONFIGURED",
       "bouquet": null,
@@ -1832,7 +1833,7 @@
       "existence": "UNVERIFIED",
       "nameVariant": null,
       "brandDuplicateDetected": false,
-      "verificationNote": "Présence dans le catalogue ne vaut pas preuve d'existence actuelle ni de disponibilité LIVE."
+      "verificationNote": "Le catalogue n'est pas une preuve d'existence actuelle; la disponibilité LIVE doit être vérifiée séparément."
     },
     {
       "id": "lifetime",
@@ -1840,7 +1841,7 @@
       "name": "Lifetime",
       "type": "CHANNEL",
       "country": "UNVERIFIED",
-      "region": "International",
+      "region": "UNVERIFIED",
       "language": "UNVERIFIED",
       "status": "CONFIGURED",
       "bouquet": null,
@@ -1852,7 +1853,7 @@
       "existence": "UNVERIFIED",
       "nameVariant": null,
       "brandDuplicateDetected": false,
-      "verificationNote": "Présence dans le catalogue ne vaut pas preuve d'existence actuelle ni de disponibilité LIVE."
+      "verificationNote": "Le catalogue n'est pas une preuve d'existence actuelle; la disponibilité LIVE doit être vérifiée séparément."
     },
     {
       "id": "mgm-plus",
@@ -1860,7 +1861,7 @@
       "name": "MGM+",
       "type": "CHANNEL",
       "country": "UNVERIFIED",
-      "region": "International",
+      "region": "UNVERIFIED",
       "language": "UNVERIFIED",
       "status": "CONFIGURED",
       "bouquet": null,
@@ -1872,7 +1873,7 @@
       "existence": "UNVERIFIED",
       "nameVariant": null,
       "brandDuplicateDetected": false,
-      "verificationNote": "Présence dans le catalogue ne vaut pas preuve d'existence actuelle ni de disponibilité LIVE."
+      "verificationNote": "Le catalogue n'est pas une preuve d'existence actuelle; la disponibilité LIVE doit être vérifiée séparément."
     },
     {
       "id": "novelas-plus",
@@ -1880,7 +1881,7 @@
       "name": "Novelas+",
       "type": "CHANNEL",
       "country": "UNVERIFIED",
-      "region": "International",
+      "region": "UNVERIFIED",
       "language": "UNVERIFIED",
       "status": "CONFIGURED",
       "bouquet": null,
@@ -1892,7 +1893,7 @@
       "existence": "UNVERIFIED",
       "nameVariant": null,
       "brandDuplicateDetected": false,
-      "verificationNote": "Présence dans le catalogue ne vaut pas preuve d'existence actuelle ni de disponibilité LIVE."
+      "verificationNote": "Le catalogue n'est pas une preuve d'existence actuelle; la disponibilité LIVE doit être vérifiée séparément."
     },
     {
       "id": "paramount-network",
@@ -1900,7 +1901,7 @@
       "name": "Paramount Network",
       "type": "CHANNEL",
       "country": "UNVERIFIED",
-      "region": "International",
+      "region": "UNVERIFIED",
       "language": "UNVERIFIED",
       "status": "CONFIGURED",
       "bouquet": null,
@@ -1912,7 +1913,7 @@
       "existence": "UNVERIFIED",
       "nameVariant": null,
       "brandDuplicateDetected": false,
-      "verificationNote": "Présence dans le catalogue ne vaut pas preuve d'existence actuelle ni de disponibilité LIVE."
+      "verificationNote": "Le catalogue n'est pas une preuve d'existence actuelle; la disponibilité LIVE doit être vérifiée séparément."
     },
     {
       "id": "s-plus-premiere",
@@ -1920,7 +1921,7 @@
       "name": "S+ Première",
       "type": "CHANNEL",
       "country": "UNVERIFIED",
-      "region": "International",
+      "region": "UNVERIFIED",
       "language": "UNVERIFIED",
       "status": "CONFIGURED",
       "bouquet": null,
@@ -1932,7 +1933,7 @@
       "existence": "UNVERIFIED",
       "nameVariant": null,
       "brandDuplicateDetected": false,
-      "verificationNote": "Présence dans le catalogue ne vaut pas preuve d'existence actuelle ni de disponibilité LIVE."
+      "verificationNote": "Le catalogue n'est pas une preuve d'existence actuelle; la disponibilité LIVE doit être vérifiée séparément."
     },
     {
       "id": "s-plus-avant-premiere",
@@ -1952,7 +1953,7 @@
       "existence": "UNVERIFIED",
       "nameVariant": null,
       "brandDuplicateDetected": false,
-      "verificationNote": "Présence dans le catalogue ne vaut pas preuve d'existence actuelle ni de disponibilité LIVE."
+      "verificationNote": "Le catalogue n'est pas une preuve d'existence actuelle; la disponibilité LIVE doit être vérifiée séparément."
     },
     {
       "id": "serie-club",
@@ -1960,7 +1961,7 @@
       "name": "Série Club",
       "type": "CHANNEL",
       "country": "UNVERIFIED",
-      "region": "International",
+      "region": "UNVERIFIED",
       "language": "UNVERIFIED",
       "status": "CONFIGURED",
       "bouquet": null,
@@ -1972,7 +1973,7 @@
       "existence": "UNVERIFIED",
       "nameVariant": null,
       "brandDuplicateDetected": false,
-      "verificationNote": "Présence dans le catalogue ne vaut pas preuve d'existence actuelle ni de disponibilité LIVE."
+      "verificationNote": "Le catalogue n'est pas une preuve d'existence actuelle; la disponibilité LIVE doit être vérifiée séparément."
     },
     {
       "id": "showtime",
@@ -1980,7 +1981,7 @@
       "name": "Showtime",
       "type": "CHANNEL",
       "country": "UNVERIFIED",
-      "region": "International",
+      "region": "UNVERIFIED",
       "language": "UNVERIFIED",
       "status": "CONFIGURED",
       "bouquet": null,
@@ -1992,7 +1993,7 @@
       "existence": "UNVERIFIED",
       "nameVariant": null,
       "brandDuplicateDetected": false,
-      "verificationNote": "Présence dans le catalogue ne vaut pas preuve d'existence actuelle ni de disponibilité LIVE."
+      "verificationNote": "Le catalogue n'est pas une preuve d'existence actuelle; la disponibilité LIVE doit être vérifiée séparément."
     },
     {
       "id": "starz",
@@ -2000,7 +2001,7 @@
       "name": "Starz",
       "type": "CHANNEL",
       "country": "UNVERIFIED",
-      "region": "International",
+      "region": "UNVERIFIED",
       "language": "UNVERIFIED",
       "status": "CONFIGURED",
       "bouquet": null,
@@ -2012,7 +2013,7 @@
       "existence": "UNVERIFIED",
       "nameVariant": null,
       "brandDuplicateDetected": false,
-      "verificationNote": "Présence dans le catalogue ne vaut pas preuve d'existence actuelle ni de disponibilité LIVE."
+      "verificationNote": "Le catalogue n'est pas une preuve d'existence actuelle; la disponibilité LIVE doit être vérifiée séparément."
     },
     {
       "id": "sundance-tv",
@@ -2020,7 +2021,7 @@
       "name": "Sundance TV",
       "type": "CHANNEL",
       "country": "UNVERIFIED",
-      "region": "International",
+      "region": "UNVERIFIED",
       "language": "UNVERIFIED",
       "status": "CONFIGURED",
       "bouquet": null,
@@ -2032,7 +2033,7 @@
       "existence": "UNVERIFIED",
       "nameVariant": null,
       "brandDuplicateDetected": false,
-      "verificationNote": "Présence dans le catalogue ne vaut pas preuve d'existence actuelle ni de disponibilité LIVE."
+      "verificationNote": "Le catalogue n'est pas une preuve d'existence actuelle; la disponibilité LIVE doit être vérifiée séparément."
     },
     {
       "id": "syfy",
@@ -2040,7 +2041,7 @@
       "name": "Syfy",
       "type": "CHANNEL",
       "country": "UNVERIFIED",
-      "region": "International",
+      "region": "UNVERIFIED",
       "language": "UNVERIFIED",
       "status": "CONFIGURED",
       "bouquet": null,
@@ -2052,7 +2053,7 @@
       "existence": "UNVERIFIED",
       "nameVariant": null,
       "brandDuplicateDetected": false,
-      "verificationNote": "Présence dans le catalogue ne vaut pas preuve d'existence actuelle ni de disponibilité LIVE."
+      "verificationNote": "Le catalogue n'est pas une preuve d'existence actuelle; la disponibilité LIVE doit être vérifiée séparément."
     },
     {
       "id": "tbs",
@@ -2060,7 +2061,7 @@
       "name": "TBS",
       "type": "CHANNEL",
       "country": "UNVERIFIED",
-      "region": "International",
+      "region": "UNVERIFIED",
       "language": "UNVERIFIED",
       "status": "CONFIGURED",
       "bouquet": null,
@@ -2072,7 +2073,7 @@
       "existence": "UNVERIFIED",
       "nameVariant": null,
       "brandDuplicateDetected": false,
-      "verificationNote": "Présence dans le catalogue ne vaut pas preuve d'existence actuelle ni de disponibilité LIVE."
+      "verificationNote": "Le catalogue n'est pas une preuve d'existence actuelle; la disponibilité LIVE doit être vérifiée séparément."
     },
     {
       "id": "tf1-series-films",
@@ -2080,7 +2081,7 @@
       "name": "TF1 Séries Films",
       "type": "CHANNEL",
       "country": "UNVERIFIED",
-      "region": "International",
+      "region": "UNVERIFIED",
       "language": "UNVERIFIED",
       "status": "CONFIGURED",
       "bouquet": null,
@@ -2092,7 +2093,7 @@
       "existence": "UNVERIFIED",
       "nameVariant": null,
       "brandDuplicateDetected": false,
-      "verificationNote": "Présence dans le catalogue ne vaut pas preuve d'existence actuelle ni de disponibilité LIVE."
+      "verificationNote": "Le catalogue n'est pas une preuve d'existence actuelle; la disponibilité LIVE doit être vérifiée séparément."
     },
     {
       "id": "tnt",
@@ -2100,7 +2101,7 @@
       "name": "TNT",
       "type": "CHANNEL",
       "country": "UNVERIFIED",
-      "region": "International",
+      "region": "UNVERIFIED",
       "language": "UNVERIFIED",
       "status": "CONFIGURED",
       "bouquet": null,
@@ -2112,7 +2113,7 @@
       "existence": "UNVERIFIED",
       "nameVariant": null,
       "brandDuplicateDetected": false,
-      "verificationNote": "Présence dans le catalogue ne vaut pas preuve d'existence actuelle ni de disponibilité LIVE."
+      "verificationNote": "Le catalogue n'est pas une preuve d'existence actuelle; la disponibilité LIVE doit être vérifiée séparément."
     },
     {
       "id": "usa-network",
@@ -2120,7 +2121,7 @@
       "name": "USA Network",
       "type": "CHANNEL",
       "country": "UNVERIFIED",
-      "region": "International",
+      "region": "UNVERIFIED",
       "language": "UNVERIFIED",
       "status": "CONFIGURED",
       "bouquet": null,
@@ -2132,7 +2133,7 @@
       "existence": "UNVERIFIED",
       "nameVariant": null,
       "brandDuplicateDetected": false,
-      "verificationNote": "Présence dans le catalogue ne vaut pas preuve d'existence actuelle ni de disponibilité LIVE."
+      "verificationNote": "Le catalogue n'est pas une preuve d'existence actuelle; la disponibilité LIVE doit être vérifiée séparément."
     },
     {
       "id": "a-plus-kids",
@@ -2140,7 +2141,7 @@
       "name": "A+ Kids",
       "type": "CHANNEL",
       "country": "UNVERIFIED",
-      "region": "International",
+      "region": "UNVERIFIED",
       "language": "UNVERIFIED",
       "status": "CONFIGURED",
       "bouquet": null,
@@ -2152,7 +2153,7 @@
       "existence": "UNVERIFIED",
       "nameVariant": null,
       "brandDuplicateDetected": false,
-      "verificationNote": "Présence dans le catalogue ne vaut pas preuve d'existence actuelle ni de disponibilité LIVE."
+      "verificationNote": "Le catalogue n'est pas une preuve d'existence actuelle; la disponibilité LIVE doit être vérifiée séparément."
     },
     {
       "id": "boing",
@@ -2160,7 +2161,7 @@
       "name": "Boing",
       "type": "CHANNEL",
       "country": "UNVERIFIED",
-      "region": "International",
+      "region": "UNVERIFIED",
       "language": "UNVERIFIED",
       "status": "CONFIGURED",
       "bouquet": null,
@@ -2172,7 +2173,7 @@
       "existence": "UNVERIFIED",
       "nameVariant": null,
       "brandDuplicateDetected": false,
-      "verificationNote": "Présence dans le catalogue ne vaut pas preuve d'existence actuelle ni de disponibilité LIVE."
+      "verificationNote": "Le catalogue n'est pas une preuve d'existence actuelle; la disponibilité LIVE doit être vérifiée séparément."
     },
     {
       "id": "boomerang",
@@ -2180,7 +2181,7 @@
       "name": "Boomerang",
       "type": "CHANNEL",
       "country": "UNVERIFIED",
-      "region": "International",
+      "region": "UNVERIFIED",
       "language": "UNVERIFIED",
       "status": "CONFIGURED",
       "bouquet": null,
@@ -2192,7 +2193,7 @@
       "existence": "UNVERIFIED",
       "nameVariant": null,
       "brandDuplicateDetected": false,
-      "verificationNote": "Présence dans le catalogue ne vaut pas preuve d'existence actuelle ni de disponibilité LIVE."
+      "verificationNote": "Le catalogue n'est pas une preuve d'existence actuelle; la disponibilité LIVE doit être vérifiée séparément."
     },
     {
       "id": "boomerang-plus-1",
@@ -2200,7 +2201,7 @@
       "name": "Boomerang +1",
       "type": "CHANNEL",
       "country": "UNVERIFIED",
-      "region": "International",
+      "region": "UNVERIFIED",
       "language": "UNVERIFIED",
       "status": "CONFIGURED",
       "bouquet": null,
@@ -2212,7 +2213,7 @@
       "existence": "UNVERIFIED",
       "nameVariant": null,
       "brandDuplicateDetected": false,
-      "verificationNote": "Présence dans le catalogue ne vaut pas preuve d'existence actuelle ni de disponibilité LIVE."
+      "verificationNote": "Le catalogue n'est pas une preuve d'existence actuelle; la disponibilité LIVE doit être vérifiée séparément."
     },
     {
       "id": "canal-j",
@@ -2220,7 +2221,7 @@
       "name": "Canal J",
       "type": "CHANNEL",
       "country": "UNVERIFIED",
-      "region": "International",
+      "region": "UNVERIFIED",
       "language": "UNVERIFIED",
       "status": "CONFIGURED",
       "bouquet": null,
@@ -2232,7 +2233,7 @@
       "existence": "UNVERIFIED",
       "nameVariant": null,
       "brandDuplicateDetected": false,
-      "verificationNote": "Présence dans le catalogue ne vaut pas preuve d'existence actuelle ni de disponibilité LIVE."
+      "verificationNote": "Le catalogue n'est pas une preuve d'existence actuelle; la disponibilité LIVE doit être vérifiée séparément."
     },
     {
       "id": "canal-kids",
@@ -2240,7 +2241,7 @@
       "name": "Canal+ Kids",
       "type": "CHANNEL",
       "country": "UNVERIFIED",
-      "region": "International",
+      "region": "UNVERIFIED",
       "language": "UNVERIFIED",
       "status": "CONFIGURED",
       "bouquet": null,
@@ -2252,7 +2253,7 @@
       "existence": "UNVERIFIED",
       "nameVariant": null,
       "brandDuplicateDetected": false,
-      "verificationNote": "Présence dans le catalogue ne vaut pas preuve d'existence actuelle ni de disponibilité LIVE."
+      "verificationNote": "Le catalogue n'est pas une preuve d'existence actuelle; la disponibilité LIVE doit être vérifiée séparément."
     },
     {
       "id": "cartoonito",
@@ -2260,7 +2261,7 @@
       "name": "Cartoonito",
       "type": "CHANNEL",
       "country": "UNVERIFIED",
-      "region": "International",
+      "region": "UNVERIFIED",
       "language": "UNVERIFIED",
       "status": "CONFIGURED",
       "bouquet": null,
@@ -2272,7 +2273,7 @@
       "existence": "UNVERIFIED",
       "nameVariant": null,
       "brandDuplicateDetected": false,
-      "verificationNote": "Présence dans le catalogue ne vaut pas preuve d'existence actuelle ni de disponibilité LIVE."
+      "verificationNote": "Le catalogue n'est pas une preuve d'existence actuelle; la disponibilité LIVE doit être vérifiée séparément."
     },
     {
       "id": "cartoon-network",
@@ -2280,7 +2281,7 @@
       "name": "Cartoon Network",
       "type": "CHANNEL",
       "country": "UNVERIFIED",
-      "region": "International",
+      "region": "UNVERIFIED",
       "language": "UNVERIFIED",
       "status": "CONFIGURED",
       "bouquet": null,
@@ -2292,7 +2293,7 @@
       "existence": "UNVERIFIED",
       "nameVariant": null,
       "brandDuplicateDetected": false,
-      "verificationNote": "Présence dans le catalogue ne vaut pas preuve d'existence actuelle ni de disponibilité LIVE."
+      "verificationNote": "Le catalogue n'est pas une preuve d'existence actuelle; la disponibilité LIVE doit être vérifiée séparément."
     },
     {
       "id": "disney-channel",
@@ -2300,7 +2301,7 @@
       "name": "Disney Channel",
       "type": "CHANNEL",
       "country": "UNVERIFIED",
-      "region": "International",
+      "region": "UNVERIFIED",
       "language": "UNVERIFIED",
       "status": "CONFIGURED",
       "bouquet": null,
@@ -2312,7 +2313,7 @@
       "existence": "UNVERIFIED",
       "nameVariant": null,
       "brandDuplicateDetected": false,
-      "verificationNote": "Présence dans le catalogue ne vaut pas preuve d'existence actuelle ni de disponibilité LIVE."
+      "verificationNote": "Le catalogue n'est pas une preuve d'existence actuelle; la disponibilité LIVE doit être vérifiée séparément."
     },
     {
       "id": "disney-junior",
@@ -2320,7 +2321,7 @@
       "name": "Disney Junior",
       "type": "CHANNEL",
       "country": "UNVERIFIED",
-      "region": "International",
+      "region": "UNVERIFIED",
       "language": "UNVERIFIED",
       "status": "CONFIGURED",
       "bouquet": null,
@@ -2332,7 +2333,7 @@
       "existence": "UNVERIFIED",
       "nameVariant": null,
       "brandDuplicateDetected": false,
-      "verificationNote": "Présence dans le catalogue ne vaut pas preuve d'existence actuelle ni de disponibilité LIVE."
+      "verificationNote": "Le catalogue n'est pas une preuve d'existence actuelle; la disponibilité LIVE doit être vérifiée séparément."
     },
     {
       "id": "dreamworks",
@@ -2340,7 +2341,7 @@
       "name": "DreamWorks",
       "type": "CHANNEL",
       "country": "UNVERIFIED",
-      "region": "International",
+      "region": "UNVERIFIED",
       "language": "UNVERIFIED",
       "status": "CONFIGURED",
       "bouquet": null,
@@ -2352,7 +2353,7 @@
       "existence": "UNVERIFIED",
       "nameVariant": null,
       "brandDuplicateDetected": false,
-      "verificationNote": "Présence dans le catalogue ne vaut pas preuve d'existence actuelle ni de disponibilité LIVE."
+      "verificationNote": "Le catalogue n'est pas une preuve d'existence actuelle; la disponibilité LIVE doit être vérifiée séparément."
     },
     {
       "id": "gulli",
@@ -2360,7 +2361,7 @@
       "name": "Gulli",
       "type": "CHANNEL",
       "country": "UNVERIFIED",
-      "region": "International",
+      "region": "UNVERIFIED",
       "language": "UNVERIFIED",
       "status": "CONFIGURED",
       "bouquet": null,
@@ -2372,7 +2373,7 @@
       "existence": "UNVERIFIED",
       "nameVariant": null,
       "brandDuplicateDetected": false,
-      "verificationNote": "Présence dans le catalogue ne vaut pas preuve d'existence actuelle ni de disponibilité LIVE."
+      "verificationNote": "Le catalogue n'est pas une preuve d'existence actuelle; la disponibilité LIVE doit être vérifiée séparément."
     },
     {
       "id": "gulli-africa",
@@ -2380,7 +2381,7 @@
       "name": "Gulli Africa",
       "type": "CHANNEL",
       "country": "UNVERIFIED",
-      "region": "International",
+      "region": "UNVERIFIED",
       "language": "UNVERIFIED",
       "status": "CONFIGURED",
       "bouquet": null,
@@ -2392,7 +2393,7 @@
       "existence": "UNVERIFIED",
       "nameVariant": null,
       "brandDuplicateDetected": false,
-      "verificationNote": "Présence dans le catalogue ne vaut pas preuve d'existence actuelle ni de disponibilité LIVE."
+      "verificationNote": "Le catalogue n'est pas une preuve d'existence actuelle; la disponibilité LIVE doit être vérifiée séparément."
     },
     {
       "id": "j-one",
@@ -2400,7 +2401,7 @@
       "name": "J-One",
       "type": "CHANNEL",
       "country": "UNVERIFIED",
-      "region": "International",
+      "region": "UNVERIFIED",
       "language": "UNVERIFIED",
       "status": "CONFIGURED",
       "bouquet": null,
@@ -2412,7 +2413,7 @@
       "existence": "UNVERIFIED",
       "nameVariant": null,
       "brandDuplicateDetected": false,
-      "verificationNote": "Présence dans le catalogue ne vaut pas preuve d'existence actuelle ni de disponibilité LIVE."
+      "verificationNote": "Le catalogue n'est pas une preuve d'existence actuelle; la disponibilité LIVE doit être vérifiée séparément."
     },
     {
       "id": "ludikids",
@@ -2420,7 +2421,7 @@
       "name": "Ludikids",
       "type": "CHANNEL",
       "country": "UNVERIFIED",
-      "region": "International",
+      "region": "UNVERIFIED",
       "language": "UNVERIFIED",
       "status": "CONFIGURED",
       "bouquet": null,
@@ -2432,7 +2433,7 @@
       "existence": "UNVERIFIED",
       "nameVariant": null,
       "brandDuplicateDetected": false,
-      "verificationNote": "Présence dans le catalogue ne vaut pas preuve d'existence actuelle ni de disponibilité LIVE."
+      "verificationNote": "Le catalogue n'est pas une preuve d'existence actuelle; la disponibilité LIVE doit être vérifiée séparément."
     },
     {
       "id": "mangas",
@@ -2440,7 +2441,7 @@
       "name": "Mangas",
       "type": "CHANNEL",
       "country": "UNVERIFIED",
-      "region": "International",
+      "region": "UNVERIFIED",
       "language": "UNVERIFIED",
       "status": "CONFIGURED",
       "bouquet": null,
@@ -2452,7 +2453,7 @@
       "existence": "UNVERIFIED",
       "nameVariant": null,
       "brandDuplicateDetected": false,
-      "verificationNote": "Présence dans le catalogue ne vaut pas preuve d'existence actuelle ni de disponibilité LIVE."
+      "verificationNote": "Le catalogue n'est pas une preuve d'existence actuelle; la disponibilité LIVE doit être vérifiée séparément."
     },
     {
       "id": "nathan-plus",
@@ -2460,7 +2461,7 @@
       "name": "Nathan+",
       "type": "CHANNEL",
       "country": "UNVERIFIED",
-      "region": "International",
+      "region": "UNVERIFIED",
       "language": "UNVERIFIED",
       "status": "CONFIGURED",
       "bouquet": null,
@@ -2472,7 +2473,7 @@
       "existence": "UNVERIFIED",
       "nameVariant": null,
       "brandDuplicateDetected": false,
-      "verificationNote": "Présence dans le catalogue ne vaut pas preuve d'existence actuelle ni de disponibilité LIVE."
+      "verificationNote": "Le catalogue n'est pas une preuve d'existence actuelle; la disponibilité LIVE doit être vérifiée séparément."
     },
     {
       "id": "nickelodeon",
@@ -2480,7 +2481,7 @@
       "name": "Nickelodeon",
       "type": "CHANNEL",
       "country": "UNVERIFIED",
-      "region": "International",
+      "region": "UNVERIFIED",
       "language": "UNVERIFIED",
       "status": "CONFIGURED",
       "bouquet": null,
@@ -2492,7 +2493,7 @@
       "existence": "UNVERIFIED",
       "nameVariant": null,
       "brandDuplicateDetected": false,
-      "verificationNote": "Présence dans le catalogue ne vaut pas preuve d'existence actuelle ni de disponibilité LIVE."
+      "verificationNote": "Le catalogue n'est pas une preuve d'existence actuelle; la disponibilité LIVE doit être vérifiée séparément."
     },
     {
       "id": "nickelodeon-junior",
@@ -2500,7 +2501,7 @@
       "name": "Nickelodeon Junior",
       "type": "CHANNEL",
       "country": "UNVERIFIED",
-      "region": "International",
+      "region": "UNVERIFIED",
       "language": "UNVERIFIED",
       "status": "CONFIGURED",
       "bouquet": null,
@@ -2512,7 +2513,7 @@
       "existence": "UNVERIFIED",
       "nameVariant": null,
       "brandDuplicateDetected": false,
-      "verificationNote": "Présence dans le catalogue ne vaut pas preuve d'existence actuelle ni de disponibilité LIVE."
+      "verificationNote": "Le catalogue n'est pas une preuve d'existence actuelle; la disponibilité LIVE doit être vérifiée séparément."
     },
     {
       "id": "nickelodeon-plus-1",
@@ -2520,7 +2521,7 @@
       "name": "Nickelodeon +1",
       "type": "CHANNEL",
       "country": "UNVERIFIED",
-      "region": "International",
+      "region": "UNVERIFIED",
       "language": "UNVERIFIED",
       "status": "CONFIGURED",
       "bouquet": null,
@@ -2532,7 +2533,7 @@
       "existence": "UNVERIFIED",
       "nameVariant": null,
       "brandDuplicateDetected": false,
-      "verificationNote": "Présence dans le catalogue ne vaut pas preuve d'existence actuelle ni de disponibilité LIVE."
+      "verificationNote": "Le catalogue n'est pas une preuve d'existence actuelle; la disponibilité LIVE doit être vérifiée séparément."
     },
     {
       "id": "nicktoons",
@@ -2540,7 +2541,7 @@
       "name": "NickToons",
       "type": "CHANNEL",
       "country": "UNVERIFIED",
-      "region": "International",
+      "region": "UNVERIFIED",
       "language": "UNVERIFIED",
       "status": "CONFIGURED",
       "bouquet": null,
@@ -2552,7 +2553,7 @@
       "existence": "UNVERIFIED",
       "nameVariant": null,
       "brandDuplicateDetected": false,
-      "verificationNote": "Présence dans le catalogue ne vaut pas preuve d'existence actuelle ni de disponibilité LIVE."
+      "verificationNote": "Le catalogue n'est pas une preuve d'existence actuelle; la disponibilité LIVE doit être vérifiée séparément."
     },
     {
       "id": "nickelodeon-teen",
@@ -2560,7 +2561,7 @@
       "name": "Nickelodeon Teen",
       "type": "CHANNEL",
       "country": "UNVERIFIED",
-      "region": "International",
+      "region": "UNVERIFIED",
       "language": "UNVERIFIED",
       "status": "CONFIGURED",
       "bouquet": null,
@@ -2572,7 +2573,7 @@
       "existence": "UNVERIFIED",
       "nameVariant": null,
       "brandDuplicateDetected": false,
-      "verificationNote": "Présence dans le catalogue ne vaut pas preuve d'existence actuelle ni de disponibilité LIVE."
+      "verificationNote": "Le catalogue n'est pas une preuve d'existence actuelle; la disponibilité LIVE doit être vérifiée séparément."
     },
     {
       "id": "okoo",
@@ -2580,7 +2581,7 @@
       "name": "Okoo",
       "type": "CHANNEL",
       "country": "UNVERIFIED",
-      "region": "International",
+      "region": "UNVERIFIED",
       "language": "UNVERIFIED",
       "status": "CONFIGURED",
       "bouquet": null,
@@ -2592,7 +2593,7 @@
       "existence": "UNVERIFIED",
       "nameVariant": null,
       "brandDuplicateDetected": false,
-      "verificationNote": "Présence dans le catalogue ne vaut pas preuve d'existence actuelle ni de disponibilité LIVE."
+      "verificationNote": "Le catalogue n'est pas une preuve d'existence actuelle; la disponibilité LIVE doit être vérifiée séparément."
     },
     {
       "id": "piwi-plus",
@@ -2600,7 +2601,7 @@
       "name": "Piwi+",
       "type": "CHANNEL",
       "country": "UNVERIFIED",
-      "region": "International",
+      "region": "UNVERIFIED",
       "language": "UNVERIFIED",
       "status": "CONFIGURED",
       "bouquet": null,
@@ -2612,7 +2613,7 @@
       "existence": "UNVERIFIED",
       "nameVariant": null,
       "brandDuplicateDetected": false,
-      "verificationNote": "Présence dans le catalogue ne vaut pas preuve d'existence actuelle ni de disponibilité LIVE."
+      "verificationNote": "Le catalogue n'est pas une preuve d'existence actuelle; la disponibilité LIVE doit être vérifiée séparément."
     },
     {
       "id": "pitchoun-kids-music",
@@ -2620,7 +2621,7 @@
       "name": "Pitchoun Kids Music",
       "type": "CHANNEL",
       "country": "UNVERIFIED",
-      "region": "International",
+      "region": "UNVERIFIED",
       "language": "UNVERIFIED",
       "status": "CONFIGURED",
       "bouquet": null,
@@ -2632,7 +2633,7 @@
       "existence": "UNVERIFIED",
       "nameVariant": null,
       "brandDuplicateDetected": false,
-      "verificationNote": "Présence dans le catalogue ne vaut pas preuve d'existence actuelle ni de disponibilité LIVE."
+      "verificationNote": "Le catalogue n'est pas une preuve d'existence actuelle; la disponibilité LIVE doit être vérifiée séparément."
     },
     {
       "id": "pitchoun-kids-music-africa",
@@ -2640,7 +2641,7 @@
       "name": "Pitchoun Kids Music Africa",
       "type": "CHANNEL",
       "country": "UNVERIFIED",
-      "region": "International",
+      "region": "UNVERIFIED",
       "language": "UNVERIFIED",
       "status": "CONFIGURED",
       "bouquet": null,
@@ -2652,7 +2653,7 @@
       "existence": "UNVERIFIED",
       "nameVariant": null,
       "brandDuplicateDetected": false,
-      "verificationNote": "Présence dans le catalogue ne vaut pas preuve d'existence actuelle ni de disponibilité LIVE."
+      "verificationNote": "Le catalogue n'est pas une preuve d'existence actuelle; la disponibilité LIVE doit être vérifiée séparément."
     },
     {
       "id": "tv-pitchoun",
@@ -2660,7 +2661,7 @@
       "name": "TV Pitchoun",
       "type": "CHANNEL",
       "country": "UNVERIFIED",
-      "region": "International",
+      "region": "UNVERIFIED",
       "language": "UNVERIFIED",
       "status": "CONFIGURED",
       "bouquet": null,
@@ -2672,7 +2673,7 @@
       "existence": "UNVERIFIED",
       "nameVariant": null,
       "brandDuplicateDetected": false,
-      "verificationNote": "Présence dans le catalogue ne vaut pas preuve d'existence actuelle ni de disponibilité LIVE."
+      "verificationNote": "Le catalogue n'est pas une preuve d'existence actuelle; la disponibilité LIVE doit être vérifiée séparément."
     },
     {
       "id": "teletoon-plus",
@@ -2680,7 +2681,7 @@
       "name": "Télétoon+",
       "type": "CHANNEL",
       "country": "UNVERIFIED",
-      "region": "International",
+      "region": "UNVERIFIED",
       "language": "UNVERIFIED",
       "status": "CONFIGURED",
       "bouquet": null,
@@ -2692,7 +2693,7 @@
       "existence": "UNVERIFIED",
       "nameVariant": null,
       "brandDuplicateDetected": false,
-      "verificationNote": "Présence dans le catalogue ne vaut pas preuve d'existence actuelle ni de disponibilité LIVE."
+      "verificationNote": "Le catalogue n'est pas une preuve d'existence actuelle; la disponibilité LIVE doit être vérifiée séparément."
     },
     {
       "id": "teletoon-plus-1",
@@ -2700,7 +2701,7 @@
       "name": "Télétoon +1",
       "type": "CHANNEL",
       "country": "UNVERIFIED",
-      "region": "International",
+      "region": "UNVERIFIED",
       "language": "UNVERIFIED",
       "status": "CONFIGURED",
       "bouquet": null,
@@ -2712,7 +2713,7 @@
       "existence": "UNVERIFIED",
       "nameVariant": null,
       "brandDuplicateDetected": false,
-      "verificationNote": "Présence dans le catalogue ne vaut pas preuve d'existence actuelle ni de disponibilité LIVE."
+      "verificationNote": "Le catalogue n'est pas une preuve d'existence actuelle; la disponibilité LIVE doit être vérifiée séparément."
     },
     {
       "id": "tiji",
@@ -2720,7 +2721,7 @@
       "name": "TiJi",
       "type": "CHANNEL",
       "country": "UNVERIFIED",
-      "region": "International",
+      "region": "UNVERIFIED",
       "language": "UNVERIFIED",
       "status": "CONFIGURED",
       "bouquet": null,
@@ -2732,7 +2733,7 @@
       "existence": "UNVERIFIED",
       "nameVariant": null,
       "brandDuplicateDetected": false,
-      "verificationNote": "Présence dans le catalogue ne vaut pas preuve d'existence actuelle ni de disponibilité LIVE."
+      "verificationNote": "Le catalogue n'est pas une preuve d'existence actuelle; la disponibilité LIVE doit être vérifiée séparément."
     },
     {
       "id": "tivi5monde",
@@ -2740,7 +2741,7 @@
       "name": "TiVi5MONDE",
       "type": "CHANNEL",
       "country": "UNVERIFIED",
-      "region": "International",
+      "region": "UNVERIFIED",
       "language": "UNVERIFIED",
       "status": "CONFIGURED",
       "bouquet": null,
@@ -2752,7 +2753,7 @@
       "existence": "UNVERIFIED",
       "nameVariant": null,
       "brandDuplicateDetected": false,
-      "verificationNote": "Présence dans le catalogue ne vaut pas preuve d'existence actuelle ni de disponibilité LIVE."
+      "verificationNote": "Le catalogue n'est pas une preuve d'existence actuelle; la disponibilité LIVE doit être vérifiée séparément."
     },
     {
       "id": "toonami",
@@ -2760,7 +2761,7 @@
       "name": "Toonami",
       "type": "CHANNEL",
       "country": "UNVERIFIED",
-      "region": "International",
+      "region": "UNVERIFIED",
       "language": "UNVERIFIED",
       "status": "CONFIGURED",
       "bouquet": null,
@@ -2772,7 +2773,7 @@
       "existence": "UNVERIFIED",
       "nameVariant": null,
       "brandDuplicateDetected": false,
-      "verificationNote": "Présence dans le catalogue ne vaut pas preuve d'existence actuelle ni de disponibilité LIVE."
+      "verificationNote": "Le catalogue n'est pas une preuve d'existence actuelle; la disponibilité LIVE doit être vérifiée séparément."
     },
     {
       "id": "ducktv",
@@ -2780,7 +2781,7 @@
       "name": "ducktv",
       "type": "CHANNEL",
       "country": "UNVERIFIED",
-      "region": "International",
+      "region": "UNVERIFIED",
       "language": "UNVERIFIED",
       "status": "CONFIGURED",
       "bouquet": null,
@@ -2792,7 +2793,7 @@
       "existence": "UNVERIFIED",
       "nameVariant": null,
       "brandDuplicateDetected": false,
-      "verificationNote": "Présence dans le catalogue ne vaut pas preuve d'existence actuelle ni de disponibilité LIVE."
+      "verificationNote": "Le catalogue n'est pas une preuve d'existence actuelle; la disponibilité LIVE doit être vérifiée séparément."
     },
     {
       "id": "tv-tokyo",
@@ -2812,7 +2813,7 @@
       "existence": "UNVERIFIED",
       "nameVariant": null,
       "brandDuplicateDetected": false,
-      "verificationNote": "Présence dans le catalogue ne vaut pas preuve d'existence actuelle ni de disponibilité LIVE."
+      "verificationNote": "Le catalogue n'est pas une preuve d'existence actuelle; la disponibilité LIVE doit être vérifiée séparément."
     },
     {
       "id": "fuji-tv",
@@ -2832,7 +2833,7 @@
       "existence": "UNVERIFIED",
       "nameVariant": null,
       "brandDuplicateDetected": false,
-      "verificationNote": "Présence dans le catalogue ne vaut pas preuve d'existence actuelle ni de disponibilité LIVE."
+      "verificationNote": "Le catalogue n'est pas une preuve d'existence actuelle; la disponibilité LIVE doit être vérifiée séparément."
     },
     {
       "id": "warner-tv-next",
@@ -2840,7 +2841,7 @@
       "name": "Warner TV Next",
       "type": "CHANNEL",
       "country": "UNVERIFIED",
-      "region": "International",
+      "region": "UNVERIFIED",
       "language": "UNVERIFIED",
       "status": "CONFIGURED",
       "bouquet": null,
@@ -2852,7 +2853,7 @@
       "existence": "UNVERIFIED",
       "nameVariant": null,
       "brandDuplicateDetected": false,
-      "verificationNote": "Présence dans le catalogue ne vaut pas preuve d'existence actuelle ni de disponibilité LIVE."
+      "verificationNote": "Le catalogue n'est pas une preuve d'existence actuelle; la disponibilité LIVE doit être vérifiée séparément."
     },
     {
       "id": "peche-sons",
@@ -2860,7 +2861,7 @@
       "name": "Pêche & Sons",
       "type": "CHANNEL",
       "country": "UNVERIFIED",
-      "region": "International",
+      "region": "UNVERIFIED",
       "language": "UNVERIFIED",
       "status": "CONFIGURED",
       "bouquet": null,
@@ -2872,7 +2873,7 @@
       "existence": "UNVERIFIED",
       "nameVariant": null,
       "brandDuplicateDetected": false,
-      "verificationNote": "Présence dans le catalogue ne vaut pas preuve d'existence actuelle ni de disponibilité LIVE."
+      "verificationNote": "Le catalogue n'est pas une preuve d'existence actuelle; la disponibilité LIVE doit être vérifiée séparément."
     },
     {
       "id": "planete-plus",
@@ -2880,7 +2881,7 @@
       "name": "Planète+",
       "type": "CHANNEL",
       "country": "UNVERIFIED",
-      "region": "International",
+      "region": "UNVERIFIED",
       "language": "UNVERIFIED",
       "status": "CONFIGURED",
       "bouquet": null,
@@ -2892,7 +2893,7 @@
       "existence": "UNVERIFIED",
       "nameVariant": null,
       "brandDuplicateDetected": false,
-      "verificationNote": "Présence dans le catalogue ne vaut pas preuve d'existence actuelle ni de disponibilité LIVE."
+      "verificationNote": "Le catalogue n'est pas une preuve d'existence actuelle; la disponibilité LIVE doit être vérifiée séparément."
     },
     {
       "id": "s-plus-docs",
@@ -2912,7 +2913,7 @@
       "existence": "UNVERIFIED",
       "nameVariant": null,
       "brandDuplicateDetected": false,
-      "verificationNote": "Présence dans le catalogue ne vaut pas preuve d'existence actuelle ni de disponibilité LIVE."
+      "verificationNote": "Le catalogue n'est pas une preuve d'existence actuelle; la disponibilité LIVE doit être vérifiée séparément."
     },
     {
       "id": "science-et-vie-tv",
@@ -2920,7 +2921,7 @@
       "name": "Science & Vie TV",
       "type": "CHANNEL",
       "country": "UNVERIFIED",
-      "region": "International",
+      "region": "UNVERIFIED",
       "language": "UNVERIFIED",
       "status": "CONFIGURED",
       "bouquet": null,
@@ -2932,7 +2933,7 @@
       "existence": "UNVERIFIED",
       "nameVariant": null,
       "brandDuplicateDetected": false,
-      "verificationNote": "Présence dans le catalogue ne vaut pas preuve d'existence actuelle ni de disponibilité LIVE."
+      "verificationNote": "Le catalogue n'est pas une preuve d'existence actuelle; la disponibilité LIVE doit être vérifiée séparément."
     },
     {
       "id": "toute-l-histoire",
@@ -2940,7 +2941,7 @@
       "name": "Toute l'Histoire",
       "type": "CHANNEL",
       "country": "UNVERIFIED",
-      "region": "International",
+      "region": "UNVERIFIED",
       "language": "UNVERIFIED",
       "status": "CONFIGURED",
       "bouquet": null,
@@ -2952,7 +2953,7 @@
       "existence": "UNVERIFIED",
       "nameVariant": null,
       "brandDuplicateDetected": false,
-      "verificationNote": "Présence dans le catalogue ne vaut pas preuve d'existence actuelle ni de disponibilité LIVE."
+      "verificationNote": "Le catalogue n'est pas une preuve d'existence actuelle; la disponibilité LIVE doit être vérifiée séparément."
     },
     {
       "id": "mtv",
@@ -2960,7 +2961,7 @@
       "name": "MTV",
       "type": "CHANNEL",
       "country": "UNVERIFIED",
-      "region": "International",
+      "region": "UNVERIFIED",
       "language": "UNVERIFIED",
       "status": "CONFIGURED",
       "bouquet": null,
@@ -2972,7 +2973,7 @@
       "existence": "UNVERIFIED",
       "nameVariant": null,
       "brandDuplicateDetected": false,
-      "verificationNote": "Présence dans le catalogue ne vaut pas preuve d'existence actuelle ni de disponibilité LIVE."
+      "verificationNote": "Le catalogue n'est pas une preuve d'existence actuelle; la disponibilité LIVE doit être vérifiée séparément."
     },
     {
       "id": "trace-africa",
@@ -2980,7 +2981,7 @@
       "name": "Trace Africa",
       "type": "CHANNEL",
       "country": "UNVERIFIED",
-      "region": "International",
+      "region": "UNVERIFIED",
       "language": "UNVERIFIED",
       "status": "CONFIGURED",
       "bouquet": null,
@@ -2992,7 +2993,7 @@
       "existence": "UNVERIFIED",
       "nameVariant": null,
       "brandDuplicateDetected": false,
-      "verificationNote": "Présence dans le catalogue ne vaut pas preuve d'existence actuelle ni de disponibilité LIVE."
+      "verificationNote": "Le catalogue n'est pas une preuve d'existence actuelle; la disponibilité LIVE doit être vérifiée séparément."
     },
     {
       "id": "trace-ivoire",
@@ -3000,7 +3001,7 @@
       "name": "Trace Ivoire",
       "type": "CHANNEL",
       "country": "UNVERIFIED",
-      "region": "International",
+      "region": "UNVERIFIED",
       "language": "UNVERIFIED",
       "status": "CONFIGURED",
       "bouquet": null,
@@ -3012,7 +3013,7 @@
       "existence": "UNVERIFIED",
       "nameVariant": null,
       "brandDuplicateDetected": false,
-      "verificationNote": "Présence dans le catalogue ne vaut pas preuve d'existence actuelle ni de disponibilité LIVE."
+      "verificationNote": "Le catalogue n'est pas une preuve d'existence actuelle; la disponibilité LIVE doit être vérifiée séparément."
     },
     {
       "id": "z-magic",
@@ -3020,7 +3021,7 @@
       "name": "Z Magic",
       "type": "CHANNEL",
       "country": "UNVERIFIED",
-      "region": "International",
+      "region": "UNVERIFIED",
       "language": "UNVERIFIED",
       "status": "CONFIGURED",
       "bouquet": null,
@@ -3032,7 +3033,7 @@
       "existence": "UNVERIFIED",
       "nameVariant": null,
       "brandDuplicateDetected": false,
-      "verificationNote": "Présence dans le catalogue ne vaut pas preuve d'existence actuelle ni de disponibilité LIVE."
+      "verificationNote": "Le catalogue n'est pas une preuve d'existence actuelle; la disponibilité LIVE doit être vérifiée séparément."
     },
     {
       "id": "a-plus",
@@ -3040,7 +3041,7 @@
       "name": "A+",
       "type": "CHANNEL",
       "country": "UNVERIFIED",
-      "region": "Afrique",
+      "region": "UNVERIFIED",
       "language": "UNVERIFIED",
       "status": "CONFIGURED",
       "bouquet": null,
@@ -3052,7 +3053,7 @@
       "existence": "UNVERIFIED",
       "nameVariant": null,
       "brandDuplicateDetected": false,
-      "verificationNote": "Présence dans le catalogue ne vaut pas preuve d'existence actuelle ni de disponibilité LIVE."
+      "verificationNote": "Le catalogue n'est pas une preuve d'existence actuelle; la disponibilité LIVE doit être vérifiée séparément."
     },
     {
       "id": "m6-international",
@@ -3060,7 +3061,7 @@
       "name": "M6 International",
       "type": "CHANNEL",
       "country": "UNVERIFIED",
-      "region": "Afrique",
+      "region": "UNVERIFIED",
       "language": "UNVERIFIED",
       "status": "CONFIGURED",
       "bouquet": null,
@@ -3072,7 +3073,7 @@
       "existence": "UNVERIFIED",
       "nameVariant": null,
       "brandDuplicateDetected": false,
-      "verificationNote": "Présence dans le catalogue ne vaut pas preuve d'existence actuelle ni de disponibilité LIVE."
+      "verificationNote": "Le catalogue n'est pas une preuve d'existence actuelle; la disponibilité LIVE doit être vérifiée séparément."
     },
     {
       "id": "maboke-tv",
@@ -3080,7 +3081,7 @@
       "name": "Maboke TV",
       "type": "CHANNEL",
       "country": "UNVERIFIED",
-      "region": "Afrique",
+      "region": "UNVERIFIED",
       "language": "UNVERIFIED",
       "status": "CONFIGURED",
       "bouquet": null,
@@ -3092,7 +3093,7 @@
       "existence": "UNVERIFIED",
       "nameVariant": null,
       "brandDuplicateDetected": false,
-      "verificationNote": "Présence dans le catalogue ne vaut pas preuve d'existence actuelle ni de disponibilité LIVE."
+      "verificationNote": "Le catalogue n'est pas une preuve d'existence actuelle; la disponibilité LIVE doit être vérifiée séparément."
     },
     {
       "id": "magc-tv",
@@ -3100,7 +3101,7 @@
       "name": "MAGC TV",
       "type": "CHANNEL",
       "country": "UNVERIFIED",
-      "region": "Afrique",
+      "region": "UNVERIFIED",
       "language": "UNVERIFIED",
       "status": "CONFIGURED",
       "bouquet": null,
@@ -3112,7 +3113,7 @@
       "existence": "UNVERIFIED",
       "nameVariant": null,
       "brandDuplicateDetected": false,
-      "verificationNote": "Présence dans le catalogue ne vaut pas preuve d'existence actuelle ni de disponibilité LIVE."
+      "verificationNote": "Le catalogue n'est pas une preuve d'existence actuelle; la disponibilité LIVE doit être vérifiée séparément."
     },
     {
       "id": "sunu-yeuf",
@@ -3120,7 +3121,7 @@
       "name": "Sunu Yeuf",
       "type": "CHANNEL",
       "country": "UNVERIFIED",
-      "region": "Afrique",
+      "region": "UNVERIFIED",
       "language": "UNVERIFIED",
       "status": "CONFIGURED",
       "bouquet": null,
@@ -3132,7 +3133,7 @@
       "existence": "UNVERIFIED",
       "nameVariant": null,
       "brandDuplicateDetected": false,
-      "verificationNote": "Présence dans le catalogue ne vaut pas preuve d'existence actuelle ni de disponibilité LIVE."
+      "verificationNote": "Le catalogue n'est pas une preuve d'existence actuelle; la disponibilité LIVE doit être vérifiée séparément."
     },
     {
       "id": "tv5-monde",
@@ -3140,7 +3141,7 @@
       "name": "TV5 Monde",
       "type": "CHANNEL",
       "country": "UNVERIFIED",
-      "region": "Afrique",
+      "region": "UNVERIFIED",
       "language": "UNVERIFIED",
       "status": "CONFIGURED",
       "bouquet": null,
@@ -3152,7 +3153,7 @@
       "existence": "UNVERIFIED",
       "nameVariant": null,
       "brandDuplicateDetected": false,
-      "verificationNote": "Présence dans le catalogue ne vaut pas preuve d'existence actuelle ni de disponibilité LIVE."
+      "verificationNote": "Le catalogue n'est pas une preuve d'existence actuelle; la disponibilité LIVE doit être vérifiée séparément."
     },
     {
       "id": "vifi-tv",
@@ -3160,7 +3161,7 @@
       "name": "VIFI TV",
       "type": "CHANNEL",
       "country": "UNVERIFIED",
-      "region": "Afrique",
+      "region": "UNVERIFIED",
       "language": "UNVERIFIED",
       "status": "CONFIGURED",
       "bouquet": null,
@@ -3172,7 +3173,7 @@
       "existence": "UNVERIFIED",
       "nameVariant": null,
       "brandDuplicateDetected": false,
-      "verificationNote": "Présence dans le catalogue ne vaut pas preuve d'existence actuelle ni de disponibilité LIVE."
+      "verificationNote": "Le catalogue n'est pas une preuve d'existence actuelle; la disponibilité LIVE doit être vérifiée séparément."
     },
     {
       "id": "zacu-tv",
@@ -3180,7 +3181,7 @@
       "name": "Zacu TV",
       "type": "CHANNEL",
       "country": "UNVERIFIED",
-      "region": "Afrique",
+      "region": "UNVERIFIED",
       "language": "UNVERIFIED",
       "status": "CONFIGURED",
       "bouquet": null,
@@ -3192,7 +3193,7 @@
       "existence": "UNVERIFIED",
       "nameVariant": null,
       "brandDuplicateDetected": false,
-      "verificationNote": "Présence dans le catalogue ne vaut pas preuve d'existence actuelle ni de disponibilité LIVE."
+      "verificationNote": "Le catalogue n'est pas une preuve d'existence actuelle; la disponibilité LIVE doit être vérifiée séparément."
     },
     {
       "id": "zbc",
@@ -3200,7 +3201,7 @@
       "name": "ZBC",
       "type": "CHANNEL",
       "country": "UNVERIFIED",
-      "region": "Afrique",
+      "region": "UNVERIFIED",
       "language": "UNVERIFIED",
       "status": "CONFIGURED",
       "bouquet": null,
@@ -3212,7 +3213,7 @@
       "existence": "UNVERIFIED",
       "nameVariant": null,
       "brandDuplicateDetected": false,
-      "verificationNote": "Présence dans le catalogue ne vaut pas preuve d'existence actuelle ni de disponibilité LIVE."
+      "verificationNote": "Le catalogue n'est pas une preuve d'existence actuelle; la disponibilité LIVE doit être vérifiée séparément."
     },
     {
       "id": "emci-tv",
@@ -3220,7 +3221,7 @@
       "name": "EMCI TV",
       "type": "CHANNEL",
       "country": "UNVERIFIED",
-      "region": "International",
+      "region": "UNVERIFIED",
       "language": "UNVERIFIED",
       "status": "CONFIGURED",
       "bouquet": null,
@@ -3232,7 +3233,7 @@
       "existence": "UNVERIFIED",
       "nameVariant": null,
       "brandDuplicateDetected": false,
-      "verificationNote": "Présence dans le catalogue ne vaut pas preuve d'existence actuelle ni de disponibilité LIVE."
+      "verificationNote": "Le catalogue n'est pas une preuve d'existence actuelle; la disponibilité LIVE doit être vérifiée séparément."
     },
     {
       "id": "esperance-tv",
@@ -3240,7 +3241,7 @@
       "name": "Espérance TV",
       "type": "CHANNEL",
       "country": "UNVERIFIED",
-      "region": "International",
+      "region": "UNVERIFIED",
       "language": "UNVERIFIED",
       "status": "CONFIGURED",
       "bouquet": null,
@@ -3252,7 +3253,7 @@
       "existence": "UNVERIFIED",
       "nameVariant": null,
       "brandDuplicateDetected": false,
-      "verificationNote": "Présence dans le catalogue ne vaut pas preuve d'existence actuelle ni de disponibilité LIVE."
+      "verificationNote": "Le catalogue n'est pas une preuve d'existence actuelle; la disponibilité LIVE doit être vérifiée séparément."
     },
     {
       "id": "ewtn",
@@ -3260,7 +3261,7 @@
       "name": "EWTN",
       "type": "CHANNEL",
       "country": "UNVERIFIED",
-      "region": "International",
+      "region": "UNVERIFIED",
       "language": "UNVERIFIED",
       "status": "CONFIGURED",
       "bouquet": null,
@@ -3272,7 +3273,7 @@
       "existence": "UNVERIFIED",
       "nameVariant": null,
       "brandDuplicateDetected": false,
-      "verificationNote": "Présence dans le catalogue ne vaut pas preuve d'existence actuelle ni de disponibilité LIVE."
+      "verificationNote": "Le catalogue n'est pas une preuve d'existence actuelle; la disponibilité LIVE doit être vérifiée séparément."
     },
     {
       "id": "hope-channel",
@@ -3280,7 +3281,7 @@
       "name": "Hope Channel",
       "type": "CHANNEL",
       "country": "UNVERIFIED",
-      "region": "International",
+      "region": "UNVERIFIED",
       "language": "UNVERIFIED",
       "status": "CONFIGURED",
       "bouquet": null,
@@ -3292,7 +3293,7 @@
       "existence": "UNVERIFIED",
       "nameVariant": null,
       "brandDuplicateDetected": false,
-      "verificationNote": "Présence dans le catalogue ne vaut pas preuve d'existence actuelle ni de disponibilité LIVE."
+      "verificationNote": "Le catalogue n'est pas une preuve d'existence actuelle; la disponibilité LIVE doit être vérifiée séparément."
     },
     {
       "id": "kto",
@@ -3300,7 +3301,7 @@
       "name": "KTO",
       "type": "CHANNEL",
       "country": "UNVERIFIED",
-      "region": "International",
+      "region": "UNVERIFIED",
       "language": "UNVERIFIED",
       "status": "CONFIGURED",
       "bouquet": null,
@@ -3312,7 +3313,7 @@
       "existence": "UNVERIFIED",
       "nameVariant": null,
       "brandDuplicateDetected": false,
-      "verificationNote": "Présence dans le catalogue ne vaut pas preuve d'existence actuelle ni de disponibilité LIVE."
+      "verificationNote": "Le catalogue n'est pas une preuve d'existence actuelle; la disponibilité LIVE doit être vérifiée séparément."
     },
     {
       "id": "top-chretien",
@@ -3320,7 +3321,7 @@
       "name": "Top Chrétien",
       "type": "CHANNEL",
       "country": "UNVERIFIED",
-      "region": "International",
+      "region": "UNVERIFIED",
       "language": "UNVERIFIED",
       "status": "CONFIGURED",
       "bouquet": null,
@@ -3332,7 +3333,7 @@
       "existence": "UNVERIFIED",
       "nameVariant": null,
       "brandDuplicateDetected": false,
-      "verificationNote": "Présence dans le catalogue ne vaut pas preuve d'existence actuelle ni de disponibilité LIVE."
+      "verificationNote": "Le catalogue n'est pas une preuve d'existence actuelle; la disponibilité LIVE doit être vérifiée séparément."
     },
     {
       "id": "trace-gospel",
@@ -3340,7 +3341,7 @@
       "name": "Trace Gospel",
       "type": "CHANNEL",
       "country": "UNVERIFIED",
-      "region": "International",
+      "region": "UNVERIFIED",
       "language": "UNVERIFIED",
       "status": "CONFIGURED",
       "bouquet": null,
@@ -3352,7 +3353,7 @@
       "existence": "UNVERIFIED",
       "nameVariant": null,
       "brandDuplicateDetected": false,
-      "verificationNote": "Présence dans le catalogue ne vaut pas preuve d'existence actuelle ni de disponibilité LIVE."
+      "verificationNote": "Le catalogue n'est pas une preuve d'existence actuelle; la disponibilité LIVE doit être vérifiée séparément."
     },
     {
       "id": "cuisines",
@@ -3360,7 +3361,7 @@
       "name": "Cuisines",
       "type": "CHANNEL",
       "country": "UNVERIFIED",
-      "region": "International",
+      "region": "UNVERIFIED",
       "language": "UNVERIFIED",
       "status": "CONFIGURED",
       "bouquet": null,
@@ -3372,7 +3373,7 @@
       "existence": "UNVERIFIED",
       "nameVariant": null,
       "brandDuplicateDetected": false,
-      "verificationNote": "Présence dans le catalogue ne vaut pas preuve d'existence actuelle ni de disponibilité LIVE."
+      "verificationNote": "Le catalogue n'est pas une preuve d'existence actuelle; la disponibilité LIVE doit être vérifiée séparément."
     },
     {
       "id": "nollywood-tv",
@@ -3392,7 +3393,7 @@
       "existence": "UNVERIFIED",
       "nameVariant": null,
       "brandDuplicateDetected": false,
-      "verificationNote": "Présence dans le catalogue ne vaut pas preuve d'existence actuelle ni de disponibilité LIVE."
+      "verificationNote": "Le catalogue n'est pas une preuve d'existence actuelle; la disponibilité LIVE doit être vérifiée séparément."
     },
     {
       "id": "nollywood-tv-epic",
@@ -3412,7 +3413,7 @@
       "existence": "UNVERIFIED",
       "nameVariant": null,
       "brandDuplicateDetected": false,
-      "verificationNote": "Présence dans le catalogue ne vaut pas preuve d'existence actuelle ni de disponibilité LIVE."
+      "verificationNote": "Le catalogue n'est pas une preuve d'existence actuelle; la disponibilité LIVE doit être vérifiée séparément."
     },
     {
       "id": "passion-bollywood",
@@ -3432,7 +3433,7 @@
       "existence": "UNVERIFIED",
       "nameVariant": null,
       "brandDuplicateDetected": false,
-      "verificationNote": "Présence dans le catalogue ne vaut pas preuve d'existence actuelle ni de disponibilité LIVE."
+      "verificationNote": "Le catalogue n'est pas une preuve d'existence actuelle; la disponibilité LIVE doit être vérifiée séparément."
     },
     {
       "id": "s-plus-prime",
@@ -3452,7 +3453,7 @@
       "existence": "UNVERIFIED",
       "nameVariant": null,
       "brandDuplicateDetected": false,
-      "verificationNote": "Présence dans le catalogue ne vaut pas preuve d'existence actuelle ni de disponibilité LIVE."
+      "verificationNote": "Le catalogue n'est pas une preuve d'existence actuelle; la disponibilité LIVE doit être vérifiée séparément."
     },
     {
       "id": "s-plus-cine",
@@ -3472,7 +3473,7 @@
       "existence": "UNVERIFIED",
       "nameVariant": null,
       "brandDuplicateDetected": false,
-      "verificationNote": "Présence dans le catalogue ne vaut pas preuve d'existence actuelle ni de disponibilité LIVE."
+      "verificationNote": "Le catalogue n'est pas une preuve d'existence actuelle; la disponibilité LIVE doit être vérifiée séparément."
     },
     {
       "id": "s-plus-kids",
@@ -3492,7 +3493,7 @@
       "existence": "UNVERIFIED",
       "nameVariant": null,
       "brandDuplicateDetected": false,
-      "verificationNote": "Présence dans le catalogue ne vaut pas preuve d'existence actuelle ni de disponibilité LIVE."
+      "verificationNote": "Le catalogue n'est pas une preuve d'existence actuelle; la disponibilité LIVE doit être vérifiée séparément."
     },
     {
       "id": "s-plus-fiction",
@@ -3512,7 +3513,7 @@
       "existence": "UNVERIFIED",
       "nameVariant": null,
       "brandDuplicateDetected": false,
-      "verificationNote": "Présence dans le catalogue ne vaut pas preuve d'existence actuelle ni de disponibilité LIVE."
+      "verificationNote": "Le catalogue n'est pas une preuve d'existence actuelle; la disponibilité LIVE doit être vérifiée séparément."
     },
     {
       "id": "s-plus-channel",
@@ -3532,7 +3533,7 @@
       "existence": "UNVERIFIED",
       "nameVariant": null,
       "brandDuplicateDetected": false,
-      "verificationNote": "Présence dans le catalogue ne vaut pas preuve d'existence actuelle ni de disponibilité LIVE."
+      "verificationNote": "Le catalogue n'est pas une preuve d'existence actuelle; la disponibilité LIVE doit être vérifiée séparément."
     },
     {
       "id": "s-plus-music",
@@ -3552,7 +3553,7 @@
       "existence": "UNVERIFIED",
       "nameVariant": null,
       "brandDuplicateDetected": false,
-      "verificationNote": "Présence dans le catalogue ne vaut pas preuve d'existence actuelle ni de disponibilité LIVE."
+      "verificationNote": "Le catalogue n'est pas une preuve d'existence actuelle; la disponibilité LIVE doit être vérifiée séparément."
     },
     {
       "id": "s-plus-tv",
@@ -3572,7 +3573,7 @@
       "existence": "UNVERIFIED",
       "nameVariant": null,
       "brandDuplicateDetected": false,
-      "verificationNote": "Présence dans le catalogue ne vaut pas preuve d'existence actuelle ni de disponibilité LIVE."
+      "verificationNote": "Le catalogue n'est pas une preuve d'existence actuelle; la disponibilité LIVE doit être vérifiée séparément."
     },
     {
       "id": "s-plus-family",
@@ -3592,7 +3593,7 @@
       "existence": "UNVERIFIED",
       "nameVariant": null,
       "brandDuplicateDetected": false,
-      "verificationNote": "Présence dans le catalogue ne vaut pas preuve d'existence actuelle ni de disponibilité LIVE."
+      "verificationNote": "Le catalogue n'est pas une preuve d'existence actuelle; la disponibilité LIVE doit être vérifiée séparément."
     },
     {
       "id": "s-plus-sport-1",
@@ -3612,7 +3613,7 @@
       "existence": "UNVERIFIED",
       "nameVariant": null,
       "brandDuplicateDetected": false,
-      "verificationNote": "Présence dans le catalogue ne vaut pas preuve d'existence actuelle ni de disponibilité LIVE."
+      "verificationNote": "Le catalogue n'est pas une preuve d'existence actuelle; la disponibilité LIVE doit être vérifiée séparément."
     },
     {
       "id": "s-plus-sport-2",
@@ -3632,7 +3633,7 @@
       "existence": "UNVERIFIED",
       "nameVariant": null,
       "brandDuplicateDetected": false,
-      "verificationNote": "Présence dans le catalogue ne vaut pas preuve d'existence actuelle ni de disponibilité LIVE."
+      "verificationNote": "Le catalogue n'est pas une preuve d'existence actuelle; la disponibilité LIVE doit être vérifiée séparément."
     },
     {
       "id": "s-plus-sport-3",
@@ -3652,7 +3653,7 @@
       "existence": "UNVERIFIED",
       "nameVariant": null,
       "brandDuplicateDetected": false,
-      "verificationNote": "Présence dans le catalogue ne vaut pas preuve d'existence actuelle ni de disponibilité LIVE."
+      "verificationNote": "Le catalogue n'est pas une preuve d'existence actuelle; la disponibilité LIVE doit être vérifiée séparément."
     },
     {
       "id": "s-plus-sport-4",
@@ -3672,7 +3673,7 @@
       "existence": "UNVERIFIED",
       "nameVariant": null,
       "brandDuplicateDetected": false,
-      "verificationNote": "Présence dans le catalogue ne vaut pas preuve d'existence actuelle ni de disponibilité LIVE."
+      "verificationNote": "Le catalogue n'est pas une preuve d'existence actuelle; la disponibilité LIVE doit être vérifiée séparément."
     },
     {
       "id": "s-plus-sport-5",
@@ -3692,7 +3693,7 @@
       "existence": "UNVERIFIED",
       "nameVariant": null,
       "brandDuplicateDetected": false,
-      "verificationNote": "Présence dans le catalogue ne vaut pas preuve d'existence actuelle ni de disponibilité LIVE."
+      "verificationNote": "Le catalogue n'est pas une preuve d'existence actuelle; la disponibilité LIVE doit être vérifiée séparément."
     },
     {
       "id": "s-plus-sport-6",
@@ -3712,7 +3713,7 @@
       "existence": "UNVERIFIED",
       "nameVariant": null,
       "brandDuplicateDetected": false,
-      "verificationNote": "Présence dans le catalogue ne vaut pas preuve d'existence actuelle ni de disponibilité LIVE."
+      "verificationNote": "Le catalogue n'est pas une preuve d'existence actuelle; la disponibilité LIVE doit être vérifiée séparément."
     },
     {
       "id": "s-plus-movies",
@@ -3732,7 +3733,7 @@
       "existence": "UNVERIFIED",
       "nameVariant": null,
       "brandDuplicateDetected": false,
-      "verificationNote": "Présence dans le catalogue ne vaut pas preuve d'existence actuelle ni de disponibilité LIVE."
+      "verificationNote": "Le catalogue n'est pas une preuve d'existence actuelle; la disponibilité LIVE doit être vérifiée séparément."
     },
     {
       "id": "s-plus-infosport",
@@ -3752,7 +3753,7 @@
       "existence": "UNVERIFIED",
       "nameVariant": null,
       "brandDuplicateDetected": false,
-      "verificationNote": "Présence dans le catalogue ne vaut pas preuve d'existence actuelle ni de disponibilité LIVE."
+      "verificationNote": "Le catalogue n'est pas une preuve d'existence actuelle; la disponibilité LIVE doit être vérifiée séparément."
     },
     {
       "id": "s-plus-infos",
@@ -3772,7 +3773,7 @@
       "existence": "UNVERIFIED",
       "nameVariant": null,
       "brandDuplicateDetected": false,
-      "verificationNote": "Présence dans le catalogue ne vaut pas preuve d'existence actuelle ni de disponibilité LIVE."
+      "verificationNote": "Le catalogue n'est pas une preuve d'existence actuelle; la disponibilité LIVE doit être vérifiée séparément."
     },
     {
       "id": "s-plus-media",
@@ -3792,7 +3793,7 @@
       "existence": "UNVERIFIED",
       "nameVariant": null,
       "brandDuplicateDetected": false,
-      "verificationNote": "Présence dans le catalogue ne vaut pas preuve d'existence actuelle ni de disponibilité LIVE."
+      "verificationNote": "Le catalogue n'est pas une preuve d'existence actuelle; la disponibilité LIVE doit être vérifiée séparément."
     },
     {
       "id": "s-plus-lloliwood",
@@ -3812,7 +3813,7 @@
       "existence": "UNVERIFIED",
       "nameVariant": null,
       "brandDuplicateDetected": false,
-      "verificationNote": "Présence dans le catalogue ne vaut pas preuve d'existence actuelle ni de disponibilité LIVE."
+      "verificationNote": "Le catalogue n'est pas une preuve d'existence actuelle; la disponibilité LIVE doit être vérifiée séparément."
     },
     {
       "id": "s-plus-bl",
@@ -3832,7 +3833,7 @@
       "existence": "UNVERIFIED",
       "nameVariant": null,
       "brandDuplicateDetected": false,
-      "verificationNote": "Présence dans le catalogue ne vaut pas preuve d'existence actuelle ni de disponibilité LIVE."
+      "verificationNote": "Le catalogue n'est pas une preuve d'existence actuelle; la disponibilité LIVE doit être vérifiée séparément."
     },
     {
       "id": "s-plus-jeunesse",
@@ -3852,7 +3853,7 @@
       "existence": "UNVERIFIED",
       "nameVariant": null,
       "brandDuplicateDetected": false,
-      "verificationNote": "Présence dans le catalogue ne vaut pas preuve d'existence actuelle ni de disponibilité LIVE."
+      "verificationNote": "Le catalogue n'est pas une preuve d'existence actuelle; la disponibilité LIVE doit être vérifiée séparément."
     },
     {
       "id": "berbere-jeunesse",
@@ -3860,7 +3861,7 @@
       "name": "Berbère Jeunesse",
       "type": "CHANNEL",
       "country": "UNVERIFIED",
-      "region": "International",
+      "region": "UNVERIFIED",
       "language": "UNVERIFIED",
       "status": "CONFIGURED",
       "bouquet": null,
@@ -3872,7 +3873,7 @@
       "existence": "UNVERIFIED",
       "nameVariant": null,
       "brandDuplicateDetected": false,
-      "verificationNote": "Présence dans le catalogue ne vaut pas preuve d'existence actuelle ni de disponibilité LIVE."
+      "verificationNote": "Le catalogue n'est pas une preuve d'existence actuelle; la disponibilité LIVE doit être vérifiée séparément."
     },
     {
       "id": "chaine-pere-noel",
@@ -3880,7 +3881,7 @@
       "name": "La Chaîne du Père Noël",
       "type": "CHANNEL",
       "country": "UNVERIFIED",
-      "region": "International",
+      "region": "UNVERIFIED",
       "language": "UNVERIFIED",
       "status": "CONFIGURED",
       "bouquet": null,
@@ -3892,7 +3893,7 @@
       "existence": "UNVERIFIED",
       "nameVariant": null,
       "brandDuplicateDetected": false,
-      "verificationNote": "Présence dans le catalogue ne vaut pas preuve d'existence actuelle ni de disponibilité LIVE."
+      "verificationNote": "Le catalogue n'est pas une preuve d'existence actuelle; la disponibilité LIVE doit être vérifiée séparément."
     },
     {
       "id": "canal-plus-box-office",
@@ -3900,7 +3901,7 @@
       "name": "CANAL+ Box Office",
       "type": "CHANNEL",
       "country": "UNVERIFIED",
-      "region": "International",
+      "region": "UNVERIFIED",
       "language": "UNVERIFIED",
       "status": "CONFIGURED",
       "bouquet": null,
@@ -3912,7 +3913,7 @@
       "existence": "UNVERIFIED",
       "nameVariant": null,
       "brandDuplicateDetected": false,
-      "verificationNote": "Présence dans le catalogue ne vaut pas preuve d'existence actuelle ni de disponibilité LIVE."
+      "verificationNote": "Le catalogue n'est pas une preuve d'existence actuelle; la disponibilité LIVE doit être vérifiée séparément."
     },
     {
       "id": "canal-plus-grand-ecran",
@@ -3920,7 +3921,7 @@
       "name": "CANAL+ Grand Ecran",
       "type": "CHANNEL",
       "country": "UNVERIFIED",
-      "region": "International",
+      "region": "UNVERIFIED",
       "language": "UNVERIFIED",
       "status": "CONFIGURED",
       "bouquet": null,
@@ -3932,7 +3933,7 @@
       "existence": "UNVERIFIED",
       "nameVariant": null,
       "brandDuplicateDetected": false,
-      "verificationNote": "Présence dans le catalogue ne vaut pas preuve d'existence actuelle ni de disponibilité LIVE."
+      "verificationNote": "Le catalogue n'est pas une preuve d'existence actuelle; la disponibilité LIVE doit être vérifiée séparément."
     },
     {
       "id": "canal-plus-cinema-s",
@@ -3940,7 +3941,7 @@
       "name": "CANAL+ Cinéma(s)",
       "type": "CHANNEL",
       "country": "UNVERIFIED",
-      "region": "International",
+      "region": "UNVERIFIED",
       "language": "UNVERIFIED",
       "status": "CONFIGURED",
       "bouquet": null,
@@ -3952,7 +3953,7 @@
       "existence": "UNVERIFIED",
       "nameVariant": null,
       "brandDuplicateDetected": false,
-      "verificationNote": "Présence dans le catalogue ne vaut pas preuve d'existence actuelle ni de disponibilité LIVE."
+      "verificationNote": "Le catalogue n'est pas une preuve d'existence actuelle; la disponibilité LIVE doit être vérifiée séparément."
     },
     {
       "id": "canal-plus-sport-360",
@@ -3960,7 +3961,7 @@
       "name": "CANAL+ Sport 360",
       "type": "CHANNEL",
       "country": "UNVERIFIED",
-      "region": "International",
+      "region": "UNVERIFIED",
       "language": "UNVERIFIED",
       "status": "CONFIGURED",
       "bouquet": null,
@@ -3972,7 +3973,7 @@
       "existence": "UNVERIFIED",
       "nameVariant": null,
       "brandDuplicateDetected": false,
-      "verificationNote": "Présence dans le catalogue ne vaut pas preuve d'existence actuelle ni de disponibilité LIVE."
+      "verificationNote": "Le catalogue n'est pas une preuve d'existence actuelle; la disponibilité LIVE doit être vérifiée séparément."
     },
     {
       "id": "canal-plus-docs",
@@ -3980,7 +3981,7 @@
       "name": "CANAL+ Docs",
       "type": "CHANNEL",
       "country": "UNVERIFIED",
-      "region": "International",
+      "region": "UNVERIFIED",
       "language": "UNVERIFIED",
       "status": "CONFIGURED",
       "bouquet": null,
@@ -3992,7 +3993,7 @@
       "existence": "UNVERIFIED",
       "nameVariant": null,
       "brandDuplicateDetected": false,
-      "verificationNote": "Présence dans le catalogue ne vaut pas preuve d'existence actuelle ni de disponibilité LIVE."
+      "verificationNote": "Le catalogue n'est pas une preuve d'existence actuelle; la disponibilité LIVE doit être vérifiée séparément."
     },
     {
       "id": "canal-plus-foot",
@@ -4000,7 +4001,7 @@
       "name": "CANAL+ Foot",
       "type": "CHANNEL",
       "country": "UNVERIFIED",
-      "region": "International",
+      "region": "UNVERIFIED",
       "language": "UNVERIFIED",
       "status": "CONFIGURED",
       "bouquet": null,
@@ -4012,7 +4013,7 @@
       "existence": "UNVERIFIED",
       "nameVariant": null,
       "brandDuplicateDetected": false,
-      "verificationNote": "Présence dans le catalogue ne vaut pas preuve d'existence actuelle ni de disponibilité LIVE."
+      "verificationNote": "Le catalogue n'est pas une preuve d'existence actuelle; la disponibilité LIVE doit être vérifiée séparément."
     },
     {
       "id": "bein-sports",
@@ -4020,7 +4021,7 @@
       "name": "beIN SPORTS",
       "type": "CHANNEL",
       "country": "UNVERIFIED",
-      "region": "International",
+      "region": "UNVERIFIED",
       "language": "UNVERIFIED",
       "status": "CONFIGURED",
       "bouquet": null,
@@ -4032,7 +4033,7 @@
       "existence": "UNVERIFIED",
       "nameVariant": null,
       "brandDuplicateDetected": false,
-      "verificationNote": "Présence dans le catalogue ne vaut pas preuve d'existence actuelle ni de disponibilité LIVE."
+      "verificationNote": "Le catalogue n'est pas une preuve d'existence actuelle; la disponibilité LIVE doit être vérifiée séparément."
     },
     {
       "id": "eurosport-1",
@@ -4040,7 +4041,7 @@
       "name": "Eurosport 1",
       "type": "CHANNEL",
       "country": "UNVERIFIED",
-      "region": "International",
+      "region": "UNVERIFIED",
       "language": "UNVERIFIED",
       "status": "CONFIGURED",
       "bouquet": null,
@@ -4052,7 +4053,7 @@
       "existence": "UNVERIFIED",
       "nameVariant": null,
       "brandDuplicateDetected": false,
-      "verificationNote": "Présence dans le catalogue ne vaut pas preuve d'existence actuelle ni de disponibilité LIVE."
+      "verificationNote": "Le catalogue n'est pas une preuve d'existence actuelle; la disponibilité LIVE doit être vérifiée séparément."
     },
     {
       "id": "automoto",
@@ -4060,7 +4061,7 @@
       "name": "Automoto",
       "type": "CHANNEL",
       "country": "UNVERIFIED",
-      "region": "International",
+      "region": "UNVERIFIED",
       "language": "UNVERIFIED",
       "status": "CONFIGURED",
       "bouquet": null,
@@ -4072,7 +4073,7 @@
       "existence": "UNVERIFIED",
       "nameVariant": null,
       "brandDuplicateDetected": false,
-      "verificationNote": "Présence dans le catalogue ne vaut pas preuve d'existence actuelle ni de disponibilité LIVE."
+      "verificationNote": "Le catalogue n'est pas une preuve d'existence actuelle; la disponibilité LIVE doit être vérifiée séparément."
     },
     {
       "id": "equidia",
@@ -4080,7 +4081,7 @@
       "name": "Equidia",
       "type": "CHANNEL",
       "country": "UNVERIFIED",
-      "region": "International",
+      "region": "UNVERIFIED",
       "language": "UNVERIFIED",
       "status": "CONFIGURED",
       "bouquet": null,
@@ -4092,7 +4093,7 @@
       "existence": "UNVERIFIED",
       "nameVariant": null,
       "brandDuplicateDetected": false,
-      "verificationNote": "Présence dans le catalogue ne vaut pas preuve d'existence actuelle ni de disponibilité LIVE."
+      "verificationNote": "Le catalogue n'est pas une preuve d'existence actuelle; la disponibilité LIVE doit être vérifiée séparément."
     },
     {
       "id": "mgg-tv",
@@ -4100,7 +4101,7 @@
       "name": "MGG TV",
       "type": "CHANNEL",
       "country": "UNVERIFIED",
-      "region": "International",
+      "region": "UNVERIFIED",
       "language": "UNVERIFIED",
       "status": "CONFIGURED",
       "bouquet": null,
@@ -4112,7 +4113,7 @@
       "existence": "UNVERIFIED",
       "nameVariant": null,
       "brandDuplicateDetected": false,
-      "verificationNote": "Présence dans le catalogue ne vaut pas preuve d'existence actuelle ni de disponibilité LIVE."
+      "verificationNote": "Le catalogue n'est pas une preuve d'existence actuelle; la disponibilité LIVE doit être vérifiée séparément."
     },
     {
       "id": "cine-plus-frisson",
@@ -4120,7 +4121,7 @@
       "name": "Ciné+ Frisson",
       "type": "CHANNEL",
       "country": "UNVERIFIED",
-      "region": "International",
+      "region": "UNVERIFIED",
       "language": "UNVERIFIED",
       "status": "CONFIGURED",
       "bouquet": null,
@@ -4132,7 +4133,7 @@
       "existence": "UNVERIFIED",
       "nameVariant": null,
       "brandDuplicateDetected": false,
-      "verificationNote": "Présence dans le catalogue ne vaut pas preuve d'existence actuelle ni de disponibilité LIVE."
+      "verificationNote": "Le catalogue n'est pas une preuve d'existence actuelle; la disponibilité LIVE doit être vérifiée séparément."
     },
     {
       "id": "cine-plus-emotion",
@@ -4140,7 +4141,7 @@
       "name": "Ciné+ Emotion",
       "type": "CHANNEL",
       "country": "UNVERIFIED",
-      "region": "International",
+      "region": "UNVERIFIED",
       "language": "UNVERIFIED",
       "status": "CONFIGURED",
       "bouquet": null,
@@ -4152,7 +4153,7 @@
       "existence": "UNVERIFIED",
       "nameVariant": null,
       "brandDuplicateDetected": false,
-      "verificationNote": "Présence dans le catalogue ne vaut pas preuve d'existence actuelle ni de disponibilité LIVE."
+      "verificationNote": "Le catalogue n'est pas une preuve d'existence actuelle; la disponibilité LIVE doit être vérifiée séparément."
     },
     {
       "id": "cine-plus-family",
@@ -4160,7 +4161,7 @@
       "name": "Ciné+ Family",
       "type": "CHANNEL",
       "country": "UNVERIFIED",
-      "region": "International",
+      "region": "UNVERIFIED",
       "language": "UNVERIFIED",
       "status": "CONFIGURED",
       "bouquet": null,
@@ -4172,7 +4173,7 @@
       "existence": "UNVERIFIED",
       "nameVariant": null,
       "brandDuplicateDetected": false,
-      "verificationNote": "Présence dans le catalogue ne vaut pas preuve d'existence actuelle ni de disponibilité LIVE."
+      "verificationNote": "Le catalogue n'est pas une preuve d'existence actuelle; la disponibilité LIVE doit être vérifiée séparément."
     },
     {
       "id": "cine-plus-festival",
@@ -4180,7 +4181,7 @@
       "name": "Ciné+ Festival",
       "type": "CHANNEL",
       "country": "UNVERIFIED",
-      "region": "International",
+      "region": "UNVERIFIED",
       "language": "UNVERIFIED",
       "status": "CONFIGURED",
       "bouquet": null,
@@ -4192,7 +4193,7 @@
       "existence": "UNVERIFIED",
       "nameVariant": null,
       "brandDuplicateDetected": false,
-      "verificationNote": "Présence dans le catalogue ne vaut pas preuve d'existence actuelle ni de disponibilité LIVE."
+      "verificationNote": "Le catalogue n'est pas une preuve d'existence actuelle; la disponibilité LIVE doit être vérifiée séparément."
     },
     {
       "id": "cine-plus-classic",
@@ -4200,7 +4201,7 @@
       "name": "Ciné+ Classic",
       "type": "CHANNEL",
       "country": "UNVERIFIED",
-      "region": "International",
+      "region": "UNVERIFIED",
       "language": "UNVERIFIED",
       "status": "CONFIGURED",
       "bouquet": null,
@@ -4212,7 +4213,7 @@
       "existence": "UNVERIFIED",
       "nameVariant": null,
       "brandDuplicateDetected": false,
-      "verificationNote": "Présence dans le catalogue ne vaut pas preuve d'existence actuelle ni de disponibilité LIVE."
+      "verificationNote": "Le catalogue n'est pas une preuve d'existence actuelle; la disponibilité LIVE doit être vérifiée séparément."
     },
     {
       "id": "polar-plus",
@@ -4220,7 +4221,7 @@
       "name": "POLAR+",
       "type": "CHANNEL",
       "country": "UNVERIFIED",
-      "region": "International",
+      "region": "UNVERIFIED",
       "language": "UNVERIFIED",
       "status": "CONFIGURED",
       "bouquet": null,
@@ -4232,7 +4233,7 @@
       "existence": "UNVERIFIED",
       "nameVariant": null,
       "brandDuplicateDetected": false,
-      "verificationNote": "Présence dans le catalogue ne vaut pas preuve d'existence actuelle ni de disponibilité LIVE."
+      "verificationNote": "Le catalogue n'est pas une preuve d'existence actuelle; la disponibilité LIVE doit être vérifiée séparément."
     },
     {
       "id": "comedie-plus",
@@ -4240,7 +4241,7 @@
       "name": "Comédie+",
       "type": "CHANNEL",
       "country": "UNVERIFIED",
-      "region": "International",
+      "region": "UNVERIFIED",
       "language": "UNVERIFIED",
       "status": "CONFIGURED",
       "bouquet": null,
@@ -4252,7 +4253,7 @@
       "existence": "UNVERIFIED",
       "nameVariant": null,
       "brandDuplicateDetected": false,
-      "verificationNote": "Présence dans le catalogue ne vaut pas preuve d'existence actuelle ni de disponibilité LIVE."
+      "verificationNote": "Le catalogue n'est pas une preuve d'existence actuelle; la disponibilité LIVE doit être vérifiée séparément."
     },
     {
       "id": "paris-premiere",
@@ -4260,7 +4261,7 @@
       "name": "Paris Première",
       "type": "CHANNEL",
       "country": "UNVERIFIED",
-      "region": "International",
+      "region": "UNVERIFIED",
       "language": "UNVERIFIED",
       "status": "CONFIGURED",
       "bouquet": null,
@@ -4272,7 +4273,7 @@
       "existence": "UNVERIFIED",
       "nameVariant": null,
       "brandDuplicateDetected": false,
-      "verificationNote": "Présence dans le catalogue ne vaut pas preuve d'existence actuelle ni de disponibilité LIVE."
+      "verificationNote": "Le catalogue n'est pas une preuve d'existence actuelle; la disponibilité LIVE doit être vérifiée séparément."
     },
     {
       "id": "teva",
@@ -4280,7 +4281,7 @@
       "name": "Téva",
       "type": "CHANNEL",
       "country": "UNVERIFIED",
-      "region": "International",
+      "region": "UNVERIFIED",
       "language": "UNVERIFIED",
       "status": "CONFIGURED",
       "bouquet": null,
@@ -4292,7 +4293,7 @@
       "existence": "UNVERIFIED",
       "nameVariant": null,
       "brandDuplicateDetected": false,
-      "verificationNote": "Présence dans le catalogue ne vaut pas preuve d'existence actuelle ni de disponibilité LIVE."
+      "verificationNote": "Le catalogue n'est pas une preuve d'existence actuelle; la disponibilité LIVE doit être vérifiée séparément."
     },
     {
       "id": "nrj-hits",
@@ -4300,7 +4301,7 @@
       "name": "NRJ Hits",
       "type": "CHANNEL",
       "country": "UNVERIFIED",
-      "region": "International",
+      "region": "UNVERIFIED",
       "language": "UNVERIFIED",
       "status": "CONFIGURED",
       "bouquet": null,
@@ -4312,7 +4313,7 @@
       "existence": "UNVERIFIED",
       "nameVariant": null,
       "brandDuplicateDetected": false,
-      "verificationNote": "Présence dans le catalogue ne vaut pas preuve d'existence actuelle ni de disponibilité LIVE."
+      "verificationNote": "Le catalogue n'est pas une preuve d'existence actuelle; la disponibilité LIVE doit être vérifiée séparément."
     },
     {
       "id": "europe-2-pop-tv",
@@ -4320,7 +4321,7 @@
       "name": "Europe 2 POP TV",
       "type": "CHANNEL",
       "country": "UNVERIFIED",
-      "region": "International",
+      "region": "UNVERIFIED",
       "language": "UNVERIFIED",
       "status": "CONFIGURED",
       "bouquet": null,
@@ -4332,7 +4333,7 @@
       "existence": "UNVERIFIED",
       "nameVariant": null,
       "brandDuplicateDetected": false,
-      "verificationNote": "Présence dans le catalogue ne vaut pas preuve d'existence actuelle ni de disponibilité LIVE."
+      "verificationNote": "Le catalogue n'est pas une preuve d'existence actuelle; la disponibilité LIVE doit être vérifiée séparément."
     },
     {
       "id": "m6-music",
@@ -4340,7 +4341,7 @@
       "name": "M6 Music",
       "type": "CHANNEL",
       "country": "UNVERIFIED",
-      "region": "International",
+      "region": "UNVERIFIED",
       "language": "UNVERIFIED",
       "status": "CONFIGURED",
       "bouquet": null,
@@ -4352,7 +4353,7 @@
       "existence": "UNVERIFIED",
       "nameVariant": null,
       "brandDuplicateDetected": false,
-      "verificationNote": "Présence dans le catalogue ne vaut pas preuve d'existence actuelle ni de disponibilité LIVE."
+      "verificationNote": "Le catalogue n'est pas une preuve d'existence actuelle; la disponibilité LIVE doit être vérifiée séparément."
     },
     {
       "id": "trace-urban",
@@ -4360,7 +4361,7 @@
       "name": "Trace Urban",
       "type": "CHANNEL",
       "country": "UNVERIFIED",
-      "region": "International",
+      "region": "UNVERIFIED",
       "language": "UNVERIFIED",
       "status": "CONFIGURED",
       "bouquet": null,
@@ -4372,7 +4373,7 @@
       "existence": "UNVERIFIED",
       "nameVariant": null,
       "brandDuplicateDetected": false,
-      "verificationNote": "Présence dans le catalogue ne vaut pas preuve d'existence actuelle ni de disponibilité LIVE."
+      "verificationNote": "Le catalogue n'est pas une preuve d'existence actuelle; la disponibilité LIVE doit être vérifiée séparément."
     },
     {
       "id": "rfm-tv",
@@ -4380,7 +4381,7 @@
       "name": "RFM TV",
       "type": "CHANNEL",
       "country": "UNVERIFIED",
-      "region": "International",
+      "region": "UNVERIFIED",
       "language": "UNVERIFIED",
       "status": "CONFIGURED",
       "bouquet": null,
@@ -4392,7 +4393,7 @@
       "existence": "UNVERIFIED",
       "nameVariant": null,
       "brandDuplicateDetected": false,
-      "verificationNote": "Présence dans le catalogue ne vaut pas preuve d'existence actuelle ni de disponibilité LIVE."
+      "verificationNote": "Le catalogue n'est pas une preuve d'existence actuelle; la disponibilité LIVE doit être vérifiée séparément."
     },
     {
       "id": "deutsche-grammophon-plus",
@@ -4400,7 +4401,7 @@
       "name": "Deutsche Grammophon+",
       "type": "CHANNEL",
       "country": "UNVERIFIED",
-      "region": "International",
+      "region": "UNVERIFIED",
       "language": "UNVERIFIED",
       "status": "CONFIGURED",
       "bouquet": null,
@@ -4412,7 +4413,7 @@
       "existence": "UNVERIFIED",
       "nameVariant": null,
       "brandDuplicateDetected": false,
-      "verificationNote": "Présence dans le catalogue ne vaut pas preuve d'existence actuelle ni de disponibilité LIVE."
+      "verificationNote": "Le catalogue n'est pas une preuve d'existence actuelle; la disponibilité LIVE doit être vérifiée séparément."
     },
     {
       "id": "seasons",
@@ -4420,7 +4421,7 @@
       "name": "Seasons",
       "type": "CHANNEL",
       "country": "UNVERIFIED",
-      "region": "International",
+      "region": "UNVERIFIED",
       "language": "UNVERIFIED",
       "status": "CONFIGURED",
       "bouquet": null,
@@ -4432,7 +4433,7 @@
       "existence": "UNVERIFIED",
       "nameVariant": null,
       "brandDuplicateDetected": false,
-      "verificationNote": "Présence dans le catalogue ne vaut pas preuve d'existence actuelle ni de disponibilité LIVE."
+      "verificationNote": "Le catalogue n'est pas une preuve d'existence actuelle; la disponibilité LIVE doit être vérifiée séparément."
     },
     {
       "id": "chasse-et-peche",
@@ -4440,7 +4441,7 @@
       "name": "Chasse et Pêche",
       "type": "CHANNEL",
       "country": "UNVERIFIED",
-      "region": "International",
+      "region": "UNVERIFIED",
       "language": "UNVERIFIED",
       "status": "CONFIGURED",
       "bouquet": null,
@@ -4452,7 +4453,7 @@
       "existence": "UNVERIFIED",
       "nameVariant": null,
       "brandDuplicateDetected": false,
-      "verificationNote": "Présence dans le catalogue ne vaut pas preuve d'existence actuelle ni de disponibilité LIVE."
+      "verificationNote": "Le catalogue n'est pas une preuve d'existence actuelle; la disponibilité LIVE doit être vérifiée séparément."
     },
     {
       "id": "animaux",
@@ -4460,7 +4461,7 @@
       "name": "Animaux",
       "type": "CHANNEL",
       "country": "UNVERIFIED",
-      "region": "International",
+      "region": "UNVERIFIED",
       "language": "UNVERIFIED",
       "status": "CONFIGURED",
       "bouquet": null,
@@ -4472,7 +4473,7 @@
       "existence": "UNVERIFIED",
       "nameVariant": null,
       "brandDuplicateDetected": false,
-      "verificationNote": "Présence dans le catalogue ne vaut pas preuve d'existence actuelle ni de disponibilité LIVE."
+      "verificationNote": "Le catalogue n'est pas une preuve d'existence actuelle; la disponibilité LIVE doit être vérifiée séparément."
     },
     {
       "id": "melody",
@@ -4480,7 +4481,7 @@
       "name": "Melody",
       "type": "CHANNEL",
       "country": "UNVERIFIED",
-      "region": "International",
+      "region": "UNVERIFIED",
       "language": "UNVERIFIED",
       "status": "CONFIGURED",
       "bouquet": null,
@@ -4492,7 +4493,7 @@
       "existence": "UNVERIFIED",
       "nameVariant": null,
       "brandDuplicateDetected": false,
-      "verificationNote": "Présence dans le catalogue ne vaut pas preuve d'existence actuelle ni de disponibilité LIVE."
+      "verificationNote": "Le catalogue n'est pas une preuve d'existence actuelle; la disponibilité LIVE doit être vérifiée séparément."
     },
     {
       "id": "mezzo",
@@ -4500,7 +4501,7 @@
       "name": "Mezzo",
       "type": "CHANNEL",
       "country": "UNVERIFIED",
-      "region": "International",
+      "region": "UNVERIFIED",
       "language": "UNVERIFIED",
       "status": "CONFIGURED",
       "bouquet": null,
@@ -4512,7 +4513,7 @@
       "existence": "UNVERIFIED",
       "nameVariant": null,
       "brandDuplicateDetected": false,
-      "verificationNote": "Présence dans le catalogue ne vaut pas preuve d'existence actuelle ni de disponibilité LIVE."
+      "verificationNote": "Le catalogue n'est pas une preuve d'existence actuelle; la disponibilité LIVE doit être vérifiée séparément."
     },
     {
       "id": "mezzo-live-hd",
@@ -4520,7 +4521,7 @@
       "name": "Mezzo Live HD",
       "type": "CHANNEL",
       "country": "UNVERIFIED",
-      "region": "International",
+      "region": "UNVERIFIED",
       "language": "UNVERIFIED",
       "status": "CONFIGURED",
       "bouquet": null,
@@ -4532,7 +4533,7 @@
       "existence": "UNVERIFIED",
       "nameVariant": null,
       "brandDuplicateDetected": false,
-      "verificationNote": "Présence dans le catalogue ne vaut pas preuve d'existence actuelle ni de disponibilité LIVE."
+      "verificationNote": "Le catalogue n'est pas une preuve d'existence actuelle; la disponibilité LIVE doit être vérifiée séparément."
     },
     {
       "id": "cheval-tv",
@@ -4540,7 +4541,7 @@
       "name": "Cheval TV",
       "type": "CHANNEL",
       "country": "UNVERIFIED",
-      "region": "International",
+      "region": "UNVERIFIED",
       "language": "UNVERIFIED",
       "status": "CONFIGURED",
       "bouquet": null,
@@ -4552,7 +4553,7 @@
       "existence": "UNVERIFIED",
       "nameVariant": null,
       "brandDuplicateDetected": false,
-      "verificationNote": "Présence dans le catalogue ne vaut pas preuve d'existence actuelle ni de disponibilité LIVE."
+      "verificationNote": "Le catalogue n'est pas une preuve d'existence actuelle; la disponibilité LIVE doit être vérifiée séparément."
     },
     {
       "id": "mieux-tv",
@@ -4560,7 +4561,7 @@
       "name": "Mieux TV",
       "type": "CHANNEL",
       "country": "UNVERIFIED",
-      "region": "International",
+      "region": "UNVERIFIED",
       "language": "UNVERIFIED",
       "status": "CONFIGURED",
       "bouquet": null,
@@ -4572,7 +4573,7 @@
       "existence": "UNVERIFIED",
       "nameVariant": null,
       "brandDuplicateDetected": false,
-      "verificationNote": "Présence dans le catalogue ne vaut pas preuve d'existence actuelle ni de disponibilité LIVE."
+      "verificationNote": "Le catalogue n'est pas une preuve d'existence actuelle; la disponibilité LIVE doit être vérifiée séparément."
     },
     {
       "id": "dog-cat-tv",
@@ -4580,7 +4581,7 @@
       "name": "Dog & Cat TV",
       "type": "CHANNEL",
       "country": "UNVERIFIED",
-      "region": "International",
+      "region": "UNVERIFIED",
       "language": "UNVERIFIED",
       "status": "CONFIGURED",
       "bouquet": null,
@@ -4592,7 +4593,7 @@
       "existence": "UNVERIFIED",
       "nameVariant": null,
       "brandDuplicateDetected": false,
-      "verificationNote": "Présence dans le catalogue ne vaut pas preuve d'existence actuelle ni de disponibilité LIVE."
+      "verificationNote": "Le catalogue n'est pas une preuve d'existence actuelle; la disponibilité LIVE doit être vérifiée séparément."
     },
     {
       "id": "love-nature",
@@ -4600,7 +4601,7 @@
       "name": "Love Nature",
       "type": "CHANNEL",
       "country": "UNVERIFIED",
-      "region": "International",
+      "region": "UNVERIFIED",
       "language": "UNVERIFIED",
       "status": "CONFIGURED",
       "bouquet": null,
@@ -4612,7 +4613,7 @@
       "existence": "UNVERIFIED",
       "nameVariant": null,
       "brandDuplicateDetected": false,
-      "verificationNote": "Présence dans le catalogue ne vaut pas preuve d'existence actuelle ni de disponibilité LIVE."
+      "verificationNote": "Le catalogue n'est pas une preuve d'existence actuelle; la disponibilité LIVE doit être vérifiée séparément."
     },
     {
       "id": "golf-plus",
@@ -4620,7 +4621,7 @@
       "name": "GOLF+",
       "type": "CHANNEL",
       "country": "UNVERIFIED",
-      "region": "International",
+      "region": "UNVERIFIED",
       "language": "UNVERIFIED",
       "status": "CONFIGURED",
       "bouquet": null,
@@ -4632,7 +4633,7 @@
       "existence": "UNVERIFIED",
       "nameVariant": null,
       "brandDuplicateDetected": false,
-      "verificationNote": "Présence dans le catalogue ne vaut pas preuve d'existence actuelle ni de disponibilité LIVE."
+      "verificationNote": "Le catalogue n'est pas une preuve d'existence actuelle; la disponibilité LIVE doit être vérifiée séparément."
     },
     {
       "id": "museum-tv",
@@ -4640,7 +4641,7 @@
       "name": "Museum TV",
       "type": "CHANNEL",
       "country": "UNVERIFIED",
-      "region": "International",
+      "region": "UNVERIFIED",
       "language": "UNVERIFIED",
       "status": "CONFIGURED",
       "bouquet": null,
@@ -4652,7 +4653,7 @@
       "existence": "UNVERIFIED",
       "nameVariant": null,
       "brandDuplicateDetected": false,
-      "verificationNote": "Présence dans le catalogue ne vaut pas preuve d'existence actuelle ni de disponibilité LIVE."
+      "verificationNote": "Le catalogue n'est pas une preuve d'existence actuelle; la disponibilité LIVE doit être vérifiée séparément."
     },
     {
       "id": "la-chaine-meteo",
@@ -4660,7 +4661,7 @@
       "name": "La Chaîne Météo",
       "type": "CHANNEL",
       "country": "UNVERIFIED",
-      "region": "International",
+      "region": "UNVERIFIED",
       "language": "UNVERIFIED",
       "status": "CONFIGURED",
       "bouquet": null,
@@ -4672,7 +4673,7 @@
       "existence": "UNVERIFIED",
       "nameVariant": null,
       "brandDuplicateDetected": false,
-      "verificationNote": "Présence dans le catalogue ne vaut pas preuve d'existence actuelle ni de disponibilité LIVE."
+      "verificationNote": "Le catalogue n'est pas une preuve d'existence actuelle; la disponibilité LIVE doit être vérifiée séparément."
     },
     {
       "id": "planete-plus-crime",
@@ -4680,7 +4681,7 @@
       "name": "Planète+ Crime",
       "type": "CHANNEL",
       "country": "UNVERIFIED",
-      "region": "International",
+      "region": "UNVERIFIED",
       "language": "UNVERIFIED",
       "status": "CONFIGURED",
       "bouquet": null,
@@ -4692,7 +4693,7 @@
       "existence": "UNVERIFIED",
       "nameVariant": null,
       "brandDuplicateDetected": false,
-      "verificationNote": "Présence dans le catalogue ne vaut pas preuve d'existence actuelle ni de disponibilité LIVE."
+      "verificationNote": "Le catalogue n'est pas une preuve d'existence actuelle; la disponibilité LIVE doit être vérifiée séparément."
     },
     {
       "id": "planete-plus-aventure",
@@ -4700,7 +4701,7 @@
       "name": "Planète+ Aventure",
       "type": "CHANNEL",
       "country": "UNVERIFIED",
-      "region": "International",
+      "region": "UNVERIFIED",
       "language": "UNVERIFIED",
       "status": "CONFIGURED",
       "bouquet": null,
@@ -4712,17 +4713,17 @@
       "existence": "UNVERIFIED",
       "nameVariant": null,
       "brandDuplicateDetected": false,
-      "verificationNote": "Présence dans le catalogue ne vaut pas preuve d'existence actuelle ni de disponibilité LIVE."
+      "verificationNote": "Le catalogue n'est pas une preuve d'existence actuelle; la disponibilité LIVE doit être vérifiée séparément."
     },
     {
-      "id": "netflix",
+      "id": "service-netflix",
       "channelNumber": null,
       "name": "Netflix",
       "type": "SERVICE",
       "country": "UNVERIFIED",
       "region": "INTERNATIONAL",
       "language": "UNVERIFIED",
-      "status": "ACTIVE",
+      "status": "EXTERNAL",
       "bouquet": null,
       "category": "Apps & Services",
       "logoStatus": "FALLBACK_OR_MISSING",
@@ -4732,10 +4733,10 @@
       "existence": "VERIFIED",
       "nameVariant": null,
       "brandDuplicateDetected": false,
-      "verificationNote": "Service conservé dans l'audit et non supprimé du catalogue logique; les bouquets seront décidés à l'étape 2."
+      "verificationNote": "Service conservé; aucun bouquet définitif n'est attribué à l'étape 1."
     },
     {
-      "id": "peacock",
+      "id": "service-peacock",
       "channelNumber": null,
       "name": "Peacock",
       "type": "SERVICE",
@@ -4752,10 +4753,10 @@
       "existence": "UNVERIFIED",
       "nameVariant": null,
       "brandDuplicateDetected": false,
-      "verificationNote": "Service conservé dans l'audit et non supprimé du catalogue logique; les bouquets seront décidés à l'étape 2."
+      "verificationNote": "Service conservé; aucun bouquet définitif n'est attribué à l'étape 1."
     },
     {
-      "id": "pluto-tv",
+      "id": "service-pluto-tv",
       "channelNumber": null,
       "name": "Pluto TV",
       "type": "SERVICE",
@@ -4772,10 +4773,10 @@
       "existence": "UNVERIFIED",
       "nameVariant": null,
       "brandDuplicateDetected": false,
-      "verificationNote": "Service conservé dans l'audit et non supprimé du catalogue logique; les bouquets seront décidés à l'étape 2."
+      "verificationNote": "Service conservé; aucun bouquet définitif n'est attribué à l'étape 1."
     },
     {
-      "id": "tubi",
+      "id": "service-tubi",
       "channelNumber": null,
       "name": "Tubi",
       "type": "SERVICE",
@@ -4792,7 +4793,7 @@
       "existence": "UNVERIFIED",
       "nameVariant": null,
       "brandDuplicateDetected": false,
-      "verificationNote": "Service conservé dans l'audit et non supprimé du catalogue logique; les bouquets seront décidés à l'étape 2."
+      "verificationNote": "Service conservé; aucun bouquet définitif n'est attribué à l'étape 1."
     },
     {
       "id": "stage-plus",
@@ -4802,7 +4803,7 @@
       "country": "UNVERIFIED",
       "region": "INTERNATIONAL",
       "language": "UNVERIFIED",
-      "status": "ACTIVE",
+      "status": "EXTERNAL",
       "bouquet": null,
       "category": "Apps & Services",
       "logoStatus": "FALLBACK_OR_MISSING",
@@ -4812,7 +4813,7 @@
       "existence": "VERIFIED",
       "nameVariant": null,
       "brandDuplicateDetected": false,
-      "verificationNote": "Service conservé dans l'audit et non supprimé du catalogue logique; les bouquets seront décidés à l'étape 2."
+      "verificationNote": "Service conservé; aucun bouquet définitif n'est attribué à l'étape 1."
     }
   ]
 }
