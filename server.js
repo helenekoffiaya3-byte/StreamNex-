@@ -6,6 +6,7 @@ const path=require('path');
 const CHANNELS=require('./config/channels');
 const APPS=require('./config/apps');
 const SERVICES=require('./config/services');
+const BOUQUETS=require('./config/bouquets');
 const SPORTS_CATALOG=[
   {id:'ligue-2-bkt',title:'Ligue 2 BKT',category:'Football',logo:'1790826734997.jpg'},
   {id:'coupe-de-france',title:'Coupe de France',category:'Football',logo:'1790826732955.jpg'},
@@ -47,8 +48,15 @@ app.get('/api/health',(_req,res)=>res.json({success:true,service:'streamlive',da
 app.get('/api/catalogue',(_req,res)=>res.json({
   success:true,database:false,channels:CHANNELS.length,services:SERVICES.length,
   groups:CHANNELS.reduce((a,c)=>(a[c.group||'Autre']=(a[c.group||'Autre']||0)+1,a),{}),
+  bouquets:BOUQUETS.length,
   capabilities:['channels','sources','urls','programmes','epg','diffusion','live','multi-live','hls']
 }));
+app.get('/api/bouquets',(req,res)=>{
+  const id=req.query.id;
+  const list=id?BOUQUETS.filter(b=>b.id===id):BOUQUETS;
+  if(id&&!list.length)return res.status(404).json({success:false,error:'Bouquet non trouvé.'});
+  res.json({success:true,count:list.length,bouquets:list});
+});
 app.get('/api/sports',(_req,res)=>res.json({success:true,count:SPORTS_CATALOG.length,sports:SPORTS_CATALOG}));
 app.get('/api/apps',(req,res)=>{
   const group=req.query.group;
