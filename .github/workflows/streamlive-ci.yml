@@ -1,0 +1,20 @@
+name: StreamLive CI
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm install
+      - run: npm run check:channels
+      - run: node --check server.js
+      - run: node --check app.js
+      - run: node -e "require('./server'); console.log('StreamLive server module OK')"
