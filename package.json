@@ -6,7 +6,8 @@
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
-    "check:channels": "node -e \"const c=require('./config/channels');const a=c.map(x=>x.id),b=c.map(x=>x.channelNumber),d=c.map(x=>x.name.toLowerCase());if(new Set(a).size!==c.length||new Set(b).size!==c.length||new Set(d).size!==c.length)process.exit(1);console.log('StreamLive catalogue OK:',c.length)\""
+    "check:channels": "node -e \"const c=require('./config/channels');const a=c.map(x=>x.id),b=c.map(x=>x.channelNumber),d=c.map(x=>x.name.toLowerCase());if(new Set(a).size!==c.length||new Set(b).size!==c.length||new Set(d).size!==c.length)process.exit(1);console.log('StreamLive catalogue OK:',c.length)\"",
+    "check:audit": "node scripts/audit-catalogue.js"
   },
   "engines": {
     "node": ">=24"
