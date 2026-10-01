@@ -1,4 +1,4 @@
-const CHANNELS = require('./channels');
+const CHANNELS = require('./channels');\nconst SERVICES = require('./services');
 
 const HISTORICAL_APPS = [
   ["disney-xd-france","Disney XD France"],
@@ -22,7 +22,7 @@ const HISTORICAL_APPS = [
   ["gong","Gong"]
 ];
 
-const apps = [
+const apps = [\n  ...SERVICES,
   ...CHANNELS
     .filter(c => c.group === 'Jeunesse')
     .map(c => ({
