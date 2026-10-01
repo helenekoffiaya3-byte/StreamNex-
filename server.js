@@ -40,7 +40,18 @@ function publicChannel(c){
 function decorateOccurrence(o,channel){
   if(!o)return null;
   const source=sourceFor(channel);
-  return {...o,playbackUrl:o.playbackUrl||null,sourceId:source.sourceId,liveSourceUrl:source.url||null};
+  const now=Date.now();
+  const start=Date.parse(o.startAt),end=Date.parse(o.endAt);
+  const scheduledNow=Number.isFinite(start)&&Number.isFinite(end)&&start<=now&&now<end;
+  return {
+    ...o,
+    playbackUrl:o.playbackUrl||null,
+    sourceId:source.sourceId,
+    sourceStatus:source.status,
+    liveSourceUrl:source.url||null,
+    scheduledNow,
+    liveAvailable:Boolean(scheduledNow&&source.url&&channel.playbackMode!=='external')
+  };
 }
 
 app.get('/api/health',(_req,res)=>res.json({success:true,service:'streamlive',database:false,channels:CHANNELS.length,version:'2.1.0'}));
@@ -99,7 +110,7 @@ app.get('/api/programs/resolve-playback',(req,res)=>{
   const source=sourceFor(c);
   const now=Date.now(),start=Date.parse(occurrence.startAt),end=Date.parse(occurrence.endAt);
   if(source.url&&c.playbackMode!=='external'&&start<=now&&now<end){
-    return res.json({success:true,mode:'LIVE',playbackUrl:source.url,channelId:c.id,occurrenceId:occurrence.occurrenceId});
+    return res.json({success:true,mode:'LIVE',playbackUrl:source.url,channelId:c.id,occurrenceId:occurrence.occurrenceId,programme:decorateOccurrence(occurrence,c)});
   }
   return res.json({success:true,mode:'UNAVAILABLE',playbackUrl:null,channelId:c.id,occurrenceId:occurrence.occurrenceId,message:'Aucune lecture réelle configurée pour cette occurrence.'});
 });
