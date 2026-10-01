@@ -4,6 +4,7 @@
 
 [functions]
   node_bundler = "esbuild"
+  included_files = ["*.html", "*.css", "*.js", "assets/**", "config/**"]
 
 [[redirects]]
   from = "/*"
