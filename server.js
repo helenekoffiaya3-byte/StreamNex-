@@ -5,6 +5,13 @@ const helmet=require('helmet');
 const path=require('path');
 const CHANNELS=require('./config/channels');
 const APPS=require('./config/apps');
+const SPORTS_CATALOG=[
+  {id:'ligue-2-bkt',title:'Ligue 2 BKT',category:'Football',logo:'1790826734997.jpg'},
+  {id:'coupe-de-france',title:'Coupe de France',category:'Football',logo:'1790826732955.jpg'},
+  {id:'top-14-rugby',title:'TOP 14 Rugby',category:'Rugby',logo:'1790826728954.jpg'},
+  {id:'premier-league',title:'Premier League',category:'Football',logo:'1790826730921.jpg'},
+  {id:'motogp',title:'MotoGP™',category:'Sports Mécaniques',logo:'1790826726863.jpg'}
+];
 const {getProgrammes,getOccurrences,getCurrentProgramme,getNextProgramme,getProgrammeByOccurrence,getProgrammeById}=require('./config/programmes');
 
 const app=express();
@@ -41,7 +48,7 @@ app.get('/api/catalogue',(_req,res)=>res.json({
   groups:CHANNELS.reduce((a,c)=>(a[c.group||'Autre']=(a[c.group||'Autre']||0)+1,a),{}),
   capabilities:['channels','sources','urls','programmes','epg','diffusion','live','multi-live','hls']
 }));
-app.get('/api/apps',(req,res)=>{\n  const group=req.query.group;\n  const list=group?APPS.filter(a=>a.group===group):APPS;\n  res.json({success:true,count:list.length,apps:list});\n});\napp.get('/api/stream/channels',(_req,res)=>res.json({success:true,count:CHANNELS.length,channels:CHANNELS.map(publicChannel)}));
+app.get('/api/sports',(_req,res)=>res.json({success:true,count:SPORTS_CATALOG.length,sports:SPORTS_CATALOG}));\napp.get('/api/apps',(req,res)=>{\n  const group=req.query.group;\n  const list=group?APPS.filter(a=>a.group===group):APPS;\n  res.json({success:true,count:list.length,apps:list});\n});\napp.get('/api/stream/channels',(_req,res)=>res.json({success:true,count:CHANNELS.length,channels:CHANNELS.map(publicChannel)}));
 app.get('/api/stream/random',(_req,res)=>{
   const available=CHANNELS.filter(c=>sourceFor(c).url&&c.playbackMode!=='external');
   if(!available.length)return res.status(503).json({success:false,error:'Aucune source LIVE configurée.'});
