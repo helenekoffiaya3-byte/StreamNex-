@@ -121,8 +121,32 @@ app.get('/api/diffusion',(req,res)=>{
 });
 app.get('/api/epg',(req,res)=>{
   const list=req.query.channelId?[requireChannel(req.query.channelId)].filter(Boolean):CHANNELS;
-  const channels=list.map(c=>({channelId:c.id,name:c.name,current:decorateOccurrence(getCurrentProgramme(c.id),c),next:decorateOccurrence(getNextProgramme(c.id),c),programmes:getProgrammes(c.id)}));
-  res.json({success:true,count:channels.length,channels});
+  const requestedDate=req.query.date?new Date(`${req.query.date}T12:00:00Z`):new Date();
+  if(Number.isNaN(requestedDate.getTime())) return res.status(400).json({success:false,error:'Date EPG invalide. Utilisez YYYY-MM-DD.'});
+  const days=Math.min(Math.max(Number(req.query.days)||1,1),7);
+  const channels=list.map(c=>{
+    const programmes=[];
+    for(let i=0;i<days;i++){
+      const d=new Date(requestedDate);
+      d.setUTCDate(d.getUTCDate()+i);
+      programmes.push(...getProgrammes(c.id,d));
+    }
+    return {
+      channelId:c.id,
+      name:c.name,
+      timezone:'Africa/Abidjan',
+      current:decorateOccurrence(getCurrentProgramme(c.id),c),
+      next:decorateOccurrence(getNextProgramme(c.id),c),
+      programmes
+    };
+  });
+  res.json({
+    success:true,
+    count:channels.length,
+    date:requestedDate.toISOString().slice(0,10),
+    days,
+    channels
+  });
 });
 
 app.get('/live',(_req,res)=>res.sendFile(path.join(__dirname,'live.html')));
