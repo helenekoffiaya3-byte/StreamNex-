@@ -55,12 +55,6 @@ function start(programme){
   const input=resolveInput(programme);
   const start=Date.parse(programme.startAt);
   const offset=Math.max(0,(Date.now()-start)/1000);
-  const args=[
-    ...(input?['-ss',String(offset)]:['-f','lavfi','-i','color=c=black:s=1280x720:r=25']),
-    ...(input?[]:['-f','lavfi','-i','anullsrc=channel_layout=stereo:sample_rate=48000']),
-    ...(input?['-re','-i',input]:[]),
-  ];
-
   // For VOD input use the file itself; otherwise use generated fallback audio/video.
   const inputArgs=input
     ? ['-ss',String(offset),'-re','-i',input]
