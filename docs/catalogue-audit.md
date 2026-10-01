@@ -9,8 +9,8 @@ Date : 2026-10-01
 Le catalogue historique a été restauré : aucune entrée n'est supprimée parce qu'elle est un service, une marque ou destinée à un futur bouquet.
 
 - **233 entrées CHANNEL** conservées dans `config/channels.js`.
-- **5 entrées SERVICE** conservées dans `config/services.js`.
-- **238 fiches d'audit** dans `config/catalogue-audit.json`.
+- **18 entrées SERVICE** conservées dans `config/services.js`.
+- **251 fiches d'audit** dans `config/catalogue-audit.json`.
 - IDs CHANNEL uniques : OK.
 - Numéros CHANNEL uniques : OK.
 - IDs globaux CHANNEL + SERVICE uniques : OK.
