@@ -41,9 +41,9 @@ function initials(name){
 }
 function svgLogo(c){
   const label=String(c.name||'STREAMLIVE').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').slice(0,28);
-  const initials=esc(initials(c.name)).slice(0,8);
+  const mark=esc(initials(c.name)).slice(0,8);
   const hue=(String(c.id||c.name).split('').reduce((n,ch)=>n+ch.charCodeAt(0),0)%360);
-  const svg='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 150"><defs><linearGradient id="g" x1="0" x2="1"><stop stop-color="hsl('+hue+',80%,42%)"/><stop offset="1" stop-color="hsl('+(hue+55)+',85%,58%)"/></linearGradient></defs><rect width="320" height="150" rx="18" fill="url(#g)"/><circle cx="48" cy="48" r="24" fill="rgba(255,255,255,.22)"/><text x="48" y="57" text-anchor="middle" font-family="Arial,sans-serif" font-size="22" font-weight="900" fill="white">'+initials+'</text><text x="160" y="105" text-anchor="middle" font-family="Arial,sans-serif" font-size="25" font-weight="900" fill="white">'+label+'</text></svg>';
+  const svg='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 150"><defs><linearGradient id="g" x1="0" x2="1"><stop stop-color="hsl('+hue+',80%,42%)"/><stop offset="1" stop-color="hsl('+(hue+55)+',85%,58%)"/></linearGradient></defs><rect width="320" height="150" rx="18" fill="url(#g)"/><circle cx="48" cy="48" r="24" fill="rgba(255,255,255,.22)"/><text x="48" y="57" text-anchor="middle" font-family="Arial,sans-serif" font-size="22" font-weight="900" fill="white">'+mark+'</text><text x="160" y="105" text-anchor="middle" font-family="Arial,sans-serif" font-size="25" font-weight="900" fill="white">'+label+'</text></svg>';
   return 'data:image/svg+xml;charset=UTF-8,'+encodeURIComponent(svg);
 }
 function logoSources(c){
