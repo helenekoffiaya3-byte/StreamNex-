@@ -133,4 +133,5 @@ app.get('/channel/:id',(req,res)=>{
 
 app.use(express.static(__dirname,{dotfiles:'deny',index:'index.html',fallthrough:true}));
 app.use((req,res)=>res.status(404).json({success:false,error:'Ressource non trouvée.'}));
-app.listen(PORT,()=>console.log(`StreamLive core actif sur le port ${PORT} — ${CHANNELS.length} chaînes — sans base de données.`));
+if(require.main===module){app.listen(PORT,()=>console.log(`StreamLive core actif sur le port ${PORT} — ${CHANNELS.length} chaînes — sans base de données.`));}
+module.exports=app;
