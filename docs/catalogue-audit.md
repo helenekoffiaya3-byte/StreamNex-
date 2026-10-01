@@ -38,9 +38,9 @@ Aucun renumérotage automatique n'a été effectué.
 
 Netflix, Peacock, Pluto TV et Tubi restent présents comme entrées de catalogue TV historique **et** disposent d'un enregistrement SERVICE séparé pour l'interface Apps/Services. Les identifiants SERVICE sont préfixés par `service-` afin de garantir l'unicité globale des IDs.
 
-STAGE+ reste dans le catalogue des services. Son site officiel le décrit comme un service de streaming de musique classique avec contenus à la demande et livestreams. citeturn0search0turn0search7
+STAGE+ reste dans le catalogue des services. Son site officiel le décrit comme un service de streaming de musique classique avec contenus à la demande et livestreams.
 
-Netflix dispose également d'une présence officielle Côte d'Ivoire et se décrit comme un service de streaming. citeturn0search1turn0search3
+Netflix dispose également d'une présence officielle Côte d'Ivoire et se décrit comme un service de streaming.
 
 ## EPG
 
