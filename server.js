@@ -131,7 +131,8 @@ app.get('/channel/:id',(req,res)=>{
   res.sendFile(path.join(__dirname,'channel.html'));
 });
 
-app.use(express.static(__dirname,{dotfiles:'deny',index:'index.html',fallthrough:true}));
+const STATIC_ROOT=process.env.NETLIFY?path.join(__dirname,'../..'):__dirname;
+app.use(express.static(STATIC_ROOT,{dotfiles:'deny',index:'index.html',fallthrough:true}));
 app.use((req,res)=>res.status(404).json({success:false,error:'Ressource non trouvée.'}));
 if(require.main===module){app.listen(PORT,()=>console.log(`StreamLive core actif sur le port ${PORT} — ${CHANNELS.length} chaînes — sans base de données.`));}
 module.exports=app;
