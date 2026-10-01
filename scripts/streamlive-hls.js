@@ -62,7 +62,7 @@ function start(programme){
 
   const ffArgs=[
     ...inputArgs,
-    '-map','0:v:0','-map','0:a:0?',
+    '-map','0:v:0','-map',input?'0:a:0?':'1:a:0',
     '-c:v','libx264','-preset','ultrafast','-tune','zerolatency',
     '-pix_fmt','yuv420p','-r','25','-g','50',
     '-c:a','aac','-b:a','128k','-ar','48000',
