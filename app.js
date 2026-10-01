@@ -1,5 +1,5 @@
 (()=>{
-const state={channels:[],apps:[],query:''};
+const state={channels:[],apps:[],sports:[],query:''};
 const $=s=>document.querySelector(s);
 const esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const logoAliases={
@@ -71,6 +71,12 @@ function card(c){
   const status=c.sourceStatus||c.status||'CATALOGUE';
   return '<a class="channel-card" href="'+href+'">'+logoHtml(c)+'<div class="card-title">'+esc(c.name)+'</div><div class="card-meta">'+esc(c.group||'App')+'<span class="dot">•</span>'+esc(status)+'</div></a>';
 }
+function sportsCard(s){
+  const q=String(s.title||'').toLowerCase();
+  const srcs=['/assets/sports/'+encodeURIComponent(s.logo||''),'/assets/logos/'+encodeURIComponent(s.logo||'')];
+  const initials=(String(s.title||'SPORT').split(/\\s+/).filter(Boolean).slice(0,2).map(x=>x[0]).join('')).toUpperCase();
+  return '<div class="channel-card sports-card"><div class="logo-box"><div class="logo-fallback">'+esc(initials)+'</div><img alt="Logo '+esc(s.title)+'" loading="lazy" src="'+esc(srcs[0])+'" data-sources="'+esc(JSON.stringify(srcs.slice(1)))+'" onerror="logoError(this)"></div><div class="card-title">'+esc(s.title)+'</div><div class="card-meta">'+esc(s.category)+'</div></div>';
+}
 function section(title,list,extra=''){
   if(!list.length)return '';
   return '<section class="catalog-section '+extra+'"><div class="section-title-row"><h2>'+esc(title)+'</h2><span>'+list.length+'</span></div><div class="channels-grid">'+list.map(card).join('')+'</div></section>';
@@ -87,15 +93,18 @@ function render(){
   if(remaining.length)html+=section('Autres chaînes',remaining);
   const apps=state.apps.filter(a=>(a.name+' '+(a.group||'')).toLowerCase().includes(q));
   if(apps.length)html+=section('Apps & archives',apps,'apps-section');
+  const sports=state.sports.filter(s=>(s.title+' '+s.category).toLowerCase().includes(q));
+  if(sports.length)html+='<section class="catalog-section sports-section"><div class="section-title-row"><h2>Sports & compétitions</h2><span>'+sports.length+'</span></div><div class="channels-grid">'+sports.map(sportsCard).join('')+'</div></section>';
   $('#catalog').innerHTML=html||'<div class="empty">Aucune chaîne ou app trouvée.</div>';
-  $('#catalog-status').textContent=state.query?all.length+' chaîne(s) trouvée(s)':state.channels.length+' chaînes · '+state.apps.length+' apps/archives';
+  $('#catalog-status').textContent=state.query?all.length+' chaîne(s) · '+sports.length+' sport(s) trouvé(s)':state.channels.length+' chaînes · '+state.apps.length+' apps/archives · '+state.sports.length+' compétitions';
 }
 async function init(){
-  const [cr,ar]=await Promise.all([fetch('/api/stream/channels'),fetch('/api/apps')]);
-  const cd=await cr.json(),ad=await ar.json();
+  const [cr,ar,sr]=await Promise.all([fetch('/api/stream/channels'),fetch('/api/apps'),fetch('/api/sports')]);
+  const cd=await cr.json(),ad=await ar.json(),sd=await sr.json();
   if(!cr.ok||!cd.success)throw Error(cd.error||'Catalogue indisponible');
   state.channels=cd.channels||[];
   state.apps=ad.success?(ad.apps||[]):[];
+  state.sports=sr.ok&&sd.success?(sd.sports||[]):[];
   render();
 }
 $('#search')?.addEventListener('input',e=>{state.query=e.target.value;render()});
