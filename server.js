@@ -5,6 +5,7 @@ const helmet=require('helmet');
 const path=require('path');
 const CHANNELS=require('./config/channels');
 const APPS=require('./config/apps');
+const SERVICES=require('./config/services');
 const SPORTS_CATALOG=[
   {id:'ligue-2-bkt',title:'Ligue 2 BKT',category:'Football',logo:'1790826734997.jpg'},
   {id:'coupe-de-france',title:'Coupe de France',category:'Football',logo:'1790826732955.jpg'},
@@ -44,7 +45,7 @@ function decorateOccurrence(o,channel){
 
 app.get('/api/health',(_req,res)=>res.json({success:true,service:'streamlive',database:false,channels:CHANNELS.length,version:'2.1.0'}));
 app.get('/api/catalogue',(_req,res)=>res.json({
-  success:true,database:false,channels:CHANNELS.length,
+  success:true,database:false,channels:CHANNELS.length,services:SERVICES.length,
   groups:CHANNELS.reduce((a,c)=>(a[c.group||'Autre']=(a[c.group||'Autre']||0)+1,a),{}),
   capabilities:['channels','sources','urls','programmes','epg','diffusion','live','multi-live','hls']
 }));
