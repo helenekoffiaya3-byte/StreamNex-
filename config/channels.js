@@ -215,7 +215,6 @@ const CHANNELS = [
   { channelNumber: 249, id: "m6-music", name: "M6 Music", group: "Musique", productionUrl: process.env.M6_MUSIC_HLS_URL || null, streamEnabled: Boolean(process.env.M6_MUSIC_HLS_URL) },
   { channelNumber: 250, id: "trace-urban", name: "Trace Urban", group: "Musique", productionUrl: process.env.TRACE_URBAN_HLS_URL || null, streamEnabled: Boolean(process.env.TRACE_URBAN_HLS_URL) },
   { channelNumber: 251, id: "rfm-tv", name: "RFM TV", group: "Musique", productionUrl: process.env.RFM_TV_HLS_URL || null, streamEnabled: Boolean(process.env.RFM_TV_HLS_URL) },
-  { channelNumber: 252, id: "deutsche-grammophon-plus", name: "Deutsche Grammophon+", group: "Musique", productionUrl: process.env.DEUTSCHE_GRAMMOPHON_PLUS_HLS_URL || null, streamEnabled: Boolean(process.env.DEUTSCHE_GRAMMOPHON_PLUS_HLS_URL) },
   { channelNumber: 253, id: "seasons", name: "Seasons", group: "Documentaires", productionUrl: process.env.SEASONS_HLS_URL || null, streamEnabled: Boolean(process.env.SEASONS_HLS_URL) },
   { channelNumber: 254, id: "chasse-et-peche", name: "Chasse et Pêche", group: "Documentaires", productionUrl: process.env.CHASSE_ET_PECHE_HLS_URL || null, streamEnabled: Boolean(process.env.CHASSE_ET_PECHE_HLS_URL) },
   { channelNumber: 255, id: "animaux", name: "Animaux", group: "Documentaires", productionUrl: process.env.ANIMAUX_HLS_URL || null, streamEnabled: Boolean(process.env.ANIMAUX_HLS_URL) },
