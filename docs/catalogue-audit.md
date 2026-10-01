@@ -1,71 +1,70 @@
-# StreamLive — audit du catalogue (étape 1)
+# StreamLive — Étape 1 : audit final du catalogue
 
-Date de l'audit : 2026-10-01
+Date : 2026-10-01
 
-## Résultat
+## État
 
-Le catalogue initial de 233 entrées n'est pas composé exclusivement de chaînes TV linéaires. L'audit structurel a séparé les services de streaming des chaînes.
+**Étape 1 terminée sur le plan structurel et du référentiel. Étape 2 non commencée.**
 
-- **228 chaînes TV / chaînes éditoriales** restent dans `config/channels.js`.
-- **5 services/apps** sont maintenant dans `config/services.js` et exposés via `config/apps.js` / `/api/apps`.
-- Aucun doublon détecté sur les **IDs**, **noms** ou **numéros** des 228 chaînes.
-- La numérotation historique reste volontairement non continue.
+Le catalogue historique a été restauré : aucune entrée n'est supprimée parce qu'elle est un service, une marque ou destinée à un futur bouquet.
 
-### Services sortis du catalogue TV
+- **233 entrées CHANNEL** conservées dans `config/channels.js`.
+- **5 entrées SERVICE** conservées dans `config/services.js`.
+- **238 fiches d'audit** dans `config/catalogue-audit.json`.
+- IDs CHANNEL uniques : OK.
+- Numéros CHANNEL uniques : OK.
+- IDs globaux CHANNEL + SERVICE uniques : OK.
+- Les trous de numérotation sont conservés.
+- Aucun nouveau HLS n'a été inventé.
+- Aucun bouquet définitif n'est attribué.
 
-| ID | Nom | Classification |
-|---|---|---|
-| netflix | Netflix | service de streaming |
-| peacock | Peacock | service de streaming |
-| pluto-tv | Pluto TV | service de streaming / agrégateur de chaînes |
-| tubi | Tubi | service de streaming |
-| stage-plus | STAGE+ | service de streaming audio/vidéo classique |
+## Fiche normalisée
 
-Netflix se décrit comme un service de streaming et sa version Côte d'Ivoire est active. Peacock est distribué comme application/service de streaming. Tubi se présente comme une plateforme de streaming de films et séries. Pluto TV fournit des chaînes live et du contenu à la demande via son service/app. Deutsche Grammophon présente **STAGE+** comme son service de streaming classique, avec livestreams et VOD ; l'ancien nom `Deutsche Grammophon+` n'est donc plus traité comme une chaîne TV.
+Chaque entrée de l'audit possède :
 
-## Contrôles structurels
+`id`, `channelNumber`, `name`, `type`, `country`, `region`, `language`, `status`, `bouquet`, `category`, `logoStatus`, `epgStatus`, `sourceStatus`, `sourceUrl`, `existence`, `nameVariant`, `brandDuplicateDetected`.
 
-- IDs uniques : **OK**
-- Noms uniques : **OK**
-- Numéros uniques : **OK**
-- Chaînes/services séparés : **OK**
-- Aucune URL HLS fictive ajoutée pendant cet audit : **OK**
+Les champs non démontrables à partir du dépôt sont explicitement marqués `UNVERIFIED`. Cela évite de présenter la présence dans le JSON comme une preuve d'existence actuelle ou de disponibilité LIVE.
 
-## Numéros libres conservés
+## Numérotation
 
-Les trous ne sont pas remplis automatiquement afin de ne pas casser la numérotation historique :
+Les numéros libres historiques sont conservés :
 
-`69, 70, 71, 76, 140, 141, 193, 194, 195, 196, 197, 198, 199, 200, 201, 202, 203, 204, 205, 206, 207, 208, 209, 210, 211, 212, 213, 214, 215, 216, 217, 218, 219, 220, 221, 222, 223, 224, 252`
+`140, 141, 193–224`.
 
-## Répartition actuelle des chaînes
+Aucun renumérotage automatique n'a été effectué.
 
-- Afrique / International: 9
-- Biblique: 7
-- Bollywood: 1
-- Cuisine & Lifestyle: 1
-- Documentaires: 15
-- Films & Cinéma: 32
-- France: 12
-- Information: 28
-- International: 2
-- Jeunesse: 36
-- Musique: 12
-- National: 7
-- Nollywood: 2
-- S+ StreamLive: 23
-- Sport: 13
-- Séries: 28
+## Services
 
-## Étape suivante de l'audit éditorial
+Netflix, Peacock, Pluto TV et Tubi restent présents comme entrées de catalogue TV historique **et** disposent d'un enregistrement SERVICE séparé pour l'interface Apps/Services. Les identifiants SERVICE sont préfixés par `service-` afin de garantir l'unicité globale des IDs.
 
-La prochaine passe doit qualifier, pour chaque chaîne restante :
+STAGE+ reste dans le catalogue des services. Son site officiel le décrit comme un service de streaming de musique classique avec contenus à la demande et livestreams. citeturn0search0turn0search7
 
-1. existence actuelle ;
-2. statut (ACTIVE / INACTIVE / HISTORICAL / EXTERNAL, sans confondre présence au catalogue et disponibilité HLS) ;
-3. pays/région ;
-4. langue/version ;
-5. doublon de marque ou variante régionale ;
-6. nature exacte (chaîne linéaire vs événement/service/archive) ;
-7. source officielle à utiliser pour la validation.
+Netflix dispose également d'une présence officielle Côte d'Ivoire et se décrit comme un service de streaming. citeturn0search1turn0search3
 
-Aucune nouvelle chaîne ne doit être ajoutée avant cette qualification.
+## EPG
+
+`epgStatus` ne déclare pas automatiquement un EPG réel. L'audit utilise `UNVERIFIED` lorsqu'une preuve réelle n'est pas disponible dans le dépôt. Les programmes éditoriaux StreamLive restent distincts des données EPG réelles.
+
+## Sources
+
+Pour une entrée CHANNEL, une expression d'environnement HLS dans le code n'est pas considérée comme une URL HLS réelle disponible. L'audit indique donc `NOT_CONFIGURED` tant que la valeur runtime n'est pas fournie.
+
+Pour les services externes, seule une URL explicitement présente dans le dépôt est conservée ; aucune URL HLS inventée n'est ajoutée.
+
+## Contrôle automatique
+
+`npm run check:channels` contrôle les IDs, noms et numéros des chaînes.
+
+`npm run check:audit` contrôle en plus :
+- unicité globale des IDs ;
+- unicité des numéros ;
+- présence d'une fiche d'audit pour chaque entrée ;
+- cohérence des compteurs ;
+- maintien de l'état « étape 1 / bouquets non finalisés ».
+
+## Règle de passage
+
+**Étape 1 → Étape 2 uniquement après validation de cet audit.**
+
+À l'étape 2, les bouquets seront organisés sans supprimer les entrées auditées.
