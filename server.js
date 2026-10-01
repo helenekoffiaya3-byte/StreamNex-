@@ -48,7 +48,13 @@ app.get('/api/catalogue',(_req,res)=>res.json({
   groups:CHANNELS.reduce((a,c)=>(a[c.group||'Autre']=(a[c.group||'Autre']||0)+1,a),{}),
   capabilities:['channels','sources','urls','programmes','epg','diffusion','live','multi-live','hls']
 }));
-app.get('/api/sports',(_req,res)=>res.json({success:true,count:SPORTS_CATALOG.length,sports:SPORTS_CATALOG}));\napp.get('/api/apps',(req,res)=>{\n  const group=req.query.group;\n  const list=group?APPS.filter(a=>a.group===group):APPS;\n  res.json({success:true,count:list.length,apps:list});\n});\napp.get('/api/stream/channels',(_req,res)=>res.json({success:true,count:CHANNELS.length,channels:CHANNELS.map(publicChannel)}));
+app.get('/api/sports',(_req,res)=>res.json({success:true,count:SPORTS_CATALOG.length,sports:SPORTS_CATALOG}));
+app.get('/api/apps',(req,res)=>{
+  const group=req.query.group;
+  const list=group?APPS.filter(a=>a.group===group):APPS;
+  res.json({success:true,count:list.length,apps:list});
+});
+app.get('/api/stream/channels',(_req,res)=>res.json({success:true,count:CHANNELS.length,channels:CHANNELS.map(publicChannel)}));
 app.get('/api/stream/random',(_req,res)=>{
   const available=CHANNELS.filter(c=>sourceFor(c).url&&c.playbackMode!=='external');
   if(!available.length)return res.status(503).json({success:false,error:'Aucune source LIVE configurée.'});
