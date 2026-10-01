@@ -167,6 +167,18 @@ app.get('/channel/:id',(req,res)=>{
   res.sendFile(path.join(__dirname,'channel.html'));
 });
 
+app.use('/hls',express.static(path.join(__dirname,'public','hls'),{
+  extensions:['m3u8'],
+  setHeaders:(res,file)=>{
+    if(/\\.m3u8$/i.test(file)){
+      res.setHeader('Content-Type','application/vnd.apple.mpegurl');
+      res.setHeader('Cache-Control','no-store, no-cache, must-revalidate, proxy-revalidate');
+    }else if(/\\.(ts|m4s|mp4)$/i.test(file)){
+      res.setHeader('Cache-Control','public, max-age=60');
+    }
+  }
+}));
+
 const STATIC_ROOT=process.env.NETLIFY?path.join(__dirname,'../..'):__dirname;
 app.use(express.static(STATIC_ROOT,{dotfiles:'deny',index:'index.html',fallthrough:true}));
 app.use((req,res)=>res.status(404).json({success:false,error:'Ressource non trouvée.'}));
