@@ -54,3 +54,5 @@ h1{font-size:38px;line-height:1;margin:0;font-weight:950;letter-spacing:-1px;tex
 }
 @media(max-width:380px){.channels-grid{grid-template-columns:repeat(4,minmax(0,1fr));gap:5px}.channel-card{min-height:72px}.logo-box{height:40px}.card-title{font-size:8px}}
 .channel-card{min-height:125px}.logo-box{height:60px}.card-title{font-size:11px}}
+
+.sports-card .card-meta{display:block;font-size:9px;color:#52687a;text-align:center;margin-top:2px}.sports-section .channel-card{cursor:default}
