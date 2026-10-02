@@ -1929,5 +1929,15 @@
       "status": "MISSING",
       "sourceStatus": "SOURCE_REQUIRED"
     }
+  ],
+  "brandAssets": [
+    {
+      "id": "s-plus-streamlive",
+      "name": "S+ StreamLive",
+      "expectedFile": "assets/logos/s-plus-streamlive.svg",
+      "status": "PRESENT",
+      "sourceStatus": "USER_PROVIDED_PACK",
+      "source": "Pack logos S+ fourni par l'utilisateur"
+    }
   ]
 }
