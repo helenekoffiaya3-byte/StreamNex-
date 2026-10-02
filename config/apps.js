@@ -25,19 +25,6 @@ const HISTORICAL_APPS = [
 
 const apps = [
   ...SERVICES,
-  ...CHANNELS
-    .filter(c => c.group === 'Jeunesse')
-    .map(c => ({
-      id: c.id,
-      name: c.name,
-      type: 'channel',
-      group: c.group,
-      channelId: c.id,
-      channelNumber: c.channelNumber,
-      status: 'ACTIVE_CATALOG',
-      sourceConfigured: Boolean(c.productionUrl),
-      streamEnabled: Boolean(c.streamEnabled)
-    })),
   ...HISTORICAL_APPS.map(([id, name]) => ({
     id,
     name,
