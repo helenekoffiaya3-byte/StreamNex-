@@ -10,7 +10,8 @@
     "presentLogoFiles": 140,
     "missingLogoFiles": 92,
     "userProvidedPackChannels": 5,
-    "reconstructedCatalogueLogos": 135
+    "reconstructedCatalogueLogos": 135,
+    "exactUserImageFilesInRepo": 5
   },
   "verifiedOfficialSources": [
     {
@@ -85,7 +86,7 @@
       "channelNumber": 4,
       "id": "a-plus-ivoire",
       "name": "A+ Ivoire",
-      "expectedFile": "assets/logos/a-plus-ivoire.jpg",
+      "expectedFile": "assets/logos/a-plus-ivoire.svg",
       "status": "PRESENT",
       "sourceStatus": "USER_PROVIDED_IMAGE_CROP",
       "source": "Logo extrait de la planche fournie par l'utilisateur"
@@ -121,7 +122,7 @@
       "channelNumber": 8,
       "id": "6ter",
       "name": "6ter",
-      "expectedFile": "assets/logos/6ter.jpg",
+      "expectedFile": "assets/logos/6ter.svg",
       "status": "PRESENT",
       "sourceStatus": "USER_PROVIDED_IMAGE_CROP",
       "source": "Logo extrait de la planche fournie par l'utilisateur"
@@ -132,8 +133,8 @@
       "name": "Arte",
       "expectedFile": "assets/logos/arte.jpg",
       "status": "PRESENT",
-      "sourceStatus": "USER_PROVIDED_IMAGE_CROP",
-      "source": "Logo extrait de la planche fournie par l'utilisateur"
+      "sourceStatus": "USER_PROVIDED_IMAGE_EXACT",
+      "source": "Image exacte fournie par l'utilisateur"
     },
     {
       "channelNumber": 10,
@@ -228,7 +229,7 @@
       "channelNumber": 20,
       "id": "7info",
       "name": "7info",
-      "expectedFile": "assets/logos/7info.jpg",
+      "expectedFile": "assets/logos/7info.svg",
       "status": "PRESENT",
       "sourceStatus": "USER_PROVIDED_IMAGE_CROP",
       "source": "Logo extrait de la planche fournie par l'utilisateur"
@@ -239,8 +240,8 @@
       "name": "ABC News Live",
       "expectedFile": "assets/logos/abc-news-live.jpg",
       "status": "PRESENT",
-      "sourceStatus": "USER_PROVIDED_IMAGE_CROP",
-      "source": "Logo extrait de la planche fournie par l'utilisateur"
+      "sourceStatus": "USER_PROVIDED_IMAGE_EXACT",
+      "source": "Image exacte fournie par l'utilisateur"
     },
     {
       "channelNumber": 22,
@@ -248,8 +249,8 @@
       "name": "Al Jazeera",
       "expectedFile": "assets/logos/al-jazeera.jpg",
       "status": "PRESENT",
-      "sourceStatus": "USER_PROVIDED_IMAGE_CROP",
-      "source": "Logo extrait de la planche fournie par l'utilisateur"
+      "sourceStatus": "USER_PROVIDED_IMAGE_EXACT",
+      "source": "Image exacte fournie par l'utilisateur"
     },
     {
       "channelNumber": 23,
@@ -742,8 +743,8 @@
       "name": "AMC",
       "expectedFile": "assets/logos/amc.jpg",
       "status": "PRESENT",
-      "sourceStatus": "USER_PROVIDED_IMAGE_CROP",
-      "source": "Logo extrait de la planche fournie par l'utilisateur"
+      "sourceStatus": "USER_PROVIDED_IMAGE_EXACT",
+      "source": "Image exacte fournie par l'utilisateur"
     },
     {
       "channelNumber": 81,
@@ -1341,8 +1342,8 @@
       "name": "A+",
       "expectedFile": "assets/logos/a-plus.jpg",
       "status": "PRESENT",
-      "sourceStatus": "USER_PROVIDED_IMAGE_CROP",
-      "source": "Logo extrait de la planche fournie par l'utilisateur"
+      "sourceStatus": "USER_PROVIDED_IMAGE_EXACT",
+      "source": "Image exacte fournie par l'utilisateur"
     },
     {
       "channelNumber": 152,
