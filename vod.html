@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>StreamLive — Films & Séries</title>
+  <link rel="stylesheet" href="/style.css">
+  <link rel="stylesheet" href="/vod.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="/">StreamLive</a>
+    <nav>
+      <a href="/live">LIVE</a>
+      <a href="/multi-live">Multi-LIVE</a>
+      <a href="/vertical-live">Vertical LIVE</a>
+    </nav>
+  </header>
+  <main class="vod-page">
+    <section class="vod-hero">
+      <div>
+        <span class="eyebrow">CATALOGUE</span>
+        <h1>Films, séries et programmes</h1>
+        <p>Le catalogue éditorial est séparé de la disponibilité réelle des médias.</p>
+      </div>
+      <div class="vod-stats" id="stats">Chargement…</div>
+    </section>
+    <section class="vod-toolbar">
+      <input id="search" type="search" placeholder="Rechercher un film, une série…">
+      <select id="type">
+        <option value="">Tous</option>
+        <option value="movie">Films</option>
+        <option value="series">Séries</option>
+        <option value="episode">Épisodes</option>
+        <option value="documentary">Documentaires</option>
+        <option value="show">Émissions</option>
+        <option value="sports">Sports</option>
+      </select>
+      <select id="availability">
+        <option value="">Tous les statuts</option>
+        <option value="available">Média disponible</option>
+        <option value="catalog">Catalogue uniquement</option>
+      </select>
+    </section>
+    <section id="grid" class="vod-grid" aria-live="polite"></section>
+  </main>
+  <script src="/vod.js"></script>
+</body>
+</html>
