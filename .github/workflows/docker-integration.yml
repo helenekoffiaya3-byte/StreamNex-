@@ -13,6 +13,9 @@ jobs:
         run: docker compose build
       - name: Start
         run: docker compose up -d
+      - name: Validate editorial schedule
+        run: |
+          npm run check:editorial
       - name: Validate
         run: |
           set -eux
@@ -21,6 +24,8 @@ jobs:
             sleep 2
           done
           grep -q '"count":232' /tmp/channels.json
+          curl -fsS http://127.0.0.1:3000/api/editorial/streamlive/current >/tmp/editorial.json
+          grep -q '"success":true' /tmp/editorial.json
           curl -fsS http://127.0.0.1:3000/api/health >/tmp/health.json
           grep -q '"database":false' /tmp/health.json
           curl -fsS http://127.0.0.1:3000/api/catalogue >/tmp/catalogue.json
