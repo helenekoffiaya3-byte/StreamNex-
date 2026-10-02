@@ -2,3 +2,5 @@
 @media(max-width:700px){.vod-hero{align-items:start;flex-direction:column}.vod-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.vod-page{padding:16px 12px 40px}}
 
 .vod-player-card{max-width:1100px;margin:auto;background:#111;border:1px solid #292929;border-radius:20px;overflow:hidden}.vod-player-card video{width:100%;display:block;background:#000;aspect-ratio:16/9}.vod-player-card .vod-body{padding:20px}.vod-player-card h1{margin-top:0}
+
+.vod-watch{display:inline-block;margin-top:10px;padding:8px 11px;border-radius:10px;background:#fff;color:#000;text-decoration:none;font-weight:800;font-size:12px}
