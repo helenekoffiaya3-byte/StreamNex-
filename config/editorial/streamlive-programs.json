@@ -1,0 +1,158 @@
+{
+  "timezone": "Africa/Abidjan",
+  "scheduleType": "fixed-24h-editorial",
+  "channelId": "streamlive-editorial",
+  "title": "StreamLive",
+  "programmes": [
+    {
+      "id": "sl-01",
+      "startTime": "00:00",
+      "endTime": "02:00",
+      "title": "StreamLive Cinéma",
+      "category": "StreamLive",
+      "type": "show",
+      "catalogEnabled": true,
+      "originalChannel": "streamlive-editorial"
+    },
+    {
+      "id": "sl-02",
+      "startTime": "02:00",
+      "endTime": "04:00",
+      "title": "Le Debrief & Grand Angle",
+      "category": "StreamLive",
+      "type": "show",
+      "catalogEnabled": true,
+      "originalChannel": "streamlive-editorial"
+    },
+    {
+      "id": "sl-03",
+      "startTime": "04:00",
+      "endTime": "06:00",
+      "title": "Afro Chill & Nocturne",
+      "category": "StreamLive",
+      "type": "show",
+      "catalogEnabled": true,
+      "originalChannel": "streamlive-editorial"
+    },
+    {
+      "id": "sl-04",
+      "startTime": "06:00",
+      "endTime": "07:30",
+      "title": "Réveil Info & Météo Abidjan",
+      "category": "StreamLive",
+      "type": "show",
+      "catalogEnabled": true,
+      "originalChannel": "streamlive-editorial"
+    },
+    {
+      "id": "sl-05",
+      "startTime": "07:30",
+      "endTime": "09:00",
+      "title": "Magazine",
+      "category": "StreamLive",
+      "type": "show",
+      "catalogEnabled": true,
+      "originalChannel": "streamlive-editorial"
+    },
+    {
+      "id": "sl-06",
+      "startTime": "09:00",
+      "endTime": "10:30",
+      "title": "Découverte Côte d’Ivoire",
+      "category": "StreamLive",
+      "type": "show",
+      "catalogEnabled": true,
+      "originalChannel": "streamlive-editorial"
+    },
+    {
+      "id": "sl-07",
+      "startTime": "10:30",
+      "endTime": "12:00",
+      "title": "Séries locales",
+      "category": "StreamLive",
+      "type": "show",
+      "catalogEnabled": true,
+      "originalChannel": "streamlive-editorial"
+    },
+    {
+      "id": "sl-08",
+      "startTime": "12:00",
+      "endTime": "13:00",
+      "title": "Le Journal de la Mi-Journée",
+      "category": "StreamLive",
+      "type": "show",
+      "catalogEnabled": true,
+      "originalChannel": "streamlive-editorial"
+    },
+    {
+      "id": "sl-09",
+      "startTime": "13:00",
+      "endTime": "14:30",
+      "title": "Grand Angle (Économie & Tech Afrique)",
+      "category": "StreamLive",
+      "type": "show",
+      "catalogEnabled": true,
+      "originalChannel": "streamlive-editorial"
+    },
+    {
+      "id": "sl-10",
+      "startTime": "14:30",
+      "endTime": "16:00",
+      "title": "StreamLive Jeunesse & Culture Digitale",
+      "category": "StreamLive",
+      "type": "show",
+      "catalogEnabled": true,
+      "originalChannel": "streamlive-editorial"
+    },
+    {
+      "id": "sl-11",
+      "startTime": "16:00",
+      "endTime": "18:00",
+      "title": "Hit StreamLive (Zouglou, Coupé-Décalé & Afrobeats)",
+      "category": "StreamLive",
+      "type": "show",
+      "catalogEnabled": true,
+      "originalChannel": "streamlive-editorial"
+    },
+    {
+      "id": "sl-12",
+      "startTime": "18:00",
+      "endTime": "19:30",
+      "title": "StreamLive Talk (Le Debrief du Soir)",
+      "category": "StreamLive",
+      "type": "show",
+      "catalogEnabled": true,
+      "originalChannel": "streamlive-editorial"
+    },
+    {
+      "id": "sl-13",
+      "startTime": "19:30",
+      "endTime": "20:30",
+      "title": "Le Grand Journal StreamLive",
+      "category": "StreamLive",
+      "type": "show",
+      "catalogEnabled": true,
+      "originalChannel": "streamlive-editorial"
+    },
+    {
+      "id": "sl-14",
+      "startTime": "20:30",
+      "endTime": "22:30",
+      "title": "Prime Time (Nouveautés & Cinéma Ivoirien)",
+      "category": "StreamLive",
+      "type": "show",
+      "catalogEnabled": true,
+      "originalChannel": "streamlive-editorial"
+    },
+    {
+      "id": "sl-15",
+      "startTime": "22:30",
+      "endTime": "00:00",
+      "title": "Night Show (Concerts & Sessions Live)",
+      "category": "StreamLive",
+      "type": "show",
+      "catalogEnabled": true,
+      "originalChannel": "streamlive-editorial"
+    }
+  ]
+}
