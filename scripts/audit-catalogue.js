@@ -21,6 +21,9 @@ if(AUDIT.summary.bouquets!==0) fail.push('bouquets must remain unassigned until 
 if(AUDIT.entries.filter(e=>e.type==='CHANNEL'&&e.bouquet).length) fail.push('channel bouquet assignments must remain empty until Step 27');
 if(AUDIT.summary.channels!==CHANNELS.length) fail.push('audit channel count mismatch');
 if(AUDIT.summary.services!==SERVICES.length) fail.push('audit service count mismatch');
+if(CHANNELS.some(c=>c.id==='netflix'||c.name==='Netflix')) fail.push('streaming service Netflix must not be classified as CHANNEL');
+if(!SERVICES.some(s=>s.id==='service-netflix'&&s.type==='service')) fail.push('Netflix service missing from SERVICES');
+if(AUDIT.separation?.status!=='COMPLETE') fail.push('catalogue separation not complete');
 const auditIds=new Set(AUDIT.entries.map(x=>x.id));
 for(const id of allIds) if(!auditIds.has(id)) fail.push('missing audit entry: '+id);
 
