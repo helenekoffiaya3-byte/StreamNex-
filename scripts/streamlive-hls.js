@@ -61,7 +61,9 @@ function start(programme){
   cleanupPlaylist();
 
   const input=resolveInput(programme);
-  const start=Date.parse(programme.startAt);
+  const [hh,mm]=String(programme.startTime||'00:00').split(':').map(Number);
+  const now=new Date();
+  const start=new Date(Date.UTC(now.getUTCFullYear(),now.getUTCMonth(),now.getUTCDate(),hh||0,mm||0,0)).getTime();
   const offset=Math.max(0,(Date.now()-start)/1000);
   // For VOD input use the file itself; otherwise use generated fallback audio/video.
   const inputArgs=input
