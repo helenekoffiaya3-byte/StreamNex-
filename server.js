@@ -111,11 +111,11 @@ function decorateOccurrence(o,channel){
   };
 }
 
-app.get('/api/health',(_req,res)=>res.json({success:true,service:'streamlive',database:false,channels:CHANNELS.length,version:'2.1.0'}));
+app.get('/api/health',(_req,res)=>res.json({success:true,service:'streamlive',database:false,channels:CHANNELS.length,version:'2.2.0'}));
 app.get('/api/catalogue',(_req,res)=>res.json({
   success:true,database:false,channels:CHANNELS.length,services:SERVICES.length,
   groups:CHANNELS.reduce((a,c)=>(a[c.group||'Autre']=(a[c.group||'Autre']||0)+1,a),{}),
-  capabilities:['channels','sources','urls','programmes','epg','diffusion','live','multi-live','hls']
+  capabilities:['channels','sources','urls','programmes','epg','diffusion','live','multi-live','vertical-live','vod','catalogue','hls']
 }));
 app.get('/api/sports',(_req,res)=>res.json({success:true,count:SPORTS_CATALOG.length,sports:SPORTS_CATALOG}));
 app.get('/api/apps',(req,res)=>{
