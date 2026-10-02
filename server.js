@@ -161,6 +161,7 @@ app.get('/api/epg',(req,res)=>{
 });
 
 app.get('/live',(_req,res)=>res.sendFile(path.join(__dirname,'live.html')));
+app.get('/multi-live',(_req,res)=>res.sendFile(path.join(__dirname,'multi-live.html')));
 app.get('/channel/:id',(req,res)=>{
   const c=requireChannel(req.params.id); if(!c)return res.status(404).send('Chaîne non trouvée.');
   if(c.playbackMode==='external'&&c.externalUrl)return res.redirect(302,c.externalUrl);
