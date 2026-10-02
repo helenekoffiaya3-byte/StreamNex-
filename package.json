@@ -9,7 +9,8 @@
     "check:channels": "node -e \"const c=require('./config/channels');const a=c.map(x=>x.id),b=c.map(x=>x.channelNumber),d=c.map(x=>x.name.toLowerCase());if(new Set(a).size!==c.length||new Set(b).size!==c.length||new Set(d).size!==c.length)process.exit(1);console.log('StreamLive catalogue OK:',c.length)\"",
     "check:audit": "node scripts/audit-catalogue.js",
     "check:programmes": "node scripts/audit-programmes.js",
-    "streamlive:hls": "node scripts/streamlive-hls.js"
+    "streamlive:hls": "node scripts/streamlive-hls.js",
+    "check:vod": "node scripts/audit-vod.js"
   },
   "engines": {
     "node": ">=24"
