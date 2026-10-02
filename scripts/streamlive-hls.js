@@ -13,6 +13,7 @@ const PLAYLIST=path.join(HLS_DIR,'streamlive.m3u8');
 const CHANNEL_ID=process.env.STREAMLIVE_EDITORIAL_CHANNEL_ID||'streamlive-editorial';
 const FFmpeg=process.env.FFMPEG_PATH||'ffmpeg';
 const TICK_MS=Number(process.env.STREAMLIVE_ENGINE_TICK_MS||30000);
+const FALLBACK_SLATE=process.env.STREAMLIVE_FALLBACK_SLATE||'black';
 
 fs.mkdirSync(HLS_DIR,{recursive:true});
 fs.mkdirSync(VOD_DIR,{recursive:true});
@@ -76,7 +77,7 @@ function start(programme){
     '-c:v','libx264','-preset','ultrafast','-tune','zerolatency',
     '-pix_fmt','yuv420p','-r','25','-g','50',
     '-c:a','aac','-b:a','128k','-ar','48000',
-    '-f','hls','-hls_time','4','-hls_list_size','5',
+    '-f','hls','-hls_time','4','-hls_list_size','5','-hls_start_number_source','datetime',
     '-hls_flags','delete_segments+omit_endlist+independent_segments',
     '-hls_segment_filename',path.join(HLS_DIR,'streamlive-%06d.ts'),
     PLAYLIST
