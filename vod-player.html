@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>StreamLive — Lecture</title><link rel="stylesheet" href="/style.css"><link rel="stylesheet" href="/vod.css"></head>
+<body><header class="topbar"><a class="brand" href="/vod">StreamLive</a><nav><a href="/vod">Catalogue</a><a href="/live">LIVE</a></nav></header>
+<main class="vod-page"><section class="vod-player-card"><video id="video" controls playsinline preload="metadata"></video><div id="info" class="vod-body">Chargement…</div></section></main>
+<script src="https://cdn.jsdelivr.net/npm/hls.js@1.5.20"></script><script>
+const id=new URLSearchParams(location.search).get('id'),video=document.querySelector('#video'),info=document.querySelector('#info');let hls=null;
+const esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+function play(url){
+ if(!url){info.insertAdjacentHTML('beforeend','<p>Ce contenu est référencé dans le catalogue mais aucun média réel n’est disponible.</p>');return;}
+ if(/\.m3u8(?:$|\?)/i.test(url)&&window.Hls&&Hls.isSupported()){hls=new Hls({lowLatencyMode:false});hls.loadSource(url);hls.attachMedia(video);return;}
+ video.src=url;
+}
+async function load(){
+ if(!id){info.textContent='Contenu manquant.';return;}
+ try{const r=await fetch('/api/vod/'+encodeURIComponent(id));const d=await r.json();if(!r.ok||!d.success)throw new Error(d.error||'Contenu introuvable');const x=d.item;
+ info.innerHTML='<h1>'+esc(x.title)+'</h1><p>'+esc(x.description||'')+'</p><span class="vod-badge '+(x.mediaAvailable?'available':'')+'">'+(x.mediaAvailable?'Média disponible':'Catalogue uniquement')+'</span>';
+ play(x.playbackUrl);
+ }catch(e){info.textContent=e.message;}
+}
+addEventListener('beforeunload',()=>hls&&hls.destroy());load();
+</script></body></html>
