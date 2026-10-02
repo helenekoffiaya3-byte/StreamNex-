@@ -85,10 +85,10 @@
       "channelNumber": 4,
       "id": "a-plus-ivoire",
       "name": "A+ Ivoire",
-      "expectedFile": "assets/logos/a-plus-ivoire.svg",
+      "expectedFile": "assets/logos/a-plus-ivoire.jpg",
       "status": "PRESENT",
-      "sourceStatus": "USER_PROVIDED_PACK_RECONSTRUCTED",
-      "source": "Planche catalogue fournie par l'utilisateur — reconstruction SVG"
+      "sourceStatus": "USER_PROVIDED_IMAGE_CROP",
+      "source": "Logo extrait de la planche fournie par l'utilisateur"
     },
     {
       "channelNumber": 5,
@@ -121,10 +121,10 @@
       "channelNumber": 8,
       "id": "6ter",
       "name": "6ter",
-      "expectedFile": "assets/logos/6ter.svg",
+      "expectedFile": "assets/logos/6ter.jpg",
       "status": "PRESENT",
-      "sourceStatus": "USER_PROVIDED_PACK_RECONSTRUCTED",
-      "source": "Planche catalogue fournie par l'utilisateur — reconstruction SVG"
+      "sourceStatus": "USER_PROVIDED_IMAGE_CROP",
+      "source": "Logo extrait de la planche fournie par l'utilisateur"
     },
     {
       "channelNumber": 9,
@@ -228,10 +228,10 @@
       "channelNumber": 20,
       "id": "7info",
       "name": "7info",
-      "expectedFile": "assets/logos/7info.svg",
+      "expectedFile": "assets/logos/7info.jpg",
       "status": "PRESENT",
-      "sourceStatus": "USER_PROVIDED_PACK_RECONSTRUCTED",
-      "source": "Planche catalogue fournie par l'utilisateur — reconstruction SVG"
+      "sourceStatus": "USER_PROVIDED_IMAGE_CROP",
+      "source": "Logo extrait de la planche fournie par l'utilisateur"
     },
     {
       "channelNumber": 21,
@@ -731,10 +731,10 @@
       "channelNumber": 79,
       "id": "13eme-rue",
       "name": "13ème Rue",
-      "expectedFile": "assets/logos/13eme-rue.svg",
+      "expectedFile": "assets/logos/13eme-rue.jpg",
       "status": "PRESENT",
-      "sourceStatus": "USER_PROVIDED_PACK_RECONSTRUCTED",
-      "source": "Planche catalogue fournie par l'utilisateur — reconstruction SVG"
+      "sourceStatus": "USER_PROVIDED_IMAGE_CROP",
+      "source": "Logo extrait de la planche fournie par l'utilisateur"
     },
     {
       "channelNumber": 80,
@@ -956,10 +956,10 @@
       "channelNumber": 105,
       "id": "a-plus-kids",
       "name": "A+ Kids",
-      "expectedFile": "assets/logos/a-plus-kids.svg",
+      "expectedFile": "assets/logos/a-plus-kids.jpg",
       "status": "PRESENT",
-      "sourceStatus": "USER_PROVIDED_PACK_RECONSTRUCTED",
-      "source": "Planche catalogue fournie par l'utilisateur — reconstruction SVG"
+      "sourceStatus": "USER_PROVIDED_IMAGE_CROP",
+      "source": "Logo extrait de la planche fournie par l'utilisateur"
     },
     {
       "channelNumber": 106,
