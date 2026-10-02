@@ -4,13 +4,13 @@ require('dotenv').config();
 const fs=require('fs');
 const path=require('path');
 const {spawn}=require('child_process');
-const {getCurrentProgramme}=require('../config/programmes');
+const EDITORIAL=path.join(__dirname,'..','config','editorial','streamlive-programs.json');
 
 const ROOT=path.join(__dirname,'..');
 const HLS_DIR=path.join(ROOT,'public','hls');
 const VOD_DIR=path.join(ROOT,'storage','vod');
 const PLAYLIST=path.join(HLS_DIR,'streamlive.m3u8');
-const CHANNEL_ID=process.env.STREAMLIVE_EDITORIAL_CHANNEL_ID||'rti-1';
+const CHANNEL_ID=process.env.STREAMLIVE_EDITORIAL_CHANNEL_ID||'streamlive-editorial';
 const FFmpeg=process.env.FFMPEG_PATH||'ffmpeg';
 const TICK_MS=Number(process.env.STREAMLIVE_ENGINE_TICK_MS||30000);
 
@@ -21,6 +21,14 @@ let child=null;
 let activeKey=null;
 let stopping=false;
 
+function loadEditorial(){
+  try{return JSON.parse(fs.readFileSync(EDITORIAL,'utf8'));}catch{return {programmes:[],timezone:'Africa/Abidjan'};}
+}
+function getCurrentEditorial(){
+  const cfg=loadEditorial(), items=cfg.programmes||[], minute=new Date().getUTCHours()*60+new Date().getUTCMinutes()+new Date().getUTCSeconds()/60;
+  const toMin=v=>{const [h,m]=String(v).split(':').map(Number);return h*60+m;};
+  return items.find(p=>{const s=toMin(p.startTime),e=toMin(p.endTime);return e>s?minute>=s&&minute<e:minute>=s||minute<e;})||null;
+}
 function log(...args){console.log(new Date().toISOString(),...args);}
 
 function cleanupPlaylist(){
@@ -88,7 +96,7 @@ function start(programme){
 }
 
 function tick(){
-  const p=getCurrentProgramme(CHANNEL_ID);
+  const p=getCurrentEditorial();
   if(!p){
     if(child)stop();
     activeKey=null;
