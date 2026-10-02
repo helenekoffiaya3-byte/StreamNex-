@@ -8,15 +8,18 @@ const logosDir = path.join(root, "assets", "logos");
 const manifest = JSON.parse(fs.readFileSync(manifestPath, "utf8"));
 
 const files = fs.existsSync(logosDir) ? fs.readdirSync(logosDir) : [];
-const pngIds = new Set(
-  files.filter(f => /\.png$/i.test(f)).map(f => f.replace(/\.png$/i, ""))
-);
+const assetById = new Map();
 
-const missing = manifest.channels.filter(c => !pngIds.has(c.id));
-const present = manifest.channels.filter(c => pngIds.has(c.id));
+for (const file of files) {
+  const match = file.match(/^(.+)\.(png|svg|webp|jpg|jpeg)$/i);
+  if (match) assetById.set(match[1], file);
+}
+
+const missing = manifest.channels.filter(c => !assetById.has(c.id));
+const present = manifest.channels.filter(c => assetById.has(c.id));
 const unexpected = files
-  .filter(f => /\.png$/i.test(f))
-  .filter(f => !manifest.channels.some(c => c.id === f.replace(/\.png$/i, "")));
+  .filter(f => /\.(png|svg|webp|jpg|jpeg)$/i.test(f))
+  .filter(f => !manifest.channels.some(c => c.id === f.replace(/\.(png|svg|webp|jpg|jpeg)$/i, "")));
 
 const result = {
   channels: manifest.channels.length,
@@ -24,6 +27,7 @@ const result = {
   missing: missing.length,
   unexpected: unexpected.length,
   verifiedSourceChannels: manifest.channels.filter(c => c.sourceStatus === "SOURCE_VERIFIED").length,
+  userProvidedPackChannels: manifest.channels.filter(c => c.sourceStatus === "USER_PROVIDED_PACK").length,
   missingWithVerifiedSource: missing.filter(c => c.sourceStatus === "SOURCE_VERIFIED").map(c => c.id),
   unexpected,
   missingIds: missing.map(c => c.id)
