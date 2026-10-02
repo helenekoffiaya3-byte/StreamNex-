@@ -11,7 +11,8 @@
     "check:programmes": "node scripts/audit-programmes.js",
     "streamlive:hls": "node scripts/streamlive-hls.js",
     "check:vod": "node scripts/audit-vod.js",
-    "check:logos": "node scripts/audit-logos.js"
+    "check:logos": "node scripts/audit-logos.js",
+    "check:editorial": "node scripts/audit-editorial.js"
   },
   "engines": {
     "node": ">=24"
