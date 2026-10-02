@@ -6,7 +6,10 @@
   "rightsPolicy": "Only store logos when StreamLive has a verified official source/license/authorization. Do not import third-party logo archives automatically.",
   "summary": {
     "channels": 232,
-    "individualLogoFilesDetected": 0
+    "individualLogoFilesDetected": 0,
+    "presentLogoFiles": 20,
+    "missingLogoFiles": 212,
+    "userProvidedPackChannels": 21
   },
   "verifiedOfficialSources": [
     {
@@ -1398,153 +1401,172 @@
       "channelNumber": 171,
       "id": "s-plus-prime",
       "name": "S+ Prime",
-      "expectedFile": "assets/logos/s-plus-prime.png",
-      "status": "MISSING",
-      "sourceStatus": "SOURCE_REQUIRED"
+      "expectedFile": "assets/logos/s-plus-prime.svg",
+      "status": "PRESENT",
+      "sourceStatus": "USER_PROVIDED_PACK",
+      "source": "Pack logos S+ fourni par l'utilisateur"
     },
     {
       "channelNumber": 172,
       "id": "s-plus-cine",
       "name": "S+ Ciné",
-      "expectedFile": "assets/logos/s-plus-cine.png",
-      "status": "MISSING",
-      "sourceStatus": "SOURCE_REQUIRED"
+      "expectedFile": "assets/logos/s-plus-cine.svg",
+      "status": "PRESENT",
+      "sourceStatus": "USER_PROVIDED_PACK",
+      "source": "Pack logos S+ fourni par l'utilisateur"
     },
     {
       "channelNumber": 173,
       "id": "s-plus-kids",
       "name": "S+ Kids",
-      "expectedFile": "assets/logos/s-plus-kids.png",
-      "status": "MISSING",
-      "sourceStatus": "SOURCE_REQUIRED"
+      "expectedFile": "assets/logos/s-plus-kids.svg",
+      "status": "PRESENT",
+      "sourceStatus": "USER_PROVIDED_PACK",
+      "source": "Pack logos S+ fourni par l'utilisateur"
     },
     {
       "channelNumber": 174,
       "id": "s-plus-fiction",
       "name": "S+ Fiction",
-      "expectedFile": "assets/logos/s-plus-fiction.png",
-      "status": "MISSING",
-      "sourceStatus": "SOURCE_REQUIRED"
+      "expectedFile": "assets/logos/s-plus-fiction.svg",
+      "status": "PRESENT",
+      "sourceStatus": "USER_PROVIDED_PACK",
+      "source": "Pack logos S+ fourni par l'utilisateur"
     },
     {
       "channelNumber": 175,
       "id": "s-plus-channel",
       "name": "S+ Channel",
-      "expectedFile": "assets/logos/s-plus-channel.png",
-      "status": "MISSING",
-      "sourceStatus": "SOURCE_REQUIRED"
+      "expectedFile": "assets/logos/s-plus-channel.svg",
+      "status": "PRESENT",
+      "sourceStatus": "USER_PROVIDED_PACK",
+      "source": "Pack logos S+ fourni par l'utilisateur"
     },
     {
       "channelNumber": 176,
       "id": "s-plus-music",
       "name": "S+ Music",
-      "expectedFile": "assets/logos/s-plus-music.png",
-      "status": "MISSING",
-      "sourceStatus": "SOURCE_REQUIRED"
+      "expectedFile": "assets/logos/s-plus-music.svg",
+      "status": "PRESENT",
+      "sourceStatus": "USER_PROVIDED_PACK",
+      "source": "Pack logos S+ fourni par l'utilisateur"
     },
     {
       "channelNumber": 177,
       "id": "s-plus-tv",
       "name": "S+ TV",
-      "expectedFile": "assets/logos/s-plus-tv.png",
-      "status": "MISSING",
-      "sourceStatus": "SOURCE_REQUIRED"
+      "expectedFile": "assets/logos/s-plus-tv.svg",
+      "status": "PRESENT",
+      "sourceStatus": "USER_PROVIDED_PACK",
+      "source": "Pack logos S+ fourni par l'utilisateur"
     },
     {
       "channelNumber": 178,
       "id": "s-plus-family",
       "name": "S+ Family",
-      "expectedFile": "assets/logos/s-plus-family.png",
-      "status": "MISSING",
-      "sourceStatus": "SOURCE_REQUIRED"
+      "expectedFile": "assets/logos/s-plus-family.svg",
+      "status": "PRESENT",
+      "sourceStatus": "USER_PROVIDED_PACK",
+      "source": "Pack logos S+ fourni par l'utilisateur"
     },
     {
       "channelNumber": 179,
       "id": "s-plus-sport-1",
       "name": "S+ Sport 1",
-      "expectedFile": "assets/logos/s-plus-sport-1.png",
-      "status": "MISSING",
-      "sourceStatus": "SOURCE_REQUIRED"
+      "expectedFile": "assets/logos/s-plus-sport-1.svg",
+      "status": "PRESENT",
+      "sourceStatus": "USER_PROVIDED_PACK",
+      "source": "Pack logos S+ fourni par l'utilisateur"
     },
     {
       "channelNumber": 180,
       "id": "s-plus-sport-2",
       "name": "S+ Sport 2",
-      "expectedFile": "assets/logos/s-plus-sport-2.png",
-      "status": "MISSING",
-      "sourceStatus": "SOURCE_REQUIRED"
+      "expectedFile": "assets/logos/s-plus-sport-2.svg",
+      "status": "PRESENT",
+      "sourceStatus": "USER_PROVIDED_PACK",
+      "source": "Pack logos S+ fourni par l'utilisateur"
     },
     {
       "channelNumber": 181,
       "id": "s-plus-sport-3",
       "name": "S+ Sport 3",
-      "expectedFile": "assets/logos/s-plus-sport-3.png",
-      "status": "MISSING",
-      "sourceStatus": "SOURCE_REQUIRED"
+      "expectedFile": "assets/logos/s-plus-sport-3.svg",
+      "status": "PRESENT",
+      "sourceStatus": "USER_PROVIDED_PACK",
+      "source": "Pack logos S+ fourni par l'utilisateur"
     },
     {
       "channelNumber": 182,
       "id": "s-plus-sport-4",
       "name": "S+ Sport 4",
-      "expectedFile": "assets/logos/s-plus-sport-4.png",
-      "status": "MISSING",
-      "sourceStatus": "SOURCE_REQUIRED"
+      "expectedFile": "assets/logos/s-plus-sport-4.svg",
+      "status": "PRESENT",
+      "sourceStatus": "USER_PROVIDED_PACK",
+      "source": "Pack logos S+ fourni par l'utilisateur"
     },
     {
       "channelNumber": 183,
       "id": "s-plus-sport-5",
       "name": "S+ Sport 5",
-      "expectedFile": "assets/logos/s-plus-sport-5.png",
-      "status": "MISSING",
-      "sourceStatus": "SOURCE_REQUIRED"
+      "expectedFile": "assets/logos/s-plus-sport-5.svg",
+      "status": "PRESENT",
+      "sourceStatus": "USER_PROVIDED_PACK",
+      "source": "Pack logos S+ fourni par l'utilisateur"
     },
     {
       "channelNumber": 184,
       "id": "s-plus-sport-6",
       "name": "S+ Sport 6",
-      "expectedFile": "assets/logos/s-plus-sport-6.png",
-      "status": "MISSING",
-      "sourceStatus": "SOURCE_REQUIRED"
+      "expectedFile": "assets/logos/s-plus-sport-6.svg",
+      "status": "PRESENT",
+      "sourceStatus": "USER_PROVIDED_PACK",
+      "source": "Pack logos S+ fourni par l'utilisateur"
     },
     {
       "channelNumber": 185,
       "id": "s-plus-movies",
       "name": "S+ Movies",
-      "expectedFile": "assets/logos/s-plus-movies.png",
-      "status": "MISSING",
-      "sourceStatus": "SOURCE_REQUIRED"
+      "expectedFile": "assets/logos/s-plus-movies.svg",
+      "status": "PRESENT",
+      "sourceStatus": "USER_PROVIDED_PACK",
+      "source": "Pack logos S+ fourni par l'utilisateur"
     },
     {
       "channelNumber": 186,
       "id": "s-plus-infosport",
       "name": "S+ Infosport",
-      "expectedFile": "assets/logos/s-plus-infosport.png",
-      "status": "MISSING",
-      "sourceStatus": "SOURCE_REQUIRED"
+      "expectedFile": "assets/logos/s-plus-infosport.svg",
+      "status": "PRESENT",
+      "sourceStatus": "USER_PROVIDED_PACK",
+      "source": "Pack logos S+ fourni par l'utilisateur"
     },
     {
       "channelNumber": 187,
       "id": "s-plus-infos",
       "name": "S+ Infos",
-      "expectedFile": "assets/logos/s-plus-infos.png",
-      "status": "MISSING",
-      "sourceStatus": "SOURCE_REQUIRED"
+      "expectedFile": "assets/logos/s-plus-infos.svg",
+      "status": "PRESENT",
+      "sourceStatus": "USER_PROVIDED_PACK",
+      "source": "Pack logos S+ fourni par l'utilisateur"
     },
     {
       "channelNumber": 188,
       "id": "s-plus-media",
       "name": "S+ Media",
-      "expectedFile": "assets/logos/s-plus-media.png",
-      "status": "MISSING",
-      "sourceStatus": "SOURCE_REQUIRED"
+      "expectedFile": "assets/logos/s-plus-media.svg",
+      "status": "PRESENT",
+      "sourceStatus": "USER_PROVIDED_PACK",
+      "source": "Pack logos S+ fourni par l'utilisateur"
     },
     {
       "channelNumber": 189,
       "id": "s-plus-lloliwood",
       "name": "S+ LLOLIWOOD",
-      "expectedFile": "assets/logos/s-plus-lloliwood.png",
-      "status": "MISSING",
-      "sourceStatus": "SOURCE_REQUIRED"
+      "expectedFile": "assets/logos/s-plus-lloliwood.svg",
+      "status": "PRESENT",
+      "sourceStatus": "USER_PROVIDED_PACK",
+      "source": "Pack logos S+ fourni par l'utilisateur"
     },
     {
       "channelNumber": 190,
@@ -1558,9 +1580,10 @@
       "channelNumber": 191,
       "id": "s-plus-jeunesse",
       "name": "S+ Jeunesse",
-      "expectedFile": "assets/logos/s-plus-jeunesse.png",
-      "status": "MISSING",
-      "sourceStatus": "SOURCE_REQUIRED"
+      "expectedFile": "assets/logos/s-plus-jeunesse.svg",
+      "status": "PRESENT",
+      "sourceStatus": "USER_PROVIDED_PACK",
+      "source": "Pack logos S+ fourni par l'utilisateur"
     },
     {
       "channelNumber": 225,
