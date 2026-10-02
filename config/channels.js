@@ -67,7 +67,6 @@ const CHANNELS = [
   { channelNumber: 66, id: "m6-films", name: "M6 Films", group: "Films & Cinéma", productionUrl: process.env.M6_FILMS_HLS_URL || null, streamEnabled: Boolean(process.env.M6_FILMS_HLS_URL) },
   { channelNumber: 67, id: "mgm-tv", name: "MGM TV", group: "Films & Cinéma", productionUrl: process.env.MGM_TV_HLS_URL || null, streamEnabled: Boolean(process.env.MGM_TV_HLS_URL) },
   { channelNumber: 68, id: "movies", name: "Movies!", group: "Films & Cinéma", productionUrl: process.env.MOVIES_HLS_URL || null, streamEnabled: Boolean(process.env.MOVIES_HLS_URL) },
-  { channelNumber: 69, id: "netflix", name: "Netflix", group: "Films & Cinéma", playbackMode: "external", externalUrl: "https://www.netflix.com/ci/", productionUrl: null, streamEnabled: false },
   { channelNumber: 70, id: "peacock", name: "Peacock", group: "Films & Cinéma", productionUrl: process.env.PEACOCK_HLS_URL || null, streamEnabled: Boolean(process.env.PEACOCK_HLS_URL) },
   { channelNumber: 71, id: "pluto-tv", name: "Pluto TV", group: "Films & Cinéma", productionUrl: process.env.PLUTO_TV_HLS_URL || null, streamEnabled: Boolean(process.env.PLUTO_TV_HLS_URL) },
   { channelNumber: 72, id: "rtl-9", name: "RTL 9", group: "Films & Cinéma", productionUrl: process.env.RTL9_HLS_URL || null, streamEnabled: Boolean(process.env.RTL9_HLS_URL) },
