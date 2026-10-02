@@ -16,6 +16,23 @@ const SPORTS_CATALOG=[
 const {getProgrammes,getOccurrences,getCurrentProgramme,getNextProgramme,getProgrammeByOccurrence,getProgrammeById}=require('./config/programmes');
 const fs=require('fs');
 const VOD_PATH=path.join(__dirname,'config','vod.json');
+const STREAMLIVE_EDITORIAL_PATH=path.join(__dirname,'config','editorial','streamlive-programs.json');
+
+function loadStreamLiveEditorial(){
+  try{return JSON.parse(fs.readFileSync(STREAMLIVE_EDITORIAL_PATH,'utf8'));}
+  catch{return {timezone:'Africa/Abidjan',scheduleType:'fixed-24h-editorial',channelId:'streamlive-editorial',title:'StreamLive',programmes:[]};}
+}
+
+function currentStreamLiveEditorial(now=new Date()){
+  const cfg=loadStreamLiveEditorial();
+  const minute=now.getUTCHours()*60+now.getUTCMinutes()+now.getUTCSeconds()/60;
+  const items=cfg.programmes||[];
+  const toMin=v=>{const [h,m]=String(v).split(':').map(Number);return h*60+m;};
+  const current=items.find(p=>{const s=toMin(p.startTime),e=toMin(p.endTime);return e>s?minute>=s&&minute<e:minute>=s||minute<e;});
+  const index=current?items.indexOf(current):-1;
+  const next=index>=0?items[(index+1)%items.length]:items[0]||null;
+  return {timezone:cfg.timezone,scheduleType:cfg.scheduleType,channelId:cfg.channelId,title:cfg.title,current,next,checkedAt:now.toISOString()};
+}
 
 function loadVodManifest(){
   try{
@@ -110,6 +127,12 @@ function decorateOccurrence(o,channel){
     liveAvailable:Boolean(scheduledNow&&source.url&&channel.playbackMode!=='external')
   };
 }
+
+
+app.get('/api/editorial/streamlive/current',(_req,res)=>{
+  const data=currentStreamLiveEditorial();
+  res.json({success:true,...data});
+});
 
 app.get('/api/health',(_req,res)=>res.json({success:true,service:'streamlive',database:false,channels:CHANNELS.length,version:'2.2.0'}));
 app.get('/api/catalogue',(_req,res)=>res.json({
