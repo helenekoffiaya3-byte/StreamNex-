@@ -41,7 +41,7 @@ function buildVodCatalogue(){
       originalChannelName:channel?.name||null,
       catalogEnabled:item.catalogEnabled!==false,
       mediaAvailable,
-      playbackUrl:mediaAvailable?(item.hlsUrl||item.mediaUrl||null):null,
+      playbackUrl:mediaAvailable?(item.hlsUrl||item.mediaUrl||(item.localPath?`/vod/media/${encodeURIComponent(item.id)}`:null)):null,
       source:'vod-manifest'
     });
   }
@@ -160,6 +160,15 @@ app.get('/api/vod',(req,res)=>{
   const q=String(req.query.q||'').trim().toLowerCase();
   if(q)items=items.filter(x=>[x.title,x.description,x.category,x.originalChannelName].filter(Boolean).join(' ').toLowerCase().includes(q));
   res.json({success:true,count:items.length,items,mediaCount:items.filter(x=>x.mediaAvailable).length,catalogOnlyCount:items.filter(x=>!x.mediaAvailable).length});
+});
+app.get('/vod/media/:id',(req,res)=>{
+  const item=loadVodManifest().find(x=>x.id===req.params.id);
+  if(!item||!item.localPath)return res.status(404).send('Média VOD non disponible.');
+  const base=path.resolve(__dirname,'storage','vod');
+  const file=path.resolve(__dirname,item.localPath);
+  if(!file.startsWith(base+path.sep))return res.status(400).send('Chemin média invalide.');
+  if(!fs.existsSync(file))return res.status(404).send('Fichier VOD introuvable.');
+  res.sendFile(file);
 });
 app.get('/api/vod/:id',(req,res)=>{
   const item=buildVodCatalogue().find(x=>x.id===req.params.id);
