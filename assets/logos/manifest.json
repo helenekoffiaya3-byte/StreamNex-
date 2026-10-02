@@ -6,11 +6,11 @@
   "rightsPolicy": "Only store logos when StreamLive has a verified official source/license/authorization. Do not import third-party logo archives automatically.",
   "summary": {
     "channels": 232,
-    "individualLogoFilesDetected": 136,
-    "presentLogoFiles": 136,
-    "missingLogoFiles": 96,
-    "userProvidedPackChannels": 134,
-    "reconstructedCatalogueLogos": 0
+    "individualLogoFilesDetected": 140,
+    "presentLogoFiles": 140,
+    "missingLogoFiles": 92,
+    "userProvidedPackChannels": 5,
+    "reconstructedCatalogueLogos": 135
   },
   "verifiedOfficialSources": [
     {
