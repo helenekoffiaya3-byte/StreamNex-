@@ -1,0 +1,12 @@
+<!doctype html>
+<html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>StreamLive — Multi‑LIVE</title><link rel="stylesheet" href="/multi-live.css"><script src="https://cdn.jsdelivr.net/npm/hls.js@1.5.20"></script></head>
+<body>
+<header><a class="logo" href="/">STREAM<span>LIVE</span></a><nav><a href="/">Chaînes</a><a href="/live">LIVE</a><a class="active" href="/multi-live">Multi‑LIVE</a></nav><strong>🔴 MULTI‑LIVE</strong></header>
+<main>
+<section class="hero"><div><h1>Multi‑LIVE</h1><p>Regardez 2, 4 ou 9 chaînes simultanément.</p></div>
+<div class="toolbar"><label>Grille <select id="grid"><option value="2">2</option><option value="4" selected>4</option><option value="9">9</option></select></label><button id="muteAll" class="secondary">🔇 Muet</button></div></section>
+<section id="status" class="status">Chargement des chaînes…</section>
+<section id="gridView" class="multi-grid grid-4"></section>
+<section class="channels"><div class="section-head"><h2>Ajouter / remplacer une chaîne</h2><input id="search" placeholder="Rechercher…"></div><div id="channels" class="channel-list"></div></section>
+</main><script src="/multi-live.js"></script></body></html>
