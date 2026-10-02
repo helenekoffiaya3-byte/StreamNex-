@@ -3,7 +3,7 @@
   "step": 1,
   "status": "AUDIT_COMPLETE",
   "bouquetsFinalized": false,
-  "auditedAt": "2026-10-01",
+  "auditedAt": "2026-10-02",
   "rules": {
     "preserveEntries": true,
     "preserveChannelNumbers": true,
@@ -12,9 +12,9 @@
     "bouquetAssignment": "Reserved for Step 27. No bouquet assignment is performed during Step 1."
   },
   "summary": {
-    "channels": 233,
+    "channels": 232,
     "services": 18,
-    "total": 251,
+    "total": 250,
     "duplicateChannelIds": 0,
     "duplicateChannelNumbers": 0,
     "duplicateCatalogueIds": 0,
@@ -1413,26 +1413,6 @@
       "epgStatus": "UNVERIFIED",
       "sourceStatus": "NOT_CONFIGURED",
       "sourceUrl": null,
-      "existence": "UNVERIFIED",
-      "nameVariant": null,
-      "brandDuplicateDetected": false,
-      "verificationNote": "Le catalogue n'est pas une preuve d'existence actuelle; la disponibilité LIVE doit être vérifiée séparément."
-    },
-    {
-      "id": "netflix",
-      "channelNumber": 69,
-      "name": "Netflix",
-      "type": "CHANNEL",
-      "country": "UNVERIFIED",
-      "region": "UNVERIFIED",
-      "language": "UNVERIFIED",
-      "status": "EXTERNAL",
-      "bouquet": null,
-      "category": "Films & Cinéma",
-      "logoStatus": "FALLBACK_OR_MISSING",
-      "epgStatus": "UNVERIFIED",
-      "sourceStatus": "EXTERNAL",
-      "sourceUrl": "https://www.netflix.com/ci/",
       "existence": "UNVERIFIED",
       "nameVariant": null,
       "brandDuplicateDetected": false,
@@ -5079,5 +5059,14 @@
       "verificationNote": "Service conservé; aucun bouquet définitif n'est attribué à l'étape 1."
     }
   ],
-  "bouquets": []
+  "bouquets": [],
+  "separation": {
+    "status": "COMPLETE",
+    "movedToServices": [
+      "netflix"
+    ],
+    "channelsCount": 232,
+    "servicesCount": 18,
+    "totalCatalogEntries": 250
+  }
 }
