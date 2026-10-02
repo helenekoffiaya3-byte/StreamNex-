@@ -13,6 +13,8 @@ jobs:
         run: docker compose build
       - name: Start
         run: docker compose up -d
+      - name: Validate Docker Compose
+        run: docker compose config -q
       - name: Syntax checks
         run: |
           node --check server.js
