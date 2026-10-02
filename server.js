@@ -99,6 +99,25 @@ app.use(helmet({contentSecurityPolicy:false,crossOriginEmbedderPolicy:false}));
 app.use(cors({origin:(o,cb)=>!o||!origins.length||origins.includes(o)?cb(null,true):cb(new Error('CORS origin not allowed')),methods:['GET','OPTIONS']}));
 app.use(express.json({limit:'10kb'}));
 
+const requestWindows=new Map();
+const zapSessions=new Map();
+const RATE_WINDOW_MS=15*60*1000;
+const RATE_MAX=300;
+const ZAP_WINDOW_MS=60*1000;
+const ZAP_MAX=30;
+const SHUFFLE_TTL_MS=30*60*1000;
+function clientKey(req){return String(req.ip||req.headers['x-forwarded-for']||'unknown').split(',')[0].trim();}
+function allowWindow(map,key,windowMs,max){
+  const now=Date.now(); let row=map.get(key);
+  if(!row||now-row.startedAt>=windowMs) row={startedAt:now,count:0};
+  row.count++; map.set(key,row);
+  return row.count<=max;
+}
+app.use('/api', (req,res,next)=>{
+  if(!allowWindow(requestWindows,clientKey(req),RATE_WINDOW_MS,RATE_MAX)) return res.status(429).json({success:false,error:'Rate limit exceeded.',retryAfterSeconds:Math.ceil(RATE_WINDOW_MS/1000)});
+  next();
+});
+
 function requireChannel(id){return CHANNELS.find(c=>c.id===id)||null;}
 function sourceFor(channel){
   if(channel.playbackMode==='external'&&channel.externalUrl){
@@ -147,11 +166,17 @@ app.get('/api/apps',(req,res)=>{
   res.json({success:true,count:list.length,apps:list});
 });
 app.get('/api/stream/channels',(_req,res)=>res.json({success:true,count:CHANNELS.length,channels:CHANNELS.map(publicChannel)}));
-app.get('/api/stream/random',(_req,res)=>{
+app.get('/api/stream/random',(req,res)=>{
+  if(!allowWindow(zapSessions,clientKey(req),ZAP_WINDOW_MS,ZAP_MAX)) return res.status(429).json({success:false,error:'Zap rate limit exceeded.',retryAfterSeconds:60});
   const available=CHANNELS.filter(c=>sourceFor(c).url&&c.playbackMode!=='external');
   if(!available.length)return res.status(503).json({success:false,error:'Aucune source LIVE configurée.'});
-  const c=available[Math.floor(Math.random()*available.length)];
-  res.json({success:true,channel:publicChannel(c)});
+  const key=clientKey(req),now=Date.now();
+  let session=zapSessions.get('pool:'+key);
+  if(!session||now-session.createdAt>=SHUFFLE_TTL_MS||session.pool.every(id=>!available.some(c=>c.id===id))) session={createdAt:now,pool:available.map(c=>c.id).sort(()=>Math.random()-0.5)};
+  const id=session.pool.shift();
+  zapSessions.set('pool:'+key,session);
+  const channel=available.find(c=>c.id===id)||available[0];
+  res.json({success:true,channel:publicChannel(channel),cycleComplete:session.pool.length===0,sessionExpiresAt:new Date(session.createdAt+SHUFFLE_TTL_MS).toISOString()});
 });
 
 app.get('/api/channels/:id',(req,res)=>{
