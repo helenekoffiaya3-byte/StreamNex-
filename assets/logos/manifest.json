@@ -9,7 +9,8 @@
     "individualLogoFilesDetected": 134,
     "presentLogoFiles": 134,
     "missingLogoFiles": 98,
-    "userProvidedPackChannels": 134
+    "userProvidedPackChannels": 134,
+    "reconstructedCatalogueLogos": 0
   },
   "verifiedOfficialSources": [
     {
