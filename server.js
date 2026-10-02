@@ -14,6 +14,63 @@ const SPORTS_CATALOG=[
   {id:'motogp',title:'MotoGP™',category:'Sports Mécaniques',logo:'1790826726863.jpg'}
 ];
 const {getProgrammes,getOccurrences,getCurrentProgramme,getNextProgramme,getProgrammeByOccurrence,getProgrammeById}=require('./config/programmes');
+const fs=require('fs');
+const VOD_PATH=path.join(__dirname,'config','vod.json');
+
+function loadVodManifest(){
+  try{
+    const data=JSON.parse(fs.readFileSync(VOD_PATH,'utf8'));
+    return Array.isArray(data.items)?data.items:[];
+  }catch{return [];}
+}
+
+function typeLabel(type){
+  return ({movie:'Film',series:'Série',episode:'Épisode',documentary:'Documentaire',show:'Émission',sports:'Sport'})[type]||'Programme';
+}
+
+function buildVodCatalogue(){
+  const byId=new Map();
+  for(const item of loadVodManifest()){
+    const channel=requireChannel(item.originalChannel);
+    const mediaAvailable=Boolean(item.mediaUrl||item.hlsUrl||(item.localPath&&fs.existsSync(path.join(__dirname,item.localPath))));
+    byId.set(item.id,{
+      ...item,
+      type:item.type||'show',
+      typeLabel:typeLabel(item.type),
+      originalChannel:item.originalChannel??null,
+      originalChannelName:channel?.name||null,
+      catalogEnabled:item.catalogEnabled!==false,
+      mediaAvailable,
+      playbackUrl:mediaAvailable?(item.hlsUrl||item.mediaUrl||null):null,
+      source:'vod-manifest'
+    });
+  }
+
+  const today=new Date();
+  for(const channel of CHANNELS){
+    for(const programme of getProgrammes(channel.id,today)){
+      if(programme.catalogEnabled===false||byId.has(programme.programId))continue;
+      const type=['movie','series','episode','documentary','show','sports'].includes(programme.type)?programme.type:'show';
+      byId.set(programme.programId,{
+        id:programme.programId,
+        title:programme.title,
+        type,
+        typeLabel:typeLabel(type),
+        description:programme.description||'',
+        poster:programme.poster||null,
+        category:programme.category||null,
+        originalChannel:programme.originalChannel??channel.id,
+        originalChannelName:requireChannel(programme.originalChannel??channel.id)?.name||null,
+        programmeId:programme.programId,
+        catalogEnabled:true,
+        mediaAvailable:false,
+        playbackUrl:null,
+        source:'programme-catalogue'
+      });
+    }
+  }
+  return [...byId.values()].filter(x=>x.catalogEnabled);
+}
 
 const app=express();
 const PORT=Number(process.env.PORT||3000);
@@ -96,6 +153,20 @@ app.get('/api/channels/:id/programs',(req,res)=>{
   const next=decorateOccurrence(getNextProgramme(c.id),c);
   res.json({success:true,channelId:c.id,name:c.name,source:'config',programCount:programmes.length,programmes,programs:programmes,occurrences,current,next,warning:programmes.length?'': 'Aucun programme configuré pour cette chaîne.'});
 });
+app.get('/api/vod',(req,res)=>{
+  let items=buildVodCatalogue();
+  if(req.query.channelId)items=items.filter(x=>x.originalChannel===req.query.channelId);
+  if(req.query.type)items=items.filter(x=>x.type===req.query.type);
+  const q=String(req.query.q||'').trim().toLowerCase();
+  if(q)items=items.filter(x=>[x.title,x.description,x.category,x.originalChannelName].filter(Boolean).join(' ').toLowerCase().includes(q));
+  res.json({success:true,count:items.length,items,mediaCount:items.filter(x=>x.mediaAvailable).length,catalogOnlyCount:items.filter(x=>!x.mediaAvailable).length});
+});
+app.get('/api/vod/:id',(req,res)=>{
+  const item=buildVodCatalogue().find(x=>x.id===req.params.id);
+  if(!item)return res.status(404).json({success:false,error:'Contenu VOD non trouvé.'});
+  res.json({success:true,item});
+});
+
 app.get('/api/programmes',(req,res)=>{
   const ids=req.query.channelId?[req.query.channelId]:CHANNELS.map(c=>c.id);
   const data=[];
@@ -163,6 +234,7 @@ app.get('/api/epg',(req,res)=>{
 app.get('/live',(_req,res)=>res.sendFile(path.join(__dirname,'live.html')));
 app.get('/multi-live',(_req,res)=>res.sendFile(path.join(__dirname,'multi-live.html')));
 app.get('/vertical-live',(_req,res)=>res.sendFile(path.join(__dirname,'vertical-live.html')));
+app.get('/vod',(_req,res)=>res.sendFile(path.join(__dirname,'vod.html')));
 app.get('/channel/:id',(req,res)=>{
   const c=requireChannel(req.params.id); if(!c)return res.status(404).send('Chaîne non trouvée.');
   if(c.playbackMode==='external'&&c.externalUrl)return res.redirect(302,c.externalUrl);
