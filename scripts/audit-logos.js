@@ -17,9 +17,11 @@ for (const file of files) {
 
 const missing = manifest.channels.filter(c => !assetById.has(c.id));
 const present = manifest.channels.filter(c => assetById.has(c.id));
+const allowedBrandIds = new Set((manifest.brandAssets || []).map(a => a.id));
 const unexpected = files
   .filter(f => /\.(png|svg|webp|jpg|jpeg)$/i.test(f))
-  .filter(f => !manifest.channels.some(c => c.id === f.replace(/\.(png|svg|webp|jpg|jpeg)$/i, "")));
+  .filter(f => !manifest.channels.some(c => c.id === f.replace(/\.(png|svg|webp|jpg|jpeg)$/i, "")))
+  .filter(f => !allowedBrandIds.has(f.replace(/\.(png|svg|webp|jpg|jpeg)$/i, "")));
 
 const result = {
   channels: manifest.channels.length,
@@ -28,6 +30,7 @@ const result = {
   unexpected: unexpected.length,
   verifiedSourceChannels: manifest.channels.filter(c => c.sourceStatus === "SOURCE_VERIFIED").length,
   userProvidedPackChannels: manifest.channels.filter(c => c.sourceStatus === "USER_PROVIDED_PACK").length,
+  brandAssets: (manifest.brandAssets || []).length,
   missingWithVerifiedSource: missing.filter(c => c.sourceStatus === "SOURCE_VERIFIED").map(c => c.id),
   unexpected,
   missingIds: missing.map(c => c.id)
