@@ -6,10 +6,10 @@
   "rightsPolicy": "Only store logos when StreamLive has a verified official source/license/authorization. Do not import third-party logo archives automatically.",
   "summary": {
     "channels": 232,
-    "individualLogoFilesDetected": 0,
-    "presentLogoFiles": 20,
-    "missingLogoFiles": 212,
-    "userProvidedPackChannels": 21
+    "individualLogoFilesDetected": 134,
+    "presentLogoFiles": 134,
+    "missingLogoFiles": 98,
+    "userProvidedPackChannels": 134
   },
   "verifiedOfficialSources": [
     {
@@ -57,97 +57,109 @@
       "channelNumber": 1,
       "id": "rti-1",
       "name": "RTI 1",
-      "expectedFile": "assets/logos/rti-1.png",
-      "status": "MISSING",
-      "sourceStatus": "SOURCE_VERIFIED"
+      "expectedFile": "assets/logos/rti-1.svg",
+      "status": "PRESENT",
+      "sourceStatus": "USER_PROVIDED_PACK_RECONSTRUCTED",
+      "source": "Planche catalogue fournie par l'utilisateur — reconstruction SVG"
     },
     {
       "channelNumber": 2,
       "id": "rti-2",
       "name": "RTI 2",
-      "expectedFile": "assets/logos/rti-2.png",
-      "status": "MISSING",
-      "sourceStatus": "SOURCE_VERIFIED"
+      "expectedFile": "assets/logos/rti-2.svg",
+      "status": "PRESENT",
+      "sourceStatus": "USER_PROVIDED_PACK_RECONSTRUCTED",
+      "source": "Planche catalogue fournie par l'utilisateur — reconstruction SVG"
     },
     {
       "channelNumber": 3,
       "id": "la-3",
       "name": "La 3",
-      "expectedFile": "assets/logos/la-3.png",
-      "status": "MISSING",
-      "sourceStatus": "SOURCE_VERIFIED"
+      "expectedFile": "assets/logos/la-3.svg",
+      "status": "PRESENT",
+      "sourceStatus": "USER_PROVIDED_PACK_RECONSTRUCTED",
+      "source": "Planche catalogue fournie par l'utilisateur — reconstruction SVG"
     },
     {
       "channelNumber": 4,
       "id": "a-plus-ivoire",
       "name": "A+ Ivoire",
-      "expectedFile": "assets/logos/a-plus-ivoire.png",
-      "status": "MISSING",
-      "sourceStatus": "SOURCE_VERIFIED"
+      "expectedFile": "assets/logos/a-plus-ivoire.svg",
+      "status": "PRESENT",
+      "sourceStatus": "USER_PROVIDED_PACK_RECONSTRUCTED",
+      "source": "Planche catalogue fournie par l'utilisateur — reconstruction SVG"
     },
     {
       "channelNumber": 5,
       "id": "life-tv",
       "name": "Life TV",
-      "expectedFile": "assets/logos/life-tv.png",
-      "status": "MISSING",
-      "sourceStatus": "SOURCE_VERIFIED"
+      "expectedFile": "assets/logos/life-tv.svg",
+      "status": "PRESENT",
+      "sourceStatus": "USER_PROVIDED_PACK_RECONSTRUCTED",
+      "source": "Planche catalogue fournie par l'utilisateur — reconstruction SVG"
     },
     {
       "channelNumber": 6,
       "id": "nci",
       "name": "NCI",
-      "expectedFile": "assets/logos/nci.png",
-      "status": "MISSING",
-      "sourceStatus": "SOURCE_VERIFIED"
+      "expectedFile": "assets/logos/nci.svg",
+      "status": "PRESENT",
+      "sourceStatus": "USER_PROVIDED_PACK_RECONSTRUCTED",
+      "source": "Planche catalogue fournie par l'utilisateur — reconstruction SVG"
     },
     {
       "channelNumber": 7,
       "id": "canal-plus-cote-divoire",
       "name": "Canal+ Côte d’Ivoire",
-      "expectedFile": "assets/logos/canal-plus-cote-divoire.png",
-      "status": "MISSING",
-      "sourceStatus": "SOURCE_REQUIRED"
+      "expectedFile": "assets/logos/canal-plus-cote-divoire.svg",
+      "status": "PRESENT",
+      "sourceStatus": "USER_PROVIDED_PACK_RECONSTRUCTED",
+      "source": "Planche catalogue fournie par l'utilisateur — reconstruction SVG"
     },
     {
       "channelNumber": 8,
       "id": "6ter",
       "name": "6ter",
-      "expectedFile": "assets/logos/6ter.png",
-      "status": "MISSING",
-      "sourceStatus": "SOURCE_REQUIRED"
+      "expectedFile": "assets/logos/6ter.svg",
+      "status": "PRESENT",
+      "sourceStatus": "USER_PROVIDED_PACK_RECONSTRUCTED",
+      "source": "Planche catalogue fournie par l'utilisateur — reconstruction SVG"
     },
     {
       "channelNumber": 9,
       "id": "arte",
       "name": "Arte",
-      "expectedFile": "assets/logos/arte.png",
-      "status": "MISSING",
-      "sourceStatus": "SOURCE_REQUIRED"
+      "expectedFile": "assets/logos/arte.svg",
+      "status": "PRESENT",
+      "sourceStatus": "USER_PROVIDED_PACK_RECONSTRUCTED",
+      "source": "Planche catalogue fournie par l'utilisateur — reconstruction SVG"
     },
     {
       "channelNumber": 10,
       "id": "canal-plus",
       "name": "Canal+",
-      "expectedFile": "assets/logos/canal-plus.png",
-      "status": "MISSING",
-      "sourceStatus": "SOURCE_VERIFIED"
+      "expectedFile": "assets/logos/canal-plus.svg",
+      "status": "PRESENT",
+      "sourceStatus": "USER_PROVIDED_PACK_RECONSTRUCTED",
+      "source": "Planche catalogue fournie par l'utilisateur — reconstruction SVG"
     },
     {
       "channelNumber": 11,
       "id": "france-2",
       "name": "France 2",
-      "expectedFile": "assets/logos/france-2.png",
-      "status": "MISSING",
-      "sourceStatus": "SOURCE_REQUIRED"
+      "expectedFile": "assets/logos/france-2.svg",
+      "status": "PRESENT",
+      "sourceStatus": "USER_PROVIDED_PACK_RECONSTRUCTED",
+      "source": "Planche catalogue fournie par l'utilisateur — reconstruction SVG"
     },
     {
       "channelNumber": 12,
       "id": "france-3",
       "name": "France 3",
-      "expectedFile": "assets/logos/france-3.png",
-      "status": "MISSING",
-      "sourceStatus": "SOURCE_REQUIRED"
+      "expectedFile": "assets/logos/france-3.svg",
+      "status": "PRESENT",
+      "sourceStatus": "USER_PROVIDED_PACK_RECONSTRUCTED",
+      "source": "Planche catalogue fournie par l'utilisateur — reconstruction SVG"
     },
     {
       "channelNumber": 13,
@@ -161,81 +173,91 @@
       "channelNumber": 14,
       "id": "france-5",
       "name": "France 5",
-      "expectedFile": "assets/logos/france-5.png",
-      "status": "MISSING",
-      "sourceStatus": "SOURCE_REQUIRED"
+      "expectedFile": "assets/logos/france-5.svg",
+      "status": "PRESENT",
+      "sourceStatus": "USER_PROVIDED_PACK_RECONSTRUCTED",
+      "source": "Planche catalogue fournie par l'utilisateur — reconstruction SVG"
     },
     {
       "channelNumber": 15,
       "id": "m6",
       "name": "M6",
-      "expectedFile": "assets/logos/m6.png",
-      "status": "MISSING",
-      "sourceStatus": "SOURCE_REQUIRED"
+      "expectedFile": "assets/logos/m6.svg",
+      "status": "PRESENT",
+      "sourceStatus": "USER_PROVIDED_PACK_RECONSTRUCTED",
+      "source": "Planche catalogue fournie par l'utilisateur — reconstruction SVG"
     },
     {
       "channelNumber": 16,
       "id": "tf1",
       "name": "TF1",
-      "expectedFile": "assets/logos/tf1.png",
-      "status": "MISSING",
-      "sourceStatus": "SOURCE_REQUIRED"
+      "expectedFile": "assets/logos/tf1.svg",
+      "status": "PRESENT",
+      "sourceStatus": "USER_PROVIDED_PACK_RECONSTRUCTED",
+      "source": "Planche catalogue fournie par l'utilisateur — reconstruction SVG"
     },
     {
       "channelNumber": 17,
       "id": "tfx",
       "name": "TFX",
-      "expectedFile": "assets/logos/tfx.png",
-      "status": "MISSING",
-      "sourceStatus": "SOURCE_REQUIRED"
+      "expectedFile": "assets/logos/tfx.svg",
+      "status": "PRESENT",
+      "sourceStatus": "USER_PROVIDED_PACK_RECONSTRUCTED",
+      "source": "Planche catalogue fournie par l'utilisateur — reconstruction SVG"
     },
     {
       "channelNumber": 18,
       "id": "tmc",
       "name": "TMC",
-      "expectedFile": "assets/logos/tmc.png",
-      "status": "MISSING",
-      "sourceStatus": "SOURCE_REQUIRED"
+      "expectedFile": "assets/logos/tmc.svg",
+      "status": "PRESENT",
+      "sourceStatus": "USER_PROVIDED_PACK_RECONSTRUCTED",
+      "source": "Planche catalogue fournie par l'utilisateur — reconstruction SVG"
     },
     {
       "channelNumber": 19,
       "id": "w9",
       "name": "W9",
-      "expectedFile": "assets/logos/w9.png",
-      "status": "MISSING",
-      "sourceStatus": "SOURCE_REQUIRED"
+      "expectedFile": "assets/logos/w9.svg",
+      "status": "PRESENT",
+      "sourceStatus": "USER_PROVIDED_PACK_RECONSTRUCTED",
+      "source": "Planche catalogue fournie par l'utilisateur — reconstruction SVG"
     },
     {
       "channelNumber": 20,
       "id": "7info",
       "name": "7info",
-      "expectedFile": "assets/logos/7info.png",
-      "status": "MISSING",
-      "sourceStatus": "SOURCE_VERIFIED"
+      "expectedFile": "assets/logos/7info.svg",
+      "status": "PRESENT",
+      "sourceStatus": "USER_PROVIDED_PACK_RECONSTRUCTED",
+      "source": "Planche catalogue fournie par l'utilisateur — reconstruction SVG"
     },
     {
       "channelNumber": 21,
       "id": "abc-news-live",
       "name": "ABC News Live",
-      "expectedFile": "assets/logos/abc-news-live.png",
-      "status": "MISSING",
-      "sourceStatus": "SOURCE_REQUIRED"
+      "expectedFile": "assets/logos/abc-news-live.svg",
+      "status": "PRESENT",
+      "sourceStatus": "USER_PROVIDED_PACK_RECONSTRUCTED",
+      "source": "Planche catalogue fournie par l'utilisateur — reconstruction SVG"
     },
     {
       "channelNumber": 22,
       "id": "al-jazeera",
       "name": "Al Jazeera",
-      "expectedFile": "assets/logos/al-jazeera.png",
-      "status": "MISSING",
-      "sourceStatus": "SOURCE_REQUIRED"
+      "expectedFile": "assets/logos/al-jazeera.svg",
+      "status": "PRESENT",
+      "sourceStatus": "USER_PROVIDED_PACK_RECONSTRUCTED",
+      "source": "Planche catalogue fournie par l'utilisateur — reconstruction SVG"
     },
     {
       "channelNumber": 23,
       "id": "bbc-news",
       "name": "BBC News",
-      "expectedFile": "assets/logos/bbc-news.png",
-      "status": "MISSING",
-      "sourceStatus": "SOURCE_REQUIRED"
+      "expectedFile": "assets/logos/bbc-news.svg",
+      "status": "PRESENT",
+      "sourceStatus": "USER_PROVIDED_PACK_RECONSTRUCTED",
+      "source": "Planche catalogue fournie par l'utilisateur — reconstruction SVG"
     },
     {
       "channelNumber": 24,
@@ -249,25 +271,28 @@
       "channelNumber": 25,
       "id": "c-span",
       "name": "C-SPAN",
-      "expectedFile": "assets/logos/c-span.png",
-      "status": "MISSING",
-      "sourceStatus": "SOURCE_REQUIRED"
+      "expectedFile": "assets/logos/c-span.svg",
+      "status": "PRESENT",
+      "sourceStatus": "USER_PROVIDED_PACK_RECONSTRUCTED",
+      "source": "Planche catalogue fournie par l'utilisateur — reconstruction SVG"
     },
     {
       "channelNumber": 26,
       "id": "cbs-news-24-7",
       "name": "CBS News 24/7",
-      "expectedFile": "assets/logos/cbs-news-24-7.png",
-      "status": "MISSING",
-      "sourceStatus": "SOURCE_REQUIRED"
+      "expectedFile": "assets/logos/cbs-news-24-7.svg",
+      "status": "PRESENT",
+      "sourceStatus": "USER_PROVIDED_PACK_RECONSTRUCTED",
+      "source": "Planche catalogue fournie par l'utilisateur — reconstruction SVG"
     },
     {
       "channelNumber": 27,
       "id": "cgtn",
       "name": "CGTN",
-      "expectedFile": "assets/logos/cgtn.png",
-      "status": "MISSING",
-      "sourceStatus": "SOURCE_REQUIRED"
+      "expectedFile": "assets/logos/cgtn.svg",
+      "status": "PRESENT",
+      "sourceStatus": "USER_PROVIDED_PACK_RECONSTRUCTED",
+      "source": "Planche catalogue fournie par l'utilisateur — reconstruction SVG"
     },
     {
       "channelNumber": 28,
@@ -281,81 +306,91 @@
       "channelNumber": 29,
       "id": "cnn",
       "name": "CNN",
-      "expectedFile": "assets/logos/cnn.png",
-      "status": "MISSING",
-      "sourceStatus": "SOURCE_REQUIRED"
+      "expectedFile": "assets/logos/cnn.svg",
+      "status": "PRESENT",
+      "sourceStatus": "USER_PROVIDED_PACK_RECONSTRUCTED",
+      "source": "Planche catalogue fournie par l'utilisateur — reconstruction SVG"
     },
     {
       "channelNumber": 30,
       "id": "cnn-international",
       "name": "CNN International",
-      "expectedFile": "assets/logos/cnn-international.png",
-      "status": "MISSING",
-      "sourceStatus": "SOURCE_REQUIRED"
+      "expectedFile": "assets/logos/cnn-international.svg",
+      "status": "PRESENT",
+      "sourceStatus": "USER_PROVIDED_PACK_RECONSTRUCTED",
+      "source": "Planche catalogue fournie par l'utilisateur — reconstruction SVG"
     },
     {
       "channelNumber": 31,
       "id": "dw",
       "name": "DW",
-      "expectedFile": "assets/logos/dw.png",
-      "status": "MISSING",
-      "sourceStatus": "SOURCE_REQUIRED"
+      "expectedFile": "assets/logos/dw.svg",
+      "status": "PRESENT",
+      "sourceStatus": "USER_PROVIDED_PACK_RECONSTRUCTED",
+      "source": "Planche catalogue fournie par l'utilisateur — reconstruction SVG"
     },
     {
       "channelNumber": 32,
       "id": "euronews",
       "name": "Euronews",
-      "expectedFile": "assets/logos/euronews.png",
-      "status": "MISSING",
-      "sourceStatus": "SOURCE_REQUIRED"
+      "expectedFile": "assets/logos/euronews.svg",
+      "status": "PRESENT",
+      "sourceStatus": "USER_PROVIDED_PACK_RECONSTRUCTED",
+      "source": "Planche catalogue fournie par l'utilisateur — reconstruction SVG"
     },
     {
       "channelNumber": 33,
       "id": "fox-business",
       "name": "Fox Business",
-      "expectedFile": "assets/logos/fox-business.png",
-      "status": "MISSING",
-      "sourceStatus": "SOURCE_REQUIRED"
+      "expectedFile": "assets/logos/fox-business.svg",
+      "status": "PRESENT",
+      "sourceStatus": "USER_PROVIDED_PACK_RECONSTRUCTED",
+      "source": "Planche catalogue fournie par l'utilisateur — reconstruction SVG"
     },
     {
       "channelNumber": 34,
       "id": "fox-news",
       "name": "Fox News",
-      "expectedFile": "assets/logos/fox-news.png",
-      "status": "MISSING",
-      "sourceStatus": "SOURCE_REQUIRED"
+      "expectedFile": "assets/logos/fox-news.svg",
+      "status": "PRESENT",
+      "sourceStatus": "USER_PROVIDED_PACK_RECONSTRUCTED",
+      "source": "Planche catalogue fournie par l'utilisateur — reconstruction SVG"
     },
     {
       "channelNumber": 35,
       "id": "france-24",
       "name": "France 24",
-      "expectedFile": "assets/logos/france-24.png",
-      "status": "MISSING",
-      "sourceStatus": "SOURCE_VERIFIED"
+      "expectedFile": "assets/logos/france-24.svg",
+      "status": "PRESENT",
+      "sourceStatus": "USER_PROVIDED_PACK_RECONSTRUCTED",
+      "source": "Planche catalogue fournie par l'utilisateur — reconstruction SVG"
     },
     {
       "channelNumber": 36,
       "id": "hln",
       "name": "HLN",
-      "expectedFile": "assets/logos/hln.png",
-      "status": "MISSING",
-      "sourceStatus": "SOURCE_REQUIRED"
+      "expectedFile": "assets/logos/hln.svg",
+      "status": "PRESENT",
+      "sourceStatus": "USER_PROVIDED_PACK_RECONSTRUCTED",
+      "source": "Planche catalogue fournie par l'utilisateur — reconstruction SVG"
     },
     {
       "channelNumber": 37,
       "id": "i24news",
       "name": "i24NEWS",
-      "expectedFile": "assets/logos/i24news.png",
-      "status": "MISSING",
-      "sourceStatus": "SOURCE_REQUIRED"
+      "expectedFile": "assets/logos/i24news.svg",
+      "status": "PRESENT",
+      "sourceStatus": "USER_PROVIDED_PACK_RECONSTRUCTED",
+      "source": "Planche catalogue fournie par l'utilisateur — reconstruction SVG"
     },
     {
       "channelNumber": 38,
       "id": "msnbc",
       "name": "MSNBC",
-      "expectedFile": "assets/logos/msnbc.png",
-      "status": "MISSING",
-      "sourceStatus": "SOURCE_REQUIRED"
+      "expectedFile": "assets/logos/msnbc.svg",
+      "status": "PRESENT",
+      "sourceStatus": "USER_PROVIDED_PACK_RECONSTRUCTED",
+      "source": "Planche catalogue fournie par l'utilisateur — reconstruction SVG"
     },
     {
       "channelNumber": 39,
@@ -369,57 +404,64 @@
       "channelNumber": 40,
       "id": "newsmax",
       "name": "Newsmax",
-      "expectedFile": "assets/logos/newsmax.png",
-      "status": "MISSING",
-      "sourceStatus": "SOURCE_REQUIRED"
+      "expectedFile": "assets/logos/newsmax.svg",
+      "status": "PRESENT",
+      "sourceStatus": "USER_PROVIDED_PACK_RECONSTRUCTED",
+      "source": "Planche catalogue fournie par l'utilisateur — reconstruction SVG"
     },
     {
       "channelNumber": 41,
       "id": "newsnation",
       "name": "NewsNation",
-      "expectedFile": "assets/logos/newsnation.png",
-      "status": "MISSING",
-      "sourceStatus": "SOURCE_REQUIRED"
+      "expectedFile": "assets/logos/newsnation.svg",
+      "status": "PRESENT",
+      "sourceStatus": "USER_PROVIDED_PACK_RECONSTRUCTED",
+      "source": "Planche catalogue fournie par l'utilisateur — reconstruction SVG"
     },
     {
       "channelNumber": 42,
       "id": "nhk-world",
       "name": "NHK World",
-      "expectedFile": "assets/logos/nhk-world.png",
-      "status": "MISSING",
-      "sourceStatus": "SOURCE_REQUIRED"
+      "expectedFile": "assets/logos/nhk-world.svg",
+      "status": "PRESENT",
+      "sourceStatus": "USER_PROVIDED_PACK_RECONSTRUCTED",
+      "source": "Planche catalogue fournie par l'utilisateur — reconstruction SVG"
     },
     {
       "channelNumber": 43,
       "id": "oan",
       "name": "OAN",
-      "expectedFile": "assets/logos/oan.png",
-      "status": "MISSING",
-      "sourceStatus": "SOURCE_REQUIRED"
+      "expectedFile": "assets/logos/oan.svg",
+      "status": "PRESENT",
+      "sourceStatus": "USER_PROVIDED_PACK_RECONSTRUCTED",
+      "source": "Planche catalogue fournie par l'utilisateur — reconstruction SVG"
     },
     {
       "channelNumber": 44,
       "id": "sky-news",
       "name": "Sky News",
-      "expectedFile": "assets/logos/sky-news.png",
-      "status": "MISSING",
-      "sourceStatus": "SOURCE_REQUIRED"
+      "expectedFile": "assets/logos/sky-news.svg",
+      "status": "PRESENT",
+      "sourceStatus": "USER_PROVIDED_PACK_RECONSTRUCTED",
+      "source": "Planche catalogue fournie par l'utilisateur — reconstruction SVG"
     },
     {
       "channelNumber": 45,
       "id": "the-weather-channel",
       "name": "The Weather Channel",
-      "expectedFile": "assets/logos/the-weather-channel.png",
-      "status": "MISSING",
-      "sourceStatus": "SOURCE_REQUIRED"
+      "expectedFile": "assets/logos/the-weather-channel.svg",
+      "status": "PRESENT",
+      "sourceStatus": "USER_PROVIDED_PACK_RECONSTRUCTED",
+      "source": "Planche catalogue fournie par l'utilisateur — reconstruction SVG"
     },
     {
       "channelNumber": 46,
       "id": "trt-world",
       "name": "TRT World",
-      "expectedFile": "assets/logos/trt-world.png",
-      "status": "MISSING",
-      "sourceStatus": "SOURCE_REQUIRED"
+      "expectedFile": "assets/logos/trt-world.svg",
+      "status": "PRESENT",
+      "sourceStatus": "USER_PROVIDED_PACK_RECONSTRUCTED",
+      "source": "Planche catalogue fournie par l'utilisateur — reconstruction SVG"
     },
     {
       "channelNumber": 47,
@@ -521,17 +563,19 @@
       "channelNumber": 59,
       "id": "charge",
       "name": "Charge!",
-      "expectedFile": "assets/logos/charge.png",
-      "status": "MISSING",
-      "sourceStatus": "SOURCE_REQUIRED"
+      "expectedFile": "assets/logos/charge.svg",
+      "status": "PRESENT",
+      "sourceStatus": "USER_PROVIDED_PACK_RECONSTRUCTED",
+      "source": "Planche catalogue fournie par l'utilisateur — reconstruction SVG"
     },
     {
       "channelNumber": 60,
       "id": "cinemax",
       "name": "Cinemax",
-      "expectedFile": "assets/logos/cinemax.png",
-      "status": "MISSING",
-      "sourceStatus": "SOURCE_REQUIRED"
+      "expectedFile": "assets/logos/cinemax.svg",
+      "status": "PRESENT",
+      "sourceStatus": "USER_PROVIDED_PACK_RECONSTRUCTED",
+      "source": "Planche catalogue fournie par l'utilisateur — reconstruction SVG"
     },
     {
       "channelNumber": 61,
@@ -545,25 +589,28 @@
       "channelNumber": 62,
       "id": "estrella-tv",
       "name": "Estrella TV",
-      "expectedFile": "assets/logos/estrella-tv.png",
-      "status": "MISSING",
-      "sourceStatus": "SOURCE_REQUIRED"
+      "expectedFile": "assets/logos/estrella-tv.svg",
+      "status": "PRESENT",
+      "sourceStatus": "USER_PROVIDED_PACK_RECONSTRUCTED",
+      "source": "Planche catalogue fournie par l'utilisateur — reconstruction SVG"
     },
     {
       "channelNumber": 63,
       "id": "galavision",
       "name": "Galavisión",
-      "expectedFile": "assets/logos/galavision.png",
-      "status": "MISSING",
-      "sourceStatus": "SOURCE_REQUIRED"
+      "expectedFile": "assets/logos/galavision.svg",
+      "status": "PRESENT",
+      "sourceStatus": "USER_PROVIDED_PACK_RECONSTRUCTED",
+      "source": "Planche catalogue fournie par l'utilisateur — reconstruction SVG"
     },
     {
       "channelNumber": 64,
       "id": "gettv",
       "name": "getTV",
-      "expectedFile": "assets/logos/gettv.png",
-      "status": "MISSING",
-      "sourceStatus": "SOURCE_REQUIRED"
+      "expectedFile": "assets/logos/gettv.svg",
+      "status": "PRESENT",
+      "sourceStatus": "USER_PROVIDED_PACK_RECONSTRUCTED",
+      "source": "Planche catalogue fournie par l'utilisateur — reconstruction SVG"
     },
     {
       "channelNumber": 65,
@@ -577,17 +624,19 @@
       "channelNumber": 66,
       "id": "m6-films",
       "name": "M6 Films",
-      "expectedFile": "assets/logos/m6-films.png",
-      "status": "MISSING",
-      "sourceStatus": "SOURCE_REQUIRED"
+      "expectedFile": "assets/logos/m6-films.svg",
+      "status": "PRESENT",
+      "sourceStatus": "USER_PROVIDED_PACK_RECONSTRUCTED",
+      "source": "Planche catalogue fournie par l'utilisateur — reconstruction SVG"
     },
     {
       "channelNumber": 67,
       "id": "mgm-tv",
       "name": "MGM TV",
-      "expectedFile": "assets/logos/mgm-tv.png",
-      "status": "MISSING",
-      "sourceStatus": "SOURCE_REQUIRED"
+      "expectedFile": "assets/logos/mgm-tv.svg",
+      "status": "PRESENT",
+      "sourceStatus": "USER_PROVIDED_PACK_RECONSTRUCTED",
+      "source": "Planche catalogue fournie par l'utilisateur — reconstruction SVG"
     },
     {
       "channelNumber": 68,
@@ -609,105 +658,118 @@
       "channelNumber": 71,
       "id": "pluto-tv",
       "name": "Pluto TV",
-      "expectedFile": "assets/logos/pluto-tv.png",
-      "status": "MISSING",
-      "sourceStatus": "SOURCE_REQUIRED"
+      "expectedFile": "assets/logos/pluto-tv.svg",
+      "status": "PRESENT",
+      "sourceStatus": "USER_PROVIDED_PACK_RECONSTRUCTED",
+      "source": "Planche catalogue fournie par l'utilisateur — reconstruction SVG"
     },
     {
       "channelNumber": 72,
       "id": "rtl-9",
       "name": "RTL 9",
-      "expectedFile": "assets/logos/rtl-9.png",
-      "status": "MISSING",
-      "sourceStatus": "SOURCE_REQUIRED"
+      "expectedFile": "assets/logos/rtl-9.svg",
+      "status": "PRESENT",
+      "sourceStatus": "USER_PROVIDED_PACK_RECONSTRUCTED",
+      "source": "Planche catalogue fournie par l'utilisateur — reconstruction SVG"
     },
     {
       "channelNumber": 73,
       "id": "sci-fi",
       "name": "Sci-Fi",
-      "expectedFile": "assets/logos/sci-fi.png",
-      "status": "MISSING",
-      "sourceStatus": "SOURCE_REQUIRED"
+      "expectedFile": "assets/logos/sci-fi.svg",
+      "status": "PRESENT",
+      "sourceStatus": "USER_PROVIDED_PACK_RECONSTRUCTED",
+      "source": "Planche catalogue fournie par l'utilisateur — reconstruction SVG"
     },
     {
       "channelNumber": 74,
       "id": "tcm",
       "name": "TCM",
-      "expectedFile": "assets/logos/tcm.png",
-      "status": "MISSING",
-      "sourceStatus": "SOURCE_REQUIRED"
+      "expectedFile": "assets/logos/tcm.svg",
+      "status": "PRESENT",
+      "sourceStatus": "USER_PROVIDED_PACK_RECONSTRUCTED",
+      "source": "Planche catalogue fournie par l'utilisateur — reconstruction SVG"
     },
     {
       "channelNumber": 75,
       "id": "telemundo",
       "name": "Telemundo",
-      "expectedFile": "assets/logos/telemundo.png",
-      "status": "MISSING",
-      "sourceStatus": "SOURCE_REQUIRED"
+      "expectedFile": "assets/logos/telemundo.svg",
+      "status": "PRESENT",
+      "sourceStatus": "USER_PROVIDED_PACK_RECONSTRUCTED",
+      "source": "Planche catalogue fournie par l'utilisateur — reconstruction SVG"
     },
     {
       "channelNumber": 76,
       "id": "tubi",
       "name": "Tubi",
-      "expectedFile": "assets/logos/tubi.png",
-      "status": "MISSING",
-      "sourceStatus": "SOURCE_REQUIRED"
+      "expectedFile": "assets/logos/tubi.svg",
+      "status": "PRESENT",
+      "sourceStatus": "USER_PROVIDED_PACK_RECONSTRUCTED",
+      "source": "Planche catalogue fournie par l'utilisateur — reconstruction SVG"
     },
     {
       "channelNumber": 77,
       "id": "unimas",
       "name": "UniMás",
-      "expectedFile": "assets/logos/unimas.png",
-      "status": "MISSING",
-      "sourceStatus": "SOURCE_REQUIRED"
+      "expectedFile": "assets/logos/unimas.svg",
+      "status": "PRESENT",
+      "sourceStatus": "USER_PROVIDED_PACK_RECONSTRUCTED",
+      "source": "Planche catalogue fournie par l'utilisateur — reconstruction SVG"
     },
     {
       "channelNumber": 78,
       "id": "univision",
       "name": "Univision",
-      "expectedFile": "assets/logos/univision.png",
-      "status": "MISSING",
-      "sourceStatus": "SOURCE_REQUIRED"
+      "expectedFile": "assets/logos/univision.svg",
+      "status": "PRESENT",
+      "sourceStatus": "USER_PROVIDED_PACK_RECONSTRUCTED",
+      "source": "Planche catalogue fournie par l'utilisateur — reconstruction SVG"
     },
     {
       "channelNumber": 79,
       "id": "13eme-rue",
       "name": "13ème Rue",
-      "expectedFile": "assets/logos/13eme-rue.png",
-      "status": "MISSING",
-      "sourceStatus": "SOURCE_REQUIRED"
+      "expectedFile": "assets/logos/13eme-rue.svg",
+      "status": "PRESENT",
+      "sourceStatus": "USER_PROVIDED_PACK_RECONSTRUCTED",
+      "source": "Planche catalogue fournie par l'utilisateur — reconstruction SVG"
     },
     {
       "channelNumber": 80,
       "id": "amc",
       "name": "AMC",
-      "expectedFile": "assets/logos/amc.png",
-      "status": "MISSING",
-      "sourceStatus": "SOURCE_REQUIRED"
+      "expectedFile": "assets/logos/amc.svg",
+      "status": "PRESENT",
+      "sourceStatus": "USER_PROVIDED_PACK_RECONSTRUCTED",
+      "source": "Planche catalogue fournie par l'utilisateur — reconstruction SVG"
     },
     {
       "channelNumber": 81,
       "id": "bravo",
       "name": "Bravo",
-      "expectedFile": "assets/logos/bravo.png",
-      "status": "MISSING",
-      "sourceStatus": "SOURCE_REQUIRED"
+      "expectedFile": "assets/logos/bravo.svg",
+      "status": "PRESENT",
+      "sourceStatus": "USER_PROVIDED_PACK_RECONSTRUCTED",
+      "source": "Planche catalogue fournie par l'utilisateur — reconstruction SVG"
     },
     {
       "channelNumber": 82,
       "id": "freeform",
       "name": "Freeform",
-      "expectedFile": "assets/logos/freeform.png",
-      "status": "MISSING",
-      "sourceStatus": "SOURCE_REQUIRED"
+      "expectedFile": "assets/logos/freeform.svg",
+      "status": "PRESENT",
+      "sourceStatus": "USER_PROVIDED_PACK_RECONSTRUCTED",
+      "source": "Planche catalogue fournie par l'utilisateur — reconstruction SVG"
     },
     {
       "channelNumber": 83,
       "id": "fx",
       "name": "FX",
-      "expectedFile": "assets/logos/fx.png",
-      "status": "MISSING",
-      "sourceStatus": "SOURCE_REQUIRED"
+      "expectedFile": "assets/logos/fx.svg",
+      "status": "PRESENT",
+      "sourceStatus": "USER_PROVIDED_PACK_RECONSTRUCTED",
+      "source": "Planche catalogue fournie par l'utilisateur — reconstruction SVG"
     },
     {
       "channelNumber": 84,
@@ -721,17 +783,19 @@
       "channelNumber": 85,
       "id": "hallmark-drama",
       "name": "Hallmark Drama",
-      "expectedFile": "assets/logos/hallmark-drama.png",
-      "status": "MISSING",
-      "sourceStatus": "SOURCE_REQUIRED"
+      "expectedFile": "assets/logos/hallmark-drama.svg",
+      "status": "PRESENT",
+      "sourceStatus": "USER_PROVIDED_PACK_RECONSTRUCTED",
+      "source": "Planche catalogue fournie par l'utilisateur — reconstruction SVG"
     },
     {
       "channelNumber": 86,
       "id": "hbo",
       "name": "HBO",
-      "expectedFile": "assets/logos/hbo.png",
-      "status": "MISSING",
-      "sourceStatus": "SOURCE_REQUIRED"
+      "expectedFile": "assets/logos/hbo.svg",
+      "status": "PRESENT",
+      "sourceStatus": "USER_PROVIDED_PACK_RECONSTRUCTED",
+      "source": "Planche catalogue fournie par l'utilisateur — reconstruction SVG"
     },
     {
       "channelNumber": 87,
@@ -745,49 +809,55 @@
       "channelNumber": 88,
       "id": "ifc",
       "name": "IFC",
-      "expectedFile": "assets/logos/ifc.png",
-      "status": "MISSING",
-      "sourceStatus": "SOURCE_REQUIRED"
+      "expectedFile": "assets/logos/ifc.svg",
+      "status": "PRESENT",
+      "sourceStatus": "USER_PROVIDED_PACK_RECONSTRUCTED",
+      "source": "Planche catalogue fournie par l'utilisateur — reconstruction SVG"
     },
     {
       "channelNumber": 89,
       "id": "ion",
       "name": "Ion",
-      "expectedFile": "assets/logos/ion.png",
-      "status": "MISSING",
-      "sourceStatus": "SOURCE_REQUIRED"
+      "expectedFile": "assets/logos/ion.svg",
+      "status": "PRESENT",
+      "sourceStatus": "USER_PROVIDED_PACK_RECONSTRUCTED",
+      "source": "Planche catalogue fournie par l'utilisateur — reconstruction SVG"
     },
     {
       "channelNumber": 90,
       "id": "lifetime",
       "name": "Lifetime",
-      "expectedFile": "assets/logos/lifetime.png",
-      "status": "MISSING",
-      "sourceStatus": "SOURCE_REQUIRED"
+      "expectedFile": "assets/logos/lifetime.svg",
+      "status": "PRESENT",
+      "sourceStatus": "USER_PROVIDED_PACK_RECONSTRUCTED",
+      "source": "Planche catalogue fournie par l'utilisateur — reconstruction SVG"
     },
     {
       "channelNumber": 91,
       "id": "mgm-plus",
       "name": "MGM+",
-      "expectedFile": "assets/logos/mgm-plus.png",
-      "status": "MISSING",
-      "sourceStatus": "SOURCE_REQUIRED"
+      "expectedFile": "assets/logos/mgm-plus.svg",
+      "status": "PRESENT",
+      "sourceStatus": "USER_PROVIDED_PACK_RECONSTRUCTED",
+      "source": "Planche catalogue fournie par l'utilisateur — reconstruction SVG"
     },
     {
       "channelNumber": 92,
       "id": "novelas-plus",
       "name": "Novelas+",
-      "expectedFile": "assets/logos/novelas-plus.png",
-      "status": "MISSING",
-      "sourceStatus": "SOURCE_REQUIRED"
+      "expectedFile": "assets/logos/novelas-plus.svg",
+      "status": "PRESENT",
+      "sourceStatus": "USER_PROVIDED_PACK_RECONSTRUCTED",
+      "source": "Planche catalogue fournie par l'utilisateur — reconstruction SVG"
     },
     {
       "channelNumber": 93,
       "id": "paramount-network",
       "name": "Paramount Network",
-      "expectedFile": "assets/logos/paramount-network.png",
-      "status": "MISSING",
-      "sourceStatus": "SOURCE_REQUIRED"
+      "expectedFile": "assets/logos/paramount-network.svg",
+      "status": "PRESENT",
+      "sourceStatus": "USER_PROVIDED_PACK_RECONSTRUCTED",
+      "source": "Planche catalogue fournie par l'utilisateur — reconstruction SVG"
     },
     {
       "channelNumber": 94,
@@ -817,9 +887,10 @@
       "channelNumber": 97,
       "id": "showtime",
       "name": "Showtime",
-      "expectedFile": "assets/logos/showtime.png",
-      "status": "MISSING",
-      "sourceStatus": "SOURCE_REQUIRED"
+      "expectedFile": "assets/logos/showtime.svg",
+      "status": "PRESENT",
+      "sourceStatus": "USER_PROVIDED_PACK_RECONSTRUCTED",
+      "source": "Planche catalogue fournie par l'utilisateur — reconstruction SVG"
     },
     {
       "channelNumber": 98,
@@ -833,9 +904,10 @@
       "channelNumber": 99,
       "id": "sundance-tv",
       "name": "Sundance TV",
-      "expectedFile": "assets/logos/sundance-tv.png",
-      "status": "MISSING",
-      "sourceStatus": "SOURCE_REQUIRED"
+      "expectedFile": "assets/logos/sundance-tv.svg",
+      "status": "PRESENT",
+      "sourceStatus": "USER_PROVIDED_PACK_RECONSTRUCTED",
+      "source": "Planche catalogue fournie par l'utilisateur — reconstruction SVG"
     },
     {
       "channelNumber": 100,
@@ -865,41 +937,46 @@
       "channelNumber": 103,
       "id": "tnt",
       "name": "TNT",
-      "expectedFile": "assets/logos/tnt.png",
-      "status": "MISSING",
-      "sourceStatus": "SOURCE_REQUIRED"
+      "expectedFile": "assets/logos/tnt.svg",
+      "status": "PRESENT",
+      "sourceStatus": "USER_PROVIDED_PACK_RECONSTRUCTED",
+      "source": "Planche catalogue fournie par l'utilisateur — reconstruction SVG"
     },
     {
       "channelNumber": 104,
       "id": "usa-network",
       "name": "USA Network",
-      "expectedFile": "assets/logos/usa-network.png",
-      "status": "MISSING",
-      "sourceStatus": "SOURCE_REQUIRED"
+      "expectedFile": "assets/logos/usa-network.svg",
+      "status": "PRESENT",
+      "sourceStatus": "USER_PROVIDED_PACK_RECONSTRUCTED",
+      "source": "Planche catalogue fournie par l'utilisateur — reconstruction SVG"
     },
     {
       "channelNumber": 105,
       "id": "a-plus-kids",
       "name": "A+ Kids",
-      "expectedFile": "assets/logos/a-plus-kids.png",
-      "status": "MISSING",
-      "sourceStatus": "SOURCE_REQUIRED"
+      "expectedFile": "assets/logos/a-plus-kids.svg",
+      "status": "PRESENT",
+      "sourceStatus": "USER_PROVIDED_PACK_RECONSTRUCTED",
+      "source": "Planche catalogue fournie par l'utilisateur — reconstruction SVG"
     },
     {
       "channelNumber": 106,
       "id": "boing",
       "name": "Boing",
-      "expectedFile": "assets/logos/boing.png",
-      "status": "MISSING",
-      "sourceStatus": "SOURCE_REQUIRED"
+      "expectedFile": "assets/logos/boing.svg",
+      "status": "PRESENT",
+      "sourceStatus": "USER_PROVIDED_PACK_RECONSTRUCTED",
+      "source": "Planche catalogue fournie par l'utilisateur — reconstruction SVG"
     },
     {
       "channelNumber": 107,
       "id": "boomerang",
       "name": "Boomerang",
-      "expectedFile": "assets/logos/boomerang.png",
-      "status": "MISSING",
-      "sourceStatus": "SOURCE_REQUIRED"
+      "expectedFile": "assets/logos/boomerang.svg",
+      "status": "PRESENT",
+      "sourceStatus": "USER_PROVIDED_PACK_RECONSTRUCTED",
+      "source": "Planche catalogue fournie par l'utilisateur — reconstruction SVG"
     },
     {
       "channelNumber": 108,
@@ -921,9 +998,10 @@
       "channelNumber": 110,
       "id": "canal-kids",
       "name": "Canal+ Kids",
-      "expectedFile": "assets/logos/canal-kids.png",
-      "status": "MISSING",
-      "sourceStatus": "SOURCE_REQUIRED"
+      "expectedFile": "assets/logos/canal-kids.svg",
+      "status": "PRESENT",
+      "sourceStatus": "USER_PROVIDED_PACK_RECONSTRUCTED",
+      "source": "Planche catalogue fournie par l'utilisateur — reconstruction SVG"
     },
     {
       "channelNumber": 111,
@@ -937,25 +1015,28 @@
       "channelNumber": 112,
       "id": "cartoon-network",
       "name": "Cartoon Network",
-      "expectedFile": "assets/logos/cartoon-network.png",
-      "status": "MISSING",
-      "sourceStatus": "SOURCE_REQUIRED"
+      "expectedFile": "assets/logos/cartoon-network.svg",
+      "status": "PRESENT",
+      "sourceStatus": "USER_PROVIDED_PACK_RECONSTRUCTED",
+      "source": "Planche catalogue fournie par l'utilisateur — reconstruction SVG"
     },
     {
       "channelNumber": 113,
       "id": "disney-channel",
       "name": "Disney Channel",
-      "expectedFile": "assets/logos/disney-channel.png",
-      "status": "MISSING",
-      "sourceStatus": "SOURCE_VERIFIED"
+      "expectedFile": "assets/logos/disney-channel.svg",
+      "status": "PRESENT",
+      "sourceStatus": "USER_PROVIDED_PACK_RECONSTRUCTED",
+      "source": "Planche catalogue fournie par l'utilisateur — reconstruction SVG"
     },
     {
       "channelNumber": 114,
       "id": "disney-junior",
       "name": "Disney Junior",
-      "expectedFile": "assets/logos/disney-junior.png",
-      "status": "MISSING",
-      "sourceStatus": "SOURCE_VERIFIED"
+      "expectedFile": "assets/logos/disney-junior.svg",
+      "status": "PRESENT",
+      "sourceStatus": "USER_PROVIDED_PACK_RECONSTRUCTED",
+      "source": "Planche catalogue fournie par l'utilisateur — reconstruction SVG"
     },
     {
       "channelNumber": 115,
@@ -969,25 +1050,28 @@
       "channelNumber": 116,
       "id": "gulli",
       "name": "Gulli",
-      "expectedFile": "assets/logos/gulli.png",
-      "status": "MISSING",
-      "sourceStatus": "SOURCE_REQUIRED"
+      "expectedFile": "assets/logos/gulli.svg",
+      "status": "PRESENT",
+      "sourceStatus": "USER_PROVIDED_PACK_RECONSTRUCTED",
+      "source": "Planche catalogue fournie par l'utilisateur — reconstruction SVG"
     },
     {
       "channelNumber": 117,
       "id": "gulli-africa",
       "name": "Gulli Africa",
-      "expectedFile": "assets/logos/gulli-africa.png",
-      "status": "MISSING",
-      "sourceStatus": "SOURCE_REQUIRED"
+      "expectedFile": "assets/logos/gulli-africa.svg",
+      "status": "PRESENT",
+      "sourceStatus": "USER_PROVIDED_PACK_RECONSTRUCTED",
+      "source": "Planche catalogue fournie par l'utilisateur — reconstruction SVG"
     },
     {
       "channelNumber": 118,
       "id": "j-one",
       "name": "J-One",
-      "expectedFile": "assets/logos/j-one.png",
-      "status": "MISSING",
-      "sourceStatus": "SOURCE_REQUIRED"
+      "expectedFile": "assets/logos/j-one.svg",
+      "status": "PRESENT",
+      "sourceStatus": "USER_PROVIDED_PACK_RECONSTRUCTED",
+      "source": "Planche catalogue fournie par l'utilisateur — reconstruction SVG"
     },
     {
       "channelNumber": 119,
@@ -1001,9 +1085,10 @@
       "channelNumber": 120,
       "id": "mangas",
       "name": "Mangas",
-      "expectedFile": "assets/logos/mangas.png",
-      "status": "MISSING",
-      "sourceStatus": "SOURCE_REQUIRED"
+      "expectedFile": "assets/logos/mangas.svg",
+      "status": "PRESENT",
+      "sourceStatus": "USER_PROVIDED_PACK_RECONSTRUCTED",
+      "source": "Planche catalogue fournie par l'utilisateur — reconstruction SVG"
     },
     {
       "channelNumber": 121,
@@ -1017,17 +1102,19 @@
       "channelNumber": 122,
       "id": "nickelodeon",
       "name": "Nickelodeon",
-      "expectedFile": "assets/logos/nickelodeon.png",
-      "status": "MISSING",
-      "sourceStatus": "SOURCE_REQUIRED"
+      "expectedFile": "assets/logos/nickelodeon.svg",
+      "status": "PRESENT",
+      "sourceStatus": "USER_PROVIDED_PACK_RECONSTRUCTED",
+      "source": "Planche catalogue fournie par l'utilisateur — reconstruction SVG"
     },
     {
       "channelNumber": 123,
       "id": "nickelodeon-junior",
       "name": "Nickelodeon Junior",
-      "expectedFile": "assets/logos/nickelodeon-junior.png",
-      "status": "MISSING",
-      "sourceStatus": "SOURCE_REQUIRED"
+      "expectedFile": "assets/logos/nickelodeon-junior.svg",
+      "status": "PRESENT",
+      "sourceStatus": "USER_PROVIDED_PACK_RECONSTRUCTED",
+      "source": "Planche catalogue fournie par l'utilisateur — reconstruction SVG"
     },
     {
       "channelNumber": 124,
@@ -1041,33 +1128,37 @@
       "channelNumber": 125,
       "id": "nicktoons",
       "name": "NickToons",
-      "expectedFile": "assets/logos/nicktoons.png",
-      "status": "MISSING",
-      "sourceStatus": "SOURCE_REQUIRED"
+      "expectedFile": "assets/logos/nicktoons.svg",
+      "status": "PRESENT",
+      "sourceStatus": "USER_PROVIDED_PACK_RECONSTRUCTED",
+      "source": "Planche catalogue fournie par l'utilisateur — reconstruction SVG"
     },
     {
       "channelNumber": 126,
       "id": "nickelodeon-teen",
       "name": "Nickelodeon Teen",
-      "expectedFile": "assets/logos/nickelodeon-teen.png",
-      "status": "MISSING",
-      "sourceStatus": "SOURCE_REQUIRED"
+      "expectedFile": "assets/logos/nickelodeon-teen.svg",
+      "status": "PRESENT",
+      "sourceStatus": "USER_PROVIDED_PACK_RECONSTRUCTED",
+      "source": "Planche catalogue fournie par l'utilisateur — reconstruction SVG"
     },
     {
       "channelNumber": 127,
       "id": "okoo",
       "name": "Okoo",
-      "expectedFile": "assets/logos/okoo.png",
-      "status": "MISSING",
-      "sourceStatus": "SOURCE_REQUIRED"
+      "expectedFile": "assets/logos/okoo.svg",
+      "status": "PRESENT",
+      "sourceStatus": "USER_PROVIDED_PACK_RECONSTRUCTED",
+      "source": "Planche catalogue fournie par l'utilisateur — reconstruction SVG"
     },
     {
       "channelNumber": 128,
       "id": "piwi-plus",
       "name": "Piwi+",
-      "expectedFile": "assets/logos/piwi-plus.png",
-      "status": "MISSING",
-      "sourceStatus": "SOURCE_REQUIRED"
+      "expectedFile": "assets/logos/piwi-plus.svg",
+      "status": "PRESENT",
+      "sourceStatus": "USER_PROVIDED_PACK_RECONSTRUCTED",
+      "source": "Planche catalogue fournie par l'utilisateur — reconstruction SVG"
     },
     {
       "channelNumber": 129,
@@ -1097,9 +1188,10 @@
       "channelNumber": 132,
       "id": "teletoon-plus",
       "name": "Télétoon+",
-      "expectedFile": "assets/logos/teletoon-plus.png",
-      "status": "MISSING",
-      "sourceStatus": "SOURCE_REQUIRED"
+      "expectedFile": "assets/logos/teletoon-plus.svg",
+      "status": "PRESENT",
+      "sourceStatus": "USER_PROVIDED_PACK_RECONSTRUCTED",
+      "source": "Planche catalogue fournie par l'utilisateur — reconstruction SVG"
     },
     {
       "channelNumber": 133,
@@ -1113,17 +1205,19 @@
       "channelNumber": 134,
       "id": "tiji",
       "name": "TiJi",
-      "expectedFile": "assets/logos/tiji.png",
-      "status": "MISSING",
-      "sourceStatus": "SOURCE_REQUIRED"
+      "expectedFile": "assets/logos/tiji.svg",
+      "status": "PRESENT",
+      "sourceStatus": "USER_PROVIDED_PACK_RECONSTRUCTED",
+      "source": "Planche catalogue fournie par l'utilisateur — reconstruction SVG"
     },
     {
       "channelNumber": 135,
       "id": "tivi5monde",
       "name": "TiVi5MONDE",
-      "expectedFile": "assets/logos/tivi5monde.png",
-      "status": "MISSING",
-      "sourceStatus": "SOURCE_REQUIRED"
+      "expectedFile": "assets/logos/tivi5monde.svg",
+      "status": "PRESENT",
+      "sourceStatus": "USER_PROVIDED_PACK_RECONSTRUCTED",
+      "source": "Planche catalogue fournie par l'utilisateur — reconstruction SVG"
     },
     {
       "channelNumber": 136,
@@ -1169,9 +1263,10 @@
       "channelNumber": 142,
       "id": "peche-sons",
       "name": "Pêche & Sons",
-      "expectedFile": "assets/logos/peche-sons.png",
-      "status": "MISSING",
-      "sourceStatus": "SOURCE_REQUIRED"
+      "expectedFile": "assets/logos/peche-sons.svg",
+      "status": "PRESENT",
+      "sourceStatus": "USER_PROVIDED_PACK_RECONSTRUCTED",
+      "source": "Planche catalogue fournie par l'utilisateur — reconstruction SVG"
     },
     {
       "channelNumber": 143,
@@ -1209,9 +1304,10 @@
       "channelNumber": 147,
       "id": "mtv",
       "name": "MTV",
-      "expectedFile": "assets/logos/mtv.png",
-      "status": "MISSING",
-      "sourceStatus": "SOURCE_REQUIRED"
+      "expectedFile": "assets/logos/mtv.svg",
+      "status": "PRESENT",
+      "sourceStatus": "USER_PROVIDED_PACK_RECONSTRUCTED",
+      "source": "Planche catalogue fournie par l'utilisateur — reconstruction SVG"
     },
     {
       "channelNumber": 148,
@@ -1233,17 +1329,19 @@
       "channelNumber": 150,
       "id": "z-magic",
       "name": "Z Magic",
-      "expectedFile": "assets/logos/z-magic.png",
-      "status": "MISSING",
-      "sourceStatus": "SOURCE_REQUIRED"
+      "expectedFile": "assets/logos/z-magic.svg",
+      "status": "PRESENT",
+      "sourceStatus": "USER_PROVIDED_PACK_RECONSTRUCTED",
+      "source": "Planche catalogue fournie par l'utilisateur — reconstruction SVG"
     },
     {
       "channelNumber": 151,
       "id": "a-plus",
       "name": "A+",
-      "expectedFile": "assets/logos/a-plus.png",
-      "status": "MISSING",
-      "sourceStatus": "SOURCE_REQUIRED"
+      "expectedFile": "assets/logos/a-plus.svg",
+      "status": "PRESENT",
+      "sourceStatus": "USER_PROVIDED_PACK_RECONSTRUCTED",
+      "source": "Planche catalogue fournie par l'utilisateur — reconstruction SVG"
     },
     {
       "channelNumber": 152,
@@ -1257,129 +1355,145 @@
       "channelNumber": 153,
       "id": "maboke-tv",
       "name": "Maboke TV",
-      "expectedFile": "assets/logos/maboke-tv.png",
-      "status": "MISSING",
-      "sourceStatus": "SOURCE_REQUIRED"
+      "expectedFile": "assets/logos/maboke-tv.svg",
+      "status": "PRESENT",
+      "sourceStatus": "USER_PROVIDED_PACK_RECONSTRUCTED",
+      "source": "Planche catalogue fournie par l'utilisateur — reconstruction SVG"
     },
     {
       "channelNumber": 154,
       "id": "magc-tv",
       "name": "MAGC TV",
-      "expectedFile": "assets/logos/magc-tv.png",
-      "status": "MISSING",
-      "sourceStatus": "SOURCE_REQUIRED"
+      "expectedFile": "assets/logos/magc-tv.svg",
+      "status": "PRESENT",
+      "sourceStatus": "USER_PROVIDED_PACK_RECONSTRUCTED",
+      "source": "Planche catalogue fournie par l'utilisateur — reconstruction SVG"
     },
     {
       "channelNumber": 155,
       "id": "sunu-yeuf",
       "name": "Sunu Yeuf",
-      "expectedFile": "assets/logos/sunu-yeuf.png",
-      "status": "MISSING",
-      "sourceStatus": "SOURCE_REQUIRED"
+      "expectedFile": "assets/logos/sunu-yeuf.svg",
+      "status": "PRESENT",
+      "sourceStatus": "USER_PROVIDED_PACK_RECONSTRUCTED",
+      "source": "Planche catalogue fournie par l'utilisateur — reconstruction SVG"
     },
     {
       "channelNumber": 156,
       "id": "tv5-monde",
       "name": "TV5 Monde",
-      "expectedFile": "assets/logos/tv5-monde.png",
-      "status": "MISSING",
-      "sourceStatus": "SOURCE_REQUIRED"
+      "expectedFile": "assets/logos/tv5-monde.svg",
+      "status": "PRESENT",
+      "sourceStatus": "USER_PROVIDED_PACK_RECONSTRUCTED",
+      "source": "Planche catalogue fournie par l'utilisateur — reconstruction SVG"
     },
     {
       "channelNumber": 157,
       "id": "vifi-tv",
       "name": "VIFI TV",
-      "expectedFile": "assets/logos/vifi-tv.png",
-      "status": "MISSING",
-      "sourceStatus": "SOURCE_REQUIRED"
+      "expectedFile": "assets/logos/vifi-tv.svg",
+      "status": "PRESENT",
+      "sourceStatus": "USER_PROVIDED_PACK_RECONSTRUCTED",
+      "source": "Planche catalogue fournie par l'utilisateur — reconstruction SVG"
     },
     {
       "channelNumber": 158,
       "id": "zacu-tv",
       "name": "Zacu TV",
-      "expectedFile": "assets/logos/zacu-tv.png",
-      "status": "MISSING",
-      "sourceStatus": "SOURCE_REQUIRED"
+      "expectedFile": "assets/logos/zacu-tv.svg",
+      "status": "PRESENT",
+      "sourceStatus": "USER_PROVIDED_PACK_RECONSTRUCTED",
+      "source": "Planche catalogue fournie par l'utilisateur — reconstruction SVG"
     },
     {
       "channelNumber": 159,
       "id": "zbc",
       "name": "ZBC",
-      "expectedFile": "assets/logos/zbc.png",
-      "status": "MISSING",
-      "sourceStatus": "SOURCE_REQUIRED"
+      "expectedFile": "assets/logos/zbc.svg",
+      "status": "PRESENT",
+      "sourceStatus": "USER_PROVIDED_PACK_RECONSTRUCTED",
+      "source": "Planche catalogue fournie par l'utilisateur — reconstruction SVG"
     },
     {
       "channelNumber": 160,
       "id": "emci-tv",
       "name": "EMCI TV",
-      "expectedFile": "assets/logos/emci-tv.png",
-      "status": "MISSING",
-      "sourceStatus": "SOURCE_REQUIRED"
+      "expectedFile": "assets/logos/emci-tv.svg",
+      "status": "PRESENT",
+      "sourceStatus": "USER_PROVIDED_PACK_RECONSTRUCTED",
+      "source": "Planche catalogue fournie par l'utilisateur — reconstruction SVG"
     },
     {
       "channelNumber": 161,
       "id": "esperance-tv",
       "name": "Espérance TV",
-      "expectedFile": "assets/logos/esperance-tv.png",
-      "status": "MISSING",
-      "sourceStatus": "SOURCE_REQUIRED"
+      "expectedFile": "assets/logos/esperance-tv.svg",
+      "status": "PRESENT",
+      "sourceStatus": "USER_PROVIDED_PACK_RECONSTRUCTED",
+      "source": "Planche catalogue fournie par l'utilisateur — reconstruction SVG"
     },
     {
       "channelNumber": 162,
       "id": "ewtn",
       "name": "EWTN",
-      "expectedFile": "assets/logos/ewtn.png",
-      "status": "MISSING",
-      "sourceStatus": "SOURCE_REQUIRED"
+      "expectedFile": "assets/logos/ewtn.svg",
+      "status": "PRESENT",
+      "sourceStatus": "USER_PROVIDED_PACK_RECONSTRUCTED",
+      "source": "Planche catalogue fournie par l'utilisateur — reconstruction SVG"
     },
     {
       "channelNumber": 163,
       "id": "hope-channel",
       "name": "Hope Channel",
-      "expectedFile": "assets/logos/hope-channel.png",
-      "status": "MISSING",
-      "sourceStatus": "SOURCE_REQUIRED"
+      "expectedFile": "assets/logos/hope-channel.svg",
+      "status": "PRESENT",
+      "sourceStatus": "USER_PROVIDED_PACK_RECONSTRUCTED",
+      "source": "Planche catalogue fournie par l'utilisateur — reconstruction SVG"
     },
     {
       "channelNumber": 164,
       "id": "kto",
       "name": "KTO",
-      "expectedFile": "assets/logos/kto.png",
-      "status": "MISSING",
-      "sourceStatus": "SOURCE_REQUIRED"
+      "expectedFile": "assets/logos/kto.svg",
+      "status": "PRESENT",
+      "sourceStatus": "USER_PROVIDED_PACK_RECONSTRUCTED",
+      "source": "Planche catalogue fournie par l'utilisateur — reconstruction SVG"
     },
     {
       "channelNumber": 165,
       "id": "top-chretien",
       "name": "Top Chrétien",
-      "expectedFile": "assets/logos/top-chretien.png",
-      "status": "MISSING",
-      "sourceStatus": "SOURCE_REQUIRED"
+      "expectedFile": "assets/logos/top-chretien.svg",
+      "status": "PRESENT",
+      "sourceStatus": "USER_PROVIDED_PACK_RECONSTRUCTED",
+      "source": "Planche catalogue fournie par l'utilisateur — reconstruction SVG"
     },
     {
       "channelNumber": 166,
       "id": "trace-gospel",
       "name": "Trace Gospel",
-      "expectedFile": "assets/logos/trace-gospel.png",
-      "status": "MISSING",
-      "sourceStatus": "SOURCE_REQUIRED"
+      "expectedFile": "assets/logos/trace-gospel.svg",
+      "status": "PRESENT",
+      "sourceStatus": "USER_PROVIDED_PACK_RECONSTRUCTED",
+      "source": "Planche catalogue fournie par l'utilisateur — reconstruction SVG"
     },
     {
       "channelNumber": 167,
       "id": "cuisines",
       "name": "Cuisines",
-      "expectedFile": "assets/logos/cuisines.png",
-      "status": "MISSING",
-      "sourceStatus": "SOURCE_REQUIRED"
+      "expectedFile": "assets/logos/cuisines.svg",
+      "status": "PRESENT",
+      "sourceStatus": "USER_PROVIDED_PACK_RECONSTRUCTED",
+      "source": "Planche catalogue fournie par l'utilisateur — reconstruction SVG"
     },
     {
       "channelNumber": 168,
       "id": "nollywood-tv",
       "name": "Nollywood TV",
-      "expectedFile": "assets/logos/nollywood-tv.png",
-      "status": "MISSING",
-      "sourceStatus": "SOURCE_REQUIRED"
+      "expectedFile": "assets/logos/nollywood-tv.svg",
+      "status": "PRESENT",
+      "sourceStatus": "USER_PROVIDED_PACK_RECONSTRUCTED",
+      "source": "Planche catalogue fournie par l'utilisateur — reconstruction SVG"
     },
     {
       "channelNumber": 169,
