@@ -130,10 +130,10 @@
       "channelNumber": 9,
       "id": "arte",
       "name": "Arte",
-      "expectedFile": "assets/logos/arte.svg",
+      "expectedFile": "assets/logos/arte.jpg",
       "status": "PRESENT",
-      "sourceStatus": "USER_PROVIDED_PACK_RECONSTRUCTED",
-      "source": "Planche catalogue fournie par l'utilisateur — reconstruction SVG"
+      "sourceStatus": "USER_PROVIDED_IMAGE_CROP",
+      "source": "Logo extrait de la planche fournie par l'utilisateur"
     },
     {
       "channelNumber": 10,
@@ -237,19 +237,19 @@
       "channelNumber": 21,
       "id": "abc-news-live",
       "name": "ABC News Live",
-      "expectedFile": "assets/logos/abc-news-live.svg",
+      "expectedFile": "assets/logos/abc-news-live.jpg",
       "status": "PRESENT",
-      "sourceStatus": "USER_PROVIDED_PACK_RECONSTRUCTED",
-      "source": "Planche catalogue fournie par l'utilisateur — reconstruction SVG"
+      "sourceStatus": "USER_PROVIDED_IMAGE_CROP",
+      "source": "Logo extrait de la planche fournie par l'utilisateur"
     },
     {
       "channelNumber": 22,
       "id": "al-jazeera",
       "name": "Al Jazeera",
-      "expectedFile": "assets/logos/al-jazeera.svg",
+      "expectedFile": "assets/logos/al-jazeera.jpg",
       "status": "PRESENT",
-      "sourceStatus": "USER_PROVIDED_PACK_RECONSTRUCTED",
-      "source": "Planche catalogue fournie par l'utilisateur — reconstruction SVG"
+      "sourceStatus": "USER_PROVIDED_IMAGE_CROP",
+      "source": "Logo extrait de la planche fournie par l'utilisateur"
     },
     {
       "channelNumber": 23,
@@ -740,10 +740,10 @@
       "channelNumber": 80,
       "id": "amc",
       "name": "AMC",
-      "expectedFile": "assets/logos/amc.svg",
+      "expectedFile": "assets/logos/amc.jpg",
       "status": "PRESENT",
-      "sourceStatus": "USER_PROVIDED_PACK_RECONSTRUCTED",
-      "source": "Planche catalogue fournie par l'utilisateur — reconstruction SVG"
+      "sourceStatus": "USER_PROVIDED_IMAGE_CROP",
+      "source": "Logo extrait de la planche fournie par l'utilisateur"
     },
     {
       "channelNumber": 81,
@@ -1339,10 +1339,10 @@
       "channelNumber": 151,
       "id": "a-plus",
       "name": "A+",
-      "expectedFile": "assets/logos/a-plus.svg",
+      "expectedFile": "assets/logos/a-plus.jpg",
       "status": "PRESENT",
-      "sourceStatus": "USER_PROVIDED_PACK_RECONSTRUCTED",
-      "source": "Planche catalogue fournie par l'utilisateur — reconstruction SVG"
+      "sourceStatus": "USER_PROVIDED_IMAGE_CROP",
+      "source": "Logo extrait de la planche fournie par l'utilisateur"
     },
     {
       "channelNumber": 152,
