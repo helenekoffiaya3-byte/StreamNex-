@@ -6,6 +6,8 @@ const root = path.resolve(__dirname, "..");
 const manifestPath = path.join(root, "assets", "logos", "manifest.json");
 const logosDir = path.join(root, "assets", "logos");
 const manifest = JSON.parse(fs.readFileSync(manifestPath, "utf8"));
+const CHANNELS = require(path.join(root, "config", "channels.js"));
+const channelById = new Map(CHANNELS.map(c => [c.id, c]));
 
 const files = fs.existsSync(logosDir) ? fs.readdirSync(logosDir) : [];
 const assetById = new Map();
@@ -17,6 +19,8 @@ for (const file of files) {
 
 const missing = manifest.channels.filter(c => !assetById.has(c.id));
 const present = manifest.channels.filter(c => assetById.has(c.id));
+const configured = manifest.channels.filter(c => Boolean(channelById.get(c.id)?.logoUrl));
+const unresolved = manifest.channels.filter(c => !assetById.has(c.id) && !channelById.get(c.id)?.logoUrl);
 const allowedBrandIds = new Set((manifest.brandAssets || []).map(a => a.id));
 const unexpected = files
   .filter(f => /\.(png|svg|webp|jpg|jpeg)$/i.test(f))
@@ -38,4 +42,4 @@ const result = {
 
 console.log(JSON.stringify(result, null, 2));
 
-if (result.unexpected || result.channels !== 232) process.exitCode = 1;
+if (result.unexpected || result.channels !== CHANNELS.length || result.unresolved) process.exitCode = 1;
