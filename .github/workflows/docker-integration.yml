@@ -13,6 +13,12 @@ jobs:
         run: docker compose build
       - name: Start
         run: docker compose up -d
+      - name: Syntax checks
+        run: |
+          node --check server.js
+          node --check scripts/streamlive-hls.js
+          node --check scripts/audit-editorial.js
+          node --check scripts/audit-logos.js
       - name: Validate editorial schedule
         run: |
           npm run check:editorial
