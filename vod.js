@@ -21,6 +21,7 @@ function render(){
         <div class="vod-title">${esc(x.title)}</div>
         <div class="vod-meta">${esc(x.typeLabel)}${x.originalChannelName?' · '+esc(x.originalChannelName):''}</div>
         <span class="vod-badge ${x.mediaAvailable?'available':''}">${x.mediaAvailable?'Média disponible':'Catalogue uniquement'}</span>
+        ${x.mediaAvailable?'<a class="vod-watch" href="/vod/player?id='+encodeURIComponent(x.id)+'">▶ Lire</a>':''}
       </div>
     </article>`).join(''):'<div class="vod-empty">Aucun contenu ne correspond aux filtres.</div>';
 }
