@@ -9,6 +9,10 @@ services:
     environment:
       PORT: 3000
       NODE_ENV: production
+      STREAMLIVE_EDITORIAL_CHANNEL_ID: streamlive-editorial
+    volumes:
+      - hls_data:/usr/src/app/public/hls
+      - vod_data:/usr/src/app/storage/vod
     security_opt:
       - no-new-privileges:true
     cap_drop:
@@ -16,3 +20,28 @@ services:
     pids_limit: 256
     mem_limit: 512m
     cpus: "1.00"
+
+  streamlive-hls:
+    build: .
+    container_name: streamlive_hls
+    restart: unless-stopped
+    user: "node"
+    command: ["node", "scripts/streamlive-hls.js"]
+    environment:
+      NODE_ENV: production
+      STREAMLIVE_EDITORIAL_CHANNEL_ID: streamlive-editorial
+      STREAMLIVE_ENGINE_TICK_MS: 30000
+    volumes:
+      - hls_data:/usr/src/app/public/hls
+      - vod_data:/usr/src/app/storage/vod
+    security_opt:
+      - no-new-privileges:true
+    cap_drop:
+      - ALL
+    pids_limit: 256
+    mem_limit: 768m
+    cpus: "2.00"
+
+volumes:
+  hls_data:
+  vod_data:
