@@ -252,11 +252,16 @@ const channelNumbers = new Set();
 for (const channel of CHANNELS) {
   if (!channel.id || typeof channel.id !== "string") throw new Error(`Invalid channel id: ${channel.id}`);
   if (!channel.tvgId || typeof channel.tvgId !== "string") throw new Error(`Missing tvgId: ${channel.id}`);
+  if (!channel.name || typeof channel.name !== "string") throw new Error(`Missing channel name: ${channel.id}`);
+  if (!channel.group || typeof channel.group !== "string") throw new Error(`Missing channel group: ${channel.id}`);
+  if (!Number.isInteger(channel.channelNumber) || channel.channelNumber < 1) throw new Error(`Invalid channel number: ${channel.id}`);
   if (channelIds.has(channel.id)) throw new Error(`Duplicate channel id: ${channel.id}`);
   if (channelTvgIds.has(channel.tvgId)) throw new Error(`Duplicate tvgId: ${channel.tvgId}`);
   if (channelNumbers.has(channel.channelNumber)) throw new Error(`Duplicate channel number: ${channel.channelNumber}`);
-  if (!channel.logoUrl) throw new Error(`Missing logoUrl: ${channel.id}`);
+  if (!channel.logoUrl || typeof channel.logoUrl !== "string") throw new Error(`Missing logoUrl: ${channel.id}`);
   if (!Object.prototype.hasOwnProperty.call(channel, "productionUrl")) throw new Error(`Missing productionUrl: ${channel.id}`);
+  if (channel.productionUrl !== null && typeof channel.productionUrl !== "string") throw new Error(`Invalid productionUrl: ${channel.id}`);
+  if (typeof channel.streamEnabled !== "boolean") throw new Error(`Invalid streamEnabled: ${channel.id}`);
   channelIds.add(channel.id);
   channelTvgIds.add(channel.tvgId);
   channelNumbers.add(channel.channelNumber);
