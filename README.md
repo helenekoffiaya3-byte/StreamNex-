@@ -51,9 +51,9 @@ Configurer les variables HLS dans Netlify, jamais dans Git. Tester le catalogue 
 
 ## Flux HLS
 
-Les flux ne sont pas inventés ni stockés en clair dans Git : chaque chaîne référence une variable `*_HLS_URL` via `streamEnv`. Tant que la variable Netlify correspondante n'est pas définie, `productionUrl` reste `null`, `streamConfigured` est `false` et le lecteur affiche explicitement l'état indisponible. `/api/stream-status` permet de contrôler la couverture de configuration sans exposer les valeurs des variables d'environnement.
+Les flux ne sont pas inventés ni stockés en clair dans Git : les chaînes HLS référencent une variable `*_HLS_URL` via `streamEnv`, tandis que les sources YouTube Live utilisent un identifiant de chaîne public. Tant que la variable Netlify correspondante n'est pas définie, `productionUrl` reste `null`, `streamConfigured` est `false` et le lecteur affiche explicitement l'état indisponible. `/api/stream-status` permet de contrôler la couverture de configuration sans exposer les valeurs des variables d'environnement.
 
-Le lecteur HLS utilise Hls.js lorsque disponible, le HLS natif lorsqu'il est supporté par le navigateur, et gère les erreurs réseau/média ainsi que l'état d'attente.
+Le lecteur HLS utilise Hls.js lorsque disponible et le HLS natif lorsqu'il est supporté par le navigateur. Le lecteur prend aussi en charge les sources YouTube Live via leur lecteur officiel intégré. Les erreurs réseau/média et les états d'attente sont gérés.
 
 ## Sécurité
 
