@@ -15,7 +15,6 @@
 
     let channels=manager.getChannels();
     let selectedId=null;
-    let initialized=false;
 
     function groups(){
       return Array.from(new Set(channels.map(c=>c.group).filter(Boolean))).sort((a,b)=>a.localeCompare(b,'fr'));
@@ -77,11 +76,9 @@
       channels=manager.getChannels();
       renderGroups();
       render();
-      initialized=true;
     });
     renderGroups();
     render();
-    initialized=true;
   }
   if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',init,{once:true});
   else init();
