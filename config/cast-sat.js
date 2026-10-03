@@ -42,7 +42,66 @@ export const castSat = {
   output: {
     protocol: "HLS",
     pathPattern: "/hls/{service}/index.m3u8",
+    requiresDescrambledTs: true,
   },
+  /**
+   * Authorized CAS/CAM pipeline. This describes the integration contract;
+   * it deliberately stores no CW/ECM keys or card credentials in GitHub.
+   */
+  casPipeline: {
+    enabled: true,
+    input: "DVB-S2 scrambled transport stream",
+    conditionalAccess: {
+      ecm: true,
+      emm: true,
+      cam: "DVB-CI/CI+ or operator-approved equivalent",
+      smartcardOrEntitlement: "required when the service is encrypted",
+    },
+    descramblingStage: "before-hls-packaging",
+    clearTsRequiredBeforePackaging: true,
+    keyMaterialStorage: "external-secure-cas-system",
+    redistributionPolicy: "disabled-until-authorization-verified",
+  },
+  /**
+   * RTI 1 satellite candidates found in current public listings. The receiver
+   * must verify the selected carrier before it is marked production-ready.
+   */
+  rti1SatelliteCandidates: [
+    {
+      satellite: "SES-4",
+      position: "22.0W",
+      frequencyMHz: 10986,
+      polarization: "V",
+      symbolRateKsym: 30000,
+      system: "DVB-S/MPEG-2",
+      service: "RTI 1",
+      encryption: {
+        scrambled: true,
+        systems: ["Mediaguard", "Nagravision"],
+        authorizationRequired: true,
+        keysConfigured: false,
+      },
+      sourceVerified: false,
+    },
+    {
+      satellite: "SES-4",
+      position: "22.0W",
+      frequencyMHz: 3749,
+      polarization: "L",
+      symbolRateKsym: 45830,
+      fec: "2/3",
+      system: "DVB-S2T2-MI",
+      service: "RTI 1",
+      serviceId: 101,
+      encryption: {
+        scrambled: false,
+        systems: [],
+        authorizationRequired: false,
+        keysConfigured: false,
+      },
+      sourceVerified: false,
+    },
+  ],
   /**
    * Master catalogue attachment state. Every one of the 234 StreamLive channels
    * is represented here before satellite matching. A channel remains in the
@@ -53,9 +112,10 @@ export const castSat = {
     "catalogueId": "rti-1",
     "channelNumber": 1,
     "name": "RTI 1",
-    "status": "pending-satellite-match",
-    "satelliteId": null,
+    "status": "satellite-candidates-found-awaiting-receiver-verification",
+    "satelliteId": "ses-4-22w",
     "serviceId": null,
+    "satelliteCandidates": ["ses-4-22w-10986v-30000", "ses-4-22w-3749l-45830"],
     "sourceVerified": false,
     "redistributionEnabled": false
   },
