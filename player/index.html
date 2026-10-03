@@ -1,50 +1,78 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="fr">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="application-name" content="NTS-1.4-Lava">
-<meta name="apple-mobile-web-app-title" content="NTS-1.4-Lava">
-<title>NTS-1.4-Lava — Lecteur StreamLive</title>
+<title>NTS-1.4-Lava Player</title>
 <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
 <style>
-:root{color-scheme:dark}*{box-sizing:border-box}body{margin:0;background:#0f0f15;color:#fff;font-family:system-ui,-apple-system,sans-serif}.player-container{max-width:900px;margin:24px auto;padding:12px;background:#050507;border-radius:12px;box-shadow:0 12px 40px #0008}.brand{padding:4px 8px 12px;font-weight:700;letter-spacing:.04em}.brand small{display:block;color:#888;font-weight:400;margin-top:2px}.video-wrap{position:relative;background:#000;border-radius:8px;overflow:hidden}video{display:block;width:100%;aspect-ratio:16/9;background:#000}.status{padding:8px 10px;font-size:14px;color:#bbb}.controls{display:flex;align-items:center;gap:8px;flex-wrap:wrap;padding:10px}.controls button{border:1px solid #ffffff22;background:#ffffff10;color:#fff;border-radius:7px;padding:8px 11px;cursor:pointer}.controls button:disabled{opacity:.4;cursor:not-allowed}.volume{width:100px}.progress{width:calc(100% - 20px);margin:0 10px;cursor:pointer}.time{font-variant-numeric:tabular-nums;color:#bbb}.error{color:#ff7777}.ready{color:#7dff9a}</style>
+*{box-sizing:border-box;margin:0;padding:0}body{background:#0f0f15;font-family:system-ui,sans-serif;display:flex;justify-content:center;align-items:center;min-height:100vh}
+.player-container{position:relative;width:100%;max-width:900px;background:#000;border-radius:12px;overflow:hidden;box-shadow:0 20px 40px rgba(0,0,0,.6)}
+video{width:100%;display:block;aspect-ratio:16/9;cursor:pointer;background:#000}
+.live-badge{position:absolute;z-index:2;top:16px;left:16px;background:rgba(255,0,0,.8);color:#fff;padding:4px 10px;border-radius:4px;font-size:12px;font-weight:bold;display:none;text-transform:uppercase;letter-spacing:1px}
+.live-badge.active{display:block;animation:pulse 2s infinite}@keyframes pulse{0%,100%{opacity:1}50%{opacity:.6}}
+.status{position:absolute;z-index:2;top:16px;right:16px;background:rgba(0,0,0,.65);color:#ccc;padding:5px 9px;border-radius:4px;font-size:12px}
+.status.ready{color:#7dff9a}.status.error{color:#ff7777}
+.controls{position:absolute;bottom:0;left:0;right:0;background:linear-gradient(transparent,rgba(0,0,0,.9));display:flex;flex-direction:column;padding:12px 16px;gap:10px;opacity:0;transition:opacity .3s}
+.player-container:hover .controls,.player-container:focus-within .controls,.player-container.paused .controls{opacity:1}
+.progress-bar-container{width:100%;height:6px;background:rgba(255,255,255,.2);border-radius:3px;cursor:pointer;position:relative}
+.progress-bar{height:100%;width:0;background:#00ff66;border-radius:3px}
+.control-buttons{display:flex;align-items:center;justify-content:space-between}.left-controls,.right-controls{display:flex;align-items:center;gap:8px}
+button{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);color:#fff;font-size:14px;cursor:pointer;padding:6px 10px;border-radius:6px}
+button:hover{background:rgba(255,255,255,.2)}button:disabled{opacity:.4;cursor:not-allowed}
+.time-display{font-size:13px;color:#ccc;margin-left:4px}input[type=range]{width:80px;accent-color:#00ff66;cursor:pointer}
+.hide-on-live{display:flex}.is-live .hide-on-live{display:none!important}.is-live .progress-bar-container{cursor:default}.is-live .progress-bar{width:100%;background:#f00}
+@media(max-width:600px){.controls{padding:8px;gap:7px}.left-controls{gap:5px}button{padding:6px 8px}.time-display{font-size:12px}input[type=range]{width:65px}}
+</style>
 </head>
 <body>
-<main class="player-container">
-<div class="brand">NTS-1.4-Lava<small>Lecteur StreamLive</small></div>
-<div class="video-wrap"><video id="video" playsinline preload="metadata"></video></div>
-<input id="progress" class="progress" type="range" min="0" max="100" value="0" step=".1" aria-label="Progression">
-<div id="status" class="status">Sélectionnez une chaîne StreamLive.</div>
-<div class="controls">
-<button id="play" type="button">▶ Lecture</button>
-<button id="back" type="button" disabled>⏪ -60s</button>
-<button id="forward" type="button" disabled>⏩ +60s</button>
-<button id="mute" type="button">🔊</button>
-<input id="volume" class="volume" type="range" min="0" max="1" step=".05" value="1" aria-label="Volume">
-<span id="time" class="time">00:00 / 00:00</span>
-<button id="fullscreen" type="button">⛶ Plein écran</button>
+<div class="player-container paused" id="player" aria-label="NTS-1.4-Lava">
+<div class="live-badge" id="live-badge">🔴 Direct</div>
+<div class="status" id="status">Prêt</div>
+<video id="video" playsinline preload="metadata"></video>
+<div class="controls" id="controls-container">
+<div class="progress-bar-container" id="progress-container"><div class="progress-bar" id="progress-bar"></div></div>
+<div class="control-buttons">
+<div class="left-controls">
+<button id="btn-play" type="button">▶ Lecture</button>
+<button id="btn-rewind" class="hide-on-live" type="button">⏪ -60s</button>
+<button id="btn-forward" class="hide-on-live" type="button">⏩ +60s</button>
+<button id="btn-mute" type="button">🔊</button>
+<input type="range" id="volume" min="0" max="1" step="0.05" value="1" aria-label="Volume">
+<span class="time-display hide-on-live" id="time">00:00 / 00:00</span>
 </div>
-</main>
+<div class="right-controls"><button id="btn-fullscreen" type="button">⛶</button></div>
+</div>
+</div>
+</div>
 <script>
-const video=document.getElementById('video'),progress=document.getElementById('progress'),play=document.getElementById('play'),back=document.getElementById('back'),forward=document.getElementById('forward'),mute=document.getElementById('mute'),volume=document.getElementById('volume'),time=document.getElementById('time'),status=document.getElementById('status'),fullscreen=document.getElementById('fullscreen');
-let hls=null;
-function fmt(v){if(!Number.isFinite(v)||v<0)return '00:00';v=Math.floor(v);return String(Math.floor(v/60)).padStart(2,'0')+':'+String(v%60).padStart(2,'0')}
-function setStatus(t,cls=''){status.textContent=t;status.className='status '+cls}
-function seekable(){return video.seekable.length>0&&Number.isFinite(video.duration)}
-function update(){const d=Number.isFinite(video.duration)?video.duration:0;progress.value=d?(video.currentTime/d)*100:0;time.textContent=fmt(video.currentTime)+' / '+(d?fmt(d):'LIVE');const ok=seekable();back.disabled=!ok;forward.disabled=!ok}
-function cleanup(){if(hls){hls.destroy();hls=null}video.pause();video.removeAttribute('src');video.load()}
-async function loadStream(url){cleanup();if(!url){setStatus('Flux indisponible.','error');return}setStatus('Chargement du flux…');if(window.Hls&&Hls.isSupported()){hls=new Hls({enableWorker:true,lowLatencyMode:true});hls.loadSource(url);hls.attachMedia(video);hls.on(Hls.Events.MANIFEST_PARSED,()=>setStatus('Flux prêt.','ready'));hls.on(Hls.Events.ERROR,(_,d)=>{if(d.fatal)setStatus('Erreur du flux HLS.','error')})}else if(video.canPlayType('application/vnd.apple.mpegurl')){video.src=url;video.addEventListener('loadedmetadata',()=>setStatus('Flux prêt.','ready'),{once:true})}else setStatus('HLS non pris en charge par ce navigateur.','error')}
-play.onclick=async()=>{if(video.paused){try{await video.play()}catch(e){setStatus('Lecture bloquée par le navigateur. Appuyez sur Lecture.','error')}}else video.pause()};
-back.onclick=()=>{if(seekable())video.currentTime=Math.max(video.seekable.start(0),video.currentTime-60)};
-forward.onclick=()=>{if(seekable())video.currentTime=Math.min(video.seekable.end(video.seekable.length-1),video.currentTime+60)};
-mute.onclick=()=>{video.muted=!video.muted;mute.textContent=video.muted?'🔇':'🔊';volume.value=video.muted?0:video.volume};
-volume.oninput=()=>{video.volume=Number(volume.value);video.muted=video.volume===0;mute.textContent=video.muted?'🔇':'🔊'};
-progress.onclick=e=>{if(!seekable())return;const r=progress.getBoundingClientRect();const p=(e.clientX-r.left)/r.width;video.currentTime=video.seekable.start(0)+p*(video.seekable.end(video.seekable.length-1)-video.seekable.start(0))};
-fullscreen.onclick=()=>{const el=document.querySelector('.video-wrap');if(document.fullscreenElement)document.exitFullscreen();else el.requestFullscreen?.()};
-video.addEventListener('play',()=>play.textContent='⏸ Pause');video.addEventListener('pause',()=>play.textContent='▶ Lecture');video.addEventListener('timeupdate',update);video.addEventListener('progress',update);video.addEventListener('loadedmetadata',update);video.addEventListener('emptied',update);
-window.NTS14LavaPlayer={name:'NTS-1.4-Lava',loadStream,cleanup};
-const params=new URLSearchParams(location.search);loadStream(params.get('stream'));
+const player=document.getElementById('player'),video=document.getElementById('video'),controlsContainer=document.getElementById('controls-container'),liveBadge=document.getElementById('live-badge'),status=document.getElementById('status'),btnPlay=document.getElementById('btn-play'),btnRewind=document.getElementById('btn-rewind'),btnForward=document.getElementById('btn-forward'),btnMute=document.getElementById('btn-mute'),volumeSlider=document.getElementById('volume'),progressBar=document.getElementById('progress-bar'),progressContainer=document.getElementById('progress-container'),timeDisplay=document.getElementById('time'),btnFullscreen=document.getElementById('btn-fullscreen');
+let currentMode='replay',hls=null;
+function setStatus(text,type=''){status.textContent=text;status.className='status '+type}
+function formatTime(seconds){if(!Number.isFinite(seconds)||seconds<0)return'00:00';const mins=Math.floor(seconds/60),secs=Math.floor(seconds%60);return String(mins).padStart(2,'0')+':'+String(secs).padStart(2,'0')}
+function isReplaySeekable(){return currentMode==='replay'&&Number.isFinite(video.duration)&&video.duration>0}
+function updateProgress(){if(currentMode==='live'){progressBar.style.width='100%';return}if(!isReplaySeekable()){progressBar.style.width='0%';timeDisplay.textContent='00:00 / 00:00';return}const percent=Math.min(100,Math.max(0,(video.currentTime/video.duration)*100));progressBar.style.width=percent+'%';timeDisplay.textContent=formatTime(video.currentTime)+' / '+formatTime(video.duration)}
+function resetHls(){if(hls){hls.destroy();hls=null}}
+function cleanup(){resetHls();video.pause();video.removeAttribute('src');video.load()}
+function applyMode(mode){currentMode=mode==='live'?'live':'replay';const live=currentMode==='live';controlsContainer.classList.toggle('is-live',live);liveBadge.classList.toggle('active',live);timeDisplay.textContent=live?'En direct':'00:00 / 00:00';updateProgress()}
+function playWhenAllowed(){video.play().catch(()=>setStatus('Prêt — appuyez sur Lecture'))}
+function loadNTSMedia(url,mode='replay'){cleanup();applyMode(mode);if(!url){setStatus('Aucun flux fourni','error');return}setStatus('Chargement…');const isHls=/\.m3u8(?:$|\?)/i.test(url);
+if(isHls&&window.Hls&&Hls.isSupported()){hls=new Hls({enableWorker:true,lowLatencyMode:currentMode==='live'});hls.loadSource(url);hls.attachMedia(video);hls.on(Hls.Events.MANIFEST_PARSED,()=>{setStatus(currentMode==='live'?'Direct prêt':'Replay prêt','ready');playWhenAllowed()});hls.on(Hls.Events.ERROR,(_,data)=>{if(data.fatal)setStatus('Erreur du flux','error')})}
+else if(isHls&&video.canPlayType('application/vnd.apple.mpegurl')){video.src=url;video.addEventListener('loadedmetadata',()=>{setStatus(currentMode==='live'?'Direct prêt':'Replay prêt','ready');playWhenAllowed()},{once:true})}
+else{video.src=url;video.addEventListener('loadedmetadata',()=>{setStatus('Replay prêt','ready');updateProgress();playWhenAllowed()},{once:true})}}
+function togglePlay(){if(video.paused)playWhenAllowed();else video.pause()}
+function setProgress(e){if(!isReplaySeekable())return;const rect=progressContainer.getBoundingClientRect(),pos=Math.max(0,Math.min(1,(e.clientX-rect.left)/rect.width));video.currentTime=pos*video.duration}
+btnRewind.addEventListener('click',()=>{if(isReplaySeekable())video.currentTime=Math.max(0,video.currentTime-60)});
+btnForward.addEventListener('click',()=>{if(isReplaySeekable())video.currentTime=Math.min(video.duration,video.currentTime+60)});
+btnPlay.addEventListener('click',togglePlay);video.addEventListener('click',togglePlay);progressContainer.addEventListener('click',setProgress);
+btnMute.addEventListener('click',()=>{video.muted=!video.muted;btnMute.textContent=video.muted?'🔇':'🔊';volumeSlider.value=video.muted?0:video.volume});
+volumeSlider.addEventListener('input',e=>{video.volume=Number(e.target.value);video.muted=video.volume===0;btnMute.textContent=video.muted?'🔇':'🔊'});
+btnFullscreen.addEventListener('click',()=>{if(!document.fullscreenElement)player.requestFullscreen?.();else document.exitFullscreen?.()});
+video.addEventListener('timeupdate',updateProgress);video.addEventListener('loadedmetadata',updateProgress);video.addEventListener('durationchange',updateProgress);
+video.addEventListener('play',()=>{btnPlay.textContent='❚❚ Pause';player.classList.remove('paused')});video.addEventListener('pause',()=>{btnPlay.textContent='▶ Lecture';player.classList.add('paused')});
+window.NTS14LavaPlayer={name:'NTS-1.4-Lava',loadNTSMedia,cleanup,getMode:()=>currentMode};
+const params=new URLSearchParams(location.search);const url=params.get('stream');const mode=params.get('mode')||'replay';if(url)loadNTSMedia(url,mode);else setStatus('Prêt — aucun flux sélectionné');
 </script>
 </body>
 </html>
