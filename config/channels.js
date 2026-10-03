@@ -253,6 +253,7 @@ for (const channel of CHANNELS) {
   if (!Object.prototype.hasOwnProperty.call(channel, "productionUrl")) throw new Error(`Missing productionUrl: ${channel.id}`);
   channelIds.add(channel.id);
   channelNumbers.add(channel.channelNumber);
+}
 
 ];
 
