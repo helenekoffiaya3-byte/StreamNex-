@@ -7344,4 +7344,60 @@ export const castSat = {
     }
   ]
 
+
+  "receiverInfrastructure": {
+    "status": "configuration-ready-hardware-required",
+    "purpose": "Réception DVB-S/S2, scan des transpondeurs, sélection des services, puis sortie IP/HLS après descrambling autorisé.",
+    "satelliteScanMode": "multi-satellite",
+    "masterCatalogueIsPreserved": true,
+    "hardwareProfiles": [
+      {
+        "id": "dvb-s2-ip-gateway",
+        "type": "professional-dvb-s2-ip-gateway",
+        "tuners": "multi-tuner",
+        "control": "web-ui",
+        "inputs": ["DVB-S", "DVB-S2"],
+        "outputs": ["MPEG-TS over IP", "HLS"],
+        "cas": "DVB-CI/CI+ or operator-authorized CAS",
+        "status": "configuration-ready"
+      },
+      {
+        "id": "enigma2-openwebif",
+        "type": "enigma2-receiver",
+        "control": "OpenWebif",
+        "inputs": ["DVB-S", "DVB-S2"],
+        "outputs": ["HTTP/MPEG-TS"],
+        "cas": "authorized CAM/CI only",
+        "status": "configuration-ready"
+      },
+      {
+        "id": "satip-gateway",
+        "type": "sat-ip-gateway",
+        "control": "web-ui-or-api",
+        "inputs": ["DVB-S", "DVB-S2"],
+        "outputs": ["SAT>IP", "MPEG-TS over IP"],
+        "cas": "authorized CAM/CI only",
+        "status": "configuration-ready"
+      }
+    ],
+    "pipeline": [
+      "dish-and-lnb",
+      "dvb-s2-tuner",
+      "transponder-scan",
+      "service-discovery",
+      "authorized-cam-or-clear-service",
+      "descrambled-ts",
+      "hls-packager",
+      "streamlive"
+    ],
+    "safety": {
+      "keysStoredInRepository": false,
+      "cwStoredInRepository": false,
+      "casBypass": false,
+      "redistributionEnabledByDefault": false,
+      "physicalReceptionRequired": true,
+      "operatorAuthorizationRequired": true
+    }
+  }
+
 };
