@@ -1,14 +1,10 @@
 # StreamLive logos
 
-PNG logo assets for non-S+ channels.
+Synchronized local logo pack used by the StreamLive player.
 
-The S+ catalogue entries intentionally keep an empty `logoUrl`.
+- 160 legacy logo assets restored from the previously synchronized pack.
+- Existing validated PNGs `13eme-rue.png` and `7info.png` preserved.
+- S+ catalogue entries remain intentionally without a runtime `logoUrl`.
+- The catalogue must reference only files that exist under `/assets/logos/`.
 
-Current synchronized PNG assets:
-- 13ème Rue
-- 7info
-- A+ Ivoire
-- A+ Kids
-- A+
-
-The remaining logos from the supplied guide still require binary asset transfer into this directory before their local `/assets/logos/*.png` references are switched.
+The pack contains SVG, PNG, JPG and WEBP assets where that was the available source format.
