@@ -160,20 +160,6 @@ const CHANNELS = [
   { channelNumber: 229, id: "cine-plus-festival", name: "Ciné+ Festival", group: "Films & Cinéma", productionUrl: process.env.CINE_PLUS_FESTIVAL_HLS_URL || null, streamEnabled: Boolean(process.env.CINE_PLUS_FESTIVAL_HLS_URL), logoUrl: "https://commons.wikimedia.org/wiki/Special:Redirect/file/Cin%C3%A9%2BFestival2024.svg" },
   { channelNumber: 231, id: "cine-plus-classic", name: "Ciné+ Classic", group: "Films & Cinéma", productionUrl: process.env.CINE_PLUS_CLASSIC_HLS_URL || null, streamEnabled: Boolean(process.env.CINE_PLUS_CLASSIC_HLS_URL), logoUrl: "https://commons.wikimedia.org/wiki/Special:Redirect/file/Cin%C3%A9%2BClassic2024.svg" },
   { channelNumber: 230, id: "polar-plus", name: "POLAR+", group: "Films & Cinéma", productionUrl: process.env.POLAR_PLUS_HLS_URL || null, streamEnabled: Boolean(process.env.POLAR_PLUS_HLS_URL), logoUrl: "https://commons.wikimedia.org/wiki/Special:Redirect/file/Polar%2B_%28Logo%29.png" },
-];
-
-// Catalogue integrity checks (development/build-time):
-// - every channel must have a unique id and channelNumber
-// - every channel must have a logoUrl and productionUrl field
-const channelIds = new Set();
-const channelNumbers = new Set();
-for (const channel of CHANNELS) {
-  if (channelIds.has(channel.id)) throw new Error(`Duplicate channel id: ${channel.id}`);
-  if (channelNumbers.has(channel.channelNumber)) throw new Error(`Duplicate channel number: ${channel.channelNumber}`);
-  if (!channel.logoUrl) throw new Error(`Missing logoUrl: ${channel.id}`);
-  if (!Object.prototype.hasOwnProperty.call(channel, "productionUrl")) throw new Error(`Missing productionUrl: ${channel.id}`);
-  channelIds.add(channel.id);
-  channelNumbers.add(channel.channelNumber);
 }
 
   { channelNumber: 232, id: "comedie-plus", name: "Comédie+", group: "Séries", productionUrl: process.env.COMEDIE_PLUS_HLS_URL || null, streamEnabled: Boolean(process.env.COMEDIE_PLUS_HLS_URL), logoUrl: "https://commons.wikimedia.org/wiki/Special:Redirect/file/Com%C3%A9die%2B_logo_%C3%A0_l%27antenne.png" },
@@ -254,4 +240,21 @@ for (const channel of CHANNELS) {
   { channelNumber: 307, id: "passion-bollywood", name: "Passion Bollywood", group: "Bollywood", productionUrl: process.env.PASSION_BOLLYWOOD_HLS_URL || null, streamEnabled: Boolean(process.env.PASSION_BOLLYWOOD_HLS_URL) , logoUrl: "/assets/logos/passion-bollywood.png"},
   { channelNumber: 308, id: "clique-tv", name: "Clique TV", group: "Divertissement", logoUrl: "https://commons.wikimedia.org/wiki/Special:Redirect/file/Clique_TV.webp", productionUrl: process.env.CLIQUE_TV_HLS_URL || null, streamEnabled: Boolean(process.env.CLIQUE_TV_HLS_URL) },
   { channelNumber: 309, id: "cine-plus-ocs", name: "Ciné+ OCS", group: "Films & Cinéma", logoUrl: "https://commons.wikimedia.org/wiki/Special:Redirect/file/Cin%C3%A9%2BOCS_2024.svg", productionUrl: process.env.CINE_PLUS_OCS_HLS_URL || null, streamEnabled: Boolean(process.env.CINE_PLUS_OCS_HLS_URL) },
+
+// Catalogue integrity checks (development/build-time):
+// - every channel must have a unique id and channelNumber
+// - every channel must have a logoUrl and productionUrl field
+const channelIds = new Set();
+const channelNumbers = new Set();
+for (const channel of CHANNELS) {
+  if (channelIds.has(channel.id)) throw new Error(`Duplicate channel id: ${channel.id}`);
+  if (channelNumbers.has(channel.channelNumber)) throw new Error(`Duplicate channel number: ${channel.channelNumber}`);
+  if (!channel.logoUrl) throw new Error(`Missing logoUrl: ${channel.id}`);
+  if (!Object.prototype.hasOwnProperty.call(channel, "productionUrl")) throw new Error(`Missing productionUrl: ${channel.id}`);
+  channelIds.add(channel.id);
+  channelNumbers.add(channel.channelNumber);
+}
+
+];
+
 module.exports = CHANNELS;
