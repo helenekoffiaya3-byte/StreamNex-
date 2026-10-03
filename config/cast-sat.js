@@ -6754,6 +6754,73 @@ export const castSat = {
       "redistributionEnabled": false
     }
   ],
+
+  /**
+   * Additional satellite search results for catalogue services not established
+   * on SES-4. These are reception/source candidates from current public listings.
+   * They do not enable redistribution and do not contain CAS keys.
+   */
+  satelliteSearches: [
+    {
+      satelliteId: "eutelsat-16a-16e",
+      satellite: "EUTELSAT 16A",
+      position: "16.0E",
+      coverage: "West/Central Africa regional broadcast position",
+      source: "KingOfSat public listings checked 2026-10-03",
+      matches: [
+        { catalogueId: "cnn-international", serviceName: "CNN International Europe", frequencyMHz: 11595.25, polarization: "H", symbolRateKsym: 30000, fec: "3/4", sid: 140, encryption: ["Conax", "Irdeto 2", "Nagravision 3"], status: "discovered-encrypted" },
+        { catalogueId: "nickelodeon", serviceName: "Nickelodeon Europe", frequencyMHz: 11231, polarization: "V", symbolRateKsym: 42000, fec: "5/6", sid: 755, encryption: ["Conax", "Irdeto 2", "Nagravision 3", "VideoGuard"], status: "discovered-encrypted" },
+        { catalogueId: "mtv", serviceName: "MTV Europe", frequencyMHz: 10886.8, polarization: "H", symbolRateKsym: 30000, fec: "3/5", sid: 3200, encryption: ["Conax", "Irdeto 2", "VideoGuard"], status: "discovered-encrypted" },
+        { catalogueId: "hbo", serviceName: "HBO 3 HD Central Europe", frequencyMHz: 11094.5, polarization: "V", symbolRateKsym: 27500, fec: "4/5", sid: 1212, encryption: ["Conax"], status: "regional-variant" },
+        { catalogueId: "disney-channel", serviceName: "Disney Channel Croatia", frequencyMHz: 11512.3, polarization: "H", symbolRateKsym: 30000, fec: "3/4", sid: 50, encryption: ["Conax", "Irdeto 2", "Nagravision 3", "VideoGuard"], status: "regional-variant" },
+        { catalogueId: "disney-junior", serviceName: "Disney Junior Croatia", frequencyMHz: 11595.25, polarization: "V", symbolRateKsym: 30000, fec: "3/4", sid: 70, encryption: ["Conax", "Irdeto 2", "Nagravision 3"], status: "regional-variant" },
+        { catalogueId: "cartoonito", serviceName: "Cartoonito", frequencyMHz: 11512.3, polarization: "H", symbolRateKsym: 30000, fec: "3/4", sid: 51, encryption: ["Irdeto 2", "Nagravision 3"], status: "regional-variant" },
+        { catalogueId: "cartoon-network", serviceName: "Cartoon Network Russia & South Eastern Europe", frequencyMHz: 11512.3, polarization: "H", symbolRateKsym: 30000, fec: "3/4", sid: 53, encryption: ["Conax", "Irdeto 2", "Nagravision 3"], status: "regional-variant" }
+      ],
+      redistributionEnabled: false
+    },
+    {
+      satelliteId: "eshail-2-26e",
+      satellite: "Es'hail 2 / Badr 7-8 neighbourhood",
+      position: "26.0E",
+      coverage: "EMENA",
+      source: "KingOfSat public listings checked 2026-10-03",
+      matches: [
+        { catalogueId: "disney-channel", serviceName: "Disney Channel HD Middle-East & Africa", frequencyMHz: 11350, polarization: "V", symbolRateKsym: 27500, fec: "2/3", sid: 40209, encryption: ["Irdeto 2", "VideoGuard"], status: "regional-variant" },
+        { catalogueId: "disney-junior", serviceName: "Disney Junior Middle-East & Africa", frequencyMHz: 11350, polarization: "V", symbolRateKsym: 27500, fec: "2/3", sid: 40210, encryption: ["Irdeto 2", "VideoGuard"], status: "regional-variant" },
+        { catalogueId: "beIN SPORTS", serviceName: "BeIN Sports 1 HD", frequencyMHz: 10810, polarization: "H", symbolRateKsym: 27500, fec: "2/3", sid: 8401, encryption: ["Irdeto 2", "VideoGuard"], status: "discovered-encrypted" }
+      ],
+      redistributionEnabled: false
+    },
+    {
+      satelliteId: "eutelsat-36d-36e",
+      satellite: "EUTELSAT 36D",
+      position: "36.0E",
+      coverage: "Africa / Eurasia",
+      source: "KingOfSat and Eutelsat public listings checked 2026-10-03",
+      matches: [
+        { catalogueId: "disney-junior", serviceName: "Disney Jr. Central Europe", frequencyMHz: 11345.8, polarization: "H", symbolRateKsym: 30000, fec: "3/4", sid: 106, encryption: ["Irdeto 2"], status: "regional-variant" }
+      ],
+      redistributionEnabled: false
+    },
+    {
+      satelliteId: "hotbird-13e",
+      satellite: "Hot Bird 13E neighbourhood",
+      position: "13.0E",
+      coverage: "Europe / international feeds",
+      source: "KingOfSat public listings checked 2026-10-03",
+      matches: [
+        { catalogueId: "dw", serviceName: "DW English HD", frequencyMHz: 11727.6, polarization: "V", symbolRateKsym: 29900, fec: "3/4", sid: 13101, encryption: [], status: "discovered-clear" },
+        { catalogueId: "bbc-news", serviceName: "BBC News", frequencyMHz: 11727.6, polarization: "V", symbolRateKsym: 29900, fec: "3/4", sid: 13104, encryption: [], status: "discovered-clear" },
+        { catalogueId: "cnn-international", serviceName: "CNN International Europe", frequencyMHz: 12034.4, polarization: "V", symbolRateKsym: 29900, fec: "3/4", sid: 11211, encryption: ["VideoGuard"], status: "discovered-encrypted" },
+        { catalogueId: "fox-news", serviceName: "Fox News", frequencyMHz: 12034.4, polarization: "V", symbolRateKsym: 29900, fec: "3/4", sid: 103, encryption: ["PowerVu"], status: "discovered-encrypted" },
+        { catalogueId: "sky-news", serviceName: "Sky News International", frequencyMHz: 12034.4, polarization: "V", symbolRateKsym: 29900, fec: "3/4", sid: 8108, encryption: ["VideoGuard"], status: "discovered-encrypted" },
+        { catalogueId: "cgtn", serviceName: "CGTN", frequencyMHz: 11585, polarization: "V", symbolRateKsym: 27500, fec: "5/6", sid: 872, encryption: [], status: "discovered-clear" }
+      ],
+      redistributionEnabled: false
+    }
+  ],
+
   "verification": {
     "source": "Public satellite listings (checked 2026-10-03)",
     "lastVerified": "2026-10-03",
