@@ -262,11 +262,17 @@ export const castSat = {
   {
     "catalogueId": "tf1",
     "channelNumber": 18,
-    "name": "TF1",
-    "status": "pending-satellite-match",
-    "satelliteId": null,
-    "serviceId": null,
-    "sourceVerified": false,
+    "name": TF1,
+    "status": "found-encrypted",
+    "satelliteId": "ses-4-22w",
+    "serviceId": "tf1",
+    "sourceVerified": true,
+    "physicalReceptionVerified": false,
+    "encryption": {
+      "scrambled": true,
+      "systems": ["Mediaguard", "Nagravision"],
+      "authorizationRequired": true
+    },
     "redistributionEnabled": false
   },
   {
@@ -402,41 +408,65 @@ export const castSat = {
   {
     "catalogueId": "action",
     "channelNumber": 201,
-    "name": "Action",
-    "status": "pending-satellite-match",
-    "satelliteId": null,
-    "serviceId": null,
-    "sourceVerified": false,
+    "name": Action,
+    "status": "found-encrypted",
+    "satelliteId": "ses-4-22w",
+    "serviceId": "action-france",
+    "sourceVerified": true,
+    "physicalReceptionVerified": false,
+    "encryption": {
+      "scrambled": true,
+      "systems": ["Mediaguard", "Nagravision"],
+      "authorizationRequired": true
+    },
     "redistributionEnabled": false
   },
   {
     "catalogueId": "c-plus-action",
     "channelNumber": 202,
-    "name": "C+ Action",
-    "status": "pending-satellite-match",
-    "satelliteId": null,
-    "serviceId": null,
-    "sourceVerified": false,
+    "name": C+ Action,
+    "status": "found-encrypted",
+    "satelliteId": "ses-4-22w",
+    "serviceId": "canal-plus-action-centre",
+    "sourceVerified": true,
+    "physicalReceptionVerified": false,
+    "encryption": {
+      "scrambled": true,
+      "systems": ["Mediaguard", "Nagravision"],
+      "authorizationRequired": true
+    },
     "redistributionEnabled": false
   },
   {
     "catalogueId": "c-plus-cinema",
     "channelNumber": 203,
-    "name": "C+ Cinema",
-    "status": "pending-satellite-match",
-    "satelliteId": null,
-    "serviceId": null,
-    "sourceVerified": false,
+    "name": C+ Cinema,
+    "status": "found-encrypted",
+    "satelliteId": "ses-4-22w",
+    "serviceId": "canal-plus-cinema-centre",
+    "sourceVerified": true,
+    "physicalReceptionVerified": false,
+    "encryption": {
+      "scrambled": true,
+      "systems": ["Mediaguard", "Nagravision"],
+      "authorizationRequired": true
+    },
     "redistributionEnabled": false
   },
   {
     "catalogueId": "c-plus-family",
     "channelNumber": 204,
-    "name": "C+ Family",
-    "status": "pending-satellite-match",
-    "satelliteId": null,
-    "serviceId": null,
-    "sourceVerified": false,
+    "name": C+ Family,
+    "status": "found-encrypted",
+    "satelliteId": "ses-4-22w",
+    "serviceId": "canal-plus-family-centre",
+    "sourceVerified": true,
+    "physicalReceptionVerified": false,
+    "encryption": {
+      "scrambled": true,
+      "systems": ["Mediaguard", "Nagravision"],
+      "authorizationRequired": true
+    },
     "redistributionEnabled": false
   },
   {
@@ -452,11 +482,17 @@ export const castSat = {
   {
     "catalogueId": "c-plus-pop",
     "channelNumber": 206,
-    "name": "C+ Pop",
-    "status": "pending-satellite-match",
-    "satelliteId": null,
-    "serviceId": null,
-    "sourceVerified": false,
+    "name": C+ Pop,
+    "status": "found-encrypted",
+    "satelliteId": "ses-4-22w",
+    "serviceId": "canal-plus-pop",
+    "sourceVerified": true,
+    "physicalReceptionVerified": false,
+    "encryption": {
+      "scrambled": true,
+      "systems": ["Mediaguard", "Nagravision"],
+      "authorizationRequired": true
+    },
     "redistributionEnabled": false
   },
   {
@@ -592,11 +628,17 @@ export const castSat = {
   {
     "catalogueId": "sci-fi",
     "channelNumber": 50,
-    "name": "Sci-Fi",
-    "status": "pending-satellite-match",
-    "satelliteId": null,
-    "serviceId": null,
-    "sourceVerified": false,
+    "name": Sci-Fi,
+    "status": "found-encrypted",
+    "satelliteId": "ses-4-22w",
+    "serviceId": "scifi-france",
+    "sourceVerified": true,
+    "physicalReceptionVerified": false,
+    "encryption": {
+      "scrambled": true,
+      "systems": ["Mediaguard", "Nagravision"],
+      "authorizationRequired": true
+    },
     "redistributionEnabled": false
   },
   {
@@ -902,11 +944,17 @@ export const castSat = {
   {
     "catalogueId": "boomerang",
     "channelNumber": 102,
-    "name": "Boomerang",
-    "status": "pending-satellite-match",
-    "satelliteId": null,
-    "serviceId": null,
-    "sourceVerified": false,
+    "name": Boomerang,
+    "status": "found-encrypted",
+    "satelliteId": "ses-4-22w",
+    "serviceId": "boomerang-france",
+    "sourceVerified": true,
+    "physicalReceptionVerified": false,
+    "encryption": {
+      "scrambled": true,
+      "systems": ["Mediaguard", "Nagravision"],
+      "authorizationRequired": true
+    },
     "redistributionEnabled": false
   },
   {
@@ -1062,11 +1110,17 @@ export const castSat = {
   {
     "catalogueId": "nickelodeon-junior",
     "channelNumber": 118,
-    "name": "Nickelodeon Junior",
-    "status": "pending-satellite-match",
-    "satelliteId": null,
-    "serviceId": null,
-    "sourceVerified": false,
+    "name": Nickelodeon Junior,
+    "status": "found-encrypted",
+    "satelliteId": "ses-4-22w",
+    "serviceId": "nickelodeon-junior-france",
+    "sourceVerified": true,
+    "physicalReceptionVerified": false,
+    "encryption": {
+      "scrambled": true,
+      "systems": ["Mediaguard", "Nagravision"],
+      "authorizationRequired": true
+    },
     "redistributionEnabled": false
   },
   {
@@ -1762,11 +1816,17 @@ export const castSat = {
   {
     "catalogueId": "trace-urban",
     "channelNumber": 241,
-    "name": "Trace Urban",
-    "status": "pending-satellite-match",
-    "satelliteId": null,
-    "serviceId": null,
-    "sourceVerified": false,
+    "name": Trace Urban,
+    "status": "found-encrypted",
+    "satelliteId": "ses-4-22w",
+    "serviceId": "trace-urban-afrique",
+    "sourceVerified": true,
+    "physicalReceptionVerified": false,
+    "encryption": {
+      "scrambled": true,
+      "systems": ["Mediaguard", "Nagravision"],
+      "authorizationRequired": true
+    },
     "redistributionEnabled": false
   },
   {
@@ -2402,11 +2462,17 @@ export const castSat = {
   {
     "catalogueId": "nollywood-tv",
     "channelNumber": 305,
-    "name": "Nollywood TV",
-    "status": "pending-satellite-match",
-    "satelliteId": null,
-    "serviceId": null,
-    "sourceVerified": false,
+    "name": Nollywood TV,
+    "status": "found-encrypted",
+    "satelliteId": "ses-4-22w",
+    "serviceId": "nollywood-tv",
+    "sourceVerified": true,
+    "physicalReceptionVerified": false,
+    "encryption": {
+      "scrambled": true,
+      "systems": ["Mediaguard", "Nagravision"],
+      "authorizationRequired": true
+    },
     "redistributionEnabled": false
   },
   {
@@ -2454,45 +2520,424 @@ export const castSat = {
   // These are source attachments only; redistribution remains disabled until the physical receiver,
   // entitlement/authorization, and Sat>IP/HLS gateway are verified.
   catalogueMatches: [
-    { catalogueId: "tf1", satelliteServiceId: "tf1" },
-    { catalogueId: "nickelodeon-junior", satelliteServiceId: "nickelodeon-junior-france" },
-    { catalogueId: "syfy", satelliteServiceId: "scifi-france" },
-    { catalogueId: "action", satelliteServiceId: "action-france" },
-    { catalogueId: "trace-urban", satelliteServiceId: "trace-urban-afrique" },
-    { catalogueId: "nollywood-tv", satelliteServiceId: "nollywood-tv" },
-    { catalogueId: "histoire-tv", satelliteServiceId: "histoire-tv" },
-    { catalogueId: "my-media-prime", satelliteServiceId: "my-media-prime" },
+    { catalogueId: "tf1", satelliteServiceId: "tf1", sid: 8903, status: "found-encrypted" },
+    { catalogueId: "c-plus-cinema", satelliteServiceId: "canal-plus-cinema-centre", sid: 8904, status: "found-encrypted" },
+    { catalogueId: "nickelodeon-junior", satelliteServiceId: "nickelodeon-junior-france", sid: 8905, status: "found-encrypted" },
+    { catalogueId: "c-plus-family", satelliteServiceId: "canal-plus-family-centre", sid: 8909, status: "found-encrypted" },
+    { catalogueId: "sci-fi", satelliteServiceId: "scifi-france", sid: 8916, status: "found-encrypted" },
+    { catalogueId: "trace-urban", satelliteServiceId: "trace-urban-afrique", sid: 8919, status: "found-encrypted" },
+    { catalogueId: "c-plus-pop", satelliteServiceId: "canal-plus-pop", sid: 8922, status: "found-encrypted" },
+    { catalogueId: "action", satelliteServiceId: "action-france", sid: 8923, status: "found-encrypted" },
+    { catalogueId: "c-plus-action", satelliteServiceId: "canal-plus-action-centre", sid: 8925, status: "found-encrypted" },
+    { catalogueId: "nollywood-tv", satelliteServiceId: "nollywood-tv", sid: 8927, status: "found-encrypted" },
+    { catalogueId: "boomerang", satelliteServiceId: "boomerang-france", sid: 8930, status: "found-encrypted" }
   ],
   services: [
-    { name: "Canal + Première Centre", id: "canal-plus-premiere-centre", status: "discovered", redistributionEnabled: false, encryption: { scrambled: true, systems: ["Mediaguard", "Nagravision"], source: "public-satellite-listing", keysConfigured: false, authorizationRequired: true } },
-    { name: "ITV (Senegal)", id: "itv-senegal", status: "discovered", redistributionEnabled: false, encryption: { scrambled: true, systems: ["Mediaguard", "Nagravision"], source: "public-satellite-listing", keysConfigured: false, authorizationRequired: true } },
-    { name: "TF1", id: "tf1", status: "discovered", redistributionEnabled: false, encryption: { scrambled: true, systems: ["Mediaguard", "Nagravision"], source: "public-satellite-listing", keysConfigured: false, authorizationRequired: true } },
-    { name: "Canal + Cinéma Centre", id: "canal-plus-cinema-centre", status: "discovered", redistributionEnabled: false, encryption: { scrambled: true, systems: ["Mediaguard", "Nagravision"], source: "public-satellite-listing", keysConfigured: false, authorizationRequired: true } },
-    { name: "National Geographic France", id: "national-geographic-france", status: "discovered", redistributionEnabled: false, encryption: { scrambled: true, systems: ["Mediaguard", "Nagravision"], source: "public-satellite-listing", keysConfigured: false, authorizationRequired: true } },
-    { name: "Nickelodeon Junior France", id: "nickelodeon-junior-france", status: "discovered", redistributionEnabled: false, encryption: { scrambled: true, systems: ["Mediaguard", "Nagravision"], source: "public-satellite-listing", keysConfigured: false, authorizationRequired: true } },
-    { name: "Media Sports Infos", id: "media-sports-infos", status: "discovered", redistributionEnabled: false, encryption: { scrambled: true, systems: ["Mediaguard", "Nagravision"], source: "public-satellite-listing", keysConfigured: false, authorizationRequired: true } },
-    { name: "Canal + Magic", id: "canal-plus-magic", status: "discovered", redistributionEnabled: false, encryption: { scrambled: true, systems: ["Mediaguard", "Nagravision"], source: "public-satellite-listing", keysConfigured: false, authorizationRequired: true } },
-    { name: "Canal + Family Centre", id: "canal-plus-family-centre", status: "discovered", redistributionEnabled: false, encryption: { scrambled: true, systems: ["Mediaguard", "Nagravision"], source: "public-satellite-listing", keysConfigured: false, authorizationRequired: true } },
-    { name: "Voir+ Afrique", id: "voir-plus-afrique", status: "discovered", redistributionEnabled: false, encryption: { scrambled: false, systems: [], source: "public-satellite-listing", keysConfigured: false, authorizationRequired: false } },
-    { name: "Canal + Sport 2", id: "canal-plus-sport-2", status: "discovered", redistributionEnabled: false, encryption: { scrambled: true, systems: ["Mediaguard", "Nagravision"], source: "public-satellite-listing", keysConfigured: false, authorizationRequired: true } },
-    { name: "Canal + Sport 3", id: "canal-plus-sport-3", status: "discovered", redistributionEnabled: false, encryption: { scrambled: true, systems: ["Mediaguard", "Nagravision"], source: "public-satellite-listing", keysConfigured: false, authorizationRequired: true } },
-    { name: "Pacis TV", id: "pacis-tv", status: "discovered", redistributionEnabled: false, encryption: { scrambled: true, systems: ["Mediaguard", "Nagravision"], source: "public-satellite-listing", keysConfigured: false, authorizationRequired: true } },
-    { name: "My Media Prime", id: "my-media-prime", status: "discovered", redistributionEnabled: false, encryption: { scrambled: true, systems: ["Mediaguard", "Nagravision"], source: "public-satellite-listing", keysConfigured: false, authorizationRequired: true } },
-    { name: "Private TV", id: "private-tv", status: "discovered", redistributionEnabled: false, encryption: { scrambled: true, systems: ["Mediaguard", "Nagravision"], source: "public-satellite-listing", keysConfigured: false, authorizationRequired: true } },
-    { name: "SciFi France", id: "scifi-france", status: "discovered", redistributionEnabled: false, encryption: { scrambled: true, systems: ["Mediaguard", "Nagravision"], source: "public-satellite-listing", keysConfigured: false, authorizationRequired: true } },
-    { name: "Discovery Channel France", id: "discovery-channel-france", status: "discovered", redistributionEnabled: false, encryption: { scrambled: true, systems: ["Mediaguard", "Nagravision"], source: "public-satellite-listing", keysConfigured: false, authorizationRequired: true } },
-    { name: "Horizon 3", id: "horizon-3", status: "discovered", redistributionEnabled: false, encryption: { scrambled: true, systems: ["Mediaguard", "Nagravision"], source: "public-satellite-listing", keysConfigured: false, authorizationRequired: true } },
-    { name: "Trace Urban Afrique", id: "trace-urban-afrique", status: "discovered", redistributionEnabled: false, encryption: { scrambled: true, systems: ["Mediaguard", "Nagravision"], source: "public-satellite-listing", keysConfigured: false, authorizationRequired: true } },
-    { name: "One TV", id: "one-tv", status: "discovered", redistributionEnabled: false, encryption: { scrambled: true, systems: ["Mediaguard", "Nagravision"], source: "public-satellite-listing", keysConfigured: false, authorizationRequired: true } },
-    { name: "RTVC", id: "rtvc", status: "discovered", redistributionEnabled: false, encryption: { scrambled: true, systems: ["Mediaguard", "Nagravision"], source: "public-satellite-listing", keysConfigured: false, authorizationRequired: true } },
-    { name: "Canal + Pop", id: "canal-plus-pop", status: "discovered", redistributionEnabled: false, encryption: { scrambled: true, systems: ["Mediaguard", "Nagravision"], source: "public-satellite-listing", keysConfigured: false, authorizationRequired: true } },
-    { name: "Action (France)", id: "action-france", status: "discovered", redistributionEnabled: false, encryption: { scrambled: true, systems: ["Mediaguard", "Nagravision"], source: "public-satellite-listing", keysConfigured: false, authorizationRequired: true } },
-    { name: "Trace Mboa", id: "trace-mboa", status: "discovered", redistributionEnabled: false, encryption: { scrambled: true, systems: ["Mediaguard", "Nagravision"], source: "public-satellite-listing", keysConfigured: false, authorizationRequired: true } },
-    { name: "Canal + Action Centre", id: "canal-plus-action-centre", status: "discovered", redistributionEnabled: false, encryption: { scrambled: true, systems: ["Mediaguard", "Nagravision"], source: "public-satellite-listing", keysConfigured: false, authorizationRequired: true } },
-    { name: "Histoire TV", id: "histoire-tv", status: "discovered", redistributionEnabled: false, encryption: { scrambled: true, systems: ["Mediaguard", "Nagravision"], source: "public-satellite-listing", keysConfigured: false, authorizationRequired: true } },
-    { name: "Nollywood TV", id: "nollywood-tv", status: "discovered", redistributionEnabled: false, encryption: { scrambled: true, systems: ["Mediaguard", "Nagravision"], source: "public-satellite-listing", keysConfigured: false, authorizationRequired: true } },
-    { name: "TV Al Bayane", id: "tv-al-bayane", status: "discovered", redistributionEnabled: false, encryption: { scrambled: true, systems: ["Mediaguard", "Nagravision"], source: "public-satellite-listing", keysConfigured: false, authorizationRequired: true } },
-    { name: "Parole Eternelle TV", id: "parole-eternelle-tv", status: "discovered", redistributionEnabled: false, encryption: { scrambled: true, systems: ["Mediaguard", "Nagravision"], source: "public-satellite-listing", keysConfigured: false, authorizationRequired: true } },
-    { name: "Boomerang France", id: "boomerang-france", status: "discovered", redistributionEnabled: false, encryption: { scrambled: true, systems: ["Mediaguard", "Nagravision"], source: "public-satellite-listing", keysConfigured: false, authorizationRequired: true } },
+    {
+      name: "Canal + Première Centre",
+      id: "canal-premi-re-centre",
+      sid: "8901",
+      status: "discovered",
+      source: "public-satellite-listing",
+      redistributionEnabled: false,
+      encryption: {
+        scrambled: true,
+        systems: ["Mediaguard","Nagravision"],
+        keysConfigured: false,
+        authorizationRequired: true
+      }
+    },
+    {
+      name: "ITV (Senegal)",
+      id: "itv-senegal",
+      sid: "8902",
+      status: "discovered",
+      source: "public-satellite-listing",
+      redistributionEnabled: false,
+      encryption: {
+        scrambled: true,
+        systems: ["Mediaguard","Nagravision"],
+        keysConfigured: false,
+        authorizationRequired: true
+      }
+    },
+    {
+      name: "TF1",
+      id: "tf1",
+      sid: "8903",
+      status: "discovered",
+      source: "public-satellite-listing",
+      redistributionEnabled: false,
+      encryption: {
+        scrambled: true,
+        systems: ["Mediaguard","Nagravision"],
+        keysConfigured: false,
+        authorizationRequired: true
+      }
+    },
+    {
+      name: "Canal + Cinéma Centre",
+      id: "canal-cin-ma-centre",
+      sid: "8904",
+      status: "discovered",
+      source: "public-satellite-listing",
+      redistributionEnabled: false,
+      encryption: {
+        scrambled: true,
+        systems: ["Mediaguard","Nagravision"],
+        keysConfigured: false,
+        authorizationRequired: true
+      }
+    },
+    {
+      name: "Nickelodeon Junior France",
+      id: "nickelodeon-junior-france",
+      sid: "8905",
+      status: "discovered",
+      source: "public-satellite-listing",
+      redistributionEnabled: false,
+      encryption: {
+        scrambled: true,
+        systems: ["Mediaguard","Nagravision"],
+        keysConfigured: false,
+        authorizationRequired: true
+      }
+    },
+    {
+      name: "Media Sports Infos",
+      id: "media-sports-infos",
+      sid: "8906",
+      status: "discovered",
+      source: "public-satellite-listing",
+      redistributionEnabled: false,
+      encryption: {
+        scrambled: true,
+        systems: ["Mediaguard","Nagravision"],
+        keysConfigured: false,
+        authorizationRequired: true
+      }
+    },
+    {
+      name: "Canal + Magic",
+      id: "canal-magic",
+      sid: "8907",
+      status: "discovered",
+      source: "public-satellite-listing",
+      redistributionEnabled: false,
+      encryption: {
+        scrambled: true,
+        systems: ["Mediaguard","Nagravision"],
+        keysConfigured: false,
+        authorizationRequired: true
+      }
+    },
+    {
+      name: "Canal + Family Centre",
+      id: "canal-family-centre",
+      sid: "8909",
+      status: "discovered",
+      source: "public-satellite-listing",
+      redistributionEnabled: false,
+      encryption: {
+        scrambled: true,
+        systems: ["Mediaguard","Nagravision"],
+        keysConfigured: false,
+        authorizationRequired: true
+      }
+    },
+    {
+      name: "Voir + Afrique",
+      id: "voir-afrique",
+      sid: "8910",
+      status: "discovered",
+      source: "public-satellite-listing",
+      redistributionEnabled: false,
+      encryption: {
+        scrambled: false,
+        systems: [],
+        keysConfigured: false,
+        authorizationRequired: false
+      }
+    },
+    {
+      name: "Canal + Sport 2",
+      id: "canal-sport-2",
+      sid: "8911",
+      status: "discovered",
+      source: "public-satellite-listing",
+      redistributionEnabled: false,
+      encryption: {
+        scrambled: true,
+        systems: ["Mediaguard","Nagravision"],
+        keysConfigured: false,
+        authorizationRequired: true
+      }
+    },
+    {
+      name: "Canal + Sport 3",
+      id: "canal-sport-3",
+      sid: "8912",
+      status: "discovered",
+      source: "public-satellite-listing",
+      redistributionEnabled: false,
+      encryption: {
+        scrambled: true,
+        systems: ["Mediaguard","Nagravision"],
+        keysConfigured: false,
+        authorizationRequired: true
+      }
+    },
+    {
+      name: "Pacis TV",
+      id: "pacis-tv",
+      sid: "8913",
+      status: "discovered",
+      source: "public-satellite-listing",
+      redistributionEnabled: false,
+      encryption: {
+        scrambled: true,
+        systems: ["Mediaguard","Nagravision"],
+        keysConfigured: false,
+        authorizationRequired: true
+      }
+    },
+    {
+      name: "My Media Prime",
+      id: "my-media-prime",
+      sid: "8914",
+      status: "discovered",
+      source: "public-satellite-listing",
+      redistributionEnabled: false,
+      encryption: {
+        scrambled: true,
+        systems: ["Mediaguard","Nagravision"],
+        keysConfigured: false,
+        authorizationRequired: true
+      }
+    },
+    {
+      name: "Private TV",
+      id: "private-tv",
+      sid: "8915",
+      status: "discovered",
+      source: "public-satellite-listing",
+      redistributionEnabled: false,
+      encryption: {
+        scrambled: true,
+        systems: ["Mediaguard","Nagravision"],
+        keysConfigured: false,
+        authorizationRequired: true
+      }
+    },
+    {
+      name: "SciFi France",
+      id: "scifi-france",
+      sid: "8916",
+      status: "discovered",
+      source: "public-satellite-listing",
+      redistributionEnabled: false,
+      encryption: {
+        scrambled: true,
+        systems: ["Mediaguard","Nagravision"],
+        keysConfigured: false,
+        authorizationRequired: true
+      }
+    },
+    {
+      name: "Discovery Channel France",
+      id: "discovery-channel-france",
+      sid: "8917",
+      status: "discovered",
+      source: "public-satellite-listing",
+      redistributionEnabled: false,
+      encryption: {
+        scrambled: true,
+        systems: ["Mediaguard","Nagravision"],
+        keysConfigured: false,
+        authorizationRequired: true
+      }
+    },
+    {
+      name: "Horizon 3",
+      id: "horizon-3",
+      sid: "8918",
+      status: "discovered",
+      source: "public-satellite-listing",
+      redistributionEnabled: false,
+      encryption: {
+        scrambled: true,
+        systems: ["Mediaguard","Nagravision"],
+        keysConfigured: false,
+        authorizationRequired: true
+      }
+    },
+    {
+      name: "Trace Urban Afrique",
+      id: "trace-urban-afrique",
+      sid: "8919",
+      status: "discovered",
+      source: "public-satellite-listing",
+      redistributionEnabled: false,
+      encryption: {
+        scrambled: true,
+        systems: ["Mediaguard","Nagravision"],
+        keysConfigured: false,
+        authorizationRequired: true
+      }
+    },
+    {
+      name: "One TV (1)",
+      id: "one-tv-1",
+      sid: "8920",
+      status: "discovered",
+      source: "public-satellite-listing",
+      redistributionEnabled: false,
+      encryption: {
+        scrambled: true,
+        systems: ["Mediaguard","Nagravision"],
+        keysConfigured: false,
+        authorizationRequired: true
+      }
+    },
+    {
+      name: "RTVC",
+      id: "rtvc",
+      sid: "8921",
+      status: "discovered",
+      source: "public-satellite-listing",
+      redistributionEnabled: false,
+      encryption: {
+        scrambled: true,
+        systems: ["Mediaguard","Nagravision"],
+        keysConfigured: false,
+        authorizationRequired: true
+      }
+    },
+    {
+      name: "Canal + Pop",
+      id: "canal-pop",
+      sid: "8922",
+      status: "discovered",
+      source: "public-satellite-listing",
+      redistributionEnabled: false,
+      encryption: {
+        scrambled: true,
+        systems: ["Mediaguard","Nagravision"],
+        keysConfigured: false,
+        authorizationRequired: true
+      }
+    },
+    {
+      name: "Action (France)",
+      id: "action-france",
+      sid: "8923",
+      status: "discovered",
+      source: "public-satellite-listing",
+      redistributionEnabled: false,
+      encryption: {
+        scrambled: true,
+        systems: ["Mediaguard","Nagravision"],
+        keysConfigured: false,
+        authorizationRequired: true
+      }
+    },
+    {
+      name: "Trace Mboa",
+      id: "trace-mboa",
+      sid: "8924",
+      status: "discovered",
+      source: "public-satellite-listing",
+      redistributionEnabled: false,
+      encryption: {
+        scrambled: true,
+        systems: ["Mediaguard","Nagravision"],
+        keysConfigured: false,
+        authorizationRequired: true
+      }
+    },
+    {
+      name: "Canal + Action Centre",
+      id: "canal-action-centre",
+      sid: "8925",
+      status: "discovered",
+      source: "public-satellite-listing",
+      redistributionEnabled: false,
+      encryption: {
+        scrambled: true,
+        systems: ["Mediaguard","Nagravision"],
+        keysConfigured: false,
+        authorizationRequired: true
+      }
+    },
+    {
+      name: "Histoire TV",
+      id: "histoire-tv",
+      sid: "8926",
+      status: "discovered",
+      source: "public-satellite-listing",
+      redistributionEnabled: false,
+      encryption: {
+        scrambled: true,
+        systems: ["Mediaguard","Nagravision"],
+        keysConfigured: false,
+        authorizationRequired: true
+      }
+    },
+    {
+      name: "Nollywood TV",
+      id: "nollywood-tv",
+      sid: "8927",
+      status: "discovered",
+      source: "public-satellite-listing",
+      redistributionEnabled: false,
+      encryption: {
+        scrambled: true,
+        systems: ["Mediaguard","Nagravision"],
+        keysConfigured: false,
+        authorizationRequired: true
+      }
+    },
+    {
+      name: "TV Al Bayane",
+      id: "tv-al-bayane",
+      sid: "8928",
+      status: "discovered",
+      source: "public-satellite-listing",
+      redistributionEnabled: false,
+      encryption: {
+        scrambled: true,
+        systems: ["Mediaguard","Nagravision"],
+        keysConfigured: false,
+        authorizationRequired: true
+      }
+    },
+    {
+      name: "Parole Eternelle TV",
+      id: "parole-eternelle-tv",
+      sid: "8929",
+      status: "discovered",
+      source: "public-satellite-listing",
+      redistributionEnabled: false,
+      encryption: {
+        scrambled: true,
+        systems: ["Mediaguard","Nagravision"],
+        keysConfigured: false,
+        authorizationRequired: true
+      }
+    },
+    {
+      name: "Boomerang France",
+      id: "boomerang-france",
+      sid: "8930",
+      status: "discovered",
+      source: "public-satellite-listing",
+      redistributionEnabled: false,
+      encryption: {
+        scrambled: true,
+        systems: ["Mediaguard","Nagravision"],
+        keysConfigured: false,
+        authorizationRequired: true
+      }
+    }
   ],
 };
