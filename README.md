@@ -60,5 +60,5 @@ Les contrôles du catalogue vérifient `id`, `tvgId`, `channelNumber`, `name`, `
 - Favoris : ajout, retrait, persistance et filtre.
 - Lecteur : HLS.js + HLS natif, Play/Pause, volume, plein écran, seek en replay et gestion d'erreurs.
 - Netlify : publication `player`, fonctions `netlify/functions`, API `/api/channels`.
-- Logos : 77 URLs Wikimedia externes et 157 URLs locales référencées. Le dépôt Git actuel ne contient pas encore le dossier `player/assets/logos`; les 157 références locales doivent donc être restaurées avant de considérer l'audit des logos comme terminé.
+- Logos : 140 URLs externes et 94 URLs locales référencées. Les références locales disposent d’un fallback visuel dans le sélecteur afin qu’un logo indisponible ne casse pas l’interface ; les fichiers sources locaux restent à restaurer ou remplacer par des sources externes stables.
 - Flux : aucune variable `*_HLS_URL` de production n'est actuellement configurée dans le projet Netlify, donc les flux ne peuvent pas encore être testés en lecture réelle.
