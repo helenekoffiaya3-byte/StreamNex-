@@ -4873,7 +4873,7 @@ export const castSat = {
     "redistributionEnabled": false
   },
   {
-    "catalogueId": "clique-tv"
+    "catalogueId": "clique-tv",
     "catalogueName": "Clique TV",
     "satelliteServiceId": "clique-tv",
       "satelliteServiceName": "Clique TV",
