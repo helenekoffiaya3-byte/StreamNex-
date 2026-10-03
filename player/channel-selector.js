@@ -77,7 +77,16 @@
     search?.addEventListener('input',render);
     group?.addEventListener('change',render);
     const favoriteToggle=root.document.getElementById('favorites-toggle');
+    const clearFilters=root.document.getElementById('clear-filters');
     favoriteToggle?.addEventListener('click',()=>{favoritesOnly=!favoritesOnly; favoriteToggle.setAttribute('aria-pressed',String(favoritesOnly)); favoriteToggle.textContent=favoritesOnly?'★ Favoris':'☆ Favoris'; render();});
+    clearFilters?.addEventListener('click',()=>{
+      if(search) search.value='';
+      if(group) group.value='';
+      favoritesOnly=false;
+      if(favoriteToggle){favoriteToggle.setAttribute('aria-pressed','false');favoriteToggle.textContent='☆ Favoris';}
+      render();
+      search?.focus();
+    });
     root.addEventListener('streamlive:channel-selected',e=>{
       if(e.detail?.channel?.id){selectedId=e.detail.channel.id;render();}
     });
@@ -85,6 +94,13 @@
       channels=manager.getChannels();
       renderGroups();
       render();
+      if(feedback){feedback.textContent=channels.length+' chaînes chargées';feedback.className='channel-feedback success';}
+    });
+    root.addEventListener('streamlive:catalog-error',e=>{
+      channels=[];
+      renderGroups();
+      render();
+      if(feedback){feedback.textContent='Catalogue indisponible — vérifiez la connexion puis rechargez la page.';feedback.className='channel-feedback error';}
     });
     renderGroups();
     render();
