@@ -6821,6 +6821,21 @@ export const castSat = {
     }
   ],
     {
+      satelliteId: "eutelsat-36d-36e-expanded",
+      satellite: "EUTELSAT 36D / Express AMU1",
+      position: "36.0E",
+      coverage: "Eurasia; African reception must be confirmed from the intended beam/footprint",
+      source: "KingOfSat public listings checked 2026-10-03",
+      matches: [
+        { catalogueId: "disney-channel", serviceName: "Disney Channel Greece", frequencyMHz: 11345.8, polarization: "H", symbolRateKsym: 30000, fec: "3/4", sid: 107, encryption: ["Irdeto 2"], status: "regional-variant" },
+        { catalogueId: "disney-junior", serviceName: "Disney Jr. Central Europe", frequencyMHz: 11345.8, polarization: "H", symbolRateKsym: 30000, fec: "3/4", sid: 106, encryption: ["Irdeto 2"], status: "regional-variant" },
+        { catalogueId: "fx", serviceName: "FX HD Greece", frequencyMHz: 11345.8, polarization: "H", symbolRateKsym: 30000, fec: "3/4", sid: 103, encryption: ["Irdeto 2"], status: "regional-variant" },
+        { catalogueId: "national-geographic", serviceName: "National Geographic HD Greece", frequencyMHz: 11345.8, polarization: "H", symbolRateKsym: 30000, fec: "3/4", sid: 105, encryption: ["Irdeto 2"], status: "regional-variant" },
+        { catalogueId: "baby-tv", serviceName: "Baby TV HD Europe", frequencyMHz: 11345.8, polarization: "H", symbolRateKsym: 30000, fec: "3/4", sid: 101, encryption: ["Irdeto 2"], status: "regional-variant" }
+      ],
+      redistributionEnabled: false
+    },
+    {
       satelliteId: "hotbird-13e-13e",
       satellite: "Hot Bird 13F / 13G",
       position: "13.0E",
