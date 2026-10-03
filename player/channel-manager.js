@@ -54,6 +54,7 @@
 
     if (!channel.streamEnabled || !channel.streamConfigured || !channel.productionUrl) {
       if (player && typeof player.cleanup === 'function') player.cleanup();
+      if (player && typeof player.setStatus === 'function') player.setStatus('Flux indisponible — source HLS non configurée','error');
       return { ok: false, code: 'STREAM_UNAVAILABLE', channel: channel };
     }
 
