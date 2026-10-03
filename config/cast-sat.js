@@ -43,7 +43,12 @@ export const castSat = {
     protocol: "HLS",
     pathPattern: "/hls/{service}/index.m3u8",
   },
-  /**\n   * Master catalogue attachment state. Every one of the 234 StreamLive channels\n   * is represented here before satellite matching. A channel remains in the\n   * master catalogue when no satellite source has been verified yet.\n   */\n  catalogueCoverage: [
+  /**
+   * Master catalogue attachment state. Every one of the 234 StreamLive channels
+   * is represented here before satellite matching. A channel remains in the
+   * master catalogue when no satellite source has been verified yet.
+   */
+  catalogueCoverage: [
   {
     "catalogueId": "rti-1",
     "channelNumber": 1,
@@ -2384,7 +2389,11 @@ export const castSat = {
     "sourceVerified": false,
     "redistributionEnabled": false
   }
-],\n  // Exact/brand-equivalent matches against the 234-channel StreamLive catalogue.\n  // These are source attachments only; redistribution remains disabled until the physical receiver,\n  // entitlement/authorization, and Sat>IP/HLS gateway are verified.\n  catalogueMatches: [
+],
+  // Exact/brand-equivalent matches against the 234-channel StreamLive catalogue.
+  // These are source attachments only; redistribution remains disabled until the physical receiver,
+  // entitlement/authorization, and Sat>IP/HLS gateway are verified.
+  catalogueMatches: [
     { catalogueId: "tf1", satelliteServiceId: "tf1" },
     { catalogueId: "nickelodeon-junior", satelliteServiceId: "nickelodeon-junior-france" },
     { catalogueId: "syfy", satelliteServiceId: "scifi-france" },
