@@ -1,0 +1,83 @@
+{
+  "version": 1,
+  "rules": {
+    "preserveCanonicalCatalogue": true,
+    "preserveChannelNumbers": true,
+    "preserveChannelIds": true,
+    "neverDeleteChannels": true,
+    "neverRenumberChannels": true,
+    "neverInventLogoFiles": true
+  },
+  "aliases": {
+    "rti1": "rti-1",
+    "rti2": "rti-2",
+    "la3": "la-3",
+    "aplus_ivoire": "a-plus-ivoire",
+    "life_tv": "life-tv",
+
+    "s_premiere": "s-plus-premiere",
+    "s_avant_premiere": "s-plus-avant-premiere",
+    "s_prime": "s-plus-prime",
+    "s_cine": "s-plus-cine",
+    "s_kids": "s-plus-kids",
+    "s_ci": "s-plus-cote-divoire",
+    "s_plus": "s-plus",
+    "s_kids_canal": "s-plus-kids-canalplus",
+    "s_box_office": "s-plus-box-office",
+    "s_grand_ecran": "s-plus-grand-ecran",
+    "s_cinemas": "s-plus-cinema-s",
+    "s_sport_360": "s-plus-sport-360",
+    "s_docs_canal": "s-plus-docs-canalplus",
+    "s_foot": "s-plus-foot",
+    "s_docs": "s-plus-docs",
+    "s_jeunesse": "s-plus-jeunesse",
+    "s_bl": "s-plus-bl",
+
+    "nollywood_epic": "nollywood-tv-epic",
+    "passion_bollywood": "passion-bollywood",
+    "cine_ocs": "cine-plus-ocs",
+    "planete_crime": "planete-plus-crime",
+    "planete_aventure": "planete-plus-aventure",
+    "science_vie": "science-et-vie-tv",
+    "toute_l_histoire": "toute-l-histoire",
+    "golf_plus": "golf-plus"
+  },
+
+  "accentColors": {
+    "rti-1": "#FF8C00",
+    "rti-2": "#FF8C00",
+    "la-3": "#FF8C00",
+    "a-plus-ivoire": "#FF8C00",
+    "life-tv": "#FF8C00",
+    "nci": "#FF8C00",
+
+    "s-plus-premiere": "#00FF88",
+    "s-plus-avant-premiere": "#00FF88",
+    "s-plus-prime": "#00FF88",
+    "s-plus-cine": "#00FF88",
+    "s-plus-kids": "#00FF88",
+    "s-plus-docs": "#00FF88",
+    "s-plus-infosport": "#00FF88",
+    "s-plus-infos": "#00FF88",
+    "s-plus-media": "#00FF88",
+    "s-plus-lloliwood": "#00FF88",
+    "s-plus-bl": "#00FF88",
+    "s-plus-jeunesse": "#00FF88",
+
+    "tf1": "#E30613",
+    "france-2": "#1D4ED8",
+    "france-3": "#2563EB",
+    "france-4": "#7C3AED",
+    "france-5": "#F59E0B",
+    "m6": "#111827",
+
+    "cnn-international": "#CC0000",
+    "bbc-news": "#B91C1C",
+    "euronews": "#0EA5E9",
+
+    "nollywood-tv": "#111827",
+    "nollywood-tv-epic": "#111827",
+    "passion-bollywood": "#EC4899",
+    "cine-plus-ocs": "#111827"
+  }
+}
