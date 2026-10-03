@@ -27,7 +27,7 @@ export default async function handler(request) {
       name: channel.name,
       channelNumber: channel.channelNumber,
       streamEnv: channel.streamEnv,
-      configured: Boolean(channel.productionUrl),
+      configured: Boolean(channel.productionUrl || channel.youtubeChannelId),
       streamEnabled: Boolean(channel.streamEnabled),
       streamSource: channel.streamSource || (channel.youtubeChannelId ? "youtube-live" : "hls"),
       youtubeChannelId: channel.youtubeChannelId || null
