@@ -1,0 +1,46 @@
+name: Install missing StreamLive PNG logos
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'assets/logos/_source/missing-logos.zip'
+      - '.github/workflows/install-missing-logos.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  install:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Extract missing PNG logos
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [ -f assets/logos/animaux.png ] && [ -f assets/logos/s-plus-premiere.png ]; then
+            echo "Missing logos already installed."
+            exit 0
+          fi
+          rm -rf /tmp/streamlive-missing-logos
+          mkdir -p /tmp/streamlive-missing-logos
+          unzip -o assets/logos/_source/missing-logos.zip -d /tmp/streamlive-missing-logos
+          find /tmp/streamlive-missing-logos -type f -name '*.png' -exec cp {} assets/logos/ \;
+          test $(find assets/logos -maxdepth 1 -type f -name '*.png' | wc -l) -ge 23
+
+      - name: Commit PNG logos
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add assets/logos/*.png
+          if git diff --cached --quiet; then
+            echo "No logo changes."
+            exit 0
+          fi
+          git commit -m "assets: install missing channel PNG logos"
+          git push
