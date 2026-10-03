@@ -7012,7 +7012,6 @@ export const castSat = {
       redistributionEnabled: false,
       note: "Ces entrées sont des présences satellite documentées. Les variantes régionales restent distinctes du feed catalogue exact et la réception en Côte d'Ivoire doit être vérifiée physiquement."
     },
-  "additionalSatelliteSearches": [
     {
       satelliteId: "eutelsat-7c-7e-africa",
       satellite: "EUTELSAT 7C",
