@@ -72,7 +72,7 @@ volumeSlider.addEventListener('input',e=>{video.volume=Number(e.target.value);vi
 btnFullscreen.addEventListener('click',()=>{if(!document.fullscreenElement)player.requestFullscreen?.();else document.exitFullscreen?.()});
 video.addEventListener('timeupdate',updateProgress);video.addEventListener('loadedmetadata',updateProgress);video.addEventListener('durationchange',updateProgress);video.addEventListener('waiting',()=>setStatus('Chargement du flux…'));video.addEventListener('stalled',()=>setStatus('Flux en attente…','error'));video.addEventListener('error',()=>setStatus('Erreur de lecture du flux','error'));
 video.addEventListener('play',()=>{btnPlay.textContent='❚❚ Pause';player.classList.remove('paused')});video.addEventListener('pause',()=>{btnPlay.textContent='▶ Lecture';player.classList.add('paused')});
-window.NTS14LavaPlayer={name:'NTS-1.4-Lava',loadNTSMedia,cleanup,getMode:()=>currentMode};
+window.NTS14LavaPlayer={name:'NTS-1.4-Lava',loadNTSMedia,cleanup,setStatus,getMode:()=>currentMode};
 const params=new URLSearchParams(location.search);const url=params.get('stream');const mode=params.get('mode')||'replay';
 if(url){loadNTSMedia(url,mode)}else if(window.StreamLiveChannelManager){if(window.STREAMLIVE_CHANNELS){const selected=window.StreamLiveChannelManager.selectFromUrl();if(!selected)setStatus('Prêt — aucun flux sélectionné')}else{setStatus('Chargement du catalogue…');window.addEventListener('streamlive:catalog-ready',()=>{const selected=window.StreamLiveChannelManager.selectFromUrl();if(!selected)setStatus('Prêt — aucun flux sélectionné')},{once:true});window.addEventListener('streamlive:catalog-error',()=>setStatus('Catalogue indisponible','error'),{once:true})}}else{setStatus('Prêt — aucun flux sélectionné');}
 </script>
