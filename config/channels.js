@@ -1,12 +1,12 @@
 // StreamLive channel catalogue.
 // Each entry keeps a stable channelNumber/id and exposes a production HLS URL through an environment variable.
 const CHANNELS = [
-  { channelNumber: 1, id: "rti-1", tvgId: "rti-1", name: "RTI 1", group: "France", logoUrl: "/assets/logos/rti-1.svg", productionUrl: process.env.RTI_1_HLS_URL || null, streamEnabled: Boolean(process.env.RTI_1_HLS_URL) },
-  { channelNumber: 2, id: "rti-2", tvgId: "rti-2", name: "RTI 2", group: "France", logoUrl: "/assets/logos/rti-2.svg", productionUrl: process.env.RTI_2_HLS_URL || null, streamEnabled: Boolean(process.env.RTI_2_HLS_URL) },
-  { channelNumber: 3, id: "la-3", tvgId: "la-3", name: "La 3", group: "France", logoUrl: "/assets/logos/la-3.svg", productionUrl: process.env.LA_3_HLS_URL || null, streamEnabled: Boolean(process.env.LA_3_HLS_URL) },
-  { channelNumber: 4, id: "a-plus-ivoire", tvgId: "a-plus-ivoire", name: "A+ Ivoire", group: "France", logoUrl: "/assets/logos/a-plus-ivoire.svg", productionUrl: process.env.A_PLUS_IVOIRE_HLS_URL || null, streamEnabled: Boolean(process.env.A_PLUS_IVOIRE_HLS_URL) },
-  { channelNumber: 5, id: "life-tv", tvgId: "life-tv", name: "Life TV", group: "France", logoUrl: "/assets/logos/life-tv.svg", productionUrl: process.env.LIFE_TV_HLS_URL || null, streamEnabled: Boolean(process.env.LIFE_TV_HLS_URL) },
-  { channelNumber: 6, id: "nci", tvgId: "nci", name: "NCI", group: "France", logoUrl: "/assets/logos/nci.svg", productionUrl: process.env.NCI_HLS_URL || null, streamEnabled: Boolean(process.env.NCI_HLS_URL) },
+  { channelNumber: 1, id: "rti-1", tvgId: "rti-1", name: "RTI 1", group: "National", logoUrl: "/assets/logos/rti-1.svg", productionUrl: process.env.RTI_1_HLS_URL || null, streamEnabled: Boolean(process.env.RTI_1_HLS_URL) },
+  { channelNumber: 2, id: "rti-2", tvgId: "rti-2", name: "RTI 2", group: "National", logoUrl: "/assets/logos/rti-2.svg", productionUrl: process.env.RTI_2_HLS_URL || null, streamEnabled: Boolean(process.env.RTI_2_HLS_URL) },
+  { channelNumber: 3, id: "la-3", tvgId: "la-3", name: "La 3", group: "National", logoUrl: "/assets/logos/la-3.svg", productionUrl: process.env.LA_3_HLS_URL || null, streamEnabled: Boolean(process.env.LA_3_HLS_URL) },
+  { channelNumber: 4, id: "a-plus-ivoire", tvgId: "a-plus-ivoire", name: "A+ Ivoire", group: "National", logoUrl: "/assets/logos/a-plus-ivoire.svg", productionUrl: process.env.A_PLUS_IVOIRE_HLS_URL || null, streamEnabled: Boolean(process.env.A_PLUS_IVOIRE_HLS_URL) },
+  { channelNumber: 5, id: "life-tv", tvgId: "life-tv", name: "Life TV", group: "National", logoUrl: "/assets/logos/life-tv.svg", productionUrl: process.env.LIFE_TV_HLS_URL || null, streamEnabled: Boolean(process.env.LIFE_TV_HLS_URL) },
+  { channelNumber: 6, id: "nci", tvgId: "nci", name: "NCI", group: "National", logoUrl: "/assets/logos/nci.svg", productionUrl: process.env.NCI_HLS_URL || null, streamEnabled: Boolean(process.env.NCI_HLS_URL) },
   { channelNumber: 185, id: "s-plus-cote-divoire", tvgId: "s-plus-cote-divoire", name: "S+ Côte d’Ivoire", group: "S+ StreamLive", logoUrl: "/assets/logos/canal-plus-cote-divoire.svg", productionUrl: process.env.S_PLUS_CI_HLS_URL || null, streamEnabled: Boolean(process.env.S_PLUS_CI_HLS_URL) },
   { channelNumber: 10, id: "6ter", tvgId: "6ter", name: "6ter", group: "France", logoUrl: "/assets/logos/6ter.svg", productionUrl: process.env.SIXTER_HLS_URL || null, streamEnabled: Boolean(process.env.SIXTER_HLS_URL) },
   { channelNumber: 11, id: "arte", tvgId: "arte", name: "Arte", group: "France", logoUrl: "/assets/logos/arte.jpg", productionUrl: process.env.ARTE_HLS_URL || null, streamEnabled: Boolean(process.env.ARTE_HLS_URL) },
