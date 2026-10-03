@@ -16,7 +16,9 @@ export default async function handler(request) {
     group: channel.group || "",
     logoUrl: channel.logoUrl || "",
     productionUrl: channel.productionUrl || null,
-    streamEnabled: Boolean(channel.streamEnabled)
+    streamEnabled: Boolean(channel.streamEnabled),
+    streamConfigured: Boolean(channel.productionUrl),
+    streamEnv: channel.streamEnv || null
   }));
 
   return new Response(JSON.stringify(publicChannels), {
