@@ -6946,6 +6946,46 @@ export const castSat = {
       redistributionEnabled: false,
       note: "Ces services sont des variantes/régionalisations africaines listées sur un bouquet à accès conditionnel. Leur présence satellite ne prouve ni l'accès au décryptage ni l'autorisation de redistribution HLS."
     },
+    {
+      satelliteId: "eutelsat-5-west-b-5w",
+      satellite: "EUTELSAT 5 West B",
+      position: "5.0W",
+      coverage: "Transalpine / Africa coverage advertised; West Africa reception must be verified for the specific beam",
+      source: "KingOfSat/LyngSat public listings checked 2026-10-03",
+      matches: [
+        { catalogueId: "rtl-9", serviceName: "RTL 9", frequencyMHz: 11512, polarization: "V", symbolRateKsym: 29950, fec: "3/4", encryption: ["Viaccess"], status: "discovered-encrypted" },
+        { catalogueId: "mangas", serviceName: "Mangas", frequencyMHz: 11512, polarization: "V", symbolRateKsym: 29950, fec: "3/4", encryption: ["Viaccess"], status: "discovered-encrypted" },
+        { catalogueId: "ab1", serviceName: "AB1", frequencyMHz: 11512, polarization: "V", symbolRateKsym: 29950, fec: "3/4", encryption: ["Viaccess"], status: "discovered-encrypted" },
+        { catalogueId: "automoto", serviceName: "Automoto la chaîne", frequencyMHz: 11512, polarization: "V", symbolRateKsym: 29950, fec: "3/4", encryption: ["Viaccess"], status: "discovered-encrypted" },
+        { catalogueId: "france-4", serviceName: "France 4", frequencyMHz: 11554, polarization: "V", symbolRateKsym: 29950, fec: "3/4", encryption: ["Viaccess"], status: "discovered-encrypted" },
+        { catalogueId: "arte", serviceName: "ARTE Français", frequencyMHz: 11096, polarization: "H", symbolRateKsym: 29950, fec: "3/4", encryption: ["Viaccess"], status: "discovered-encrypted" },
+        { catalogueId: "6ter", serviceName: "6ter", frequencyMHz: 11096, polarization: "H", symbolRateKsym: 29950, fec: "3/4", encryption: ["Viaccess"], status: "discovered-encrypted" },
+        { catalogueId: "kto", serviceName: "KTO", frequencyMHz: 11096, polarization: "V", symbolRateKsym: 29950, fec: "3/4", encryption: [], status: "discovered-clear" },
+        { catalogueId: "tv5-monde", serviceName: "TV5Monde France Belgique Suisse Monaco", frequencyMHz: 10972, polarization: "V", symbolRateKsym: 29950, fec: "3/4", encryption: ["Viaccess"], status: "discovered-encrypted" },
+        { catalogueId: "tf1-series-films", serviceName: "TF1 Séries Films", frequencyMHz: 11471, polarization: "V", symbolRateKsym: 29950, fec: "3/4", encryption: ["Viaccess"], status: "discovered-encrypted" }
+      ],
+      redistributionEnabled: false,
+      note: "Ces services sont des présences de bouquet/listing; la couverture vers la Côte d’Ivoire et l’autorisation de redistribution doivent être vérifiées séparément."
+    },
+    {
+      satelliteId: "eutelsat-36d-36e-africa",
+      satellite: "EUTELSAT 36D",
+      position: "36.0E",
+      coverage: "Sub-Sahara Africa",
+      source: "KingOfSat public listings checked 2026-10-03",
+      matches: [
+        { catalogueId: "disney-channel", serviceName: "Disney Channel South Africa", frequencyMHz: 12054, polarization: "H", symbolRateKsym: 27500, fec: "3/4", sid: 213, encryption: ["Irdeto 2"], status: "regional-variant" },
+        { catalogueId: "disney-junior", serviceName: "Disney Junior South Africa", frequencyMHz: 11747, polarization: "H", symbolRateKsym: 27500, fec: "3/4", sid: 1406, encryption: ["Irdeto 2"], status: "regional-variant" },
+        { catalogueId: "nickelodeon", serviceName: "Nickelodeon Africa", frequencyMHz: 11766, polarization: "V", symbolRateKsym: 27500, fec: "3/4", sid: 1911, encryption: ["Irdeto 2"], status: "regional-variant" },
+        { catalogueId: "nickelodeon-junior", serviceName: "Nick Jr Africa", frequencyMHz: 11938, polarization: "H", symbolRateKsym: 27500, fec: "3/4", sid: 507, encryption: ["Irdeto 2"], status: "regional-variant" },
+        { catalogueId: "nicktoons", serviceName: "Nick Toons Africa", frequencyMHz: 11785, polarization: "H", symbolRateKsym: 27500, fec: "3/4", sid: 4005, encryption: ["Irdeto 2"], status: "regional-variant" },
+        { catalogueId: "discovery-channel", serviceName: "Discovery Channel HD Middle-East & Africa", frequencyMHz: 11996, polarization: "V", symbolRateKsym: 27500, fec: "3/4", sid: 1001, encryption: ["Irdeto 2"], status: "regional-variant" },
+        { catalogueId: "studio-universal", serviceName: "Studio Universal Africa", frequencyMHz: 11766, polarization: "V", symbolRateKsym: 27500, fec: "3/4", sid: 1902, encryption: ["Irdeto 2"], status: "regional-variant" },
+        { catalogueId: "discovery-channel", serviceName: "Discovery Channel HD Middle-East & Africa", frequencyMHz: 11996, polarization: "V", symbolRateKsym: 27500, fec: "3/4", sid: 1001, encryption: ["Irdeto 2"], status: "regional-variant" }
+      ],
+      redistributionEnabled: false,
+      note: "Les variantes régionales africaines sont conservées comme candidats séparés; elles ne remplacent pas automatiquement le feed exact du catalogue."
+    },
   "verification": {
     "source": "Public satellite listings (checked 2026-10-03)",
     "lastVerified": "2026-10-03",
