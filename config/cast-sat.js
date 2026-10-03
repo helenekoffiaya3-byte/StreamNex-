@@ -7075,6 +7075,128 @@ export const castSat = {
       note: "Les services Canal+ Réunion sont des variantes régionales; ils ne remplacent pas automatiquement les chaînes métropolitaines du catalogue."
     }
   ],
+  "satelliteScanPlan": [
+    {
+      "satelliteId": "ses-4-22w",
+      "name": "SES-4",
+      "position": "22.0W",
+      "priority": 1,
+      "status": "scanned",
+      "role": "West Africa / Canal+ candidate pool"
+    },
+    {
+      "satelliteId": "eutelsat-16a-16e",
+      "name": "EUTELSAT 16A",
+      "position": "16.0E",
+      "priority": 2,
+      "status": "scan-configured",
+      "role": "West/Central Africa and Francophone Africa"
+    },
+    {
+      "satelliteId": "eutelsat-7b-7c-7e",
+      "name": "EUTELSAT 7B/7C",
+      "position": "7.0E",
+      "priority": 3,
+      "status": "scan-configured",
+      "role": "Sub-Saharan Africa / English-speaking Africa"
+    },
+    {
+      "satelliteId": "eutelsat-36c-36d-36e",
+      "name": "EUTELSAT 36C/36D",
+      "position": "36.0E",
+      "priority": 4,
+      "status": "scan-configured",
+      "role": "Sub-Saharan Africa / DStv and ZAP"
+    },
+    {
+      "satelliteId": "belintersat-1-51-5e",
+      "name": "Belintersat 1",
+      "position": "51.5E",
+      "priority": 5,
+      "status": "scan-configured",
+      "role": "Africa Ku candidate services"
+    },
+    {
+      "satelliteId": "badr-8-26e",
+      "name": "BADR / Arabsat",
+      "position": "26.0E",
+      "priority": 6,
+      "status": "scan-configured",
+      "role": "North/West Africa and MENA candidate pool"
+    },
+    {
+      "satelliteId": "eutelsat-5-west-b-5w",
+      "name": "EUTELSAT 5 West B",
+      "position": "5.0W",
+      "priority": 7,
+      "status": "candidate-mapped",
+      "role": "Francophone/Africa candidate pool"
+    },
+    {
+      "satelliteId": "nilesat-7w",
+      "name": "NILESAT",
+      "position": "7.0W",
+      "priority": 8,
+      "status": "scan-configured",
+      "role": "Africa/MENA candidate pool"
+    },
+    {
+      "satelliteId": "eutelsat-9b-9e",
+      "name": "EUTELSAT 9B",
+      "position": "9.0E",
+      "priority": 9,
+      "status": "scan-configured",
+      "role": "International/Africa candidate pool"
+    },
+    {
+      "satelliteId": "eutelsat-10a-10e",
+      "name": "EUTELSAT 10A",
+      "position": "10.0E",
+      "priority": 10,
+      "status": "scan-configured",
+      "role": "African broadcast candidate pool"
+    },
+    {
+      "satelliteId": "express-am8-14w",
+      "name": "Express-AM8",
+      "position": "14.0W",
+      "priority": 11,
+      "status": "scan-configured",
+      "role": "International candidate pool"
+    },
+    {
+      "satelliteId": "hispasat-30w",
+      "name": "Hispasat",
+      "position": "30.0W",
+      "priority": 12,
+      "status": "scan-configured",
+      "role": "International candidate pool"
+    },
+    {
+      "satelliteId": "turksat-42-5e",
+      "name": "Türksat",
+      "position": "42.5E",
+      "priority": 13,
+      "status": "scan-configured",
+      "role": "Africa/MENA candidate pool"
+    },
+    {
+      "satelliteId": "intelsat-904-45e",
+      "name": "Intelsat 904",
+      "position": "45.0E",
+      "priority": 14,
+      "status": "scan-configured",
+      "role": "Africa candidate pool"
+    },
+    {
+      "satelliteId": "intelsat-20-68-5e",
+      "name": "Intelsat 20",
+      "position": "68.5E",
+      "priority": 15,
+      "status": "scan-configured",
+      "role": "African/Indian Ocean candidate pool"
+    }
+  ],
   "verification": {
     "source": "Public satellite listings (checked 2026-10-03)",
     "lastVerified": "2026-10-03",
