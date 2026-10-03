@@ -20,6 +20,7 @@
     if (!channel || typeof channel !== 'object') return null;
     return {
       id: String(channel.id || ''),
+      tvgId: String(channel.tvgId || channel.id || ''),
       channelNumber: Number(channel.channelNumber),
       name: String(channel.name || channel.id || 'Chaîne'),
       group: String(channel.group || ''),
