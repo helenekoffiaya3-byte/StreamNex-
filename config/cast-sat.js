@@ -7075,6 +7075,36 @@ export const castSat = {
       note: "Les services Canal+ Réunion sont des variantes régionales; ils ne remplacent pas automatiquement les chaînes métropolitaines du catalogue."
     }
   ],
+  "additionalSatelliteMatches": [
+    {
+      "satelliteId": "eutelsat-16a-16e-parabole-reunion",
+      "satellite": "Eutelsat 16A",
+      "position": "16.0E",
+      "beam": "South East Africa",
+      "source": "LyngSat public listings checked 2026-10-03",
+      "matches": [
+        { "catalogueId": "6ter", "serviceName": "6ter", "frequencyMHz": 10928, "polarization": "H", "symbolRateKsym": 30000, "fec": "2/3", "encryption": ["Mediaguard", "Viaccess"], "status": "discovered-encrypted" },
+        { "catalogueId": "w9", "serviceName": "W9", "frequencyMHz": 10928, "polarization": "H", "symbolRateKsym": 30000, "fec": "2/3", "encryption": ["Mediaguard", "Viaccess"], "status": "discovered-encrypted" },
+        { "catalogueId": "tmc", "serviceName": "TMC", "frequencyMHz": 10928, "polarization": "H", "symbolRateKsym": 30000, "fec": "2/3", "encryption": ["Mediaguard", "Viaccess"], "status": "discovered-encrypted" },
+        { "catalogueId": "bein-sports", "serviceName": "BeIn Sports 1 France", "frequencyMHz": 10928, "polarization": "H", "symbolRateKsym": 30000, "fec": "2/3", "encryption": ["Mediaguard", "Viaccess"], "status": "regional-variant" },
+        { "catalogueId": "equidia", "serviceName": "Equidia", "frequencyMHz": 10845, "polarization": "H", "symbolRateKsym": 30000, "fec": "2/3", "encryption": ["Mediaguard"], "status": "discovered-encrypted" },
+        { "catalogueId": "gulli", "serviceName": "Gulli", "frequencyMHz": 10887, "polarization": "H", "symbolRateKsym": 30000, "fec": "2/3", "encryption": ["Mediaguard"], "status": "discovered-encrypted" },
+        { "catalogueId": "nickelodeon", "serviceName": "Nickelodeon France", "frequencyMHz": 10845, "polarization": "H", "symbolRateKsym": 30000, "fec": "2/3", "encryption": ["Mediaguard"], "status": "regional-variant" },
+        { "catalogueId": "nickelodeon-junior", "serviceName": "Nickelodeon Junior France", "frequencyMHz": 11637, "polarization": "H", "symbolRateKsym": 30000, "fec": "2/3", "encryption": ["Mediaguard"], "status": "regional-variant" },
+        { "catalogueId": "teletoon-plus", "serviceName": "TéléToon +", "frequencyMHz": 11512, "polarization": "H", "symbolRateKsym": 30000, "fec": "2/3", "encryption": ["Mediaguard"], "status": "discovered-encrypted" },
+        { "catalogueId": "ludikids", "serviceName": "Ludikids", "frequencyMHz": 11471, "polarization": "H", "symbolRateKsym": 30000, "fec": "2/3", "encryption": ["Mediaguard"], "status": "discovered-encrypted" },
+        { "catalogueId": "trace-urban", "serviceName": "Trace Urban Afrique", "frequencyMHz": 11471, "polarization": "H", "symbolRateKsym": 30000, "fec": "2/3", "encryption": ["Mediaguard", "Viaccess"], "status": "regional-variant" },
+        { "catalogueId": "rfm-tv", "serviceName": "RFM TV", "frequencyMHz": 10845, "polarization": "H", "symbolRateKsym": 30000, "fec": "2/3", "encryption": ["Mediaguard"], "status": "discovered-encrypted" },
+        { "catalogueId": "seasons", "serviceName": "Seasons", "frequencyMHz": 10845, "polarization": "H", "symbolRateKsym": 30000, "fec": "2/3", "encryption": ["Mediaguard"], "status": "discovered-encrypted" },
+        { "catalogueId": "chasse-et-peche", "serviceName": "Chasse & Pêche", "frequencyMHz": 11596, "polarization": "H", "symbolRateKsym": 30000, "fec": "2/3", "encryption": ["Viaccess"], "status": "discovered-encrypted" },
+        { "catalogueId": "eurosport-1", "serviceName": "Eurosport 1 France", "frequencyMHz": 11471, "polarization": "H", "symbolRateKsym": 30000, "fec": "2/3", "encryption": ["Mediaguard"], "status": "regional-variant" },
+        { "catalogueId": "planete-plus-aventure", "serviceName": "Planète+ Aventure", "frequencyMHz": 10845, "polarization": "H", "symbolRateKsym": 30000, "fec": "2/3", "encryption": ["Mediaguard"], "status": "regional-variant" }
+      ],
+      "redistributionEnabled": false,
+      "physicalReceptionVerified": false,
+      "note": "Présences documentées dans les listings publics; les feeds Réunion/South East Africa sont conservés comme candidats et ne remplacent pas automatiquement un feed exact destiné à la Côte d'Ivoire."
+    }
+  ],
   "satelliteScanPlan": [
     {
       "satelliteId": "ses-4-22w",
@@ -7089,7 +7119,7 @@ export const castSat = {
       "name": "EUTELSAT 16A",
       "position": "16.0E",
       "priority": 2,
-      "status": "scan-configured",
+      "status": "candidate-mapped",
       "role": "West/Central Africa and Francophone Africa"
     },
     {
