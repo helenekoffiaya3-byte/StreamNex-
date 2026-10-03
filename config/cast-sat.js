@@ -6920,9 +6920,7 @@ export const castSat = {
       ],
       redistributionEnabled: false,
       note: "Les variantes régionales restent distinctes de la chaîne catalogue tant que le feed exact n'est pas vérifié physiquement."
-    }
-  ],
-
+    },
     {
       satelliteId: "belintersat-1-51-5e",
       satellite: "Belintersat 1",
