@@ -52,7 +52,7 @@ Ne jamais committer de clés, tokens, mots de passe ou URLs privées. Les donné
 
 ## Validation Étape 5
 
-Les contrôles du catalogue vérifient `id`, `tvgId`, `channelNumber`, `name`, `group`, `logoUrl` et l'état du flux. Les favoris utilisent `localStorage`. Le lecteur valide les URLs HTTP(S), gère les états de chargement/erreur et ne charge qu'un seul flux à la fois.
+Les contrôles du catalogue vérifient `id`, `tvgId`, `channelNumber`, `name`, `group`, `logoUrl`, `productionUrl` et le type de `streamEnabled`. Les favoris utilisent `localStorage`. Le lecteur valide les URLs HTTP(S), gère les états de chargement/erreur et ne charge qu'un seul flux à la fois.
 
 ### État actuel
 
