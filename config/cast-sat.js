@@ -7012,6 +7012,52 @@ export const castSat = {
       redistributionEnabled: false,
       note: "Ces entrées sont des présences satellite documentées. Les variantes régionales restent distinctes du feed catalogue exact et la réception en Côte d'Ivoire doit être vérifiée physiquement."
     },
+  "additionalSatelliteSearches": [
+    {
+      satelliteId: "eutelsat-7c-7e-africa",
+      satellite: "EUTELSAT 7C",
+      position: "7.0E",
+      coverage: "Africa beam",
+      source: "LyngSat public listings checked 2026-10-03",
+      matches: [
+        { catalogueId: "cnn-international", serviceName: "CNN International Europe", frequencyMHz: 11106, polarization: "V", symbolRateKsym: 45000, fec: "5/6", sid: 239, encryption: ["Nagravision"], status: "regional-variant" },
+        { catalogueId: "france-24", serviceName: "France 24 Français", frequencyMHz: 11106, polarization: "V", symbolRateKsym: 45000, fec: "5/6", sid: 240, encryption: ["Nagravision"], status: "discovered-encrypted" },
+        { catalogueId: "bbc-news", serviceName: "BBC News Africa", frequencyMHz: 11106, polarization: "V", symbolRateKsym: 45000, fec: "5/6", sid: 230, encryption: ["Nagravision"], status: "regional-variant" },
+        { catalogueId: "al-jazeera", serviceName: "Aljazeera English", frequencyMHz: 11106, polarization: "V", symbolRateKsym: 45000, fec: "5/6", sid: 231, encryption: ["Nagravision"], status: "discovered-encrypted" },
+        { catalogueId: "fox-news", serviceName: "Fox News Channel", frequencyMHz: 10971, polarization: "H", symbolRateKsym: 30000, fec: "2/3", sid: 232, encryption: ["Nagravision"], status: "discovered-encrypted" },
+        { catalogueId: "msnbc", serviceName: "MS Now International", frequencyMHz: 10971, polarization: "H", symbolRateKsym: 30000, fec: "2/3", sid: 233, encryption: ["Nagravision"], status: "regional-variant" },
+        { catalogueId: "nickelodeon", serviceName: "Nickelodeon Africa", frequencyMHz: 10971, polarization: "H", symbolRateKsym: 30000, fec: "2/3", sid: 220, encryption: ["Nagravision"], status: "regional-variant" },
+        { catalogueId: "boing", serviceName: "Boing Africa", frequencyMHz: 10971, polarization: "H", symbolRateKsym: 30000, fec: "2/3", sid: 221, encryption: ["Nagravision"], status: "regional-variant" },
+        { catalogueId: "pitchoun-kids-music", serviceName: "Pitchoun Kids Music", frequencyMHz: 11606, polarization: "V", symbolRateKsym: 30000, fec: "3/4", sid: 212, encryption: ["StreamGuard"], status: "discovered-encrypted" }
+      ],
+      redistributionEnabled: false,
+      note: "Les chaînes africaines/régionales sont conservées comme variantes lorsqu'elles ne correspondent pas exactement au feed du catalogue."
+    },
+    {
+      satelliteId: "eutelsat-16a-16e-africa",
+      satellite: "Eutelsat 16A",
+      position: "16.0E",
+      coverage: "Africa / South-East Africa beams",
+      source: "LyngSat public listings checked 2026-10-03",
+      matches: [
+        { catalogueId: "m6", serviceName: "M6", frequencyMHz: 10928, polarization: "H", symbolRateKsym: 30000, fec: "2/3", sid: 103, encryption: ["Mediaguard", "Viaccess"], status: "discovered-encrypted" },
+        { catalogueId: "6ter", serviceName: "6ter", frequencyMHz: 10928, polarization: "H", symbolRateKsym: 30000, fec: "2/3", sid: 104, encryption: ["Mediaguard", "Viaccess"], status: "discovered-encrypted" },
+        { catalogueId: "w9", serviceName: "W9", frequencyMHz: 10928, polarization: "H", symbolRateKsym: 30000, fec: "2/3", sid: 114, encryption: ["Mediaguard", "Viaccess"], status: "discovered-encrypted" },
+        { catalogueId: "téva", serviceName: "Téva", frequencyMHz: 10928, polarization: "H", symbolRateKsym: 30000, fec: "2/3", sid: 113, encryption: ["Mediaguard", "Viaccess"], status: "discovered-encrypted" },
+        { catalogueId: "a-plus", serviceName: "A+", frequencyMHz: 11637, polarization: "H", symbolRateKsym: 30000, fec: "2/3", sid: 32, encryption: ["Mediaguard"], status: "discovered-encrypted" },
+        { catalogueId: "13eme-rue", serviceName: "13ème Rue", frequencyMHz: 11637, polarization: "H", symbolRateKsym: 30000, fec: "2/3", sid: 5301, encryption: ["Mediaguard"], status: "discovered-encrypted" },
+        { catalogueId: "novelas-plus", serviceName: "Novelas+", frequencyMHz: 11512, polarization: "H", symbolRateKsym: 30000, fec: "2/3", sid: 30, encryption: ["Mediaguard"], status: "discovered-encrypted" },
+        { catalogueId: "nollywood-tv", serviceName: "Nollywood TV", frequencyMHz: 10887, polarization: "H", symbolRateKsym: 30000, fec: "2/3", sid: 31, encryption: ["Mediaguard"], status: "discovered-encrypted" },
+        { catalogueId: "canal-j", serviceName: "Canal J", frequencyMHz: 12303, polarization: "H", symbolRateKsym: 27500, fec: "3/4", sid: 7627, encryption: ["Conax"], status: "regional-variant" },
+        { catalogueId: "canal-plus-sport-1", serviceName: "Canal + Sport 1", frequencyMHz: 11637, polarization: "H", symbolRateKsym: 30000, fec: "2/3", sid: 6, encryption: ["Mediaguard"], status: "regional-variant" },
+        { catalogueId: "canal-plus-sport-2", serviceName: "Canal + Sport 2", frequencyMHz: 11637, polarization: "H", symbolRateKsym: 30000, fec: "2/3", sid: 7, encryption: ["Mediaguard"], status: "regional-variant" },
+        { catalogueId: "canal-plus-sport-3", serviceName: "Canal + Sport 3", frequencyMHz: 11637, polarization: "H", symbolRateKsym: 30000, fec: "2/3", sid: 8, encryption: ["Mediaguard"], status: "regional-variant" },
+        { catalogueId: "canal-plus-sport-4", serviceName: "Canal + Sport 4", frequencyMHz: 11512, polarization: "H", symbolRateKsym: 30000, fec: "2/3", sid: 9, encryption: ["Mediaguard"], status: "regional-variant" }
+      ],
+      redistributionEnabled: false,
+      note: "Les services Canal+ Réunion sont des variantes régionales; ils ne remplacent pas automatiquement les chaînes métropolitaines du catalogue."
+    }
+  ],
   "verification": {
     "source": "Public satellite listings (checked 2026-10-03)",
     "lastVerified": "2026-10-03",
