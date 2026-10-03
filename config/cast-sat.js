@@ -6888,7 +6888,7 @@ export const castSat = {
       matches: [
         { catalogueId: "rti-2", serviceName: "RTI 2", frequencyMHz: 11747, polarization: "V", symbolRateKsym: 27500, fec: "3/4", sid: 7705, encryption: ["Conax"], status: "discovered-encrypted" },
         { catalogueId: "zbc", serviceName: "ZBC TV (Tanzania)", frequencyMHz: 11747, polarization: "V", symbolRateKsym: 27500, fec: "3/4", sid: 7711, encryption: ["Conax"], status: "regional-variant" },
-        { catalogueId: "rtI-1", serviceName: "RTI 1", frequencyMHz: 11900, polarization: "V", symbolRateKsym: 27500, fec: "3/4", sid: 7128, encryption: ["Conax"], status: "discovered-encrypted" },
+        { catalogueId: "rti-1", serviceName: "RTI 1", frequencyMHz: 11900, polarization: "V", symbolRateKsym: 27500, fec: "3/4", sid: 7128, encryption: ["Conax"], status: "discovered-encrypted" },
         { catalogueId: "ewtn", serviceName: "EWTN Africa - Asia", frequencyMHz: 11900, polarization: "V", symbolRateKsym: 27500, fec: "3/4", sid: 7130, encryption: ["Conax"], status: "regional-variant" },
         { catalogueId: "fox-news", serviceName: "Fox News Channel", frequencyMHz: 11958, polarization: "H", symbolRateKsym: 27500, fec: "3/4", sid: 8315, encryption: ["Conax"], status: "discovered-encrypted" },
         { catalogueId: "msnbc", serviceName: "MS Now International", frequencyMHz: 11958, polarization: "H", symbolRateKsym: 27500, fec: "3/4", sid: 8316, encryption: ["Conax"], status: "regional-variant" },
