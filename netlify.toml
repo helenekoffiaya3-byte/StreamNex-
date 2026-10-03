@@ -1,0 +1,5 @@
+[build]
+  publish = "player"
+
+[functions]
+  directory = "netlify/functions"
