@@ -6979,8 +6979,6 @@ export const castSat = {
         { catalogueId: "nickelodeon", serviceName: "Nickelodeon Africa", frequencyMHz: 11766, polarization: "V", symbolRateKsym: 27500, fec: "3/4", sid: 1911, encryption: ["Irdeto 2"], status: "regional-variant" },
         { catalogueId: "nickelodeon-junior", serviceName: "Nick Jr Africa", frequencyMHz: 11938, polarization: "H", symbolRateKsym: 27500, fec: "3/4", sid: 507, encryption: ["Irdeto 2"], status: "regional-variant" },
         { catalogueId: "nicktoons", serviceName: "Nick Toons Africa", frequencyMHz: 11785, polarization: "H", symbolRateKsym: 27500, fec: "3/4", sid: 4005, encryption: ["Irdeto 2"], status: "regional-variant" },
-        { catalogueId: "discovery-channel", serviceName: "Discovery Channel HD Middle-East & Africa", frequencyMHz: 11996, polarization: "V", symbolRateKsym: 27500, fec: "3/4", sid: 1001, encryption: ["Irdeto 2"], status: "regional-variant" },
-        { catalogueId: "studio-universal", serviceName: "Studio Universal Africa", frequencyMHz: 11766, polarization: "V", symbolRateKsym: 27500, fec: "3/4", sid: 1902, encryption: ["Irdeto 2"], status: "regional-variant" },
         { catalogueId: "discovery-channel", serviceName: "Discovery Channel HD Middle-East & Africa", frequencyMHz: 11996, polarization: "V", symbolRateKsym: 27500, fec: "3/4", sid: 1001, encryption: ["Irdeto 2"], status: "regional-variant" }
       ],
       redistributionEnabled: false,
