@@ -6,6 +6,7 @@
 <meta name="application-name" content="NTS-1.4-Lava">
 <title>NTS-1.4-Lava Player</title>
 <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+<script src="./channel-manager.js"></script>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}body{background:#0f0f15;font-family:system-ui,sans-serif;display:flex;justify-content:center;align-items:center;min-height:100vh}
 .player-container{position:relative;width:100%;max-width:900px;background:#000;border-radius:12px;overflow:hidden;box-shadow:0 20px 40px rgba(0,0,0,.6)}
@@ -72,7 +73,8 @@ btnFullscreen.addEventListener('click',()=>{if(!document.fullscreenElement)playe
 video.addEventListener('timeupdate',updateProgress);video.addEventListener('loadedmetadata',updateProgress);video.addEventListener('durationchange',updateProgress);
 video.addEventListener('play',()=>{btnPlay.textContent='❚❚ Pause';player.classList.remove('paused')});video.addEventListener('pause',()=>{btnPlay.textContent='▶ Lecture';player.classList.add('paused')});
 window.NTS14LavaPlayer={name:'NTS-1.4-Lava',loadNTSMedia,cleanup,getMode:()=>currentMode};
-const params=new URLSearchParams(location.search);const url=params.get('stream');const mode=params.get('mode')||'replay';if(url)loadNTSMedia(url,mode);else setStatus('Prêt — aucun flux sélectionné');
+const params=new URLSearchParams(location.search);const url=params.get('stream');const mode=params.get('mode')||'replay';
+if(url){loadNTSMedia(url,mode)}else if(window.StreamLiveChannelManager){const selected=window.StreamLiveChannelManager.selectFromUrl();if(!selected)setStatus('Prêt — aucun flux sélectionné');}else{setStatus('Prêt — aucun flux sélectionné');}
 </script>
 </body>
 </html>
