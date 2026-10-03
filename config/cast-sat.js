@@ -6918,6 +6918,34 @@ export const castSat = {
     }
   ],
 
+    {
+      satelliteId: "belintersat-1-51-5e",
+      satellite: "Belintersat 1",
+      position: "51.5E",
+      coverage: "Africa Ku",
+      source: "LyngSat Metro Digital TV public listing checked 2026-10-03",
+      matches: [
+        { catalogueId: "disney-channel", serviceName: "Disney Channel South Africa", frequencyMHz: 10973, polarization: "H", symbolRateKsym: 30000, fec: "2/3", sid: 1020, encryption: ["Cryptoguard"], status: "regional-variant" },
+        { catalogueId: "nickelodeon", serviceName: "Nickelodeon Africa", frequencyMHz: 10973, polarization: "H", symbolRateKsym: 30000, fec: "2/3", sid: 1021, encryption: ["Cryptoguard"], status: "regional-variant" },
+        { catalogueId: "bravo", serviceName: "Bravo Africa", frequencyMHz: 10973, polarization: "H", symbolRateKsym: 30000, fec: "2/3", sid: 1022, encryption: ["Cryptoguard"], status: "regional-variant" },
+        { catalogueId: "cartoon-network", serviceName: "Cartoon Network Africa", frequencyMHz: 10973, polarization: "H", symbolRateKsym: 30000, fec: "2/3", sid: 1023, encryption: ["Cryptoguard"], status: "regional-variant" },
+        { catalogueId: "cartoonito", serviceName: "Cartoonito Africa", frequencyMHz: 10973, polarization: "H", symbolRateKsym: 30000, fec: "2/3", sid: 1024, encryption: ["Cryptoguard"], status: "regional-variant" },
+        { catalogueId: "nickelodeon-junior", serviceName: "Nick Jr Africa", frequencyMHz: 10973, polarization: "H", symbolRateKsym: 30000, fec: "2/3", sid: 1025, encryption: ["Cryptoguard"], status: "regional-variant" },
+        { catalogueId: "disney-junior", serviceName: "Disney Jr South Africa", frequencyMHz: 10973, polarization: "H", symbolRateKsym: 30000, fec: "2/3", sid: 1026, encryption: ["Cryptoguard"], status: "regional-variant" },
+        { catalogueId: "telemundo", serviceName: "Telemundo Africa", frequencyMHz: 10973, polarization: "H", symbolRateKsym: 30000, fec: "2/3", sid: 1029, encryption: ["Cryptoguard"], status: "regional-variant" },
+        { catalogueId: "tnt", serviceName: "TNT Africa", frequencyMHz: 10973, polarization: "H", symbolRateKsym: 30000, fec: "2/3", sid: 1030, encryption: ["Cryptoguard"], status: "regional-variant" },
+        { catalogueId: "cnn-international", serviceName: "CNN International Europe", frequencyMHz: 10973, polarization: "H", symbolRateKsym: 30000, fec: "2/3", sid: 1031, encryption: ["Cryptoguard"], status: "regional-variant" },
+        { catalogueId: "al-jazeera", serviceName: "Aljazeera English", frequencyMHz: 10973, polarization: "H", symbolRateKsym: 30000, fec: "2/3", sid: 1032, encryption: ["Cryptoguard"], status: "regional-variant" },
+        { catalogueId: "trace-urban", serviceName: "Trace Urban South Africa", frequencyMHz: 10973, polarization: "H", symbolRateKsym: 30000, fec: "2/3", sid: 1038, encryption: ["Cryptoguard"], status: "regional-variant" },
+        { catalogueId: "bbc-news", serviceName: "BBC News Africa", frequencyMHz: 11042, polarization: "H", symbolRateKsym: 30000, fec: "2/3", sid: 8326, encryption: ["Cryptoguard"], status: "regional-variant" },
+        { catalogueId: "sky-news", serviceName: "Sky News International", frequencyMHz: 11042, polarization: "H", symbolRateKsym: 30000, fec: "2/3", sid: 8328, encryption: ["Cryptoguard"], status: "regional-variant" },
+        { catalogueId: "bloomberg-tv", serviceName: "Bloomberg TV Africa", frequencyMHz: 11042, polarization: "H", symbolRateKsym: 30000, fec: "2/3", sid: 8329, encryption: ["Cryptoguard"], status: "regional-variant" },
+        { catalogueId: "ewtn", serviceName: "EWTN Africa - Asia", frequencyMHz: 11042, polarization: "H", symbolRateKsym: 30000, fec: "2/3", sid: 1105, encryption: ["Cryptoguard"], status: "regional-variant" },
+        { catalogueId: "rfm-tv", serviceName: "RFM TV", frequencyMHz: 11042, polarization: "H", symbolRateKsym: 30000, fec: "2/3", sid: 8322, encryption: ["Cryptoguard"], status: "regional-variant" }
+      ],
+      redistributionEnabled: false,
+      note: "Ces services sont des variantes/régionalisations africaines listées sur un bouquet à accès conditionnel. Leur présence satellite ne prouve ni l'accès au décryptage ni l'autorisation de redistribution HLS."
+    },
   "verification": {
     "source": "Public satellite listings (checked 2026-10-03)",
     "lastVerified": "2026-10-03",
