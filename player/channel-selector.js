@@ -6,6 +6,7 @@
   'use strict';
   function init(){
     const manager=root.StreamLiveChannelManager;
+    const favorites=root.StreamLiveFavorites;
     const list=root.document.getElementById('channel-list');
     const search=root.document.getElementById('channel-search');
     const group=root.document.getElementById('channel-group');
@@ -15,6 +16,7 @@
 
     let channels=manager.getChannels();
     let selectedId=null;
+    let favoritesOnly=false;
 
     function groups(){
       return Array.from(new Set(channels.map(c=>c.group).filter(Boolean))).sort((a,b)=>a.localeCompare(b,'fr'));
@@ -31,7 +33,7 @@
       const g=group?.value||'';
       const filtered=channels.filter(c=>{
         const hay=(c.name+' '+c.id+' '+c.channelNumber).toLocaleLowerCase('fr');
-        return (!q||hay.includes(q))&&(!g||c.group===g);
+        return (!q||hay.includes(q))&&(!g||c.group===g)&&(!favoritesOnly||favorites?.isFavorite(c.id));
       });
       list.innerHTML='';
       if(count) count.textContent=filtered.length+' chaîne'+(filtered.length>1?'s':'');
@@ -45,12 +47,16 @@
         button.className='channel-item'+(channel.id===selectedId?' selected':'');
         button.dataset.channelId=channel.id;
         button.setAttribute('aria-label','Lire '+channel.name);
-        const logo=channel.logoUrl?'<img loading="lazy" alt="" src="'+escapeHtml(channel.logoUrl)+'" onerror="this.style.display=\'none\'">':'';
-        button.innerHTML='<span class="channel-logo">'+logo+'</span><span class="channel-meta"><strong>'+escapeHtml(channel.name)+'</strong><small>'+escapeHtml(String(channel.channelNumber))+(channel.group?' · '+escapeHtml(channel.group):'')+'</small></span><span class="channel-state">'+(channel.streamEnabled?'●':'○')+'</span>';
+        const logo=channel.logoUrl?'<img loading="lazy" alt="" src="'+escapeHtml(channel.logoUrl)+'" onerror="this.replaceWith(Object.assign(document.createElement(\'span\'),{textContent:initials(channel.name),className:\'logo-fallback\'}))">':'';
+        const fav=favorites?.isFavorite(channel.id);
+        button.innerHTML='<span class="channel-logo">'+logo+'<span class="logo-fallback">'+initials(channel.name)+'</span></span><span class="channel-meta"><strong>'+escapeHtml(channel.name)+'</strong><small>'+escapeHtml(String(channel.channelNumber))+(channel.group?' · '+escapeHtml(channel.group):'')+'</small></span><span class="channel-state">'+(channel.streamEnabled?'●':'○')+'</span><span class="channel-favorite" aria-label="'+(fav?'Retirer des favoris':'Ajouter aux favoris')+'">'+(fav?'★':'☆')+'</span>';
+        const image=button.querySelector('img'); if(image){const fallback=button.querySelector('.logo-fallback'); fallback.style.display='none'; image.addEventListener('error',()=>{fallback.style.display='grid';},{once:true});}
+        button.querySelector('.channel-favorite').addEventListener('click',(event)=>{event.stopPropagation(); if(favorites){favorites.toggle(channel.id); render();}});
         button.addEventListener('click',()=>select(channel.id));
         list.appendChild(button);
       });
     }
+    function initials(value){return String(value).trim().split(/\s+/).slice(0,2).map(v=>v[0]||'').join('').toUpperCase()||'?';}
     function escapeHtml(value){
       return String(value).replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
     }
@@ -69,6 +75,8 @@
     }
     search?.addEventListener('input',render);
     group?.addEventListener('change',render);
+    const favoriteToggle=root.document.getElementById('favorites-toggle');
+    favoriteToggle?.addEventListener('click',()=>{favoritesOnly=!favoritesOnly; favoriteToggle.setAttribute('aria-pressed',String(favoritesOnly)); favoriteToggle.textContent=favoritesOnly?'★ Favoris':'☆ Favoris'; render();});
     root.addEventListener('streamlive:channel-selected',e=>{
       if(e.detail?.channel?.id){selectedId=e.detail.channel.id;render();}
     });
