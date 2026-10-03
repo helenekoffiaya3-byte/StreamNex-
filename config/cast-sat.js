@@ -6788,7 +6788,7 @@ export const castSat = {
       matches: [
         { catalogueId: "disney-channel", serviceName: "Disney Channel HD Middle-East & Africa", frequencyMHz: 11350, polarization: "V", symbolRateKsym: 27500, fec: "2/3", sid: 40209, encryption: ["Irdeto 2", "VideoGuard"], status: "regional-variant" },
         { catalogueId: "disney-junior", serviceName: "Disney Junior Middle-East & Africa", frequencyMHz: 11350, polarization: "V", symbolRateKsym: 27500, fec: "2/3", sid: 40210, encryption: ["Irdeto 2", "VideoGuard"], status: "regional-variant" },
-        { catalogueId: "beIN SPORTS", serviceName: "BeIN Sports 1 HD", frequencyMHz: 10810, polarization: "H", symbolRateKsym: 27500, fec: "2/3", sid: 8401, encryption: ["Irdeto 2", "VideoGuard"], status: "discovered-encrypted" }
+        { catalogueId: "bein-sports", serviceName: "BeIN Sports 1 HD", frequencyMHz: 10810, polarization: "H", symbolRateKsym: 27500, fec: "2/3", sid: 8401, encryption: ["Irdeto 2", "VideoGuard"], status: "discovered-encrypted" }
       ],
       redistributionEnabled: false
     },
