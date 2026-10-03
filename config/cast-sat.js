@@ -6878,6 +6878,43 @@ export const castSat = {
         { catalogueId: "dw", serviceName: "DW English", frequencyMHz: 3732, polarization: "L", symbolRateKsym: 40410, fec: "2/3", encryption: [], status: "discovered-clear" }
       ],
       redistributionEnabled: false
+    },
+    {
+      satelliteId: "ses-5-5e",
+      satellite: "SES-5",
+      position: "5.0E",
+      coverage: "Sub-Saharan Africa",
+      source: "LyngSat StarSat package checked 2026-10-03",
+      matches: [
+        { catalogueId: "rti-2", serviceName: "RTI 2", frequencyMHz: 11747, polarization: "V", symbolRateKsym: 27500, fec: "3/4", sid: 7705, encryption: ["Conax"], status: "discovered-encrypted" },
+        { catalogueId: "zbc", serviceName: "ZBC TV (Tanzania)", frequencyMHz: 11747, polarization: "V", symbolRateKsym: 27500, fec: "3/4", sid: 7711, encryption: ["Conax"], status: "regional-variant" },
+        { catalogueId: "rtI-1", serviceName: "RTI 1", frequencyMHz: 11900, polarization: "V", symbolRateKsym: 27500, fec: "3/4", sid: 7128, encryption: ["Conax"], status: "discovered-encrypted" },
+        { catalogueId: "ewtn", serviceName: "EWTN Africa - Asia", frequencyMHz: 11900, polarization: "V", symbolRateKsym: 27500, fec: "3/4", sid: 7130, encryption: ["Conax"], status: "regional-variant" },
+        { catalogueId: "fox-news", serviceName: "Fox News Channel", frequencyMHz: 11958, polarization: "H", symbolRateKsym: 27500, fec: "3/4", sid: 8315, encryption: ["Conax"], status: "discovered-encrypted" },
+        { catalogueId: "msnbc", serviceName: "MS Now International", frequencyMHz: 11958, polarization: "H", symbolRateKsym: 27500, fec: "3/4", sid: 8316, encryption: ["Conax"], status: "regional-variant" },
+        { catalogueId: "tnt", serviceName: "TNT Africa", frequencyMHz: 11958, polarization: "H", symbolRateKsym: 27500, fec: "3/4", sid: 8318, encryption: ["Conax"], status: "regional-variant" },
+        { catalogueId: "cartoon-network", serviceName: "Cartoon Network Africa", frequencyMHz: 11958, polarization: "H", symbolRateKsym: 27500, fec: "3/4", sid: 8321, encryption: ["Conax"], status: "regional-variant" },
+        { catalogueId: "rfm-tv", serviceName: "RFM TV", frequencyMHz: 11958, polarization: "H", symbolRateKsym: 27500, fec: "3/4", sid: 8322, encryption: ["Conax"], status: "discovered-encrypted" },
+        { catalogueId: "bbc-news", serviceName: "BBC News Africa", frequencyMHz: 11958, polarization: "H", symbolRateKsym: 27500, fec: "3/4", sid: 8326, encryption: ["Conax"], status: "regional-variant" },
+        { catalogueId: "al-jazeera", serviceName: "Aljazeera English", frequencyMHz: 11958, polarization: "H", symbolRateKsym: 27500, fec: "3/4", sid: 8327, encryption: ["Conax"], status: "discovered-encrypted" },
+        { catalogueId: "sky-news", serviceName: "Sky News International", frequencyMHz: 11958, polarization: "H", symbolRateKsym: 27500, fec: "3/4", sid: 8328, encryption: ["Conax"], status: "discovered-encrypted" },
+        { catalogueId: "bloomberg-tv", serviceName: "Bloomberg TV Africa", frequencyMHz: 11958, polarization: "H", symbolRateKsym: 27500, fec: "3/4", sid: 8329, encryption: ["Conax"], status: "regional-variant" },
+        { catalogueId: "disney-junior", serviceName: "Disney Jr Portugal", frequencyMHz: 11785, polarization: "V", symbolRateKsym: 27500, fec: "3/4", sid: 7922, encryption: ["Conax"], status: "regional-variant" },
+        { catalogueId: "disney-channel", serviceName: "Disney Channel Portugal", frequencyMHz: 11785, polarization: "V", symbolRateKsym: 27500, fec: "3/4", sid: 7923, encryption: ["Conax"], status: "regional-variant" },
+        { catalogueId: "france-2", serviceName: "France 2", frequencyMHz: 12303, polarization: "H", symbolRateKsym: 27500, fec: "3/4", sid: 7603, encryption: ["Conax"], status: "discovered-encrypted" },
+        { catalogueId: "france-3", serviceName: "France 3", frequencyMHz: 12303, polarization: "H", symbolRateKsym: 27500, fec: "3/4", sid: 7604, encryption: ["Conax"], status: "discovered-encrypted" },
+        { catalogueId: "tfx", serviceName: "TFX", frequencyMHz: 12303, polarization: "H", symbolRateKsym: 27500, fec: "3/4", sid: 7612, encryption: ["Conax"], status: "discovered-encrypted" },
+        { catalogueId: "emci-tv", serviceName: "EMCI TV Afrique", frequencyMHz: 12303, polarization: "H", symbolRateKsym: 27500, fec: "3/4", sid: 7613, encryption: ["Conax"], status: "regional-variant" },
+        { catalogueId: "kto", serviceName: "KTO", frequencyMHz: 12303, polarization: "H", symbolRateKsym: 27500, fec: "3/4", sid: 7621, encryption: ["Conax"], status: "discovered-encrypted" },
+        { catalogueId: "canal-j", serviceName: "Canal J", frequencyMHz: 12303, polarization: "H", symbolRateKsym: 27500, fec: "3/4", sid: 7627, encryption: ["Conax"], status: "discovered-encrypted" },
+        { catalogueId: "warner-tv-next", serviceName: "Warner TV Next", frequencyMHz: 11900, polarization: "V", symbolRateKsym: 27500, fec: "3/4", sid: 7105, encryption: ["Conax"], status: "discovered-encrypted" },
+        { catalogueId: "france-24", serviceName: "France 24 Français", frequencyMHz: 12380, polarization: "H", symbolRateKsym: 27500, fec: "3/4", sid: 7205, encryption: ["Conax"], status: "discovered-encrypted" },
+        { catalogueId: "tv5-monde", serviceName: "TV5Monde Afrique", frequencyMHz: 12380, polarization: "H", symbolRateKsym: 27500, fec: "3/4", sid: 7221, encryption: ["Conax"], status: "discovered-encrypted" },
+        { catalogueId: "cartoonito", serviceName: "Cartoonito France", frequencyMHz: 12303, polarization: "H", symbolRateKsym: 27500, fec: "3/4", sid: 7622, encryption: ["Conax"], status: "regional-variant" },
+        { catalogueId: "boomerang", serviceName: "Boomerang France", frequencyMHz: 12303, polarization: "H", symbolRateKsym: 27500, fec: "3/4", sid: 7601, encryption: ["Conax"], status: "regional-variant" }
+      ],
+      redistributionEnabled: false,
+      note: "Les variantes régionales restent distinctes de la chaîne catalogue tant que le feed exact n'est pas vérifié physiquement."
     }
   ],
 
