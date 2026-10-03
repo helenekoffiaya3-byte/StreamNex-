@@ -26,7 +26,8 @@
       group: String(channel.group || ''),
       logoUrl: channel.logoUrl || '',
       productionUrl: channel.productionUrl || null,
-      streamEnabled: Boolean(channel.streamEnabled)
+      streamEnabled: Boolean(channel.streamEnabled),
+      streamConfigured: Boolean(channel.streamConfigured ?? channel.productionUrl)
     };
   }
 
@@ -51,7 +52,7 @@
       return { ok: false, code: 'CHANNEL_NOT_FOUND', channel: null };
     }
 
-    if (!channel.streamEnabled || !channel.productionUrl) {
+    if (!channel.streamEnabled || !channel.streamConfigured || !channel.productionUrl) {
       if (player && typeof player.cleanup === 'function') player.cleanup();
       return { ok: false, code: 'STREAM_UNAVAILABLE', channel: channel };
     }
