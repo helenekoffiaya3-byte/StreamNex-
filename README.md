@@ -38,7 +38,9 @@ Les URLs de flux de production sont injectées par les variables d'environnement
 
 ## Logos
 
-Les logos locaux doivent exister sous le dossier publié `player/assets/logos/` si leur URL est relative. Les logos externes doivent provenir de sources stables et compatibles avec les conditions de réutilisation applicables.
+Les logos locaux référencés par le catalogue existent sous le dossier publié `player/assets/logos/`. Le catalogue contient actuellement 68 références locales, 133 références externes et 33 entrées S+ sans `logoUrl` volontairement conservées sans modification.
+
+Le contrôle du catalogue confirme que les 234 entrées ont des `id`, `tvgId`, `name` et `group` uniques. Les numéros de chaîne sont également uniques ; ils ne sont pas volontairement renumérotés afin de préserver les identifiants existants.
 
 ## Déploiement Netlify
 
