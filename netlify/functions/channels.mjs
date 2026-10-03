@@ -17,8 +17,10 @@ export default async function handler(request) {
     logoUrl: channel.logoUrl || "",
     productionUrl: channel.productionUrl || null,
     streamEnabled: Boolean(channel.streamEnabled),
-    streamConfigured: Boolean(channel.productionUrl),
-    streamEnv: channel.streamEnv || null
+    streamConfigured: Boolean(channel.productionUrl || channel.youtubeChannelId),
+    streamEnv: channel.streamEnv || null,
+    streamSource: channel.streamSource || (channel.productionUrl ? "hls" : null),
+    youtubeChannelId: channel.youtubeChannelId || null
   }));
 
   return new Response(JSON.stringify(publicChannels), {
