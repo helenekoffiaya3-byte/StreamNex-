@@ -160,7 +160,6 @@ const CHANNELS = [
   { channelNumber: 229, id: "cine-plus-festival", name: "Ciné+ Festival", group: "Films & Cinéma", productionUrl: process.env.CINE_PLUS_FESTIVAL_HLS_URL || null, streamEnabled: Boolean(process.env.CINE_PLUS_FESTIVAL_HLS_URL), logoUrl: "https://commons.wikimedia.org/wiki/Special:Redirect/file/Cin%C3%A9%2BFestival2024.svg" },
   { channelNumber: 231, id: "cine-plus-classic", name: "Ciné+ Classic", group: "Films & Cinéma", productionUrl: process.env.CINE_PLUS_CLASSIC_HLS_URL || null, streamEnabled: Boolean(process.env.CINE_PLUS_CLASSIC_HLS_URL), logoUrl: "https://commons.wikimedia.org/wiki/Special:Redirect/file/Cin%C3%A9%2BClassic2024.svg" },
   { channelNumber: 230, id: "polar-plus", name: "POLAR+", group: "Films & Cinéma", productionUrl: process.env.POLAR_PLUS_HLS_URL || null, streamEnabled: Boolean(process.env.POLAR_PLUS_HLS_URL), logoUrl: "https://commons.wikimedia.org/wiki/Special:Redirect/file/Polar%2B_%28Logo%29.png" },
-}
 
   { channelNumber: 232, id: "comedie-plus", name: "Comédie+", group: "Séries", productionUrl: process.env.COMEDIE_PLUS_HLS_URL || null, streamEnabled: Boolean(process.env.COMEDIE_PLUS_HLS_URL), logoUrl: "https://commons.wikimedia.org/wiki/Special:Redirect/file/Com%C3%A9die%2B_logo_%C3%A0_l%27antenne.png" },
   { channelNumber: 233, id: "paris-premiere", name: "Paris Première", group: "Séries", logoUrl: "https://commons.wikimedia.org/wiki/Special:Redirect/file/Logo_PARIS_PREMIERE.png", productionUrl: process.env.PARIS_PREMIERE_HLS_URL || null, streamEnabled: Boolean(process.env.PARIS_PREMIERE_HLS_URL) },
@@ -190,7 +189,7 @@ const CHANNELS = [
   { channelNumber: 257, id: "love-nature", name: "Love Nature", group: "Documentaires", logoUrl: "https://commons.wikimedia.org/wiki/Special:Redirect/file/Love_Nature_logo_%282025%29.svg", productionUrl: process.env.LOVE_NATURE_HLS_URL || null, streamEnabled: Boolean(process.env.LOVE_NATURE_HLS_URL) },
   { channelNumber: 258, id: "museum-tv", name: "Museum TV", group: "Documentaires", productionUrl: process.env.MUSEUM_TV_HLS_URL || null, streamEnabled: Boolean(process.env.MUSEUM_TV_HLS_URL), logoUrl: "https://commons.wikimedia.org/wiki/Special:Redirect/file/Museum_TV_Paris.png" },
   { channelNumber: 259, id: "planete-plus-crime", name: "Planète+ Crime", group: "Documentaires", productionUrl: process.env.PLANETE_PLUS_CRIME_HLS_URL || null, streamEnabled: Boolean(process.env.PLANETE_PLUS_CRIME_HLS_URL), logoUrl: "https://commons.wikimedia.org/wiki/Special:Redirect/file/PLAN%C3%88TE%2B_ci.png" },
-  { channelNumber: 260, id: "planete-plus-aventure", name: "Planète+ Aventure", group: "Documentaires", productionUrl: process.env.PLANETE_PLUS_AVENTURE_HLS_URL || null, streamEnabled: Boolean(process.env.PLANETE_PLUS_AVENTURE_HLS_URL), logoUrl: "https://commons.wikimedia.org/wiki/Special:Redirect/file/PLAN%C3%88TE%2B_A%26E.png" ,
+  { channelNumber: 260, id: "planete-plus-aventure", name: "Planète+ Aventure", group: "Documentaires", productionUrl: process.env.PLANETE_PLUS_AVENTURE_HLS_URL || null, streamEnabled: Boolean(process.env.PLANETE_PLUS_AVENTURE_HLS_URL), logoUrl: "https://commons.wikimedia.org/wiki/Special:Redirect/file/PLAN%C3%88TE%2B_A%26E.png" },
   { channelNumber: 261, id: "science-et-vie-tv", name: "Science & Vie TV", group: "Documentaires", logoUrl: "https://commons.wikimedia.org/wiki/Special:Redirect/file/SVTV_LOGO.png", productionUrl: process.env.SCIENCE_ET_VIE_TV_HLS_URL || null, streamEnabled: Boolean(process.env.SCIENCE_ET_VIE_TV_HLS_URL) },
   { channelNumber: 262, id: "toute-l-histoire", name: "Toute l'Histoire", group: "Documentaires", productionUrl: process.env.TOUTE_L_HISTOIRE_HLS_URL || null, streamEnabled: Boolean(process.env.TOUTE_L_HISTOIRE_HLS_URL), logoUrl: "https://commons.wikimedia.org/wiki/Special:Redirect/file/Toute_l%27histoire_logo.svg" },
   { channelNumber: 263, id: "mgg-tv", name: "MGG TV", group: "Sport", productionUrl: process.env.MGG_TV_HLS_URL || null, streamEnabled: Boolean(process.env.MGG_TV_HLS_URL) , logoUrl: "/assets/logos/mgg-tv.png"},
@@ -241,6 +240,9 @@ const CHANNELS = [
   { channelNumber: 308, id: "clique-tv", name: "Clique TV", group: "Divertissement", logoUrl: "https://commons.wikimedia.org/wiki/Special:Redirect/file/Clique_TV.webp", productionUrl: process.env.CLIQUE_TV_HLS_URL || null, streamEnabled: Boolean(process.env.CLIQUE_TV_HLS_URL) },
   { channelNumber: 309, id: "cine-plus-ocs", name: "Ciné+ OCS", group: "Films & Cinéma", logoUrl: "https://commons.wikimedia.org/wiki/Special:Redirect/file/Cin%C3%A9%2BOCS_2024.svg", productionUrl: process.env.CINE_PLUS_OCS_HLS_URL || null, streamEnabled: Boolean(process.env.CINE_PLUS_OCS_HLS_URL) },
 
+
+];
+
 // Catalogue integrity checks (development/build-time):
 // - every channel must have a unique id and channelNumber
 // - every channel must have a logoUrl and productionUrl field
@@ -255,6 +257,3 @@ for (const channel of CHANNELS) {
   channelNumbers.add(channel.channelNumber);
 }
 
-];
-
-module.exports = CHANNELS;
