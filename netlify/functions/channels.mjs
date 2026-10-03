@@ -10,6 +10,7 @@ export default async function handler(request) {
 
   const publicChannels = channels.map((channel) => ({
     id: channel.id,
+    tvgId: channel.tvgId || channel.id,
     channelNumber: channel.channelNumber,
     name: channel.name,
     group: channel.group || "",
