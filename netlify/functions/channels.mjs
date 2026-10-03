@@ -8,7 +8,9 @@ export default async function handler(request) {
     });
   }
 
-  const publicChannels = channels.map((channel) => ({
+  const mode = request.url ? new URL(request.url).searchParams.get("mode") : null;
+  const sourceChannels = mode === "live" ? channels : channels.filter((channel) => !channel.liveOnly);
+  const publicChannels = sourceChannels.map((channel) => ({
     id: channel.id,
     tvgId: channel.tvgId || channel.id,
     channelNumber: channel.channelNumber,
@@ -18,6 +20,7 @@ export default async function handler(request) {
     productionUrl: channel.productionUrl || null,
     streamEnabled: Boolean(channel.streamEnabled),
     streamConfigured: Boolean(channel.productionUrl || channel.youtubeChannelId),
+    liveOnly: Boolean(channel.liveOnly),
     streamEnv: channel.streamEnv || null,
     streamSource: channel.streamSource || (channel.productionUrl ? "hls" : null),
     youtubeChannelId: channel.youtubeChannelId || null
