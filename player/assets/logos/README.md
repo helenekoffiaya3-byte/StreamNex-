@@ -1,7 +1,14 @@
 # StreamLive logos
 
-Directory reserved for non-S+ channel logos.
+PNG logo assets for non-S+ channels.
 
-S+ channels intentionally have no logo URL.
+The S+ catalogue entries intentionally keep an empty `logoUrl`.
 
-The production PNG logo pack is prepared separately and still needs binary upload support to be copied here.
+Current synchronized PNG assets:
+- 13ème Rue
+- 7info
+- A+ Ivoire
+- A+ Kids
+- A+
+
+The remaining logos from the supplied guide still require binary asset transfer into this directory before their local `/assets/logos/*.png` references are switched.
