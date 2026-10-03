@@ -257,3 +257,4 @@ for (const channel of CHANNELS) {
   channelNumbers.add(channel.channelNumber);
 }
 
+module.exports = CHANNELS;
