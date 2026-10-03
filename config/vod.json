@@ -1,5 +1,0 @@
-{
-  "version": 1,
-  "description": "Manifeste VOD StreamLive. Une fiche peut exister dans le catalogue sans média disponible. Une URL mediaUrl/hlsUrl n'est jamais déduite d'un stream LIVE.",
-  "items": []
-}

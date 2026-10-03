@@ -1,3 +1,5 @@
+// StreamLive channel catalogue.
+// Each entry keeps a stable channelNumber/id and exposes a production HLS URL through an environment variable.
 const CHANNELS = [
   { channelNumber: 1, id: "rti-1", name: "RTI 1", group: "National", logoUrl: "/assets/logos/rti-1.svg", productionUrl: process.env.RTI_1_HLS_URL || null, streamEnabled: Boolean(process.env.RTI_1_HLS_URL) },
   { channelNumber: 2, id: "rti-2", name: "RTI 2", group: "National", logoUrl: "/assets/logos/rti-2.svg", productionUrl: process.env.RTI_2_HLS_URL || null, streamEnabled: Boolean(process.env.RTI_2_HLS_URL) },
@@ -235,5 +237,19 @@ const CHANNELS = [
   { channelNumber: 266, id: "planete-plus-crime", name: "Planète+ Crime", group: "Documentaires", productionUrl: process.env.PLANETE_PLUS_CRIME_HLS_URL || null, streamEnabled: Boolean(process.env.PLANETE_PLUS_CRIME_HLS_URL), logoUrl: "https://commons.wikimedia.org/wiki/Special:Redirect/file/PLAN%C3%88TE%2B_ci.png" },
   { channelNumber: 267, id: "planete-plus-aventure", name: "Planète+ Aventure", group: "Documentaires", productionUrl: process.env.PLANETE_PLUS_AVENTURE_HLS_URL || null, streamEnabled: Boolean(process.env.PLANETE_PLUS_AVENTURE_HLS_URL), logoUrl: "https://commons.wikimedia.org/wiki/Special:Redirect/file/PLAN%C3%88TE%2B_A%26E.png" }
 ];
+
+// Catalogue integrity checks (development/build-time):
+// - every channel must have a unique id and channelNumber
+// - every channel must have a logoUrl and productionUrl field
+const channelIds = new Set();
+const channelNumbers = new Set();
+for (const channel of CHANNELS) {
+  if (channelIds.has(channel.id)) throw new Error(`Duplicate channel id: ${channel.id}`);
+  if (channelNumbers.has(channel.channelNumber)) throw new Error(`Duplicate channel number: ${channel.channelNumber}`);
+  if (!channel.logoUrl) throw new Error(`Missing logoUrl: ${channel.id}`);
+  if (!Object.prototype.hasOwnProperty.call(channel, "productionUrl")) throw new Error(`Missing productionUrl: ${channel.id}`);
+  channelIds.add(channel.id);
+  channelNumbers.add(channel.channelNumber);
+}
 
 module.exports = CHANNELS;
