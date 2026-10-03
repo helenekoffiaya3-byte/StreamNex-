@@ -3581,32 +3581,6 @@ export const castSat = {
       "matchBasis": "public-satellite-listing"
     },
     {
-      "catalogueId": "histoire",
-      "catalogueName": "Histoire",
-      "satelliteId": "ses-4-22w",
-      "satelliteServiceId": "sid-8926",
-      "satelliteServiceName": "Histoire TV",
-      "transponder": {
-        "frequencyMHz": 11171,
-        "polarization": "V",
-        "symbolRateKsym": 45000,
-        "fec": "3/4",
-        "system": "DVB-S2/QPSK"
-      },
-      "encryption": {
-        "scrambled": true,
-        "systems": [
-          "Mediaguard",
-          "Nagravision"
-        ],
-        "authorizationRequired": true
-      },
-      "sourceVerified": false,
-      "physicalReceptionVerified": false,
-      "redistributionEnabled": false,
-      "matchBasis": "public-satellite-listing"
-    },
-    {
       "catalogueId": "nollywood-tv",
       "catalogueName": "Nollywood TV",
       "satelliteId": "ses-4-22w",
@@ -3638,58 +3612,6 @@ export const castSat = {
       "satelliteId": "ses-4-22w",
       "satelliteServiceId": "sid-8930",
       "satelliteServiceName": "Boomerang France",
-      "transponder": {
-        "frequencyMHz": 11171,
-        "polarization": "V",
-        "symbolRateKsym": 45000,
-        "fec": "3/4",
-        "system": "DVB-S2/QPSK"
-      },
-      "encryption": {
-        "scrambled": true,
-        "systems": [
-          "Mediaguard",
-          "Nagravision"
-        ],
-        "authorizationRequired": true
-      },
-      "sourceVerified": false,
-      "physicalReceptionVerified": false,
-      "redistributionEnabled": false,
-      "matchBasis": "public-satellite-listing"
-    },
-    {
-      "catalogueId": "pacis-tv",
-      "catalogueName": "Pacis TV",
-      "satelliteId": "ses-4-22w",
-      "satelliteServiceId": "sid-8913",
-      "satelliteServiceName": "Pacis TV",
-      "transponder": {
-        "frequencyMHz": 11171,
-        "polarization": "V",
-        "symbolRateKsym": 45000,
-        "fec": "3/4",
-        "system": "DVB-S2/QPSK"
-      },
-      "encryption": {
-        "scrambled": true,
-        "systems": [
-          "Mediaguard",
-          "Nagravision"
-        ],
-        "authorizationRequired": true
-      },
-      "sourceVerified": false,
-      "physicalReceptionVerified": false,
-      "redistributionEnabled": false,
-      "matchBasis": "public-satellite-listing"
-    },
-    {
-      "catalogueId": "my-media-prime",
-      "catalogueName": "My Media Prime",
-      "satelliteId": "ses-4-22w",
-      "satelliteServiceId": "sid-8914",
-      "satelliteServiceName": "My Media Prime",
       "transponder": {
         "frequencyMHz": 11171,
         "polarization": "V",
@@ -5585,24 +5507,6 @@ export const castSat = {
       "redistributionEnabled": false
     },
     {
-      "id": "sid-8926",
-      "name": "Histoire TV",
-      "catalogueId": "histoire",
-      "status": "discovered-encrypted",
-      "sid": 8926,
-      "frequencyMHz": 11171,
-      "polarization": "V",
-      "encryption": {
-        "scrambled": true,
-        "systems": [
-          "Mediaguard",
-          "Nagravision"
-        ],
-        "authorizationRequired": true
-      },
-      "redistributionEnabled": false
-    },
-    {
       "id": "sid-8927",
       "name": "Nollywood TV",
       "catalogueId": "nollywood-tv",
@@ -5626,42 +5530,6 @@ export const castSat = {
       "catalogueId": "boomerang",
       "status": "discovered-encrypted",
       "sid": 8930,
-      "frequencyMHz": 11171,
-      "polarization": "V",
-      "encryption": {
-        "scrambled": true,
-        "systems": [
-          "Mediaguard",
-          "Nagravision"
-        ],
-        "authorizationRequired": true
-      },
-      "redistributionEnabled": false
-    },
-    {
-      "id": "sid-8913",
-      "name": "Pacis TV",
-      "catalogueId": "pacis-tv",
-      "status": "discovered-encrypted",
-      "sid": 8913,
-      "frequencyMHz": 11171,
-      "polarization": "V",
-      "encryption": {
-        "scrambled": true,
-        "systems": [
-          "Mediaguard",
-          "Nagravision"
-        ],
-        "authorizationRequired": true
-      },
-      "redistributionEnabled": false
-    },
-    {
-      "id": "sid-8914",
-      "name": "My Media Prime",
-      "catalogueId": "my-media-prime",
-      "status": "discovered-encrypted",
-      "sid": 8914,
       "frequencyMHz": 11171,
       "polarization": "V",
       "encryption": {
@@ -6580,8 +6448,8 @@ export const castSat = {
     "lastVerified": "2026-10-03",
     "transpondersScanned": 13,
     "catalogueCount": 234,
-    "catalogueMatchedDistinct": 75,
-    "catalogueMatchRecords": 87,
+    "catalogueMatchedDistinct": 72,
+    "catalogueMatchRecords": 84,
     "physicalReceiverRequired": true,
     "authorizationRequiredForEncryptedServices": true,
     "hlsNotConfiguredByThisMapping": true
