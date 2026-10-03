@@ -49,7 +49,8 @@
         button.setAttribute('aria-label','Lire '+channel.name);
         const logo=channel.logoUrl?'<img loading="lazy" alt="" src="'+escapeHtml(channel.logoUrl)+'" onerror="this.replaceWith(Object.assign(document.createElement(\'span\'),{textContent:initials(channel.name),className:\'logo-fallback\'}))">':'';
         const fav=favorites?.isFavorite(channel.id);
-        button.innerHTML='<span class="channel-logo">'+logo+'<span class="logo-fallback">'+initials(channel.name)+'</span></span><span class="channel-meta"><strong>'+escapeHtml(channel.name)+'</strong><small>'+escapeHtml(String(channel.channelNumber))+(channel.group?' · '+escapeHtml(channel.group):'')+'</small></span><span class="channel-state">'+(channel.streamEnabled?'●':'○')+'</span><span class="channel-favorite" aria-label="'+(fav?'Retirer des favoris':'Ajouter aux favoris')+'">'+(fav?'★':'☆')+'</span>';
+        const streamReady=Boolean(channel.streamEnabled&&channel.streamConfigured);
+        button.innerHTML='<span class="channel-logo">'+logo+'<span class="logo-fallback">'+initials(channel.name)+'</span></span><span class="channel-meta"><strong>'+escapeHtml(channel.name)+'</strong><small>'+escapeHtml(String(channel.channelNumber))+(channel.group?' · '+escapeHtml(channel.group):'')+'</small></span><span class="channel-state">'+(streamReady?'●':'○')+'</span><span class="channel-favorite" aria-label="'+(fav?'Retirer des favoris':'Ajouter aux favoris')+'">'+(fav?'★':'☆')+'</span>';
         const image=button.querySelector('img'); if(image){const fallback=button.querySelector('.logo-fallback'); fallback.style.display='none'; image.addEventListener('error',()=>{fallback.style.display='grid';},{once:true});}
         button.querySelector('.channel-favorite').addEventListener('click',(event)=>{event.stopPropagation(); if(favorites){favorites.toggle(channel.id); render();}});
         button.addEventListener('click',()=>select(channel.id));
@@ -64,7 +65,7 @@
       const result=manager.select(id,{mode:'live'});
       if(!result.ok){
         if(feedback){
-          feedback.textContent=result.code==='STREAM_UNAVAILABLE'?'Flux indisponible pour cette chaîne.':result.code==='PLAYER_NOT_READY'?'Lecteur en cours d’initialisation…':'Chaîne introuvable.';
+          feedback.textContent=result.code==='STREAM_UNAVAILABLE'?'Flux indisponible ou non configuré pour cette chaîne.':result.code==='PLAYER_NOT_READY'?'Lecteur en cours d’initialisation…':'Chaîne introuvable.';
           feedback.className='channel-feedback error';
         }
         return;
