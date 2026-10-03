@@ -8,9 +8,9 @@ export default async function handler(request) {
     });
   }
 
-  const configured = channels.filter((channel) => Boolean(channel.productionUrl));
+  const configured = channels.filter((channel) => Boolean(channel.productionUrl || channel.youtubeChannelId));
   const missing = channels
-    .filter((channel) => !channel.productionUrl)
+    .filter((channel) => !channel.productionUrl && !channel.youtubeChannelId)
     .map((channel) => ({
       id: channel.id,
       name: channel.name,
@@ -28,7 +28,9 @@ export default async function handler(request) {
       channelNumber: channel.channelNumber,
       streamEnv: channel.streamEnv,
       configured: Boolean(channel.productionUrl),
-      streamEnabled: Boolean(channel.streamEnabled)
+      streamEnabled: Boolean(channel.streamEnabled),
+      streamSource: channel.streamSource || (channel.youtubeChannelId ? "youtube-live" : "hls"),
+      youtubeChannelId: channel.youtubeChannelId || null
     }))
   }), {
     status: 200,
