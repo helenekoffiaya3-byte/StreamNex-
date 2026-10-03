@@ -74,8 +74,7 @@ video.addEventListener('timeupdate',updateProgress);video.addEventListener('load
 video.addEventListener('play',()=>{btnPlay.textContent='❚❚ Pause';player.classList.remove('paused')});video.addEventListener('pause',()=>{btnPlay.textContent='▶ Lecture';player.classList.add('paused')});
 window.NTS14LavaPlayer={name:'NTS-1.4-Lava',loadNTSMedia,cleanup,getMode:()=>currentMode};
 const params=new URLSearchParams(location.search);const url=params.get('stream');const mode=params.get('mode')||'replay';
-if(url){loadNTSMedia(url,mode)}else if(window.StreamLiveChannelManager){const selected=window.StreamLiveChannelManager.selectFromUrl();if(!selected)setStatus('Prêt — aucun flux sélectionné');}else{setStatus('Prêt — aucun flux sélectionné');}
+if(url){loadNTSMedia(url,mode)}else if(window.StreamLiveChannelManager){if(window.STREAMLIVE_CHANNELS){const selected=window.StreamLiveChannelManager.selectFromUrl();if(!selected)setStatus('Prêt — aucun flux sélectionné')}else{setStatus('Chargement du catalogue…');window.addEventListener('streamlive:catalog-ready',()=>{const selected=window.StreamLiveChannelManager.selectFromUrl();if(!selected)setStatus('Prêt — aucun flux sélectionné')},{once:true});window.addEventListener('streamlive:catalog-error',()=>setStatus('Catalogue indisponible','error'),{once:true})}}else{setStatus('Prêt — aucun flux sélectionné');}
 </script>
-</body>
+<script src="./catalog-loader.js"></script><script src="./channel-selector.js"></script></body>
 </html>
-<!-- StreamLive channel selector UI -->
