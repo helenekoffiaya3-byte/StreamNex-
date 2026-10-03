@@ -4873,11 +4873,11 @@ export const castSat = {
     "redistributionEnabled": false
   },
   {
-    "catalogueId": "clique-tv",
+    "catalogueId": "clique-tv"
     "catalogueName": "Clique TV",
-    "satelliteServiceId": "service-clique-tv",
-    "satelliteServiceName": "Clique TV",
-    "transponder": {
+    "satelliteServiceId": "clique-tv",
+      "satelliteServiceName": "Clique TV",
+      "transponder": {
       "frequencyMHz": 11171,
       "polarization": "V",
       "symbolRateKsym": 45000,
@@ -4885,10 +4885,9 @@ export const castSat = {
     },
     "matchType": "exact",
     "encryption": {
-      "systems": [
-        "Mediaguard",
-        "Nagravision"
-      ],
+        "systems": [
+          "Nagravision"
+        ],
       "authorizationRequired": true,
       "scrambled": true
     },
