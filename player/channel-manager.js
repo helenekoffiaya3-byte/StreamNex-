@@ -27,7 +27,9 @@
       logoUrl: channel.logoUrl || '',
       productionUrl: channel.productionUrl || null,
       streamEnabled: Boolean(channel.streamEnabled),
-      streamConfigured: Boolean(channel.streamConfigured ?? channel.productionUrl)
+      streamConfigured: Boolean(channel.streamConfigured ?? channel.productionUrl ?? channel.youtubeChannelId),
+      streamSource: String(channel.streamSource || (channel.youtubeChannelId ? 'youtube-live' : 'hls')),
+      youtubeChannelId: channel.youtubeChannelId || null
     };
   }
 
@@ -52,9 +54,9 @@
       return { ok: false, code: 'CHANNEL_NOT_FOUND', channel: null };
     }
 
-    if (!channel.streamEnabled || !channel.streamConfigured || !channel.productionUrl) {
+    if (!channel.streamEnabled || !channel.streamConfigured || (!channel.productionUrl && !channel.youtubeChannelId)) {
       if (player && typeof player.cleanup === 'function') player.cleanup();
-      if (player && typeof player.setStatus === 'function') player.setStatus('Flux indisponible — source HLS non configurée','error');
+      if (player && typeof player.setStatus === 'function') player.setStatus('Flux indisponible — source non configurée','error');
       return { ok: false, code: 'STREAM_UNAVAILABLE', channel: channel };
     }
 
@@ -63,7 +65,11 @@
     }
 
     const mode = options && options.mode === 'live' ? 'live' : 'replay';
-    player.loadNTSMedia(channel.productionUrl, mode);
+    if (channel.streamSource === 'youtube-live' && channel.youtubeChannelId && typeof player.loadYouTubeLive === 'function') {
+      player.loadYouTubeLive(channel.youtubeChannelId);
+    } else {
+      player.loadNTSMedia(channel.productionUrl, mode);
+    }
 
     root.dispatchEvent(new CustomEvent('streamlive:channel-selected', {
       detail: { channel: channel, mode: mode }
