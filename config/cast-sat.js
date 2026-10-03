@@ -6820,6 +6820,23 @@ export const castSat = {
       redistributionEnabled: false
     }
   ],
+    {
+      satelliteId: "hotbird-13e-13e",
+      satellite: "Hot Bird 13F / 13G",
+      position: "13.0E",
+      coverage: "Europe / international distribution; reception in West Africa requires physical footprint verification",
+      source: "KingOfSat public listings checked 2026-10-03",
+      matches: [
+        { catalogueId: "cnn-international", serviceName: "CNN International HD", frequencyMHz: 11257.7, polarization: "H", symbolRateKsym: 27500, fec: "3/4", sid: 15213, encryption: ["Conax", "Irdeto 2", "Nagravision 3", "Viaccess 3.0", "Viaccess 6.0", "VideoGuard"], status: "discovered-encrypted" },
+        { catalogueId: "fox-news", serviceName: "Fox News", frequencyMHz: 12034.4, polarization: "V", symbolRateKsym: 29900, fec: "3/4", sid: 8103, encryption: [], status: "discovered-clear-listing" },
+        { catalogueId: "fox-business", serviceName: "Fox Business", frequencyMHz: 12034.4, polarization: "V", symbolRateKsym: 29900, fec: "3/4", sid: 14544, encryption: [], status: "discovered-clear-listing" },
+        { catalogueId: "sky-news", serviceName: "Sky News International", frequencyMHz: 12034.4, polarization: "V", symbolRateKsym: 29900, fec: "3/4", sid: 8108, encryption: ["VideoGuard"], status: "discovered-encrypted" },
+        { catalogueId: "france-24", serviceName: "France 24 HD (in English)", frequencyMHz: 11565.8, polarization: "H", symbolRateKsym: 29900, fec: "3/4", sid: 808, encryption: [], status: "discovered-clear" },
+        { catalogueId: "trt-world", serviceName: "TRT World HD", frequencyMHz: 11565.8, polarization: "H", symbolRateKsym: 29900, fec: "3/4", sid: 803, encryption: [], status: "discovered-clear" },
+        { catalogueId: "cgtn", serviceName: "CGTN", frequencyMHz: 11585, polarization: "V", symbolRateKsym: 27500, fec: "5/6", sid: 872, encryption: [], status: "discovered-clear" }
+      ],
+      redistributionEnabled: false
+    },
 
   "verification": {
     "source": "Public satellite listings (checked 2026-10-03)",
