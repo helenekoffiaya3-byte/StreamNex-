@@ -244,16 +244,21 @@ const CHANNELS = [
 ];
 
 // Catalogue integrity checks (development/build-time):
-// - every channel must have a unique id and channelNumber
+// - every channel must have unique id, tvgId and channelNumber
 // - every channel must have a logoUrl and productionUrl field
 const channelIds = new Set();
+const channelTvgIds = new Set();
 const channelNumbers = new Set();
 for (const channel of CHANNELS) {
+  if (!channel.id || typeof channel.id !== "string") throw new Error(`Invalid channel id: ${channel.id}`);
+  if (!channel.tvgId || typeof channel.tvgId !== "string") throw new Error(`Missing tvgId: ${channel.id}`);
   if (channelIds.has(channel.id)) throw new Error(`Duplicate channel id: ${channel.id}`);
+  if (channelTvgIds.has(channel.tvgId)) throw new Error(`Duplicate tvgId: ${channel.tvgId}`);
   if (channelNumbers.has(channel.channelNumber)) throw new Error(`Duplicate channel number: ${channel.channelNumber}`);
   if (!channel.logoUrl) throw new Error(`Missing logoUrl: ${channel.id}`);
   if (!Object.prototype.hasOwnProperty.call(channel, "productionUrl")) throw new Error(`Missing productionUrl: ${channel.id}`);
   channelIds.add(channel.id);
+  channelTvgIds.add(channel.tvgId);
   channelNumbers.add(channel.channelNumber);
 }
 
