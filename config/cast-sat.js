@@ -1,2943 +1,4443 @@
-/**
- * Cast Sat / Sat>IP source configuration.
- *
- * This configuration records the transponder scan target and the services
- * discovered from public satellite listings. It does not contain stream URLs
- * or credentials. Encrypted services are retained as reception candidates only;
- * they are not enabled for redistribution.
- *
- * IMPORTANT: 11171 V / 45000 is publicly listed on SES-4 at 22.0W, not
- * Eutelsat 16A at 16.0E. A physical receiver scan must confirm the installation
- * before this is used as a production source.
- */
+/** StreamLive satellite mapping: SES-4 / 22.0W. */
 export const castSat = {
-  satellite: {
-    name: "SES-4",
-    position: "22.0W",
-    beam: "West Africa",
-    requestedPosition: "Eutelsat 16A / 16.0E",
-    positionVerified: false,
+  "satellite": {
+    "name": "SES-4",
+    "position": "22.0W",
+    "beam": "West Africa",
+    "requestedPosition": "Eutelsat 16A / 16.0E",
+    "positionVerified": false
   },
-  transponder: {
-    frequencyMHz: 11171,
-    polarization: "V",
-    symbolRateKsym: 45000,
-    fec: "3/4",
-    system: "DVB-S2/QPSK",
-    video: "HEVC",
-    band: "Ku",
-    encryption: {
-      scrambled: true,
-      systems: ["Mediaguard", "Nagravision"],
-      source: "public-satellite-listing",
-      keysConfigured: false,
-      authorizationRequired: true,
-    },
+  "scanTarget": {
+    "frequencyMHz": 11171,
+    "polarization": "V",
+    "symbolRateKsym": 45000,
+    "fec": "3/4",
+    "system": "DVB-S2/QPSK",
+    "video": "HEVC"
   },
-  lnb: {
-    type: "universal",
-    lowOscillatorMHz: 9750,
-    highOscillatorMHz: 10600,
+  "lnb": {
+    "type": "universal",
+    "lowOscillatorMHz": 9750,
+    "highOscillatorMHz": 10600
   },
-  output: {
-    protocol: "HLS",
-    pathPattern: "/hls/{service}/index.m3u8",
-    requiresDescrambledTs: true,
+  "output": {
+    "protocol": "HLS",
+    "pathPattern": "/hls/{service}/index.m3u8",
+    "requiresDescrambledTs": true
   },
-  /**
-   * Authorized CAS/CAM pipeline. This describes the integration contract;
-   * it deliberately stores no CW/ECM keys or card credentials in GitHub.
-   */
-  casPipeline: {
-    enabled: true,
-    input: "DVB-S2 scrambled transport stream",
-    conditionalAccess: {
-      ecm: true,
-      emm: true,
-      cam: "DVB-CI/CI+ or operator-approved equivalent",
-      smartcardOrEntitlement: "required when the service is encrypted",
-    },
-    descramblingStage: "before-hls-packaging",
-    clearTsRequiredBeforePackaging: true,
-    keyMaterialStorage: "external-secure-cas-system",
-    redistributionPolicy: "disabled-until-authorization-verified",
-  },
-  /**
-   * RTI 1 satellite candidates found in current public listings. The receiver
-   * must verify the selected carrier before it is marked production-ready.
-   */
-  rti1SatelliteCandidates: [
+  "catalogueCoverage": [
     {
-      satellite: "SES-4",
-      position: "22.0W",
-      frequencyMHz: 10986,
-      polarization: "V",
-      symbolRateKsym: 30000,
-      system: "DVB-S/MPEG-2",
-      service: "RTI 1",
-      encryption: {
-        scrambled: true,
-        systems: ["Mediaguard", "Nagravision"],
-        authorizationRequired: true,
-        keysConfigured: false,
+      "channelNumber": 1,
+      "id": "rti-1",
+      "name": "RTI 1",
+      "status": "found-encrypted",
+      "satelliteId": "ses-4-22w",
+      "serviceId": "sid-8206",
+      "sourceVerified": false,
+      "physicalReceptionVerified": false,
+      "redistributionEnabled": false,
+      "encryption": {
+        "scrambled": true,
+        "systems": [
+          "Mediaguard",
+          "Nagravision"
+        ],
+        "authorizationRequired": true
       },
-      sourceVerified: false,
+      "transponder": {
+        "frequencyMHz": 10986,
+        "polarization": "V",
+        "symbolRateKsym": 45000,
+        "sid": 8206
+      }
     },
     {
-      satellite: "SES-4",
-      position: "22.0W",
-      frequencyMHz: 3749,
-      polarization: "L",
-      symbolRateKsym: 45830,
-      fec: "2/3",
-      system: "DVB-S2T2-MI",
-      service: "RTI 1",
-      serviceId: 101,
-      encryption: {
-        scrambled: false,
-        systems: [],
-        authorizationRequired: false,
-        keysConfigured: false,
+      "channelNumber": 2,
+      "id": "rti-2",
+      "name": "RTI 2",
+      "status": "found-encrypted",
+      "satelliteId": "ses-4-22w",
+      "serviceId": "sid-8210",
+      "sourceVerified": false,
+      "physicalReceptionVerified": false,
+      "redistributionEnabled": false,
+      "encryption": {
+        "scrambled": true,
+        "systems": [
+          "Mediaguard",
+          "Nagravision"
+        ],
+        "authorizationRequired": true
       },
-      sourceVerified: false,
+      "transponder": {
+        "frequencyMHz": 10986,
+        "polarization": "V",
+        "symbolRateKsym": 45000,
+        "sid": 8210
+      }
     },
+    {
+      "channelNumber": 3,
+      "id": "la-3",
+      "name": "La 3",
+      "status": "found-encrypted",
+      "satelliteId": "ses-4-22w",
+      "serviceId": "sid-8327",
+      "sourceVerified": false,
+      "physicalReceptionVerified": false,
+      "redistributionEnabled": false,
+      "encryption": {
+        "scrambled": true,
+        "systems": [
+          "Mediaguard",
+          "Nagravision"
+        ],
+        "authorizationRequired": true
+      },
+      "transponder": {
+        "frequencyMHz": 12570,
+        "polarization": "V",
+        "symbolRateKsym": 30000,
+        "sid": 8327
+      }
+    },
+    {
+      "channelNumber": 4,
+      "id": "a-plus-ivoire",
+      "name": "A+ Ivoire",
+      "status": "not-found-on-ses4-public-listings",
+      "satelliteId": null,
+      "serviceId": null,
+      "sourceVerified": false,
+      "physicalReceptionVerified": false,
+      "redistributionEnabled": false
+    },
+    {
+      "channelNumber": 5,
+      "id": "life-tv",
+      "name": "Life TV",
+      "status": "found-encrypted",
+      "satelliteId": "ses-4-22w",
+      "serviceId": "sid-8503",
+      "sourceVerified": false,
+      "physicalReceptionVerified": false,
+      "redistributionEnabled": false,
+      "encryption": {
+        "scrambled": true,
+        "systems": [
+          "Mediaguard",
+          "Nagravision"
+        ],
+        "authorizationRequired": true
+      },
+      "transponder": {
+        "frequencyMHz": 12650,
+        "polarization": "V",
+        "symbolRateKsym": 30000,
+        "sid": 8503
+      }
+    },
+    {
+      "channelNumber": 6,
+      "id": "nci",
+      "name": "NCI",
+      "status": "found-encrypted",
+      "satelliteId": "ses-4-22w",
+      "serviceId": "sid-4003",
+      "sourceVerified": false,
+      "physicalReceptionVerified": false,
+      "redistributionEnabled": false,
+      "encryption": {
+        "scrambled": true,
+        "systems": [
+          "Mediaguard",
+          "Nagravision"
+        ],
+        "authorizationRequired": true
+      },
+      "transponder": {
+        "frequencyMHz": 11551,
+        "polarization": "V",
+        "symbolRateKsym": 45000,
+        "sid": 4003
+      }
+    },
+    {
+      "channelNumber": 185,
+      "id": "s-plus-cote-divoire",
+      "name": "S+ Côte d’Ivoire",
+      "status": "not-found-on-ses4-public-listings",
+      "satelliteId": null,
+      "serviceId": null,
+      "sourceVerified": false,
+      "physicalReceptionVerified": false,
+      "redistributionEnabled": false
+    },
+    {
+      "channelNumber": 10,
+      "id": "6ter",
+      "name": "6ter",
+      "status": "not-found-on-ses4-public-listings",
+      "satelliteId": null,
+      "serviceId": null,
+      "sourceVerified": false,
+      "physicalReceptionVerified": false,
+      "redistributionEnabled": false
+    },
+    {
+      "channelNumber": 11,
+      "id": "arte",
+      "name": "Arte",
+      "status": "found-encrypted",
+      "satelliteId": "ses-4-22w",
+      "serviceId": "sid-8402",
+      "sourceVerified": false,
+      "physicalReceptionVerified": false,
+      "redistributionEnabled": false,
+      "encryption": {
+        "scrambled": true,
+        "systems": [
+          "Mediaguard",
+          "Nagravision"
+        ],
+        "authorizationRequired": true
+      },
+      "transponder": {
+        "frequencyMHz": 12610,
+        "polarization": "V",
+        "symbolRateKsym": 30000,
+        "sid": 8402
+      }
+    },
+    {
+      "channelNumber": 186,
+      "id": "s-plus",
+      "name": "S+",
+      "status": "not-found-on-ses4-public-listings",
+      "satelliteId": null,
+      "serviceId": null,
+      "sourceVerified": false,
+      "physicalReceptionVerified": false,
+      "redistributionEnabled": false
+    },
+    {
+      "channelNumber": 13,
+      "id": "france-2",
+      "name": "France 2",
+      "status": "found-encrypted",
+      "satelliteId": "ses-4-22w",
+      "serviceId": "sid-8803",
+      "sourceVerified": false,
+      "physicalReceptionVerified": false,
+      "redistributionEnabled": false,
+      "encryption": {
+        "scrambled": true,
+        "systems": [
+          "Mediaguard",
+          "Nagravision"
+        ],
+        "authorizationRequired": true
+      },
+      "transponder": {
+        "frequencyMHz": 11611,
+        "polarization": "V",
+        "symbolRateKsym": 45000,
+        "sid": 8803
+      }
+    },
+    {
+      "channelNumber": 14,
+      "id": "france-3",
+      "name": "France 3",
+      "status": "found-encrypted",
+      "satelliteId": "ses-4-22w",
+      "serviceId": "sid-8703",
+      "sourceVerified": false,
+      "physicalReceptionVerified": false,
+      "redistributionEnabled": false,
+      "encryption": {
+        "scrambled": true,
+        "systems": [
+          "Mediaguard",
+          "Nagravision"
+        ],
+        "authorizationRequired": true
+      },
+      "transponder": {
+        "frequencyMHz": 12730,
+        "polarization": "V",
+        "symbolRateKsym": 30000,
+        "sid": 8703
+      }
+    },
+    {
+      "channelNumber": 15,
+      "id": "france-4",
+      "name": "France 4",
+      "status": "not-found-on-ses4-public-listings",
+      "satelliteId": null,
+      "serviceId": null,
+      "sourceVerified": false,
+      "physicalReceptionVerified": false,
+      "redistributionEnabled": false
+    },
+    {
+      "channelNumber": 16,
+      "id": "france-5",
+      "name": "France 5",
+      "status": "found-encrypted",
+      "satelliteId": "ses-4-22w",
+      "serviceId": "sid-8825",
+      "sourceVerified": false,
+      "physicalReceptionVerified": false,
+      "redistributionEnabled": false,
+      "encryption": {
+        "scrambled": true,
+        "systems": [
+          "Mediaguard",
+          "Nagravision"
+        ],
+        "authorizationRequired": true
+      },
+      "transponder": {
+        "frequencyMHz": 11611,
+        "polarization": "V",
+        "symbolRateKsym": 45000,
+        "sid": 8825
+      }
+    },
+    {
+      "channelNumber": 17,
+      "id": "m6",
+      "name": "M6",
+      "status": "not-found-on-ses4-public-listings",
+      "satelliteId": null,
+      "serviceId": null,
+      "sourceVerified": false,
+      "physicalReceptionVerified": false,
+      "redistributionEnabled": false
+    },
+    {
+      "channelNumber": 18,
+      "id": "tf1",
+      "name": "TF1",
+      "status": "not-found-on-ses4-public-listings",
+      "satelliteId": null,
+      "serviceId": null,
+      "sourceVerified": false,
+      "physicalReceptionVerified": false,
+      "redistributionEnabled": false
+    },
+    {
+      "channelNumber": 19,
+      "id": "tfx",
+      "name": "TFX",
+      "status": "found-encrypted",
+      "satelliteId": "ses-4-22w",
+      "serviceId": "sid-4133",
+      "sourceVerified": false,
+      "physicalReceptionVerified": false,
+      "redistributionEnabled": false,
+      "encryption": {
+        "scrambled": true,
+        "systems": [
+          "Mediaguard",
+          "Nagravision"
+        ],
+        "authorizationRequired": true
+      },
+      "transponder": {
+        "frequencyMHz": 11051,
+        "polarization": "V",
+        "symbolRateKsym": 45000,
+        "sid": 4133
+      }
+    },
+    {
+      "channelNumber": 20,
+      "id": "tmc",
+      "name": "TMC",
+      "status": "found-encrypted",
+      "satelliteId": "ses-4-22w",
+      "serviceId": "sid-8422",
+      "sourceVerified": false,
+      "physicalReceptionVerified": false,
+      "redistributionEnabled": false,
+      "encryption": {
+        "scrambled": true,
+        "systems": [
+          "Mediaguard",
+          "Nagravision"
+        ],
+        "authorizationRequired": true
+      },
+      "transponder": {
+        "frequencyMHz": 12610,
+        "polarization": "V",
+        "symbolRateKsym": 30000,
+        "sid": 8422
+      }
+    },
+    {
+      "channelNumber": 21,
+      "id": "w9",
+      "name": "W9",
+      "status": "not-found-on-ses4-public-listings",
+      "satelliteId": null,
+      "serviceId": null,
+      "sourceVerified": false,
+      "physicalReceptionVerified": false,
+      "redistributionEnabled": false
+    },
+    {
+      "channelNumber": 41,
+      "id": "cnn-international",
+      "name": "CNN International",
+      "status": "not-found-on-ses4-public-listings",
+      "satelliteId": null,
+      "serviceId": null,
+      "sourceVerified": false,
+      "physicalReceptionVerified": false,
+      "redistributionEnabled": false
+    },
+    {
+      "channelNumber": 42,
+      "id": "dw",
+      "name": "DW",
+      "status": "not-found-on-ses4-public-listings",
+      "satelliteId": null,
+      "serviceId": null,
+      "sourceVerified": false,
+      "physicalReceptionVerified": false,
+      "redistributionEnabled": false
+    },
+    {
+      "channelNumber": 43,
+      "id": "euronews",
+      "name": "Euronews",
+      "status": "not-found-on-ses4-public-listings",
+      "satelliteId": null,
+      "serviceId": null,
+      "sourceVerified": false,
+      "physicalReceptionVerified": false,
+      "redistributionEnabled": false
+    },
+    {
+      "channelNumber": 44,
+      "id": "fox-business",
+      "name": "Fox Business",
+      "status": "not-found-on-ses4-public-listings",
+      "satelliteId": null,
+      "serviceId": null,
+      "sourceVerified": false,
+      "physicalReceptionVerified": false,
+      "redistributionEnabled": false
+    },
+    {
+      "channelNumber": 45,
+      "id": "fox-news",
+      "name": "Fox News",
+      "status": "not-found-on-ses4-public-listings",
+      "satelliteId": null,
+      "serviceId": null,
+      "sourceVerified": false,
+      "physicalReceptionVerified": false,
+      "redistributionEnabled": false
+    },
+    {
+      "channelNumber": 22,
+      "id": "france-24",
+      "name": "France 24",
+      "status": "found-encrypted",
+      "satelliteId": "ses-4-22w",
+      "serviceId": "sid-8108",
+      "sourceVerified": false,
+      "physicalReceptionVerified": false,
+      "redistributionEnabled": false,
+      "encryption": {
+        "scrambled": true,
+        "systems": [
+          "Mediaguard",
+          "Nagravision"
+        ],
+        "authorizationRequired": true
+      },
+      "transponder": {
+        "frequencyMHz": 3749,
+        "polarization": "L",
+        "symbolRateKsym": 45830,
+        "sid": 8108
+      }
+    },
+    {
+      "channelNumber": 47,
+      "id": "hln",
+      "name": "HLN",
+      "status": "not-found-on-ses4-public-listings",
+      "satelliteId": null,
+      "serviceId": null,
+      "sourceVerified": false,
+      "physicalReceptionVerified": false,
+      "redistributionEnabled": false
+    },
+    {
+      "channelNumber": 48,
+      "id": "i24news",
+      "name": "i24NEWS",
+      "status": "found-encrypted",
+      "satelliteId": "ses-4-22w",
+      "serviceId": "sid-9",
+      "sourceVerified": false,
+      "physicalReceptionVerified": false,
+      "redistributionEnabled": false,
+      "encryption": {
+        "scrambled": true,
+        "systems": [
+          "Mediaguard",
+          "Nagravision"
+        ],
+        "authorizationRequired": true
+      },
+      "transponder": {
+        "frequencyMHz": 11671,
+        "polarization": "V",
+        "symbolRateKsym": 30000,
+        "sid": 9
+      }
+    },
+    {
+      "channelNumber": 49,
+      "id": "msnbc",
+      "name": "MSNBC",
+      "status": "not-found-on-ses4-public-listings",
+      "satelliteId": null,
+      "serviceId": null,
+      "sourceVerified": false,
+      "physicalReceptionVerified": false,
+      "redistributionEnabled": false
+    },
+    {
+      "channelNumber": 200,
+      "id": "ab1",
+      "name": "AB1",
+      "status": "found-encrypted",
+      "satelliteId": "ses-4-22w",
+      "serviceId": "sid-4002",
+      "sourceVerified": false,
+      "physicalReceptionVerified": false,
+      "redistributionEnabled": false,
+      "encryption": {
+        "scrambled": true,
+        "systems": [
+          "Mediaguard",
+          "Nagravision"
+        ],
+        "authorizationRequired": true
+      },
+      "transponder": {
+        "frequencyMHz": 11551,
+        "polarization": "V",
+        "symbolRateKsym": 45000,
+        "sid": 4002
+      }
+    },
+    {
+      "channelNumber": 201,
+      "id": "action",
+      "name": "Action",
+      "status": "found-encrypted",
+      "satelliteId": "ses-4-22w",
+      "serviceId": "sid-8105",
+      "sourceVerified": false,
+      "physicalReceptionVerified": false,
+      "redistributionEnabled": false,
+      "encryption": {
+        "scrambled": true,
+        "systems": [
+          "Mediaguard",
+          "Nagravision"
+        ],
+        "authorizationRequired": true
+      },
+      "transponder": {
+        "frequencyMHz": 3749,
+        "polarization": "L",
+        "symbolRateKsym": 45830,
+        "sid": 8105
+      }
+    },
+    {
+      "channelNumber": 202,
+      "id": "c-plus-action",
+      "name": "C+ Action",
+      "status": "not-found-on-ses4-public-listings",
+      "satelliteId": null,
+      "serviceId": null,
+      "sourceVerified": false,
+      "physicalReceptionVerified": false,
+      "redistributionEnabled": false
+    },
+    {
+      "channelNumber": 203,
+      "id": "c-plus-cinema",
+      "name": "C+ Cinema",
+      "status": "not-found-on-ses4-public-listings",
+      "satelliteId": null,
+      "serviceId": null,
+      "sourceVerified": false,
+      "physicalReceptionVerified": false,
+      "redistributionEnabled": false
+    },
+    {
+      "channelNumber": 204,
+      "id": "c-plus-family",
+      "name": "C+ Family",
+      "status": "not-found-on-ses4-public-listings",
+      "satelliteId": null,
+      "serviceId": null,
+      "sourceVerified": false,
+      "physicalReceptionVerified": false,
+      "redistributionEnabled": false
+    },
+    {
+      "channelNumber": 205,
+      "id": "c-plus-magic",
+      "name": "C+ Magic",
+      "status": "not-found-on-ses4-public-listings",
+      "satelliteId": null,
+      "serviceId": null,
+      "sourceVerified": false,
+      "physicalReceptionVerified": false,
+      "redistributionEnabled": false
+    },
+    {
+      "channelNumber": 206,
+      "id": "c-plus-pop",
+      "name": "C+ Pop",
+      "status": "not-found-on-ses4-public-listings",
+      "satelliteId": null,
+      "serviceId": null,
+      "sourceVerified": false,
+      "physicalReceptionVerified": false,
+      "redistributionEnabled": false
+    },
+    {
+      "channelNumber": 207,
+      "id": "charge",
+      "name": "Charge!",
+      "status": "not-found-on-ses4-public-listings",
+      "satelliteId": null,
+      "serviceId": null,
+      "sourceVerified": false,
+      "physicalReceptionVerified": false,
+      "redistributionEnabled": false
+    },
+    {
+      "channelNumber": 208,
+      "id": "cinemax",
+      "name": "Cinemax",
+      "status": "not-found-on-ses4-public-listings",
+      "satelliteId": null,
+      "serviceId": null,
+      "sourceVerified": false,
+      "physicalReceptionVerified": false,
+      "redistributionEnabled": false
+    },
+    {
+      "channelNumber": 209,
+      "id": "comet",
+      "name": "Comet",
+      "status": "not-found-on-ses4-public-listings",
+      "satelliteId": null,
+      "serviceId": null,
+      "sourceVerified": false,
+      "physicalReceptionVerified": false,
+      "redistributionEnabled": false
+    },
+    {
+      "channelNumber": 210,
+      "id": "estrella-tv",
+      "name": "Estrella TV",
+      "status": "not-found-on-ses4-public-listings",
+      "satelliteId": null,
+      "serviceId": null,
+      "sourceVerified": false,
+      "physicalReceptionVerified": false,
+      "redistributionEnabled": false
+    },
+    {
+      "channelNumber": 211,
+      "id": "galavision",
+      "name": "Galavisión",
+      "status": "not-found-on-ses4-public-listings",
+      "satelliteId": null,
+      "serviceId": null,
+      "sourceVerified": false,
+      "physicalReceptionVerified": false,
+      "redistributionEnabled": false
+    },
+    {
+      "channelNumber": 212,
+      "id": "gettv",
+      "name": "getTV",
+      "status": "not-found-on-ses4-public-listings",
+      "satelliteId": null,
+      "serviceId": null,
+      "sourceVerified": false,
+      "physicalReceptionVerified": false,
+      "redistributionEnabled": false
+    },
+    {
+      "channelNumber": 213,
+      "id": "grit",
+      "name": "Grit",
+      "status": "not-found-on-ses4-public-listings",
+      "satelliteId": null,
+      "serviceId": null,
+      "sourceVerified": false,
+      "physicalReceptionVerified": false,
+      "redistributionEnabled": false
+    },
+    {
+      "channelNumber": 214,
+      "id": "m6-films",
+      "name": "M6 Films",
+      "status": "not-found-on-ses4-public-listings",
+      "satelliteId": null,
+      "serviceId": null,
+      "sourceVerified": false,
+      "physicalReceptionVerified": false,
+      "redistributionEnabled": false
+    },
+    {
+      "channelNumber": 215,
+      "id": "mgm-tv",
+      "name": "MGM TV",
+      "status": "not-found-on-ses4-public-listings",
+      "satelliteId": null,
+      "serviceId": null,
+      "sourceVerified": false,
+      "physicalReceptionVerified": false,
+      "redistributionEnabled": false
+    },
+    {
+      "channelNumber": 216,
+      "id": "movies",
+      "name": "Movies!",
+      "status": "not-found-on-ses4-public-listings",
+      "satelliteId": null,
+      "serviceId": null,
+      "sourceVerified": false,
+      "physicalReceptionVerified": false,
+      "redistributionEnabled": false
+    },
+    {
+      "channelNumber": 217,
+      "id": "peacock",
+      "name": "Peacock",
+      "status": "not-found-on-ses4-public-listings",
+      "satelliteId": null,
+      "serviceId": null,
+      "sourceVerified": false,
+      "physicalReceptionVerified": false,
+      "redistributionEnabled": false
+    },
+    {
+      "channelNumber": 218,
+      "id": "pluto-tv",
+      "name": "Pluto TV",
+      "status": "not-found-on-ses4-public-listings",
+      "satelliteId": null,
+      "serviceId": null,
+      "sourceVerified": false,
+      "physicalReceptionVerified": false,
+      "redistributionEnabled": false
+    },
+    {
+      "channelNumber": 219,
+      "id": "rtl-9",
+      "name": "RTL 9",
+      "status": "found-encrypted",
+      "satelliteId": "ses-4-22w",
+      "serviceId": "sid-8804",
+      "sourceVerified": false,
+      "physicalReceptionVerified": false,
+      "redistributionEnabled": false,
+      "encryption": {
+        "scrambled": true,
+        "systems": [
+          "Mediaguard",
+          "Nagravision"
+        ],
+        "authorizationRequired": true
+      },
+      "transponder": {
+        "frequencyMHz": 11611,
+        "polarization": "V",
+        "symbolRateKsym": 45000,
+        "sid": 8804
+      }
+    },
+    {
+      "channelNumber": 50,
+      "id": "sci-fi",
+      "name": "Sci-Fi",
+      "status": "found-encrypted",
+      "satelliteId": "ses-4-22w",
+      "serviceId": "sid-8916",
+      "sourceVerified": false,
+      "physicalReceptionVerified": false,
+      "redistributionEnabled": false,
+      "encryption": {
+        "scrambled": true,
+        "systems": [
+          "Mediaguard",
+          "Nagravision"
+        ],
+        "authorizationRequired": true
+      },
+      "transponder": {
+        "frequencyMHz": 11171,
+        "polarization": "V",
+        "symbolRateKsym": 45000,
+        "sid": 8916
+      }
+    },
+    {
+      "channelNumber": 221,
+      "id": "tcm",
+      "name": "TCM",
+      "status": "not-found-on-ses4-public-listings",
+      "satelliteId": null,
+      "serviceId": null,
+      "sourceVerified": false,
+      "physicalReceptionVerified": false,
+      "redistributionEnabled": false
+    },
+    {
+      "channelNumber": 222,
+      "id": "telemundo",
+      "name": "Telemundo",
+      "status": "found-encrypted",
+      "satelliteId": "ses-4-22w",
+      "serviceId": "sid-4028",
+      "sourceVerified": false,
+      "physicalReceptionVerified": false,
+      "redistributionEnabled": false,
+      "encryption": {
+        "scrambled": true,
+        "systems": [
+          "Mediaguard",
+          "Nagravision"
+        ],
+        "authorizationRequired": true
+      },
+      "transponder": {
+        "frequencyMHz": 11551,
+        "polarization": "V",
+        "symbolRateKsym": 45000,
+        "sid": 4028
+      }
+    },
+    {
+      "channelNumber": 223,
+      "id": "tubi",
+      "name": "Tubi",
+      "status": "not-found-on-ses4-public-listings",
+      "satelliteId": null,
+      "serviceId": null,
+      "sourceVerified": false,
+      "physicalReceptionVerified": false,
+      "redistributionEnabled": false
+    },
+    {
+      "channelNumber": 224,
+      "id": "unimas",
+      "name": "UniMás",
+      "status": "not-found-on-ses4-public-listings",
+      "satelliteId": null,
+      "serviceId": null,
+      "sourceVerified": false,
+      "physicalReceptionVerified": false,
+      "redistributionEnabled": false
+    },
+    {
+      "channelNumber": 225,
+      "id": "univision",
+      "name": "Univision",
+      "status": "not-found-on-ses4-public-listings",
+      "satelliteId": null,
+      "serviceId": null,
+      "sourceVerified": false,
+      "physicalReceptionVerified": false,
+      "redistributionEnabled": false
+    },
+    {
+      "channelNumber": 52,
+      "id": "13eme-rue",
+      "name": "13ème Rue",
+      "status": "found-encrypted",
+      "satelliteId": "ses-4-22w",
+      "serviceId": "sid-8224",
+      "sourceVerified": false,
+      "physicalReceptionVerified": false,
+      "redistributionEnabled": false,
+      "encryption": {
+        "scrambled": true,
+        "systems": [
+          "Mediaguard",
+          "Nagravision"
+        ],
+        "authorizationRequired": true
+      },
+      "transponder": {
+        "frequencyMHz": 10986,
+        "polarization": "V",
+        "symbolRateKsym": 30000,
+        "sid": 8224
+      }
+    },
+    {
+      "channelNumber": 53,
+      "id": "amc",
+      "name": "AMC",
+      "status": "not-found-on-ses4-public-listings",
+      "satelliteId": null,
+      "serviceId": null,
+      "sourceVerified": false,
+      "physicalReceptionVerified": false,
+      "redistributionEnabled": false
+    },
+    {
+      "channelNumber": 54,
+      "id": "bravo",
+      "name": "Bravo",
+      "status": "not-found-on-ses4-public-listings",
+      "satelliteId": null,
+      "serviceId": null,
+      "sourceVerified": false,
+      "physicalReceptionVerified": false,
+      "redistributionEnabled": false
+    },
+    {
+      "channelNumber": 55,
+      "id": "freeform",
+      "name": "Freeform",
+      "status": "not-found-on-ses4-public-listings",
+      "satelliteId": null,
+      "serviceId": null,
+      "sourceVerified": false,
+      "physicalReceptionVerified": false,
+      "redistributionEnabled": false
+    },
+    {
+      "channelNumber": 56,
+      "id": "fx",
+      "name": "FX",
+      "status": "not-found-on-ses4-public-listings",
+      "satelliteId": null,
+      "serviceId": null,
+      "sourceVerified": false,
+      "physicalReceptionVerified": false,
+      "redistributionEnabled": false
+    },
+    {
+      "channelNumber": 57,
+      "id": "fxx",
+      "name": "FXX",
+      "status": "not-found-on-ses4-public-listings",
+      "satelliteId": null,
+      "serviceId": null,
+      "sourceVerified": false,
+      "physicalReceptionVerified": false,
+      "redistributionEnabled": false
+    },
+    {
+      "channelNumber": 58,
+      "id": "hallmark-drama",
+      "name": "Hallmark Drama",
+      "status": "not-found-on-ses4-public-listings",
+      "satelliteId": null,
+      "serviceId": null,
+      "sourceVerified": false,
+      "physicalReceptionVerified": false,
+      "redistributionEnabled": false
+    },
+    {
+      "channelNumber": 59,
+      "id": "hbo",
+      "name": "HBO",
+      "status": "not-found-on-ses4-public-listings",
+      "satelliteId": null,
+      "serviceId": null,
+      "sourceVerified": false,
+      "physicalReceptionVerified": false,
+      "redistributionEnabled": false
+    },
+    {
+      "channelNumber": 60,
+      "id": "heroes-icons",
+      "name": "Heroes & Icons",
+      "status": "not-found-on-ses4-public-listings",
+      "satelliteId": null,
+      "serviceId": null,
+      "sourceVerified": false,
+      "physicalReceptionVerified": false,
+      "redistributionEnabled": false
+    },
+    {
+      "channelNumber": 61,
+      "id": "ifc",
+      "name": "IFC",
+      "status": "not-found-on-ses4-public-listings",
+      "satelliteId": null,
+      "serviceId": null,
+      "sourceVerified": false,
+      "physicalReceptionVerified": false,
+      "redistributionEnabled": false
+    },
+    {
+      "channelNumber": 62,
+      "id": "ion",
+      "name": "Ion",
+      "status": "not-found-on-ses4-public-listings",
+      "satelliteId": null,
+      "serviceId": null,
+      "sourceVerified": false,
+      "physicalReceptionVerified": false,
+      "redistributionEnabled": false
+    },
+    {
+      "channelNumber": 63,
+      "id": "lifetime",
+      "name": "Lifetime",
+      "status": "not-found-on-ses4-public-listings",
+      "satelliteId": null,
+      "serviceId": null,
+      "sourceVerified": false,
+      "physicalReceptionVerified": false,
+      "redistributionEnabled": false
+    },
+    {
+      "channelNumber": 64,
+      "id": "mgm-plus",
+      "name": "MGM+",
+      "status": "not-found-on-ses4-public-listings",
+      "satelliteId": null,
+      "serviceId": null,
+      "sourceVerified": false,
+      "physicalReceptionVerified": false,
+      "redistributionEnabled": false
+    },
+    {
+      "channelNumber": 30,
+      "id": "novelas-plus",
+      "name": "Novelas+",
+      "status": "not-found-on-ses4-public-listings",
+      "satelliteId": null,
+      "serviceId": null,
+      "sourceVerified": false,
+      "physicalReceptionVerified": false,
+      "redistributionEnabled": false
+    },
+    {
+      "channelNumber": 65,
+      "id": "paramount-network",
+      "name": "Paramount Network",
+      "status": "not-found-on-ses4-public-listings",
+      "satelliteId": null,
+      "serviceId": null,
+      "sourceVerified": false,
+      "physicalReceptionVerified": false,
+      "redistributionEnabled": false
+    },
+    {
+      "channelNumber": 160,
+      "id": "s-plus-premiere",
+      "name": "S+ Première",
+      "status": "not-found-on-ses4-public-listings",
+      "satelliteId": null,
+      "serviceId": null,
+      "sourceVerified": false,
+      "physicalReceptionVerified": false,
+      "redistributionEnabled": false
+    },
+    {
+      "channelNumber": 161,
+      "id": "s-plus-avant-premiere",
+      "name": "S+ Avant Première",
+      "status": "not-found-on-ses4-public-listings",
+      "satelliteId": null,
+      "serviceId": null,
+      "sourceVerified": false,
+      "physicalReceptionVerified": false,
+      "redistributionEnabled": false
+    },
+    {
+      "channelNumber": 151,
+      "id": "sundance-tv",
+      "name": "Sundance TV",
+      "status": "not-found-on-ses4-public-listings",
+      "satelliteId": null,
+      "serviceId": null,
+      "sourceVerified": false,
+      "physicalReceptionVerified": false,
+      "redistributionEnabled": false
+    },
+    {
+      "channelNumber": 51,
+      "id": "syfy",
+      "name": "Syfy",
+      "status": "not-found-on-ses4-public-listings",
+      "satelliteId": null,
+      "serviceId": null,
+      "sourceVerified": false,
+      "physicalReceptionVerified": false,
+      "redistributionEnabled": false
+    },
+    {
+      "channelNumber": 153,
+      "id": "tbs",
+      "name": "TBS",
+      "status": "not-found-on-ses4-public-listings",
+      "satelliteId": null,
+      "serviceId": null,
+      "sourceVerified": false,
+      "physicalReceptionVerified": false,
+      "redistributionEnabled": false
+    },
+    {
+      "channelNumber": 154,
+      "id": "tf1-series-films",
+      "name": "TF1 Séries Films",
+      "status": "found-encrypted",
+      "satelliteId": "ses-4-22w",
+      "serviceId": "sid-8823",
+      "sourceVerified": false,
+      "physicalReceptionVerified": false,
+      "redistributionEnabled": false,
+      "encryption": {
+        "scrambled": true,
+        "systems": [
+          "Mediaguard",
+          "Nagravision"
+        ],
+        "authorizationRequired": true
+      },
+      "transponder": {
+        "frequencyMHz": 11611,
+        "polarization": "V",
+        "symbolRateKsym": 45000,
+        "sid": 8823
+      }
+    },
+    {
+      "channelNumber": 155,
+      "id": "tnt",
+      "name": "TNT",
+      "status": "not-found-on-ses4-public-listings",
+      "satelliteId": null,
+      "serviceId": null,
+      "sourceVerified": false,
+      "physicalReceptionVerified": false,
+      "redistributionEnabled": false
+    },
+    {
+      "channelNumber": 156,
+      "id": "usa-network",
+      "name": "USA Network",
+      "status": "not-found-on-ses4-public-listings",
+      "satelliteId": null,
+      "serviceId": null,
+      "sourceVerified": false,
+      "physicalReceptionVerified": false,
+      "redistributionEnabled": false
+    },
+    {
+      "channelNumber": 100,
+      "id": "a-plus-kids",
+      "name": "A+ Kids",
+      "status": "found-encrypted",
+      "satelliteId": "ses-4-22w",
+      "serviceId": "sid-4001",
+      "sourceVerified": false,
+      "physicalReceptionVerified": false,
+      "redistributionEnabled": false,
+      "encryption": {
+        "scrambled": true,
+        "systems": [
+          "Mediaguard",
+          "Nagravision"
+        ],
+        "authorizationRequired": true
+      },
+      "transponder": {
+        "frequencyMHz": 11551,
+        "polarization": "V",
+        "symbolRateKsym": 45000,
+        "sid": 4001
+      }
+    },
+    {
+      "channelNumber": 101,
+      "id": "boing",
+      "name": "Boing",
+      "status": "not-found-on-ses4-public-listings",
+      "satelliteId": null,
+      "serviceId": null,
+      "sourceVerified": false,
+      "physicalReceptionVerified": false,
+      "redistributionEnabled": false
+    },
+    {
+      "channelNumber": 102,
+      "id": "boomerang",
+      "name": "Boomerang",
+      "status": "not-found-on-ses4-public-listings",
+      "satelliteId": null,
+      "serviceId": null,
+      "sourceVerified": false,
+      "physicalReceptionVerified": false,
+      "redistributionEnabled": false
+    },
+    {
+      "channelNumber": 103,
+      "id": "boomerang-plus-1",
+      "name": "Boomerang +1",
+      "status": "not-found-on-ses4-public-listings",
+      "satelliteId": null,
+      "serviceId": null,
+      "sourceVerified": false,
+      "physicalReceptionVerified": false,
+      "redistributionEnabled": false
+    },
+    {
+      "channelNumber": 104,
+      "id": "canal-j",
+      "name": "Canal J",
+      "status": "not-found-on-ses4-public-listings",
+      "satelliteId": null,
+      "serviceId": null,
+      "sourceVerified": false,
+      "physicalReceptionVerified": false,
+      "redistributionEnabled": false
+    },
+    {
+      "channelNumber": 187,
+      "id": "s-plus-kids-canalplus",
+      "name": "S+ Kids Canal+",
+      "status": "not-found-on-ses4-public-listings",
+      "satelliteId": null,
+      "serviceId": null,
+      "sourceVerified": false,
+      "physicalReceptionVerified": false,
+      "redistributionEnabled": false
+    },
+    {
+      "channelNumber": 106,
+      "id": "cartoonito",
+      "name": "Cartoonito",
+      "status": "not-found-on-ses4-public-listings",
+      "satelliteId": null,
+      "serviceId": null,
+      "sourceVerified": false,
+      "physicalReceptionVerified": false,
+      "redistributionEnabled": false
+    },
+    {
+      "channelNumber": 107,
+      "id": "cartoon-network",
+      "name": "Cartoon Network",
+      "status": "not-found-on-ses4-public-listings",
+      "satelliteId": null,
+      "serviceId": null,
+      "sourceVerified": false,
+      "physicalReceptionVerified": false,
+      "redistributionEnabled": false
+    },
+    {
+      "channelNumber": 108,
+      "id": "disney-channel",
+      "name": "Disney Channel",
+      "status": "not-found-on-ses4-public-listings",
+      "satelliteId": null,
+      "serviceId": null,
+      "sourceVerified": false,
+      "physicalReceptionVerified": false,
+      "redistributionEnabled": false
+    },
+    {
+      "channelNumber": 109,
+      "id": "disney-junior",
+      "name": "Disney Junior",
+      "status": "not-found-on-ses4-public-listings",
+      "satelliteId": null,
+      "serviceId": null,
+      "sourceVerified": false,
+      "physicalReceptionVerified": false,
+      "redistributionEnabled": false
+    },
+    {
+      "channelNumber": 110,
+      "id": "dreamworks",
+      "name": "DreamWorks",
+      "status": "not-found-on-ses4-public-listings",
+      "satelliteId": null,
+      "serviceId": null,
+      "sourceVerified": false,
+      "physicalReceptionVerified": false,
+      "redistributionEnabled": false
+    },
+    {
+      "channelNumber": 111,
+      "id": "gulli",
+      "name": "Gulli",
+      "status": "not-found-on-ses4-public-listings",
+      "satelliteId": null,
+      "serviceId": null,
+      "sourceVerified": false,
+      "physicalReceptionVerified": false,
+      "redistributionEnabled": false
+    },
+    {
+      "channelNumber": 112,
+      "id": "gulli-africa",
+      "name": "Gulli Africa",
+      "status": "found-encrypted",
+      "satelliteId": "ses-4-22w",
+      "serviceId": "sid-8917",
+      "sourceVerified": false,
+      "physicalReceptionVerified": false,
+      "redistributionEnabled": false,
+      "encryption": {
+        "scrambled": true,
+        "systems": [
+          "Mediaguard",
+          "Nagravision"
+        ],
+        "authorizationRequired": true
+      },
+      "transponder": {
+        "frequencyMHz": 11171,
+        "polarization": "V",
+        "symbolRateKsym": 45000,
+        "sid": 8917
+      }
+    },
+    {
+      "channelNumber": 113,
+      "id": "j-one",
+      "name": "J-One",
+      "status": "not-found-on-ses4-public-listings",
+      "satelliteId": null,
+      "serviceId": null,
+      "sourceVerified": false,
+      "physicalReceptionVerified": false,
+      "redistributionEnabled": false
+    },
+    {
+      "channelNumber": 114,
+      "id": "ludikids",
+      "name": "Ludikids",
+      "status": "not-found-on-ses4-public-listings",
+      "satelliteId": null,
+      "serviceId": null,
+      "sourceVerified": false,
+      "physicalReceptionVerified": false,
+      "redistributionEnabled": false
+    },
+    {
+      "channelNumber": 115,
+      "id": "mangas",
+      "name": "Mangas",
+      "status": "found-encrypted",
+      "satelliteId": "ses-4-22w",
+      "serviceId": "sid-4017",
+      "sourceVerified": false,
+      "physicalReceptionVerified": false,
+      "redistributionEnabled": false,
+      "encryption": {
+        "scrambled": true,
+        "systems": [
+          "Mediaguard",
+          "Nagravision"
+        ],
+        "authorizationRequired": true
+      },
+      "transponder": {
+        "frequencyMHz": 11551,
+        "polarization": "V",
+        "symbolRateKsym": 45000,
+        "sid": 4017
+      }
+    },
+    {
+      "channelNumber": 116,
+      "id": "nathan-plus",
+      "name": "Nathan+",
+      "status": "not-found-on-ses4-public-listings",
+      "satelliteId": null,
+      "serviceId": null,
+      "sourceVerified": false,
+      "physicalReceptionVerified": false,
+      "redistributionEnabled": false
+    },
+    {
+      "channelNumber": 117,
+      "id": "nickelodeon",
+      "name": "Nickelodeon",
+      "status": "found-encrypted",
+      "satelliteId": "ses-4-22w",
+      "serviceId": "sid-8312",
+      "sourceVerified": false,
+      "physicalReceptionVerified": false,
+      "redistributionEnabled": false,
+      "encryption": {
+        "scrambled": true,
+        "systems": [
+          "Mediaguard",
+          "Nagravision"
+        ],
+        "authorizationRequired": true
+      },
+      "transponder": {
+        "frequencyMHz": 12570,
+        "polarization": "V",
+        "symbolRateKsym": 30000,
+        "sid": 8312
+      }
+    },
+    {
+      "channelNumber": 118,
+      "id": "nickelodeon-junior",
+      "name": "Nickelodeon Junior",
+      "status": "found-encrypted",
+      "satelliteId": "ses-4-22w",
+      "serviceId": "sid-8905",
+      "sourceVerified": false,
+      "physicalReceptionVerified": false,
+      "redistributionEnabled": false,
+      "encryption": {
+        "scrambled": true,
+        "systems": [
+          "Mediaguard",
+          "Nagravision"
+        ],
+        "authorizationRequired": true
+      },
+      "transponder": {
+        "frequencyMHz": 11171,
+        "polarization": "V",
+        "symbolRateKsym": 45000,
+        "sid": 8905
+      }
+    },
+    {
+      "channelNumber": 119,
+      "id": "nickelodeon-plus-1",
+      "name": "Nickelodeon +1",
+      "status": "not-found-on-ses4-public-listings",
+      "satelliteId": null,
+      "serviceId": null,
+      "sourceVerified": false,
+      "physicalReceptionVerified": false,
+      "redistributionEnabled": false
+    },
+    {
+      "channelNumber": 120,
+      "id": "nicktoons",
+      "name": "NickToons",
+      "status": "not-found-on-ses4-public-listings",
+      "satelliteId": null,
+      "serviceId": null,
+      "sourceVerified": false,
+      "physicalReceptionVerified": false,
+      "redistributionEnabled": false
+    },
+    {
+      "channelNumber": 121,
+      "id": "nickelodeon-teen",
+      "name": "Nickelodeon Teen",
+      "status": "not-found-on-ses4-public-listings",
+      "satelliteId": null,
+      "serviceId": null,
+      "sourceVerified": false,
+      "physicalReceptionVerified": false,
+      "redistributionEnabled": false
+    },
+    {
+      "channelNumber": 122,
+      "id": "okoo",
+      "name": "Okoo",
+      "status": "not-found-on-ses4-public-listings",
+      "satelliteId": null,
+      "serviceId": null,
+      "sourceVerified": false,
+      "physicalReceptionVerified": false,
+      "redistributionEnabled": false
+    },
+    {
+      "channelNumber": 123,
+      "id": "piwi-plus",
+      "name": "Piwi+",
+      "status": "not-found-on-ses4-public-listings",
+      "satelliteId": null,
+      "serviceId": null,
+      "sourceVerified": false,
+      "physicalReceptionVerified": false,
+      "redistributionEnabled": false
+    },
+    {
+      "channelNumber": 124,
+      "id": "pitchoun-kids-music",
+      "name": "Pitchoun Kids Music",
+      "status": "not-found-on-ses4-public-listings",
+      "satelliteId": null,
+      "serviceId": null,
+      "sourceVerified": false,
+      "physicalReceptionVerified": false,
+      "redistributionEnabled": false
+    },
+    {
+      "channelNumber": 125,
+      "id": "pitchoun-kids-music-africa",
+      "name": "Pitchoun Kids Music Africa",
+      "status": "not-found-on-ses4-public-listings",
+      "satelliteId": null,
+      "serviceId": null,
+      "sourceVerified": false,
+      "physicalReceptionVerified": false,
+      "redistributionEnabled": false
+    },
+    {
+      "channelNumber": 126,
+      "id": "tv-pitchoun",
+      "name": "TV Pitchoun",
+      "status": "not-found-on-ses4-public-listings",
+      "satelliteId": null,
+      "serviceId": null,
+      "sourceVerified": false,
+      "physicalReceptionVerified": false,
+      "redistributionEnabled": false
+    },
+    {
+      "channelNumber": 127,
+      "id": "teletoon-plus",
+      "name": "Télétoon+",
+      "status": "not-found-on-ses4-public-listings",
+      "satelliteId": null,
+      "serviceId": null,
+      "sourceVerified": false,
+      "physicalReceptionVerified": false,
+      "redistributionEnabled": false
+    },
+    {
+      "channelNumber": 128,
+      "id": "teletoon-plus-1",
+      "name": "Télétoon +1",
+      "status": "not-found-on-ses4-public-listings",
+      "satelliteId": null,
+      "serviceId": null,
+      "sourceVerified": false,
+      "physicalReceptionVerified": false,
+      "redistributionEnabled": false
+    },
+    {
+      "channelNumber": 129,
+      "id": "tiji",
+      "name": "TiJi",
+      "status": "found-encrypted",
+      "satelliteId": "ses-4-22w",
+      "serviceId": "sid-8321",
+      "sourceVerified": false,
+      "physicalReceptionVerified": false,
+      "redistributionEnabled": false,
+      "encryption": {
+        "scrambled": true,
+        "systems": [
+          "Mediaguard",
+          "Nagravision"
+        ],
+        "authorizationRequired": true
+      },
+      "transponder": {
+        "frequencyMHz": 12570,
+        "polarization": "V",
+        "symbolRateKsym": 30000,
+        "sid": 8321
+      }
+    },
+    {
+      "channelNumber": 130,
+      "id": "tivi5monde",
+      "name": "TiVi5MONDE",
+      "status": "not-found-on-ses4-public-listings",
+      "satelliteId": null,
+      "serviceId": null,
+      "sourceVerified": false,
+      "physicalReceptionVerified": false,
+      "redistributionEnabled": false
+    },
+    {
+      "channelNumber": 131,
+      "id": "toonami",
+      "name": "Toonami",
+      "status": "not-found-on-ses4-public-listings",
+      "satelliteId": null,
+      "serviceId": null,
+      "sourceVerified": false,
+      "physicalReceptionVerified": false,
+      "redistributionEnabled": false
+    },
+    {
+      "channelNumber": 132,
+      "id": "ducktv",
+      "name": "ducktv",
+      "status": "not-found-on-ses4-public-listings",
+      "satelliteId": null,
+      "serviceId": null,
+      "sourceVerified": false,
+      "physicalReceptionVerified": false,
+      "redistributionEnabled": false
+    },
+    {
+      "channelNumber": 157,
+      "id": "tv-tokyo",
+      "name": "TV Tokyo",
+      "status": "not-found-on-ses4-public-listings",
+      "satelliteId": null,
+      "serviceId": null,
+      "sourceVerified": false,
+      "physicalReceptionVerified": false,
+      "redistributionEnabled": false
+    },
+    {
+      "channelNumber": 158,
+      "id": "fuji-tv",
+      "name": "Fuji TV",
+      "status": "not-found-on-ses4-public-listings",
+      "satelliteId": null,
+      "serviceId": null,
+      "sourceVerified": false,
+      "physicalReceptionVerified": false,
+      "redistributionEnabled": false
+    },
+    {
+      "channelNumber": 133,
+      "id": "warner-tv-next",
+      "name": "Warner TV Next",
+      "status": "not-found-on-ses4-public-listings",
+      "satelliteId": null,
+      "serviceId": null,
+      "sourceVerified": false,
+      "physicalReceptionVerified": false,
+      "redistributionEnabled": false
+    },
+    {
+      "channelNumber": 159,
+      "id": "peche-sons",
+      "name": "Pêche & Sons",
+      "status": "not-found-on-ses4-public-listings",
+      "satelliteId": null,
+      "serviceId": null,
+      "sourceVerified": false,
+      "physicalReceptionVerified": false,
+      "redistributionEnabled": false
+    },
+    {
+      "channelNumber": 184,
+      "id": "planete-plus",
+      "name": "Planète+",
+      "status": "not-found-on-ses4-public-listings",
+      "satelliteId": null,
+      "serviceId": null,
+      "sourceVerified": false,
+      "physicalReceptionVerified": false,
+      "redistributionEnabled": false
+    },
+    {
+      "channelNumber": 162,
+      "id": "s-plus-docs",
+      "name": "S+ Docs",
+      "status": "not-found-on-ses4-public-listings",
+      "satelliteId": null,
+      "serviceId": null,
+      "sourceVerified": false,
+      "physicalReceptionVerified": false,
+      "redistributionEnabled": false
+    },
+    {
+      "channelNumber": 23,
+      "id": "tv5-monde",
+      "name": "TV5 Monde",
+      "status": "found-encrypted",
+      "satelliteId": "ses-4-22w",
+      "serviceId": "sid-8102",
+      "sourceVerified": false,
+      "physicalReceptionVerified": false,
+      "redistributionEnabled": false,
+      "encryption": {
+        "scrambled": true,
+        "systems": [
+          "Mediaguard",
+          "Nagravision"
+        ],
+        "authorizationRequired": true
+      },
+      "transponder": {
+        "frequencyMHz": 3749,
+        "polarization": "L",
+        "symbolRateKsym": 45830,
+        "sid": 8102
+      }
+    },
+    {
+      "channelNumber": 163,
+      "id": "s-plus-prime",
+      "name": "S+ Prime",
+      "status": "not-found-on-ses4-public-listings",
+      "satelliteId": null,
+      "serviceId": null,
+      "sourceVerified": false,
+      "physicalReceptionVerified": false,
+      "redistributionEnabled": false
+    },
+    {
+      "channelNumber": 164,
+      "id": "s-plus-cine",
+      "name": "S+ Ciné",
+      "status": "not-found-on-ses4-public-listings",
+      "satelliteId": null,
+      "serviceId": null,
+      "sourceVerified": false,
+      "physicalReceptionVerified": false,
+      "redistributionEnabled": false
+    },
+    {
+      "channelNumber": 165,
+      "id": "s-plus-kids",
+      "name": "S+ Kids",
+      "status": "not-found-on-ses4-public-listings",
+      "satelliteId": null,
+      "serviceId": null,
+      "sourceVerified": false,
+      "physicalReceptionVerified": false,
+      "redistributionEnabled": false
+    },
+    {
+      "channelNumber": 166,
+      "id": "s-plus-fiction",
+      "name": "S+ Fiction",
+      "status": "not-found-on-ses4-public-listings",
+      "satelliteId": null,
+      "serviceId": null,
+      "sourceVerified": false,
+      "physicalReceptionVerified": false,
+      "redistributionEnabled": false
+    },
+    {
+      "channelNumber": 167,
+      "id": "s-plus-channel",
+      "name": "S+ Channel",
+      "status": "not-found-on-ses4-public-listings",
+      "satelliteId": null,
+      "serviceId": null,
+      "sourceVerified": false,
+      "physicalReceptionVerified": false,
+      "redistributionEnabled": false
+    },
+    {
+      "channelNumber": 168,
+      "id": "s-plus-music",
+      "name": "S+ Music",
+      "status": "not-found-on-ses4-public-listings",
+      "satelliteId": null,
+      "serviceId": null,
+      "sourceVerified": false,
+      "physicalReceptionVerified": false,
+      "redistributionEnabled": false
+    },
+    {
+      "channelNumber": 169,
+      "id": "s-plus-tv",
+      "name": "S+ TV",
+      "status": "not-found-on-ses4-public-listings",
+      "satelliteId": null,
+      "serviceId": null,
+      "sourceVerified": false,
+      "physicalReceptionVerified": false,
+      "redistributionEnabled": false
+    },
+    {
+      "channelNumber": 170,
+      "id": "s-plus-family",
+      "name": "S+ Family",
+      "status": "not-found-on-ses4-public-listings",
+      "satelliteId": null,
+      "serviceId": null,
+      "sourceVerified": false,
+      "physicalReceptionVerified": false,
+      "redistributionEnabled": false
+    },
+    {
+      "channelNumber": 171,
+      "id": "s-plus-sport-1",
+      "name": "S+ Sport 1",
+      "status": "not-found-on-ses4-public-listings",
+      "satelliteId": null,
+      "serviceId": null,
+      "sourceVerified": false,
+      "physicalReceptionVerified": false,
+      "redistributionEnabled": false
+    },
+    {
+      "channelNumber": 172,
+      "id": "s-plus-sport-2",
+      "name": "S+ Sport 2",
+      "status": "not-found-on-ses4-public-listings",
+      "satelliteId": null,
+      "serviceId": null,
+      "sourceVerified": false,
+      "physicalReceptionVerified": false,
+      "redistributionEnabled": false
+    },
+    {
+      "channelNumber": 173,
+      "id": "s-plus-sport-3",
+      "name": "S+ Sport 3",
+      "status": "not-found-on-ses4-public-listings",
+      "satelliteId": null,
+      "serviceId": null,
+      "sourceVerified": false,
+      "physicalReceptionVerified": false,
+      "redistributionEnabled": false
+    },
+    {
+      "channelNumber": 174,
+      "id": "s-plus-sport-4",
+      "name": "S+ Sport 4",
+      "status": "not-found-on-ses4-public-listings",
+      "satelliteId": null,
+      "serviceId": null,
+      "sourceVerified": false,
+      "physicalReceptionVerified": false,
+      "redistributionEnabled": false
+    },
+    {
+      "channelNumber": 175,
+      "id": "s-plus-sport-5",
+      "name": "S+ Sport 5",
+      "status": "not-found-on-ses4-public-listings",
+      "satelliteId": null,
+      "serviceId": null,
+      "sourceVerified": false,
+      "physicalReceptionVerified": false,
+      "redistributionEnabled": false
+    },
+    {
+      "channelNumber": 176,
+      "id": "s-plus-sport-6",
+      "name": "S+ Sport 6",
+      "status": "not-found-on-ses4-public-listings",
+      "satelliteId": null,
+      "serviceId": null,
+      "sourceVerified": false,
+      "physicalReceptionVerified": false,
+      "redistributionEnabled": false
+    },
+    {
+      "channelNumber": 177,
+      "id": "s-plus-movies",
+      "name": "S+ Movies",
+      "status": "not-found-on-ses4-public-listings",
+      "satelliteId": null,
+      "serviceId": null,
+      "sourceVerified": false,
+      "physicalReceptionVerified": false,
+      "redistributionEnabled": false
+    },
+    {
+      "channelNumber": 178,
+      "id": "s-plus-infosport",
+      "name": "S+ Infosport",
+      "status": "not-found-on-ses4-public-listings",
+      "satelliteId": null,
+      "serviceId": null,
+      "sourceVerified": false,
+      "physicalReceptionVerified": false,
+      "redistributionEnabled": false
+    },
+    {
+      "channelNumber": 179,
+      "id": "s-plus-infos",
+      "name": "S+ Infos",
+      "status": "not-found-on-ses4-public-listings",
+      "satelliteId": null,
+      "serviceId": null,
+      "sourceVerified": false,
+      "physicalReceptionVerified": false,
+      "redistributionEnabled": false
+    },
+    {
+      "channelNumber": 180,
+      "id": "s-plus-media",
+      "name": "S+ Media",
+      "status": "not-found-on-ses4-public-listings",
+      "satelliteId": null,
+      "serviceId": null,
+      "sourceVerified": false,
+      "physicalReceptionVerified": false,
+      "redistributionEnabled": false
+    },
+    {
+      "channelNumber": 181,
+      "id": "s-plus-lloliwood",
+      "name": "S+ LLOLIWOOD",
+      "status": "not-found-on-ses4-public-listings",
+      "satelliteId": null,
+      "serviceId": null,
+      "sourceVerified": false,
+      "physicalReceptionVerified": false,
+      "redistributionEnabled": false
+    },
+    {
+      "channelNumber": 182,
+      "id": "s-plus-bl",
+      "name": "S+ BL",
+      "status": "not-found-on-ses4-public-listings",
+      "satelliteId": null,
+      "serviceId": null,
+      "sourceVerified": false,
+      "physicalReceptionVerified": false,
+      "redistributionEnabled": false
+    },
+    {
+      "channelNumber": 183,
+      "id": "s-plus-jeunesse",
+      "name": "S+ Jeunesse",
+      "status": "not-found-on-ses4-public-listings",
+      "satelliteId": null,
+      "serviceId": null,
+      "sourceVerified": false,
+      "physicalReceptionVerified": false,
+      "redistributionEnabled": false
+    },
+    {
+      "channelNumber": 136,
+      "id": "berbere-jeunesse",
+      "name": "Berbère Jeunesse",
+      "status": "not-found-on-ses4-public-listings",
+      "satelliteId": null,
+      "serviceId": null,
+      "sourceVerified": false,
+      "physicalReceptionVerified": false,
+      "redistributionEnabled": false
+    },
+    {
+      "channelNumber": 137,
+      "id": "chaine-pere-noel",
+      "name": "La Chaîne du Père Noël",
+      "status": "not-found-on-ses4-public-listings",
+      "satelliteId": null,
+      "serviceId": null,
+      "sourceVerified": false,
+      "physicalReceptionVerified": false,
+      "redistributionEnabled": false
+    },
+    {
+      "channelNumber": 188,
+      "id": "s-plus-box-office",
+      "name": "S+ Box Office",
+      "status": "not-found-on-ses4-public-listings",
+      "satelliteId": null,
+      "serviceId": null,
+      "sourceVerified": false,
+      "physicalReceptionVerified": false,
+      "redistributionEnabled": false
+    },
+    {
+      "channelNumber": 189,
+      "id": "s-plus-grand-ecran",
+      "name": "S+ Grand Ecran",
+      "status": "not-found-on-ses4-public-listings",
+      "satelliteId": null,
+      "serviceId": null,
+      "sourceVerified": false,
+      "physicalReceptionVerified": false,
+      "redistributionEnabled": false
+    },
+    {
+      "channelNumber": 190,
+      "id": "s-plus-cinema-s",
+      "name": "S+ Cinéma(s)",
+      "status": "not-found-on-ses4-public-listings",
+      "satelliteId": null,
+      "serviceId": null,
+      "sourceVerified": false,
+      "physicalReceptionVerified": false,
+      "redistributionEnabled": false
+    },
+    {
+      "channelNumber": 191,
+      "id": "s-plus-sport-360",
+      "name": "S+ Sport 360",
+      "status": "not-found-on-ses4-public-listings",
+      "satelliteId": null,
+      "serviceId": null,
+      "sourceVerified": false,
+      "physicalReceptionVerified": false,
+      "redistributionEnabled": false
+    },
+    {
+      "channelNumber": 192,
+      "id": "s-plus-docs-canalplus",
+      "name": "S+ Docs Canal+",
+      "status": "not-found-on-ses4-public-listings",
+      "satelliteId": null,
+      "serviceId": null,
+      "sourceVerified": false,
+      "physicalReceptionVerified": false,
+      "redistributionEnabled": false
+    },
+    {
+      "channelNumber": 193,
+      "id": "s-plus-foot",
+      "name": "S+ Foot",
+      "status": "not-found-on-ses4-public-listings",
+      "satelliteId": null,
+      "serviceId": null,
+      "sourceVerified": false,
+      "physicalReceptionVerified": false,
+      "redistributionEnabled": false
+    },
+    {
+      "channelNumber": 85,
+      "id": "bein-sports",
+      "name": "beIN SPORTS",
+      "status": "not-found-on-ses4-public-listings",
+      "satelliteId": null,
+      "serviceId": null,
+      "sourceVerified": false,
+      "physicalReceptionVerified": false,
+      "redistributionEnabled": false
+    },
+    {
+      "channelNumber": 86,
+      "id": "eurosport-1",
+      "name": "Eurosport 1",
+      "status": "found-encrypted",
+      "satelliteId": "ses-4-22w",
+      "serviceId": "sid-8906",
+      "sourceVerified": false,
+      "physicalReceptionVerified": false,
+      "redistributionEnabled": false,
+      "encryption": {
+        "scrambled": true,
+        "systems": [
+          "Mediaguard",
+          "Nagravision"
+        ],
+        "authorizationRequired": true
+      },
+      "transponder": {
+        "frequencyMHz": 11171,
+        "polarization": "V",
+        "symbolRateKsym": 45000,
+        "sid": 8906
+      }
+    },
+    {
+      "channelNumber": 87,
+      "id": "automoto",
+      "name": "Automoto",
+      "status": "found-encrypted",
+      "satelliteId": "ses-4-22w",
+      "serviceId": "sid-8326",
+      "sourceVerified": false,
+      "physicalReceptionVerified": false,
+      "redistributionEnabled": false,
+      "encryption": {
+        "scrambled": true,
+        "systems": [
+          "Mediaguard",
+          "Nagravision"
+        ],
+        "authorizationRequired": true
+      },
+      "transponder": {
+        "frequencyMHz": 12570,
+        "polarization": "V",
+        "symbolRateKsym": 30000,
+        "sid": 8326
+      }
+    },
+    {
+      "channelNumber": 88,
+      "id": "equidia",
+      "name": "Equidia",
+      "status": "not-found-on-ses4-public-listings",
+      "satelliteId": null,
+      "serviceId": null,
+      "sourceVerified": false,
+      "physicalReceptionVerified": false,
+      "redistributionEnabled": false
+    },
+    {
+      "channelNumber": 226,
+      "id": "cine-plus-frisson",
+      "name": "Ciné+ Frisson",
+      "status": "not-found-on-ses4-public-listings",
+      "satelliteId": null,
+      "serviceId": null,
+      "sourceVerified": false,
+      "physicalReceptionVerified": false,
+      "redistributionEnabled": false
+    },
+    {
+      "channelNumber": 227,
+      "id": "cine-plus-emotion",
+      "name": "Ciné+ Emotion",
+      "status": "not-found-on-ses4-public-listings",
+      "satelliteId": null,
+      "serviceId": null,
+      "sourceVerified": false,
+      "physicalReceptionVerified": false,
+      "redistributionEnabled": false
+    },
+    {
+      "channelNumber": 228,
+      "id": "cine-plus-family",
+      "name": "Ciné+ Family",
+      "status": "not-found-on-ses4-public-listings",
+      "satelliteId": null,
+      "serviceId": null,
+      "sourceVerified": false,
+      "physicalReceptionVerified": false,
+      "redistributionEnabled": false
+    },
+    {
+      "channelNumber": 229,
+      "id": "cine-plus-festival",
+      "name": "Ciné+ Festival",
+      "status": "not-found-on-ses4-public-listings",
+      "satelliteId": null,
+      "serviceId": null,
+      "sourceVerified": false,
+      "physicalReceptionVerified": false,
+      "redistributionEnabled": false
+    },
+    {
+      "channelNumber": 231,
+      "id": "cine-plus-classic",
+      "name": "Ciné+ Classic",
+      "status": "not-found-on-ses4-public-listings",
+      "satelliteId": null,
+      "serviceId": null,
+      "sourceVerified": false,
+      "physicalReceptionVerified": false,
+      "redistributionEnabled": false
+    },
+    {
+      "channelNumber": 230,
+      "id": "polar-plus",
+      "name": "POLAR+",
+      "status": "not-found-on-ses4-public-listings",
+      "satelliteId": null,
+      "serviceId": null,
+      "sourceVerified": false,
+      "physicalReceptionVerified": false,
+      "redistributionEnabled": false
+    },
+    {
+      "channelNumber": 232,
+      "id": "comedie-plus",
+      "name": "Comédie+",
+      "status": "not-found-on-ses4-public-listings",
+      "satelliteId": null,
+      "serviceId": null,
+      "sourceVerified": false,
+      "physicalReceptionVerified": false,
+      "redistributionEnabled": false
+    },
+    {
+      "channelNumber": 233,
+      "id": "paris-premiere",
+      "name": "Paris Première",
+      "status": "not-found-on-ses4-public-listings",
+      "satelliteId": null,
+      "serviceId": null,
+      "sourceVerified": false,
+      "physicalReceptionVerified": false,
+      "redistributionEnabled": false
+    },
+    {
+      "channelNumber": 234,
+      "id": "teva",
+      "name": "Téva",
+      "status": "not-found-on-ses4-public-listings",
+      "satelliteId": null,
+      "serviceId": null,
+      "sourceVerified": false,
+      "physicalReceptionVerified": false,
+      "redistributionEnabled": false
+    },
+    {
+      "channelNumber": 235,
+      "id": "serie-club",
+      "name": "Série Club",
+      "status": "found-encrypted",
+      "satelliteId": "ses-4-22w",
+      "serviceId": "sid-8225",
+      "sourceVerified": false,
+      "physicalReceptionVerified": false,
+      "redistributionEnabled": false,
+      "encryption": {
+        "scrambled": true,
+        "systems": [
+          "Mediaguard",
+          "Nagravision"
+        ],
+        "authorizationRequired": true
+      },
+      "transponder": {
+        "frequencyMHz": 10986,
+        "polarization": "V",
+        "symbolRateKsym": 30000,
+        "sid": 8225
+      }
+    },
+    {
+      "channelNumber": 236,
+      "id": "showtime",
+      "name": "Showtime",
+      "status": "not-found-on-ses4-public-listings",
+      "satelliteId": null,
+      "serviceId": null,
+      "sourceVerified": false,
+      "physicalReceptionVerified": false,
+      "redistributionEnabled": false
+    },
+    {
+      "channelNumber": 237,
+      "id": "starz",
+      "name": "Starz",
+      "status": "not-found-on-ses4-public-listings",
+      "satelliteId": null,
+      "serviceId": null,
+      "sourceVerified": false,
+      "physicalReceptionVerified": false,
+      "redistributionEnabled": false
+    },
+    {
+      "channelNumber": 238,
+      "id": "nrj-hits",
+      "name": "NRJ Hits",
+      "status": "not-found-on-ses4-public-listings",
+      "satelliteId": null,
+      "serviceId": null,
+      "sourceVerified": false,
+      "physicalReceptionVerified": false,
+      "redistributionEnabled": false
+    },
+    {
+      "channelNumber": 239,
+      "id": "europe-2-pop-tv",
+      "name": "Europe 2 POP TV",
+      "status": "not-found-on-ses4-public-listings",
+      "satelliteId": null,
+      "serviceId": null,
+      "sourceVerified": false,
+      "physicalReceptionVerified": false,
+      "redistributionEnabled": false
+    },
+    {
+      "channelNumber": 240,
+      "id": "m6-music",
+      "name": "M6 Music",
+      "status": "not-found-on-ses4-public-listings",
+      "satelliteId": null,
+      "serviceId": null,
+      "sourceVerified": false,
+      "physicalReceptionVerified": false,
+      "redistributionEnabled": false
+    },
+    {
+      "channelNumber": 241,
+      "id": "trace-urban",
+      "name": "Trace Urban",
+      "status": "found-encrypted",
+      "satelliteId": "ses-4-22w",
+      "serviceId": "sid-8919",
+      "sourceVerified": false,
+      "physicalReceptionVerified": false,
+      "redistributionEnabled": false,
+      "encryption": {
+        "scrambled": true,
+        "systems": [
+          "Mediaguard",
+          "Nagravision"
+        ],
+        "authorizationRequired": true
+      },
+      "transponder": {
+        "frequencyMHz": 11171,
+        "polarization": "V",
+        "symbolRateKsym": 45000,
+        "sid": 8919
+      }
+    },
+    {
+      "channelNumber": 242,
+      "id": "rfm-tv",
+      "name": "RFM TV",
+      "status": "not-found-on-ses4-public-listings",
+      "satelliteId": null,
+      "serviceId": null,
+      "sourceVerified": false,
+      "physicalReceptionVerified": false,
+      "redistributionEnabled": false
+    },
+    {
+      "channelNumber": 243,
+      "id": "deutsche-grammophon-plus",
+      "name": "Deutsche Grammophon+",
+      "status": "not-found-on-ses4-public-listings",
+      "satelliteId": null,
+      "serviceId": null,
+      "sourceVerified": false,
+      "physicalReceptionVerified": false,
+      "redistributionEnabled": false
+    },
+    {
+      "channelNumber": 244,
+      "id": "melody",
+      "name": "Melody",
+      "status": "not-found-on-ses4-public-listings",
+      "satelliteId": null,
+      "serviceId": null,
+      "sourceVerified": false,
+      "physicalReceptionVerified": false,
+      "redistributionEnabled": false
+    },
+    {
+      "channelNumber": 245,
+      "id": "mezzo",
+      "name": "Mezzo",
+      "status": "found-encrypted",
+      "satelliteId": "ses-4-22w",
+      "serviceId": "sid-8918",
+      "sourceVerified": false,
+      "physicalReceptionVerified": false,
+      "redistributionEnabled": false,
+      "encryption": {
+        "scrambled": true,
+        "systems": [
+          "Mediaguard",
+          "Nagravision"
+        ],
+        "authorizationRequired": true
+      },
+      "transponder": {
+        "frequencyMHz": 11171,
+        "polarization": "V",
+        "symbolRateKsym": 45000,
+        "sid": 8918
+      }
+    },
+    {
+      "channelNumber": 246,
+      "id": "mezzo-live-hd",
+      "name": "Mezzo Live HD",
+      "status": "not-found-on-ses4-public-listings",
+      "satelliteId": null,
+      "serviceId": null,
+      "sourceVerified": false,
+      "physicalReceptionVerified": false,
+      "redistributionEnabled": false
+    },
+    {
+      "channelNumber": 247,
+      "id": "mtv",
+      "name": "MTV",
+      "status": "not-found-on-ses4-public-listings",
+      "satelliteId": null,
+      "serviceId": null,
+      "sourceVerified": false,
+      "physicalReceptionVerified": false,
+      "redistributionEnabled": false
+    },
+    {
+      "channelNumber": 248,
+      "id": "trace-africa",
+      "name": "Trace Africa",
+      "status": "found-encrypted",
+      "satelliteId": "ses-4-22w",
+      "serviceId": "sid-4134",
+      "sourceVerified": false,
+      "physicalReceptionVerified": false,
+      "redistributionEnabled": false,
+      "encryption": {
+        "scrambled": true,
+        "systems": [
+          "Mediaguard",
+          "Nagravision"
+        ],
+        "authorizationRequired": true
+      },
+      "transponder": {
+        "frequencyMHz": 11051,
+        "polarization": "V",
+        "symbolRateKsym": 45000,
+        "sid": 4134
+      }
+    },
+    {
+      "channelNumber": 249,
+      "id": "trace-ivoire",
+      "name": "Trace Ivoire",
+      "status": "not-found-on-ses4-public-listings",
+      "satelliteId": null,
+      "serviceId": null,
+      "sourceVerified": false,
+      "physicalReceptionVerified": false,
+      "redistributionEnabled": false
+    },
+    {
+      "channelNumber": 250,
+      "id": "z-magic",
+      "name": "Z Magic",
+      "status": "not-found-on-ses4-public-listings",
+      "satelliteId": null,
+      "serviceId": null,
+      "sourceVerified": false,
+      "physicalReceptionVerified": false,
+      "redistributionEnabled": false
+    },
+    {
+      "channelNumber": 251,
+      "id": "seasons",
+      "name": "Seasons",
+      "status": "not-found-on-ses4-public-listings",
+      "satelliteId": null,
+      "serviceId": null,
+      "sourceVerified": false,
+      "physicalReceptionVerified": false,
+      "redistributionEnabled": false
+    },
+    {
+      "channelNumber": 252,
+      "id": "chasse-et-peche",
+      "name": "Chasse et Pêche",
+      "status": "not-found-on-ses4-public-listings",
+      "satelliteId": null,
+      "serviceId": null,
+      "sourceVerified": false,
+      "physicalReceptionVerified": false,
+      "redistributionEnabled": false
+    },
+    {
+      "channelNumber": 253,
+      "id": "animaux",
+      "name": "Animaux",
+      "status": "found-encrypted",
+      "satelliteId": "ses-4-22w",
+      "serviceId": "sid-4004",
+      "sourceVerified": false,
+      "physicalReceptionVerified": false,
+      "redistributionEnabled": false,
+      "encryption": {
+        "scrambled": true,
+        "systems": [
+          "Mediaguard",
+          "Nagravision"
+        ],
+        "authorizationRequired": true
+      },
+      "transponder": {
+        "frequencyMHz": 11551,
+        "polarization": "V",
+        "symbolRateKsym": 45000,
+        "sid": 4004
+      }
+    },
+    {
+      "channelNumber": 254,
+      "id": "cheval-tv",
+      "name": "Cheval TV",
+      "status": "not-found-on-ses4-public-listings",
+      "satelliteId": null,
+      "serviceId": null,
+      "sourceVerified": false,
+      "physicalReceptionVerified": false,
+      "redistributionEnabled": false
+    },
+    {
+      "channelNumber": 255,
+      "id": "mieux-tv",
+      "name": "Mieux TV",
+      "status": "not-found-on-ses4-public-listings",
+      "satelliteId": null,
+      "serviceId": null,
+      "sourceVerified": false,
+      "physicalReceptionVerified": false,
+      "redistributionEnabled": false
+    },
+    {
+      "channelNumber": 256,
+      "id": "dog-cat-tv",
+      "name": "Dog & Cat TV",
+      "status": "not-found-on-ses4-public-listings",
+      "satelliteId": null,
+      "serviceId": null,
+      "sourceVerified": false,
+      "physicalReceptionVerified": false,
+      "redistributionEnabled": false
+    },
+    {
+      "channelNumber": 257,
+      "id": "love-nature",
+      "name": "Love Nature",
+      "status": "not-found-on-ses4-public-listings",
+      "satelliteId": null,
+      "serviceId": null,
+      "sourceVerified": false,
+      "physicalReceptionVerified": false,
+      "redistributionEnabled": false
+    },
+    {
+      "channelNumber": 258,
+      "id": "museum-tv",
+      "name": "Museum TV",
+      "status": "not-found-on-ses4-public-listings",
+      "satelliteId": null,
+      "serviceId": null,
+      "sourceVerified": false,
+      "physicalReceptionVerified": false,
+      "redistributionEnabled": false
+    },
+    {
+      "channelNumber": 259,
+      "id": "planete-plus-crime",
+      "name": "Planète+ Crime",
+      "status": "found-encrypted",
+      "satelliteId": "ses-4-22w",
+      "serviceId": "sid-8412",
+      "sourceVerified": false,
+      "physicalReceptionVerified": false,
+      "redistributionEnabled": false,
+      "encryption": {
+        "scrambled": true,
+        "systems": [
+          "Mediaguard",
+          "Nagravision"
+        ],
+        "authorizationRequired": true
+      },
+      "transponder": {
+        "frequencyMHz": 12610,
+        "polarization": "V",
+        "symbolRateKsym": 30000,
+        "sid": 8412
+      }
+    },
+    {
+      "channelNumber": 260,
+      "id": "planete-plus-aventure",
+      "name": "Planète+ Aventure",
+      "status": "found-encrypted",
+      "satelliteId": "ses-4-22w",
+      "serviceId": "sid-8508",
+      "sourceVerified": false,
+      "physicalReceptionVerified": false,
+      "redistributionEnabled": false,
+      "encryption": {
+        "scrambled": true,
+        "systems": [
+          "Mediaguard",
+          "Nagravision"
+        ],
+        "authorizationRequired": true
+      },
+      "transponder": {
+        "frequencyMHz": 12650,
+        "polarization": "V",
+        "symbolRateKsym": 30000,
+        "sid": 8508
+      }
+    },
+    {
+      "channelNumber": 261,
+      "id": "science-et-vie-tv",
+      "name": "Science & Vie TV",
+      "status": "found-encrypted",
+      "satelliteId": "ses-4-22w",
+      "serviceId": "sid-8711",
+      "sourceVerified": false,
+      "physicalReceptionVerified": false,
+      "redistributionEnabled": false,
+      "encryption": {
+        "scrambled": true,
+        "systems": [
+          "Mediaguard",
+          "Nagravision"
+        ],
+        "authorizationRequired": true
+      },
+      "transponder": {
+        "frequencyMHz": 12730,
+        "polarization": "V",
+        "symbolRateKsym": 30000,
+        "sid": 8711
+      }
+    },
+    {
+      "channelNumber": 262,
+      "id": "toute-l-histoire",
+      "name": "Toute l'Histoire",
+      "status": "found-encrypted",
+      "satelliteId": "ses-4-22w",
+      "serviceId": "sid-4022",
+      "sourceVerified": false,
+      "physicalReceptionVerified": false,
+      "redistributionEnabled": false,
+      "encryption": {
+        "scrambled": true,
+        "systems": [
+          "Mediaguard",
+          "Nagravision"
+        ],
+        "authorizationRequired": true
+      },
+      "transponder": {
+        "frequencyMHz": 11551,
+        "polarization": "V",
+        "symbolRateKsym": 45000,
+        "sid": 4022
+      }
+    },
+    {
+      "channelNumber": 263,
+      "id": "mgg-tv",
+      "name": "MGG TV",
+      "status": "found-encrypted",
+      "satelliteId": "ses-4-22w",
+      "serviceId": "sid-8325",
+      "sourceVerified": false,
+      "physicalReceptionVerified": false,
+      "redistributionEnabled": false,
+      "encryption": {
+        "scrambled": true,
+        "systems": [
+          "Mediaguard",
+          "Nagravision"
+        ],
+        "authorizationRequired": true
+      },
+      "transponder": {
+        "frequencyMHz": 12570,
+        "polarization": "V",
+        "symbolRateKsym": 30000,
+        "sid": 8325
+      }
+    },
+    {
+      "channelNumber": 264,
+      "id": "golf-plus",
+      "name": "GOLF+",
+      "status": "not-found-on-ses4-public-listings",
+      "satelliteId": null,
+      "serviceId": null,
+      "sourceVerified": false,
+      "physicalReceptionVerified": false,
+      "redistributionEnabled": false
+    },
+    {
+      "channelNumber": 265,
+      "id": "infosport",
+      "name": "Infosport",
+      "status": "found-encrypted",
+      "satelliteId": "ses-4-22w",
+      "serviceId": "sid-8110",
+      "sourceVerified": false,
+      "physicalReceptionVerified": false,
+      "redistributionEnabled": false,
+      "encryption": {
+        "scrambled": true,
+        "systems": [
+          "Mediaguard",
+          "Nagravision"
+        ],
+        "authorizationRequired": true
+      },
+      "transponder": {
+        "frequencyMHz": 3749,
+        "polarization": "L",
+        "symbolRateKsym": 45830,
+        "sid": 8110
+      }
+    },
+    {
+      "channelNumber": 266,
+      "id": "sport-1",
+      "name": "Sport 1",
+      "status": "not-found-on-ses4-public-listings",
+      "satelliteId": null,
+      "serviceId": null,
+      "sourceVerified": false,
+      "physicalReceptionVerified": false,
+      "redistributionEnabled": false
+    },
+    {
+      "channelNumber": 267,
+      "id": "sport-2",
+      "name": "Sport 2",
+      "status": "not-found-on-ses4-public-listings",
+      "satelliteId": null,
+      "serviceId": null,
+      "sourceVerified": false,
+      "physicalReceptionVerified": false,
+      "redistributionEnabled": false
+    },
+    {
+      "channelNumber": 268,
+      "id": "sport-3",
+      "name": "Sport 3",
+      "status": "not-found-on-ses4-public-listings",
+      "satelliteId": null,
+      "serviceId": null,
+      "sourceVerified": false,
+      "physicalReceptionVerified": false,
+      "redistributionEnabled": false
+    },
+    {
+      "channelNumber": 269,
+      "id": "sport-4",
+      "name": "Sport 4",
+      "status": "not-found-on-ses4-public-listings",
+      "satelliteId": null,
+      "serviceId": null,
+      "sourceVerified": false,
+      "physicalReceptionVerified": false,
+      "redistributionEnabled": false
+    },
+    {
+      "channelNumber": 270,
+      "id": "la-chaine-meteo",
+      "name": "La Chaîne Météo",
+      "status": "not-found-on-ses4-public-listings",
+      "satelliteId": null,
+      "serviceId": null,
+      "sourceVerified": false,
+      "physicalReceptionVerified": false,
+      "redistributionEnabled": false
+    },
+    {
+      "channelNumber": 271,
+      "id": "7info",
+      "name": "7info",
+      "status": "found-encrypted",
+      "satelliteId": "ses-4-22w",
+      "serviceId": "sid-8323",
+      "sourceVerified": false,
+      "physicalReceptionVerified": false,
+      "redistributionEnabled": false,
+      "encryption": {
+        "scrambled": true,
+        "systems": [
+          "Mediaguard",
+          "Nagravision"
+        ],
+        "authorizationRequired": true
+      },
+      "transponder": {
+        "frequencyMHz": 12570,
+        "polarization": "V",
+        "symbolRateKsym": 30000,
+        "sid": 8323
+      }
+    },
+    {
+      "channelNumber": 272,
+      "id": "abc-news-live",
+      "name": "ABC News Live",
+      "status": "not-found-on-ses4-public-listings",
+      "satelliteId": null,
+      "serviceId": null,
+      "sourceVerified": false,
+      "physicalReceptionVerified": false,
+      "redistributionEnabled": false
+    },
+    {
+      "channelNumber": 273,
+      "id": "al-jazeera",
+      "name": "Al Jazeera",
+      "status": "not-found-on-ses4-public-listings",
+      "satelliteId": null,
+      "serviceId": null,
+      "sourceVerified": false,
+      "physicalReceptionVerified": false,
+      "redistributionEnabled": false
+    },
+    {
+      "channelNumber": 274,
+      "id": "bbc-news",
+      "name": "BBC News",
+      "status": "not-found-on-ses4-public-listings",
+      "satelliteId": null,
+      "serviceId": null,
+      "sourceVerified": false,
+      "physicalReceptionVerified": false,
+      "redistributionEnabled": false
+    },
+    {
+      "channelNumber": 275,
+      "id": "bloomberg-tv",
+      "name": "Bloomberg TV",
+      "status": "not-found-on-ses4-public-listings",
+      "satelliteId": null,
+      "serviceId": null,
+      "sourceVerified": false,
+      "physicalReceptionVerified": false,
+      "redistributionEnabled": false
+    },
+    {
+      "channelNumber": 276,
+      "id": "c-span",
+      "name": "C-SPAN",
+      "status": "not-found-on-ses4-public-listings",
+      "satelliteId": null,
+      "serviceId": null,
+      "sourceVerified": false,
+      "physicalReceptionVerified": false,
+      "redistributionEnabled": false
+    },
+    {
+      "channelNumber": 277,
+      "id": "cbs-news-24-7",
+      "name": "CBS News 24/7",
+      "status": "not-found-on-ses4-public-listings",
+      "satelliteId": null,
+      "serviceId": null,
+      "sourceVerified": false,
+      "physicalReceptionVerified": false,
+      "redistributionEnabled": false
+    },
+    {
+      "channelNumber": 278,
+      "id": "cgtn",
+      "name": "CGTN",
+      "status": "found-encrypted",
+      "satelliteId": "ses-4-22w",
+      "serviceId": "sid-10",
+      "sourceVerified": false,
+      "physicalReceptionVerified": false,
+      "redistributionEnabled": false,
+      "encryption": {
+        "scrambled": true,
+        "systems": [
+          "Mediaguard",
+          "Nagravision"
+        ],
+        "authorizationRequired": true
+      },
+      "transponder": {
+        "frequencyMHz": 11671,
+        "polarization": "V",
+        "symbolRateKsym": 30000,
+        "sid": 10
+      }
+    },
+    {
+      "channelNumber": 279,
+      "id": "cnbc",
+      "name": "CNBC",
+      "status": "not-found-on-ses4-public-listings",
+      "satelliteId": null,
+      "serviceId": null,
+      "sourceVerified": false,
+      "physicalReceptionVerified": false,
+      "redistributionEnabled": false
+    },
+    {
+      "channelNumber": 280,
+      "id": "cnn",
+      "name": "CNN",
+      "status": "not-found-on-ses4-public-listings",
+      "satelliteId": null,
+      "serviceId": null,
+      "sourceVerified": false,
+      "physicalReceptionVerified": false,
+      "redistributionEnabled": false
+    },
+    {
+      "channelNumber": 281,
+      "id": "nbc-news-now",
+      "name": "NBC News NOW",
+      "status": "not-found-on-ses4-public-listings",
+      "satelliteId": null,
+      "serviceId": null,
+      "sourceVerified": false,
+      "physicalReceptionVerified": false,
+      "redistributionEnabled": false
+    },
+    {
+      "channelNumber": 282,
+      "id": "newsmax",
+      "name": "Newsmax",
+      "status": "not-found-on-ses4-public-listings",
+      "satelliteId": null,
+      "serviceId": null,
+      "sourceVerified": false,
+      "physicalReceptionVerified": false,
+      "redistributionEnabled": false
+    },
+    {
+      "channelNumber": 283,
+      "id": "newsnation",
+      "name": "NewsNation",
+      "status": "not-found-on-ses4-public-listings",
+      "satelliteId": null,
+      "serviceId": null,
+      "sourceVerified": false,
+      "physicalReceptionVerified": false,
+      "redistributionEnabled": false
+    },
+    {
+      "channelNumber": 284,
+      "id": "nhk-world",
+      "name": "NHK World",
+      "status": "found-encrypted",
+      "satelliteId": "ses-4-22w",
+      "serviceId": "sid-5",
+      "sourceVerified": false,
+      "physicalReceptionVerified": false,
+      "redistributionEnabled": false,
+      "encryption": {
+        "scrambled": true,
+        "systems": [
+          "Mediaguard",
+          "Nagravision"
+        ],
+        "authorizationRequired": true
+      },
+      "transponder": {
+        "frequencyMHz": 11671,
+        "polarization": "V",
+        "symbolRateKsym": 30000,
+        "sid": 5
+      }
+    },
+    {
+      "channelNumber": 285,
+      "id": "oan",
+      "name": "OAN",
+      "status": "not-found-on-ses4-public-listings",
+      "satelliteId": null,
+      "serviceId": null,
+      "sourceVerified": false,
+      "physicalReceptionVerified": false,
+      "redistributionEnabled": false
+    },
+    {
+      "channelNumber": 286,
+      "id": "sky-news",
+      "name": "Sky News",
+      "status": "not-found-on-ses4-public-listings",
+      "satelliteId": null,
+      "serviceId": null,
+      "sourceVerified": false,
+      "physicalReceptionVerified": false,
+      "redistributionEnabled": false
+    },
+    {
+      "channelNumber": 287,
+      "id": "the-weather-channel",
+      "name": "The Weather Channel",
+      "status": "not-found-on-ses4-public-listings",
+      "satelliteId": null,
+      "serviceId": null,
+      "sourceVerified": false,
+      "physicalReceptionVerified": false,
+      "redistributionEnabled": false
+    },
+    {
+      "channelNumber": 288,
+      "id": "trt-world",
+      "name": "TRT World",
+      "status": "not-found-on-ses4-public-listings",
+      "satelliteId": null,
+      "serviceId": null,
+      "sourceVerified": false,
+      "physicalReceptionVerified": false,
+      "redistributionEnabled": false
+    },
+    {
+      "channelNumber": 289,
+      "id": "a-plus",
+      "name": "A+",
+      "status": "not-found-on-ses4-public-listings",
+      "satelliteId": null,
+      "serviceId": null,
+      "sourceVerified": false,
+      "physicalReceptionVerified": false,
+      "redistributionEnabled": false
+    },
+    {
+      "channelNumber": 290,
+      "id": "m6-international",
+      "name": "M6 International",
+      "status": "found-encrypted",
+      "satelliteId": "ses-4-22w",
+      "serviceId": "sid-8501",
+      "sourceVerified": false,
+      "physicalReceptionVerified": false,
+      "redistributionEnabled": false,
+      "encryption": {
+        "scrambled": true,
+        "systems": [
+          "Mediaguard",
+          "Nagravision"
+        ],
+        "authorizationRequired": true
+      },
+      "transponder": {
+        "frequencyMHz": 12650,
+        "polarization": "V",
+        "symbolRateKsym": 30000,
+        "sid": 8501
+      }
+    },
+    {
+      "channelNumber": 291,
+      "id": "maboke-tv",
+      "name": "Maboke TV",
+      "status": "found-encrypted",
+      "satelliteId": "ses-4-22w",
+      "serviceId": "sid-8618",
+      "sourceVerified": false,
+      "physicalReceptionVerified": false,
+      "redistributionEnabled": false,
+      "encryption": {
+        "scrambled": true,
+        "systems": [
+          "Mediaguard",
+          "Nagravision"
+        ],
+        "authorizationRequired": true
+      },
+      "transponder": {
+        "frequencyMHz": 12690,
+        "polarization": "V",
+        "symbolRateKsym": 30000,
+        "sid": 8618
+      }
+    },
+    {
+      "channelNumber": 292,
+      "id": "magc-tv",
+      "name": "MAGC TV",
+      "status": "not-found-on-ses4-public-listings",
+      "satelliteId": null,
+      "serviceId": null,
+      "sourceVerified": false,
+      "physicalReceptionVerified": false,
+      "redistributionEnabled": false
+    },
+    {
+      "channelNumber": 293,
+      "id": "sunu-yeuf",
+      "name": "Sunu Yeuf",
+      "status": "found-encrypted",
+      "satelliteId": "ses-4-22w",
+      "serviceId": "sid-8421",
+      "sourceVerified": false,
+      "physicalReceptionVerified": false,
+      "redistributionEnabled": false,
+      "encryption": {
+        "scrambled": true,
+        "systems": [
+          "Mediaguard",
+          "Nagravision"
+        ],
+        "authorizationRequired": true
+      },
+      "transponder": {
+        "frequencyMHz": 12610,
+        "polarization": "V",
+        "symbolRateKsym": 30000,
+        "sid": 8421
+      }
+    },
+    {
+      "channelNumber": 294,
+      "id": "vifi-tv",
+      "name": "VIFI TV",
+      "status": "not-found-on-ses4-public-listings",
+      "satelliteId": null,
+      "serviceId": null,
+      "sourceVerified": false,
+      "physicalReceptionVerified": false,
+      "redistributionEnabled": false
+    },
+    {
+      "channelNumber": 295,
+      "id": "zacu-tv",
+      "name": "Zacu TV",
+      "status": "found-encrypted",
+      "satelliteId": "ses-4-22w",
+      "serviceId": "sid-4018",
+      "sourceVerified": false,
+      "physicalReceptionVerified": false,
+      "redistributionEnabled": false,
+      "encryption": {
+        "scrambled": true,
+        "systems": [
+          "Mediaguard",
+          "Nagravision"
+        ],
+        "authorizationRequired": true
+      },
+      "transponder": {
+        "frequencyMHz": 11551,
+        "polarization": "V",
+        "symbolRateKsym": 45000,
+        "sid": 4018
+      }
+    },
+    {
+      "channelNumber": 296,
+      "id": "zbc",
+      "name": "ZBC",
+      "status": "not-found-on-ses4-public-listings",
+      "satelliteId": null,
+      "serviceId": null,
+      "sourceVerified": false,
+      "physicalReceptionVerified": false,
+      "redistributionEnabled": false
+    },
+    {
+      "channelNumber": 297,
+      "id": "emci-tv",
+      "name": "EMCI TV",
+      "status": "found-encrypted",
+      "satelliteId": "ses-4-22w",
+      "serviceId": "sid-61",
+      "sourceVerified": false,
+      "physicalReceptionVerified": false,
+      "redistributionEnabled": false,
+      "encryption": {
+        "scrambled": true,
+        "systems": [
+          "Mediaguard",
+          "Nagravision"
+        ],
+        "authorizationRequired": true
+      },
+      "transponder": {
+        "frequencyMHz": 11671,
+        "polarization": "V",
+        "symbolRateKsym": 30000,
+        "sid": 61
+      }
+    },
+    {
+      "channelNumber": 298,
+      "id": "esperance-tv",
+      "name": "Espérance TV",
+      "status": "not-found-on-ses4-public-listings",
+      "satelliteId": null,
+      "serviceId": null,
+      "sourceVerified": false,
+      "physicalReceptionVerified": false,
+      "redistributionEnabled": false
+    },
+    {
+      "channelNumber": 299,
+      "id": "ewtn",
+      "name": "EWTN",
+      "status": "not-found-on-ses4-public-listings",
+      "satelliteId": null,
+      "serviceId": null,
+      "sourceVerified": false,
+      "physicalReceptionVerified": false,
+      "redistributionEnabled": false
+    },
+    {
+      "channelNumber": 300,
+      "id": "hope-channel",
+      "name": "Hope Channel",
+      "status": "not-found-on-ses4-public-listings",
+      "satelliteId": null,
+      "serviceId": null,
+      "sourceVerified": false,
+      "physicalReceptionVerified": false,
+      "redistributionEnabled": false
+    },
+    {
+      "channelNumber": 301,
+      "id": "kto",
+      "name": "KTO",
+      "status": "found-encrypted",
+      "satelliteId": "ses-4-22w",
+      "serviceId": "sid-8601",
+      "sourceVerified": false,
+      "physicalReceptionVerified": false,
+      "redistributionEnabled": false,
+      "encryption": {
+        "scrambled": true,
+        "systems": [
+          "Mediaguard",
+          "Nagravision"
+        ],
+        "authorizationRequired": true
+      },
+      "transponder": {
+        "frequencyMHz": 12690,
+        "polarization": "V",
+        "symbolRateKsym": 30000,
+        "sid": 8601
+      }
+    },
+    {
+      "channelNumber": 302,
+      "id": "top-chretien",
+      "name": "Top Chrétien",
+      "status": "not-found-on-ses4-public-listings",
+      "satelliteId": null,
+      "serviceId": null,
+      "sourceVerified": false,
+      "physicalReceptionVerified": false,
+      "redistributionEnabled": false
+    },
+    {
+      "channelNumber": 303,
+      "id": "trace-gospel",
+      "name": "Trace Gospel",
+      "status": "found-encrypted",
+      "satelliteId": "ses-4-22w",
+      "serviceId": "sid-8706",
+      "sourceVerified": false,
+      "physicalReceptionVerified": false,
+      "redistributionEnabled": false,
+      "encryption": {
+        "scrambled": true,
+        "systems": [
+          "Mediaguard",
+          "Nagravision"
+        ],
+        "authorizationRequired": true
+      },
+      "transponder": {
+        "frequencyMHz": 12730,
+        "polarization": "V",
+        "symbolRateKsym": 30000,
+        "sid": 8706
+      }
+    },
+    {
+      "channelNumber": 304,
+      "id": "cuisines",
+      "name": "Cuisines",
+      "status": "found-encrypted",
+      "satelliteId": "ses-4-22w",
+      "serviceId": "sid-8120",
+      "sourceVerified": false,
+      "physicalReceptionVerified": false,
+      "redistributionEnabled": false,
+      "encryption": {
+        "scrambled": true,
+        "systems": [
+          "Mediaguard",
+          "Nagravision"
+        ],
+        "authorizationRequired": true
+      },
+      "transponder": {
+        "frequencyMHz": 12530,
+        "polarization": "V",
+        "symbolRateKsym": 30000,
+        "sid": 8120
+      }
+    },
+    {
+      "channelNumber": 305,
+      "id": "nollywood-tv",
+      "name": "Nollywood TV",
+      "status": "found-encrypted",
+      "satelliteId": "ses-4-22w",
+      "serviceId": "sid-4128",
+      "sourceVerified": false,
+      "physicalReceptionVerified": false,
+      "redistributionEnabled": false,
+      "encryption": {
+        "scrambled": true,
+        "systems": [
+          "Mediaguard",
+          "Nagravision"
+        ],
+        "authorizationRequired": true
+      },
+      "transponder": {
+        "frequencyMHz": 3749,
+        "polarization": "L",
+        "symbolRateKsym": 45830,
+        "sid": 4128
+      }
+    },
+    {
+      "channelNumber": 306,
+      "id": "nollywood-tv-epic",
+      "name": "Nollywood TV Epic",
+      "status": "found-encrypted",
+      "satelliteId": "ses-4-22w",
+      "serviceId": "sid-8409",
+      "sourceVerified": false,
+      "physicalReceptionVerified": false,
+      "redistributionEnabled": false,
+      "encryption": {
+        "scrambled": true,
+        "systems": [
+          "Mediaguard",
+          "Nagravision"
+        ],
+        "authorizationRequired": true
+      },
+      "transponder": {
+        "frequencyMHz": 12610,
+        "polarization": "V",
+        "symbolRateKsym": 30000,
+        "sid": 8409
+      }
+    },
+    {
+      "channelNumber": 307,
+      "id": "passion-bollywood",
+      "name": "Passion Bollywood",
+      "status": "not-found-on-ses4-public-listings",
+      "satelliteId": null,
+      "serviceId": null,
+      "sourceVerified": false,
+      "physicalReceptionVerified": false,
+      "redistributionEnabled": false
+    },
+    {
+      "channelNumber": 308,
+      "id": "clique-tv",
+      "name": "Clique TV",
+      "status": "found-encrypted",
+      "satelliteId": "ses-4-22w",
+      "serviceId": "sid-8920",
+      "sourceVerified": false,
+      "physicalReceptionVerified": false,
+      "redistributionEnabled": false,
+      "encryption": {
+        "scrambled": true,
+        "systems": [
+          "Mediaguard",
+          "Nagravision"
+        ],
+        "authorizationRequired": true
+      },
+      "transponder": {
+        "frequencyMHz": 11171,
+        "polarization": "V",
+        "symbolRateKsym": 45000,
+        "sid": 8920
+      }
+    },
+    {
+      "channelNumber": 309,
+      "id": "cine-plus-ocs",
+      "name": "Ciné+ OCS",
+      "status": "not-found-on-ses4-public-listings",
+      "satelliteId": null,
+      "serviceId": null,
+      "sourceVerified": false,
+      "physicalReceptionVerified": false,
+      "redistributionEnabled": false
+    }
   ],
-  /**
-   * Master catalogue attachment state. Every one of the 234 StreamLive channels
-   * is represented here before satellite matching. A channel remains in the
-   * master catalogue when no satellite source has been verified yet.
-   */
-  catalogueCoverage: [
-  {
-    "catalogueId": "rti-1",
-    "channelNumber": 1,
-    "name": "RTI 1",
-    "status": "satellite-candidates-found-awaiting-receiver-verification",
-    "satelliteId": "ses-4-22w",
-    "serviceId": null,
-    "satelliteCandidates": ["ses-4-22w-10986v-30000", "ses-4-22w-3749l-45830"],
-    "sourceVerified": false,
-    "redistributionEnabled": false
-  },
-  {
-    "catalogueId": "rti-2",
-    "channelNumber": 2,
-    "name": "RTI 2",
-    "status": "pending-satellite-match",
-    "satelliteId": null,
-    "serviceId": null,
-    "sourceVerified": false,
-    "redistributionEnabled": false
-  },
-  {
-    "catalogueId": "la-3",
-    "channelNumber": 3,
-    "name": "La 3",
-    "status": "pending-satellite-match",
-    "satelliteId": null,
-    "serviceId": null,
-    "sourceVerified": false,
-    "redistributionEnabled": false
-  },
-  {
-    "catalogueId": "a-plus-ivoire",
-    "channelNumber": 4,
-    "name": "A+ Ivoire",
-    "status": "pending-satellite-match",
-    "satelliteId": null,
-    "serviceId": null,
-    "sourceVerified": false,
-    "redistributionEnabled": false
-  },
-  {
-    "catalogueId": "life-tv",
-    "channelNumber": 5,
-    "name": "Life TV",
-    "status": "pending-satellite-match",
-    "satelliteId": null,
-    "serviceId": null,
-    "sourceVerified": false,
-    "redistributionEnabled": false
-  },
-  {
-    "catalogueId": "nci",
-    "channelNumber": 6,
-    "name": "NCI",
-    "status": "pending-satellite-match",
-    "satelliteId": null,
-    "serviceId": null,
-    "sourceVerified": false,
-    "redistributionEnabled": false
-  },
-  {
-    "catalogueId": "s-plus-cote-divoire",
-    "channelNumber": 185,
-    "name": "S+ Côte d’Ivoire",
-    "status": "pending-satellite-match",
-    "satelliteId": null,
-    "serviceId": null,
-    "sourceVerified": false,
-    "redistributionEnabled": false
-  },
-  {
-    "catalogueId": "6ter",
-    "channelNumber": 10,
-    "name": "6ter",
-    "status": "pending-satellite-match",
-    "satelliteId": null,
-    "serviceId": null,
-    "sourceVerified": false,
-    "redistributionEnabled": false
-  },
-  {
-    "catalogueId": "arte",
-    "channelNumber": 11,
-    "name": "Arte",
-    "status": "pending-satellite-match",
-    "satelliteId": null,
-    "serviceId": null,
-    "sourceVerified": false,
-    "redistributionEnabled": false
-  },
-  {
-    "catalogueId": "s-plus",
-    "channelNumber": 186,
-    "name": "S+",
-    "status": "pending-satellite-match",
-    "satelliteId": null,
-    "serviceId": null,
-    "sourceVerified": false,
-    "redistributionEnabled": false
-  },
-  {
-    "catalogueId": "france-2",
-    "channelNumber": 13,
-    "name": "France 2",
-    "status": "pending-satellite-match",
-    "satelliteId": null,
-    "serviceId": null,
-    "sourceVerified": false,
-    "redistributionEnabled": false
-  },
-  {
-    "catalogueId": "france-3",
-    "channelNumber": 14,
-    "name": "France 3",
-    "status": "pending-satellite-match",
-    "satelliteId": null,
-    "serviceId": null,
-    "sourceVerified": false,
-    "redistributionEnabled": false
-  },
-  {
-    "catalogueId": "france-4",
-    "channelNumber": 15,
-    "name": "France 4",
-    "status": "pending-satellite-match",
-    "satelliteId": null,
-    "serviceId": null,
-    "sourceVerified": false,
-    "redistributionEnabled": false
-  },
-  {
-    "catalogueId": "france-5",
-    "channelNumber": 16,
-    "name": "France 5",
-    "status": "pending-satellite-match",
-    "satelliteId": null,
-    "serviceId": null,
-    "sourceVerified": false,
-    "redistributionEnabled": false
-  },
-  {
-    "catalogueId": "m6",
-    "channelNumber": 17,
-    "name": "M6",
-    "status": "pending-satellite-match",
-    "satelliteId": null,
-    "serviceId": null,
-    "sourceVerified": false,
-    "redistributionEnabled": false
-  },
-  {
-    "catalogueId": "tf1",
-    "channelNumber": 18,
-    "name": TF1,
-    "status": "found-encrypted",
-    "satelliteId": "ses-4-22w",
-    "serviceId": "tf1",
-    "sourceVerified": true,
-    "physicalReceptionVerified": false,
-    "encryption": {
-      "scrambled": true,
-      "systems": ["Mediaguard", "Nagravision"],
-      "authorizationRequired": true
-    },
-    "redistributionEnabled": false
-  },
-  {
-    "catalogueId": "tfx",
-    "channelNumber": 19,
-    "name": "TFX",
-    "status": "pending-satellite-match",
-    "satelliteId": null,
-    "serviceId": null,
-    "sourceVerified": false,
-    "redistributionEnabled": false
-  },
-  {
-    "catalogueId": "tmc",
-    "channelNumber": 20,
-    "name": "TMC",
-    "status": "pending-satellite-match",
-    "satelliteId": null,
-    "serviceId": null,
-    "sourceVerified": false,
-    "redistributionEnabled": false
-  },
-  {
-    "catalogueId": "w9",
-    "channelNumber": 21,
-    "name": "W9",
-    "status": "pending-satellite-match",
-    "satelliteId": null,
-    "serviceId": null,
-    "sourceVerified": false,
-    "redistributionEnabled": false
-  },
-  {
-    "catalogueId": "cnn-international",
-    "channelNumber": 41,
-    "name": "CNN International",
-    "status": "pending-satellite-match",
-    "satelliteId": null,
-    "serviceId": null,
-    "sourceVerified": false,
-    "redistributionEnabled": false
-  },
-  {
-    "catalogueId": "dw",
-    "channelNumber": 42,
-    "name": "DW",
-    "status": "pending-satellite-match",
-    "satelliteId": null,
-    "serviceId": null,
-    "sourceVerified": false,
-    "redistributionEnabled": false
-  },
-  {
-    "catalogueId": "euronews",
-    "channelNumber": 43,
-    "name": "Euronews",
-    "status": "pending-satellite-match",
-    "satelliteId": null,
-    "serviceId": null,
-    "sourceVerified": false,
-    "redistributionEnabled": false
-  },
-  {
-    "catalogueId": "fox-business",
-    "channelNumber": 44,
-    "name": "Fox Business",
-    "status": "pending-satellite-match",
-    "satelliteId": null,
-    "serviceId": null,
-    "sourceVerified": false,
-    "redistributionEnabled": false
-  },
-  {
-    "catalogueId": "fox-news",
-    "channelNumber": 45,
-    "name": "Fox News",
-    "status": "pending-satellite-match",
-    "satelliteId": null,
-    "serviceId": null,
-    "sourceVerified": false,
-    "redistributionEnabled": false
-  },
-  {
-    "catalogueId": "france-24",
-    "channelNumber": 22,
-    "name": "France 24",
-    "status": "pending-satellite-match",
-    "satelliteId": null,
-    "serviceId": null,
-    "sourceVerified": false,
-    "redistributionEnabled": false
-  },
-  {
-    "catalogueId": "hln",
-    "channelNumber": 47,
-    "name": "HLN",
-    "status": "pending-satellite-match",
-    "satelliteId": null,
-    "serviceId": null,
-    "sourceVerified": false,
-    "redistributionEnabled": false
-  },
-  {
-    "catalogueId": "i24news",
-    "channelNumber": 48,
-    "name": "i24NEWS",
-    "status": "pending-satellite-match",
-    "satelliteId": null,
-    "serviceId": null,
-    "sourceVerified": false,
-    "redistributionEnabled": false
-  },
-  {
-    "catalogueId": "msnbc",
-    "channelNumber": 49,
-    "name": "MSNBC",
-    "status": "pending-satellite-match",
-    "satelliteId": null,
-    "serviceId": null,
-    "sourceVerified": false,
-    "redistributionEnabled": false
-  },
-  {
-    "catalogueId": "ab1",
-    "channelNumber": 200,
-    "name": "AB1",
-    "status": "pending-satellite-match",
-    "satelliteId": null,
-    "serviceId": null,
-    "sourceVerified": false,
-    "redistributionEnabled": false
-  },
-  {
-    "catalogueId": "action",
-    "channelNumber": 201,
-    "name": Action,
-    "status": "found-encrypted",
-    "satelliteId": "ses-4-22w",
-    "serviceId": "action-france",
-    "sourceVerified": true,
-    "physicalReceptionVerified": false,
-    "encryption": {
-      "scrambled": true,
-      "systems": ["Mediaguard", "Nagravision"],
-      "authorizationRequired": true
-    },
-    "redistributionEnabled": false
-  },
-  {
-    "catalogueId": "c-plus-action",
-    "channelNumber": 202,
-    "name": C+ Action,
-    "status": "found-encrypted",
-    "satelliteId": "ses-4-22w",
-    "serviceId": "canal-plus-action-centre",
-    "sourceVerified": true,
-    "physicalReceptionVerified": false,
-    "encryption": {
-      "scrambled": true,
-      "systems": ["Mediaguard", "Nagravision"],
-      "authorizationRequired": true
-    },
-    "redistributionEnabled": false
-  },
-  {
-    "catalogueId": "c-plus-cinema",
-    "channelNumber": 203,
-    "name": C+ Cinema,
-    "status": "found-encrypted",
-    "satelliteId": "ses-4-22w",
-    "serviceId": "canal-plus-cinema-centre",
-    "sourceVerified": true,
-    "physicalReceptionVerified": false,
-    "encryption": {
-      "scrambled": true,
-      "systems": ["Mediaguard", "Nagravision"],
-      "authorizationRequired": true
-    },
-    "redistributionEnabled": false
-  },
-  {
-    "catalogueId": "c-plus-family",
-    "channelNumber": 204,
-    "name": C+ Family,
-    "status": "found-encrypted",
-    "satelliteId": "ses-4-22w",
-    "serviceId": "canal-plus-family-centre",
-    "sourceVerified": true,
-    "physicalReceptionVerified": false,
-    "encryption": {
-      "scrambled": true,
-      "systems": ["Mediaguard", "Nagravision"],
-      "authorizationRequired": true
-    },
-    "redistributionEnabled": false
-  },
-  {
-    "catalogueId": "c-plus-magic",
-    "channelNumber": 205,
-    "name": "C+ Magic",
-    "status": "pending-satellite-match",
-    "satelliteId": null,
-    "serviceId": null,
-    "sourceVerified": false,
-    "redistributionEnabled": false
-  },
-  {
-    "catalogueId": "c-plus-pop",
-    "channelNumber": 206,
-    "name": C+ Pop,
-    "status": "found-encrypted",
-    "satelliteId": "ses-4-22w",
-    "serviceId": "canal-plus-pop",
-    "sourceVerified": true,
-    "physicalReceptionVerified": false,
-    "encryption": {
-      "scrambled": true,
-      "systems": ["Mediaguard", "Nagravision"],
-      "authorizationRequired": true
-    },
-    "redistributionEnabled": false
-  },
-  {
-    "catalogueId": "charge",
-    "channelNumber": 207,
-    "name": "Charge!",
-    "status": "pending-satellite-match",
-    "satelliteId": null,
-    "serviceId": null,
-    "sourceVerified": false,
-    "redistributionEnabled": false
-  },
-  {
-    "catalogueId": "cinemax",
-    "channelNumber": 208,
-    "name": "Cinemax",
-    "status": "pending-satellite-match",
-    "satelliteId": null,
-    "serviceId": null,
-    "sourceVerified": false,
-    "redistributionEnabled": false
-  },
-  {
-    "catalogueId": "comet",
-    "channelNumber": 209,
-    "name": "Comet",
-    "status": "pending-satellite-match",
-    "satelliteId": null,
-    "serviceId": null,
-    "sourceVerified": false,
-    "redistributionEnabled": false
-  },
-  {
-    "catalogueId": "estrella-tv",
-    "channelNumber": 210,
-    "name": "Estrella TV",
-    "status": "pending-satellite-match",
-    "satelliteId": null,
-    "serviceId": null,
-    "sourceVerified": false,
-    "redistributionEnabled": false
-  },
-  {
-    "catalogueId": "galavision",
-    "channelNumber": 211,
-    "name": "Galavisión",
-    "status": "pending-satellite-match",
-    "satelliteId": null,
-    "serviceId": null,
-    "sourceVerified": false,
-    "redistributionEnabled": false
-  },
-  {
-    "catalogueId": "gettv",
-    "channelNumber": 212,
-    "name": "getTV",
-    "status": "pending-satellite-match",
-    "satelliteId": null,
-    "serviceId": null,
-    "sourceVerified": false,
-    "redistributionEnabled": false
-  },
-  {
-    "catalogueId": "grit",
-    "channelNumber": 213,
-    "name": "Grit",
-    "status": "pending-satellite-match",
-    "satelliteId": null,
-    "serviceId": null,
-    "sourceVerified": false,
-    "redistributionEnabled": false
-  },
-  {
-    "catalogueId": "m6-films",
-    "channelNumber": 214,
-    "name": "M6 Films",
-    "status": "pending-satellite-match",
-    "satelliteId": null,
-    "serviceId": null,
-    "sourceVerified": false,
-    "redistributionEnabled": false
-  },
-  {
-    "catalogueId": "mgm-tv",
-    "channelNumber": 215,
-    "name": "MGM TV",
-    "status": "pending-satellite-match",
-    "satelliteId": null,
-    "serviceId": null,
-    "sourceVerified": false,
-    "redistributionEnabled": false
-  },
-  {
-    "catalogueId": "movies",
-    "channelNumber": 216,
-    "name": "Movies!",
-    "status": "pending-satellite-match",
-    "satelliteId": null,
-    "serviceId": null,
-    "sourceVerified": false,
-    "redistributionEnabled": false
-  },
-  {
-    "catalogueId": "peacock",
-    "channelNumber": 217,
-    "name": "Peacock",
-    "status": "pending-satellite-match",
-    "satelliteId": null,
-    "serviceId": null,
-    "sourceVerified": false,
-    "redistributionEnabled": false
-  },
-  {
-    "catalogueId": "pluto-tv",
-    "channelNumber": 218,
-    "name": "Pluto TV",
-    "status": "pending-satellite-match",
-    "satelliteId": null,
-    "serviceId": null,
-    "sourceVerified": false,
-    "redistributionEnabled": false
-  },
-  {
-    "catalogueId": "rtl-9",
-    "channelNumber": 219,
-    "name": "RTL 9",
-    "status": "pending-satellite-match",
-    "satelliteId": null,
-    "serviceId": null,
-    "sourceVerified": false,
-    "redistributionEnabled": false
-  },
-  {
-    "catalogueId": "sci-fi",
-    "channelNumber": 50,
-    "name": Sci-Fi,
-    "status": "found-encrypted",
-    "satelliteId": "ses-4-22w",
-    "serviceId": "scifi-france",
-    "sourceVerified": true,
-    "physicalReceptionVerified": false,
-    "encryption": {
-      "scrambled": true,
-      "systems": ["Mediaguard", "Nagravision"],
-      "authorizationRequired": true
-    },
-    "redistributionEnabled": false
-  },
-  {
-    "catalogueId": "tcm",
-    "channelNumber": 221,
-    "name": "TCM",
-    "status": "pending-satellite-match",
-    "satelliteId": null,
-    "serviceId": null,
-    "sourceVerified": false,
-    "redistributionEnabled": false
-  },
-  {
-    "catalogueId": "telemundo",
-    "channelNumber": 222,
-    "name": "Telemundo",
-    "status": "pending-satellite-match",
-    "satelliteId": null,
-    "serviceId": null,
-    "sourceVerified": false,
-    "redistributionEnabled": false
-  },
-  {
-    "catalogueId": "tubi",
-    "channelNumber": 223,
-    "name": "Tubi",
-    "status": "pending-satellite-match",
-    "satelliteId": null,
-    "serviceId": null,
-    "sourceVerified": false,
-    "redistributionEnabled": false
-  },
-  {
-    "catalogueId": "unimas",
-    "channelNumber": 224,
-    "name": "UniMás",
-    "status": "pending-satellite-match",
-    "satelliteId": null,
-    "serviceId": null,
-    "sourceVerified": false,
-    "redistributionEnabled": false
-  },
-  {
-    "catalogueId": "univision",
-    "channelNumber": 225,
-    "name": "Univision",
-    "status": "pending-satellite-match",
-    "satelliteId": null,
-    "serviceId": null,
-    "sourceVerified": false,
-    "redistributionEnabled": false
-  },
-  {
-    "catalogueId": "13eme-rue",
-    "channelNumber": 52,
-    "name": "13ème Rue",
-    "status": "pending-satellite-match",
-    "satelliteId": null,
-    "serviceId": null,
-    "sourceVerified": false,
-    "redistributionEnabled": false
-  },
-  {
-    "catalogueId": "amc",
-    "channelNumber": 53,
-    "name": "AMC",
-    "status": "pending-satellite-match",
-    "satelliteId": null,
-    "serviceId": null,
-    "sourceVerified": false,
-    "redistributionEnabled": false
-  },
-  {
-    "catalogueId": "bravo",
-    "channelNumber": 54,
-    "name": "Bravo",
-    "status": "pending-satellite-match",
-    "satelliteId": null,
-    "serviceId": null,
-    "sourceVerified": false,
-    "redistributionEnabled": false
-  },
-  {
-    "catalogueId": "freeform",
-    "channelNumber": 55,
-    "name": "Freeform",
-    "status": "pending-satellite-match",
-    "satelliteId": null,
-    "serviceId": null,
-    "sourceVerified": false,
-    "redistributionEnabled": false
-  },
-  {
-    "catalogueId": "fx",
-    "channelNumber": 56,
-    "name": "FX",
-    "status": "pending-satellite-match",
-    "satelliteId": null,
-    "serviceId": null,
-    "sourceVerified": false,
-    "redistributionEnabled": false
-  },
-  {
-    "catalogueId": "fxx",
-    "channelNumber": 57,
-    "name": "FXX",
-    "status": "pending-satellite-match",
-    "satelliteId": null,
-    "serviceId": null,
-    "sourceVerified": false,
-    "redistributionEnabled": false
-  },
-  {
-    "catalogueId": "hallmark-drama",
-    "channelNumber": 58,
-    "name": "Hallmark Drama",
-    "status": "pending-satellite-match",
-    "satelliteId": null,
-    "serviceId": null,
-    "sourceVerified": false,
-    "redistributionEnabled": false
-  },
-  {
-    "catalogueId": "hbo",
-    "channelNumber": 59,
-    "name": "HBO",
-    "status": "pending-satellite-match",
-    "satelliteId": null,
-    "serviceId": null,
-    "sourceVerified": false,
-    "redistributionEnabled": false
-  },
-  {
-    "catalogueId": "heroes-icons",
-    "channelNumber": 60,
-    "name": "Heroes & Icons",
-    "status": "pending-satellite-match",
-    "satelliteId": null,
-    "serviceId": null,
-    "sourceVerified": false,
-    "redistributionEnabled": false
-  },
-  {
-    "catalogueId": "ifc",
-    "channelNumber": 61,
-    "name": "IFC",
-    "status": "pending-satellite-match",
-    "satelliteId": null,
-    "serviceId": null,
-    "sourceVerified": false,
-    "redistributionEnabled": false
-  },
-  {
-    "catalogueId": "ion",
-    "channelNumber": 62,
-    "name": "Ion",
-    "status": "pending-satellite-match",
-    "satelliteId": null,
-    "serviceId": null,
-    "sourceVerified": false,
-    "redistributionEnabled": false
-  },
-  {
-    "catalogueId": "lifetime",
-    "channelNumber": 63,
-    "name": "Lifetime",
-    "status": "pending-satellite-match",
-    "satelliteId": null,
-    "serviceId": null,
-    "sourceVerified": false,
-    "redistributionEnabled": false
-  },
-  {
-    "catalogueId": "mgm-plus",
-    "channelNumber": 64,
-    "name": "MGM+",
-    "status": "pending-satellite-match",
-    "satelliteId": null,
-    "serviceId": null,
-    "sourceVerified": false,
-    "redistributionEnabled": false
-  },
-  {
-    "catalogueId": "novelas-plus",
-    "channelNumber": 30,
-    "name": "Novelas+",
-    "status": "pending-satellite-match",
-    "satelliteId": null,
-    "serviceId": null,
-    "sourceVerified": false,
-    "redistributionEnabled": false
-  },
-  {
-    "catalogueId": "paramount-network",
-    "channelNumber": 65,
-    "name": "Paramount Network",
-    "status": "pending-satellite-match",
-    "satelliteId": null,
-    "serviceId": null,
-    "sourceVerified": false,
-    "redistributionEnabled": false
-  },
-  {
-    "catalogueId": "s-plus-premiere",
-    "channelNumber": 160,
-    "name": "S+ Première",
-    "status": "pending-satellite-match",
-    "satelliteId": null,
-    "serviceId": null,
-    "sourceVerified": false,
-    "redistributionEnabled": false
-  },
-  {
-    "catalogueId": "s-plus-avant-premiere",
-    "channelNumber": 161,
-    "name": "S+ Avant Première",
-    "status": "pending-satellite-match",
-    "satelliteId": null,
-    "serviceId": null,
-    "sourceVerified": false,
-    "redistributionEnabled": false
-  },
-  {
-    "catalogueId": "sundance-tv",
-    "channelNumber": 151,
-    "name": "Sundance TV",
-    "status": "pending-satellite-match",
-    "satelliteId": null,
-    "serviceId": null,
-    "sourceVerified": false,
-    "redistributionEnabled": false
-  },
-  {
-    "catalogueId": "syfy",
-    "channelNumber": 51,
-    "name": "Syfy",
-    "status": "pending-satellite-match",
-    "satelliteId": null,
-    "serviceId": null,
-    "sourceVerified": false,
-    "redistributionEnabled": false
-  },
-  {
-    "catalogueId": "tbs",
-    "channelNumber": 153,
-    "name": "TBS",
-    "status": "pending-satellite-match",
-    "satelliteId": null,
-    "serviceId": null,
-    "sourceVerified": false,
-    "redistributionEnabled": false
-  },
-  {
-    "catalogueId": "tf1-series-films",
-    "channelNumber": 154,
-    "name": "TF1 Séries Films",
-    "status": "pending-satellite-match",
-    "satelliteId": null,
-    "serviceId": null,
-    "sourceVerified": false,
-    "redistributionEnabled": false
-  },
-  {
-    "catalogueId": "tnt",
-    "channelNumber": 155,
-    "name": "TNT",
-    "status": "pending-satellite-match",
-    "satelliteId": null,
-    "serviceId": null,
-    "sourceVerified": false,
-    "redistributionEnabled": false
-  },
-  {
-    "catalogueId": "usa-network",
-    "channelNumber": 156,
-    "name": "USA Network",
-    "status": "pending-satellite-match",
-    "satelliteId": null,
-    "serviceId": null,
-    "sourceVerified": false,
-    "redistributionEnabled": false
-  },
-  {
-    "catalogueId": "a-plus-kids",
-    "channelNumber": 100,
-    "name": "A+ Kids",
-    "status": "pending-satellite-match",
-    "satelliteId": null,
-    "serviceId": null,
-    "sourceVerified": false,
-    "redistributionEnabled": false
-  },
-  {
-    "catalogueId": "boing",
-    "channelNumber": 101,
-    "name": "Boing",
-    "status": "pending-satellite-match",
-    "satelliteId": null,
-    "serviceId": null,
-    "sourceVerified": false,
-    "redistributionEnabled": false
-  },
-  {
-    "catalogueId": "boomerang",
-    "channelNumber": 102,
-    "name": Boomerang,
-    "status": "found-encrypted",
-    "satelliteId": "ses-4-22w",
-    "serviceId": "boomerang-france",
-    "sourceVerified": true,
-    "physicalReceptionVerified": false,
-    "encryption": {
-      "scrambled": true,
-      "systems": ["Mediaguard", "Nagravision"],
-      "authorizationRequired": true
-    },
-    "redistributionEnabled": false
-  },
-  {
-    "catalogueId": "boomerang-plus-1",
-    "channelNumber": 103,
-    "name": "Boomerang +1",
-    "status": "pending-satellite-match",
-    "satelliteId": null,
-    "serviceId": null,
-    "sourceVerified": false,
-    "redistributionEnabled": false
-  },
-  {
-    "catalogueId": "canal-j",
-    "channelNumber": 104,
-    "name": "Canal J",
-    "status": "pending-satellite-match",
-    "satelliteId": null,
-    "serviceId": null,
-    "sourceVerified": false,
-    "redistributionEnabled": false
-  },
-  {
-    "catalogueId": "s-plus-kids-canalplus",
-    "channelNumber": 187,
-    "name": "S+ Kids Canal+",
-    "status": "pending-satellite-match",
-    "satelliteId": null,
-    "serviceId": null,
-    "sourceVerified": false,
-    "redistributionEnabled": false
-  },
-  {
-    "catalogueId": "cartoonito",
-    "channelNumber": 106,
-    "name": "Cartoonito",
-    "status": "pending-satellite-match",
-    "satelliteId": null,
-    "serviceId": null,
-    "sourceVerified": false,
-    "redistributionEnabled": false
-  },
-  {
-    "catalogueId": "cartoon-network",
-    "channelNumber": 107,
-    "name": "Cartoon Network",
-    "status": "pending-satellite-match",
-    "satelliteId": null,
-    "serviceId": null,
-    "sourceVerified": false,
-    "redistributionEnabled": false
-  },
-  {
-    "catalogueId": "disney-channel",
-    "channelNumber": 108,
-    "name": "Disney Channel",
-    "status": "pending-satellite-match",
-    "satelliteId": null,
-    "serviceId": null,
-    "sourceVerified": false,
-    "redistributionEnabled": false
-  },
-  {
-    "catalogueId": "disney-junior",
-    "channelNumber": 109,
-    "name": "Disney Junior",
-    "status": "pending-satellite-match",
-    "satelliteId": null,
-    "serviceId": null,
-    "sourceVerified": false,
-    "redistributionEnabled": false
-  },
-  {
-    "catalogueId": "dreamworks",
-    "channelNumber": 110,
-    "name": "DreamWorks",
-    "status": "pending-satellite-match",
-    "satelliteId": null,
-    "serviceId": null,
-    "sourceVerified": false,
-    "redistributionEnabled": false
-  },
-  {
-    "catalogueId": "gulli",
-    "channelNumber": 111,
-    "name": "Gulli",
-    "status": "pending-satellite-match",
-    "satelliteId": null,
-    "serviceId": null,
-    "sourceVerified": false,
-    "redistributionEnabled": false
-  },
-  {
-    "catalogueId": "gulli-africa",
-    "channelNumber": 112,
-    "name": "Gulli Africa",
-    "status": "pending-satellite-match",
-    "satelliteId": null,
-    "serviceId": null,
-    "sourceVerified": false,
-    "redistributionEnabled": false
-  },
-  {
-    "catalogueId": "j-one",
-    "channelNumber": 113,
-    "name": "J-One",
-    "status": "pending-satellite-match",
-    "satelliteId": null,
-    "serviceId": null,
-    "sourceVerified": false,
-    "redistributionEnabled": false
-  },
-  {
-    "catalogueId": "ludikids",
-    "channelNumber": 114,
-    "name": "Ludikids",
-    "status": "pending-satellite-match",
-    "satelliteId": null,
-    "serviceId": null,
-    "sourceVerified": false,
-    "redistributionEnabled": false
-  },
-  {
-    "catalogueId": "mangas",
-    "channelNumber": 115,
-    "name": "Mangas",
-    "status": "pending-satellite-match",
-    "satelliteId": null,
-    "serviceId": null,
-    "sourceVerified": false,
-    "redistributionEnabled": false
-  },
-  {
-    "catalogueId": "nathan-plus",
-    "channelNumber": 116,
-    "name": "Nathan+",
-    "status": "pending-satellite-match",
-    "satelliteId": null,
-    "serviceId": null,
-    "sourceVerified": false,
-    "redistributionEnabled": false
-  },
-  {
-    "catalogueId": "nickelodeon",
-    "channelNumber": 117,
-    "name": "Nickelodeon",
-    "status": "pending-satellite-match",
-    "satelliteId": null,
-    "serviceId": null,
-    "sourceVerified": false,
-    "redistributionEnabled": false
-  },
-  {
-    "catalogueId": "nickelodeon-junior",
-    "channelNumber": 118,
-    "name": Nickelodeon Junior,
-    "status": "found-encrypted",
-    "satelliteId": "ses-4-22w",
-    "serviceId": "nickelodeon-junior-france",
-    "sourceVerified": true,
-    "physicalReceptionVerified": false,
-    "encryption": {
-      "scrambled": true,
-      "systems": ["Mediaguard", "Nagravision"],
-      "authorizationRequired": true
-    },
-    "redistributionEnabled": false
-  },
-  {
-    "catalogueId": "nickelodeon-plus-1",
-    "channelNumber": 119,
-    "name": "Nickelodeon +1",
-    "status": "pending-satellite-match",
-    "satelliteId": null,
-    "serviceId": null,
-    "sourceVerified": false,
-    "redistributionEnabled": false
-  },
-  {
-    "catalogueId": "nicktoons",
-    "channelNumber": 120,
-    "name": "NickToons",
-    "status": "pending-satellite-match",
-    "satelliteId": null,
-    "serviceId": null,
-    "sourceVerified": false,
-    "redistributionEnabled": false
-  },
-  {
-    "catalogueId": "nickelodeon-teen",
-    "channelNumber": 121,
-    "name": "Nickelodeon Teen",
-    "status": "pending-satellite-match",
-    "satelliteId": null,
-    "serviceId": null,
-    "sourceVerified": false,
-    "redistributionEnabled": false
-  },
-  {
-    "catalogueId": "okoo",
-    "channelNumber": 122,
-    "name": "Okoo",
-    "status": "pending-satellite-match",
-    "satelliteId": null,
-    "serviceId": null,
-    "sourceVerified": false,
-    "redistributionEnabled": false
-  },
-  {
-    "catalogueId": "piwi-plus",
-    "channelNumber": 123,
-    "name": "Piwi+",
-    "status": "pending-satellite-match",
-    "satelliteId": null,
-    "serviceId": null,
-    "sourceVerified": false,
-    "redistributionEnabled": false
-  },
-  {
-    "catalogueId": "pitchoun-kids-music",
-    "channelNumber": 124,
-    "name": "Pitchoun Kids Music",
-    "status": "pending-satellite-match",
-    "satelliteId": null,
-    "serviceId": null,
-    "sourceVerified": false,
-    "redistributionEnabled": false
-  },
-  {
-    "catalogueId": "pitchoun-kids-music-africa",
-    "channelNumber": 125,
-    "name": "Pitchoun Kids Music Africa",
-    "status": "pending-satellite-match",
-    "satelliteId": null,
-    "serviceId": null,
-    "sourceVerified": false,
-    "redistributionEnabled": false
-  },
-  {
-    "catalogueId": "tv-pitchoun",
-    "channelNumber": 126,
-    "name": "TV Pitchoun",
-    "status": "pending-satellite-match",
-    "satelliteId": null,
-    "serviceId": null,
-    "sourceVerified": false,
-    "redistributionEnabled": false
-  },
-  {
-    "catalogueId": "teletoon-plus",
-    "channelNumber": 127,
-    "name": "Télétoon+",
-    "status": "pending-satellite-match",
-    "satelliteId": null,
-    "serviceId": null,
-    "sourceVerified": false,
-    "redistributionEnabled": false
-  },
-  {
-    "catalogueId": "teletoon-plus-1",
-    "channelNumber": 128,
-    "name": "Télétoon +1",
-    "status": "pending-satellite-match",
-    "satelliteId": null,
-    "serviceId": null,
-    "sourceVerified": false,
-    "redistributionEnabled": false
-  },
-  {
-    "catalogueId": "tiji",
-    "channelNumber": 129,
-    "name": "TiJi",
-    "status": "pending-satellite-match",
-    "satelliteId": null,
-    "serviceId": null,
-    "sourceVerified": false,
-    "redistributionEnabled": false
-  },
-  {
-    "catalogueId": "tivi5monde",
-    "channelNumber": 130,
-    "name": "TiVi5MONDE",
-    "status": "pending-satellite-match",
-    "satelliteId": null,
-    "serviceId": null,
-    "sourceVerified": false,
-    "redistributionEnabled": false
-  },
-  {
-    "catalogueId": "toonami",
-    "channelNumber": 131,
-    "name": "Toonami",
-    "status": "pending-satellite-match",
-    "satelliteId": null,
-    "serviceId": null,
-    "sourceVerified": false,
-    "redistributionEnabled": false
-  },
-  {
-    "catalogueId": "ducktv",
-    "channelNumber": 132,
-    "name": "ducktv",
-    "status": "pending-satellite-match",
-    "satelliteId": null,
-    "serviceId": null,
-    "sourceVerified": false,
-    "redistributionEnabled": false
-  },
-  {
-    "catalogueId": "tv-tokyo",
-    "channelNumber": 157,
-    "name": "TV Tokyo",
-    "status": "pending-satellite-match",
-    "satelliteId": null,
-    "serviceId": null,
-    "sourceVerified": false,
-    "redistributionEnabled": false
-  },
-  {
-    "catalogueId": "fuji-tv",
-    "channelNumber": 158,
-    "name": "Fuji TV",
-    "status": "pending-satellite-match",
-    "satelliteId": null,
-    "serviceId": null,
-    "sourceVerified": false,
-    "redistributionEnabled": false
-  },
-  {
-    "catalogueId": "warner-tv-next",
-    "channelNumber": 133,
-    "name": "Warner TV Next",
-    "status": "pending-satellite-match",
-    "satelliteId": null,
-    "serviceId": null,
-    "sourceVerified": false,
-    "redistributionEnabled": false
-  },
-  {
-    "catalogueId": "peche-sons",
-    "channelNumber": 159,
-    "name": "Pêche & Sons",
-    "status": "pending-satellite-match",
-    "satelliteId": null,
-    "serviceId": null,
-    "sourceVerified": false,
-    "redistributionEnabled": false
-  },
-  {
-    "catalogueId": "planete-plus",
-    "channelNumber": 184,
-    "name": "Planète+",
-    "status": "pending-satellite-match",
-    "satelliteId": null,
-    "serviceId": null,
-    "sourceVerified": false,
-    "redistributionEnabled": false
-  },
-  {
-    "catalogueId": "s-plus-docs",
-    "channelNumber": 162,
-    "name": "S+ Docs",
-    "status": "pending-satellite-match",
-    "satelliteId": null,
-    "serviceId": null,
-    "sourceVerified": false,
-    "redistributionEnabled": false
-  },
-  {
-    "catalogueId": "tv5-monde",
-    "channelNumber": 23,
-    "name": "TV5 Monde",
-    "status": "pending-satellite-match",
-    "satelliteId": null,
-    "serviceId": null,
-    "sourceVerified": false,
-    "redistributionEnabled": false
-  },
-  {
-    "catalogueId": "s-plus-prime",
-    "channelNumber": 163,
-    "name": "S+ Prime",
-    "status": "pending-satellite-match",
-    "satelliteId": null,
-    "serviceId": null,
-    "sourceVerified": false,
-    "redistributionEnabled": false
-  },
-  {
-    "catalogueId": "s-plus-cine",
-    "channelNumber": 164,
-    "name": "S+ Ciné",
-    "status": "pending-satellite-match",
-    "satelliteId": null,
-    "serviceId": null,
-    "sourceVerified": false,
-    "redistributionEnabled": false
-  },
-  {
-    "catalogueId": "s-plus-kids",
-    "channelNumber": 165,
-    "name": "S+ Kids",
-    "status": "pending-satellite-match",
-    "satelliteId": null,
-    "serviceId": null,
-    "sourceVerified": false,
-    "redistributionEnabled": false
-  },
-  {
-    "catalogueId": "s-plus-fiction",
-    "channelNumber": 166,
-    "name": "S+ Fiction",
-    "status": "pending-satellite-match",
-    "satelliteId": null,
-    "serviceId": null,
-    "sourceVerified": false,
-    "redistributionEnabled": false
-  },
-  {
-    "catalogueId": "s-plus-channel",
-    "channelNumber": 167,
-    "name": "S+ Channel",
-    "status": "pending-satellite-match",
-    "satelliteId": null,
-    "serviceId": null,
-    "sourceVerified": false,
-    "redistributionEnabled": false
-  },
-  {
-    "catalogueId": "s-plus-music",
-    "channelNumber": 168,
-    "name": "S+ Music",
-    "status": "pending-satellite-match",
-    "satelliteId": null,
-    "serviceId": null,
-    "sourceVerified": false,
-    "redistributionEnabled": false
-  },
-  {
-    "catalogueId": "s-plus-tv",
-    "channelNumber": 169,
-    "name": "S+ TV",
-    "status": "pending-satellite-match",
-    "satelliteId": null,
-    "serviceId": null,
-    "sourceVerified": false,
-    "redistributionEnabled": false
-  },
-  {
-    "catalogueId": "s-plus-family",
-    "channelNumber": 170,
-    "name": "S+ Family",
-    "status": "pending-satellite-match",
-    "satelliteId": null,
-    "serviceId": null,
-    "sourceVerified": false,
-    "redistributionEnabled": false
-  },
-  {
-    "catalogueId": "s-plus-sport-1",
-    "channelNumber": 171,
-    "name": "S+ Sport 1",
-    "status": "pending-satellite-match",
-    "satelliteId": null,
-    "serviceId": null,
-    "sourceVerified": false,
-    "redistributionEnabled": false
-  },
-  {
-    "catalogueId": "s-plus-sport-2",
-    "channelNumber": 172,
-    "name": "S+ Sport 2",
-    "status": "pending-satellite-match",
-    "satelliteId": null,
-    "serviceId": null,
-    "sourceVerified": false,
-    "redistributionEnabled": false
-  },
-  {
-    "catalogueId": "s-plus-sport-3",
-    "channelNumber": 173,
-    "name": "S+ Sport 3",
-    "status": "pending-satellite-match",
-    "satelliteId": null,
-    "serviceId": null,
-    "sourceVerified": false,
-    "redistributionEnabled": false
-  },
-  {
-    "catalogueId": "s-plus-sport-4",
-    "channelNumber": 174,
-    "name": "S+ Sport 4",
-    "status": "pending-satellite-match",
-    "satelliteId": null,
-    "serviceId": null,
-    "sourceVerified": false,
-    "redistributionEnabled": false
-  },
-  {
-    "catalogueId": "s-plus-sport-5",
-    "channelNumber": 175,
-    "name": "S+ Sport 5",
-    "status": "pending-satellite-match",
-    "satelliteId": null,
-    "serviceId": null,
-    "sourceVerified": false,
-    "redistributionEnabled": false
-  },
-  {
-    "catalogueId": "s-plus-sport-6",
-    "channelNumber": 176,
-    "name": "S+ Sport 6",
-    "status": "pending-satellite-match",
-    "satelliteId": null,
-    "serviceId": null,
-    "sourceVerified": false,
-    "redistributionEnabled": false
-  },
-  {
-    "catalogueId": "s-plus-movies",
-    "channelNumber": 177,
-    "name": "S+ Movies",
-    "status": "pending-satellite-match",
-    "satelliteId": null,
-    "serviceId": null,
-    "sourceVerified": false,
-    "redistributionEnabled": false
-  },
-  {
-    "catalogueId": "s-plus-infosport",
-    "channelNumber": 178,
-    "name": "S+ Infosport",
-    "status": "pending-satellite-match",
-    "satelliteId": null,
-    "serviceId": null,
-    "sourceVerified": false,
-    "redistributionEnabled": false
-  },
-  {
-    "catalogueId": "s-plus-infos",
-    "channelNumber": 179,
-    "name": "S+ Infos",
-    "status": "pending-satellite-match",
-    "satelliteId": null,
-    "serviceId": null,
-    "sourceVerified": false,
-    "redistributionEnabled": false
-  },
-  {
-    "catalogueId": "s-plus-media",
-    "channelNumber": 180,
-    "name": "S+ Media",
-    "status": "pending-satellite-match",
-    "satelliteId": null,
-    "serviceId": null,
-    "sourceVerified": false,
-    "redistributionEnabled": false
-  },
-  {
-    "catalogueId": "s-plus-lloliwood",
-    "channelNumber": 181,
-    "name": "S+ LLOLIWOOD",
-    "status": "pending-satellite-match",
-    "satelliteId": null,
-    "serviceId": null,
-    "sourceVerified": false,
-    "redistributionEnabled": false
-  },
-  {
-    "catalogueId": "s-plus-bl",
-    "channelNumber": 182,
-    "name": "S+ BL",
-    "status": "pending-satellite-match",
-    "satelliteId": null,
-    "serviceId": null,
-    "sourceVerified": false,
-    "redistributionEnabled": false
-  },
-  {
-    "catalogueId": "s-plus-jeunesse",
-    "channelNumber": 183,
-    "name": "S+ Jeunesse",
-    "status": "pending-satellite-match",
-    "satelliteId": null,
-    "serviceId": null,
-    "sourceVerified": false,
-    "redistributionEnabled": false
-  },
-  {
-    "catalogueId": "berbere-jeunesse",
-    "channelNumber": 136,
-    "name": "Berbère Jeunesse",
-    "status": "pending-satellite-match",
-    "satelliteId": null,
-    "serviceId": null,
-    "sourceVerified": false,
-    "redistributionEnabled": false
-  },
-  {
-    "catalogueId": "chaine-pere-noel",
-    "channelNumber": 137,
-    "name": "La Chaîne du Père Noël",
-    "status": "pending-satellite-match",
-    "satelliteId": null,
-    "serviceId": null,
-    "sourceVerified": false,
-    "redistributionEnabled": false
-  },
-  {
-    "catalogueId": "s-plus-box-office",
-    "channelNumber": 188,
-    "name": "S+ Box Office",
-    "status": "pending-satellite-match",
-    "satelliteId": null,
-    "serviceId": null,
-    "sourceVerified": false,
-    "redistributionEnabled": false
-  },
-  {
-    "catalogueId": "s-plus-grand-ecran",
-    "channelNumber": 189,
-    "name": "S+ Grand Ecran",
-    "status": "pending-satellite-match",
-    "satelliteId": null,
-    "serviceId": null,
-    "sourceVerified": false,
-    "redistributionEnabled": false
-  },
-  {
-    "catalogueId": "s-plus-cinema-s",
-    "channelNumber": 190,
-    "name": "S+ Cinéma(s)",
-    "status": "pending-satellite-match",
-    "satelliteId": null,
-    "serviceId": null,
-    "sourceVerified": false,
-    "redistributionEnabled": false
-  },
-  {
-    "catalogueId": "s-plus-sport-360",
-    "channelNumber": 191,
-    "name": "S+ Sport 360",
-    "status": "pending-satellite-match",
-    "satelliteId": null,
-    "serviceId": null,
-    "sourceVerified": false,
-    "redistributionEnabled": false
-  },
-  {
-    "catalogueId": "s-plus-docs-canalplus",
-    "channelNumber": 192,
-    "name": "S+ Docs Canal+",
-    "status": "pending-satellite-match",
-    "satelliteId": null,
-    "serviceId": null,
-    "sourceVerified": false,
-    "redistributionEnabled": false
-  },
-  {
-    "catalogueId": "s-plus-foot",
-    "channelNumber": 193,
-    "name": "S+ Foot",
-    "status": "pending-satellite-match",
-    "satelliteId": null,
-    "serviceId": null,
-    "sourceVerified": false,
-    "redistributionEnabled": false
-  },
-  {
-    "catalogueId": "bein-sports",
-    "channelNumber": 85,
-    "name": "beIN SPORTS",
-    "status": "pending-satellite-match",
-    "satelliteId": null,
-    "serviceId": null,
-    "sourceVerified": false,
-    "redistributionEnabled": false
-  },
-  {
-    "catalogueId": "eurosport-1",
-    "channelNumber": 86,
-    "name": "Eurosport 1",
-    "status": "pending-satellite-match",
-    "satelliteId": null,
-    "serviceId": null,
-    "sourceVerified": false,
-    "redistributionEnabled": false
-  },
-  {
-    "catalogueId": "automoto",
-    "channelNumber": 87,
-    "name": "Automoto",
-    "status": "pending-satellite-match",
-    "satelliteId": null,
-    "serviceId": null,
-    "sourceVerified": false,
-    "redistributionEnabled": false
-  },
-  {
-    "catalogueId": "equidia",
-    "channelNumber": 88,
-    "name": "Equidia",
-    "status": "pending-satellite-match",
-    "satelliteId": null,
-    "serviceId": null,
-    "sourceVerified": false,
-    "redistributionEnabled": false
-  },
-  {
-    "catalogueId": "cine-plus-frisson",
-    "channelNumber": 226,
-    "name": "Ciné+ Frisson",
-    "status": "pending-satellite-match",
-    "satelliteId": null,
-    "serviceId": null,
-    "sourceVerified": false,
-    "redistributionEnabled": false
-  },
-  {
-    "catalogueId": "cine-plus-emotion",
-    "channelNumber": 227,
-    "name": "Ciné+ Emotion",
-    "status": "pending-satellite-match",
-    "satelliteId": null,
-    "serviceId": null,
-    "sourceVerified": false,
-    "redistributionEnabled": false
-  },
-  {
-    "catalogueId": "cine-plus-family",
-    "channelNumber": 228,
-    "name": "Ciné+ Family",
-    "status": "pending-satellite-match",
-    "satelliteId": null,
-    "serviceId": null,
-    "sourceVerified": false,
-    "redistributionEnabled": false
-  },
-  {
-    "catalogueId": "cine-plus-festival",
-    "channelNumber": 229,
-    "name": "Ciné+ Festival",
-    "status": "pending-satellite-match",
-    "satelliteId": null,
-    "serviceId": null,
-    "sourceVerified": false,
-    "redistributionEnabled": false
-  },
-  {
-    "catalogueId": "cine-plus-classic",
-    "channelNumber": 231,
-    "name": "Ciné+ Classic",
-    "status": "pending-satellite-match",
-    "satelliteId": null,
-    "serviceId": null,
-    "sourceVerified": false,
-    "redistributionEnabled": false
-  },
-  {
-    "catalogueId": "polar-plus",
-    "channelNumber": 230,
-    "name": "POLAR+",
-    "status": "pending-satellite-match",
-    "satelliteId": null,
-    "serviceId": null,
-    "sourceVerified": false,
-    "redistributionEnabled": false
-  },
-  {
-    "catalogueId": "comedie-plus",
-    "channelNumber": 232,
-    "name": "Comédie+",
-    "status": "pending-satellite-match",
-    "satelliteId": null,
-    "serviceId": null,
-    "sourceVerified": false,
-    "redistributionEnabled": false
-  },
-  {
-    "catalogueId": "paris-premiere",
-    "channelNumber": 233,
-    "name": "Paris Première",
-    "status": "pending-satellite-match",
-    "satelliteId": null,
-    "serviceId": null,
-    "sourceVerified": false,
-    "redistributionEnabled": false
-  },
-  {
-    "catalogueId": "teva",
-    "channelNumber": 234,
-    "name": "Téva",
-    "status": "pending-satellite-match",
-    "satelliteId": null,
-    "serviceId": null,
-    "sourceVerified": false,
-    "redistributionEnabled": false
-  },
-  {
-    "catalogueId": "serie-club",
-    "channelNumber": 235,
-    "name": "Série Club",
-    "status": "pending-satellite-match",
-    "satelliteId": null,
-    "serviceId": null,
-    "sourceVerified": false,
-    "redistributionEnabled": false
-  },
-  {
-    "catalogueId": "showtime",
-    "channelNumber": 236,
-    "name": "Showtime",
-    "status": "pending-satellite-match",
-    "satelliteId": null,
-    "serviceId": null,
-    "sourceVerified": false,
-    "redistributionEnabled": false
-  },
-  {
-    "catalogueId": "starz",
-    "channelNumber": 237,
-    "name": "Starz",
-    "status": "pending-satellite-match",
-    "satelliteId": null,
-    "serviceId": null,
-    "sourceVerified": false,
-    "redistributionEnabled": false
-  },
-  {
-    "catalogueId": "nrj-hits",
-    "channelNumber": 238,
-    "name": "NRJ Hits",
-    "status": "pending-satellite-match",
-    "satelliteId": null,
-    "serviceId": null,
-    "sourceVerified": false,
-    "redistributionEnabled": false
-  },
-  {
-    "catalogueId": "europe-2-pop-tv",
-    "channelNumber": 239,
-    "name": "Europe 2 POP TV",
-    "status": "pending-satellite-match",
-    "satelliteId": null,
-    "serviceId": null,
-    "sourceVerified": false,
-    "redistributionEnabled": false
-  },
-  {
-    "catalogueId": "m6-music",
-    "channelNumber": 240,
-    "name": "M6 Music",
-    "status": "pending-satellite-match",
-    "satelliteId": null,
-    "serviceId": null,
-    "sourceVerified": false,
-    "redistributionEnabled": false
-  },
-  {
-    "catalogueId": "trace-urban",
-    "channelNumber": 241,
-    "name": Trace Urban,
-    "status": "found-encrypted",
-    "satelliteId": "ses-4-22w",
-    "serviceId": "trace-urban-afrique",
-    "sourceVerified": true,
-    "physicalReceptionVerified": false,
-    "encryption": {
-      "scrambled": true,
-      "systems": ["Mediaguard", "Nagravision"],
-      "authorizationRequired": true
-    },
-    "redistributionEnabled": false
-  },
-  {
-    "catalogueId": "rfm-tv",
-    "channelNumber": 242,
-    "name": "RFM TV",
-    "status": "pending-satellite-match",
-    "satelliteId": null,
-    "serviceId": null,
-    "sourceVerified": false,
-    "redistributionEnabled": false
-  },
-  {
-    "catalogueId": "deutsche-grammophon-plus",
-    "channelNumber": 243,
-    "name": "Deutsche Grammophon+",
-    "status": "pending-satellite-match",
-    "satelliteId": null,
-    "serviceId": null,
-    "sourceVerified": false,
-    "redistributionEnabled": false
-  },
-  {
-    "catalogueId": "melody",
-    "channelNumber": 244,
-    "name": "Melody",
-    "status": "pending-satellite-match",
-    "satelliteId": null,
-    "serviceId": null,
-    "sourceVerified": false,
-    "redistributionEnabled": false
-  },
-  {
-    "catalogueId": "mezzo",
-    "channelNumber": 245,
-    "name": "Mezzo",
-    "status": "pending-satellite-match",
-    "satelliteId": null,
-    "serviceId": null,
-    "sourceVerified": false,
-    "redistributionEnabled": false
-  },
-  {
-    "catalogueId": "mezzo-live-hd",
-    "channelNumber": 246,
-    "name": "Mezzo Live HD",
-    "status": "pending-satellite-match",
-    "satelliteId": null,
-    "serviceId": null,
-    "sourceVerified": false,
-    "redistributionEnabled": false
-  },
-  {
-    "catalogueId": "mtv",
-    "channelNumber": 247,
-    "name": "MTV",
-    "status": "pending-satellite-match",
-    "satelliteId": null,
-    "serviceId": null,
-    "sourceVerified": false,
-    "redistributionEnabled": false
-  },
-  {
-    "catalogueId": "trace-africa",
-    "channelNumber": 248,
-    "name": "Trace Africa",
-    "status": "pending-satellite-match",
-    "satelliteId": null,
-    "serviceId": null,
-    "sourceVerified": false,
-    "redistributionEnabled": false
-  },
-  {
-    "catalogueId": "trace-ivoire",
-    "channelNumber": 249,
-    "name": "Trace Ivoire",
-    "status": "pending-satellite-match",
-    "satelliteId": null,
-    "serviceId": null,
-    "sourceVerified": false,
-    "redistributionEnabled": false
-  },
-  {
-    "catalogueId": "z-magic",
-    "channelNumber": 250,
-    "name": "Z Magic",
-    "status": "pending-satellite-match",
-    "satelliteId": null,
-    "serviceId": null,
-    "sourceVerified": false,
-    "redistributionEnabled": false
-  },
-  {
-    "catalogueId": "seasons",
-    "channelNumber": 251,
-    "name": "Seasons",
-    "status": "pending-satellite-match",
-    "satelliteId": null,
-    "serviceId": null,
-    "sourceVerified": false,
-    "redistributionEnabled": false
-  },
-  {
-    "catalogueId": "chasse-et-peche",
-    "channelNumber": 252,
-    "name": "Chasse et Pêche",
-    "status": "pending-satellite-match",
-    "satelliteId": null,
-    "serviceId": null,
-    "sourceVerified": false,
-    "redistributionEnabled": false
-  },
-  {
-    "catalogueId": "animaux",
-    "channelNumber": 253,
-    "name": "Animaux",
-    "status": "pending-satellite-match",
-    "satelliteId": null,
-    "serviceId": null,
-    "sourceVerified": false,
-    "redistributionEnabled": false
-  },
-  {
-    "catalogueId": "cheval-tv",
-    "channelNumber": 254,
-    "name": "Cheval TV",
-    "status": "pending-satellite-match",
-    "satelliteId": null,
-    "serviceId": null,
-    "sourceVerified": false,
-    "redistributionEnabled": false
-  },
-  {
-    "catalogueId": "mieux-tv",
-    "channelNumber": 255,
-    "name": "Mieux TV",
-    "status": "pending-satellite-match",
-    "satelliteId": null,
-    "serviceId": null,
-    "sourceVerified": false,
-    "redistributionEnabled": false
-  },
-  {
-    "catalogueId": "dog-cat-tv",
-    "channelNumber": 256,
-    "name": "Dog & Cat TV",
-    "status": "pending-satellite-match",
-    "satelliteId": null,
-    "serviceId": null,
-    "sourceVerified": false,
-    "redistributionEnabled": false
-  },
-  {
-    "catalogueId": "love-nature",
-    "channelNumber": 257,
-    "name": "Love Nature",
-    "status": "pending-satellite-match",
-    "satelliteId": null,
-    "serviceId": null,
-    "sourceVerified": false,
-    "redistributionEnabled": false
-  },
-  {
-    "catalogueId": "museum-tv",
-    "channelNumber": 258,
-    "name": "Museum TV",
-    "status": "pending-satellite-match",
-    "satelliteId": null,
-    "serviceId": null,
-    "sourceVerified": false,
-    "redistributionEnabled": false
-  },
-  {
-    "catalogueId": "planete-plus-crime",
-    "channelNumber": 259,
-    "name": "Planète+ Crime",
-    "status": "pending-satellite-match",
-    "satelliteId": null,
-    "serviceId": null,
-    "sourceVerified": false,
-    "redistributionEnabled": false
-  },
-  {
-    "catalogueId": "planete-plus-aventure",
-    "channelNumber": 260,
-    "name": "Planète+ Aventure",
-    "status": "pending-satellite-match",
-    "satelliteId": null,
-    "serviceId": null,
-    "sourceVerified": false,
-    "redistributionEnabled": false
-  },
-  {
-    "catalogueId": "science-et-vie-tv",
-    "channelNumber": 261,
-    "name": "Science & Vie TV",
-    "status": "pending-satellite-match",
-    "satelliteId": null,
-    "serviceId": null,
-    "sourceVerified": false,
-    "redistributionEnabled": false
-  },
-  {
-    "catalogueId": "toute-l-histoire",
-    "channelNumber": 262,
-    "name": "Toute l'Histoire",
-    "status": "pending-satellite-match",
-    "satelliteId": null,
-    "serviceId": null,
-    "sourceVerified": false,
-    "redistributionEnabled": false
-  },
-  {
-    "catalogueId": "mgg-tv",
-    "channelNumber": 263,
-    "name": "MGG TV",
-    "status": "pending-satellite-match",
-    "satelliteId": null,
-    "serviceId": null,
-    "sourceVerified": false,
-    "redistributionEnabled": false
-  },
-  {
-    "catalogueId": "golf-plus",
-    "channelNumber": 264,
-    "name": "GOLF+",
-    "status": "pending-satellite-match",
-    "satelliteId": null,
-    "serviceId": null,
-    "sourceVerified": false,
-    "redistributionEnabled": false
-  },
-  {
-    "catalogueId": "infosport",
-    "channelNumber": 265,
-    "name": "Infosport",
-    "status": "pending-satellite-match",
-    "satelliteId": null,
-    "serviceId": null,
-    "sourceVerified": false,
-    "redistributionEnabled": false
-  },
-  {
-    "catalogueId": "sport-1",
-    "channelNumber": 266,
-    "name": "Sport 1",
-    "status": "pending-satellite-match",
-    "satelliteId": null,
-    "serviceId": null,
-    "sourceVerified": false,
-    "redistributionEnabled": false
-  },
-  {
-    "catalogueId": "sport-2",
-    "channelNumber": 267,
-    "name": "Sport 2",
-    "status": "pending-satellite-match",
-    "satelliteId": null,
-    "serviceId": null,
-    "sourceVerified": false,
-    "redistributionEnabled": false
-  },
-  {
-    "catalogueId": "sport-3",
-    "channelNumber": 268,
-    "name": "Sport 3",
-    "status": "pending-satellite-match",
-    "satelliteId": null,
-    "serviceId": null,
-    "sourceVerified": false,
-    "redistributionEnabled": false
-  },
-  {
-    "catalogueId": "sport-4",
-    "channelNumber": 269,
-    "name": "Sport 4",
-    "status": "pending-satellite-match",
-    "satelliteId": null,
-    "serviceId": null,
-    "sourceVerified": false,
-    "redistributionEnabled": false
-  },
-  {
-    "catalogueId": "la-chaine-meteo",
-    "channelNumber": 270,
-    "name": "La Chaîne Météo",
-    "status": "pending-satellite-match",
-    "satelliteId": null,
-    "serviceId": null,
-    "sourceVerified": false,
-    "redistributionEnabled": false
-  },
-  {
-    "catalogueId": "7info",
-    "channelNumber": 271,
-    "name": "7info",
-    "status": "pending-satellite-match",
-    "satelliteId": null,
-    "serviceId": null,
-    "sourceVerified": false,
-    "redistributionEnabled": false
-  },
-  {
-    "catalogueId": "abc-news-live",
-    "channelNumber": 272,
-    "name": "ABC News Live",
-    "status": "pending-satellite-match",
-    "satelliteId": null,
-    "serviceId": null,
-    "sourceVerified": false,
-    "redistributionEnabled": false
-  },
-  {
-    "catalogueId": "al-jazeera",
-    "channelNumber": 273,
-    "name": "Al Jazeera",
-    "status": "pending-satellite-match",
-    "satelliteId": null,
-    "serviceId": null,
-    "sourceVerified": false,
-    "redistributionEnabled": false
-  },
-  {
-    "catalogueId": "bbc-news",
-    "channelNumber": 274,
-    "name": "BBC News",
-    "status": "pending-satellite-match",
-    "satelliteId": null,
-    "serviceId": null,
-    "sourceVerified": false,
-    "redistributionEnabled": false
-  },
-  {
-    "catalogueId": "bloomberg-tv",
-    "channelNumber": 275,
-    "name": "Bloomberg TV",
-    "status": "pending-satellite-match",
-    "satelliteId": null,
-    "serviceId": null,
-    "sourceVerified": false,
-    "redistributionEnabled": false
-  },
-  {
-    "catalogueId": "c-span",
-    "channelNumber": 276,
-    "name": "C-SPAN",
-    "status": "pending-satellite-match",
-    "satelliteId": null,
-    "serviceId": null,
-    "sourceVerified": false,
-    "redistributionEnabled": false
-  },
-  {
-    "catalogueId": "cbs-news-24-7",
-    "channelNumber": 277,
-    "name": "CBS News 24/7",
-    "status": "pending-satellite-match",
-    "satelliteId": null,
-    "serviceId": null,
-    "sourceVerified": false,
-    "redistributionEnabled": false
-  },
-  {
-    "catalogueId": "cgtn",
-    "channelNumber": 278,
-    "name": "CGTN",
-    "status": "pending-satellite-match",
-    "satelliteId": null,
-    "serviceId": null,
-    "sourceVerified": false,
-    "redistributionEnabled": false
-  },
-  {
-    "catalogueId": "cnbc",
-    "channelNumber": 279,
-    "name": "CNBC",
-    "status": "pending-satellite-match",
-    "satelliteId": null,
-    "serviceId": null,
-    "sourceVerified": false,
-    "redistributionEnabled": false
-  },
-  {
-    "catalogueId": "cnn",
-    "channelNumber": 280,
-    "name": "CNN",
-    "status": "pending-satellite-match",
-    "satelliteId": null,
-    "serviceId": null,
-    "sourceVerified": false,
-    "redistributionEnabled": false
-  },
-  {
-    "catalogueId": "nbc-news-now",
-    "channelNumber": 281,
-    "name": "NBC News NOW",
-    "status": "pending-satellite-match",
-    "satelliteId": null,
-    "serviceId": null,
-    "sourceVerified": false,
-    "redistributionEnabled": false
-  },
-  {
-    "catalogueId": "newsmax",
-    "channelNumber": 282,
-    "name": "Newsmax",
-    "status": "pending-satellite-match",
-    "satelliteId": null,
-    "serviceId": null,
-    "sourceVerified": false,
-    "redistributionEnabled": false
-  },
-  {
-    "catalogueId": "newsnation",
-    "channelNumber": 283,
-    "name": "NewsNation",
-    "status": "pending-satellite-match",
-    "satelliteId": null,
-    "serviceId": null,
-    "sourceVerified": false,
-    "redistributionEnabled": false
-  },
-  {
-    "catalogueId": "nhk-world",
-    "channelNumber": 284,
-    "name": "NHK World",
-    "status": "pending-satellite-match",
-    "satelliteId": null,
-    "serviceId": null,
-    "sourceVerified": false,
-    "redistributionEnabled": false
-  },
-  {
-    "catalogueId": "oan",
-    "channelNumber": 285,
-    "name": "OAN",
-    "status": "pending-satellite-match",
-    "satelliteId": null,
-    "serviceId": null,
-    "sourceVerified": false,
-    "redistributionEnabled": false
-  },
-  {
-    "catalogueId": "sky-news",
-    "channelNumber": 286,
-    "name": "Sky News",
-    "status": "pending-satellite-match",
-    "satelliteId": null,
-    "serviceId": null,
-    "sourceVerified": false,
-    "redistributionEnabled": false
-  },
-  {
-    "catalogueId": "the-weather-channel",
-    "channelNumber": 287,
-    "name": "The Weather Channel",
-    "status": "pending-satellite-match",
-    "satelliteId": null,
-    "serviceId": null,
-    "sourceVerified": false,
-    "redistributionEnabled": false
-  },
-  {
-    "catalogueId": "trt-world",
-    "channelNumber": 288,
-    "name": "TRT World",
-    "status": "pending-satellite-match",
-    "satelliteId": null,
-    "serviceId": null,
-    "sourceVerified": false,
-    "redistributionEnabled": false
-  },
-  {
-    "catalogueId": "a-plus",
-    "channelNumber": 289,
-    "name": "A+",
-    "status": "pending-satellite-match",
-    "satelliteId": null,
-    "serviceId": null,
-    "sourceVerified": false,
-    "redistributionEnabled": false
-  },
-  {
-    "catalogueId": "m6-international",
-    "channelNumber": 290,
-    "name": "M6 International",
-    "status": "pending-satellite-match",
-    "satelliteId": null,
-    "serviceId": null,
-    "sourceVerified": false,
-    "redistributionEnabled": false
-  },
-  {
-    "catalogueId": "maboke-tv",
-    "channelNumber": 291,
-    "name": "Maboke TV",
-    "status": "pending-satellite-match",
-    "satelliteId": null,
-    "serviceId": null,
-    "sourceVerified": false,
-    "redistributionEnabled": false
-  },
-  {
-    "catalogueId": "magc-tv",
-    "channelNumber": 292,
-    "name": "MAGC TV",
-    "status": "pending-satellite-match",
-    "satelliteId": null,
-    "serviceId": null,
-    "sourceVerified": false,
-    "redistributionEnabled": false
-  },
-  {
-    "catalogueId": "sunu-yeuf",
-    "channelNumber": 293,
-    "name": "Sunu Yeuf",
-    "status": "pending-satellite-match",
-    "satelliteId": null,
-    "serviceId": null,
-    "sourceVerified": false,
-    "redistributionEnabled": false
-  },
-  {
-    "catalogueId": "vifi-tv",
-    "channelNumber": 294,
-    "name": "VIFI TV",
-    "status": "pending-satellite-match",
-    "satelliteId": null,
-    "serviceId": null,
-    "sourceVerified": false,
-    "redistributionEnabled": false
-  },
-  {
-    "catalogueId": "zacu-tv",
-    "channelNumber": 295,
-    "name": "Zacu TV",
-    "status": "pending-satellite-match",
-    "satelliteId": null,
-    "serviceId": null,
-    "sourceVerified": false,
-    "redistributionEnabled": false
-  },
-  {
-    "catalogueId": "zbc",
-    "channelNumber": 296,
-    "name": "ZBC",
-    "status": "pending-satellite-match",
-    "satelliteId": null,
-    "serviceId": null,
-    "sourceVerified": false,
-    "redistributionEnabled": false
-  },
-  {
-    "catalogueId": "emci-tv",
-    "channelNumber": 297,
-    "name": "EMCI TV",
-    "status": "pending-satellite-match",
-    "satelliteId": null,
-    "serviceId": null,
-    "sourceVerified": false,
-    "redistributionEnabled": false
-  },
-  {
-    "catalogueId": "esperance-tv",
-    "channelNumber": 298,
-    "name": "Espérance TV",
-    "status": "pending-satellite-match",
-    "satelliteId": null,
-    "serviceId": null,
-    "sourceVerified": false,
-    "redistributionEnabled": false
-  },
-  {
-    "catalogueId": "ewtn",
-    "channelNumber": 299,
-    "name": "EWTN",
-    "status": "pending-satellite-match",
-    "satelliteId": null,
-    "serviceId": null,
-    "sourceVerified": false,
-    "redistributionEnabled": false
-  },
-  {
-    "catalogueId": "hope-channel",
-    "channelNumber": 300,
-    "name": "Hope Channel",
-    "status": "pending-satellite-match",
-    "satelliteId": null,
-    "serviceId": null,
-    "sourceVerified": false,
-    "redistributionEnabled": false
-  },
-  {
-    "catalogueId": "kto",
-    "channelNumber": 301,
-    "name": "KTO",
-    "status": "pending-satellite-match",
-    "satelliteId": null,
-    "serviceId": null,
-    "sourceVerified": false,
-    "redistributionEnabled": false
-  },
-  {
-    "catalogueId": "top-chretien",
-    "channelNumber": 302,
-    "name": "Top Chrétien",
-    "status": "pending-satellite-match",
-    "satelliteId": null,
-    "serviceId": null,
-    "sourceVerified": false,
-    "redistributionEnabled": false
-  },
-  {
-    "catalogueId": "trace-gospel",
-    "channelNumber": 303,
-    "name": "Trace Gospel",
-    "status": "pending-satellite-match",
-    "satelliteId": null,
-    "serviceId": null,
-    "sourceVerified": false,
-    "redistributionEnabled": false
-  },
-  {
-    "catalogueId": "cuisines",
-    "channelNumber": 304,
-    "name": "Cuisines",
-    "status": "pending-satellite-match",
-    "satelliteId": null,
-    "serviceId": null,
-    "sourceVerified": false,
-    "redistributionEnabled": false
-  },
-  {
-    "catalogueId": "nollywood-tv",
-    "channelNumber": 305,
-    "name": Nollywood TV,
-    "status": "found-encrypted",
-    "satelliteId": "ses-4-22w",
-    "serviceId": "nollywood-tv",
-    "sourceVerified": true,
-    "physicalReceptionVerified": false,
-    "encryption": {
-      "scrambled": true,
-      "systems": ["Mediaguard", "Nagravision"],
-      "authorizationRequired": true
-    },
-    "redistributionEnabled": false
-  },
-  {
-    "catalogueId": "nollywood-tv-epic",
-    "channelNumber": 306,
-    "name": "Nollywood TV Epic",
-    "status": "pending-satellite-match",
-    "satelliteId": null,
-    "serviceId": null,
-    "sourceVerified": false,
-    "redistributionEnabled": false
-  },
-  {
-    "catalogueId": "passion-bollywood",
-    "channelNumber": 307,
-    "name": "Passion Bollywood",
-    "status": "pending-satellite-match",
-    "satelliteId": null,
-    "serviceId": null,
-    "sourceVerified": false,
-    "redistributionEnabled": false
-  },
-  {
-    "catalogueId": "clique-tv",
-    "channelNumber": 308,
-    "name": "Clique TV",
-    "status": "pending-satellite-match",
-    "satelliteId": null,
-    "serviceId": null,
-    "sourceVerified": false,
-    "redistributionEnabled": false
-  },
-  {
-    "catalogueId": "cine-plus-ocs",
-    "channelNumber": 309,
-    "name": "Ciné+ OCS",
-    "status": "pending-satellite-match",
-    "satelliteId": null,
-    "serviceId": null,
-    "sourceVerified": false,
-    "redistributionEnabled": false
-  }
-],
-  // Exact/brand-equivalent matches against the 234-channel StreamLive catalogue.
-  // These are source attachments only; redistribution remains disabled until the physical receiver,
-  // entitlement/authorization, and Sat>IP/HLS gateway are verified.
-  catalogueMatches: [
-    { catalogueId: "tf1", satelliteServiceId: "tf1", sid: 8903, status: "found-encrypted" },
-    { catalogueId: "c-plus-cinema", satelliteServiceId: "canal-plus-cinema-centre", sid: 8904, status: "found-encrypted" },
-    { catalogueId: "nickelodeon-junior", satelliteServiceId: "nickelodeon-junior-france", sid: 8905, status: "found-encrypted" },
-    { catalogueId: "c-plus-family", satelliteServiceId: "canal-plus-family-centre", sid: 8909, status: "found-encrypted" },
-    { catalogueId: "sci-fi", satelliteServiceId: "scifi-france", sid: 8916, status: "found-encrypted" },
-    { catalogueId: "trace-urban", satelliteServiceId: "trace-urban-afrique", sid: 8919, status: "found-encrypted" },
-    { catalogueId: "c-plus-pop", satelliteServiceId: "canal-plus-pop", sid: 8922, status: "found-encrypted" },
-    { catalogueId: "action", satelliteServiceId: "action-france", sid: 8923, status: "found-encrypted" },
-    { catalogueId: "c-plus-action", satelliteServiceId: "canal-plus-action-centre", sid: 8925, status: "found-encrypted" },
-    { catalogueId: "nollywood-tv", satelliteServiceId: "nollywood-tv", sid: 8927, status: "found-encrypted" },
-    { catalogueId: "boomerang", satelliteServiceId: "boomerang-france", sid: 8930, status: "found-encrypted" }
-  ],
-  services: [
+  "catalogueMatches": [
     {
-      name: "Canal + Première Centre",
-      id: "canal-premi-re-centre",
-      sid: "8901",
-      status: "discovered",
-      source: "public-satellite-listing",
-      redistributionEnabled: false,
-      encryption: {
-        scrambled: true,
-        systems: ["Mediaguard","Nagravision"],
-        keysConfigured: false,
-        authorizationRequired: true
+      "catalogueId": "rti-1",
+      "satelliteId": "ses-4-22w",
+      "serviceId": "sid-8206",
+      "status": "found-encrypted",
+      "transponder": {
+        "frequencyMHz": 10986,
+        "polarization": "V",
+        "symbolRateKsym": 45000,
+        "sid": 8206
+      },
+      "encryption": {
+        "scrambled": true,
+        "systems": [
+          "Mediaguard",
+          "Nagravision"
+        ],
+        "authorizationRequired": true
       }
     },
     {
-      name: "ITV (Senegal)",
-      id: "itv-senegal",
-      sid: "8902",
-      status: "discovered",
-      source: "public-satellite-listing",
-      redistributionEnabled: false,
-      encryption: {
-        scrambled: true,
-        systems: ["Mediaguard","Nagravision"],
-        keysConfigured: false,
-        authorizationRequired: true
+      "catalogueId": "rti-2",
+      "satelliteId": "ses-4-22w",
+      "serviceId": "sid-8210",
+      "status": "found-encrypted",
+      "transponder": {
+        "frequencyMHz": 10986,
+        "polarization": "V",
+        "symbolRateKsym": 45000,
+        "sid": 8210
+      },
+      "encryption": {
+        "scrambled": true,
+        "systems": [
+          "Mediaguard",
+          "Nagravision"
+        ],
+        "authorizationRequired": true
       }
     },
     {
-      name: "TF1",
-      id: "tf1",
-      sid: "8903",
-      status: "discovered",
-      source: "public-satellite-listing",
-      redistributionEnabled: false,
-      encryption: {
-        scrambled: true,
-        systems: ["Mediaguard","Nagravision"],
-        keysConfigured: false,
-        authorizationRequired: true
+      "catalogueId": "la-3",
+      "satelliteId": "ses-4-22w",
+      "serviceId": "sid-8327",
+      "status": "found-encrypted",
+      "transponder": {
+        "frequencyMHz": 12570,
+        "polarization": "V",
+        "symbolRateKsym": 30000,
+        "sid": 8327
+      },
+      "encryption": {
+        "scrambled": true,
+        "systems": [
+          "Mediaguard",
+          "Nagravision"
+        ],
+        "authorizationRequired": true
       }
     },
     {
-      name: "Canal + Cinéma Centre",
-      id: "canal-cin-ma-centre",
-      sid: "8904",
-      status: "discovered",
-      source: "public-satellite-listing",
-      redistributionEnabled: false,
-      encryption: {
-        scrambled: true,
-        systems: ["Mediaguard","Nagravision"],
-        keysConfigured: false,
-        authorizationRequired: true
+      "catalogueId": "life-tv",
+      "satelliteId": "ses-4-22w",
+      "serviceId": "sid-8503",
+      "status": "found-encrypted",
+      "transponder": {
+        "frequencyMHz": 12650,
+        "polarization": "V",
+        "symbolRateKsym": 30000,
+        "sid": 8503
+      },
+      "encryption": {
+        "scrambled": true,
+        "systems": [
+          "Mediaguard",
+          "Nagravision"
+        ],
+        "authorizationRequired": true
       }
     },
     {
-      name: "Nickelodeon Junior France",
-      id: "nickelodeon-junior-france",
-      sid: "8905",
-      status: "discovered",
-      source: "public-satellite-listing",
-      redistributionEnabled: false,
-      encryption: {
-        scrambled: true,
-        systems: ["Mediaguard","Nagravision"],
-        keysConfigured: false,
-        authorizationRequired: true
+      "catalogueId": "nci",
+      "satelliteId": "ses-4-22w",
+      "serviceId": "sid-4003",
+      "status": "found-encrypted",
+      "transponder": {
+        "frequencyMHz": 11551,
+        "polarization": "V",
+        "symbolRateKsym": 45000,
+        "sid": 4003
+      },
+      "encryption": {
+        "scrambled": true,
+        "systems": [
+          "Mediaguard",
+          "Nagravision"
+        ],
+        "authorizationRequired": true
       }
     },
     {
-      name: "Media Sports Infos",
-      id: "media-sports-infos",
-      sid: "8906",
-      status: "discovered",
-      source: "public-satellite-listing",
-      redistributionEnabled: false,
-      encryption: {
-        scrambled: true,
-        systems: ["Mediaguard","Nagravision"],
-        keysConfigured: false,
-        authorizationRequired: true
+      "catalogueId": "arte",
+      "satelliteId": "ses-4-22w",
+      "serviceId": "sid-8402",
+      "status": "found-encrypted",
+      "transponder": {
+        "frequencyMHz": 12610,
+        "polarization": "V",
+        "symbolRateKsym": 30000,
+        "sid": 8402
+      },
+      "encryption": {
+        "scrambled": true,
+        "systems": [
+          "Mediaguard",
+          "Nagravision"
+        ],
+        "authorizationRequired": true
       }
     },
     {
-      name: "Canal + Magic",
-      id: "canal-magic",
-      sid: "8907",
-      status: "discovered",
-      source: "public-satellite-listing",
-      redistributionEnabled: false,
-      encryption: {
-        scrambled: true,
-        systems: ["Mediaguard","Nagravision"],
-        keysConfigured: false,
-        authorizationRequired: true
+      "catalogueId": "france-2",
+      "satelliteId": "ses-4-22w",
+      "serviceId": "sid-8803",
+      "status": "found-encrypted",
+      "transponder": {
+        "frequencyMHz": 11611,
+        "polarization": "V",
+        "symbolRateKsym": 45000,
+        "sid": 8803
+      },
+      "encryption": {
+        "scrambled": true,
+        "systems": [
+          "Mediaguard",
+          "Nagravision"
+        ],
+        "authorizationRequired": true
       }
     },
     {
-      name: "Canal + Family Centre",
-      id: "canal-family-centre",
-      sid: "8909",
-      status: "discovered",
-      source: "public-satellite-listing",
-      redistributionEnabled: false,
-      encryption: {
-        scrambled: true,
-        systems: ["Mediaguard","Nagravision"],
-        keysConfigured: false,
-        authorizationRequired: true
+      "catalogueId": "france-3",
+      "satelliteId": "ses-4-22w",
+      "serviceId": "sid-8703",
+      "status": "found-encrypted",
+      "transponder": {
+        "frequencyMHz": 12730,
+        "polarization": "V",
+        "symbolRateKsym": 30000,
+        "sid": 8703
+      },
+      "encryption": {
+        "scrambled": true,
+        "systems": [
+          "Mediaguard",
+          "Nagravision"
+        ],
+        "authorizationRequired": true
       }
     },
     {
-      name: "Voir + Afrique",
-      id: "voir-afrique",
-      sid: "8910",
-      status: "discovered",
-      source: "public-satellite-listing",
-      redistributionEnabled: false,
-      encryption: {
-        scrambled: false,
-        systems: [],
-        keysConfigured: false,
-        authorizationRequired: false
+      "catalogueId": "france-5",
+      "satelliteId": "ses-4-22w",
+      "serviceId": "sid-8825",
+      "status": "found-encrypted",
+      "transponder": {
+        "frequencyMHz": 11611,
+        "polarization": "V",
+        "symbolRateKsym": 45000,
+        "sid": 8825
+      },
+      "encryption": {
+        "scrambled": true,
+        "systems": [
+          "Mediaguard",
+          "Nagravision"
+        ],
+        "authorizationRequired": true
       }
     },
     {
-      name: "Canal + Sport 2",
-      id: "canal-sport-2",
-      sid: "8911",
-      status: "discovered",
-      source: "public-satellite-listing",
-      redistributionEnabled: false,
-      encryption: {
-        scrambled: true,
-        systems: ["Mediaguard","Nagravision"],
-        keysConfigured: false,
-        authorizationRequired: true
+      "catalogueId": "tfx",
+      "satelliteId": "ses-4-22w",
+      "serviceId": "sid-4133",
+      "status": "found-encrypted",
+      "transponder": {
+        "frequencyMHz": 11051,
+        "polarization": "V",
+        "symbolRateKsym": 45000,
+        "sid": 4133
+      },
+      "encryption": {
+        "scrambled": true,
+        "systems": [
+          "Mediaguard",
+          "Nagravision"
+        ],
+        "authorizationRequired": true
       }
     },
     {
-      name: "Canal + Sport 3",
-      id: "canal-sport-3",
-      sid: "8912",
-      status: "discovered",
-      source: "public-satellite-listing",
-      redistributionEnabled: false,
-      encryption: {
-        scrambled: true,
-        systems: ["Mediaguard","Nagravision"],
-        keysConfigured: false,
-        authorizationRequired: true
+      "catalogueId": "tmc",
+      "satelliteId": "ses-4-22w",
+      "serviceId": "sid-8422",
+      "status": "found-encrypted",
+      "transponder": {
+        "frequencyMHz": 12610,
+        "polarization": "V",
+        "symbolRateKsym": 30000,
+        "sid": 8422
+      },
+      "encryption": {
+        "scrambled": true,
+        "systems": [
+          "Mediaguard",
+          "Nagravision"
+        ],
+        "authorizationRequired": true
       }
     },
     {
-      name: "Pacis TV",
-      id: "pacis-tv",
-      sid: "8913",
-      status: "discovered",
-      source: "public-satellite-listing",
-      redistributionEnabled: false,
-      encryption: {
-        scrambled: true,
-        systems: ["Mediaguard","Nagravision"],
-        keysConfigured: false,
-        authorizationRequired: true
+      "catalogueId": "france-24",
+      "satelliteId": "ses-4-22w",
+      "serviceId": "sid-8108",
+      "status": "found-encrypted",
+      "transponder": {
+        "frequencyMHz": 3749,
+        "polarization": "L",
+        "symbolRateKsym": 45830,
+        "sid": 8108
+      },
+      "encryption": {
+        "scrambled": true,
+        "systems": [
+          "Mediaguard",
+          "Nagravision"
+        ],
+        "authorizationRequired": true
       }
     },
     {
-      name: "My Media Prime",
-      id: "my-media-prime",
-      sid: "8914",
-      status: "discovered",
-      source: "public-satellite-listing",
-      redistributionEnabled: false,
-      encryption: {
-        scrambled: true,
-        systems: ["Mediaguard","Nagravision"],
-        keysConfigured: false,
-        authorizationRequired: true
+      "catalogueId": "i24news",
+      "satelliteId": "ses-4-22w",
+      "serviceId": "sid-9",
+      "status": "found-encrypted",
+      "transponder": {
+        "frequencyMHz": 11671,
+        "polarization": "V",
+        "symbolRateKsym": 30000,
+        "sid": 9
+      },
+      "encryption": {
+        "scrambled": true,
+        "systems": [
+          "Mediaguard",
+          "Nagravision"
+        ],
+        "authorizationRequired": true
       }
     },
     {
-      name: "Private TV",
-      id: "private-tv",
-      sid: "8915",
-      status: "discovered",
-      source: "public-satellite-listing",
-      redistributionEnabled: false,
-      encryption: {
-        scrambled: true,
-        systems: ["Mediaguard","Nagravision"],
-        keysConfigured: false,
-        authorizationRequired: true
+      "catalogueId": "ab1",
+      "satelliteId": "ses-4-22w",
+      "serviceId": "sid-4002",
+      "status": "found-encrypted",
+      "transponder": {
+        "frequencyMHz": 11551,
+        "polarization": "V",
+        "symbolRateKsym": 45000,
+        "sid": 4002
+      },
+      "encryption": {
+        "scrambled": true,
+        "systems": [
+          "Mediaguard",
+          "Nagravision"
+        ],
+        "authorizationRequired": true
       }
     },
     {
-      name: "SciFi France",
-      id: "scifi-france",
-      sid: "8916",
-      status: "discovered",
-      source: "public-satellite-listing",
-      redistributionEnabled: false,
-      encryption: {
-        scrambled: true,
-        systems: ["Mediaguard","Nagravision"],
-        keysConfigured: false,
-        authorizationRequired: true
+      "catalogueId": "action",
+      "satelliteId": "ses-4-22w",
+      "serviceId": "sid-8105",
+      "status": "found-encrypted",
+      "transponder": {
+        "frequencyMHz": 3749,
+        "polarization": "L",
+        "symbolRateKsym": 45830,
+        "sid": 8105
+      },
+      "encryption": {
+        "scrambled": true,
+        "systems": [
+          "Mediaguard",
+          "Nagravision"
+        ],
+        "authorizationRequired": true
       }
     },
     {
-      name: "Discovery Channel France",
-      id: "discovery-channel-france",
-      sid: "8917",
-      status: "discovered",
-      source: "public-satellite-listing",
-      redistributionEnabled: false,
-      encryption: {
-        scrambled: true,
-        systems: ["Mediaguard","Nagravision"],
-        keysConfigured: false,
-        authorizationRequired: true
+      "catalogueId": "rtl-9",
+      "satelliteId": "ses-4-22w",
+      "serviceId": "sid-8804",
+      "status": "found-encrypted",
+      "transponder": {
+        "frequencyMHz": 11611,
+        "polarization": "V",
+        "symbolRateKsym": 45000,
+        "sid": 8804
+      },
+      "encryption": {
+        "scrambled": true,
+        "systems": [
+          "Mediaguard",
+          "Nagravision"
+        ],
+        "authorizationRequired": true
       }
     },
     {
-      name: "Horizon 3",
-      id: "horizon-3",
-      sid: "8918",
-      status: "discovered",
-      source: "public-satellite-listing",
-      redistributionEnabled: false,
-      encryption: {
-        scrambled: true,
-        systems: ["Mediaguard","Nagravision"],
-        keysConfigured: false,
-        authorizationRequired: true
+      "catalogueId": "sci-fi",
+      "satelliteId": "ses-4-22w",
+      "serviceId": "sid-8916",
+      "status": "found-encrypted",
+      "transponder": {
+        "frequencyMHz": 11171,
+        "polarization": "V",
+        "symbolRateKsym": 45000,
+        "sid": 8916
+      },
+      "encryption": {
+        "scrambled": true,
+        "systems": [
+          "Mediaguard",
+          "Nagravision"
+        ],
+        "authorizationRequired": true
       }
     },
     {
-      name: "Trace Urban Afrique",
-      id: "trace-urban-afrique",
-      sid: "8919",
-      status: "discovered",
-      source: "public-satellite-listing",
-      redistributionEnabled: false,
-      encryption: {
-        scrambled: true,
-        systems: ["Mediaguard","Nagravision"],
-        keysConfigured: false,
-        authorizationRequired: true
+      "catalogueId": "telemundo",
+      "satelliteId": "ses-4-22w",
+      "serviceId": "sid-4028",
+      "status": "found-encrypted",
+      "transponder": {
+        "frequencyMHz": 11551,
+        "polarization": "V",
+        "symbolRateKsym": 45000,
+        "sid": 4028
+      },
+      "encryption": {
+        "scrambled": true,
+        "systems": [
+          "Mediaguard",
+          "Nagravision"
+        ],
+        "authorizationRequired": true
       }
     },
     {
-      name: "One TV (1)",
-      id: "one-tv-1",
-      sid: "8920",
-      status: "discovered",
-      source: "public-satellite-listing",
-      redistributionEnabled: false,
-      encryption: {
-        scrambled: true,
-        systems: ["Mediaguard","Nagravision"],
-        keysConfigured: false,
-        authorizationRequired: true
+      "catalogueId": "13eme-rue",
+      "satelliteId": "ses-4-22w",
+      "serviceId": "sid-8224",
+      "status": "found-encrypted",
+      "transponder": {
+        "frequencyMHz": 10986,
+        "polarization": "V",
+        "symbolRateKsym": 30000,
+        "sid": 8224
+      },
+      "encryption": {
+        "scrambled": true,
+        "systems": [
+          "Mediaguard",
+          "Nagravision"
+        ],
+        "authorizationRequired": true
       }
     },
     {
-      name: "RTVC",
-      id: "rtvc",
-      sid: "8921",
-      status: "discovered",
-      source: "public-satellite-listing",
-      redistributionEnabled: false,
-      encryption: {
-        scrambled: true,
-        systems: ["Mediaguard","Nagravision"],
-        keysConfigured: false,
-        authorizationRequired: true
+      "catalogueId": "tf1-series-films",
+      "satelliteId": "ses-4-22w",
+      "serviceId": "sid-8823",
+      "status": "found-encrypted",
+      "transponder": {
+        "frequencyMHz": 11611,
+        "polarization": "V",
+        "symbolRateKsym": 45000,
+        "sid": 8823
+      },
+      "encryption": {
+        "scrambled": true,
+        "systems": [
+          "Mediaguard",
+          "Nagravision"
+        ],
+        "authorizationRequired": true
       }
     },
     {
-      name: "Canal + Pop",
-      id: "canal-pop",
-      sid: "8922",
-      status: "discovered",
-      source: "public-satellite-listing",
-      redistributionEnabled: false,
-      encryption: {
-        scrambled: true,
-        systems: ["Mediaguard","Nagravision"],
-        keysConfigured: false,
-        authorizationRequired: true
+      "catalogueId": "a-plus-kids",
+      "satelliteId": "ses-4-22w",
+      "serviceId": "sid-4001",
+      "status": "found-encrypted",
+      "transponder": {
+        "frequencyMHz": 11551,
+        "polarization": "V",
+        "symbolRateKsym": 45000,
+        "sid": 4001
+      },
+      "encryption": {
+        "scrambled": true,
+        "systems": [
+          "Mediaguard",
+          "Nagravision"
+        ],
+        "authorizationRequired": true
       }
     },
     {
-      name: "Action (France)",
-      id: "action-france",
-      sid: "8923",
-      status: "discovered",
-      source: "public-satellite-listing",
-      redistributionEnabled: false,
-      encryption: {
-        scrambled: true,
-        systems: ["Mediaguard","Nagravision"],
-        keysConfigured: false,
-        authorizationRequired: true
+      "catalogueId": "gulli-africa",
+      "satelliteId": "ses-4-22w",
+      "serviceId": "sid-8917",
+      "status": "found-encrypted",
+      "transponder": {
+        "frequencyMHz": 11171,
+        "polarization": "V",
+        "symbolRateKsym": 45000,
+        "sid": 8917
+      },
+      "encryption": {
+        "scrambled": true,
+        "systems": [
+          "Mediaguard",
+          "Nagravision"
+        ],
+        "authorizationRequired": true
       }
     },
     {
-      name: "Trace Mboa",
-      id: "trace-mboa",
-      sid: "8924",
-      status: "discovered",
-      source: "public-satellite-listing",
-      redistributionEnabled: false,
-      encryption: {
-        scrambled: true,
-        systems: ["Mediaguard","Nagravision"],
-        keysConfigured: false,
-        authorizationRequired: true
+      "catalogueId": "mangas",
+      "satelliteId": "ses-4-22w",
+      "serviceId": "sid-4017",
+      "status": "found-encrypted",
+      "transponder": {
+        "frequencyMHz": 11551,
+        "polarization": "V",
+        "symbolRateKsym": 45000,
+        "sid": 4017
+      },
+      "encryption": {
+        "scrambled": true,
+        "systems": [
+          "Mediaguard",
+          "Nagravision"
+        ],
+        "authorizationRequired": true
       }
     },
     {
-      name: "Canal + Action Centre",
-      id: "canal-action-centre",
-      sid: "8925",
-      status: "discovered",
-      source: "public-satellite-listing",
-      redistributionEnabled: false,
-      encryption: {
-        scrambled: true,
-        systems: ["Mediaguard","Nagravision"],
-        keysConfigured: false,
-        authorizationRequired: true
+      "catalogueId": "nickelodeon",
+      "satelliteId": "ses-4-22w",
+      "serviceId": "sid-8312",
+      "status": "found-encrypted",
+      "transponder": {
+        "frequencyMHz": 12570,
+        "polarization": "V",
+        "symbolRateKsym": 30000,
+        "sid": 8312
+      },
+      "encryption": {
+        "scrambled": true,
+        "systems": [
+          "Mediaguard",
+          "Nagravision"
+        ],
+        "authorizationRequired": true
       }
     },
     {
-      name: "Histoire TV",
-      id: "histoire-tv",
-      sid: "8926",
-      status: "discovered",
-      source: "public-satellite-listing",
-      redistributionEnabled: false,
-      encryption: {
-        scrambled: true,
-        systems: ["Mediaguard","Nagravision"],
-        keysConfigured: false,
-        authorizationRequired: true
+      "catalogueId": "nickelodeon-junior",
+      "satelliteId": "ses-4-22w",
+      "serviceId": "sid-8905",
+      "status": "found-encrypted",
+      "transponder": {
+        "frequencyMHz": 11171,
+        "polarization": "V",
+        "symbolRateKsym": 45000,
+        "sid": 8905
+      },
+      "encryption": {
+        "scrambled": true,
+        "systems": [
+          "Mediaguard",
+          "Nagravision"
+        ],
+        "authorizationRequired": true
       }
     },
     {
-      name: "Nollywood TV",
-      id: "nollywood-tv",
-      sid: "8927",
-      status: "discovered",
-      source: "public-satellite-listing",
-      redistributionEnabled: false,
-      encryption: {
-        scrambled: true,
-        systems: ["Mediaguard","Nagravision"],
-        keysConfigured: false,
-        authorizationRequired: true
+      "catalogueId": "tiji",
+      "satelliteId": "ses-4-22w",
+      "serviceId": "sid-8321",
+      "status": "found-encrypted",
+      "transponder": {
+        "frequencyMHz": 12570,
+        "polarization": "V",
+        "symbolRateKsym": 30000,
+        "sid": 8321
+      },
+      "encryption": {
+        "scrambled": true,
+        "systems": [
+          "Mediaguard",
+          "Nagravision"
+        ],
+        "authorizationRequired": true
       }
     },
     {
-      name: "TV Al Bayane",
-      id: "tv-al-bayane",
-      sid: "8928",
-      status: "discovered",
-      source: "public-satellite-listing",
-      redistributionEnabled: false,
-      encryption: {
-        scrambled: true,
-        systems: ["Mediaguard","Nagravision"],
-        keysConfigured: false,
-        authorizationRequired: true
+      "catalogueId": "tv5-monde",
+      "satelliteId": "ses-4-22w",
+      "serviceId": "sid-8102",
+      "status": "found-encrypted",
+      "transponder": {
+        "frequencyMHz": 3749,
+        "polarization": "L",
+        "symbolRateKsym": 45830,
+        "sid": 8102
+      },
+      "encryption": {
+        "scrambled": true,
+        "systems": [
+          "Mediaguard",
+          "Nagravision"
+        ],
+        "authorizationRequired": true
       }
     },
     {
-      name: "Parole Eternelle TV",
-      id: "parole-eternelle-tv",
-      sid: "8929",
-      status: "discovered",
-      source: "public-satellite-listing",
-      redistributionEnabled: false,
-      encryption: {
-        scrambled: true,
-        systems: ["Mediaguard","Nagravision"],
-        keysConfigured: false,
-        authorizationRequired: true
+      "catalogueId": "eurosport-1",
+      "satelliteId": "ses-4-22w",
+      "serviceId": "sid-8906",
+      "status": "found-encrypted",
+      "transponder": {
+        "frequencyMHz": 11171,
+        "polarization": "V",
+        "symbolRateKsym": 45000,
+        "sid": 8906
+      },
+      "encryption": {
+        "scrambled": true,
+        "systems": [
+          "Mediaguard",
+          "Nagravision"
+        ],
+        "authorizationRequired": true
       }
     },
     {
-      name: "Boomerang France",
-      id: "boomerang-france",
-      sid: "8930",
-      status: "discovered",
-      source: "public-satellite-listing",
-      redistributionEnabled: false,
-      encryption: {
-        scrambled: true,
-        systems: ["Mediaguard","Nagravision"],
-        keysConfigured: false,
-        authorizationRequired: true
+      "catalogueId": "automoto",
+      "satelliteId": "ses-4-22w",
+      "serviceId": "sid-8326",
+      "status": "found-encrypted",
+      "transponder": {
+        "frequencyMHz": 12570,
+        "polarization": "V",
+        "symbolRateKsym": 30000,
+        "sid": 8326
+      },
+      "encryption": {
+        "scrambled": true,
+        "systems": [
+          "Mediaguard",
+          "Nagravision"
+        ],
+        "authorizationRequired": true
+      }
+    },
+    {
+      "catalogueId": "serie-club",
+      "satelliteId": "ses-4-22w",
+      "serviceId": "sid-8225",
+      "status": "found-encrypted",
+      "transponder": {
+        "frequencyMHz": 10986,
+        "polarization": "V",
+        "symbolRateKsym": 30000,
+        "sid": 8225
+      },
+      "encryption": {
+        "scrambled": true,
+        "systems": [
+          "Mediaguard",
+          "Nagravision"
+        ],
+        "authorizationRequired": true
+      }
+    },
+    {
+      "catalogueId": "trace-urban",
+      "satelliteId": "ses-4-22w",
+      "serviceId": "sid-8919",
+      "status": "found-encrypted",
+      "transponder": {
+        "frequencyMHz": 11171,
+        "polarization": "V",
+        "symbolRateKsym": 45000,
+        "sid": 8919
+      },
+      "encryption": {
+        "scrambled": true,
+        "systems": [
+          "Mediaguard",
+          "Nagravision"
+        ],
+        "authorizationRequired": true
+      }
+    },
+    {
+      "catalogueId": "mezzo",
+      "satelliteId": "ses-4-22w",
+      "serviceId": "sid-8918",
+      "status": "found-encrypted",
+      "transponder": {
+        "frequencyMHz": 11171,
+        "polarization": "V",
+        "symbolRateKsym": 45000,
+        "sid": 8918
+      },
+      "encryption": {
+        "scrambled": true,
+        "systems": [
+          "Mediaguard",
+          "Nagravision"
+        ],
+        "authorizationRequired": true
+      }
+    },
+    {
+      "catalogueId": "trace-africa",
+      "satelliteId": "ses-4-22w",
+      "serviceId": "sid-4134",
+      "status": "found-encrypted",
+      "transponder": {
+        "frequencyMHz": 11051,
+        "polarization": "V",
+        "symbolRateKsym": 45000,
+        "sid": 4134
+      },
+      "encryption": {
+        "scrambled": true,
+        "systems": [
+          "Mediaguard",
+          "Nagravision"
+        ],
+        "authorizationRequired": true
+      }
+    },
+    {
+      "catalogueId": "animaux",
+      "satelliteId": "ses-4-22w",
+      "serviceId": "sid-4004",
+      "status": "found-encrypted",
+      "transponder": {
+        "frequencyMHz": 11551,
+        "polarization": "V",
+        "symbolRateKsym": 45000,
+        "sid": 4004
+      },
+      "encryption": {
+        "scrambled": true,
+        "systems": [
+          "Mediaguard",
+          "Nagravision"
+        ],
+        "authorizationRequired": true
+      }
+    },
+    {
+      "catalogueId": "planete-plus-crime",
+      "satelliteId": "ses-4-22w",
+      "serviceId": "sid-8412",
+      "status": "found-encrypted",
+      "transponder": {
+        "frequencyMHz": 12610,
+        "polarization": "V",
+        "symbolRateKsym": 30000,
+        "sid": 8412
+      },
+      "encryption": {
+        "scrambled": true,
+        "systems": [
+          "Mediaguard",
+          "Nagravision"
+        ],
+        "authorizationRequired": true
+      }
+    },
+    {
+      "catalogueId": "planete-plus-aventure",
+      "satelliteId": "ses-4-22w",
+      "serviceId": "sid-8508",
+      "status": "found-encrypted",
+      "transponder": {
+        "frequencyMHz": 12650,
+        "polarization": "V",
+        "symbolRateKsym": 30000,
+        "sid": 8508
+      },
+      "encryption": {
+        "scrambled": true,
+        "systems": [
+          "Mediaguard",
+          "Nagravision"
+        ],
+        "authorizationRequired": true
+      }
+    },
+    {
+      "catalogueId": "science-et-vie-tv",
+      "satelliteId": "ses-4-22w",
+      "serviceId": "sid-8711",
+      "status": "found-encrypted",
+      "transponder": {
+        "frequencyMHz": 12730,
+        "polarization": "V",
+        "symbolRateKsym": 30000,
+        "sid": 8711
+      },
+      "encryption": {
+        "scrambled": true,
+        "systems": [
+          "Mediaguard",
+          "Nagravision"
+        ],
+        "authorizationRequired": true
+      }
+    },
+    {
+      "catalogueId": "toute-l-histoire",
+      "satelliteId": "ses-4-22w",
+      "serviceId": "sid-4022",
+      "status": "found-encrypted",
+      "transponder": {
+        "frequencyMHz": 11551,
+        "polarization": "V",
+        "symbolRateKsym": 45000,
+        "sid": 4022
+      },
+      "encryption": {
+        "scrambled": true,
+        "systems": [
+          "Mediaguard",
+          "Nagravision"
+        ],
+        "authorizationRequired": true
+      }
+    },
+    {
+      "catalogueId": "mgg-tv",
+      "satelliteId": "ses-4-22w",
+      "serviceId": "sid-8325",
+      "status": "found-encrypted",
+      "transponder": {
+        "frequencyMHz": 12570,
+        "polarization": "V",
+        "symbolRateKsym": 30000,
+        "sid": 8325
+      },
+      "encryption": {
+        "scrambled": true,
+        "systems": [
+          "Mediaguard",
+          "Nagravision"
+        ],
+        "authorizationRequired": true
+      }
+    },
+    {
+      "catalogueId": "infosport",
+      "satelliteId": "ses-4-22w",
+      "serviceId": "sid-8110",
+      "status": "found-encrypted",
+      "transponder": {
+        "frequencyMHz": 3749,
+        "polarization": "L",
+        "symbolRateKsym": 45830,
+        "sid": 8110
+      },
+      "encryption": {
+        "scrambled": true,
+        "systems": [
+          "Mediaguard",
+          "Nagravision"
+        ],
+        "authorizationRequired": true
+      }
+    },
+    {
+      "catalogueId": "7info",
+      "satelliteId": "ses-4-22w",
+      "serviceId": "sid-8323",
+      "status": "found-encrypted",
+      "transponder": {
+        "frequencyMHz": 12570,
+        "polarization": "V",
+        "symbolRateKsym": 30000,
+        "sid": 8323
+      },
+      "encryption": {
+        "scrambled": true,
+        "systems": [
+          "Mediaguard",
+          "Nagravision"
+        ],
+        "authorizationRequired": true
+      }
+    },
+    {
+      "catalogueId": "cgtn",
+      "satelliteId": "ses-4-22w",
+      "serviceId": "sid-10",
+      "status": "found-encrypted",
+      "transponder": {
+        "frequencyMHz": 11671,
+        "polarization": "V",
+        "symbolRateKsym": 30000,
+        "sid": 10
+      },
+      "encryption": {
+        "scrambled": true,
+        "systems": [
+          "Mediaguard",
+          "Nagravision"
+        ],
+        "authorizationRequired": true
+      }
+    },
+    {
+      "catalogueId": "nhk-world",
+      "satelliteId": "ses-4-22w",
+      "serviceId": "sid-5",
+      "status": "found-encrypted",
+      "transponder": {
+        "frequencyMHz": 11671,
+        "polarization": "V",
+        "symbolRateKsym": 30000,
+        "sid": 5
+      },
+      "encryption": {
+        "scrambled": true,
+        "systems": [
+          "Mediaguard",
+          "Nagravision"
+        ],
+        "authorizationRequired": true
+      }
+    },
+    {
+      "catalogueId": "m6-international",
+      "satelliteId": "ses-4-22w",
+      "serviceId": "sid-8501",
+      "status": "found-encrypted",
+      "transponder": {
+        "frequencyMHz": 12650,
+        "polarization": "V",
+        "symbolRateKsym": 30000,
+        "sid": 8501
+      },
+      "encryption": {
+        "scrambled": true,
+        "systems": [
+          "Mediaguard",
+          "Nagravision"
+        ],
+        "authorizationRequired": true
+      }
+    },
+    {
+      "catalogueId": "maboke-tv",
+      "satelliteId": "ses-4-22w",
+      "serviceId": "sid-8618",
+      "status": "found-encrypted",
+      "transponder": {
+        "frequencyMHz": 12690,
+        "polarization": "V",
+        "symbolRateKsym": 30000,
+        "sid": 8618
+      },
+      "encryption": {
+        "scrambled": true,
+        "systems": [
+          "Mediaguard",
+          "Nagravision"
+        ],
+        "authorizationRequired": true
+      }
+    },
+    {
+      "catalogueId": "sunu-yeuf",
+      "satelliteId": "ses-4-22w",
+      "serviceId": "sid-8421",
+      "status": "found-encrypted",
+      "transponder": {
+        "frequencyMHz": 12610,
+        "polarization": "V",
+        "symbolRateKsym": 30000,
+        "sid": 8421
+      },
+      "encryption": {
+        "scrambled": true,
+        "systems": [
+          "Mediaguard",
+          "Nagravision"
+        ],
+        "authorizationRequired": true
+      }
+    },
+    {
+      "catalogueId": "zacu-tv",
+      "satelliteId": "ses-4-22w",
+      "serviceId": "sid-4018",
+      "status": "found-encrypted",
+      "transponder": {
+        "frequencyMHz": 11551,
+        "polarization": "V",
+        "symbolRateKsym": 45000,
+        "sid": 4018
+      },
+      "encryption": {
+        "scrambled": true,
+        "systems": [
+          "Mediaguard",
+          "Nagravision"
+        ],
+        "authorizationRequired": true
+      }
+    },
+    {
+      "catalogueId": "emci-tv",
+      "satelliteId": "ses-4-22w",
+      "serviceId": "sid-61",
+      "status": "found-encrypted",
+      "transponder": {
+        "frequencyMHz": 11671,
+        "polarization": "V",
+        "symbolRateKsym": 30000,
+        "sid": 61
+      },
+      "encryption": {
+        "scrambled": true,
+        "systems": [
+          "Mediaguard",
+          "Nagravision"
+        ],
+        "authorizationRequired": true
+      }
+    },
+    {
+      "catalogueId": "kto",
+      "satelliteId": "ses-4-22w",
+      "serviceId": "sid-8601",
+      "status": "found-encrypted",
+      "transponder": {
+        "frequencyMHz": 12690,
+        "polarization": "V",
+        "symbolRateKsym": 30000,
+        "sid": 8601
+      },
+      "encryption": {
+        "scrambled": true,
+        "systems": [
+          "Mediaguard",
+          "Nagravision"
+        ],
+        "authorizationRequired": true
+      }
+    },
+    {
+      "catalogueId": "trace-gospel",
+      "satelliteId": "ses-4-22w",
+      "serviceId": "sid-8706",
+      "status": "found-encrypted",
+      "transponder": {
+        "frequencyMHz": 12730,
+        "polarization": "V",
+        "symbolRateKsym": 30000,
+        "sid": 8706
+      },
+      "encryption": {
+        "scrambled": true,
+        "systems": [
+          "Mediaguard",
+          "Nagravision"
+        ],
+        "authorizationRequired": true
+      }
+    },
+    {
+      "catalogueId": "cuisines",
+      "satelliteId": "ses-4-22w",
+      "serviceId": "sid-8120",
+      "status": "found-encrypted",
+      "transponder": {
+        "frequencyMHz": 12530,
+        "polarization": "V",
+        "symbolRateKsym": 30000,
+        "sid": 8120
+      },
+      "encryption": {
+        "scrambled": true,
+        "systems": [
+          "Mediaguard",
+          "Nagravision"
+        ],
+        "authorizationRequired": true
+      }
+    },
+    {
+      "catalogueId": "nollywood-tv",
+      "satelliteId": "ses-4-22w",
+      "serviceId": "sid-4128",
+      "status": "found-encrypted",
+      "transponder": {
+        "frequencyMHz": 3749,
+        "polarization": "L",
+        "symbolRateKsym": 45830,
+        "sid": 4128
+      },
+      "encryption": {
+        "scrambled": true,
+        "systems": [
+          "Mediaguard",
+          "Nagravision"
+        ],
+        "authorizationRequired": true
+      }
+    },
+    {
+      "catalogueId": "nollywood-tv-epic",
+      "satelliteId": "ses-4-22w",
+      "serviceId": "sid-8409",
+      "status": "found-encrypted",
+      "transponder": {
+        "frequencyMHz": 12610,
+        "polarization": "V",
+        "symbolRateKsym": 30000,
+        "sid": 8409
+      },
+      "encryption": {
+        "scrambled": true,
+        "systems": [
+          "Mediaguard",
+          "Nagravision"
+        ],
+        "authorizationRequired": true
+      }
+    },
+    {
+      "catalogueId": "clique-tv",
+      "satelliteId": "ses-4-22w",
+      "serviceId": "sid-8920",
+      "status": "found-encrypted",
+      "transponder": {
+        "frequencyMHz": 11171,
+        "polarization": "V",
+        "symbolRateKsym": 45000,
+        "sid": 8920
+      },
+      "encryption": {
+        "scrambled": true,
+        "systems": [
+          "Mediaguard",
+          "Nagravision"
+        ],
+        "authorizationRequired": true
       }
     }
   ],
+  "note": "Public satellite listings are reception/source candidates only. Physical receiver verification and redistribution authorization are still required; no access keys are stored here."
 };
