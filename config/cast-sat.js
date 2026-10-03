@@ -6839,13 +6839,18 @@ export const castSat = {
         system: "DVB-S2/8PSK"
       },
       matches: [
-        { catalogueId: "amc", serviceName: "AMC Series", sid: 146, encryption: ["Nagravision"], status: "discovered-encrypted" },
-        { catalogueId: "nickelodeon", serviceName: "Nickelodeon Africa", sid: 220, encryption: ["Nagravision"], status: "discovered-encrypted" },
-        { catalogueId: "boing", serviceName: "Boing Africa", sid: 221, encryption: ["Nagravision"], status: "discovered-encrypted" },
-        { catalogueId: "fox-news", serviceName: "Fox News Channel", sid: 232, encryption: ["Nagravision"], status: "discovered-encrypted" },
-        { catalogueId: "msnbc", serviceName: "MS Now International", sid: 233, encryption: ["Nagravision"], status: "regional-variant" },
-        { catalogueId: "france-24", serviceName: "France 24 English", sid: 234, encryption: ["Nagravision"], status: "regional-variant" },
-        { catalogueId: "al-jazeera", serviceName: "Aljazeera Channel", sid: 253, encryption: ["Nagravision"], status: "discovered-encrypted" }
+        { catalogueId: "amc", serviceName: "AMC Series", frequencyMHz: 10971, polarization: "H", symbolRateKsym: 30000, fec: "2/3", sid: 146, encryption: ["Nagravision"], status: "discovered-encrypted" },
+        { catalogueId: "nickelodeon", serviceName: "Nickelodeon Africa", frequencyMHz: 10971, polarization: "H", symbolRateKsym: 30000, fec: "2/3", sid: 220, encryption: ["Nagravision"], status: "discovered-encrypted" },
+        { catalogueId: "boing", serviceName: "Boing Africa", frequencyMHz: 10971, polarization: "H", symbolRateKsym: 30000, fec: "2/3", sid: 221, encryption: ["Nagravision"], status: "discovered-encrypted" },
+        { catalogueId: "fox-news", serviceName: "Fox News Channel", frequencyMHz: 10971, polarization: "H", symbolRateKsym: 30000, fec: "2/3", sid: 232, encryption: ["Nagravision"], status: "discovered-encrypted" },
+        { catalogueId: "msnbc", serviceName: "MS Now International", frequencyMHz: 10971, polarization: "H", symbolRateKsym: 30000, fec: "2/3", sid: 233, encryption: ["Nagravision"], status: "regional-variant" },
+        { catalogueId: "france-24", serviceName: "France 24 English", frequencyMHz: 10971, polarization: "H", symbolRateKsym: 30000, fec: "2/3", sid: 234, encryption: ["Nagravision"], status: "regional-variant" },
+        { catalogueId: "al-jazeera", serviceName: "Aljazeera Channel", frequencyMHz: 10971, polarization: "H", symbolRateKsym: 30000, fec: "2/3", sid: 253, encryption: ["Nagravision"], status: "discovered-encrypted" },
+        { catalogueId: "bbc-news", serviceName: "BBC News Africa", frequencyMHz: 11106, polarization: "V", symbolRateKsym: 45000, fec: "5/6", sid: 230, encryption: ["Nagravision"], status: "regional-variant" },
+        { catalogueId: "al-jazeera", serviceName: "Aljazeera English", frequencyMHz: 11106, polarization: "V", symbolRateKsym: 45000, fec: "5/6", sid: 231, encryption: ["Nagravision"], status: "regional-variant" },
+        { catalogueId: "cnn-international", serviceName: "CNN International Europe", frequencyMHz: 11106, polarization: "V", symbolRateKsym: 45000, fec: "5/6", sid: 239, encryption: ["Nagravision"], status: "regional-variant" },
+        { catalogueId: "france-24", serviceName: "France 24 Français", frequencyMHz: 11106, polarization: "V", symbolRateKsym: 45000, fec: "5/6", sid: 240, encryption: ["Nagravision"], status: "regional-variant" },
+        { catalogueId: "mtv", serviceName: "MTV Base info card", frequencyMHz: 11106, polarization: "V", symbolRateKsym: 45000, fec: "5/6", sid: 172, encryption: ["Nagravision"], status: "discovered-encrypted" }
       ],
       redistributionEnabled: false,
       note: "The listing also contains Baby TV Europe and National Geographic South Africa, but those services are not present under those exact catalogue IDs in the current StreamLive catalogue."
