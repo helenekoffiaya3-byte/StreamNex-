@@ -5,7 +5,9 @@ export const castSat = {
     "position": "22.0W",
     "beam": "West Africa",
     "requestedPosition": "Eutelsat 16A / 16.0E",
-    "positionVerified": false
+    "positionVerified": true,
+    "publicListingLastVerified": "2026-08-26",
+    "note": "The supplied 11171 V / 45000 parameters are publicly listed on SES-4 22.0W, not Eutelsat 16A 16.0E."
   },
   "scanTarget": {
     "frequencyMHz": 11171,
@@ -30,82 +32,40 @@ export const castSat = {
       "channelNumber": 1,
       "id": "rti-1",
       "name": "RTI 1",
-      "status": "found-encrypted",
-      "satelliteId": "ses-4-22w",
-      "serviceId": "sid-8206",
+      "status": "not-found-on-11171-v-45000-public-listings",
+      "satelliteId": null,
+      "serviceId": null,
       "sourceVerified": false,
       "physicalReceptionVerified": false,
-      "redistributionEnabled": false,
-      "encryption": {
-        "scrambled": true,
-        "systems": [
-          "Mediaguard",
-          "Nagravision"
-        ],
-        "authorizationRequired": true
-      },
-      "transponder": {
-        "frequencyMHz": 10986,
-        "polarization": "V",
-        "symbolRateKsym": 45000,
-        "sid": 8206
-      }
+      "redistributionEnabled": false
     },
     {
       "channelNumber": 2,
       "id": "rti-2",
       "name": "RTI 2",
-      "status": "found-encrypted",
-      "satelliteId": "ses-4-22w",
-      "serviceId": "sid-8210",
+      "status": "not-found-on-11171-v-45000-public-listings",
+      "satelliteId": null,
+      "serviceId": null,
       "sourceVerified": false,
       "physicalReceptionVerified": false,
-      "redistributionEnabled": false,
-      "encryption": {
-        "scrambled": true,
-        "systems": [
-          "Mediaguard",
-          "Nagravision"
-        ],
-        "authorizationRequired": true
-      },
-      "transponder": {
-        "frequencyMHz": 10986,
-        "polarization": "V",
-        "symbolRateKsym": 45000,
-        "sid": 8210
-      }
+      "redistributionEnabled": false
     },
     {
       "channelNumber": 3,
       "id": "la-3",
       "name": "La 3",
-      "status": "found-encrypted",
-      "satelliteId": "ses-4-22w",
-      "serviceId": "sid-8327",
+      "status": "not-found-on-11171-v-45000-public-listings",
+      "satelliteId": null,
+      "serviceId": null,
       "sourceVerified": false,
       "physicalReceptionVerified": false,
-      "redistributionEnabled": false,
-      "encryption": {
-        "scrambled": true,
-        "systems": [
-          "Mediaguard",
-          "Nagravision"
-        ],
-        "authorizationRequired": true
-      },
-      "transponder": {
-        "frequencyMHz": 12570,
-        "polarization": "V",
-        "symbolRateKsym": 30000,
-        "sid": 8327
-      }
+      "redistributionEnabled": false
     },
     {
       "channelNumber": 4,
       "id": "a-plus-ivoire",
       "name": "A+ Ivoire",
-      "status": "not-found-on-ses4-public-listings",
+      "status": "not-found-on-11171-v-45000-public-listings",
       "satelliteId": null,
       "serviceId": null,
       "sourceVerified": false,
@@ -116,57 +76,29 @@ export const castSat = {
       "channelNumber": 5,
       "id": "life-tv",
       "name": "Life TV",
-      "status": "found-encrypted",
-      "satelliteId": "ses-4-22w",
-      "serviceId": "sid-8503",
+      "status": "not-found-on-11171-v-45000-public-listings",
+      "satelliteId": null,
+      "serviceId": null,
       "sourceVerified": false,
       "physicalReceptionVerified": false,
-      "redistributionEnabled": false,
-      "encryption": {
-        "scrambled": true,
-        "systems": [
-          "Mediaguard",
-          "Nagravision"
-        ],
-        "authorizationRequired": true
-      },
-      "transponder": {
-        "frequencyMHz": 12650,
-        "polarization": "V",
-        "symbolRateKsym": 30000,
-        "sid": 8503
-      }
+      "redistributionEnabled": false
     },
     {
       "channelNumber": 6,
       "id": "nci",
       "name": "NCI",
-      "status": "found-encrypted",
-      "satelliteId": "ses-4-22w",
-      "serviceId": "sid-4003",
+      "status": "not-found-on-11171-v-45000-public-listings",
+      "satelliteId": null,
+      "serviceId": null,
       "sourceVerified": false,
       "physicalReceptionVerified": false,
-      "redistributionEnabled": false,
-      "encryption": {
-        "scrambled": true,
-        "systems": [
-          "Mediaguard",
-          "Nagravision"
-        ],
-        "authorizationRequired": true
-      },
-      "transponder": {
-        "frequencyMHz": 11551,
-        "polarization": "V",
-        "symbolRateKsym": 45000,
-        "sid": 4003
-      }
+      "redistributionEnabled": false
     },
     {
       "channelNumber": 185,
       "id": "s-plus-cote-divoire",
       "name": "S+ Côte d’Ivoire",
-      "status": "not-found-on-ses4-public-listings",
+      "status": "not-found-on-11171-v-45000-public-listings",
       "satelliteId": null,
       "serviceId": null,
       "sourceVerified": false,
@@ -177,7 +109,7 @@ export const castSat = {
       "channelNumber": 10,
       "id": "6ter",
       "name": "6ter",
-      "status": "not-found-on-ses4-public-listings",
+      "status": "not-found-on-11171-v-45000-public-listings",
       "satelliteId": null,
       "serviceId": null,
       "sourceVerified": false,
@@ -188,32 +120,18 @@ export const castSat = {
       "channelNumber": 11,
       "id": "arte",
       "name": "Arte",
-      "status": "found-encrypted",
-      "satelliteId": "ses-4-22w",
-      "serviceId": "sid-8402",
+      "status": "not-found-on-11171-v-45000-public-listings",
+      "satelliteId": null,
+      "serviceId": null,
       "sourceVerified": false,
       "physicalReceptionVerified": false,
-      "redistributionEnabled": false,
-      "encryption": {
-        "scrambled": true,
-        "systems": [
-          "Mediaguard",
-          "Nagravision"
-        ],
-        "authorizationRequired": true
-      },
-      "transponder": {
-        "frequencyMHz": 12610,
-        "polarization": "V",
-        "symbolRateKsym": 30000,
-        "sid": 8402
-      }
+      "redistributionEnabled": false
     },
     {
       "channelNumber": 186,
       "id": "s-plus",
       "name": "S+",
-      "status": "not-found-on-ses4-public-listings",
+      "status": "not-found-on-11171-v-45000-public-listings",
       "satelliteId": null,
       "serviceId": null,
       "sourceVerified": false,
@@ -224,57 +142,29 @@ export const castSat = {
       "channelNumber": 13,
       "id": "france-2",
       "name": "France 2",
-      "status": "found-encrypted",
-      "satelliteId": "ses-4-22w",
-      "serviceId": "sid-8803",
+      "status": "not-found-on-11171-v-45000-public-listings",
+      "satelliteId": null,
+      "serviceId": null,
       "sourceVerified": false,
       "physicalReceptionVerified": false,
-      "redistributionEnabled": false,
-      "encryption": {
-        "scrambled": true,
-        "systems": [
-          "Mediaguard",
-          "Nagravision"
-        ],
-        "authorizationRequired": true
-      },
-      "transponder": {
-        "frequencyMHz": 11611,
-        "polarization": "V",
-        "symbolRateKsym": 45000,
-        "sid": 8803
-      }
+      "redistributionEnabled": false
     },
     {
       "channelNumber": 14,
       "id": "france-3",
       "name": "France 3",
-      "status": "found-encrypted",
-      "satelliteId": "ses-4-22w",
-      "serviceId": "sid-8703",
+      "status": "not-found-on-11171-v-45000-public-listings",
+      "satelliteId": null,
+      "serviceId": null,
       "sourceVerified": false,
       "physicalReceptionVerified": false,
-      "redistributionEnabled": false,
-      "encryption": {
-        "scrambled": true,
-        "systems": [
-          "Mediaguard",
-          "Nagravision"
-        ],
-        "authorizationRequired": true
-      },
-      "transponder": {
-        "frequencyMHz": 12730,
-        "polarization": "V",
-        "symbolRateKsym": 30000,
-        "sid": 8703
-      }
+      "redistributionEnabled": false
     },
     {
       "channelNumber": 15,
       "id": "france-4",
       "name": "France 4",
-      "status": "not-found-on-ses4-public-listings",
+      "status": "not-found-on-11171-v-45000-public-listings",
       "satelliteId": null,
       "serviceId": null,
       "sourceVerified": false,
@@ -285,32 +175,18 @@ export const castSat = {
       "channelNumber": 16,
       "id": "france-5",
       "name": "France 5",
-      "status": "found-encrypted",
-      "satelliteId": "ses-4-22w",
-      "serviceId": "sid-8825",
+      "status": "not-found-on-11171-v-45000-public-listings",
+      "satelliteId": null,
+      "serviceId": null,
       "sourceVerified": false,
       "physicalReceptionVerified": false,
-      "redistributionEnabled": false,
-      "encryption": {
-        "scrambled": true,
-        "systems": [
-          "Mediaguard",
-          "Nagravision"
-        ],
-        "authorizationRequired": true
-      },
-      "transponder": {
-        "frequencyMHz": 11611,
-        "polarization": "V",
-        "symbolRateKsym": 45000,
-        "sid": 8825
-      }
+      "redistributionEnabled": false
     },
     {
       "channelNumber": 17,
       "id": "m6",
       "name": "M6",
-      "status": "not-found-on-ses4-public-listings",
+      "status": "not-found-on-11171-v-45000-public-listings",
       "satelliteId": null,
       "serviceId": null,
       "sourceVerified": false,
@@ -321,7 +197,36 @@ export const castSat = {
       "channelNumber": 18,
       "id": "tf1",
       "name": "TF1",
-      "status": "not-found-on-ses4-public-listings",
+      "status": "found-encrypted",
+      "satelliteId": "ses-4-22w",
+      "serviceId": "sid-8903",
+      "sourceVerified": false,
+      "physicalReceptionVerified": false,
+      "redistributionEnabled": false,
+      "encryption": {
+        "scrambled": true,
+        "systems": [
+          "Mediaguard",
+          "Nagravision"
+        ],
+        "authorizationRequired": true
+      },
+      "transponder": {
+        "frequencyMHz": 11171,
+        "polarization": "V",
+        "symbolRateKsym": 45000,
+        "fec": "3/4",
+        "system": "DVB-S2/QPSK",
+        "video": "HEVC",
+        "sid": 8903,
+        "serviceName": "TF 1"
+      }
+    },
+    {
+      "channelNumber": 19,
+      "id": "tfx",
+      "name": "TFX",
+      "status": "not-found-on-11171-v-45000-public-listings",
       "satelliteId": null,
       "serviceId": null,
       "sourceVerified": false,
@@ -329,60 +234,21 @@ export const castSat = {
       "redistributionEnabled": false
     },
     {
-      "channelNumber": 19,
-      "id": "tfx",
-      "name": "TFX",
-      "status": "found-encrypted",
-      "satelliteId": "ses-4-22w",
-      "serviceId": "sid-4133",
-      "sourceVerified": false,
-      "physicalReceptionVerified": false,
-      "redistributionEnabled": false,
-      "encryption": {
-        "scrambled": true,
-        "systems": [
-          "Mediaguard",
-          "Nagravision"
-        ],
-        "authorizationRequired": true
-      },
-      "transponder": {
-        "frequencyMHz": 11051,
-        "polarization": "V",
-        "symbolRateKsym": 45000,
-        "sid": 4133
-      }
-    },
-    {
       "channelNumber": 20,
       "id": "tmc",
       "name": "TMC",
-      "status": "found-encrypted",
-      "satelliteId": "ses-4-22w",
-      "serviceId": "sid-8422",
+      "status": "not-found-on-11171-v-45000-public-listings",
+      "satelliteId": null,
+      "serviceId": null,
       "sourceVerified": false,
       "physicalReceptionVerified": false,
-      "redistributionEnabled": false,
-      "encryption": {
-        "scrambled": true,
-        "systems": [
-          "Mediaguard",
-          "Nagravision"
-        ],
-        "authorizationRequired": true
-      },
-      "transponder": {
-        "frequencyMHz": 12610,
-        "polarization": "V",
-        "symbolRateKsym": 30000,
-        "sid": 8422
-      }
+      "redistributionEnabled": false
     },
     {
       "channelNumber": 21,
       "id": "w9",
       "name": "W9",
-      "status": "not-found-on-ses4-public-listings",
+      "status": "not-found-on-11171-v-45000-public-listings",
       "satelliteId": null,
       "serviceId": null,
       "sourceVerified": false,
@@ -393,7 +259,7 @@ export const castSat = {
       "channelNumber": 41,
       "id": "cnn-international",
       "name": "CNN International",
-      "status": "not-found-on-ses4-public-listings",
+      "status": "not-found-on-11171-v-45000-public-listings",
       "satelliteId": null,
       "serviceId": null,
       "sourceVerified": false,
@@ -404,7 +270,7 @@ export const castSat = {
       "channelNumber": 42,
       "id": "dw",
       "name": "DW",
-      "status": "not-found-on-ses4-public-listings",
+      "status": "not-found-on-11171-v-45000-public-listings",
       "satelliteId": null,
       "serviceId": null,
       "sourceVerified": false,
@@ -415,7 +281,7 @@ export const castSat = {
       "channelNumber": 43,
       "id": "euronews",
       "name": "Euronews",
-      "status": "not-found-on-ses4-public-listings",
+      "status": "not-found-on-11171-v-45000-public-listings",
       "satelliteId": null,
       "serviceId": null,
       "sourceVerified": false,
@@ -426,7 +292,7 @@ export const castSat = {
       "channelNumber": 44,
       "id": "fox-business",
       "name": "Fox Business",
-      "status": "not-found-on-ses4-public-listings",
+      "status": "not-found-on-11171-v-45000-public-listings",
       "satelliteId": null,
       "serviceId": null,
       "sourceVerified": false,
@@ -437,7 +303,7 @@ export const castSat = {
       "channelNumber": 45,
       "id": "fox-news",
       "name": "Fox News",
-      "status": "not-found-on-ses4-public-listings",
+      "status": "not-found-on-11171-v-45000-public-listings",
       "satelliteId": null,
       "serviceId": null,
       "sourceVerified": false,
@@ -448,32 +314,18 @@ export const castSat = {
       "channelNumber": 22,
       "id": "france-24",
       "name": "France 24",
-      "status": "found-encrypted",
-      "satelliteId": "ses-4-22w",
-      "serviceId": "sid-8108",
+      "status": "not-found-on-11171-v-45000-public-listings",
+      "satelliteId": null,
+      "serviceId": null,
       "sourceVerified": false,
       "physicalReceptionVerified": false,
-      "redistributionEnabled": false,
-      "encryption": {
-        "scrambled": true,
-        "systems": [
-          "Mediaguard",
-          "Nagravision"
-        ],
-        "authorizationRequired": true
-      },
-      "transponder": {
-        "frequencyMHz": 3749,
-        "polarization": "L",
-        "symbolRateKsym": 45830,
-        "sid": 8108
-      }
+      "redistributionEnabled": false
     },
     {
       "channelNumber": 47,
       "id": "hln",
       "name": "HLN",
-      "status": "not-found-on-ses4-public-listings",
+      "status": "not-found-on-11171-v-45000-public-listings",
       "satelliteId": null,
       "serviceId": null,
       "sourceVerified": false,
@@ -484,32 +336,18 @@ export const castSat = {
       "channelNumber": 48,
       "id": "i24news",
       "name": "i24NEWS",
-      "status": "found-encrypted",
-      "satelliteId": "ses-4-22w",
-      "serviceId": "sid-9",
+      "status": "not-found-on-11171-v-45000-public-listings",
+      "satelliteId": null,
+      "serviceId": null,
       "sourceVerified": false,
       "physicalReceptionVerified": false,
-      "redistributionEnabled": false,
-      "encryption": {
-        "scrambled": true,
-        "systems": [
-          "Mediaguard",
-          "Nagravision"
-        ],
-        "authorizationRequired": true
-      },
-      "transponder": {
-        "frequencyMHz": 11671,
-        "polarization": "V",
-        "symbolRateKsym": 30000,
-        "sid": 9
-      }
+      "redistributionEnabled": false
     },
     {
       "channelNumber": 49,
       "id": "msnbc",
       "name": "MSNBC",
-      "status": "not-found-on-ses4-public-listings",
+      "status": "not-found-on-11171-v-45000-public-listings",
       "satelliteId": null,
       "serviceId": null,
       "sourceVerified": false,
@@ -520,26 +358,12 @@ export const castSat = {
       "channelNumber": 200,
       "id": "ab1",
       "name": "AB1",
-      "status": "found-encrypted",
-      "satelliteId": "ses-4-22w",
-      "serviceId": "sid-4002",
+      "status": "not-found-on-11171-v-45000-public-listings",
+      "satelliteId": null,
+      "serviceId": null,
       "sourceVerified": false,
       "physicalReceptionVerified": false,
-      "redistributionEnabled": false,
-      "encryption": {
-        "scrambled": true,
-        "systems": [
-          "Mediaguard",
-          "Nagravision"
-        ],
-        "authorizationRequired": true
-      },
-      "transponder": {
-        "frequencyMHz": 11551,
-        "polarization": "V",
-        "symbolRateKsym": 45000,
-        "sid": 4002
-      }
+      "redistributionEnabled": false
     },
     {
       "channelNumber": 201,
@@ -547,7 +371,7 @@ export const castSat = {
       "name": "Action",
       "status": "found-encrypted",
       "satelliteId": "ses-4-22w",
-      "serviceId": "sid-8105",
+      "serviceId": "sid-8923",
       "sourceVerified": false,
       "physicalReceptionVerified": false,
       "redistributionEnabled": false,
@@ -560,72 +384,166 @@ export const castSat = {
         "authorizationRequired": true
       },
       "transponder": {
-        "frequencyMHz": 3749,
-        "polarization": "L",
-        "symbolRateKsym": 45830,
-        "sid": 8105
+        "frequencyMHz": 11171,
+        "polarization": "V",
+        "symbolRateKsym": 45000,
+        "fec": "3/4",
+        "system": "DVB-S2/QPSK",
+        "video": "HEVC",
+        "sid": 8923,
+        "serviceName": "Action (France)"
       }
     },
     {
       "channelNumber": 202,
       "id": "c-plus-action",
       "name": "C+ Action",
-      "status": "not-found-on-ses4-public-listings",
-      "satelliteId": null,
-      "serviceId": null,
+      "status": "found-encrypted",
+      "satelliteId": "ses-4-22w",
+      "serviceId": "sid-8925",
       "sourceVerified": false,
       "physicalReceptionVerified": false,
-      "redistributionEnabled": false
+      "redistributionEnabled": false,
+      "encryption": {
+        "scrambled": true,
+        "systems": [
+          "Mediaguard",
+          "Nagravision"
+        ],
+        "authorizationRequired": true
+      },
+      "transponder": {
+        "frequencyMHz": 11171,
+        "polarization": "V",
+        "symbolRateKsym": 45000,
+        "fec": "3/4",
+        "system": "DVB-S2/QPSK",
+        "video": "HEVC",
+        "sid": 8925,
+        "serviceName": "Canal + Action Centre"
+      }
     },
     {
       "channelNumber": 203,
       "id": "c-plus-cinema",
       "name": "C+ Cinema",
-      "status": "not-found-on-ses4-public-listings",
-      "satelliteId": null,
-      "serviceId": null,
+      "status": "found-encrypted",
+      "satelliteId": "ses-4-22w",
+      "serviceId": "sid-8904",
       "sourceVerified": false,
       "physicalReceptionVerified": false,
-      "redistributionEnabled": false
+      "redistributionEnabled": false,
+      "encryption": {
+        "scrambled": true,
+        "systems": [
+          "Mediaguard",
+          "Nagravision"
+        ],
+        "authorizationRequired": true
+      },
+      "transponder": {
+        "frequencyMHz": 11171,
+        "polarization": "V",
+        "symbolRateKsym": 45000,
+        "fec": "3/4",
+        "system": "DVB-S2/QPSK",
+        "video": "HEVC",
+        "sid": 8904,
+        "serviceName": "Canal + Cinéma Centre"
+      }
     },
     {
       "channelNumber": 204,
       "id": "c-plus-family",
       "name": "C+ Family",
-      "status": "not-found-on-ses4-public-listings",
-      "satelliteId": null,
-      "serviceId": null,
+      "status": "found-encrypted",
+      "satelliteId": "ses-4-22w",
+      "serviceId": "sid-8909",
       "sourceVerified": false,
       "physicalReceptionVerified": false,
-      "redistributionEnabled": false
+      "redistributionEnabled": false,
+      "encryption": {
+        "scrambled": true,
+        "systems": [
+          "Mediaguard",
+          "Nagravision"
+        ],
+        "authorizationRequired": true
+      },
+      "transponder": {
+        "frequencyMHz": 11171,
+        "polarization": "V",
+        "symbolRateKsym": 45000,
+        "fec": "3/4",
+        "system": "DVB-S2/QPSK",
+        "video": "HEVC",
+        "sid": 8909,
+        "serviceName": "Canal + Family Centre"
+      }
     },
     {
       "channelNumber": 205,
       "id": "c-plus-magic",
       "name": "C+ Magic",
-      "status": "not-found-on-ses4-public-listings",
-      "satelliteId": null,
-      "serviceId": null,
+      "status": "found-encrypted",
+      "satelliteId": "ses-4-22w",
+      "serviceId": "sid-8907",
       "sourceVerified": false,
       "physicalReceptionVerified": false,
-      "redistributionEnabled": false
+      "redistributionEnabled": false,
+      "encryption": {
+        "scrambled": true,
+        "systems": [
+          "Mediaguard",
+          "Nagravision"
+        ],
+        "authorizationRequired": true
+      },
+      "transponder": {
+        "frequencyMHz": 11171,
+        "polarization": "V",
+        "symbolRateKsym": 45000,
+        "fec": "3/4",
+        "system": "DVB-S2/QPSK",
+        "video": "HEVC",
+        "sid": 8907,
+        "serviceName": "Canal + Magic"
+      }
     },
     {
       "channelNumber": 206,
       "id": "c-plus-pop",
       "name": "C+ Pop",
-      "status": "not-found-on-ses4-public-listings",
-      "satelliteId": null,
-      "serviceId": null,
+      "status": "found-encrypted",
+      "satelliteId": "ses-4-22w",
+      "serviceId": "sid-8922",
       "sourceVerified": false,
       "physicalReceptionVerified": false,
-      "redistributionEnabled": false
+      "redistributionEnabled": false,
+      "encryption": {
+        "scrambled": true,
+        "systems": [
+          "Mediaguard",
+          "Nagravision"
+        ],
+        "authorizationRequired": true
+      },
+      "transponder": {
+        "frequencyMHz": 11171,
+        "polarization": "V",
+        "symbolRateKsym": 45000,
+        "fec": "3/4",
+        "system": "DVB-S2/QPSK",
+        "video": "HEVC",
+        "sid": 8922,
+        "serviceName": "Canal + Pop"
+      }
     },
     {
       "channelNumber": 207,
       "id": "charge",
       "name": "Charge!",
-      "status": "not-found-on-ses4-public-listings",
+      "status": "not-found-on-11171-v-45000-public-listings",
       "satelliteId": null,
       "serviceId": null,
       "sourceVerified": false,
@@ -636,7 +554,7 @@ export const castSat = {
       "channelNumber": 208,
       "id": "cinemax",
       "name": "Cinemax",
-      "status": "not-found-on-ses4-public-listings",
+      "status": "not-found-on-11171-v-45000-public-listings",
       "satelliteId": null,
       "serviceId": null,
       "sourceVerified": false,
@@ -647,7 +565,7 @@ export const castSat = {
       "channelNumber": 209,
       "id": "comet",
       "name": "Comet",
-      "status": "not-found-on-ses4-public-listings",
+      "status": "not-found-on-11171-v-45000-public-listings",
       "satelliteId": null,
       "serviceId": null,
       "sourceVerified": false,
@@ -658,7 +576,7 @@ export const castSat = {
       "channelNumber": 210,
       "id": "estrella-tv",
       "name": "Estrella TV",
-      "status": "not-found-on-ses4-public-listings",
+      "status": "not-found-on-11171-v-45000-public-listings",
       "satelliteId": null,
       "serviceId": null,
       "sourceVerified": false,
@@ -669,7 +587,7 @@ export const castSat = {
       "channelNumber": 211,
       "id": "galavision",
       "name": "Galavisión",
-      "status": "not-found-on-ses4-public-listings",
+      "status": "not-found-on-11171-v-45000-public-listings",
       "satelliteId": null,
       "serviceId": null,
       "sourceVerified": false,
@@ -680,7 +598,7 @@ export const castSat = {
       "channelNumber": 212,
       "id": "gettv",
       "name": "getTV",
-      "status": "not-found-on-ses4-public-listings",
+      "status": "not-found-on-11171-v-45000-public-listings",
       "satelliteId": null,
       "serviceId": null,
       "sourceVerified": false,
@@ -691,7 +609,7 @@ export const castSat = {
       "channelNumber": 213,
       "id": "grit",
       "name": "Grit",
-      "status": "not-found-on-ses4-public-listings",
+      "status": "not-found-on-11171-v-45000-public-listings",
       "satelliteId": null,
       "serviceId": null,
       "sourceVerified": false,
@@ -702,7 +620,7 @@ export const castSat = {
       "channelNumber": 214,
       "id": "m6-films",
       "name": "M6 Films",
-      "status": "not-found-on-ses4-public-listings",
+      "status": "not-found-on-11171-v-45000-public-listings",
       "satelliteId": null,
       "serviceId": null,
       "sourceVerified": false,
@@ -713,7 +631,7 @@ export const castSat = {
       "channelNumber": 215,
       "id": "mgm-tv",
       "name": "MGM TV",
-      "status": "not-found-on-ses4-public-listings",
+      "status": "not-found-on-11171-v-45000-public-listings",
       "satelliteId": null,
       "serviceId": null,
       "sourceVerified": false,
@@ -724,7 +642,7 @@ export const castSat = {
       "channelNumber": 216,
       "id": "movies",
       "name": "Movies!",
-      "status": "not-found-on-ses4-public-listings",
+      "status": "not-found-on-11171-v-45000-public-listings",
       "satelliteId": null,
       "serviceId": null,
       "sourceVerified": false,
@@ -735,7 +653,7 @@ export const castSat = {
       "channelNumber": 217,
       "id": "peacock",
       "name": "Peacock",
-      "status": "not-found-on-ses4-public-listings",
+      "status": "not-found-on-11171-v-45000-public-listings",
       "satelliteId": null,
       "serviceId": null,
       "sourceVerified": false,
@@ -746,7 +664,7 @@ export const castSat = {
       "channelNumber": 218,
       "id": "pluto-tv",
       "name": "Pluto TV",
-      "status": "not-found-on-ses4-public-listings",
+      "status": "not-found-on-11171-v-45000-public-listings",
       "satelliteId": null,
       "serviceId": null,
       "sourceVerified": false,
@@ -757,26 +675,12 @@ export const castSat = {
       "channelNumber": 219,
       "id": "rtl-9",
       "name": "RTL 9",
-      "status": "found-encrypted",
-      "satelliteId": "ses-4-22w",
-      "serviceId": "sid-8804",
+      "status": "not-found-on-11171-v-45000-public-listings",
+      "satelliteId": null,
+      "serviceId": null,
       "sourceVerified": false,
       "physicalReceptionVerified": false,
-      "redistributionEnabled": false,
-      "encryption": {
-        "scrambled": true,
-        "systems": [
-          "Mediaguard",
-          "Nagravision"
-        ],
-        "authorizationRequired": true
-      },
-      "transponder": {
-        "frequencyMHz": 11611,
-        "polarization": "V",
-        "symbolRateKsym": 45000,
-        "sid": 8804
-      }
+      "redistributionEnabled": false
     },
     {
       "channelNumber": 50,
@@ -800,14 +704,18 @@ export const castSat = {
         "frequencyMHz": 11171,
         "polarization": "V",
         "symbolRateKsym": 45000,
-        "sid": 8916
+        "fec": "3/4",
+        "system": "DVB-S2/QPSK",
+        "video": "HEVC",
+        "sid": 8916,
+        "serviceName": "SciFi France"
       }
     },
     {
       "channelNumber": 221,
       "id": "tcm",
       "name": "TCM",
-      "status": "not-found-on-ses4-public-listings",
+      "status": "not-found-on-11171-v-45000-public-listings",
       "satelliteId": null,
       "serviceId": null,
       "sourceVerified": false,
@@ -818,32 +726,18 @@ export const castSat = {
       "channelNumber": 222,
       "id": "telemundo",
       "name": "Telemundo",
-      "status": "found-encrypted",
-      "satelliteId": "ses-4-22w",
-      "serviceId": "sid-4028",
+      "status": "not-found-on-11171-v-45000-public-listings",
+      "satelliteId": null,
+      "serviceId": null,
       "sourceVerified": false,
       "physicalReceptionVerified": false,
-      "redistributionEnabled": false,
-      "encryption": {
-        "scrambled": true,
-        "systems": [
-          "Mediaguard",
-          "Nagravision"
-        ],
-        "authorizationRequired": true
-      },
-      "transponder": {
-        "frequencyMHz": 11551,
-        "polarization": "V",
-        "symbolRateKsym": 45000,
-        "sid": 4028
-      }
+      "redistributionEnabled": false
     },
     {
       "channelNumber": 223,
       "id": "tubi",
       "name": "Tubi",
-      "status": "not-found-on-ses4-public-listings",
+      "status": "not-found-on-11171-v-45000-public-listings",
       "satelliteId": null,
       "serviceId": null,
       "sourceVerified": false,
@@ -854,7 +748,7 @@ export const castSat = {
       "channelNumber": 224,
       "id": "unimas",
       "name": "UniMás",
-      "status": "not-found-on-ses4-public-listings",
+      "status": "not-found-on-11171-v-45000-public-listings",
       "satelliteId": null,
       "serviceId": null,
       "sourceVerified": false,
@@ -865,7 +759,7 @@ export const castSat = {
       "channelNumber": 225,
       "id": "univision",
       "name": "Univision",
-      "status": "not-found-on-ses4-public-listings",
+      "status": "not-found-on-11171-v-45000-public-listings",
       "satelliteId": null,
       "serviceId": null,
       "sourceVerified": false,
@@ -876,32 +770,18 @@ export const castSat = {
       "channelNumber": 52,
       "id": "13eme-rue",
       "name": "13ème Rue",
-      "status": "found-encrypted",
-      "satelliteId": "ses-4-22w",
-      "serviceId": "sid-8224",
+      "status": "not-found-on-11171-v-45000-public-listings",
+      "satelliteId": null,
+      "serviceId": null,
       "sourceVerified": false,
       "physicalReceptionVerified": false,
-      "redistributionEnabled": false,
-      "encryption": {
-        "scrambled": true,
-        "systems": [
-          "Mediaguard",
-          "Nagravision"
-        ],
-        "authorizationRequired": true
-      },
-      "transponder": {
-        "frequencyMHz": 10986,
-        "polarization": "V",
-        "symbolRateKsym": 30000,
-        "sid": 8224
-      }
+      "redistributionEnabled": false
     },
     {
       "channelNumber": 53,
       "id": "amc",
       "name": "AMC",
-      "status": "not-found-on-ses4-public-listings",
+      "status": "not-found-on-11171-v-45000-public-listings",
       "satelliteId": null,
       "serviceId": null,
       "sourceVerified": false,
@@ -912,7 +792,7 @@ export const castSat = {
       "channelNumber": 54,
       "id": "bravo",
       "name": "Bravo",
-      "status": "not-found-on-ses4-public-listings",
+      "status": "not-found-on-11171-v-45000-public-listings",
       "satelliteId": null,
       "serviceId": null,
       "sourceVerified": false,
@@ -923,7 +803,7 @@ export const castSat = {
       "channelNumber": 55,
       "id": "freeform",
       "name": "Freeform",
-      "status": "not-found-on-ses4-public-listings",
+      "status": "not-found-on-11171-v-45000-public-listings",
       "satelliteId": null,
       "serviceId": null,
       "sourceVerified": false,
@@ -934,7 +814,7 @@ export const castSat = {
       "channelNumber": 56,
       "id": "fx",
       "name": "FX",
-      "status": "not-found-on-ses4-public-listings",
+      "status": "not-found-on-11171-v-45000-public-listings",
       "satelliteId": null,
       "serviceId": null,
       "sourceVerified": false,
@@ -945,7 +825,7 @@ export const castSat = {
       "channelNumber": 57,
       "id": "fxx",
       "name": "FXX",
-      "status": "not-found-on-ses4-public-listings",
+      "status": "not-found-on-11171-v-45000-public-listings",
       "satelliteId": null,
       "serviceId": null,
       "sourceVerified": false,
@@ -956,7 +836,7 @@ export const castSat = {
       "channelNumber": 58,
       "id": "hallmark-drama",
       "name": "Hallmark Drama",
-      "status": "not-found-on-ses4-public-listings",
+      "status": "not-found-on-11171-v-45000-public-listings",
       "satelliteId": null,
       "serviceId": null,
       "sourceVerified": false,
@@ -967,7 +847,7 @@ export const castSat = {
       "channelNumber": 59,
       "id": "hbo",
       "name": "HBO",
-      "status": "not-found-on-ses4-public-listings",
+      "status": "not-found-on-11171-v-45000-public-listings",
       "satelliteId": null,
       "serviceId": null,
       "sourceVerified": false,
@@ -978,7 +858,7 @@ export const castSat = {
       "channelNumber": 60,
       "id": "heroes-icons",
       "name": "Heroes & Icons",
-      "status": "not-found-on-ses4-public-listings",
+      "status": "not-found-on-11171-v-45000-public-listings",
       "satelliteId": null,
       "serviceId": null,
       "sourceVerified": false,
@@ -989,7 +869,7 @@ export const castSat = {
       "channelNumber": 61,
       "id": "ifc",
       "name": "IFC",
-      "status": "not-found-on-ses4-public-listings",
+      "status": "not-found-on-11171-v-45000-public-listings",
       "satelliteId": null,
       "serviceId": null,
       "sourceVerified": false,
@@ -1000,7 +880,7 @@ export const castSat = {
       "channelNumber": 62,
       "id": "ion",
       "name": "Ion",
-      "status": "not-found-on-ses4-public-listings",
+      "status": "not-found-on-11171-v-45000-public-listings",
       "satelliteId": null,
       "serviceId": null,
       "sourceVerified": false,
@@ -1011,7 +891,7 @@ export const castSat = {
       "channelNumber": 63,
       "id": "lifetime",
       "name": "Lifetime",
-      "status": "not-found-on-ses4-public-listings",
+      "status": "not-found-on-11171-v-45000-public-listings",
       "satelliteId": null,
       "serviceId": null,
       "sourceVerified": false,
@@ -1022,7 +902,7 @@ export const castSat = {
       "channelNumber": 64,
       "id": "mgm-plus",
       "name": "MGM+",
-      "status": "not-found-on-ses4-public-listings",
+      "status": "not-found-on-11171-v-45000-public-listings",
       "satelliteId": null,
       "serviceId": null,
       "sourceVerified": false,
@@ -1033,7 +913,7 @@ export const castSat = {
       "channelNumber": 30,
       "id": "novelas-plus",
       "name": "Novelas+",
-      "status": "not-found-on-ses4-public-listings",
+      "status": "not-found-on-11171-v-45000-public-listings",
       "satelliteId": null,
       "serviceId": null,
       "sourceVerified": false,
@@ -1044,7 +924,7 @@ export const castSat = {
       "channelNumber": 65,
       "id": "paramount-network",
       "name": "Paramount Network",
-      "status": "not-found-on-ses4-public-listings",
+      "status": "not-found-on-11171-v-45000-public-listings",
       "satelliteId": null,
       "serviceId": null,
       "sourceVerified": false,
@@ -1055,7 +935,7 @@ export const castSat = {
       "channelNumber": 160,
       "id": "s-plus-premiere",
       "name": "S+ Première",
-      "status": "not-found-on-ses4-public-listings",
+      "status": "not-found-on-11171-v-45000-public-listings",
       "satelliteId": null,
       "serviceId": null,
       "sourceVerified": false,
@@ -1066,7 +946,7 @@ export const castSat = {
       "channelNumber": 161,
       "id": "s-plus-avant-premiere",
       "name": "S+ Avant Première",
-      "status": "not-found-on-ses4-public-listings",
+      "status": "not-found-on-11171-v-45000-public-listings",
       "satelliteId": null,
       "serviceId": null,
       "sourceVerified": false,
@@ -1077,7 +957,7 @@ export const castSat = {
       "channelNumber": 151,
       "id": "sundance-tv",
       "name": "Sundance TV",
-      "status": "not-found-on-ses4-public-listings",
+      "status": "not-found-on-11171-v-45000-public-listings",
       "satelliteId": null,
       "serviceId": null,
       "sourceVerified": false,
@@ -1088,7 +968,7 @@ export const castSat = {
       "channelNumber": 51,
       "id": "syfy",
       "name": "Syfy",
-      "status": "not-found-on-ses4-public-listings",
+      "status": "not-found-on-11171-v-45000-public-listings",
       "satelliteId": null,
       "serviceId": null,
       "sourceVerified": false,
@@ -1099,7 +979,7 @@ export const castSat = {
       "channelNumber": 153,
       "id": "tbs",
       "name": "TBS",
-      "status": "not-found-on-ses4-public-listings",
+      "status": "not-found-on-11171-v-45000-public-listings",
       "satelliteId": null,
       "serviceId": null,
       "sourceVerified": false,
@@ -1110,32 +990,18 @@ export const castSat = {
       "channelNumber": 154,
       "id": "tf1-series-films",
       "name": "TF1 Séries Films",
-      "status": "found-encrypted",
-      "satelliteId": "ses-4-22w",
-      "serviceId": "sid-8823",
+      "status": "not-found-on-11171-v-45000-public-listings",
+      "satelliteId": null,
+      "serviceId": null,
       "sourceVerified": false,
       "physicalReceptionVerified": false,
-      "redistributionEnabled": false,
-      "encryption": {
-        "scrambled": true,
-        "systems": [
-          "Mediaguard",
-          "Nagravision"
-        ],
-        "authorizationRequired": true
-      },
-      "transponder": {
-        "frequencyMHz": 11611,
-        "polarization": "V",
-        "symbolRateKsym": 45000,
-        "sid": 8823
-      }
+      "redistributionEnabled": false
     },
     {
       "channelNumber": 155,
       "id": "tnt",
       "name": "TNT",
-      "status": "not-found-on-ses4-public-listings",
+      "status": "not-found-on-11171-v-45000-public-listings",
       "satelliteId": null,
       "serviceId": null,
       "sourceVerified": false,
@@ -1146,7 +1012,7 @@ export const castSat = {
       "channelNumber": 156,
       "id": "usa-network",
       "name": "USA Network",
-      "status": "not-found-on-ses4-public-listings",
+      "status": "not-found-on-11171-v-45000-public-listings",
       "satelliteId": null,
       "serviceId": null,
       "sourceVerified": false,
@@ -1157,32 +1023,18 @@ export const castSat = {
       "channelNumber": 100,
       "id": "a-plus-kids",
       "name": "A+ Kids",
-      "status": "found-encrypted",
-      "satelliteId": "ses-4-22w",
-      "serviceId": "sid-4001",
+      "status": "not-found-on-11171-v-45000-public-listings",
+      "satelliteId": null,
+      "serviceId": null,
       "sourceVerified": false,
       "physicalReceptionVerified": false,
-      "redistributionEnabled": false,
-      "encryption": {
-        "scrambled": true,
-        "systems": [
-          "Mediaguard",
-          "Nagravision"
-        ],
-        "authorizationRequired": true
-      },
-      "transponder": {
-        "frequencyMHz": 11551,
-        "polarization": "V",
-        "symbolRateKsym": 45000,
-        "sid": 4001
-      }
+      "redistributionEnabled": false
     },
     {
       "channelNumber": 101,
       "id": "boing",
       "name": "Boing",
-      "status": "not-found-on-ses4-public-listings",
+      "status": "not-found-on-11171-v-45000-public-listings",
       "satelliteId": null,
       "serviceId": null,
       "sourceVerified": false,
@@ -1193,119 +1045,9 @@ export const castSat = {
       "channelNumber": 102,
       "id": "boomerang",
       "name": "Boomerang",
-      "status": "not-found-on-ses4-public-listings",
-      "satelliteId": null,
-      "serviceId": null,
-      "sourceVerified": false,
-      "physicalReceptionVerified": false,
-      "redistributionEnabled": false
-    },
-    {
-      "channelNumber": 103,
-      "id": "boomerang-plus-1",
-      "name": "Boomerang +1",
-      "status": "not-found-on-ses4-public-listings",
-      "satelliteId": null,
-      "serviceId": null,
-      "sourceVerified": false,
-      "physicalReceptionVerified": false,
-      "redistributionEnabled": false
-    },
-    {
-      "channelNumber": 104,
-      "id": "canal-j",
-      "name": "Canal J",
-      "status": "not-found-on-ses4-public-listings",
-      "satelliteId": null,
-      "serviceId": null,
-      "sourceVerified": false,
-      "physicalReceptionVerified": false,
-      "redistributionEnabled": false
-    },
-    {
-      "channelNumber": 187,
-      "id": "s-plus-kids-canalplus",
-      "name": "S+ Kids Canal+",
-      "status": "not-found-on-ses4-public-listings",
-      "satelliteId": null,
-      "serviceId": null,
-      "sourceVerified": false,
-      "physicalReceptionVerified": false,
-      "redistributionEnabled": false
-    },
-    {
-      "channelNumber": 106,
-      "id": "cartoonito",
-      "name": "Cartoonito",
-      "status": "not-found-on-ses4-public-listings",
-      "satelliteId": null,
-      "serviceId": null,
-      "sourceVerified": false,
-      "physicalReceptionVerified": false,
-      "redistributionEnabled": false
-    },
-    {
-      "channelNumber": 107,
-      "id": "cartoon-network",
-      "name": "Cartoon Network",
-      "status": "not-found-on-ses4-public-listings",
-      "satelliteId": null,
-      "serviceId": null,
-      "sourceVerified": false,
-      "physicalReceptionVerified": false,
-      "redistributionEnabled": false
-    },
-    {
-      "channelNumber": 108,
-      "id": "disney-channel",
-      "name": "Disney Channel",
-      "status": "not-found-on-ses4-public-listings",
-      "satelliteId": null,
-      "serviceId": null,
-      "sourceVerified": false,
-      "physicalReceptionVerified": false,
-      "redistributionEnabled": false
-    },
-    {
-      "channelNumber": 109,
-      "id": "disney-junior",
-      "name": "Disney Junior",
-      "status": "not-found-on-ses4-public-listings",
-      "satelliteId": null,
-      "serviceId": null,
-      "sourceVerified": false,
-      "physicalReceptionVerified": false,
-      "redistributionEnabled": false
-    },
-    {
-      "channelNumber": 110,
-      "id": "dreamworks",
-      "name": "DreamWorks",
-      "status": "not-found-on-ses4-public-listings",
-      "satelliteId": null,
-      "serviceId": null,
-      "sourceVerified": false,
-      "physicalReceptionVerified": false,
-      "redistributionEnabled": false
-    },
-    {
-      "channelNumber": 111,
-      "id": "gulli",
-      "name": "Gulli",
-      "status": "not-found-on-ses4-public-listings",
-      "satelliteId": null,
-      "serviceId": null,
-      "sourceVerified": false,
-      "physicalReceptionVerified": false,
-      "redistributionEnabled": false
-    },
-    {
-      "channelNumber": 112,
-      "id": "gulli-africa",
-      "name": "Gulli Africa",
       "status": "found-encrypted",
       "satelliteId": "ses-4-22w",
-      "serviceId": "sid-8917",
+      "serviceId": "sid-8930",
       "sourceVerified": false,
       "physicalReceptionVerified": false,
       "redistributionEnabled": false,
@@ -1321,14 +1063,128 @@ export const castSat = {
         "frequencyMHz": 11171,
         "polarization": "V",
         "symbolRateKsym": 45000,
-        "sid": 8917
+        "fec": "3/4",
+        "system": "DVB-S2/QPSK",
+        "video": "HEVC",
+        "sid": 8930,
+        "serviceName": "Boomerang France"
       }
+    },
+    {
+      "channelNumber": 103,
+      "id": "boomerang-plus-1",
+      "name": "Boomerang +1",
+      "status": "not-found-on-11171-v-45000-public-listings",
+      "satelliteId": null,
+      "serviceId": null,
+      "sourceVerified": false,
+      "physicalReceptionVerified": false,
+      "redistributionEnabled": false
+    },
+    {
+      "channelNumber": 104,
+      "id": "canal-j",
+      "name": "Canal J",
+      "status": "not-found-on-11171-v-45000-public-listings",
+      "satelliteId": null,
+      "serviceId": null,
+      "sourceVerified": false,
+      "physicalReceptionVerified": false,
+      "redistributionEnabled": false
+    },
+    {
+      "channelNumber": 187,
+      "id": "s-plus-kids-canalplus",
+      "name": "S+ Kids Canal+",
+      "status": "not-found-on-11171-v-45000-public-listings",
+      "satelliteId": null,
+      "serviceId": null,
+      "sourceVerified": false,
+      "physicalReceptionVerified": false,
+      "redistributionEnabled": false
+    },
+    {
+      "channelNumber": 106,
+      "id": "cartoonito",
+      "name": "Cartoonito",
+      "status": "not-found-on-11171-v-45000-public-listings",
+      "satelliteId": null,
+      "serviceId": null,
+      "sourceVerified": false,
+      "physicalReceptionVerified": false,
+      "redistributionEnabled": false
+    },
+    {
+      "channelNumber": 107,
+      "id": "cartoon-network",
+      "name": "Cartoon Network",
+      "status": "not-found-on-11171-v-45000-public-listings",
+      "satelliteId": null,
+      "serviceId": null,
+      "sourceVerified": false,
+      "physicalReceptionVerified": false,
+      "redistributionEnabled": false
+    },
+    {
+      "channelNumber": 108,
+      "id": "disney-channel",
+      "name": "Disney Channel",
+      "status": "not-found-on-11171-v-45000-public-listings",
+      "satelliteId": null,
+      "serviceId": null,
+      "sourceVerified": false,
+      "physicalReceptionVerified": false,
+      "redistributionEnabled": false
+    },
+    {
+      "channelNumber": 109,
+      "id": "disney-junior",
+      "name": "Disney Junior",
+      "status": "not-found-on-11171-v-45000-public-listings",
+      "satelliteId": null,
+      "serviceId": null,
+      "sourceVerified": false,
+      "physicalReceptionVerified": false,
+      "redistributionEnabled": false
+    },
+    {
+      "channelNumber": 110,
+      "id": "dreamworks",
+      "name": "DreamWorks",
+      "status": "not-found-on-11171-v-45000-public-listings",
+      "satelliteId": null,
+      "serviceId": null,
+      "sourceVerified": false,
+      "physicalReceptionVerified": false,
+      "redistributionEnabled": false
+    },
+    {
+      "channelNumber": 111,
+      "id": "gulli",
+      "name": "Gulli",
+      "status": "not-found-on-11171-v-45000-public-listings",
+      "satelliteId": null,
+      "serviceId": null,
+      "sourceVerified": false,
+      "physicalReceptionVerified": false,
+      "redistributionEnabled": false
+    },
+    {
+      "channelNumber": 112,
+      "id": "gulli-africa",
+      "name": "Gulli Africa",
+      "status": "not-found-on-11171-v-45000-public-listings",
+      "satelliteId": null,
+      "serviceId": null,
+      "sourceVerified": false,
+      "physicalReceptionVerified": false,
+      "redistributionEnabled": false
     },
     {
       "channelNumber": 113,
       "id": "j-one",
       "name": "J-One",
-      "status": "not-found-on-ses4-public-listings",
+      "status": "not-found-on-11171-v-45000-public-listings",
       "satelliteId": null,
       "serviceId": null,
       "sourceVerified": false,
@@ -1339,7 +1195,7 @@ export const castSat = {
       "channelNumber": 114,
       "id": "ludikids",
       "name": "Ludikids",
-      "status": "not-found-on-ses4-public-listings",
+      "status": "not-found-on-11171-v-45000-public-listings",
       "satelliteId": null,
       "serviceId": null,
       "sourceVerified": false,
@@ -1350,32 +1206,18 @@ export const castSat = {
       "channelNumber": 115,
       "id": "mangas",
       "name": "Mangas",
-      "status": "found-encrypted",
-      "satelliteId": "ses-4-22w",
-      "serviceId": "sid-4017",
+      "status": "not-found-on-11171-v-45000-public-listings",
+      "satelliteId": null,
+      "serviceId": null,
       "sourceVerified": false,
       "physicalReceptionVerified": false,
-      "redistributionEnabled": false,
-      "encryption": {
-        "scrambled": true,
-        "systems": [
-          "Mediaguard",
-          "Nagravision"
-        ],
-        "authorizationRequired": true
-      },
-      "transponder": {
-        "frequencyMHz": 11551,
-        "polarization": "V",
-        "symbolRateKsym": 45000,
-        "sid": 4017
-      }
+      "redistributionEnabled": false
     },
     {
       "channelNumber": 116,
       "id": "nathan-plus",
       "name": "Nathan+",
-      "status": "not-found-on-ses4-public-listings",
+      "status": "not-found-on-11171-v-45000-public-listings",
       "satelliteId": null,
       "serviceId": null,
       "sourceVerified": false,
@@ -1386,26 +1228,12 @@ export const castSat = {
       "channelNumber": 117,
       "id": "nickelodeon",
       "name": "Nickelodeon",
-      "status": "found-encrypted",
-      "satelliteId": "ses-4-22w",
-      "serviceId": "sid-8312",
+      "status": "not-found-on-11171-v-45000-public-listings",
+      "satelliteId": null,
+      "serviceId": null,
       "sourceVerified": false,
       "physicalReceptionVerified": false,
-      "redistributionEnabled": false,
-      "encryption": {
-        "scrambled": true,
-        "systems": [
-          "Mediaguard",
-          "Nagravision"
-        ],
-        "authorizationRequired": true
-      },
-      "transponder": {
-        "frequencyMHz": 12570,
-        "polarization": "V",
-        "symbolRateKsym": 30000,
-        "sid": 8312
-      }
+      "redistributionEnabled": false
     },
     {
       "channelNumber": 118,
@@ -1429,14 +1257,18 @@ export const castSat = {
         "frequencyMHz": 11171,
         "polarization": "V",
         "symbolRateKsym": 45000,
-        "sid": 8905
+        "fec": "3/4",
+        "system": "DVB-S2/QPSK",
+        "video": "HEVC",
+        "sid": 8905,
+        "serviceName": "Nickelodeon Junior France"
       }
     },
     {
       "channelNumber": 119,
       "id": "nickelodeon-plus-1",
       "name": "Nickelodeon +1",
-      "status": "not-found-on-ses4-public-listings",
+      "status": "not-found-on-11171-v-45000-public-listings",
       "satelliteId": null,
       "serviceId": null,
       "sourceVerified": false,
@@ -1447,7 +1279,7 @@ export const castSat = {
       "channelNumber": 120,
       "id": "nicktoons",
       "name": "NickToons",
-      "status": "not-found-on-ses4-public-listings",
+      "status": "not-found-on-11171-v-45000-public-listings",
       "satelliteId": null,
       "serviceId": null,
       "sourceVerified": false,
@@ -1458,7 +1290,7 @@ export const castSat = {
       "channelNumber": 121,
       "id": "nickelodeon-teen",
       "name": "Nickelodeon Teen",
-      "status": "not-found-on-ses4-public-listings",
+      "status": "not-found-on-11171-v-45000-public-listings",
       "satelliteId": null,
       "serviceId": null,
       "sourceVerified": false,
@@ -1469,7 +1301,7 @@ export const castSat = {
       "channelNumber": 122,
       "id": "okoo",
       "name": "Okoo",
-      "status": "not-found-on-ses4-public-listings",
+      "status": "not-found-on-11171-v-45000-public-listings",
       "satelliteId": null,
       "serviceId": null,
       "sourceVerified": false,
@@ -1480,7 +1312,7 @@ export const castSat = {
       "channelNumber": 123,
       "id": "piwi-plus",
       "name": "Piwi+",
-      "status": "not-found-on-ses4-public-listings",
+      "status": "not-found-on-11171-v-45000-public-listings",
       "satelliteId": null,
       "serviceId": null,
       "sourceVerified": false,
@@ -1491,7 +1323,7 @@ export const castSat = {
       "channelNumber": 124,
       "id": "pitchoun-kids-music",
       "name": "Pitchoun Kids Music",
-      "status": "not-found-on-ses4-public-listings",
+      "status": "not-found-on-11171-v-45000-public-listings",
       "satelliteId": null,
       "serviceId": null,
       "sourceVerified": false,
@@ -1502,7 +1334,7 @@ export const castSat = {
       "channelNumber": 125,
       "id": "pitchoun-kids-music-africa",
       "name": "Pitchoun Kids Music Africa",
-      "status": "not-found-on-ses4-public-listings",
+      "status": "not-found-on-11171-v-45000-public-listings",
       "satelliteId": null,
       "serviceId": null,
       "sourceVerified": false,
@@ -1513,7 +1345,7 @@ export const castSat = {
       "channelNumber": 126,
       "id": "tv-pitchoun",
       "name": "TV Pitchoun",
-      "status": "not-found-on-ses4-public-listings",
+      "status": "not-found-on-11171-v-45000-public-listings",
       "satelliteId": null,
       "serviceId": null,
       "sourceVerified": false,
@@ -1524,7 +1356,7 @@ export const castSat = {
       "channelNumber": 127,
       "id": "teletoon-plus",
       "name": "Télétoon+",
-      "status": "not-found-on-ses4-public-listings",
+      "status": "not-found-on-11171-v-45000-public-listings",
       "satelliteId": null,
       "serviceId": null,
       "sourceVerified": false,
@@ -1535,7 +1367,7 @@ export const castSat = {
       "channelNumber": 128,
       "id": "teletoon-plus-1",
       "name": "Télétoon +1",
-      "status": "not-found-on-ses4-public-listings",
+      "status": "not-found-on-11171-v-45000-public-listings",
       "satelliteId": null,
       "serviceId": null,
       "sourceVerified": false,
@@ -1546,32 +1378,18 @@ export const castSat = {
       "channelNumber": 129,
       "id": "tiji",
       "name": "TiJi",
-      "status": "found-encrypted",
-      "satelliteId": "ses-4-22w",
-      "serviceId": "sid-8321",
+      "status": "not-found-on-11171-v-45000-public-listings",
+      "satelliteId": null,
+      "serviceId": null,
       "sourceVerified": false,
       "physicalReceptionVerified": false,
-      "redistributionEnabled": false,
-      "encryption": {
-        "scrambled": true,
-        "systems": [
-          "Mediaguard",
-          "Nagravision"
-        ],
-        "authorizationRequired": true
-      },
-      "transponder": {
-        "frequencyMHz": 12570,
-        "polarization": "V",
-        "symbolRateKsym": 30000,
-        "sid": 8321
-      }
+      "redistributionEnabled": false
     },
     {
       "channelNumber": 130,
       "id": "tivi5monde",
       "name": "TiVi5MONDE",
-      "status": "not-found-on-ses4-public-listings",
+      "status": "not-found-on-11171-v-45000-public-listings",
       "satelliteId": null,
       "serviceId": null,
       "sourceVerified": false,
@@ -1582,7 +1400,7 @@ export const castSat = {
       "channelNumber": 131,
       "id": "toonami",
       "name": "Toonami",
-      "status": "not-found-on-ses4-public-listings",
+      "status": "not-found-on-11171-v-45000-public-listings",
       "satelliteId": null,
       "serviceId": null,
       "sourceVerified": false,
@@ -1593,7 +1411,7 @@ export const castSat = {
       "channelNumber": 132,
       "id": "ducktv",
       "name": "ducktv",
-      "status": "not-found-on-ses4-public-listings",
+      "status": "not-found-on-11171-v-45000-public-listings",
       "satelliteId": null,
       "serviceId": null,
       "sourceVerified": false,
@@ -1604,7 +1422,7 @@ export const castSat = {
       "channelNumber": 157,
       "id": "tv-tokyo",
       "name": "TV Tokyo",
-      "status": "not-found-on-ses4-public-listings",
+      "status": "not-found-on-11171-v-45000-public-listings",
       "satelliteId": null,
       "serviceId": null,
       "sourceVerified": false,
@@ -1615,7 +1433,7 @@ export const castSat = {
       "channelNumber": 158,
       "id": "fuji-tv",
       "name": "Fuji TV",
-      "status": "not-found-on-ses4-public-listings",
+      "status": "not-found-on-11171-v-45000-public-listings",
       "satelliteId": null,
       "serviceId": null,
       "sourceVerified": false,
@@ -1626,7 +1444,7 @@ export const castSat = {
       "channelNumber": 133,
       "id": "warner-tv-next",
       "name": "Warner TV Next",
-      "status": "not-found-on-ses4-public-listings",
+      "status": "not-found-on-11171-v-45000-public-listings",
       "satelliteId": null,
       "serviceId": null,
       "sourceVerified": false,
@@ -1637,7 +1455,7 @@ export const castSat = {
       "channelNumber": 159,
       "id": "peche-sons",
       "name": "Pêche & Sons",
-      "status": "not-found-on-ses4-public-listings",
+      "status": "not-found-on-11171-v-45000-public-listings",
       "satelliteId": null,
       "serviceId": null,
       "sourceVerified": false,
@@ -1648,7 +1466,7 @@ export const castSat = {
       "channelNumber": 184,
       "id": "planete-plus",
       "name": "Planète+",
-      "status": "not-found-on-ses4-public-listings",
+      "status": "not-found-on-11171-v-45000-public-listings",
       "satelliteId": null,
       "serviceId": null,
       "sourceVerified": false,
@@ -1659,7 +1477,7 @@ export const castSat = {
       "channelNumber": 162,
       "id": "s-plus-docs",
       "name": "S+ Docs",
-      "status": "not-found-on-ses4-public-listings",
+      "status": "not-found-on-11171-v-45000-public-listings",
       "satelliteId": null,
       "serviceId": null,
       "sourceVerified": false,
@@ -1670,32 +1488,18 @@ export const castSat = {
       "channelNumber": 23,
       "id": "tv5-monde",
       "name": "TV5 Monde",
-      "status": "found-encrypted",
-      "satelliteId": "ses-4-22w",
-      "serviceId": "sid-8102",
+      "status": "not-found-on-11171-v-45000-public-listings",
+      "satelliteId": null,
+      "serviceId": null,
       "sourceVerified": false,
       "physicalReceptionVerified": false,
-      "redistributionEnabled": false,
-      "encryption": {
-        "scrambled": true,
-        "systems": [
-          "Mediaguard",
-          "Nagravision"
-        ],
-        "authorizationRequired": true
-      },
-      "transponder": {
-        "frequencyMHz": 3749,
-        "polarization": "L",
-        "symbolRateKsym": 45830,
-        "sid": 8102
-      }
+      "redistributionEnabled": false
     },
     {
       "channelNumber": 163,
       "id": "s-plus-prime",
       "name": "S+ Prime",
-      "status": "not-found-on-ses4-public-listings",
+      "status": "not-found-on-11171-v-45000-public-listings",
       "satelliteId": null,
       "serviceId": null,
       "sourceVerified": false,
@@ -1706,7 +1510,7 @@ export const castSat = {
       "channelNumber": 164,
       "id": "s-plus-cine",
       "name": "S+ Ciné",
-      "status": "not-found-on-ses4-public-listings",
+      "status": "not-found-on-11171-v-45000-public-listings",
       "satelliteId": null,
       "serviceId": null,
       "sourceVerified": false,
@@ -1717,7 +1521,7 @@ export const castSat = {
       "channelNumber": 165,
       "id": "s-plus-kids",
       "name": "S+ Kids",
-      "status": "not-found-on-ses4-public-listings",
+      "status": "not-found-on-11171-v-45000-public-listings",
       "satelliteId": null,
       "serviceId": null,
       "sourceVerified": false,
@@ -1728,7 +1532,7 @@ export const castSat = {
       "channelNumber": 166,
       "id": "s-plus-fiction",
       "name": "S+ Fiction",
-      "status": "not-found-on-ses4-public-listings",
+      "status": "not-found-on-11171-v-45000-public-listings",
       "satelliteId": null,
       "serviceId": null,
       "sourceVerified": false,
@@ -1739,7 +1543,7 @@ export const castSat = {
       "channelNumber": 167,
       "id": "s-plus-channel",
       "name": "S+ Channel",
-      "status": "not-found-on-ses4-public-listings",
+      "status": "not-found-on-11171-v-45000-public-listings",
       "satelliteId": null,
       "serviceId": null,
       "sourceVerified": false,
@@ -1750,7 +1554,7 @@ export const castSat = {
       "channelNumber": 168,
       "id": "s-plus-music",
       "name": "S+ Music",
-      "status": "not-found-on-ses4-public-listings",
+      "status": "not-found-on-11171-v-45000-public-listings",
       "satelliteId": null,
       "serviceId": null,
       "sourceVerified": false,
@@ -1761,7 +1565,7 @@ export const castSat = {
       "channelNumber": 169,
       "id": "s-plus-tv",
       "name": "S+ TV",
-      "status": "not-found-on-ses4-public-listings",
+      "status": "not-found-on-11171-v-45000-public-listings",
       "satelliteId": null,
       "serviceId": null,
       "sourceVerified": false,
@@ -1772,7 +1576,7 @@ export const castSat = {
       "channelNumber": 170,
       "id": "s-plus-family",
       "name": "S+ Family",
-      "status": "not-found-on-ses4-public-listings",
+      "status": "not-found-on-11171-v-45000-public-listings",
       "satelliteId": null,
       "serviceId": null,
       "sourceVerified": false,
@@ -1783,7 +1587,7 @@ export const castSat = {
       "channelNumber": 171,
       "id": "s-plus-sport-1",
       "name": "S+ Sport 1",
-      "status": "not-found-on-ses4-public-listings",
+      "status": "not-found-on-11171-v-45000-public-listings",
       "satelliteId": null,
       "serviceId": null,
       "sourceVerified": false,
@@ -1794,7 +1598,7 @@ export const castSat = {
       "channelNumber": 172,
       "id": "s-plus-sport-2",
       "name": "S+ Sport 2",
-      "status": "not-found-on-ses4-public-listings",
+      "status": "not-found-on-11171-v-45000-public-listings",
       "satelliteId": null,
       "serviceId": null,
       "sourceVerified": false,
@@ -1805,7 +1609,7 @@ export const castSat = {
       "channelNumber": 173,
       "id": "s-plus-sport-3",
       "name": "S+ Sport 3",
-      "status": "not-found-on-ses4-public-listings",
+      "status": "not-found-on-11171-v-45000-public-listings",
       "satelliteId": null,
       "serviceId": null,
       "sourceVerified": false,
@@ -1816,7 +1620,7 @@ export const castSat = {
       "channelNumber": 174,
       "id": "s-plus-sport-4",
       "name": "S+ Sport 4",
-      "status": "not-found-on-ses4-public-listings",
+      "status": "not-found-on-11171-v-45000-public-listings",
       "satelliteId": null,
       "serviceId": null,
       "sourceVerified": false,
@@ -1827,7 +1631,7 @@ export const castSat = {
       "channelNumber": 175,
       "id": "s-plus-sport-5",
       "name": "S+ Sport 5",
-      "status": "not-found-on-ses4-public-listings",
+      "status": "not-found-on-11171-v-45000-public-listings",
       "satelliteId": null,
       "serviceId": null,
       "sourceVerified": false,
@@ -1838,7 +1642,7 @@ export const castSat = {
       "channelNumber": 176,
       "id": "s-plus-sport-6",
       "name": "S+ Sport 6",
-      "status": "not-found-on-ses4-public-listings",
+      "status": "not-found-on-11171-v-45000-public-listings",
       "satelliteId": null,
       "serviceId": null,
       "sourceVerified": false,
@@ -1849,7 +1653,7 @@ export const castSat = {
       "channelNumber": 177,
       "id": "s-plus-movies",
       "name": "S+ Movies",
-      "status": "not-found-on-ses4-public-listings",
+      "status": "not-found-on-11171-v-45000-public-listings",
       "satelliteId": null,
       "serviceId": null,
       "sourceVerified": false,
@@ -1860,7 +1664,7 @@ export const castSat = {
       "channelNumber": 178,
       "id": "s-plus-infosport",
       "name": "S+ Infosport",
-      "status": "not-found-on-ses4-public-listings",
+      "status": "not-found-on-11171-v-45000-public-listings",
       "satelliteId": null,
       "serviceId": null,
       "sourceVerified": false,
@@ -1871,7 +1675,7 @@ export const castSat = {
       "channelNumber": 179,
       "id": "s-plus-infos",
       "name": "S+ Infos",
-      "status": "not-found-on-ses4-public-listings",
+      "status": "not-found-on-11171-v-45000-public-listings",
       "satelliteId": null,
       "serviceId": null,
       "sourceVerified": false,
@@ -1882,7 +1686,7 @@ export const castSat = {
       "channelNumber": 180,
       "id": "s-plus-media",
       "name": "S+ Media",
-      "status": "not-found-on-ses4-public-listings",
+      "status": "not-found-on-11171-v-45000-public-listings",
       "satelliteId": null,
       "serviceId": null,
       "sourceVerified": false,
@@ -1893,7 +1697,7 @@ export const castSat = {
       "channelNumber": 181,
       "id": "s-plus-lloliwood",
       "name": "S+ LLOLIWOOD",
-      "status": "not-found-on-ses4-public-listings",
+      "status": "not-found-on-11171-v-45000-public-listings",
       "satelliteId": null,
       "serviceId": null,
       "sourceVerified": false,
@@ -1904,7 +1708,7 @@ export const castSat = {
       "channelNumber": 182,
       "id": "s-plus-bl",
       "name": "S+ BL",
-      "status": "not-found-on-ses4-public-listings",
+      "status": "not-found-on-11171-v-45000-public-listings",
       "satelliteId": null,
       "serviceId": null,
       "sourceVerified": false,
@@ -1915,7 +1719,7 @@ export const castSat = {
       "channelNumber": 183,
       "id": "s-plus-jeunesse",
       "name": "S+ Jeunesse",
-      "status": "not-found-on-ses4-public-listings",
+      "status": "not-found-on-11171-v-45000-public-listings",
       "satelliteId": null,
       "serviceId": null,
       "sourceVerified": false,
@@ -1926,7 +1730,7 @@ export const castSat = {
       "channelNumber": 136,
       "id": "berbere-jeunesse",
       "name": "Berbère Jeunesse",
-      "status": "not-found-on-ses4-public-listings",
+      "status": "not-found-on-11171-v-45000-public-listings",
       "satelliteId": null,
       "serviceId": null,
       "sourceVerified": false,
@@ -1937,7 +1741,7 @@ export const castSat = {
       "channelNumber": 137,
       "id": "chaine-pere-noel",
       "name": "La Chaîne du Père Noël",
-      "status": "not-found-on-ses4-public-listings",
+      "status": "not-found-on-11171-v-45000-public-listings",
       "satelliteId": null,
       "serviceId": null,
       "sourceVerified": false,
@@ -1948,7 +1752,7 @@ export const castSat = {
       "channelNumber": 188,
       "id": "s-plus-box-office",
       "name": "S+ Box Office",
-      "status": "not-found-on-ses4-public-listings",
+      "status": "not-found-on-11171-v-45000-public-listings",
       "satelliteId": null,
       "serviceId": null,
       "sourceVerified": false,
@@ -1959,7 +1763,7 @@ export const castSat = {
       "channelNumber": 189,
       "id": "s-plus-grand-ecran",
       "name": "S+ Grand Ecran",
-      "status": "not-found-on-ses4-public-listings",
+      "status": "not-found-on-11171-v-45000-public-listings",
       "satelliteId": null,
       "serviceId": null,
       "sourceVerified": false,
@@ -1970,7 +1774,7 @@ export const castSat = {
       "channelNumber": 190,
       "id": "s-plus-cinema-s",
       "name": "S+ Cinéma(s)",
-      "status": "not-found-on-ses4-public-listings",
+      "status": "not-found-on-11171-v-45000-public-listings",
       "satelliteId": null,
       "serviceId": null,
       "sourceVerified": false,
@@ -1981,7 +1785,7 @@ export const castSat = {
       "channelNumber": 191,
       "id": "s-plus-sport-360",
       "name": "S+ Sport 360",
-      "status": "not-found-on-ses4-public-listings",
+      "status": "not-found-on-11171-v-45000-public-listings",
       "satelliteId": null,
       "serviceId": null,
       "sourceVerified": false,
@@ -1992,7 +1796,7 @@ export const castSat = {
       "channelNumber": 192,
       "id": "s-plus-docs-canalplus",
       "name": "S+ Docs Canal+",
-      "status": "not-found-on-ses4-public-listings",
+      "status": "not-found-on-11171-v-45000-public-listings",
       "satelliteId": null,
       "serviceId": null,
       "sourceVerified": false,
@@ -2003,7 +1807,7 @@ export const castSat = {
       "channelNumber": 193,
       "id": "s-plus-foot",
       "name": "S+ Foot",
-      "status": "not-found-on-ses4-public-listings",
+      "status": "not-found-on-11171-v-45000-public-listings",
       "satelliteId": null,
       "serviceId": null,
       "sourceVerified": false,
@@ -2014,7 +1818,7 @@ export const castSat = {
       "channelNumber": 85,
       "id": "bein-sports",
       "name": "beIN SPORTS",
-      "status": "not-found-on-ses4-public-listings",
+      "status": "not-found-on-11171-v-45000-public-listings",
       "satelliteId": null,
       "serviceId": null,
       "sourceVerified": false,
@@ -2025,57 +1829,29 @@ export const castSat = {
       "channelNumber": 86,
       "id": "eurosport-1",
       "name": "Eurosport 1",
-      "status": "found-encrypted",
-      "satelliteId": "ses-4-22w",
-      "serviceId": "sid-8906",
+      "status": "not-found-on-11171-v-45000-public-listings",
+      "satelliteId": null,
+      "serviceId": null,
       "sourceVerified": false,
       "physicalReceptionVerified": false,
-      "redistributionEnabled": false,
-      "encryption": {
-        "scrambled": true,
-        "systems": [
-          "Mediaguard",
-          "Nagravision"
-        ],
-        "authorizationRequired": true
-      },
-      "transponder": {
-        "frequencyMHz": 11171,
-        "polarization": "V",
-        "symbolRateKsym": 45000,
-        "sid": 8906
-      }
+      "redistributionEnabled": false
     },
     {
       "channelNumber": 87,
       "id": "automoto",
       "name": "Automoto",
-      "status": "found-encrypted",
-      "satelliteId": "ses-4-22w",
-      "serviceId": "sid-8326",
+      "status": "not-found-on-11171-v-45000-public-listings",
+      "satelliteId": null,
+      "serviceId": null,
       "sourceVerified": false,
       "physicalReceptionVerified": false,
-      "redistributionEnabled": false,
-      "encryption": {
-        "scrambled": true,
-        "systems": [
-          "Mediaguard",
-          "Nagravision"
-        ],
-        "authorizationRequired": true
-      },
-      "transponder": {
-        "frequencyMHz": 12570,
-        "polarization": "V",
-        "symbolRateKsym": 30000,
-        "sid": 8326
-      }
+      "redistributionEnabled": false
     },
     {
       "channelNumber": 88,
       "id": "equidia",
       "name": "Equidia",
-      "status": "not-found-on-ses4-public-listings",
+      "status": "not-found-on-11171-v-45000-public-listings",
       "satelliteId": null,
       "serviceId": null,
       "sourceVerified": false,
@@ -2086,7 +1862,7 @@ export const castSat = {
       "channelNumber": 226,
       "id": "cine-plus-frisson",
       "name": "Ciné+ Frisson",
-      "status": "not-found-on-ses4-public-listings",
+      "status": "not-found-on-11171-v-45000-public-listings",
       "satelliteId": null,
       "serviceId": null,
       "sourceVerified": false,
@@ -2097,7 +1873,7 @@ export const castSat = {
       "channelNumber": 227,
       "id": "cine-plus-emotion",
       "name": "Ciné+ Emotion",
-      "status": "not-found-on-ses4-public-listings",
+      "status": "not-found-on-11171-v-45000-public-listings",
       "satelliteId": null,
       "serviceId": null,
       "sourceVerified": false,
@@ -2108,7 +1884,7 @@ export const castSat = {
       "channelNumber": 228,
       "id": "cine-plus-family",
       "name": "Ciné+ Family",
-      "status": "not-found-on-ses4-public-listings",
+      "status": "not-found-on-11171-v-45000-public-listings",
       "satelliteId": null,
       "serviceId": null,
       "sourceVerified": false,
@@ -2119,7 +1895,7 @@ export const castSat = {
       "channelNumber": 229,
       "id": "cine-plus-festival",
       "name": "Ciné+ Festival",
-      "status": "not-found-on-ses4-public-listings",
+      "status": "not-found-on-11171-v-45000-public-listings",
       "satelliteId": null,
       "serviceId": null,
       "sourceVerified": false,
@@ -2130,7 +1906,7 @@ export const castSat = {
       "channelNumber": 231,
       "id": "cine-plus-classic",
       "name": "Ciné+ Classic",
-      "status": "not-found-on-ses4-public-listings",
+      "status": "not-found-on-11171-v-45000-public-listings",
       "satelliteId": null,
       "serviceId": null,
       "sourceVerified": false,
@@ -2141,7 +1917,7 @@ export const castSat = {
       "channelNumber": 230,
       "id": "polar-plus",
       "name": "POLAR+",
-      "status": "not-found-on-ses4-public-listings",
+      "status": "not-found-on-11171-v-45000-public-listings",
       "satelliteId": null,
       "serviceId": null,
       "sourceVerified": false,
@@ -2152,7 +1928,7 @@ export const castSat = {
       "channelNumber": 232,
       "id": "comedie-plus",
       "name": "Comédie+",
-      "status": "not-found-on-ses4-public-listings",
+      "status": "not-found-on-11171-v-45000-public-listings",
       "satelliteId": null,
       "serviceId": null,
       "sourceVerified": false,
@@ -2163,7 +1939,7 @@ export const castSat = {
       "channelNumber": 233,
       "id": "paris-premiere",
       "name": "Paris Première",
-      "status": "not-found-on-ses4-public-listings",
+      "status": "not-found-on-11171-v-45000-public-listings",
       "satelliteId": null,
       "serviceId": null,
       "sourceVerified": false,
@@ -2174,7 +1950,7 @@ export const castSat = {
       "channelNumber": 234,
       "id": "teva",
       "name": "Téva",
-      "status": "not-found-on-ses4-public-listings",
+      "status": "not-found-on-11171-v-45000-public-listings",
       "satelliteId": null,
       "serviceId": null,
       "sourceVerified": false,
@@ -2185,32 +1961,18 @@ export const castSat = {
       "channelNumber": 235,
       "id": "serie-club",
       "name": "Série Club",
-      "status": "found-encrypted",
-      "satelliteId": "ses-4-22w",
-      "serviceId": "sid-8225",
+      "status": "not-found-on-11171-v-45000-public-listings",
+      "satelliteId": null,
+      "serviceId": null,
       "sourceVerified": false,
       "physicalReceptionVerified": false,
-      "redistributionEnabled": false,
-      "encryption": {
-        "scrambled": true,
-        "systems": [
-          "Mediaguard",
-          "Nagravision"
-        ],
-        "authorizationRequired": true
-      },
-      "transponder": {
-        "frequencyMHz": 10986,
-        "polarization": "V",
-        "symbolRateKsym": 30000,
-        "sid": 8225
-      }
+      "redistributionEnabled": false
     },
     {
       "channelNumber": 236,
       "id": "showtime",
       "name": "Showtime",
-      "status": "not-found-on-ses4-public-listings",
+      "status": "not-found-on-11171-v-45000-public-listings",
       "satelliteId": null,
       "serviceId": null,
       "sourceVerified": false,
@@ -2221,7 +1983,7 @@ export const castSat = {
       "channelNumber": 237,
       "id": "starz",
       "name": "Starz",
-      "status": "not-found-on-ses4-public-listings",
+      "status": "not-found-on-11171-v-45000-public-listings",
       "satelliteId": null,
       "serviceId": null,
       "sourceVerified": false,
@@ -2232,7 +1994,7 @@ export const castSat = {
       "channelNumber": 238,
       "id": "nrj-hits",
       "name": "NRJ Hits",
-      "status": "not-found-on-ses4-public-listings",
+      "status": "not-found-on-11171-v-45000-public-listings",
       "satelliteId": null,
       "serviceId": null,
       "sourceVerified": false,
@@ -2243,7 +2005,7 @@ export const castSat = {
       "channelNumber": 239,
       "id": "europe-2-pop-tv",
       "name": "Europe 2 POP TV",
-      "status": "not-found-on-ses4-public-listings",
+      "status": "not-found-on-11171-v-45000-public-listings",
       "satelliteId": null,
       "serviceId": null,
       "sourceVerified": false,
@@ -2254,7 +2016,7 @@ export const castSat = {
       "channelNumber": 240,
       "id": "m6-music",
       "name": "M6 Music",
-      "status": "not-found-on-ses4-public-listings",
+      "status": "not-found-on-11171-v-45000-public-listings",
       "satelliteId": null,
       "serviceId": null,
       "sourceVerified": false,
@@ -2283,14 +2045,18 @@ export const castSat = {
         "frequencyMHz": 11171,
         "polarization": "V",
         "symbolRateKsym": 45000,
-        "sid": 8919
+        "fec": "3/4",
+        "system": "DVB-S2/QPSK",
+        "video": "HEVC",
+        "sid": 8919,
+        "serviceName": "Trace Urban Afrique"
       }
     },
     {
       "channelNumber": 242,
       "id": "rfm-tv",
       "name": "RFM TV",
-      "status": "not-found-on-ses4-public-listings",
+      "status": "not-found-on-11171-v-45000-public-listings",
       "satelliteId": null,
       "serviceId": null,
       "sourceVerified": false,
@@ -2301,7 +2067,7 @@ export const castSat = {
       "channelNumber": 243,
       "id": "deutsche-grammophon-plus",
       "name": "Deutsche Grammophon+",
-      "status": "not-found-on-ses4-public-listings",
+      "status": "not-found-on-11171-v-45000-public-listings",
       "satelliteId": null,
       "serviceId": null,
       "sourceVerified": false,
@@ -2312,7 +2078,7 @@ export const castSat = {
       "channelNumber": 244,
       "id": "melody",
       "name": "Melody",
-      "status": "not-found-on-ses4-public-listings",
+      "status": "not-found-on-11171-v-45000-public-listings",
       "satelliteId": null,
       "serviceId": null,
       "sourceVerified": false,
@@ -2323,32 +2089,18 @@ export const castSat = {
       "channelNumber": 245,
       "id": "mezzo",
       "name": "Mezzo",
-      "status": "found-encrypted",
-      "satelliteId": "ses-4-22w",
-      "serviceId": "sid-8918",
+      "status": "not-found-on-11171-v-45000-public-listings",
+      "satelliteId": null,
+      "serviceId": null,
       "sourceVerified": false,
       "physicalReceptionVerified": false,
-      "redistributionEnabled": false,
-      "encryption": {
-        "scrambled": true,
-        "systems": [
-          "Mediaguard",
-          "Nagravision"
-        ],
-        "authorizationRequired": true
-      },
-      "transponder": {
-        "frequencyMHz": 11171,
-        "polarization": "V",
-        "symbolRateKsym": 45000,
-        "sid": 8918
-      }
+      "redistributionEnabled": false
     },
     {
       "channelNumber": 246,
       "id": "mezzo-live-hd",
       "name": "Mezzo Live HD",
-      "status": "not-found-on-ses4-public-listings",
+      "status": "not-found-on-11171-v-45000-public-listings",
       "satelliteId": null,
       "serviceId": null,
       "sourceVerified": false,
@@ -2359,7 +2111,7 @@ export const castSat = {
       "channelNumber": 247,
       "id": "mtv",
       "name": "MTV",
-      "status": "not-found-on-ses4-public-listings",
+      "status": "not-found-on-11171-v-45000-public-listings",
       "satelliteId": null,
       "serviceId": null,
       "sourceVerified": false,
@@ -2370,32 +2122,18 @@ export const castSat = {
       "channelNumber": 248,
       "id": "trace-africa",
       "name": "Trace Africa",
-      "status": "found-encrypted",
-      "satelliteId": "ses-4-22w",
-      "serviceId": "sid-4134",
+      "status": "not-found-on-11171-v-45000-public-listings",
+      "satelliteId": null,
+      "serviceId": null,
       "sourceVerified": false,
       "physicalReceptionVerified": false,
-      "redistributionEnabled": false,
-      "encryption": {
-        "scrambled": true,
-        "systems": [
-          "Mediaguard",
-          "Nagravision"
-        ],
-        "authorizationRequired": true
-      },
-      "transponder": {
-        "frequencyMHz": 11051,
-        "polarization": "V",
-        "symbolRateKsym": 45000,
-        "sid": 4134
-      }
+      "redistributionEnabled": false
     },
     {
       "channelNumber": 249,
       "id": "trace-ivoire",
       "name": "Trace Ivoire",
-      "status": "not-found-on-ses4-public-listings",
+      "status": "not-found-on-11171-v-45000-public-listings",
       "satelliteId": null,
       "serviceId": null,
       "sourceVerified": false,
@@ -2406,7 +2144,7 @@ export const castSat = {
       "channelNumber": 250,
       "id": "z-magic",
       "name": "Z Magic",
-      "status": "not-found-on-ses4-public-listings",
+      "status": "not-found-on-11171-v-45000-public-listings",
       "satelliteId": null,
       "serviceId": null,
       "sourceVerified": false,
@@ -2417,7 +2155,7 @@ export const castSat = {
       "channelNumber": 251,
       "id": "seasons",
       "name": "Seasons",
-      "status": "not-found-on-ses4-public-listings",
+      "status": "not-found-on-11171-v-45000-public-listings",
       "satelliteId": null,
       "serviceId": null,
       "sourceVerified": false,
@@ -2428,7 +2166,7 @@ export const castSat = {
       "channelNumber": 252,
       "id": "chasse-et-peche",
       "name": "Chasse et Pêche",
-      "status": "not-found-on-ses4-public-listings",
+      "status": "not-found-on-11171-v-45000-public-listings",
       "satelliteId": null,
       "serviceId": null,
       "sourceVerified": false,
@@ -2439,32 +2177,18 @@ export const castSat = {
       "channelNumber": 253,
       "id": "animaux",
       "name": "Animaux",
-      "status": "found-encrypted",
-      "satelliteId": "ses-4-22w",
-      "serviceId": "sid-4004",
+      "status": "not-found-on-11171-v-45000-public-listings",
+      "satelliteId": null,
+      "serviceId": null,
       "sourceVerified": false,
       "physicalReceptionVerified": false,
-      "redistributionEnabled": false,
-      "encryption": {
-        "scrambled": true,
-        "systems": [
-          "Mediaguard",
-          "Nagravision"
-        ],
-        "authorizationRequired": true
-      },
-      "transponder": {
-        "frequencyMHz": 11551,
-        "polarization": "V",
-        "symbolRateKsym": 45000,
-        "sid": 4004
-      }
+      "redistributionEnabled": false
     },
     {
       "channelNumber": 254,
       "id": "cheval-tv",
       "name": "Cheval TV",
-      "status": "not-found-on-ses4-public-listings",
+      "status": "not-found-on-11171-v-45000-public-listings",
       "satelliteId": null,
       "serviceId": null,
       "sourceVerified": false,
@@ -2475,7 +2199,7 @@ export const castSat = {
       "channelNumber": 255,
       "id": "mieux-tv",
       "name": "Mieux TV",
-      "status": "not-found-on-ses4-public-listings",
+      "status": "not-found-on-11171-v-45000-public-listings",
       "satelliteId": null,
       "serviceId": null,
       "sourceVerified": false,
@@ -2486,7 +2210,7 @@ export const castSat = {
       "channelNumber": 256,
       "id": "dog-cat-tv",
       "name": "Dog & Cat TV",
-      "status": "not-found-on-ses4-public-listings",
+      "status": "not-found-on-11171-v-45000-public-listings",
       "satelliteId": null,
       "serviceId": null,
       "sourceVerified": false,
@@ -2497,7 +2221,7 @@ export const castSat = {
       "channelNumber": 257,
       "id": "love-nature",
       "name": "Love Nature",
-      "status": "not-found-on-ses4-public-listings",
+      "status": "not-found-on-11171-v-45000-public-listings",
       "satelliteId": null,
       "serviceId": null,
       "sourceVerified": false,
@@ -2508,7 +2232,7 @@ export const castSat = {
       "channelNumber": 258,
       "id": "museum-tv",
       "name": "Museum TV",
-      "status": "not-found-on-ses4-public-listings",
+      "status": "not-found-on-11171-v-45000-public-listings",
       "satelliteId": null,
       "serviceId": null,
       "sourceVerified": false,
@@ -2519,132 +2243,62 @@ export const castSat = {
       "channelNumber": 259,
       "id": "planete-plus-crime",
       "name": "Planète+ Crime",
-      "status": "found-encrypted",
-      "satelliteId": "ses-4-22w",
-      "serviceId": "sid-8412",
+      "status": "not-found-on-11171-v-45000-public-listings",
+      "satelliteId": null,
+      "serviceId": null,
       "sourceVerified": false,
       "physicalReceptionVerified": false,
-      "redistributionEnabled": false,
-      "encryption": {
-        "scrambled": true,
-        "systems": [
-          "Mediaguard",
-          "Nagravision"
-        ],
-        "authorizationRequired": true
-      },
-      "transponder": {
-        "frequencyMHz": 12610,
-        "polarization": "V",
-        "symbolRateKsym": 30000,
-        "sid": 8412
-      }
+      "redistributionEnabled": false
     },
     {
       "channelNumber": 260,
       "id": "planete-plus-aventure",
       "name": "Planète+ Aventure",
-      "status": "found-encrypted",
-      "satelliteId": "ses-4-22w",
-      "serviceId": "sid-8508",
+      "status": "not-found-on-11171-v-45000-public-listings",
+      "satelliteId": null,
+      "serviceId": null,
       "sourceVerified": false,
       "physicalReceptionVerified": false,
-      "redistributionEnabled": false,
-      "encryption": {
-        "scrambled": true,
-        "systems": [
-          "Mediaguard",
-          "Nagravision"
-        ],
-        "authorizationRequired": true
-      },
-      "transponder": {
-        "frequencyMHz": 12650,
-        "polarization": "V",
-        "symbolRateKsym": 30000,
-        "sid": 8508
-      }
+      "redistributionEnabled": false
     },
     {
       "channelNumber": 261,
       "id": "science-et-vie-tv",
       "name": "Science & Vie TV",
-      "status": "found-encrypted",
-      "satelliteId": "ses-4-22w",
-      "serviceId": "sid-8711",
+      "status": "not-found-on-11171-v-45000-public-listings",
+      "satelliteId": null,
+      "serviceId": null,
       "sourceVerified": false,
       "physicalReceptionVerified": false,
-      "redistributionEnabled": false,
-      "encryption": {
-        "scrambled": true,
-        "systems": [
-          "Mediaguard",
-          "Nagravision"
-        ],
-        "authorizationRequired": true
-      },
-      "transponder": {
-        "frequencyMHz": 12730,
-        "polarization": "V",
-        "symbolRateKsym": 30000,
-        "sid": 8711
-      }
+      "redistributionEnabled": false
     },
     {
       "channelNumber": 262,
       "id": "toute-l-histoire",
       "name": "Toute l'Histoire",
-      "status": "found-encrypted",
-      "satelliteId": "ses-4-22w",
-      "serviceId": "sid-4022",
+      "status": "not-found-on-11171-v-45000-public-listings",
+      "satelliteId": null,
+      "serviceId": null,
       "sourceVerified": false,
       "physicalReceptionVerified": false,
-      "redistributionEnabled": false,
-      "encryption": {
-        "scrambled": true,
-        "systems": [
-          "Mediaguard",
-          "Nagravision"
-        ],
-        "authorizationRequired": true
-      },
-      "transponder": {
-        "frequencyMHz": 11551,
-        "polarization": "V",
-        "symbolRateKsym": 45000,
-        "sid": 4022
-      }
+      "redistributionEnabled": false
     },
     {
       "channelNumber": 263,
       "id": "mgg-tv",
       "name": "MGG TV",
-      "status": "found-encrypted",
-      "satelliteId": "ses-4-22w",
-      "serviceId": "sid-8325",
+      "status": "not-found-on-11171-v-45000-public-listings",
+      "satelliteId": null,
+      "serviceId": null,
       "sourceVerified": false,
       "physicalReceptionVerified": false,
-      "redistributionEnabled": false,
-      "encryption": {
-        "scrambled": true,
-        "systems": [
-          "Mediaguard",
-          "Nagravision"
-        ],
-        "authorizationRequired": true
-      },
-      "transponder": {
-        "frequencyMHz": 12570,
-        "polarization": "V",
-        "symbolRateKsym": 30000,
-        "sid": 8325
-      }
+      "redistributionEnabled": false
     },
     {
       "channelNumber": 264,
       "id": "golf-plus",
       "name": "GOLF+",
-      "status": "not-found-on-ses4-public-listings",
+      "status": "not-found-on-11171-v-45000-public-listings",
       "satelliteId": null,
       "serviceId": null,
       "sourceVerified": false,
@@ -2655,32 +2309,18 @@ export const castSat = {
       "channelNumber": 265,
       "id": "infosport",
       "name": "Infosport",
-      "status": "found-encrypted",
-      "satelliteId": "ses-4-22w",
-      "serviceId": "sid-8110",
+      "status": "not-found-on-11171-v-45000-public-listings",
+      "satelliteId": null,
+      "serviceId": null,
       "sourceVerified": false,
       "physicalReceptionVerified": false,
-      "redistributionEnabled": false,
-      "encryption": {
-        "scrambled": true,
-        "systems": [
-          "Mediaguard",
-          "Nagravision"
-        ],
-        "authorizationRequired": true
-      },
-      "transponder": {
-        "frequencyMHz": 3749,
-        "polarization": "L",
-        "symbolRateKsym": 45830,
-        "sid": 8110
-      }
+      "redistributionEnabled": false
     },
     {
       "channelNumber": 266,
       "id": "sport-1",
       "name": "Sport 1",
-      "status": "not-found-on-ses4-public-listings",
+      "status": "not-found-on-11171-v-45000-public-listings",
       "satelliteId": null,
       "serviceId": null,
       "sourceVerified": false,
@@ -2691,7 +2331,7 @@ export const castSat = {
       "channelNumber": 267,
       "id": "sport-2",
       "name": "Sport 2",
-      "status": "not-found-on-ses4-public-listings",
+      "status": "not-found-on-11171-v-45000-public-listings",
       "satelliteId": null,
       "serviceId": null,
       "sourceVerified": false,
@@ -2702,7 +2342,7 @@ export const castSat = {
       "channelNumber": 268,
       "id": "sport-3",
       "name": "Sport 3",
-      "status": "not-found-on-ses4-public-listings",
+      "status": "not-found-on-11171-v-45000-public-listings",
       "satelliteId": null,
       "serviceId": null,
       "sourceVerified": false,
@@ -2713,7 +2353,7 @@ export const castSat = {
       "channelNumber": 269,
       "id": "sport-4",
       "name": "Sport 4",
-      "status": "not-found-on-ses4-public-listings",
+      "status": "not-found-on-11171-v-45000-public-listings",
       "satelliteId": null,
       "serviceId": null,
       "sourceVerified": false,
@@ -2724,7 +2364,7 @@ export const castSat = {
       "channelNumber": 270,
       "id": "la-chaine-meteo",
       "name": "La Chaîne Météo",
-      "status": "not-found-on-ses4-public-listings",
+      "status": "not-found-on-11171-v-45000-public-listings",
       "satelliteId": null,
       "serviceId": null,
       "sourceVerified": false,
@@ -2735,32 +2375,18 @@ export const castSat = {
       "channelNumber": 271,
       "id": "7info",
       "name": "7info",
-      "status": "found-encrypted",
-      "satelliteId": "ses-4-22w",
-      "serviceId": "sid-8323",
+      "status": "not-found-on-11171-v-45000-public-listings",
+      "satelliteId": null,
+      "serviceId": null,
       "sourceVerified": false,
       "physicalReceptionVerified": false,
-      "redistributionEnabled": false,
-      "encryption": {
-        "scrambled": true,
-        "systems": [
-          "Mediaguard",
-          "Nagravision"
-        ],
-        "authorizationRequired": true
-      },
-      "transponder": {
-        "frequencyMHz": 12570,
-        "polarization": "V",
-        "symbolRateKsym": 30000,
-        "sid": 8323
-      }
+      "redistributionEnabled": false
     },
     {
       "channelNumber": 272,
       "id": "abc-news-live",
       "name": "ABC News Live",
-      "status": "not-found-on-ses4-public-listings",
+      "status": "not-found-on-11171-v-45000-public-listings",
       "satelliteId": null,
       "serviceId": null,
       "sourceVerified": false,
@@ -2771,7 +2397,7 @@ export const castSat = {
       "channelNumber": 273,
       "id": "al-jazeera",
       "name": "Al Jazeera",
-      "status": "not-found-on-ses4-public-listings",
+      "status": "not-found-on-11171-v-45000-public-listings",
       "satelliteId": null,
       "serviceId": null,
       "sourceVerified": false,
@@ -2782,7 +2408,7 @@ export const castSat = {
       "channelNumber": 274,
       "id": "bbc-news",
       "name": "BBC News",
-      "status": "not-found-on-ses4-public-listings",
+      "status": "not-found-on-11171-v-45000-public-listings",
       "satelliteId": null,
       "serviceId": null,
       "sourceVerified": false,
@@ -2793,7 +2419,7 @@ export const castSat = {
       "channelNumber": 275,
       "id": "bloomberg-tv",
       "name": "Bloomberg TV",
-      "status": "not-found-on-ses4-public-listings",
+      "status": "not-found-on-11171-v-45000-public-listings",
       "satelliteId": null,
       "serviceId": null,
       "sourceVerified": false,
@@ -2804,7 +2430,7 @@ export const castSat = {
       "channelNumber": 276,
       "id": "c-span",
       "name": "C-SPAN",
-      "status": "not-found-on-ses4-public-listings",
+      "status": "not-found-on-11171-v-45000-public-listings",
       "satelliteId": null,
       "serviceId": null,
       "sourceVerified": false,
@@ -2815,7 +2441,7 @@ export const castSat = {
       "channelNumber": 277,
       "id": "cbs-news-24-7",
       "name": "CBS News 24/7",
-      "status": "not-found-on-ses4-public-listings",
+      "status": "not-found-on-11171-v-45000-public-listings",
       "satelliteId": null,
       "serviceId": null,
       "sourceVerified": false,
@@ -2826,32 +2452,18 @@ export const castSat = {
       "channelNumber": 278,
       "id": "cgtn",
       "name": "CGTN",
-      "status": "found-encrypted",
-      "satelliteId": "ses-4-22w",
-      "serviceId": "sid-10",
+      "status": "not-found-on-11171-v-45000-public-listings",
+      "satelliteId": null,
+      "serviceId": null,
       "sourceVerified": false,
       "physicalReceptionVerified": false,
-      "redistributionEnabled": false,
-      "encryption": {
-        "scrambled": true,
-        "systems": [
-          "Mediaguard",
-          "Nagravision"
-        ],
-        "authorizationRequired": true
-      },
-      "transponder": {
-        "frequencyMHz": 11671,
-        "polarization": "V",
-        "symbolRateKsym": 30000,
-        "sid": 10
-      }
+      "redistributionEnabled": false
     },
     {
       "channelNumber": 279,
       "id": "cnbc",
       "name": "CNBC",
-      "status": "not-found-on-ses4-public-listings",
+      "status": "not-found-on-11171-v-45000-public-listings",
       "satelliteId": null,
       "serviceId": null,
       "sourceVerified": false,
@@ -2862,7 +2474,7 @@ export const castSat = {
       "channelNumber": 280,
       "id": "cnn",
       "name": "CNN",
-      "status": "not-found-on-ses4-public-listings",
+      "status": "not-found-on-11171-v-45000-public-listings",
       "satelliteId": null,
       "serviceId": null,
       "sourceVerified": false,
@@ -2873,7 +2485,7 @@ export const castSat = {
       "channelNumber": 281,
       "id": "nbc-news-now",
       "name": "NBC News NOW",
-      "status": "not-found-on-ses4-public-listings",
+      "status": "not-found-on-11171-v-45000-public-listings",
       "satelliteId": null,
       "serviceId": null,
       "sourceVerified": false,
@@ -2884,7 +2496,7 @@ export const castSat = {
       "channelNumber": 282,
       "id": "newsmax",
       "name": "Newsmax",
-      "status": "not-found-on-ses4-public-listings",
+      "status": "not-found-on-11171-v-45000-public-listings",
       "satelliteId": null,
       "serviceId": null,
       "sourceVerified": false,
@@ -2895,7 +2507,7 @@ export const castSat = {
       "channelNumber": 283,
       "id": "newsnation",
       "name": "NewsNation",
-      "status": "not-found-on-ses4-public-listings",
+      "status": "not-found-on-11171-v-45000-public-listings",
       "satelliteId": null,
       "serviceId": null,
       "sourceVerified": false,
@@ -2906,32 +2518,18 @@ export const castSat = {
       "channelNumber": 284,
       "id": "nhk-world",
       "name": "NHK World",
-      "status": "found-encrypted",
-      "satelliteId": "ses-4-22w",
-      "serviceId": "sid-5",
+      "status": "not-found-on-11171-v-45000-public-listings",
+      "satelliteId": null,
+      "serviceId": null,
       "sourceVerified": false,
       "physicalReceptionVerified": false,
-      "redistributionEnabled": false,
-      "encryption": {
-        "scrambled": true,
-        "systems": [
-          "Mediaguard",
-          "Nagravision"
-        ],
-        "authorizationRequired": true
-      },
-      "transponder": {
-        "frequencyMHz": 11671,
-        "polarization": "V",
-        "symbolRateKsym": 30000,
-        "sid": 5
-      }
+      "redistributionEnabled": false
     },
     {
       "channelNumber": 285,
       "id": "oan",
       "name": "OAN",
-      "status": "not-found-on-ses4-public-listings",
+      "status": "not-found-on-11171-v-45000-public-listings",
       "satelliteId": null,
       "serviceId": null,
       "sourceVerified": false,
@@ -2942,7 +2540,7 @@ export const castSat = {
       "channelNumber": 286,
       "id": "sky-news",
       "name": "Sky News",
-      "status": "not-found-on-ses4-public-listings",
+      "status": "not-found-on-11171-v-45000-public-listings",
       "satelliteId": null,
       "serviceId": null,
       "sourceVerified": false,
@@ -2953,7 +2551,7 @@ export const castSat = {
       "channelNumber": 287,
       "id": "the-weather-channel",
       "name": "The Weather Channel",
-      "status": "not-found-on-ses4-public-listings",
+      "status": "not-found-on-11171-v-45000-public-listings",
       "satelliteId": null,
       "serviceId": null,
       "sourceVerified": false,
@@ -2964,7 +2562,7 @@ export const castSat = {
       "channelNumber": 288,
       "id": "trt-world",
       "name": "TRT World",
-      "status": "not-found-on-ses4-public-listings",
+      "status": "not-found-on-11171-v-45000-public-listings",
       "satelliteId": null,
       "serviceId": null,
       "sourceVerified": false,
@@ -2975,7 +2573,7 @@ export const castSat = {
       "channelNumber": 289,
       "id": "a-plus",
       "name": "A+",
-      "status": "not-found-on-ses4-public-listings",
+      "status": "not-found-on-11171-v-45000-public-listings",
       "satelliteId": null,
       "serviceId": null,
       "sourceVerified": false,
@@ -2986,57 +2584,29 @@ export const castSat = {
       "channelNumber": 290,
       "id": "m6-international",
       "name": "M6 International",
-      "status": "found-encrypted",
-      "satelliteId": "ses-4-22w",
-      "serviceId": "sid-8501",
+      "status": "not-found-on-11171-v-45000-public-listings",
+      "satelliteId": null,
+      "serviceId": null,
       "sourceVerified": false,
       "physicalReceptionVerified": false,
-      "redistributionEnabled": false,
-      "encryption": {
-        "scrambled": true,
-        "systems": [
-          "Mediaguard",
-          "Nagravision"
-        ],
-        "authorizationRequired": true
-      },
-      "transponder": {
-        "frequencyMHz": 12650,
-        "polarization": "V",
-        "symbolRateKsym": 30000,
-        "sid": 8501
-      }
+      "redistributionEnabled": false
     },
     {
       "channelNumber": 291,
       "id": "maboke-tv",
       "name": "Maboke TV",
-      "status": "found-encrypted",
-      "satelliteId": "ses-4-22w",
-      "serviceId": "sid-8618",
+      "status": "not-found-on-11171-v-45000-public-listings",
+      "satelliteId": null,
+      "serviceId": null,
       "sourceVerified": false,
       "physicalReceptionVerified": false,
-      "redistributionEnabled": false,
-      "encryption": {
-        "scrambled": true,
-        "systems": [
-          "Mediaguard",
-          "Nagravision"
-        ],
-        "authorizationRequired": true
-      },
-      "transponder": {
-        "frequencyMHz": 12690,
-        "polarization": "V",
-        "symbolRateKsym": 30000,
-        "sid": 8618
-      }
+      "redistributionEnabled": false
     },
     {
       "channelNumber": 292,
       "id": "magc-tv",
       "name": "MAGC TV",
-      "status": "not-found-on-ses4-public-listings",
+      "status": "not-found-on-11171-v-45000-public-listings",
       "satelliteId": null,
       "serviceId": null,
       "sourceVerified": false,
@@ -3047,32 +2617,18 @@ export const castSat = {
       "channelNumber": 293,
       "id": "sunu-yeuf",
       "name": "Sunu Yeuf",
-      "status": "found-encrypted",
-      "satelliteId": "ses-4-22w",
-      "serviceId": "sid-8421",
+      "status": "not-found-on-11171-v-45000-public-listings",
+      "satelliteId": null,
+      "serviceId": null,
       "sourceVerified": false,
       "physicalReceptionVerified": false,
-      "redistributionEnabled": false,
-      "encryption": {
-        "scrambled": true,
-        "systems": [
-          "Mediaguard",
-          "Nagravision"
-        ],
-        "authorizationRequired": true
-      },
-      "transponder": {
-        "frequencyMHz": 12610,
-        "polarization": "V",
-        "symbolRateKsym": 30000,
-        "sid": 8421
-      }
+      "redistributionEnabled": false
     },
     {
       "channelNumber": 294,
       "id": "vifi-tv",
       "name": "VIFI TV",
-      "status": "not-found-on-ses4-public-listings",
+      "status": "not-found-on-11171-v-45000-public-listings",
       "satelliteId": null,
       "serviceId": null,
       "sourceVerified": false,
@@ -3083,32 +2639,18 @@ export const castSat = {
       "channelNumber": 295,
       "id": "zacu-tv",
       "name": "Zacu TV",
-      "status": "found-encrypted",
-      "satelliteId": "ses-4-22w",
-      "serviceId": "sid-4018",
+      "status": "not-found-on-11171-v-45000-public-listings",
+      "satelliteId": null,
+      "serviceId": null,
       "sourceVerified": false,
       "physicalReceptionVerified": false,
-      "redistributionEnabled": false,
-      "encryption": {
-        "scrambled": true,
-        "systems": [
-          "Mediaguard",
-          "Nagravision"
-        ],
-        "authorizationRequired": true
-      },
-      "transponder": {
-        "frequencyMHz": 11551,
-        "polarization": "V",
-        "symbolRateKsym": 45000,
-        "sid": 4018
-      }
+      "redistributionEnabled": false
     },
     {
       "channelNumber": 296,
       "id": "zbc",
       "name": "ZBC",
-      "status": "not-found-on-ses4-public-listings",
+      "status": "not-found-on-11171-v-45000-public-listings",
       "satelliteId": null,
       "serviceId": null,
       "sourceVerified": false,
@@ -3119,32 +2661,18 @@ export const castSat = {
       "channelNumber": 297,
       "id": "emci-tv",
       "name": "EMCI TV",
-      "status": "found-encrypted",
-      "satelliteId": "ses-4-22w",
-      "serviceId": "sid-61",
+      "status": "not-found-on-11171-v-45000-public-listings",
+      "satelliteId": null,
+      "serviceId": null,
       "sourceVerified": false,
       "physicalReceptionVerified": false,
-      "redistributionEnabled": false,
-      "encryption": {
-        "scrambled": true,
-        "systems": [
-          "Mediaguard",
-          "Nagravision"
-        ],
-        "authorizationRequired": true
-      },
-      "transponder": {
-        "frequencyMHz": 11671,
-        "polarization": "V",
-        "symbolRateKsym": 30000,
-        "sid": 61
-      }
+      "redistributionEnabled": false
     },
     {
       "channelNumber": 298,
       "id": "esperance-tv",
       "name": "Espérance TV",
-      "status": "not-found-on-ses4-public-listings",
+      "status": "not-found-on-11171-v-45000-public-listings",
       "satelliteId": null,
       "serviceId": null,
       "sourceVerified": false,
@@ -3155,7 +2683,7 @@ export const castSat = {
       "channelNumber": 299,
       "id": "ewtn",
       "name": "EWTN",
-      "status": "not-found-on-ses4-public-listings",
+      "status": "not-found-on-11171-v-45000-public-listings",
       "satelliteId": null,
       "serviceId": null,
       "sourceVerified": false,
@@ -3166,7 +2694,7 @@ export const castSat = {
       "channelNumber": 300,
       "id": "hope-channel",
       "name": "Hope Channel",
-      "status": "not-found-on-ses4-public-listings",
+      "status": "not-found-on-11171-v-45000-public-listings",
       "satelliteId": null,
       "serviceId": null,
       "sourceVerified": false,
@@ -3177,32 +2705,18 @@ export const castSat = {
       "channelNumber": 301,
       "id": "kto",
       "name": "KTO",
-      "status": "found-encrypted",
-      "satelliteId": "ses-4-22w",
-      "serviceId": "sid-8601",
+      "status": "not-found-on-11171-v-45000-public-listings",
+      "satelliteId": null,
+      "serviceId": null,
       "sourceVerified": false,
       "physicalReceptionVerified": false,
-      "redistributionEnabled": false,
-      "encryption": {
-        "scrambled": true,
-        "systems": [
-          "Mediaguard",
-          "Nagravision"
-        ],
-        "authorizationRequired": true
-      },
-      "transponder": {
-        "frequencyMHz": 12690,
-        "polarization": "V",
-        "symbolRateKsym": 30000,
-        "sid": 8601
-      }
+      "redistributionEnabled": false
     },
     {
       "channelNumber": 302,
       "id": "top-chretien",
       "name": "Top Chrétien",
-      "status": "not-found-on-ses4-public-listings",
+      "status": "not-found-on-11171-v-45000-public-listings",
       "satelliteId": null,
       "serviceId": null,
       "sourceVerified": false,
@@ -3213,51 +2727,23 @@ export const castSat = {
       "channelNumber": 303,
       "id": "trace-gospel",
       "name": "Trace Gospel",
-      "status": "found-encrypted",
-      "satelliteId": "ses-4-22w",
-      "serviceId": "sid-8706",
+      "status": "not-found-on-11171-v-45000-public-listings",
+      "satelliteId": null,
+      "serviceId": null,
       "sourceVerified": false,
       "physicalReceptionVerified": false,
-      "redistributionEnabled": false,
-      "encryption": {
-        "scrambled": true,
-        "systems": [
-          "Mediaguard",
-          "Nagravision"
-        ],
-        "authorizationRequired": true
-      },
-      "transponder": {
-        "frequencyMHz": 12730,
-        "polarization": "V",
-        "symbolRateKsym": 30000,
-        "sid": 8706
-      }
+      "redistributionEnabled": false
     },
     {
       "channelNumber": 304,
       "id": "cuisines",
       "name": "Cuisines",
-      "status": "found-encrypted",
-      "satelliteId": "ses-4-22w",
-      "serviceId": "sid-8120",
+      "status": "not-found-on-11171-v-45000-public-listings",
+      "satelliteId": null,
+      "serviceId": null,
       "sourceVerified": false,
       "physicalReceptionVerified": false,
-      "redistributionEnabled": false,
-      "encryption": {
-        "scrambled": true,
-        "systems": [
-          "Mediaguard",
-          "Nagravision"
-        ],
-        "authorizationRequired": true
-      },
-      "transponder": {
-        "frequencyMHz": 12530,
-        "polarization": "V",
-        "symbolRateKsym": 30000,
-        "sid": 8120
-      }
+      "redistributionEnabled": false
     },
     {
       "channelNumber": 305,
@@ -3265,7 +2751,7 @@ export const castSat = {
       "name": "Nollywood TV",
       "status": "found-encrypted",
       "satelliteId": "ses-4-22w",
-      "serviceId": "sid-4128",
+      "serviceId": "sid-8927",
       "sourceVerified": false,
       "physicalReceptionVerified": false,
       "redistributionEnabled": false,
@@ -3278,42 +2764,32 @@ export const castSat = {
         "authorizationRequired": true
       },
       "transponder": {
-        "frequencyMHz": 3749,
-        "polarization": "L",
-        "symbolRateKsym": 45830,
-        "sid": 4128
+        "frequencyMHz": 11171,
+        "polarization": "V",
+        "symbolRateKsym": 45000,
+        "fec": "3/4",
+        "system": "DVB-S2/QPSK",
+        "video": "HEVC",
+        "sid": 8927,
+        "serviceName": "Nollywood TV"
       }
     },
     {
       "channelNumber": 306,
       "id": "nollywood-tv-epic",
       "name": "Nollywood TV Epic",
-      "status": "found-encrypted",
-      "satelliteId": "ses-4-22w",
-      "serviceId": "sid-8409",
+      "status": "not-found-on-11171-v-45000-public-listings",
+      "satelliteId": null,
+      "serviceId": null,
       "sourceVerified": false,
       "physicalReceptionVerified": false,
-      "redistributionEnabled": false,
-      "encryption": {
-        "scrambled": true,
-        "systems": [
-          "Mediaguard",
-          "Nagravision"
-        ],
-        "authorizationRequired": true
-      },
-      "transponder": {
-        "frequencyMHz": 12610,
-        "polarization": "V",
-        "symbolRateKsym": 30000,
-        "sid": 8409
-      }
+      "redistributionEnabled": false
     },
     {
       "channelNumber": 307,
       "id": "passion-bollywood",
       "name": "Passion Bollywood",
-      "status": "not-found-on-ses4-public-listings",
+      "status": "not-found-on-11171-v-45000-public-listings",
       "satelliteId": null,
       "serviceId": null,
       "sourceVerified": false,
@@ -3324,32 +2800,18 @@ export const castSat = {
       "channelNumber": 308,
       "id": "clique-tv",
       "name": "Clique TV",
-      "status": "found-encrypted",
-      "satelliteId": "ses-4-22w",
-      "serviceId": "sid-8920",
+      "status": "not-found-on-11171-v-45000-public-listings",
+      "satelliteId": null,
+      "serviceId": null,
       "sourceVerified": false,
       "physicalReceptionVerified": false,
-      "redistributionEnabled": false,
-      "encryption": {
-        "scrambled": true,
-        "systems": [
-          "Mediaguard",
-          "Nagravision"
-        ],
-        "authorizationRequired": true
-      },
-      "transponder": {
-        "frequencyMHz": 11171,
-        "polarization": "V",
-        "symbolRateKsym": 45000,
-        "sid": 8920
-      }
+      "redistributionEnabled": false
     },
     {
       "channelNumber": 309,
       "id": "cine-plus-ocs",
       "name": "Ciné+ OCS",
-      "status": "not-found-on-ses4-public-listings",
+      "status": "not-found-on-11171-v-45000-public-listings",
       "satelliteId": null,
       "serviceId": null,
       "sourceVerified": false,
@@ -3359,1085 +2821,459 @@ export const castSat = {
   ],
   "catalogueMatches": [
     {
-      "catalogueId": "rti-1",
-      "satelliteId": "ses-4-22w",
-      "serviceId": "sid-8206",
-      "status": "found-encrypted",
-      "transponder": {
-        "frequencyMHz": 10986,
-        "polarization": "V",
-        "symbolRateKsym": 45000,
-        "sid": 8206
-      },
-      "encryption": {
-        "scrambled": true,
-        "systems": [
-          "Mediaguard",
-          "Nagravision"
-        ],
-        "authorizationRequired": true
-      }
-    },
-    {
-      "catalogueId": "rti-2",
-      "satelliteId": "ses-4-22w",
-      "serviceId": "sid-8210",
-      "status": "found-encrypted",
-      "transponder": {
-        "frequencyMHz": 10986,
-        "polarization": "V",
-        "symbolRateKsym": 45000,
-        "sid": 8210
-      },
-      "encryption": {
-        "scrambled": true,
-        "systems": [
-          "Mediaguard",
-          "Nagravision"
-        ],
-        "authorizationRequired": true
-      }
-    },
-    {
-      "catalogueId": "la-3",
-      "satelliteId": "ses-4-22w",
-      "serviceId": "sid-8327",
-      "status": "found-encrypted",
-      "transponder": {
-        "frequencyMHz": 12570,
-        "polarization": "V",
-        "symbolRateKsym": 30000,
-        "sid": 8327
-      },
-      "encryption": {
-        "scrambled": true,
-        "systems": [
-          "Mediaguard",
-          "Nagravision"
-        ],
-        "authorizationRequired": true
-      }
-    },
-    {
-      "catalogueId": "life-tv",
-      "satelliteId": "ses-4-22w",
-      "serviceId": "sid-8503",
-      "status": "found-encrypted",
-      "transponder": {
-        "frequencyMHz": 12650,
-        "polarization": "V",
-        "symbolRateKsym": 30000,
-        "sid": 8503
-      },
-      "encryption": {
-        "scrambled": true,
-        "systems": [
-          "Mediaguard",
-          "Nagravision"
-        ],
-        "authorizationRequired": true
-      }
-    },
-    {
-      "catalogueId": "nci",
-      "satelliteId": "ses-4-22w",
-      "serviceId": "sid-4003",
-      "status": "found-encrypted",
-      "transponder": {
-        "frequencyMHz": 11551,
-        "polarization": "V",
-        "symbolRateKsym": 45000,
-        "sid": 4003
-      },
-      "encryption": {
-        "scrambled": true,
-        "systems": [
-          "Mediaguard",
-          "Nagravision"
-        ],
-        "authorizationRequired": true
-      }
-    },
-    {
-      "catalogueId": "arte",
-      "satelliteId": "ses-4-22w",
-      "serviceId": "sid-8402",
-      "status": "found-encrypted",
-      "transponder": {
-        "frequencyMHz": 12610,
-        "polarization": "V",
-        "symbolRateKsym": 30000,
-        "sid": 8402
-      },
-      "encryption": {
-        "scrambled": true,
-        "systems": [
-          "Mediaguard",
-          "Nagravision"
-        ],
-        "authorizationRequired": true
-      }
-    },
-    {
-      "catalogueId": "france-2",
-      "satelliteId": "ses-4-22w",
-      "serviceId": "sid-8803",
-      "status": "found-encrypted",
-      "transponder": {
-        "frequencyMHz": 11611,
-        "polarization": "V",
-        "symbolRateKsym": 45000,
-        "sid": 8803
-      },
-      "encryption": {
-        "scrambled": true,
-        "systems": [
-          "Mediaguard",
-          "Nagravision"
-        ],
-        "authorizationRequired": true
-      }
-    },
-    {
-      "catalogueId": "france-3",
-      "satelliteId": "ses-4-22w",
-      "serviceId": "sid-8703",
-      "status": "found-encrypted",
-      "transponder": {
-        "frequencyMHz": 12730,
-        "polarization": "V",
-        "symbolRateKsym": 30000,
-        "sid": 8703
-      },
-      "encryption": {
-        "scrambled": true,
-        "systems": [
-          "Mediaguard",
-          "Nagravision"
-        ],
-        "authorizationRequired": true
-      }
-    },
-    {
-      "catalogueId": "france-5",
-      "satelliteId": "ses-4-22w",
-      "serviceId": "sid-8825",
-      "status": "found-encrypted",
-      "transponder": {
-        "frequencyMHz": 11611,
-        "polarization": "V",
-        "symbolRateKsym": 45000,
-        "sid": 8825
-      },
-      "encryption": {
-        "scrambled": true,
-        "systems": [
-          "Mediaguard",
-          "Nagravision"
-        ],
-        "authorizationRequired": true
-      }
-    },
-    {
-      "catalogueId": "tfx",
-      "satelliteId": "ses-4-22w",
-      "serviceId": "sid-4133",
-      "status": "found-encrypted",
-      "transponder": {
-        "frequencyMHz": 11051,
-        "polarization": "V",
-        "symbolRateKsym": 45000,
-        "sid": 4133
-      },
-      "encryption": {
-        "scrambled": true,
-        "systems": [
-          "Mediaguard",
-          "Nagravision"
-        ],
-        "authorizationRequired": true
-      }
-    },
-    {
-      "catalogueId": "tmc",
-      "satelliteId": "ses-4-22w",
-      "serviceId": "sid-8422",
-      "status": "found-encrypted",
-      "transponder": {
-        "frequencyMHz": 12610,
-        "polarization": "V",
-        "symbolRateKsym": 30000,
-        "sid": 8422
-      },
-      "encryption": {
-        "scrambled": true,
-        "systems": [
-          "Mediaguard",
-          "Nagravision"
-        ],
-        "authorizationRequired": true
-      }
-    },
-    {
-      "catalogueId": "france-24",
-      "satelliteId": "ses-4-22w",
-      "serviceId": "sid-8108",
-      "status": "found-encrypted",
-      "transponder": {
-        "frequencyMHz": 3749,
-        "polarization": "L",
-        "symbolRateKsym": 45830,
-        "sid": 8108
-      },
-      "encryption": {
-        "scrambled": true,
-        "systems": [
-          "Mediaguard",
-          "Nagravision"
-        ],
-        "authorizationRequired": true
-      }
-    },
-    {
-      "catalogueId": "i24news",
-      "satelliteId": "ses-4-22w",
-      "serviceId": "sid-9",
-      "status": "found-encrypted",
-      "transponder": {
-        "frequencyMHz": 11671,
-        "polarization": "V",
-        "symbolRateKsym": 30000,
-        "sid": 9
-      },
-      "encryption": {
-        "scrambled": true,
-        "systems": [
-          "Mediaguard",
-          "Nagravision"
-        ],
-        "authorizationRequired": true
-      }
-    },
-    {
-      "catalogueId": "ab1",
-      "satelliteId": "ses-4-22w",
-      "serviceId": "sid-4002",
-      "status": "found-encrypted",
-      "transponder": {
-        "frequencyMHz": 11551,
-        "polarization": "V",
-        "symbolRateKsym": 45000,
-        "sid": 4002
-      },
-      "encryption": {
-        "scrambled": true,
-        "systems": [
-          "Mediaguard",
-          "Nagravision"
-        ],
-        "authorizationRequired": true
-      }
-    },
-    {
-      "catalogueId": "action",
-      "satelliteId": "ses-4-22w",
-      "serviceId": "sid-8105",
-      "status": "found-encrypted",
-      "transponder": {
-        "frequencyMHz": 3749,
-        "polarization": "L",
-        "symbolRateKsym": 45830,
-        "sid": 8105
-      },
-      "encryption": {
-        "scrambled": true,
-        "systems": [
-          "Mediaguard",
-          "Nagravision"
-        ],
-        "authorizationRequired": true
-      }
-    },
-    {
-      "catalogueId": "rtl-9",
-      "satelliteId": "ses-4-22w",
-      "serviceId": "sid-8804",
-      "status": "found-encrypted",
-      "transponder": {
-        "frequencyMHz": 11611,
-        "polarization": "V",
-        "symbolRateKsym": 45000,
-        "sid": 8804
-      },
-      "encryption": {
-        "scrambled": true,
-        "systems": [
-          "Mediaguard",
-          "Nagravision"
-        ],
-        "authorizationRequired": true
-      }
-    },
-    {
-      "catalogueId": "sci-fi",
-      "satelliteId": "ses-4-22w",
-      "serviceId": "sid-8916",
-      "status": "found-encrypted",
+      "catalogueId": "tf1",
+      "catalogueName": "TF1",
+      "satelliteServiceId": "sid-8903",
+      "satelliteServiceName": "TF 1",
       "transponder": {
         "frequencyMHz": 11171,
         "polarization": "V",
         "symbolRateKsym": 45000,
-        "sid": 8916
+        "fec": "3/4"
       },
       "encryption": {
-        "scrambled": true,
         "systems": [
           "Mediaguard",
           "Nagravision"
         ],
         "authorizationRequired": true
-      }
-    },
-    {
-      "catalogueId": "telemundo",
-      "satelliteId": "ses-4-22w",
-      "serviceId": "sid-4028",
-      "status": "found-encrypted",
-      "transponder": {
-        "frequencyMHz": 11551,
-        "polarization": "V",
-        "symbolRateKsym": 45000,
-        "sid": 4028
       },
-      "encryption": {
-        "scrambled": true,
-        "systems": [
-          "Mediaguard",
-          "Nagravision"
-        ],
-        "authorizationRequired": true
-      }
+      "sourceVerified": false,
+      "physicalReceptionVerified": false,
+      "redistributionEnabled": false
     },
     {
-      "catalogueId": "13eme-rue",
-      "satelliteId": "ses-4-22w",
-      "serviceId": "sid-8224",
-      "status": "found-encrypted",
-      "transponder": {
-        "frequencyMHz": 10986,
-        "polarization": "V",
-        "symbolRateKsym": 30000,
-        "sid": 8224
-      },
-      "encryption": {
-        "scrambled": true,
-        "systems": [
-          "Mediaguard",
-          "Nagravision"
-        ],
-        "authorizationRequired": true
-      }
-    },
-    {
-      "catalogueId": "tf1-series-films",
-      "satelliteId": "ses-4-22w",
-      "serviceId": "sid-8823",
-      "status": "found-encrypted",
-      "transponder": {
-        "frequencyMHz": 11611,
-        "polarization": "V",
-        "symbolRateKsym": 45000,
-        "sid": 8823
-      },
-      "encryption": {
-        "scrambled": true,
-        "systems": [
-          "Mediaguard",
-          "Nagravision"
-        ],
-        "authorizationRequired": true
-      }
-    },
-    {
-      "catalogueId": "a-plus-kids",
-      "satelliteId": "ses-4-22w",
-      "serviceId": "sid-4001",
-      "status": "found-encrypted",
-      "transponder": {
-        "frequencyMHz": 11551,
-        "polarization": "V",
-        "symbolRateKsym": 45000,
-        "sid": 4001
-      },
-      "encryption": {
-        "scrambled": true,
-        "systems": [
-          "Mediaguard",
-          "Nagravision"
-        ],
-        "authorizationRequired": true
-      }
-    },
-    {
-      "catalogueId": "gulli-africa",
-      "satelliteId": "ses-4-22w",
-      "serviceId": "sid-8917",
-      "status": "found-encrypted",
+      "catalogueId": "c-plus-cinema",
+      "catalogueName": "C+ Cinema",
+      "satelliteServiceId": "sid-8904",
+      "satelliteServiceName": "Canal + Cinéma Centre",
       "transponder": {
         "frequencyMHz": 11171,
         "polarization": "V",
         "symbolRateKsym": 45000,
-        "sid": 8917
+        "fec": "3/4"
       },
       "encryption": {
-        "scrambled": true,
         "systems": [
           "Mediaguard",
           "Nagravision"
         ],
         "authorizationRequired": true
-      }
-    },
-    {
-      "catalogueId": "mangas",
-      "satelliteId": "ses-4-22w",
-      "serviceId": "sid-4017",
-      "status": "found-encrypted",
-      "transponder": {
-        "frequencyMHz": 11551,
-        "polarization": "V",
-        "symbolRateKsym": 45000,
-        "sid": 4017
       },
-      "encryption": {
-        "scrambled": true,
-        "systems": [
-          "Mediaguard",
-          "Nagravision"
-        ],
-        "authorizationRequired": true
-      }
-    },
-    {
-      "catalogueId": "nickelodeon",
-      "satelliteId": "ses-4-22w",
-      "serviceId": "sid-8312",
-      "status": "found-encrypted",
-      "transponder": {
-        "frequencyMHz": 12570,
-        "polarization": "V",
-        "symbolRateKsym": 30000,
-        "sid": 8312
-      },
-      "encryption": {
-        "scrambled": true,
-        "systems": [
-          "Mediaguard",
-          "Nagravision"
-        ],
-        "authorizationRequired": true
-      }
+      "sourceVerified": false,
+      "physicalReceptionVerified": false,
+      "redistributionEnabled": false
     },
     {
       "catalogueId": "nickelodeon-junior",
-      "satelliteId": "ses-4-22w",
-      "serviceId": "sid-8905",
-      "status": "found-encrypted",
+      "catalogueName": "Nickelodeon Junior",
+      "satelliteServiceId": "sid-8905",
+      "satelliteServiceName": "Nickelodeon Junior France",
       "transponder": {
         "frequencyMHz": 11171,
         "polarization": "V",
         "symbolRateKsym": 45000,
-        "sid": 8905
+        "fec": "3/4"
       },
       "encryption": {
-        "scrambled": true,
         "systems": [
           "Mediaguard",
           "Nagravision"
         ],
         "authorizationRequired": true
-      }
-    },
-    {
-      "catalogueId": "tiji",
-      "satelliteId": "ses-4-22w",
-      "serviceId": "sid-8321",
-      "status": "found-encrypted",
-      "transponder": {
-        "frequencyMHz": 12570,
-        "polarization": "V",
-        "symbolRateKsym": 30000,
-        "sid": 8321
       },
-      "encryption": {
-        "scrambled": true,
-        "systems": [
-          "Mediaguard",
-          "Nagravision"
-        ],
-        "authorizationRequired": true
-      }
+      "sourceVerified": false,
+      "physicalReceptionVerified": false,
+      "redistributionEnabled": false
     },
     {
-      "catalogueId": "tv5-monde",
-      "satelliteId": "ses-4-22w",
-      "serviceId": "sid-8102",
-      "status": "found-encrypted",
-      "transponder": {
-        "frequencyMHz": 3749,
-        "polarization": "L",
-        "symbolRateKsym": 45830,
-        "sid": 8102
-      },
-      "encryption": {
-        "scrambled": true,
-        "systems": [
-          "Mediaguard",
-          "Nagravision"
-        ],
-        "authorizationRequired": true
-      }
-    },
-    {
-      "catalogueId": "eurosport-1",
-      "satelliteId": "ses-4-22w",
-      "serviceId": "sid-8906",
-      "status": "found-encrypted",
+      "catalogueId": "c-plus-magic",
+      "catalogueName": "C+ Magic",
+      "satelliteServiceId": "sid-8907",
+      "satelliteServiceName": "Canal + Magic",
       "transponder": {
         "frequencyMHz": 11171,
         "polarization": "V",
         "symbolRateKsym": 45000,
-        "sid": 8906
+        "fec": "3/4"
       },
       "encryption": {
-        "scrambled": true,
         "systems": [
           "Mediaguard",
           "Nagravision"
         ],
         "authorizationRequired": true
-      }
+      },
+      "sourceVerified": false,
+      "physicalReceptionVerified": false,
+      "redistributionEnabled": false
     },
     {
-      "catalogueId": "automoto",
-      "satelliteId": "ses-4-22w",
-      "serviceId": "sid-8326",
-      "status": "found-encrypted",
+      "catalogueId": "c-plus-family",
+      "catalogueName": "C+ Family",
+      "satelliteServiceId": "sid-8909",
+      "satelliteServiceName": "Canal + Family Centre",
       "transponder": {
-        "frequencyMHz": 12570,
+        "frequencyMHz": 11171,
         "polarization": "V",
-        "symbolRateKsym": 30000,
-        "sid": 8326
+        "symbolRateKsym": 45000,
+        "fec": "3/4"
       },
       "encryption": {
-        "scrambled": true,
         "systems": [
           "Mediaguard",
           "Nagravision"
         ],
         "authorizationRequired": true
-      }
+      },
+      "sourceVerified": false,
+      "physicalReceptionVerified": false,
+      "redistributionEnabled": false
     },
     {
-      "catalogueId": "serie-club",
-      "satelliteId": "ses-4-22w",
-      "serviceId": "sid-8225",
-      "status": "found-encrypted",
+      "catalogueId": "c-plus-pop",
+      "catalogueName": "C+ Pop",
+      "satelliteServiceId": "sid-8922",
+      "satelliteServiceName": "Canal + Pop",
       "transponder": {
-        "frequencyMHz": 10986,
+        "frequencyMHz": 11171,
         "polarization": "V",
-        "symbolRateKsym": 30000,
-        "sid": 8225
+        "symbolRateKsym": 45000,
+        "fec": "3/4"
       },
       "encryption": {
-        "scrambled": true,
         "systems": [
           "Mediaguard",
           "Nagravision"
         ],
         "authorizationRequired": true
-      }
+      },
+      "sourceVerified": false,
+      "physicalReceptionVerified": false,
+      "redistributionEnabled": false
+    },
+    {
+      "catalogueId": "action",
+      "catalogueName": "Action",
+      "satelliteServiceId": "sid-8923",
+      "satelliteServiceName": "Action (France)",
+      "transponder": {
+        "frequencyMHz": 11171,
+        "polarization": "V",
+        "symbolRateKsym": 45000,
+        "fec": "3/4"
+      },
+      "encryption": {
+        "systems": [
+          "Mediaguard",
+          "Nagravision"
+        ],
+        "authorizationRequired": true
+      },
+      "sourceVerified": false,
+      "physicalReceptionVerified": false,
+      "redistributionEnabled": false
+    },
+    {
+      "catalogueId": "c-plus-action",
+      "catalogueName": "C+ Action",
+      "satelliteServiceId": "sid-8925",
+      "satelliteServiceName": "Canal + Action Centre",
+      "transponder": {
+        "frequencyMHz": 11171,
+        "polarization": "V",
+        "symbolRateKsym": 45000,
+        "fec": "3/4"
+      },
+      "encryption": {
+        "systems": [
+          "Mediaguard",
+          "Nagravision"
+        ],
+        "authorizationRequired": true
+      },
+      "sourceVerified": false,
+      "physicalReceptionVerified": false,
+      "redistributionEnabled": false
+    },
+    {
+      "catalogueId": "sci-fi",
+      "catalogueName": "Sci-Fi",
+      "satelliteServiceId": "sid-8916",
+      "satelliteServiceName": "SciFi France",
+      "transponder": {
+        "frequencyMHz": 11171,
+        "polarization": "V",
+        "symbolRateKsym": 45000,
+        "fec": "3/4"
+      },
+      "encryption": {
+        "systems": [
+          "Mediaguard",
+          "Nagravision"
+        ],
+        "authorizationRequired": true
+      },
+      "sourceVerified": false,
+      "physicalReceptionVerified": false,
+      "redistributionEnabled": false
     },
     {
       "catalogueId": "trace-urban",
-      "satelliteId": "ses-4-22w",
-      "serviceId": "sid-8919",
-      "status": "found-encrypted",
+      "catalogueName": "Trace Urban",
+      "satelliteServiceId": "sid-8919",
+      "satelliteServiceName": "Trace Urban Afrique",
       "transponder": {
         "frequencyMHz": 11171,
         "polarization": "V",
         "symbolRateKsym": 45000,
-        "sid": 8919
+        "fec": "3/4"
       },
       "encryption": {
-        "scrambled": true,
         "systems": [
           "Mediaguard",
           "Nagravision"
         ],
         "authorizationRequired": true
-      }
-    },
-    {
-      "catalogueId": "mezzo",
-      "satelliteId": "ses-4-22w",
-      "serviceId": "sid-8918",
-      "status": "found-encrypted",
-      "transponder": {
-        "frequencyMHz": 11171,
-        "polarization": "V",
-        "symbolRateKsym": 45000,
-        "sid": 8918
       },
-      "encryption": {
-        "scrambled": true,
-        "systems": [
-          "Mediaguard",
-          "Nagravision"
-        ],
-        "authorizationRequired": true
-      }
-    },
-    {
-      "catalogueId": "trace-africa",
-      "satelliteId": "ses-4-22w",
-      "serviceId": "sid-4134",
-      "status": "found-encrypted",
-      "transponder": {
-        "frequencyMHz": 11051,
-        "polarization": "V",
-        "symbolRateKsym": 45000,
-        "sid": 4134
-      },
-      "encryption": {
-        "scrambled": true,
-        "systems": [
-          "Mediaguard",
-          "Nagravision"
-        ],
-        "authorizationRequired": true
-      }
-    },
-    {
-      "catalogueId": "animaux",
-      "satelliteId": "ses-4-22w",
-      "serviceId": "sid-4004",
-      "status": "found-encrypted",
-      "transponder": {
-        "frequencyMHz": 11551,
-        "polarization": "V",
-        "symbolRateKsym": 45000,
-        "sid": 4004
-      },
-      "encryption": {
-        "scrambled": true,
-        "systems": [
-          "Mediaguard",
-          "Nagravision"
-        ],
-        "authorizationRequired": true
-      }
-    },
-    {
-      "catalogueId": "planete-plus-crime",
-      "satelliteId": "ses-4-22w",
-      "serviceId": "sid-8412",
-      "status": "found-encrypted",
-      "transponder": {
-        "frequencyMHz": 12610,
-        "polarization": "V",
-        "symbolRateKsym": 30000,
-        "sid": 8412
-      },
-      "encryption": {
-        "scrambled": true,
-        "systems": [
-          "Mediaguard",
-          "Nagravision"
-        ],
-        "authorizationRequired": true
-      }
-    },
-    {
-      "catalogueId": "planete-plus-aventure",
-      "satelliteId": "ses-4-22w",
-      "serviceId": "sid-8508",
-      "status": "found-encrypted",
-      "transponder": {
-        "frequencyMHz": 12650,
-        "polarization": "V",
-        "symbolRateKsym": 30000,
-        "sid": 8508
-      },
-      "encryption": {
-        "scrambled": true,
-        "systems": [
-          "Mediaguard",
-          "Nagravision"
-        ],
-        "authorizationRequired": true
-      }
-    },
-    {
-      "catalogueId": "science-et-vie-tv",
-      "satelliteId": "ses-4-22w",
-      "serviceId": "sid-8711",
-      "status": "found-encrypted",
-      "transponder": {
-        "frequencyMHz": 12730,
-        "polarization": "V",
-        "symbolRateKsym": 30000,
-        "sid": 8711
-      },
-      "encryption": {
-        "scrambled": true,
-        "systems": [
-          "Mediaguard",
-          "Nagravision"
-        ],
-        "authorizationRequired": true
-      }
-    },
-    {
-      "catalogueId": "toute-l-histoire",
-      "satelliteId": "ses-4-22w",
-      "serviceId": "sid-4022",
-      "status": "found-encrypted",
-      "transponder": {
-        "frequencyMHz": 11551,
-        "polarization": "V",
-        "symbolRateKsym": 45000,
-        "sid": 4022
-      },
-      "encryption": {
-        "scrambled": true,
-        "systems": [
-          "Mediaguard",
-          "Nagravision"
-        ],
-        "authorizationRequired": true
-      }
-    },
-    {
-      "catalogueId": "mgg-tv",
-      "satelliteId": "ses-4-22w",
-      "serviceId": "sid-8325",
-      "status": "found-encrypted",
-      "transponder": {
-        "frequencyMHz": 12570,
-        "polarization": "V",
-        "symbolRateKsym": 30000,
-        "sid": 8325
-      },
-      "encryption": {
-        "scrambled": true,
-        "systems": [
-          "Mediaguard",
-          "Nagravision"
-        ],
-        "authorizationRequired": true
-      }
-    },
-    {
-      "catalogueId": "infosport",
-      "satelliteId": "ses-4-22w",
-      "serviceId": "sid-8110",
-      "status": "found-encrypted",
-      "transponder": {
-        "frequencyMHz": 3749,
-        "polarization": "L",
-        "symbolRateKsym": 45830,
-        "sid": 8110
-      },
-      "encryption": {
-        "scrambled": true,
-        "systems": [
-          "Mediaguard",
-          "Nagravision"
-        ],
-        "authorizationRequired": true
-      }
-    },
-    {
-      "catalogueId": "7info",
-      "satelliteId": "ses-4-22w",
-      "serviceId": "sid-8323",
-      "status": "found-encrypted",
-      "transponder": {
-        "frequencyMHz": 12570,
-        "polarization": "V",
-        "symbolRateKsym": 30000,
-        "sid": 8323
-      },
-      "encryption": {
-        "scrambled": true,
-        "systems": [
-          "Mediaguard",
-          "Nagravision"
-        ],
-        "authorizationRequired": true
-      }
-    },
-    {
-      "catalogueId": "cgtn",
-      "satelliteId": "ses-4-22w",
-      "serviceId": "sid-10",
-      "status": "found-encrypted",
-      "transponder": {
-        "frequencyMHz": 11671,
-        "polarization": "V",
-        "symbolRateKsym": 30000,
-        "sid": 10
-      },
-      "encryption": {
-        "scrambled": true,
-        "systems": [
-          "Mediaguard",
-          "Nagravision"
-        ],
-        "authorizationRequired": true
-      }
-    },
-    {
-      "catalogueId": "nhk-world",
-      "satelliteId": "ses-4-22w",
-      "serviceId": "sid-5",
-      "status": "found-encrypted",
-      "transponder": {
-        "frequencyMHz": 11671,
-        "polarization": "V",
-        "symbolRateKsym": 30000,
-        "sid": 5
-      },
-      "encryption": {
-        "scrambled": true,
-        "systems": [
-          "Mediaguard",
-          "Nagravision"
-        ],
-        "authorizationRequired": true
-      }
-    },
-    {
-      "catalogueId": "m6-international",
-      "satelliteId": "ses-4-22w",
-      "serviceId": "sid-8501",
-      "status": "found-encrypted",
-      "transponder": {
-        "frequencyMHz": 12650,
-        "polarization": "V",
-        "symbolRateKsym": 30000,
-        "sid": 8501
-      },
-      "encryption": {
-        "scrambled": true,
-        "systems": [
-          "Mediaguard",
-          "Nagravision"
-        ],
-        "authorizationRequired": true
-      }
-    },
-    {
-      "catalogueId": "maboke-tv",
-      "satelliteId": "ses-4-22w",
-      "serviceId": "sid-8618",
-      "status": "found-encrypted",
-      "transponder": {
-        "frequencyMHz": 12690,
-        "polarization": "V",
-        "symbolRateKsym": 30000,
-        "sid": 8618
-      },
-      "encryption": {
-        "scrambled": true,
-        "systems": [
-          "Mediaguard",
-          "Nagravision"
-        ],
-        "authorizationRequired": true
-      }
-    },
-    {
-      "catalogueId": "sunu-yeuf",
-      "satelliteId": "ses-4-22w",
-      "serviceId": "sid-8421",
-      "status": "found-encrypted",
-      "transponder": {
-        "frequencyMHz": 12610,
-        "polarization": "V",
-        "symbolRateKsym": 30000,
-        "sid": 8421
-      },
-      "encryption": {
-        "scrambled": true,
-        "systems": [
-          "Mediaguard",
-          "Nagravision"
-        ],
-        "authorizationRequired": true
-      }
-    },
-    {
-      "catalogueId": "zacu-tv",
-      "satelliteId": "ses-4-22w",
-      "serviceId": "sid-4018",
-      "status": "found-encrypted",
-      "transponder": {
-        "frequencyMHz": 11551,
-        "polarization": "V",
-        "symbolRateKsym": 45000,
-        "sid": 4018
-      },
-      "encryption": {
-        "scrambled": true,
-        "systems": [
-          "Mediaguard",
-          "Nagravision"
-        ],
-        "authorizationRequired": true
-      }
-    },
-    {
-      "catalogueId": "emci-tv",
-      "satelliteId": "ses-4-22w",
-      "serviceId": "sid-61",
-      "status": "found-encrypted",
-      "transponder": {
-        "frequencyMHz": 11671,
-        "polarization": "V",
-        "symbolRateKsym": 30000,
-        "sid": 61
-      },
-      "encryption": {
-        "scrambled": true,
-        "systems": [
-          "Mediaguard",
-          "Nagravision"
-        ],
-        "authorizationRequired": true
-      }
-    },
-    {
-      "catalogueId": "kto",
-      "satelliteId": "ses-4-22w",
-      "serviceId": "sid-8601",
-      "status": "found-encrypted",
-      "transponder": {
-        "frequencyMHz": 12690,
-        "polarization": "V",
-        "symbolRateKsym": 30000,
-        "sid": 8601
-      },
-      "encryption": {
-        "scrambled": true,
-        "systems": [
-          "Mediaguard",
-          "Nagravision"
-        ],
-        "authorizationRequired": true
-      }
-    },
-    {
-      "catalogueId": "trace-gospel",
-      "satelliteId": "ses-4-22w",
-      "serviceId": "sid-8706",
-      "status": "found-encrypted",
-      "transponder": {
-        "frequencyMHz": 12730,
-        "polarization": "V",
-        "symbolRateKsym": 30000,
-        "sid": 8706
-      },
-      "encryption": {
-        "scrambled": true,
-        "systems": [
-          "Mediaguard",
-          "Nagravision"
-        ],
-        "authorizationRequired": true
-      }
-    },
-    {
-      "catalogueId": "cuisines",
-      "satelliteId": "ses-4-22w",
-      "serviceId": "sid-8120",
-      "status": "found-encrypted",
-      "transponder": {
-        "frequencyMHz": 12530,
-        "polarization": "V",
-        "symbolRateKsym": 30000,
-        "sid": 8120
-      },
-      "encryption": {
-        "scrambled": true,
-        "systems": [
-          "Mediaguard",
-          "Nagravision"
-        ],
-        "authorizationRequired": true
-      }
+      "sourceVerified": false,
+      "physicalReceptionVerified": false,
+      "redistributionEnabled": false
     },
     {
       "catalogueId": "nollywood-tv",
-      "satelliteId": "ses-4-22w",
-      "serviceId": "sid-4128",
-      "status": "found-encrypted",
-      "transponder": {
-        "frequencyMHz": 3749,
-        "polarization": "L",
-        "symbolRateKsym": 45830,
-        "sid": 4128
-      },
-      "encryption": {
-        "scrambled": true,
-        "systems": [
-          "Mediaguard",
-          "Nagravision"
-        ],
-        "authorizationRequired": true
-      }
-    },
-    {
-      "catalogueId": "nollywood-tv-epic",
-      "satelliteId": "ses-4-22w",
-      "serviceId": "sid-8409",
-      "status": "found-encrypted",
-      "transponder": {
-        "frequencyMHz": 12610,
-        "polarization": "V",
-        "symbolRateKsym": 30000,
-        "sid": 8409
-      },
-      "encryption": {
-        "scrambled": true,
-        "systems": [
-          "Mediaguard",
-          "Nagravision"
-        ],
-        "authorizationRequired": true
-      }
-    },
-    {
-      "catalogueId": "clique-tv",
-      "satelliteId": "ses-4-22w",
-      "serviceId": "sid-8920",
-      "status": "found-encrypted",
+      "catalogueName": "Nollywood TV",
+      "satelliteServiceId": "sid-8927",
+      "satelliteServiceName": "Nollywood TV",
       "transponder": {
         "frequencyMHz": 11171,
         "polarization": "V",
         "symbolRateKsym": 45000,
-        "sid": 8920
+        "fec": "3/4"
       },
       "encryption": {
-        "scrambled": true,
         "systems": [
           "Mediaguard",
           "Nagravision"
         ],
         "authorizationRequired": true
-      }
+      },
+      "sourceVerified": false,
+      "physicalReceptionVerified": false,
+      "redistributionEnabled": false
+    },
+    {
+      "catalogueId": "boomerang",
+      "catalogueName": "Boomerang",
+      "satelliteServiceId": "sid-8930",
+      "satelliteServiceName": "Boomerang France",
+      "transponder": {
+        "frequencyMHz": 11171,
+        "polarization": "V",
+        "symbolRateKsym": 45000,
+        "fec": "3/4"
+      },
+      "encryption": {
+        "systems": [
+          "Mediaguard",
+          "Nagravision"
+        ],
+        "authorizationRequired": true
+      },
+      "sourceVerified": false,
+      "physicalReceptionVerified": false,
+      "redistributionEnabled": false
     }
   ],
-  "note": "Public satellite listings are reception/source candidates only. Physical receiver verification and redistribution authorization are still required; no access keys are stored here."
+  "note": "Public satellite listings are reception/source candidates only. Physical receiver verification and redistribution authorization are still required; no access keys are stored here.",
+  "services": [
+    {
+      "id": "sid-8903",
+      "name": "TF 1",
+      "catalogueId": "tf1",
+      "status": "discovered-encrypted",
+      "sid": 8903,
+      "encryption": {
+        "systems": [
+          "Mediaguard",
+          "Nagravision"
+        ],
+        "scrambled": true
+      },
+      "redistributionEnabled": false
+    },
+    {
+      "id": "sid-8904",
+      "name": "Canal + Cinéma Centre",
+      "catalogueId": "c-plus-cinema",
+      "status": "discovered-encrypted",
+      "sid": 8904,
+      "encryption": {
+        "systems": [
+          "Mediaguard",
+          "Nagravision"
+        ],
+        "scrambled": true
+      },
+      "redistributionEnabled": false
+    },
+    {
+      "id": "sid-8905",
+      "name": "Nickelodeon Junior France",
+      "catalogueId": "nickelodeon-junior",
+      "status": "discovered-encrypted",
+      "sid": 8905,
+      "encryption": {
+        "systems": [
+          "Mediaguard",
+          "Nagravision"
+        ],
+        "scrambled": true
+      },
+      "redistributionEnabled": false
+    },
+    {
+      "id": "sid-8907",
+      "name": "Canal + Magic",
+      "catalogueId": "c-plus-magic",
+      "status": "discovered-encrypted",
+      "sid": 8907,
+      "encryption": {
+        "systems": [
+          "Mediaguard",
+          "Nagravision"
+        ],
+        "scrambled": true
+      },
+      "redistributionEnabled": false
+    },
+    {
+      "id": "sid-8909",
+      "name": "Canal + Family Centre",
+      "catalogueId": "c-plus-family",
+      "status": "discovered-encrypted",
+      "sid": 8909,
+      "encryption": {
+        "systems": [
+          "Mediaguard",
+          "Nagravision"
+        ],
+        "scrambled": true
+      },
+      "redistributionEnabled": false
+    },
+    {
+      "id": "sid-8922",
+      "name": "Canal + Pop",
+      "catalogueId": "c-plus-pop",
+      "status": "discovered-encrypted",
+      "sid": 8922,
+      "encryption": {
+        "systems": [
+          "Mediaguard",
+          "Nagravision"
+        ],
+        "scrambled": true
+      },
+      "redistributionEnabled": false
+    },
+    {
+      "id": "sid-8923",
+      "name": "Action (France)",
+      "catalogueId": "action",
+      "status": "discovered-encrypted",
+      "sid": 8923,
+      "encryption": {
+        "systems": [
+          "Mediaguard",
+          "Nagravision"
+        ],
+        "scrambled": true
+      },
+      "redistributionEnabled": false
+    },
+    {
+      "id": "sid-8925",
+      "name": "Canal + Action Centre",
+      "catalogueId": "c-plus-action",
+      "status": "discovered-encrypted",
+      "sid": 8925,
+      "encryption": {
+        "systems": [
+          "Mediaguard",
+          "Nagravision"
+        ],
+        "scrambled": true
+      },
+      "redistributionEnabled": false
+    },
+    {
+      "id": "sid-8916",
+      "name": "SciFi France",
+      "catalogueId": "sci-fi",
+      "status": "discovered-encrypted",
+      "sid": 8916,
+      "encryption": {
+        "systems": [
+          "Mediaguard",
+          "Nagravision"
+        ],
+        "scrambled": true
+      },
+      "redistributionEnabled": false
+    },
+    {
+      "id": "sid-8919",
+      "name": "Trace Urban Afrique",
+      "catalogueId": "trace-urban",
+      "status": "discovered-encrypted",
+      "sid": 8919,
+      "encryption": {
+        "systems": [
+          "Mediaguard",
+          "Nagravision"
+        ],
+        "scrambled": true
+      },
+      "redistributionEnabled": false
+    },
+    {
+      "id": "sid-8927",
+      "name": "Nollywood TV",
+      "catalogueId": "nollywood-tv",
+      "status": "discovered-encrypted",
+      "sid": 8927,
+      "encryption": {
+        "systems": [
+          "Mediaguard",
+          "Nagravision"
+        ],
+        "scrambled": true
+      },
+      "redistributionEnabled": false
+    },
+    {
+      "id": "sid-8930",
+      "name": "Boomerang France",
+      "catalogueId": "boomerang",
+      "status": "discovered-encrypted",
+      "sid": 8930,
+      "encryption": {
+        "systems": [
+          "Mediaguard",
+          "Nagravision"
+        ],
+        "scrambled": true
+      },
+      "redistributionEnabled": false
+    }
+  ],
+  "verification": {
+    "source": "Public satellite listings",
+    "lastVerified": "2026-08-26",
+    "transponderMatches": 12,
+    "catalogueCount": 234,
+    "physicalReceiverRequired": true,
+    "authorizationRequiredForAllMatchedServices": true
+  }
 };
