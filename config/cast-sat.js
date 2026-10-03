@@ -6984,6 +6984,29 @@ export const castSat = {
       redistributionEnabled: false,
       note: "Les variantes régionales africaines sont conservées comme candidats séparés; elles ne remplacent pas automatiquement le feed exact du catalogue."
     },
+    {
+      satelliteId: "eutelsat-36d-36e-expanded",
+      satellite: "EUTELSAT 36D",
+      position: "36.0E",
+      coverage: "Sub-Sahara Africa / South Africa beam candidates",
+      source: "LyngSat public Eutelsat 36D listings checked 2026-10-03",
+      matches: [
+        { catalogueId: "france-2", serviceName: "France 2", frequencyMHz: 11304, polarization: "V", symbolRateKsym: 30000, fec: "5/6", sid: 2506, encryption: ["Nagravision"], status: "discovered-encrypted" },
+        { catalogueId: "france-3", serviceName: "France 3", frequencyMHz: 11304, polarization: "V", symbolRateKsym: 30000, fec: "5/6", sid: 2507, encryption: ["Nagravision"], status: "discovered-encrypted" },
+        { catalogueId: "france-5", serviceName: "France 5", frequencyMHz: 11304, polarization: "V", symbolRateKsym: 30000, fec: "5/6", sid: 2508, encryption: ["Nagravision"], status: "discovered-encrypted" },
+        { catalogueId: "histoire", serviceName: "Histoire TV", frequencyMHz: 11304, polarization: "V", symbolRateKsym: 30000, fec: "5/6", sid: 2502, encryption: ["Nagravision"], status: "discovered-encrypted" },
+        { catalogueId: "france-24", serviceName: "France 24 Français", frequencyMHz: 11346, polarization: "V", symbolRateKsym: 30000, fec: "5/6", sid: 2321, encryption: ["Nagravision"], status: "discovered-encrypted" },
+        { catalogueId: "al-jazeera", serviceName: "Aljazeera English", frequencyMHz: 11388, polarization: "V", symbolRateKsym: 30000, fec: "5/6", sid: 2414, encryption: ["Nagravision"], status: "discovered-encrypted" },
+        { catalogueId: "bbc-news", serviceName: "BBC News Africa", frequencyMHz: 11221, polarization: "V", symbolRateKsym: 30000, fec: "5/6", sid: 2115, encryption: ["Nagravision"], status: "regional-variant" },
+        { catalogueId: "bloomberg-tv", serviceName: "Bloomberg TV Africa", frequencyMHz: 11221, polarization: "V", symbolRateKsym: 30000, fec: "5/6", sid: 2114, encryption: ["Nagravision"], status: "regional-variant" },
+        { catalogueId: "disney-junior", serviceName: "Disney Jr Portugal", frequencyMHz: 11221, polarization: "V", symbolRateKsym: 30000, fec: "5/6", sid: 2116, encryption: ["Nagravision"], status: "regional-variant" },
+        { catalogueId: "tiji", serviceName: "Tiji", frequencyMHz: 11388, polarization: "V", symbolRateKsym: 30000, fec: "5/6", sid: 2407, encryption: ["Nagravision"], status: "regional-variant" },
+        { catalogueId: "disney-channel", serviceName: "Disney Channel Portugal", frequencyMHz: 11388, polarization: "V", symbolRateKsym: 30000, fec: "5/6", sid: 2411, encryption: ["Nagravision"], status: "regional-variant" },
+        { catalogueId: "national-geographic-wild", serviceName: "National Geographic Wild South Africa", frequencyMHz: 11388, polarization: "V", symbolRateKsym: 30000, fec: "5/6", sid: 2412, encryption: ["Nagravision"], status: "regional-variant" }
+      ],
+      redistributionEnabled: false,
+      note: "Ces entrées sont des présences satellite documentées. Les variantes régionales restent distinctes du feed catalogue exact et la réception en Côte d'Ivoire doit être vérifiée physiquement."
+    },
   "verification": {
     "source": "Public satellite listings (checked 2026-10-03)",
     "lastVerified": "2026-10-03",
