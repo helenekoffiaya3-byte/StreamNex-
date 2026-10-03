@@ -7034,6 +7034,26 @@ export const castSat = {
       note: "Les chaînes africaines/régionales sont conservées comme variantes lorsqu'elles ne correspondent pas exactement au feed du catalogue."
     },
     {
+      satelliteId: "eutelsat-16a-16e-canal-reunion-extra",
+      satellite: "Eutelsat 16A",
+      position: "16.0E",
+      coverage: "South East Africa beam",
+      source: "LyngSat Canal+ Réunion public listing checked 2026-10-03",
+      matches: [
+        { catalogueId: "equidia", serviceName: "Equidia", frequencyMHz: 10845, polarization: "H", symbolRateKsym: 30000, fec: "2/3", sid: 5406, encryption: ["Mediaguard"], status: "discovered-encrypted" },
+        { catalogueId: "automoto", serviceName: "Automoto la chaîne", frequencyMHz: 11471, polarization: "H", symbolRateKsym: 30000, fec: "2/3", sid: 5102, encryption: ["Mediaguard", "Viaccess"], status: "discovered-encrypted" },
+        { catalogueId: "bein-sports", serviceName: "BeIn Sports 1 France", frequencyMHz: 10928, polarization: "H", symbolRateKsym: 30000, fec: "2/3", sid: 95, encryption: ["Mediaguard", "Viaccess"], status: "regional-variant" },
+        { catalogueId: "cine-plus-frisson", serviceName: "Ciné+ Frisson", frequencyMHz: 11471, polarization: "H", symbolRateKsym: 30000, fec: "2/3", sid: 5108, encryption: ["Mediaguard", "Viaccess"], status: "discovered-encrypted" },
+        { catalogueId: "cine-plus-emotion", serviceName: "Ciné+ Émotion", frequencyMHz: 10928, polarization: "H", symbolRateKsym: 30000, fec: "2/3", sid: 2289, encryption: ["Mediaguard", "Nagravision", "Viaccess"], status: "discovered-encrypted" },
+        { catalogueId: "cine-plus-family", serviceName: "Ciné+ Family", frequencyMHz: 10928, polarization: "H", symbolRateKsym: 30000, fec: "2/3", sid: 2230, encryption: ["Mediaguard", "Nagravision", "Viaccess"], status: "discovered-encrypted" },
+        { catalogueId: "cine-plus-festival", serviceName: "Ciné+ Festival", frequencyMHz: 11471, polarization: "H", symbolRateKsym: 30000, fec: "2/3", sid: 5107, encryption: ["Mediaguard", "Viaccess"], status: "discovered-encrypted" },
+        { catalogueId: "cine-plus-classic", serviceName: "Ciné+ Classic", frequencyMHz: 10928, polarization: "H", symbolRateKsym: 30000, fec: "2/3", sid: 151, encryption: ["Mediaguard", "Viaccess"], status: "discovered-encrypted" },
+        { catalogueId: "cine-plus-ocs", serviceName: "OCS", frequencyMHz: 11471, polarization: "H", symbolRateKsym: 30000, fec: "2/3", sid: 5109, encryption: ["Mediaguard", "Viaccess"], status: "regional-variant" }
+      ],
+      redistributionEnabled: false,
+      note: "Les services du bouquet Réunion sont des variantes régionales ou des services documentés sur le faisceau; la réception en Côte d'Ivoire et les droits de redistribution restent à vérifier."
+    },
+    {
       satelliteId: "eutelsat-16a-16e-africa",
       satellite: "Eutelsat 16A",
       position: "16.0E",
