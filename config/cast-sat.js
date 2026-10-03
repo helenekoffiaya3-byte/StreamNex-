@@ -7043,16 +7043,16 @@ export const castSat = {
         { catalogueId: "m6", serviceName: "M6", frequencyMHz: 10928, polarization: "H", symbolRateKsym: 30000, fec: "2/3", sid: 103, encryption: ["Mediaguard", "Viaccess"], status: "discovered-encrypted" },
         { catalogueId: "6ter", serviceName: "6ter", frequencyMHz: 10928, polarization: "H", symbolRateKsym: 30000, fec: "2/3", sid: 104, encryption: ["Mediaguard", "Viaccess"], status: "discovered-encrypted" },
         { catalogueId: "w9", serviceName: "W9", frequencyMHz: 10928, polarization: "H", symbolRateKsym: 30000, fec: "2/3", sid: 114, encryption: ["Mediaguard", "Viaccess"], status: "discovered-encrypted" },
-        { catalogueId: "téva", serviceName: "Téva", frequencyMHz: 10928, polarization: "H", symbolRateKsym: 30000, fec: "2/3", sid: 113, encryption: ["Mediaguard", "Viaccess"], status: "discovered-encrypted" },
+        { catalogueId: "teva", serviceName: "Téva", frequencyMHz: 10928, polarization: "H", symbolRateKsym: 30000, fec: "2/3", sid: 113, encryption: ["Mediaguard", "Viaccess"], status: "discovered-encrypted" },
         { catalogueId: "a-plus", serviceName: "A+", frequencyMHz: 11637, polarization: "H", symbolRateKsym: 30000, fec: "2/3", sid: 32, encryption: ["Mediaguard"], status: "discovered-encrypted" },
         { catalogueId: "13eme-rue", serviceName: "13ème Rue", frequencyMHz: 11637, polarization: "H", symbolRateKsym: 30000, fec: "2/3", sid: 5301, encryption: ["Mediaguard"], status: "discovered-encrypted" },
         { catalogueId: "novelas-plus", serviceName: "Novelas+", frequencyMHz: 11512, polarization: "H", symbolRateKsym: 30000, fec: "2/3", sid: 30, encryption: ["Mediaguard"], status: "discovered-encrypted" },
         { catalogueId: "nollywood-tv", serviceName: "Nollywood TV", frequencyMHz: 10887, polarization: "H", symbolRateKsym: 30000, fec: "2/3", sid: 31, encryption: ["Mediaguard"], status: "discovered-encrypted" },
         { catalogueId: "canal-j", serviceName: "Canal J", frequencyMHz: 12303, polarization: "H", symbolRateKsym: 27500, fec: "3/4", sid: 7627, encryption: ["Conax"], status: "regional-variant" },
-        { catalogueId: "canal-plus-sport-1", serviceName: "Canal + Sport 1", frequencyMHz: 11637, polarization: "H", symbolRateKsym: 30000, fec: "2/3", sid: 6, encryption: ["Mediaguard"], status: "regional-variant" },
-        { catalogueId: "canal-plus-sport-2", serviceName: "Canal + Sport 2", frequencyMHz: 11637, polarization: "H", symbolRateKsym: 30000, fec: "2/3", sid: 7, encryption: ["Mediaguard"], status: "regional-variant" },
-        { catalogueId: "canal-plus-sport-3", serviceName: "Canal + Sport 3", frequencyMHz: 11637, polarization: "H", symbolRateKsym: 30000, fec: "2/3", sid: 8, encryption: ["Mediaguard"], status: "regional-variant" },
-        { catalogueId: "canal-plus-sport-4", serviceName: "Canal + Sport 4", frequencyMHz: 11512, polarization: "H", symbolRateKsym: 30000, fec: "2/3", sid: 9, encryption: ["Mediaguard"], status: "regional-variant" }
+        { catalogueId: "sport-1", serviceName: "Canal + Sport 1", frequencyMHz: 11637, polarization: "H", symbolRateKsym: 30000, fec: "2/3", sid: 6, encryption: ["Mediaguard"], status: "regional-variant" },
+        { catalogueId: "sport-2", serviceName: "Canal + Sport 2", frequencyMHz: 11637, polarization: "H", symbolRateKsym: 30000, fec: "2/3", sid: 7, encryption: ["Mediaguard"], status: "regional-variant" },
+        { catalogueId: "sport-3", serviceName: "Canal + Sport 3", frequencyMHz: 11637, polarization: "H", symbolRateKsym: 30000, fec: "2/3", sid: 8, encryption: ["Mediaguard"], status: "regional-variant" },
+        { catalogueId: "sport-4", serviceName: "Canal + Sport 4", frequencyMHz: 11512, polarization: "H", symbolRateKsym: 30000, fec: "2/3", sid: 9, encryption: ["Mediaguard"], status: "regional-variant" }
       ],
       redistributionEnabled: false,
       note: "Les services Canal+ Réunion sont des variantes régionales; ils ne remplacent pas automatiquement les chaînes métropolitaines du catalogue."
