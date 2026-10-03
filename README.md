@@ -23,7 +23,7 @@ L'interface est publiée depuis `player` et les fonctions depuis `netlify/functi
 
 ## Catalogue
 
-Chaque chaîne contient notamment `channelNumber`, `id`, `name`, `group`, `logoUrl`, `productionUrl` et `streamEnabled`.
+Chaque chaîne contient notamment `channelNumber`, `id`, `name`, `group`, `logoUrl`, `productionUrl`, `streamEnabled` et `streamEnv`.
 
 Les URLs de flux de production sont injectées par les variables d'environnement Netlify et ne doivent pas être commitées.
 
@@ -35,6 +35,7 @@ Les URLs de flux de production sont injectées par les variables d'environnement
 4. Associer le flux HLS à une variable d'environnement Netlify.
 5. Vérifier `streamEnabled`.
 6. Tester `/api/channels` puis la sélection dans le lecteur.
+7. Contrôler `/api/stream-status` pour vérifier combien de flux HLS sont réellement configurés.
 
 ## Logos
 
@@ -47,6 +48,12 @@ Le contrôle du catalogue confirme que les 234 entrées ont des `id`, `tvgId`, `
 Le fichier `netlify.toml` configure le dossier publié `player` et les fonctions `netlify/functions`.
 
 Configurer les variables HLS dans Netlify, jamais dans Git. Tester le catalogue et le lecteur avant une publication de production.
+
+## Flux HLS
+
+Les flux ne sont pas inventés ni stockés en clair dans Git : chaque chaîne référence une variable `*_HLS_URL` via `streamEnv`. Tant que la variable Netlify correspondante n'est pas définie, `productionUrl` reste `null`, `streamConfigured` est `false` et le lecteur affiche explicitement l'état indisponible. `/api/stream-status` permet de contrôler la couverture de configuration sans exposer les valeurs des variables d'environnement.
+
+Le lecteur HLS utilise Hls.js lorsque disponible, le HLS natif lorsqu'il est supporté par le navigateur, et gère les erreurs réseau/média ainsi que l'état d'attente.
 
 ## Sécurité
 
@@ -63,4 +70,4 @@ Les contrôles du catalogue vérifient `id`, `tvgId`, `channelNumber`, `name`, `
 - Lecteur : HLS.js + HLS natif, Play/Pause, volume, plein écran, seek en replay et gestion d'erreurs.
 - Netlify : publication `player`, fonctions `netlify/functions`, API `/api/channels`.
 - Logos : 140 URLs externes et 94 URLs locales référencées. Les références locales disposent d’un fallback visuel dans le sélecteur afin qu’un logo indisponible ne casse pas l’interface ; les fichiers sources locaux restent à restaurer ou remplacer par des sources externes stables.
-- Flux : aucune variable `*_HLS_URL` de production n'est actuellement configurée dans le projet Netlify, donc les flux ne peuvent pas encore être testés en lecture réelle.
+- Flux : la structure de vérification HLS est en place (`streamEnv`, `streamConfigured`, `/api/stream-status`) ; la lecture réelle dépend de la configuration des variables `*_HLS_URL` dans l'environnement Netlify.
