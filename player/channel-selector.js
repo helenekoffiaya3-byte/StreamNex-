@@ -38,7 +38,7 @@
       list.innerHTML='';
       if(count) count.textContent=filtered.length+' chaîne'+(filtered.length>1?'s':'');
       if(!filtered.length){
-        list.innerHTML='<div class="channel-empty">Aucune chaîne trouvée.</div>';
+        list.innerHTML='<div class="channel-empty">'+(favoritesOnly?'Aucun favori enregistré.':'Aucune chaîne trouvée.')+'</div>';
         return;
       }
       filtered.forEach(channel=>{
