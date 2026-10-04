@@ -82,7 +82,7 @@
             }));
             return;
           }
-          player.loadRTIPlay(status.liveUrl || channel.rtiplayUrl || 'https://www.rtiplay.ci/');
+          player.loadRTIPlay(status.liveUrl || channel.rtiplayUrl || 'https://www.rtiplay.ci/', status.activeName || channel.name);
           root.dispatchEvent(new CustomEvent('streamlive:channel-selected', {
             detail: { channel: channel, mode: 'live', source: 'rtiplay', activeChannel: status.activeChannel }
           }));
