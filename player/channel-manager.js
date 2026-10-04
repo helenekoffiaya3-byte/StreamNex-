@@ -30,7 +30,7 @@
       streamConfigured: Boolean(channel.streamConfigured ?? channel.productionUrl ?? channel.youtubeChannelId),
       streamSource: String(channel.streamSource || (channel.youtubeChannelId ? 'youtube-live' : 'hls')),
       youtubeChannelId: channel.youtubeChannelId || null,
-      rtiplayUrl: channel.rtiplayUrl || (String(channel.id || '') === 'rti-1' ? 'https://www.rtiplay.ci/rti1/direct' : null)
+      rtiplayUrl: channel.rtiplayUrl || (['rti-1', 'rti-2', 'la-3'].includes(String(channel.id || '')) ? 'https://www.rtiplay.ci/' : null)
     };
   }
 
@@ -55,11 +55,43 @@
       return { ok: false, code: 'CHANNEL_NOT_FOUND', channel: null };
     }
 
-    if (channel.id === 'rti-1') {
+    if (['rti-1', 'rti-2', 'la-3'].includes(channel.id)) {
       if (!player || typeof player.loadRTIPlay !== 'function') return { ok: false, code: 'PLAYER_NOT_READY', channel: channel };
-      player.loadRTIPlay(channel.rtiplayUrl || 'https://www.rtiplay.ci/rti1');
-      root.dispatchEvent(new CustomEvent('streamlive:channel-selected', { detail: { channel: channel, mode: 'live', source: 'rtiplay' } }));
-      return { ok: true, code: 'LOADED', channel: channel, mode: 'live', source: 'rtiplay' };
+      if (typeof root.fetch !== 'function') {
+        player.setStatus('Vérification RTI Play indisponible', 'error');
+        return { ok: false, code: 'RTI_STATUS_UNAVAILABLE', channel: channel };
+      }
+
+      player.cleanup?.();
+      player.setStatus('Vérification RTI Play…');
+
+      root.fetch('/api/rti-live-status', { cache: 'no-store' })
+        .then(function (response) {
+          if (!response.ok) throw new Error('RTI_STATUS_HTTP');
+          return response.json();
+        })
+        .then(function (status) {
+          if (!status.available) {
+            player.setStatus('LIVE NON DISPONIBLE', 'error');
+            return;
+          }
+          if (status.activeChannel !== channel.id) {
+            player.setStatus('LIVE NON DISPONIBLE', 'error');
+            root.dispatchEvent(new CustomEvent('streamlive:rti-unavailable', {
+              detail: { channel: channel, activeChannel: status.activeChannel || null }
+            }));
+            return;
+          }
+          player.loadRTIPlay(status.liveUrl || channel.rtiplayUrl || 'https://www.rtiplay.ci/');
+          root.dispatchEvent(new CustomEvent('streamlive:channel-selected', {
+            detail: { channel: channel, mode: 'live', source: 'rtiplay', activeChannel: status.activeChannel }
+          }));
+        })
+        .catch(function () {
+          player.setStatus('LIVE NON DISPONIBLE', 'error');
+        });
+
+      return { ok: true, code: 'CHECKING', channel: channel, mode: 'live', source: 'rtiplay' };
     }
 
     if (!channel.streamEnabled || !channel.streamConfigured || (!channel.productionUrl && !channel.youtubeChannelId)) {
