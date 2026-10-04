@@ -241,6 +241,7 @@ const CHANNELS = [
   { channelNumber: 309, id: "cine-plus-ocs", tvgId: "cine-plus-ocs", name: "Ciné+ OCS", group: "Films & Cinéma", logoUrl: "https://commons.wikimedia.org/wiki/Special:Redirect/file/Cin%C3%A9%2BOCS_2024.svg", productionUrl: process.env.CINE_PLUS_OCS_HLS_URL || null, streamEnabled: Boolean(process.env.CINE_PLUS_OCS_HLS_URL), streamEnv: "CINE_PLUS_OCS_HLS_URL" },
 
 
+  { channelNumber: 310, id: "dntv", tvgId: "dntv", name: "DNTV", group: "National", logoUrl: "/assets/logos/dntv.svg", productionUrl: null, streamEnabled: true, streamEnv: "OFFICIAL_WEB_LIVE" },
 ];
 
 // Catalogue integrity checks (development/build-time):
