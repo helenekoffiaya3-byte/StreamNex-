@@ -1,8 +1,8 @@
-const RTI_PLAY_URL = "https://www.rtiplay.ci/";
+const RTI_PLAY_BASE = "https://www.rtiplay.ci";
 const CHANNELS = {
-  "rti-1": "RTI1",
-  "rti-2": "RTI2",
-  "la-3": "La 3"
+  "rti-1": { name: "RTI1", path: "/rti1/direct" },
+  "rti-2": { name: "RTI2", path: "/rti2/direct" },
+  "la-3": { name: "La 3", path: "/la3/direct" }
 };
 
 function json(data, status = 200, extraHeaders = {}) {
@@ -16,49 +16,109 @@ function json(data, status = 200, extraHeaders = {}) {
   });
 }
 
+function normalize(value) {
+  return String(value || "")
+    .replace(/&nbsp;/gi, " ")
+    .replace(/\s+/g, " ")
+    .trim()
+    .toLowerCase();
+}
+
+async function fetchPage(url, signal) {
+  const response = await fetch(url, {
+    method: "GET",
+    redirect: "follow",
+    headers: {
+      "accept": "text/html,application/xhtml+xml",
+      "user-agent": "Streamlive/1.0"
+    },
+    signal
+  });
+  return { response, html: await response.text() };
+}
+
+function detectActiveChannel(html) {
+  const text = normalize(html);
+  const match = text.match(/vous\s+suivez\s+actuellement\s+(.{1,100}?)\s+en\s+direct/i);
+  const current = normalize(match ? match[1] : "");
+
+  for (const [id, channel] of Object.entries(CHANNELS)) {
+    if (current === normalize(channel.name) || current.includes(normalize(channel.name))) {
+      return id;
+    }
+  }
+
+  return null;
+}
+
 export default async function handler(request) {
-  if (request.method !== "GET") return json({ error: "METHOD_NOT_ALLOWED" }, 405, { allow: "GET" });
+  if (request.method !== "GET") {
+    return json({ error: "METHOD_NOT_ALLOWED" }, 405, { allow: "GET" });
+  }
 
   const controller = new AbortController();
-  const timer = setTimeout(() => controller.abort(), 8000);
+  const timer = setTimeout(() => controller.abort(), 10000);
 
   try {
-    const response = await fetch(RTI_PLAY_URL, {
-      method: "GET",
-      redirect: "follow",
-      headers: { "accept": "text/html,application/xhtml+xml", "user-agent": "Streamlive/1.0" },
-      signal: controller.signal
-    });
-    const html = await response.text();
+    const checks = await Promise.all(
+      Object.entries(CHANNELS).map(async ([id, channel]) => {
+        const url = RTI_PLAY_BASE + channel.path;
+        try {
+          const { response, html } = await fetchPage(url, controller.signal);
+          return {
+            id,
+            name: channel.name,
+            url,
+            ok: response.ok,
+            activeChannel: detectActiveChannel(html)
+          };
+        } catch (error) {
+          return {
+            id,
+            name: channel.name,
+            url,
+            ok: false,
+            activeChannel: null,
+            error: error.name === "AbortError" ? "TIMEOUT" : "FETCH_ERROR"
+          };
+        }
+      })
+    );
 
-    if (!response.ok) {
-      return json({ available: false, activeChannel: null, error: "RTI_PLAY_HTTP_ERROR", httpStatus: response.status });
+    // RTI Play exposes the currently selected live TV channel on its direct pages.
+    // Prefer an explicit "Vous suivez actuellement X en direct" signal.
+    const active = checks.find((item) => item.ok && item.activeChannel);
+
+    if (!active) {
+      return json({
+        available: false,
+        activeChannel: null,
+        activeName: null,
+        liveUrl: null,
+        checkedAt: new Date().toISOString(),
+        source: RTI_PLAY_BASE,
+        checks
+      });
     }
 
-    const text = html.replace(/\s+/g, " ");
-    const match = text.match(/Vous\s+suivez\s+actuellement\s+([^<]{1,80}?)\s+en\s+direct/i);
-    const current = match ? match[1].trim() : "";
-    let activeChannel = null;
-
-    for (const id of Object.keys(CHANNELS)) {
-      if (current.toLowerCase() === CHANNELS[id].toLowerCase()) {
-        activeChannel = id;
-        break;
-      }
-    }
+    const activeChannel = active.activeChannel;
+    const activeInfo = CHANNELS[activeChannel];
 
     return json({
       available: true,
       activeChannel,
-      activeName: activeChannel ? CHANNELS[activeChannel] : null,
-      liveUrl: activeChannel ? RTI_PLAY_URL : null,
+      activeName: activeInfo.name,
+      liveUrl: RTI_PLAY_BASE + activeInfo.path,
       checkedAt: new Date().toISOString(),
-      source: RTI_PLAY_URL
+      source: RTI_PLAY_BASE,
+      checks
     });
   } catch (error) {
     return json({
       available: false,
       activeChannel: null,
+      activeName: null,
+      liveUrl: null,
       error: error.name === "AbortError" ? "RTI_PLAY_TIMEOUT" : "RTI_PLAY_FETCH_ERROR"
     }, 502);
   } finally {
