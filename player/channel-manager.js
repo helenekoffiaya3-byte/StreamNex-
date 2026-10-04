@@ -29,7 +29,8 @@
       streamEnabled: Boolean(channel.streamEnabled),
       streamConfigured: Boolean(channel.streamConfigured ?? channel.productionUrl ?? channel.youtubeChannelId),
       streamSource: String(channel.streamSource || (channel.youtubeChannelId ? 'youtube-live' : 'hls')),
-      youtubeChannelId: channel.youtubeChannelId || null
+      youtubeChannelId: channel.youtubeChannelId || null,
+      rtiplayUrl: channel.rtiplayUrl || (String(channel.id || '') === 'rti-1' ? 'https://www.rtiplay.ci/rti1' : null)
     };
   }
 
@@ -52,6 +53,13 @@
 
     if (!channel) {
       return { ok: false, code: 'CHANNEL_NOT_FOUND', channel: null };
+    }
+
+    if (channel.id === 'rti-1') {
+      if (!player || typeof player.loadRTIPlay !== 'function') return { ok: false, code: 'PLAYER_NOT_READY', channel: channel };
+      player.loadRTIPlay(channel.rtiplayUrl || 'https://www.rtiplay.ci/rti1');
+      root.dispatchEvent(new CustomEvent('streamlive:channel-selected', { detail: { channel: channel, mode: 'live', source: 'rtiplay' } }));
+      return { ok: true, code: 'LOADED', channel: channel, mode: 'live', source: 'rtiplay' };
     }
 
     if (!channel.streamEnabled || !channel.streamConfigured || (!channel.productionUrl && !channel.youtubeChannelId)) {
