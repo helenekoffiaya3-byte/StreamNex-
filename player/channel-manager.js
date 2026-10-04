@@ -30,7 +30,7 @@
       streamConfigured: Boolean(channel.streamConfigured ?? channel.productionUrl ?? channel.youtubeChannelId),
       streamSource: String(channel.streamSource || (channel.youtubeChannelId ? 'youtube-live' : 'hls')),
       youtubeChannelId: channel.youtubeChannelId || null,
-      rtiplayUrl: channel.rtiplayUrl || (String(channel.id || '') === 'rti-1' ? 'https://www.rtiplay.ci/rti1' : null)
+      rtiplayUrl: channel.rtiplayUrl || (String(channel.id || '') === 'rti-1' ? 'https://www.rtiplay.ci/rti1/direct' : null)
     };
   }
 
