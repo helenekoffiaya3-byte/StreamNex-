@@ -56,7 +56,16 @@
       return { ok: false, code: 'CHANNEL_NOT_FOUND', channel: null };
     }
 
-    if (channel.id === 'a-plus-ivoire') {\n      if (!player || typeof player.loadNCILive !== 'function') return { ok: false, code: 'PLAYER_NOT_READY', channel: channel };\n      player.loadNCILive(channel.aplusIvoireLiveUrl || 'https://aplusivoire.web-prod2.direct.canal-overseas.com/live');\n      root.dispatchEvent(new CustomEvent('streamlive:channel-selected', { detail: { channel: channel, mode: 'live', source: 'a-plus-ivoire-official' } }));\n      return { ok: true, code: 'LOADED', channel: channel, mode: 'live', source: 'a-plus-ivoire-official' };\n    }\n\n    if (channel.id === 'nci') {\n      if (!player || typeof player.loadNCILive !== 'function') return { ok: false, code: 'PLAYER_NOT_READY', channel: channel };\n      player.loadNCILive(channel.nciDirectUrl || 'https://www.nci.ci/direct');\n      root.dispatchEvent(new CustomEvent('streamlive:channel-selected', { detail: { channel: channel, mode: 'live', source: 'nci-official' } }));\n      return { ok: true, code: 'LOADED', channel: channel, mode: 'live', source: 'nci-official' };\n    }\n\n    if (channel.id === 'life-tv') {
+    if (channel.id === 'a-plus-ivoire') {\n      if (!player || typeof player.loadNCILive !== 'function') return { ok: false, code: 'PLAYER_NOT_READY', channel: channel };\n      player.loadNCILive(channel.aplusIvoireLiveUrl || 'https://aplusivoire.web-prod2.direct.canal-overseas.com/live');\n      root.dispatchEvent(new CustomEvent('streamlive:channel-selected', { detail: { channel: channel, mode: 'live', source: 'a-plus-ivoire-official' } }));\n      return { ok: true, code: 'LOADED', channel: channel, mode: 'live', source: 'a-plus-ivoire-official' };\n    }\n\n    if (channel.id === 'nci') {\n      if (!player || typeof player.loadNCILive !== 'function') return { ok: false, code: 'PLAYER_NOT_READY', channel: channel };\n      player.loadNCILive(channel.nciDirectUrl || 'https://www.nci.ci/direct');\n      root.dispatchEvent(new CustomEvent('streamlive:channel-selected', { detail: { channel: channel, mode: 'live', source: 'nci-official' } }));\n      return { ok: true, code: 'LOADED', channel: channel, mode: 'live', source: 'nci-official' };\n    }\n\n    if (channel.id === 'dntv') {
+      if (!player || typeof player.loadNCILive !== 'function') return { ok: false, code: 'PLAYER_NOT_READY', channel: channel };
+      player.loadNCILive('https://www.dntv.ci/direct');
+      root.dispatchEvent(new CustomEvent('streamlive:channel-selected', {
+        detail: { channel: channel, mode: 'live', source: 'dntv-official' }
+      }));
+      return { ok: true, code: 'LOADED', channel: channel, mode: 'live', source: 'dntv-official' };
+    }
+
+    if (channel.id === 'life-tv') {
       if (!player || typeof player.loadNCILive !== 'function') return { ok: false, code: 'PLAYER_NOT_READY', channel: channel };
       player.loadNCILive(channel.lifeTvLiveUrl || 'https://lifeplay.ci/live/');
       root.dispatchEvent(new CustomEvent('streamlive:channel-selected', {
