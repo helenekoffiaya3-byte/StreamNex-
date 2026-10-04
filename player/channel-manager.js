@@ -29,7 +29,7 @@
       streamEnabled: Boolean(channel.streamEnabled),
       streamConfigured: Boolean(channel.streamConfigured ?? channel.productionUrl ?? channel.youtubeChannelId),
       streamSource: String(channel.streamSource || (channel.youtubeChannelId ? 'youtube-live' : 'hls')),
-      youtubeChannelId: channel.youtubeChannelId || null,
+      youtubeChannelId: channel.youtubeChannelId || null,\n      nciDirectUrl: channel.nciDirectUrl || (String(channel.id || '') === 'nci' ? 'https://www.nci.ci/direct' : null),
       rtiplayUrl: channel.rtiplayUrl || (['rti-1', 'rti-2', 'la-3'].includes(String(channel.id || '')) ? 'https://www.rtiplay.ci/' : null)
     };
   }
@@ -55,7 +55,7 @@
       return { ok: false, code: 'CHANNEL_NOT_FOUND', channel: null };
     }
 
-    if (['rti-1', 'rti-2', 'la-3'].includes(channel.id)) {
+    if (channel.id === 'nci') {\n      if (!player || typeof player.loadNCILive !== 'function') return { ok: false, code: 'PLAYER_NOT_READY', channel: channel };\n      player.loadNCILive(channel.nciDirectUrl || 'https://www.nci.ci/direct');\n      root.dispatchEvent(new CustomEvent('streamlive:channel-selected', { detail: { channel: channel, mode: 'live', source: 'nci-official' } }));\n      return { ok: true, code: 'LOADED', channel: channel, mode: 'live', source: 'nci-official' };\n    }\n\n    if (['rti-1', 'rti-2', 'la-3'].includes(channel.id)) {
       if (!player || typeof player.loadRTIPlay !== 'function') return { ok: false, code: 'PLAYER_NOT_READY', channel: channel };
       if (typeof root.fetch !== 'function') {
         player.setStatus('Vérification RTI Play indisponible', 'error');
