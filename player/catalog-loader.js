@@ -4,7 +4,7 @@
   const managerReady=()=>typeof root.StreamLiveChannelManager==='object';
   async function load(){
     try{
-      const response=await fetch('/api/channels?mode=live',{headers:{accept:'application/json'},cache:'no-store'});
+      const response=await fetch('/api/channels',{headers:{accept:'application/json'},cache:'no-store'});
       if(!response.ok) throw new Error('HTTP_'+response.status);
       const channels=await response.json();
       if(!Array.isArray(channels)) throw new Error('INVALID_CATALOGUE');
