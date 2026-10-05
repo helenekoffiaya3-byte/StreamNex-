@@ -30,6 +30,7 @@ export const castSat = {
     "redistributionRequiresAuthorization": true
   },
   "catalogueCoverage": [
+
   {
     "channelNumber": 1,
     "id": "rti-1",
@@ -181,7 +182,7 @@ export const castSat = {
     }
   },
   {
-    "channelNumber": 185,
+    "channelNumber": 7,
     "id": "s-plus-cote-divoire",
     "name": "S+ Côte d’Ivoire",
     "status": "not-found-on-ses-4-22w-public-listings",
@@ -192,7 +193,7 @@ export const castSat = {
     "redistributionEnabled": false
   },
   {
-    "channelNumber": 10,
+    "channelNumber": 8,
     "id": "6ter",
     "name": "6ter",
     "status": "not-found-on-ses-4-22w-public-listings",
@@ -203,7 +204,7 @@ export const castSat = {
     "redistributionEnabled": false
   },
   {
-    "channelNumber": 11,
+    "channelNumber": 9,
     "id": "arte",
     "name": "Arte",
     "status": "found-encrypted",
@@ -228,7 +229,7 @@ export const castSat = {
     }
   },
   {
-    "channelNumber": 186,
+    "channelNumber": 10,
     "id": "s-plus",
     "name": "S+",
     "status": "not-found-on-ses-4-22w-public-listings",
@@ -239,7 +240,7 @@ export const castSat = {
     "redistributionEnabled": false
   },
   {
-    "channelNumber": 13,
+    "channelNumber": 11,
     "id": "france-2",
     "name": "France 2",
     "status": "found-encrypted",
@@ -264,7 +265,7 @@ export const castSat = {
     }
   },
   {
-    "channelNumber": 14,
+    "channelNumber": 12,
     "id": "france-3",
     "name": "France 3",
     "status": "found-encrypted",
@@ -289,7 +290,7 @@ export const castSat = {
     }
   },
   {
-    "channelNumber": 15,
+    "channelNumber": 13,
     "id": "france-4",
     "name": "France 4",
     "status": "not-found-on-ses-4-22w-public-listings",
@@ -300,7 +301,7 @@ export const castSat = {
     "redistributionEnabled": false
   },
   {
-    "channelNumber": 16,
+    "channelNumber": 14,
     "id": "france-5",
     "name": "France 5",
     "status": "found-encrypted",
@@ -325,7 +326,7 @@ export const castSat = {
     }
   },
   {
-    "channelNumber": 17,
+    "channelNumber": 15,
     "id": "m6",
     "name": "M6",
     "status": "found-encrypted",
@@ -350,7 +351,7 @@ export const castSat = {
     }
   },
   {
-    "channelNumber": 18,
+    "channelNumber": 16,
     "id": "tf1",
     "name": "TF1",
     "status": "found-encrypted",
@@ -375,7 +376,7 @@ export const castSat = {
     }
   },
   {
-    "channelNumber": 19,
+    "channelNumber": 17,
     "id": "tfx",
     "name": "TFX",
     "status": "found-encrypted",
@@ -400,7 +401,7 @@ export const castSat = {
     }
   },
   {
-    "channelNumber": 20,
+    "channelNumber": 18,
     "id": "tmc",
     "name": "TMC",
     "status": "found-encrypted",
@@ -425,7 +426,7 @@ export const castSat = {
     }
   },
   {
-    "channelNumber": 21,
+    "channelNumber": 19,
     "id": "w9",
     "name": "W9",
     "status": "not-found-on-ses-4-22w-public-listings",
@@ -436,7 +437,7 @@ export const castSat = {
     "redistributionEnabled": false
   },
   {
-    "channelNumber": 41,
+    "channelNumber": 20,
     "id": "cnn-international",
     "name": "CNN International",
     "status": "not-found-on-ses-4-22w-public-listings",
@@ -447,7 +448,7 @@ export const castSat = {
     "redistributionEnabled": false
   },
   {
-    "channelNumber": 42,
+    "channelNumber": 21,
     "id": "dw",
     "name": "DW",
     "status": "not-found-on-ses-4-22w-public-listings",
@@ -458,7 +459,7 @@ export const castSat = {
     "redistributionEnabled": false
   },
   {
-    "channelNumber": 43,
+    "channelNumber": 22,
     "id": "euronews",
     "name": "Euronews",
     "status": "not-found-on-ses-4-22w-public-listings",
@@ -469,7 +470,7 @@ export const castSat = {
     "redistributionEnabled": false
   },
   {
-    "channelNumber": 44,
+    "channelNumber": 23,
     "id": "fox-business",
     "name": "Fox Business",
     "status": "not-found-on-ses-4-22w-public-listings",
@@ -480,7 +481,7 @@ export const castSat = {
     "redistributionEnabled": false
   },
   {
-    "channelNumber": 45,
+    "channelNumber": 24,
     "id": "fox-news",
     "name": "Fox News",
     "status": "not-found-on-ses-4-22w-public-listings",
@@ -491,7 +492,7 @@ export const castSat = {
     "redistributionEnabled": false
   },
   {
-    "channelNumber": 22,
+    "channelNumber": 25,
     "id": "france-24",
     "name": "France 24",
     "status": "found-encrypted",
@@ -516,7 +517,7 @@ export const castSat = {
     }
   },
   {
-    "channelNumber": 47,
+    "channelNumber": 26,
     "id": "hln",
     "name": "HLN",
     "status": "not-found-on-ses-4-22w-public-listings",
@@ -527,7 +528,7 @@ export const castSat = {
     "redistributionEnabled": false
   },
   {
-    "channelNumber": 48,
+    "channelNumber": 27,
     "id": "i24news",
     "name": "i24NEWS",
     "status": "found-encrypted",
@@ -552,7 +553,7 @@ export const castSat = {
     }
   },
   {
-    "channelNumber": 49,
+    "channelNumber": 28,
     "id": "msnbc",
     "name": "MSNBC",
     "status": "not-found-on-ses-4-22w-public-listings",
@@ -563,7 +564,7 @@ export const castSat = {
     "redistributionEnabled": false
   },
   {
-    "channelNumber": 200,
+    "channelNumber": 29,
     "id": "ab1",
     "name": "AB1",
     "status": "found-encrypted",
@@ -588,7 +589,7 @@ export const castSat = {
     }
   },
   {
-    "channelNumber": 201,
+    "channelNumber": 30,
     "id": "action",
     "name": "Action",
     "status": "found-encrypted",
@@ -613,7 +614,7 @@ export const castSat = {
     }
   },
   {
-    "channelNumber": 202,
+    "channelNumber": 31,
     "id": "c-plus-action",
     "name": "C+ Action",
     "status": "found-encrypted",
@@ -638,7 +639,7 @@ export const castSat = {
     }
   },
   {
-    "channelNumber": 203,
+    "channelNumber": 32,
     "id": "c-plus-cinema",
     "name": "C+ Cinema",
     "status": "found-encrypted",
@@ -663,7 +664,7 @@ export const castSat = {
     }
   },
   {
-    "channelNumber": 204,
+    "channelNumber": 33,
     "id": "c-plus-family",
     "name": "C+ Family",
     "status": "found-encrypted",
@@ -688,7 +689,7 @@ export const castSat = {
     }
   },
   {
-    "channelNumber": 205,
+    "channelNumber": 34,
     "id": "c-plus-magic",
     "name": "C+ Magic",
     "status": "pending-satellite-match",
@@ -699,7 +700,7 @@ export const castSat = {
     "redistributionEnabled": false
   },
   {
-    "channelNumber": 206,
+    "channelNumber": 35,
     "id": "c-plus-pop",
     "name": "C+ Pop",
     "status": "found-encrypted",
@@ -724,7 +725,7 @@ export const castSat = {
     }
   },
   {
-    "channelNumber": 207,
+    "channelNumber": 36,
     "id": "charge",
     "name": "Charge!",
     "status": "not-found-on-ses-4-22w-public-listings",
@@ -735,7 +736,7 @@ export const castSat = {
     "redistributionEnabled": false
   },
   {
-    "channelNumber": 208,
+    "channelNumber": 37,
     "id": "cinemax",
     "name": "Cinemax",
     "status": "not-found-on-ses-4-22w-public-listings",
@@ -746,7 +747,7 @@ export const castSat = {
     "redistributionEnabled": false
   },
   {
-    "channelNumber": 209,
+    "channelNumber": 38,
     "id": "comet",
     "name": "Comet",
     "status": "not-found-on-ses-4-22w-public-listings",
@@ -757,7 +758,7 @@ export const castSat = {
     "redistributionEnabled": false
   },
   {
-    "channelNumber": 210,
+    "channelNumber": 39,
     "id": "estrella-tv",
     "name": "Estrella TV",
     "status": "not-found-on-ses-4-22w-public-listings",
@@ -768,7 +769,7 @@ export const castSat = {
     "redistributionEnabled": false
   },
   {
-    "channelNumber": 211,
+    "channelNumber": 40,
     "id": "galavision",
     "name": "Galavisión",
     "status": "not-found-on-ses-4-22w-public-listings",
@@ -779,7 +780,7 @@ export const castSat = {
     "redistributionEnabled": false
   },
   {
-    "channelNumber": 212,
+    "channelNumber": 41,
     "id": "gettv",
     "name": "getTV",
     "status": "not-found-on-ses-4-22w-public-listings",
@@ -790,7 +791,7 @@ export const castSat = {
     "redistributionEnabled": false
   },
   {
-    "channelNumber": 213,
+    "channelNumber": 42,
     "id": "grit",
     "name": "Grit",
     "status": "not-found-on-ses-4-22w-public-listings",
@@ -801,7 +802,7 @@ export const castSat = {
     "redistributionEnabled": false
   },
   {
-    "channelNumber": 214,
+    "channelNumber": 43,
     "id": "m6-films",
     "name": "M6 Films",
     "status": "not-found-on-ses-4-22w-public-listings",
@@ -812,7 +813,7 @@ export const castSat = {
     "redistributionEnabled": false
   },
   {
-    "channelNumber": 215,
+    "channelNumber": 44,
     "id": "mgm-tv",
     "name": "MGM TV",
     "status": "not-found-on-ses-4-22w-public-listings",
@@ -823,7 +824,7 @@ export const castSat = {
     "redistributionEnabled": false
   },
   {
-    "channelNumber": 216,
+    "channelNumber": 45,
     "id": "movies",
     "name": "Movies!",
     "status": "not-found-on-ses-4-22w-public-listings",
@@ -834,7 +835,7 @@ export const castSat = {
     "redistributionEnabled": false
   },
   {
-    "channelNumber": 217,
+    "channelNumber": 46,
     "id": "peacock",
     "name": "Peacock",
     "status": "not-found-on-ses-4-22w-public-listings",
@@ -845,7 +846,7 @@ export const castSat = {
     "redistributionEnabled": false
   },
   {
-    "channelNumber": 218,
+    "channelNumber": 47,
     "id": "pluto-tv",
     "name": "Pluto TV",
     "status": "not-found-on-ses-4-22w-public-listings",
@@ -856,7 +857,7 @@ export const castSat = {
     "redistributionEnabled": false
   },
   {
-    "channelNumber": 219,
+    "channelNumber": 48,
     "id": "rtl-9",
     "name": "RTL 9",
     "status": "found-encrypted",
@@ -881,7 +882,7 @@ export const castSat = {
     }
   },
   {
-    "channelNumber": 50,
+    "channelNumber": 49,
     "id": "sci-fi",
     "name": "Sci-Fi",
     "status": "found-encrypted",
@@ -906,7 +907,7 @@ export const castSat = {
     }
   },
   {
-    "channelNumber": 221,
+    "channelNumber": 50,
     "id": "tcm",
     "name": "TCM",
     "status": "not-found-on-ses-4-22w-public-listings",
@@ -917,7 +918,7 @@ export const castSat = {
     "redistributionEnabled": false
   },
   {
-    "channelNumber": 222,
+    "channelNumber": 51,
     "id": "telemundo",
     "name": "Telemundo",
     "status": "found-encrypted",
@@ -942,7 +943,7 @@ export const castSat = {
     }
   },
   {
-    "channelNumber": 223,
+    "channelNumber": 52,
     "id": "tubi",
     "name": "Tubi",
     "status": "not-found-on-ses-4-22w-public-listings",
@@ -953,7 +954,7 @@ export const castSat = {
     "redistributionEnabled": false
   },
   {
-    "channelNumber": 224,
+    "channelNumber": 53,
     "id": "unimas",
     "name": "UniMás",
     "status": "not-found-on-ses-4-22w-public-listings",
@@ -964,7 +965,7 @@ export const castSat = {
     "redistributionEnabled": false
   },
   {
-    "channelNumber": 225,
+    "channelNumber": 54,
     "id": "univision",
     "name": "Univision",
     "status": "not-found-on-ses-4-22w-public-listings",
@@ -975,7 +976,7 @@ export const castSat = {
     "redistributionEnabled": false
   },
   {
-    "channelNumber": 52,
+    "channelNumber": 55,
     "id": "13eme-rue",
     "name": "13ème Rue",
     "status": "found-encrypted",
@@ -1000,7 +1001,7 @@ export const castSat = {
     }
   },
   {
-    "channelNumber": 53,
+    "channelNumber": 56,
     "id": "amc",
     "name": "AMC",
     "status": "not-found-on-ses-4-22w-public-listings",
@@ -1011,7 +1012,7 @@ export const castSat = {
     "redistributionEnabled": false
   },
   {
-    "channelNumber": 54,
+    "channelNumber": 57,
     "id": "bravo",
     "name": "Bravo",
     "status": "not-found-on-ses-4-22w-public-listings",
@@ -1022,7 +1023,7 @@ export const castSat = {
     "redistributionEnabled": false
   },
   {
-    "channelNumber": 55,
+    "channelNumber": 58,
     "id": "freeform",
     "name": "Freeform",
     "status": "not-found-on-ses-4-22w-public-listings",
@@ -1033,7 +1034,7 @@ export const castSat = {
     "redistributionEnabled": false
   },
   {
-    "channelNumber": 56,
+    "channelNumber": 59,
     "id": "fx",
     "name": "FX",
     "status": "not-found-on-ses-4-22w-public-listings",
@@ -1044,7 +1045,7 @@ export const castSat = {
     "redistributionEnabled": false
   },
   {
-    "channelNumber": 57,
+    "channelNumber": 60,
     "id": "fxx",
     "name": "FXX",
     "status": "not-found-on-ses-4-22w-public-listings",
@@ -1055,7 +1056,7 @@ export const castSat = {
     "redistributionEnabled": false
   },
   {
-    "channelNumber": 58,
+    "channelNumber": 61,
     "id": "hallmark-drama",
     "name": "Hallmark Drama",
     "status": "not-found-on-ses-4-22w-public-listings",
@@ -1066,7 +1067,7 @@ export const castSat = {
     "redistributionEnabled": false
   },
   {
-    "channelNumber": 59,
+    "channelNumber": 62,
     "id": "hbo",
     "name": "HBO",
     "status": "not-found-on-ses-4-22w-public-listings",
@@ -1077,7 +1078,7 @@ export const castSat = {
     "redistributionEnabled": false
   },
   {
-    "channelNumber": 60,
+    "channelNumber": 63,
     "id": "heroes-icons",
     "name": "Heroes & Icons",
     "status": "not-found-on-ses-4-22w-public-listings",
@@ -1088,7 +1089,7 @@ export const castSat = {
     "redistributionEnabled": false
   },
   {
-    "channelNumber": 61,
+    "channelNumber": 64,
     "id": "ifc",
     "name": "IFC",
     "status": "not-found-on-ses-4-22w-public-listings",
@@ -1099,7 +1100,7 @@ export const castSat = {
     "redistributionEnabled": false
   },
   {
-    "channelNumber": 62,
+    "channelNumber": 65,
     "id": "ion",
     "name": "Ion",
     "status": "not-found-on-ses-4-22w-public-listings",
@@ -1110,7 +1111,7 @@ export const castSat = {
     "redistributionEnabled": false
   },
   {
-    "channelNumber": 63,
+    "channelNumber": 66,
     "id": "lifetime",
     "name": "Lifetime",
     "status": "not-found-on-ses-4-22w-public-listings",
@@ -1121,7 +1122,7 @@ export const castSat = {
     "redistributionEnabled": false
   },
   {
-    "channelNumber": 64,
+    "channelNumber": 67,
     "id": "mgm-plus",
     "name": "MGM+",
     "status": "not-found-on-ses-4-22w-public-listings",
@@ -1132,7 +1133,7 @@ export const castSat = {
     "redistributionEnabled": false
   },
   {
-    "channelNumber": 30,
+    "channelNumber": 68,
     "id": "novelas-plus",
     "name": "Novelas+",
     "status": "found-encrypted",
@@ -1157,7 +1158,7 @@ export const castSat = {
     }
   },
   {
-    "channelNumber": 65,
+    "channelNumber": 69,
     "id": "paramount-network",
     "name": "Paramount Network",
     "status": "not-found-on-ses-4-22w-public-listings",
@@ -1168,7 +1169,7 @@ export const castSat = {
     "redistributionEnabled": false
   },
   {
-    "channelNumber": 160,
+    "channelNumber": 70,
     "id": "s-plus-premiere",
     "name": "S+ Première",
     "status": "not-found-on-ses-4-22w-public-listings",
@@ -1179,7 +1180,7 @@ export const castSat = {
     "redistributionEnabled": false
   },
   {
-    "channelNumber": 161,
+    "channelNumber": 71,
     "id": "s-plus-avant-premiere",
     "name": "S+ Avant Première",
     "status": "not-found-on-ses-4-22w-public-listings",
@@ -1190,7 +1191,7 @@ export const castSat = {
     "redistributionEnabled": false
   },
   {
-    "channelNumber": 151,
+    "channelNumber": 72,
     "id": "sundance-tv",
     "name": "Sundance TV",
     "status": "not-found-on-ses-4-22w-public-listings",
@@ -1201,7 +1202,7 @@ export const castSat = {
     "redistributionEnabled": false
   },
   {
-    "channelNumber": 51,
+    "channelNumber": 73,
     "id": "syfy",
     "name": "Syfy",
     "status": "not-found-on-ses-4-22w-public-listings",
@@ -1212,7 +1213,7 @@ export const castSat = {
     "redistributionEnabled": false
   },
   {
-    "channelNumber": 153,
+    "channelNumber": 74,
     "id": "tbs",
     "name": "TBS",
     "status": "not-found-on-ses-4-22w-public-listings",
@@ -1223,7 +1224,7 @@ export const castSat = {
     "redistributionEnabled": false
   },
   {
-    "channelNumber": 154,
+    "channelNumber": 75,
     "id": "tf1-series-films",
     "name": "TF1 Séries Films",
     "status": "found-encrypted",
@@ -1248,7 +1249,7 @@ export const castSat = {
     }
   },
   {
-    "channelNumber": 155,
+    "channelNumber": 76,
     "id": "tnt",
     "name": "TNT",
     "status": "not-found-on-ses-4-22w-public-listings",
@@ -1259,7 +1260,7 @@ export const castSat = {
     "redistributionEnabled": false
   },
   {
-    "channelNumber": 156,
+    "channelNumber": 77,
     "id": "usa-network",
     "name": "USA Network",
     "status": "not-found-on-ses-4-22w-public-listings",
@@ -1270,7 +1271,7 @@ export const castSat = {
     "redistributionEnabled": false
   },
   {
-    "channelNumber": 100,
+    "channelNumber": 78,
     "id": "a-plus-kids",
     "name": "A+ Kids",
     "status": "found-encrypted",
@@ -1295,7 +1296,7 @@ export const castSat = {
     }
   },
   {
-    "channelNumber": 101,
+    "channelNumber": 79,
     "id": "boing",
     "name": "Boing",
     "status": "not-found-on-ses-4-22w-public-listings",
@@ -1306,7 +1307,7 @@ export const castSat = {
     "redistributionEnabled": false
   },
   {
-    "channelNumber": 102,
+    "channelNumber": 80,
     "id": "boomerang",
     "name": "Boomerang",
     "status": "pending-satellite-match",
@@ -1317,7 +1318,7 @@ export const castSat = {
     "redistributionEnabled": false
   },
   {
-    "channelNumber": 103,
+    "channelNumber": 81,
     "id": "boomerang-plus-1",
     "name": "Boomerang +1",
     "status": "not-found-on-ses-4-22w-public-listings",
@@ -1328,7 +1329,7 @@ export const castSat = {
     "redistributionEnabled": false
   },
   {
-    "channelNumber": 104,
+    "channelNumber": 82,
     "id": "canal-j",
     "name": "Canal J",
     "status": "not-found-on-ses-4-22w-public-listings",
@@ -1339,7 +1340,7 @@ export const castSat = {
     "redistributionEnabled": false
   },
   {
-    "channelNumber": 187,
+    "channelNumber": 83,
     "id": "s-plus-kids-canalplus",
     "name": "S+ Kids Canal+",
     "status": "not-found-on-ses-4-22w-public-listings",
@@ -1350,7 +1351,7 @@ export const castSat = {
     "redistributionEnabled": false
   },
   {
-    "channelNumber": 106,
+    "channelNumber": 84,
     "id": "cartoonito",
     "name": "Cartoonito",
     "status": "not-found-on-ses-4-22w-public-listings",
@@ -1361,7 +1362,7 @@ export const castSat = {
     "redistributionEnabled": false
   },
   {
-    "channelNumber": 107,
+    "channelNumber": 85,
     "id": "cartoon-network",
     "name": "Cartoon Network",
     "status": "found-encrypted",
@@ -1386,7 +1387,7 @@ export const castSat = {
     }
   },
   {
-    "channelNumber": 108,
+    "channelNumber": 86,
     "id": "disney-channel",
     "name": "Disney Channel",
     "status": "not-found-on-ses-4-22w-public-listings",
@@ -1397,7 +1398,7 @@ export const castSat = {
     "redistributionEnabled": false
   },
   {
-    "channelNumber": 109,
+    "channelNumber": 87,
     "id": "disney-junior",
     "name": "Disney Junior",
     "status": "not-found-on-ses-4-22w-public-listings",
@@ -1408,7 +1409,7 @@ export const castSat = {
     "redistributionEnabled": false
   },
   {
-    "channelNumber": 110,
+    "channelNumber": 88,
     "id": "dreamworks",
     "name": "DreamWorks",
     "status": "not-found-on-ses-4-22w-public-listings",
@@ -1419,7 +1420,7 @@ export const castSat = {
     "redistributionEnabled": false
   },
   {
-    "channelNumber": 111,
+    "channelNumber": 89,
     "id": "gulli",
     "name": "Gulli",
     "status": "not-found-on-ses-4-22w-public-listings",
@@ -1430,7 +1431,7 @@ export const castSat = {
     "redistributionEnabled": false
   },
   {
-    "channelNumber": 112,
+    "channelNumber": 90,
     "id": "gulli-africa",
     "name": "Gulli Africa",
     "status": "found-encrypted",
@@ -1455,7 +1456,7 @@ export const castSat = {
     }
   },
   {
-    "channelNumber": 113,
+    "channelNumber": 91,
     "id": "j-one",
     "name": "J-One",
     "status": "found-encrypted",
@@ -1480,7 +1481,7 @@ export const castSat = {
     }
   },
   {
-    "channelNumber": 114,
+    "channelNumber": 92,
     "id": "ludikids",
     "name": "Ludikids",
     "status": "found-encrypted",
@@ -1505,7 +1506,7 @@ export const castSat = {
     }
   },
   {
-    "channelNumber": 115,
+    "channelNumber": 93,
     "id": "mangas",
     "name": "Mangas",
     "status": "found-encrypted",
@@ -1530,7 +1531,7 @@ export const castSat = {
     }
   },
   {
-    "channelNumber": 116,
+    "channelNumber": 94,
     "id": "nathan-plus",
     "name": "Nathan+",
     "status": "found-encrypted",
@@ -1555,7 +1556,7 @@ export const castSat = {
     }
   },
   {
-    "channelNumber": 117,
+    "channelNumber": 95,
     "id": "nickelodeon",
     "name": "Nickelodeon",
     "status": "found-encrypted",
@@ -1580,7 +1581,7 @@ export const castSat = {
     }
   },
   {
-    "channelNumber": 118,
+    "channelNumber": 96,
     "id": "nickelodeon-junior",
     "name": "Nickelodeon Junior",
     "status": "found-encrypted",
@@ -1605,7 +1606,7 @@ export const castSat = {
     }
   },
   {
-    "channelNumber": 119,
+    "channelNumber": 97,
     "id": "nickelodeon-plus-1",
     "name": "Nickelodeon +1",
     "status": "not-found-on-ses-4-22w-public-listings",
@@ -1616,7 +1617,7 @@ export const castSat = {
     "redistributionEnabled": false
   },
   {
-    "channelNumber": 120,
+    "channelNumber": 98,
     "id": "nicktoons",
     "name": "NickToons",
     "status": "not-found-on-ses-4-22w-public-listings",
@@ -1627,7 +1628,7 @@ export const castSat = {
     "redistributionEnabled": false
   },
   {
-    "channelNumber": 121,
+    "channelNumber": 99,
     "id": "nickelodeon-teen",
     "name": "Nickelodeon Teen",
     "status": "not-found-on-ses-4-22w-public-listings",
@@ -1638,7 +1639,7 @@ export const castSat = {
     "redistributionEnabled": false
   },
   {
-    "channelNumber": 122,
+    "channelNumber": 100,
     "id": "okoo",
     "name": "Okoo",
     "status": "not-found-on-ses-4-22w-public-listings",
@@ -1649,7 +1650,7 @@ export const castSat = {
     "redistributionEnabled": false
   },
   {
-    "channelNumber": 123,
+    "channelNumber": 101,
     "id": "piwi-plus",
     "name": "Piwi+",
     "status": "found-encrypted",
@@ -1674,7 +1675,7 @@ export const castSat = {
     }
   },
   {
-    "channelNumber": 124,
+    "channelNumber": 102,
     "id": "pitchoun-kids-music",
     "name": "Pitchoun Kids Music",
     "status": "not-found-on-ses-4-22w-public-listings",
@@ -1685,7 +1686,7 @@ export const castSat = {
     "redistributionEnabled": false
   },
   {
-    "channelNumber": 125,
+    "channelNumber": 103,
     "id": "pitchoun-kids-music-africa",
     "name": "Pitchoun Kids Music Africa",
     "status": "not-found-on-ses-4-22w-public-listings",
@@ -1696,7 +1697,7 @@ export const castSat = {
     "redistributionEnabled": false
   },
   {
-    "channelNumber": 126,
+    "channelNumber": 104,
     "id": "tv-pitchoun",
     "name": "TV Pitchoun",
     "status": "not-found-on-ses-4-22w-public-listings",
@@ -1707,7 +1708,7 @@ export const castSat = {
     "redistributionEnabled": false
   },
   {
-    "channelNumber": 127,
+    "channelNumber": 105,
     "id": "teletoon-plus",
     "name": "Télétoon+",
     "status": "found-encrypted",
@@ -1732,7 +1733,7 @@ export const castSat = {
     }
   },
   {
-    "channelNumber": 128,
+    "channelNumber": 106,
     "id": "teletoon-plus-1",
     "name": "Télétoon +1",
     "status": "not-found-on-ses-4-22w-public-listings",
@@ -1743,7 +1744,7 @@ export const castSat = {
     "redistributionEnabled": false
   },
   {
-    "channelNumber": 129,
+    "channelNumber": 107,
     "id": "tiji",
     "name": "TiJi",
     "status": "found-encrypted",
@@ -1768,7 +1769,7 @@ export const castSat = {
     }
   },
   {
-    "channelNumber": 130,
+    "channelNumber": 108,
     "id": "tivi5monde",
     "name": "TiVi5MONDE",
     "status": "found-encrypted",
@@ -1793,7 +1794,7 @@ export const castSat = {
     }
   },
   {
-    "channelNumber": 131,
+    "channelNumber": 109,
     "id": "toonami",
     "name": "Toonami",
     "status": "not-found-on-ses-4-22w-public-listings",
@@ -1804,7 +1805,7 @@ export const castSat = {
     "redistributionEnabled": false
   },
   {
-    "channelNumber": 132,
+    "channelNumber": 110,
     "id": "ducktv",
     "name": "ducktv",
     "status": "not-found-on-ses-4-22w-public-listings",
@@ -1815,7 +1816,7 @@ export const castSat = {
     "redistributionEnabled": false
   },
   {
-    "channelNumber": 157,
+    "channelNumber": 111,
     "id": "tv-tokyo",
     "name": "TV Tokyo",
     "status": "not-found-on-ses-4-22w-public-listings",
@@ -1826,7 +1827,7 @@ export const castSat = {
     "redistributionEnabled": false
   },
   {
-    "channelNumber": 158,
+    "channelNumber": 112,
     "id": "fuji-tv",
     "name": "Fuji TV",
     "status": "not-found-on-ses-4-22w-public-listings",
@@ -1837,7 +1838,7 @@ export const castSat = {
     "redistributionEnabled": false
   },
   {
-    "channelNumber": 133,
+    "channelNumber": 113,
     "id": "warner-tv-next",
     "name": "Warner TV Next",
     "status": "not-found-on-ses-4-22w-public-listings",
@@ -1848,7 +1849,7 @@ export const castSat = {
     "redistributionEnabled": false
   },
   {
-    "channelNumber": 159,
+    "channelNumber": 114,
     "id": "peche-sons",
     "name": "Pêche & Sons",
     "status": "not-found-on-ses-4-22w-public-listings",
@@ -1859,7 +1860,7 @@ export const castSat = {
     "redistributionEnabled": false
   },
   {
-    "channelNumber": 184,
+    "channelNumber": 115,
     "id": "planete-plus",
     "name": "Planète+",
     "status": "found-encrypted",
@@ -1884,7 +1885,7 @@ export const castSat = {
     }
   },
   {
-    "channelNumber": 162,
+    "channelNumber": 116,
     "id": "s-plus-docs",
     "name": "S+ Docs",
     "status": "not-found-on-ses-4-22w-public-listings",
@@ -1895,7 +1896,7 @@ export const castSat = {
     "redistributionEnabled": false
   },
   {
-    "channelNumber": 23,
+    "channelNumber": 117,
     "id": "tv5-monde",
     "name": "TV5 Monde",
     "status": "found-encrypted",
@@ -1920,7 +1921,7 @@ export const castSat = {
     }
   },
   {
-    "channelNumber": 163,
+    "channelNumber": 118,
     "id": "s-plus-prime",
     "name": "S+ Prime",
     "status": "not-found-on-ses-4-22w-public-listings",
@@ -1931,7 +1932,7 @@ export const castSat = {
     "redistributionEnabled": false
   },
   {
-    "channelNumber": 164,
+    "channelNumber": 119,
     "id": "s-plus-cine",
     "name": "S+ Ciné",
     "status": "not-found-on-ses-4-22w-public-listings",
@@ -1942,7 +1943,7 @@ export const castSat = {
     "redistributionEnabled": false
   },
   {
-    "channelNumber": 165,
+    "channelNumber": 120,
     "id": "s-plus-kids",
     "name": "S+ Kids",
     "status": "not-found-on-ses-4-22w-public-listings",
@@ -1953,7 +1954,7 @@ export const castSat = {
     "redistributionEnabled": false
   },
   {
-    "channelNumber": 166,
+    "channelNumber": 121,
     "id": "s-plus-fiction",
     "name": "S+ Fiction",
     "status": "not-found-on-ses-4-22w-public-listings",
@@ -1964,7 +1965,7 @@ export const castSat = {
     "redistributionEnabled": false
   },
   {
-    "channelNumber": 167,
+    "channelNumber": 122,
     "id": "s-plus-channel",
     "name": "S+ Channel",
     "status": "not-found-on-ses-4-22w-public-listings",
@@ -1975,7 +1976,7 @@ export const castSat = {
     "redistributionEnabled": false
   },
   {
-    "channelNumber": 168,
+    "channelNumber": 123,
     "id": "s-plus-music",
     "name": "S+ Music",
     "status": "not-found-on-ses-4-22w-public-listings",
@@ -1986,7 +1987,7 @@ export const castSat = {
     "redistributionEnabled": false
   },
   {
-    "channelNumber": 169,
+    "channelNumber": 124,
     "id": "s-plus-tv",
     "name": "S+ TV",
     "status": "not-found-on-ses-4-22w-public-listings",
@@ -1997,7 +1998,7 @@ export const castSat = {
     "redistributionEnabled": false
   },
   {
-    "channelNumber": 170,
+    "channelNumber": 125,
     "id": "s-plus-family",
     "name": "S+ Family",
     "status": "not-found-on-ses-4-22w-public-listings",
@@ -2008,7 +2009,7 @@ export const castSat = {
     "redistributionEnabled": false
   },
   {
-    "channelNumber": 171,
+    "channelNumber": 126,
     "id": "s-plus-sport-1",
     "name": "S+ Sport 1",
     "status": "not-found-on-ses-4-22w-public-listings",
@@ -2019,7 +2020,7 @@ export const castSat = {
     "redistributionEnabled": false
   },
   {
-    "channelNumber": 172,
+    "channelNumber": 127,
     "id": "s-plus-sport-2",
     "name": "S+ Sport 2",
     "status": "not-found-on-ses-4-22w-public-listings",
@@ -2030,7 +2031,7 @@ export const castSat = {
     "redistributionEnabled": false
   },
   {
-    "channelNumber": 173,
+    "channelNumber": 128,
     "id": "s-plus-sport-3",
     "name": "S+ Sport 3",
     "status": "not-found-on-ses-4-22w-public-listings",
@@ -2041,7 +2042,7 @@ export const castSat = {
     "redistributionEnabled": false
   },
   {
-    "channelNumber": 174,
+    "channelNumber": 129,
     "id": "s-plus-sport-4",
     "name": "S+ Sport 4",
     "status": "not-found-on-ses-4-22w-public-listings",
@@ -2052,7 +2053,7 @@ export const castSat = {
     "redistributionEnabled": false
   },
   {
-    "channelNumber": 175,
+    "channelNumber": 130,
     "id": "s-plus-sport-5",
     "name": "S+ Sport 5",
     "status": "not-found-on-ses-4-22w-public-listings",
@@ -2063,7 +2064,7 @@ export const castSat = {
     "redistributionEnabled": false
   },
   {
-    "channelNumber": 176,
+    "channelNumber": 131,
     "id": "s-plus-sport-6",
     "name": "S+ Sport 6",
     "status": "not-found-on-ses-4-22w-public-listings",
@@ -2074,7 +2075,7 @@ export const castSat = {
     "redistributionEnabled": false
   },
   {
-    "channelNumber": 177,
+    "channelNumber": 132,
     "id": "s-plus-movies",
     "name": "S+ Movies",
     "status": "not-found-on-ses-4-22w-public-listings",
@@ -2085,7 +2086,7 @@ export const castSat = {
     "redistributionEnabled": false
   },
   {
-    "channelNumber": 178,
+    "channelNumber": 133,
     "id": "s-plus-infosport",
     "name": "S+ Infosport",
     "status": "not-found-on-ses-4-22w-public-listings",
@@ -2096,7 +2097,7 @@ export const castSat = {
     "redistributionEnabled": false
   },
   {
-    "channelNumber": 179,
+    "channelNumber": 134,
     "id": "s-plus-infos",
     "name": "S+ Infos",
     "status": "not-found-on-ses-4-22w-public-listings",
@@ -2107,7 +2108,7 @@ export const castSat = {
     "redistributionEnabled": false
   },
   {
-    "channelNumber": 180,
+    "channelNumber": 135,
     "id": "s-plus-media",
     "name": "S+ Media",
     "status": "not-found-on-ses-4-22w-public-listings",
@@ -2118,7 +2119,7 @@ export const castSat = {
     "redistributionEnabled": false
   },
   {
-    "channelNumber": 181,
+    "channelNumber": 136,
     "id": "s-plus-lloliwood",
     "name": "S+ LLOLIWOOD",
     "status": "not-found-on-ses-4-22w-public-listings",
@@ -2129,7 +2130,7 @@ export const castSat = {
     "redistributionEnabled": false
   },
   {
-    "channelNumber": 182,
+    "channelNumber": 137,
     "id": "s-plus-bl",
     "name": "S+ BL",
     "status": "not-found-on-ses-4-22w-public-listings",
@@ -2140,7 +2141,7 @@ export const castSat = {
     "redistributionEnabled": false
   },
   {
-    "channelNumber": 183,
+    "channelNumber": 138,
     "id": "s-plus-jeunesse",
     "name": "S+ Jeunesse",
     "status": "not-found-on-ses-4-22w-public-listings",
@@ -2151,7 +2152,7 @@ export const castSat = {
     "redistributionEnabled": false
   },
   {
-    "channelNumber": 136,
+    "channelNumber": 139,
     "id": "berbere-jeunesse",
     "name": "Berbère Jeunesse",
     "status": "not-found-on-ses-4-22w-public-listings",
@@ -2162,7 +2163,7 @@ export const castSat = {
     "redistributionEnabled": false
   },
   {
-    "channelNumber": 137,
+    "channelNumber": 140,
     "id": "chaine-pere-noel",
     "name": "La Chaîne du Père Noël",
     "status": "not-found-on-ses-4-22w-public-listings",
@@ -2173,7 +2174,7 @@ export const castSat = {
     "redistributionEnabled": false
   },
   {
-    "channelNumber": 188,
+    "channelNumber": 141,
     "id": "s-plus-box-office",
     "name": "S+ Box Office",
     "status": "not-found-on-ses-4-22w-public-listings",
@@ -2184,7 +2185,7 @@ export const castSat = {
     "redistributionEnabled": false
   },
   {
-    "channelNumber": 189,
+    "channelNumber": 142,
     "id": "s-plus-grand-ecran",
     "name": "S+ Grand Ecran",
     "status": "not-found-on-ses-4-22w-public-listings",
@@ -2195,7 +2196,7 @@ export const castSat = {
     "redistributionEnabled": false
   },
   {
-    "channelNumber": 190,
+    "channelNumber": 143,
     "id": "s-plus-cinema-s",
     "name": "S+ Cinéma(s)",
     "status": "not-found-on-ses-4-22w-public-listings",
@@ -2206,7 +2207,7 @@ export const castSat = {
     "redistributionEnabled": false
   },
   {
-    "channelNumber": 191,
+    "channelNumber": 144,
     "id": "s-plus-sport-360",
     "name": "S+ Sport 360",
     "status": "not-found-on-ses-4-22w-public-listings",
@@ -2217,7 +2218,7 @@ export const castSat = {
     "redistributionEnabled": false
   },
   {
-    "channelNumber": 192,
+    "channelNumber": 145,
     "id": "s-plus-docs-canalplus",
     "name": "S+ Docs Canal+",
     "status": "not-found-on-ses-4-22w-public-listings",
@@ -2228,7 +2229,7 @@ export const castSat = {
     "redistributionEnabled": false
   },
   {
-    "channelNumber": 193,
+    "channelNumber": 146,
     "id": "s-plus-foot",
     "name": "S+ Foot",
     "status": "not-found-on-ses-4-22w-public-listings",
@@ -2239,7 +2240,7 @@ export const castSat = {
     "redistributionEnabled": false
   },
   {
-    "channelNumber": 85,
+    "channelNumber": 147,
     "id": "bein-sports",
     "name": "beIN SPORTS",
     "status": "not-found-on-ses-4-22w-public-listings",
@@ -2250,7 +2251,7 @@ export const castSat = {
     "redistributionEnabled": false
   },
   {
-    "channelNumber": 86,
+    "channelNumber": 148,
     "id": "eurosport-1",
     "name": "Eurosport 1",
     "status": "found-encrypted",
@@ -2275,7 +2276,7 @@ export const castSat = {
     }
   },
   {
-    "channelNumber": 87,
+    "channelNumber": 149,
     "id": "automoto",
     "name": "Automoto",
     "status": "found-encrypted",
@@ -2300,7 +2301,7 @@ export const castSat = {
     }
   },
   {
-    "channelNumber": 88,
+    "channelNumber": 150,
     "id": "equidia",
     "name": "Equidia",
     "status": "not-found-on-ses-4-22w-public-listings",
@@ -2311,7 +2312,7 @@ export const castSat = {
     "redistributionEnabled": false
   },
   {
-    "channelNumber": 226,
+    "channelNumber": 151,
     "id": "cine-plus-frisson",
     "name": "Ciné+ Frisson",
     "status": "not-found-on-ses-4-22w-public-listings",
@@ -2322,7 +2323,7 @@ export const castSat = {
     "redistributionEnabled": false
   },
   {
-    "channelNumber": 227,
+    "channelNumber": 152,
     "id": "cine-plus-emotion",
     "name": "Ciné+ Emotion",
     "status": "not-found-on-ses-4-22w-public-listings",
@@ -2333,7 +2334,7 @@ export const castSat = {
     "redistributionEnabled": false
   },
   {
-    "channelNumber": 228,
+    "channelNumber": 153,
     "id": "cine-plus-family",
     "name": "Ciné+ Family",
     "status": "not-found-on-ses-4-22w-public-listings",
@@ -2344,7 +2345,7 @@ export const castSat = {
     "redistributionEnabled": false
   },
   {
-    "channelNumber": 229,
+    "channelNumber": 154,
     "id": "cine-plus-festival",
     "name": "Ciné+ Festival",
     "status": "not-found-on-ses-4-22w-public-listings",
@@ -2355,7 +2356,7 @@ export const castSat = {
     "redistributionEnabled": false
   },
   {
-    "channelNumber": 231,
+    "channelNumber": 155,
     "id": "cine-plus-classic",
     "name": "Ciné+ Classic",
     "status": "not-found-on-ses-4-22w-public-listings",
@@ -2366,7 +2367,7 @@ export const castSat = {
     "redistributionEnabled": false
   },
   {
-    "channelNumber": 230,
+    "channelNumber": 156,
     "id": "polar-plus",
     "name": "POLAR+",
     "status": "not-found-on-ses-4-22w-public-listings",
@@ -2377,7 +2378,7 @@ export const castSat = {
     "redistributionEnabled": false
   },
   {
-    "channelNumber": 232,
+    "channelNumber": 157,
     "id": "comedie-plus",
     "name": "Comédie+",
     "status": "not-found-on-ses-4-22w-public-listings",
@@ -2388,7 +2389,7 @@ export const castSat = {
     "redistributionEnabled": false
   },
   {
-    "channelNumber": 233,
+    "channelNumber": 158,
     "id": "paris-premiere",
     "name": "Paris Première",
     "status": "not-found-on-ses-4-22w-public-listings",
@@ -2399,7 +2400,7 @@ export const castSat = {
     "redistributionEnabled": false
   },
   {
-    "channelNumber": 234,
+    "channelNumber": 159,
     "id": "teva",
     "name": "Téva",
     "status": "not-found-on-ses-4-22w-public-listings",
@@ -2410,7 +2411,7 @@ export const castSat = {
     "redistributionEnabled": false
   },
   {
-    "channelNumber": 235,
+    "channelNumber": 160,
     "id": "serie-club",
     "name": "Série Club",
     "status": "found-encrypted",
@@ -2435,7 +2436,7 @@ export const castSat = {
     }
   },
   {
-    "channelNumber": 236,
+    "channelNumber": 161,
     "id": "showtime",
     "name": "Showtime",
     "status": "not-found-on-ses-4-22w-public-listings",
@@ -2446,7 +2447,7 @@ export const castSat = {
     "redistributionEnabled": false
   },
   {
-    "channelNumber": 237,
+    "channelNumber": 162,
     "id": "starz",
     "name": "Starz",
     "status": "not-found-on-ses-4-22w-public-listings",
@@ -2457,7 +2458,7 @@ export const castSat = {
     "redistributionEnabled": false
   },
   {
-    "channelNumber": 238,
+    "channelNumber": 163,
     "id": "nrj-hits",
     "name": "NRJ Hits",
     "status": "not-found-on-ses-4-22w-public-listings",
@@ -2468,7 +2469,7 @@ export const castSat = {
     "redistributionEnabled": false
   },
   {
-    "channelNumber": 239,
+    "channelNumber": 164,
     "id": "europe-2-pop-tv",
     "name": "Europe 2 POP TV",
     "status": "not-found-on-ses-4-22w-public-listings",
@@ -2479,7 +2480,7 @@ export const castSat = {
     "redistributionEnabled": false
   },
   {
-    "channelNumber": 240,
+    "channelNumber": 165,
     "id": "m6-music",
     "name": "M6 Music",
     "status": "pending-satellite-match",
@@ -2490,7 +2491,7 @@ export const castSat = {
     "redistributionEnabled": false
   },
   {
-    "channelNumber": 241,
+    "channelNumber": 166,
     "id": "trace-urban",
     "name": "Trace Urban",
     "status": "found-encrypted",
@@ -2515,7 +2516,7 @@ export const castSat = {
     }
   },
   {
-    "channelNumber": 242,
+    "channelNumber": 167,
     "id": "rfm-tv",
     "name": "RFM TV",
     "status": "not-found-on-ses-4-22w-public-listings",
@@ -2526,7 +2527,7 @@ export const castSat = {
     "redistributionEnabled": false
   },
   {
-    "channelNumber": 243,
+    "channelNumber": 168,
     "id": "deutsche-grammophon-plus",
     "name": "Deutsche Grammophon+",
     "status": "not-found-on-ses-4-22w-public-listings",
@@ -2537,7 +2538,7 @@ export const castSat = {
     "redistributionEnabled": false
   },
   {
-    "channelNumber": 244,
+    "channelNumber": 169,
     "id": "melody",
     "name": "Melody",
     "status": "not-found-on-ses-4-22w-public-listings",
@@ -2548,7 +2549,7 @@ export const castSat = {
     "redistributionEnabled": false
   },
   {
-    "channelNumber": 245,
+    "channelNumber": 170,
     "id": "mezzo",
     "name": "Mezzo",
     "status": "found-encrypted",
@@ -2573,7 +2574,7 @@ export const castSat = {
     }
   },
   {
-    "channelNumber": 246,
+    "channelNumber": 171,
     "id": "mezzo-live-hd",
     "name": "Mezzo Live HD",
     "status": "not-found-on-ses-4-22w-public-listings",
@@ -2584,7 +2585,7 @@ export const castSat = {
     "redistributionEnabled": false
   },
   {
-    "channelNumber": 247,
+    "channelNumber": 172,
     "id": "mtv",
     "name": "MTV",
     "status": "not-found-on-ses-4-22w-public-listings",
@@ -2595,7 +2596,7 @@ export const castSat = {
     "redistributionEnabled": false
   },
   {
-    "channelNumber": 248,
+    "channelNumber": 173,
     "id": "trace-africa",
     "name": "Trace Africa",
     "status": "found-encrypted",
@@ -2620,7 +2621,7 @@ export const castSat = {
     }
   },
   {
-    "channelNumber": 249,
+    "channelNumber": 174,
     "id": "trace-ivoire",
     "name": "Trace Ivoire",
     "status": "not-found-on-ses-4-22w-public-listings",
@@ -2631,7 +2632,7 @@ export const castSat = {
     "redistributionEnabled": false
   },
   {
-    "channelNumber": 250,
+    "channelNumber": 175,
     "id": "z-magic",
     "name": "Z Magic",
     "status": "not-found-on-ses-4-22w-public-listings",
@@ -2642,7 +2643,7 @@ export const castSat = {
     "redistributionEnabled": false
   },
   {
-    "channelNumber": 251,
+    "channelNumber": 176,
     "id": "seasons",
     "name": "Seasons",
     "status": "not-found-on-ses-4-22w-public-listings",
@@ -2653,7 +2654,7 @@ export const castSat = {
     "redistributionEnabled": false
   },
   {
-    "channelNumber": 252,
+    "channelNumber": 177,
     "id": "chasse-et-peche",
     "name": "Chasse et Pêche",
     "status": "not-found-on-ses-4-22w-public-listings",
@@ -2664,7 +2665,7 @@ export const castSat = {
     "redistributionEnabled": false
   },
   {
-    "channelNumber": 253,
+    "channelNumber": 178,
     "id": "animaux",
     "name": "Animaux",
     "status": "found-encrypted",
@@ -2689,7 +2690,7 @@ export const castSat = {
     }
   },
   {
-    "channelNumber": 254,
+    "channelNumber": 179,
     "id": "cheval-tv",
     "name": "Cheval TV",
     "status": "not-found-on-ses-4-22w-public-listings",
@@ -2700,7 +2701,7 @@ export const castSat = {
     "redistributionEnabled": false
   },
   {
-    "channelNumber": 255,
+    "channelNumber": 180,
     "id": "mieux-tv",
     "name": "Mieux TV",
     "status": "not-found-on-ses-4-22w-public-listings",
@@ -2711,7 +2712,7 @@ export const castSat = {
     "redistributionEnabled": false
   },
   {
-    "channelNumber": 256,
+    "channelNumber": 181,
     "id": "dog-cat-tv",
     "name": "Dog & Cat TV",
     "status": "not-found-on-ses-4-22w-public-listings",
@@ -2722,7 +2723,7 @@ export const castSat = {
     "redistributionEnabled": false
   },
   {
-    "channelNumber": 257,
+    "channelNumber": 182,
     "id": "love-nature",
     "name": "Love Nature",
     "status": "not-found-on-ses-4-22w-public-listings",
@@ -2733,7 +2734,7 @@ export const castSat = {
     "redistributionEnabled": false
   },
   {
-    "channelNumber": 258,
+    "channelNumber": 183,
     "id": "museum-tv",
     "name": "Museum TV",
     "status": "not-found-on-ses-4-22w-public-listings",
@@ -2744,7 +2745,7 @@ export const castSat = {
     "redistributionEnabled": false
   },
   {
-    "channelNumber": 259,
+    "channelNumber": 184,
     "id": "planete-plus-crime",
     "name": "Planète+ Crime",
     "status": "found-encrypted",
@@ -2769,7 +2770,7 @@ export const castSat = {
     }
   },
   {
-    "channelNumber": 260,
+    "channelNumber": 185,
     "id": "planete-plus-aventure",
     "name": "Planète+ Aventure",
     "status": "found-encrypted",
@@ -2794,7 +2795,7 @@ export const castSat = {
     }
   },
   {
-    "channelNumber": 261,
+    "channelNumber": 186,
     "id": "science-et-vie-tv",
     "name": "Science & Vie TV",
     "status": "found-encrypted",
@@ -2819,7 +2820,7 @@ export const castSat = {
     }
   },
   {
-    "channelNumber": 262,
+    "channelNumber": 187,
     "id": "toute-l-histoire",
     "name": "Toute l'Histoire",
     "status": "found-encrypted",
@@ -2844,7 +2845,7 @@ export const castSat = {
     }
   },
   {
-    "channelNumber": 263,
+    "channelNumber": 188,
     "id": "mgg-tv",
     "name": "MGG TV",
     "status": "found-encrypted",
@@ -2869,7 +2870,7 @@ export const castSat = {
     }
   },
   {
-    "channelNumber": 264,
+    "channelNumber": 189,
     "id": "golf-plus",
     "name": "GOLF+",
     "status": "not-found-on-ses-4-22w-public-listings",
@@ -2880,7 +2881,7 @@ export const castSat = {
     "redistributionEnabled": false
   },
   {
-    "channelNumber": 265,
+    "channelNumber": 190,
     "id": "infosport",
     "name": "Infosport",
     "status": "found-encrypted",
@@ -2905,7 +2906,7 @@ export const castSat = {
     }
   },
   {
-    "channelNumber": 266,
+    "channelNumber": 191,
     "id": "sport-1",
     "name": "Sport 1",
     "status": "not-found-on-ses-4-22w-public-listings",
@@ -2916,7 +2917,7 @@ export const castSat = {
     "redistributionEnabled": false
   },
   {
-    "channelNumber": 267,
+    "channelNumber": 192,
     "id": "sport-2",
     "name": "Sport 2",
     "status": "not-found-on-ses-4-22w-public-listings",
@@ -2927,7 +2928,7 @@ export const castSat = {
     "redistributionEnabled": false
   },
   {
-    "channelNumber": 268,
+    "channelNumber": 193,
     "id": "sport-3",
     "name": "Sport 3",
     "status": "not-found-on-ses-4-22w-public-listings",
@@ -2938,7 +2939,7 @@ export const castSat = {
     "redistributionEnabled": false
   },
   {
-    "channelNumber": 269,
+    "channelNumber": 194,
     "id": "sport-4",
     "name": "Sport 4",
     "status": "not-found-on-ses-4-22w-public-listings",
@@ -2949,7 +2950,7 @@ export const castSat = {
     "redistributionEnabled": false
   },
   {
-    "channelNumber": 270,
+    "channelNumber": 195,
     "id": "la-chaine-meteo",
     "name": "La Chaîne Météo",
     "status": "not-found-on-ses-4-22w-public-listings",
@@ -2960,7 +2961,7 @@ export const castSat = {
     "redistributionEnabled": false
   },
   {
-    "channelNumber": 271,
+    "channelNumber": 196,
     "id": "7info",
     "name": "7info",
     "status": "found-encrypted",
@@ -2985,7 +2986,7 @@ export const castSat = {
     }
   },
   {
-    "channelNumber": 272,
+    "channelNumber": 197,
     "id": "abc-news-live",
     "name": "ABC News Live",
     "status": "not-found-on-ses-4-22w-public-listings",
@@ -2996,7 +2997,7 @@ export const castSat = {
     "redistributionEnabled": false
   },
   {
-    "channelNumber": 273,
+    "channelNumber": 198,
     "id": "al-jazeera",
     "name": "Al Jazeera",
     "status": "not-found-on-ses-4-22w-public-listings",
@@ -3007,7 +3008,7 @@ export const castSat = {
     "redistributionEnabled": false
   },
   {
-    "channelNumber": 274,
+    "channelNumber": 199,
     "id": "bbc-news",
     "name": "BBC News",
     "status": "not-found-on-ses-4-22w-public-listings",
@@ -3018,7 +3019,7 @@ export const castSat = {
     "redistributionEnabled": false
   },
   {
-    "channelNumber": 275,
+    "channelNumber": 200,
     "id": "bloomberg-tv",
     "name": "Bloomberg TV",
     "status": "not-found-on-ses-4-22w-public-listings",
@@ -3029,7 +3030,7 @@ export const castSat = {
     "redistributionEnabled": false
   },
   {
-    "channelNumber": 276,
+    "channelNumber": 201,
     "id": "c-span",
     "name": "C-SPAN",
     "status": "not-found-on-ses-4-22w-public-listings",
@@ -3040,7 +3041,7 @@ export const castSat = {
     "redistributionEnabled": false
   },
   {
-    "channelNumber": 277,
+    "channelNumber": 202,
     "id": "cbs-news-24-7",
     "name": "CBS News 24/7",
     "status": "not-found-on-ses-4-22w-public-listings",
@@ -3051,7 +3052,7 @@ export const castSat = {
     "redistributionEnabled": false
   },
   {
-    "channelNumber": 278,
+    "channelNumber": 203,
     "id": "cgtn",
     "name": "CGTN",
     "status": "found-encrypted",
@@ -3076,7 +3077,7 @@ export const castSat = {
     }
   },
   {
-    "channelNumber": 279,
+    "channelNumber": 204,
     "id": "cnbc",
     "name": "CNBC",
     "status": "not-found-on-ses-4-22w-public-listings",
@@ -3087,7 +3088,7 @@ export const castSat = {
     "redistributionEnabled": false
   },
   {
-    "channelNumber": 280,
+    "channelNumber": 205,
     "id": "cnn",
     "name": "CNN",
     "status": "not-found-on-ses-4-22w-public-listings",
@@ -3098,7 +3099,7 @@ export const castSat = {
     "redistributionEnabled": false
   },
   {
-    "channelNumber": 281,
+    "channelNumber": 206,
     "id": "nbc-news-now",
     "name": "NBC News NOW",
     "status": "not-found-on-ses-4-22w-public-listings",
@@ -3109,7 +3110,7 @@ export const castSat = {
     "redistributionEnabled": false
   },
   {
-    "channelNumber": 282,
+    "channelNumber": 207,
     "id": "newsmax",
     "name": "Newsmax",
     "status": "not-found-on-ses-4-22w-public-listings",
@@ -3120,7 +3121,7 @@ export const castSat = {
     "redistributionEnabled": false
   },
   {
-    "channelNumber": 283,
+    "channelNumber": 208,
     "id": "newsnation",
     "name": "NewsNation",
     "status": "not-found-on-ses-4-22w-public-listings",
@@ -3131,7 +3132,7 @@ export const castSat = {
     "redistributionEnabled": false
   },
   {
-    "channelNumber": 284,
+    "channelNumber": 209,
     "id": "nhk-world",
     "name": "NHK World",
     "status": "found-encrypted",
@@ -3156,7 +3157,7 @@ export const castSat = {
     }
   },
   {
-    "channelNumber": 285,
+    "channelNumber": 210,
     "id": "oan",
     "name": "OAN",
     "status": "not-found-on-ses-4-22w-public-listings",
@@ -3167,7 +3168,7 @@ export const castSat = {
     "redistributionEnabled": false
   },
   {
-    "channelNumber": 286,
+    "channelNumber": 211,
     "id": "sky-news",
     "name": "Sky News",
     "status": "not-found-on-ses-4-22w-public-listings",
@@ -3178,7 +3179,7 @@ export const castSat = {
     "redistributionEnabled": false
   },
   {
-    "channelNumber": 287,
+    "channelNumber": 212,
     "id": "the-weather-channel",
     "name": "The Weather Channel",
     "status": "not-found-on-ses-4-22w-public-listings",
@@ -3189,7 +3190,7 @@ export const castSat = {
     "redistributionEnabled": false
   },
   {
-    "channelNumber": 288,
+    "channelNumber": 213,
     "id": "trt-world",
     "name": "TRT World",
     "status": "not-found-on-ses-4-22w-public-listings",
@@ -3200,7 +3201,7 @@ export const castSat = {
     "redistributionEnabled": false
   },
   {
-    "channelNumber": 289,
+    "channelNumber": 214,
     "id": "a-plus",
     "name": "A+",
     "status": "pending-satellite-match",
@@ -3211,7 +3212,7 @@ export const castSat = {
     "redistributionEnabled": false
   },
   {
-    "channelNumber": 290,
+    "channelNumber": 215,
     "id": "m6-international",
     "name": "M6 International",
     "status": "not-found-on-ses-4-22w-public-listings",
@@ -3222,7 +3223,7 @@ export const castSat = {
     "redistributionEnabled": false
   },
   {
-    "channelNumber": 291,
+    "channelNumber": 216,
     "id": "maboke-tv",
     "name": "Maboke TV",
     "status": "found-encrypted",
@@ -3247,7 +3248,7 @@ export const castSat = {
     }
   },
   {
-    "channelNumber": 292,
+    "channelNumber": 217,
     "id": "magc-tv",
     "name": "MAGC TV",
     "status": "not-found-on-ses-4-22w-public-listings",
@@ -3258,7 +3259,7 @@ export const castSat = {
     "redistributionEnabled": false
   },
   {
-    "channelNumber": 293,
+    "channelNumber": 218,
     "id": "sunu-yeuf",
     "name": "Sunu Yeuf",
     "status": "found-encrypted",
@@ -3283,7 +3284,7 @@ export const castSat = {
     }
   },
   {
-    "channelNumber": 294,
+    "channelNumber": 219,
     "id": "vifi-tv",
     "name": "VIFI TV",
     "status": "not-found-on-ses-4-22w-public-listings",
@@ -3294,7 +3295,7 @@ export const castSat = {
     "redistributionEnabled": false
   },
   {
-    "channelNumber": 295,
+    "channelNumber": 220,
     "id": "zacu-tv",
     "name": "Zacu TV",
     "status": "found-encrypted",
@@ -3319,7 +3320,7 @@ export const castSat = {
     }
   },
   {
-    "channelNumber": 296,
+    "channelNumber": 221,
     "id": "zbc",
     "name": "ZBC",
     "status": "not-found-on-ses-4-22w-public-listings",
@@ -3330,7 +3331,7 @@ export const castSat = {
     "redistributionEnabled": false
   },
   {
-    "channelNumber": 297,
+    "channelNumber": 222,
     "id": "emci-tv",
     "name": "EMCI TV",
     "status": "found-encrypted",
@@ -3355,7 +3356,7 @@ export const castSat = {
     }
   },
   {
-    "channelNumber": 298,
+    "channelNumber": 223,
     "id": "esperance-tv",
     "name": "Espérance TV",
     "status": "not-found-on-ses-4-22w-public-listings",
@@ -3366,7 +3367,7 @@ export const castSat = {
     "redistributionEnabled": false
   },
   {
-    "channelNumber": 299,
+    "channelNumber": 224,
     "id": "ewtn",
     "name": "EWTN",
     "status": "not-found-on-ses-4-22w-public-listings",
@@ -3377,7 +3378,7 @@ export const castSat = {
     "redistributionEnabled": false
   },
   {
-    "channelNumber": 300,
+    "channelNumber": 225,
     "id": "hope-channel",
     "name": "Hope Channel",
     "status": "not-found-on-ses-4-22w-public-listings",
@@ -3388,7 +3389,7 @@ export const castSat = {
     "redistributionEnabled": false
   },
   {
-    "channelNumber": 301,
+    "channelNumber": 226,
     "id": "kto",
     "name": "KTO",
     "status": "found-encrypted",
@@ -3413,7 +3414,7 @@ export const castSat = {
     }
   },
   {
-    "channelNumber": 302,
+    "channelNumber": 227,
     "id": "top-chretien",
     "name": "Top Chrétien",
     "status": "not-found-on-ses-4-22w-public-listings",
@@ -3424,7 +3425,7 @@ export const castSat = {
     "redistributionEnabled": false
   },
   {
-    "channelNumber": 303,
+    "channelNumber": 228,
     "id": "trace-gospel",
     "name": "Trace Gospel",
     "status": "found-encrypted",
@@ -3449,7 +3450,7 @@ export const castSat = {
     }
   },
   {
-    "channelNumber": 304,
+    "channelNumber": 229,
     "id": "cuisines",
     "name": "Cuisines",
     "status": "found-encrypted",
@@ -3474,7 +3475,7 @@ export const castSat = {
     }
   },
   {
-    "channelNumber": 305,
+    "channelNumber": 230,
     "id": "nollywood-tv",
     "name": "Nollywood TV",
     "status": "found-encrypted",
@@ -3499,7 +3500,7 @@ export const castSat = {
     }
   },
   {
-    "channelNumber": 306,
+    "channelNumber": 231,
     "id": "nollywood-tv-epic",
     "name": "Nollywood TV Epic",
     "status": "found-encrypted",
@@ -3524,7 +3525,7 @@ export const castSat = {
     }
   },
   {
-    "channelNumber": 307,
+    "channelNumber": 232,
     "id": "passion-bollywood",
     "name": "Passion Bollywood",
     "status": "not-found-on-ses-4-22w-public-listings",
@@ -3535,7 +3536,7 @@ export const castSat = {
     "redistributionEnabled": false
   },
   {
-    "channelNumber": 308,
+    "channelNumber": 233,
     "id": "clique-tv",
     "name": "Clique TV",
     "status": "found-encrypted",
@@ -3560,7 +3561,7 @@ export const castSat = {
     }
   },
   {
-    "channelNumber": 309,
+    "channelNumber": 234,
     "id": "cine-plus-ocs",
     "name": "Ciné+ OCS",
     "status": "not-found-on-ses-4-22w-public-listings",
@@ -3569,7 +3570,139 @@ export const castSat = {
     "sourceVerified": false,
     "physicalReceptionVerified": false,
     "redistributionEnabled": false
-  }
+  },
+  {
+    "channelNumber": 235,
+    "id": "canal-plus-premiere",
+    "name": "Canal+ Première",
+    "status": "pending-satellite-match",
+    "satelliteId": null,
+    "serviceId": null,
+    "sourceVerified": false,
+    "physicalReceptionVerified": false,
+    "redistributionEnabled": false
+  },
+  {
+    "channelNumber": 236,
+    "id": "canal-plus-elles",
+    "name": "Canal+ ELLES",
+    "status": "pending-satellite-match",
+    "satelliteId": null,
+    "serviceId": null,
+    "sourceVerified": false,
+    "physicalReceptionVerified": false,
+    "redistributionEnabled": false
+  },
+  {
+    "channelNumber": 237,
+    "id": "canal-plus-kids",
+    "name": "Canal+ Kids",
+    "status": "pending-satellite-match",
+    "satelliteId": null,
+    "serviceId": null,
+    "sourceVerified": false,
+    "physicalReceptionVerified": false,
+    "redistributionEnabled": false
+  },
+  {
+    "channelNumber": 238,
+    "id": "canal-plus-docs",
+    "name": "Canal+ Docs",
+    "status": "pending-satellite-match",
+    "satelliteId": null,
+    "serviceId": null,
+    "sourceVerified": false,
+    "physicalReceptionVerified": false,
+    "redistributionEnabled": false
+  },
+  {
+    "channelNumber": 239,
+    "id": "canal-plus-sport-1",
+    "name": "Canal+ Sport 1",
+    "status": "pending-satellite-match",
+    "satelliteId": null,
+    "serviceId": null,
+    "sourceVerified": false,
+    "physicalReceptionVerified": false,
+    "redistributionEnabled": false
+  },
+  {
+    "channelNumber": 240,
+    "id": "canal-plus-sport-2",
+    "name": "Canal+ Sport 2",
+    "status": "pending-satellite-match",
+    "satelliteId": null,
+    "serviceId": null,
+    "sourceVerified": false,
+    "physicalReceptionVerified": false,
+    "redistributionEnabled": false
+  },
+  {
+    "channelNumber": 241,
+    "id": "ivoire-tv-music",
+    "name": "Ivoire TV Music",
+    "status": "pending-satellite-match",
+    "satelliteId": null,
+    "serviceId": null,
+    "sourceVerified": false,
+    "physicalReceptionVerified": false,
+    "redistributionEnabled": false
+  },
+  {
+    "channelNumber": 242,
+    "id": "rts-1",
+    "name": "RTS 1",
+    "status": "pending-satellite-match",
+    "satelliteId": null,
+    "serviceId": null,
+    "sourceVerified": false,
+    "physicalReceptionVerified": false,
+    "redistributionEnabled": false
+  },
+  {
+    "channelNumber": 243,
+    "id": "tfm",
+    "name": "TFM",
+    "status": "pending-satellite-match",
+    "satelliteId": null,
+    "serviceId": null,
+    "sourceVerified": false,
+    "physicalReceptionVerified": false,
+    "redistributionEnabled": false
+  },
+  {
+    "channelNumber": 244,
+    "id": "sen-tv",
+    "name": "SEN TV",
+    "status": "pending-satellite-match",
+    "satelliteId": null,
+    "serviceId": null,
+    "sourceVerified": false,
+    "physicalReceptionVerified": false,
+    "redistributionEnabled": false
+  },
+  {
+    "channelNumber": 245,
+    "id": "walf-tv",
+    "name": "WALF TV",
+    "status": "pending-satellite-match",
+    "satelliteId": null,
+    "serviceId": null,
+    "sourceVerified": false,
+    "physicalReceptionVerified": false,
+    "redistributionEnabled": false
+  },
+  {
+    "channelNumber": 246,
+    "id": "rts-2",
+    "name": "RTS 2",
+    "status": "pending-satellite-match",
+    "satelliteId": null,
+    "serviceId": null,
+    "sourceVerified": false,
+    "physicalReceptionVerified": false,
+    "redistributionEnabled": false
+  },
 ],
   "catalogueMatches": [
   {
@@ -7232,7 +7365,7 @@ export const castSat = {
     "lastVerified": "2026-10-03",
     "satelliteId": "ses-4-22w",
     "transponderCountSearched": 12,
-    "catalogueCount": 234,
+    "catalogueCount": 246,
     "catalogueMatchCount": 69,
     "physicalReceiverRequired": true,
     "authorizationRequiredForAllMatchedServices": true
