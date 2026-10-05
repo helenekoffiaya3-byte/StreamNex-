@@ -1,4 +1,4 @@
-import castSat from "../../config/cast-sat.js";
+import { castSat } from "../../config/cast-sat.js";
 
 function json(data, status = 200) {
   return new Response(JSON.stringify(data), {
