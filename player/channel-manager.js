@@ -28,7 +28,7 @@
       productionUrl: channel.productionUrl || null,
       streamEnabled: Boolean(channel.streamEnabled),
       streamConfigured: Boolean(channel.streamConfigured ?? channel.productionUrl ?? channel.youtubeChannelId),
-      streamSource: String(channel.streamSource || (channel.youtubeChannelId ? 'youtube-live' : 'hls')),\n      satelliteFallback: Boolean(channel.satelliteFallback),
+      streamSource: String(channel.streamSource || (channel.youtubeChannelId ? 'youtube-live' : 'hls')),\n      liveOnly: Boolean(channel.liveOnly),\n      satelliteFallback: Boolean(channel.satelliteFallback),
       youtubeChannelId: channel.youtubeChannelId || null
     };
   }
