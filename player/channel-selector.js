@@ -14,7 +14,7 @@
     const feedback=root.document.getElementById('channel-feedback');
     if(!manager||!list) return;
 
-    let channels=manager.getChannels();
+    let channels=manager.getChannels().filter(c=>!c.liveOnly);
     let selectedId=null;
     let favoritesOnly=false;
 
@@ -91,7 +91,7 @@
       if(e.detail?.channel?.id){selectedId=e.detail.channel.id;render();}
     });
     root.addEventListener('streamlive:catalog-ready',()=>{
-      channels=manager.getChannels();
+      channels=manager.getChannels().filter(c=>!c.liveOnly);
       renderGroups();
       render();
       if(feedback){feedback.textContent=channels.length+' chaînes chargées';feedback.className='channel-feedback success';}
