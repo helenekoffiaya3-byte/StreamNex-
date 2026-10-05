@@ -28,7 +28,7 @@
       productionUrl: channel.productionUrl || null,
       streamEnabled: Boolean(channel.streamEnabled),
       streamConfigured: Boolean(channel.streamConfigured ?? channel.productionUrl ?? channel.youtubeChannelId),
-      streamSource: String(channel.streamSource || (channel.youtubeChannelId ? 'youtube-live' : 'hls')),
+      streamSource: String(channel.streamSource || (channel.youtubeChannelId ? 'youtube-live' : 'hls')),\n      satelliteFallback: Boolean(channel.satelliteFallback),
       youtubeChannelId: channel.youtubeChannelId || null
     };
   }
@@ -46,36 +46,65 @@
     }) || null;
   }
 
+  async function resolveSatellite(channel, reason) {
+    try {
+      const response = await fetch('/api/source-resolve?id=' + encodeURIComponent(channel.id) + '&preferSatellite=1', { cache: 'no-store' });
+      if (!response.ok) throw new Error('RESOLVER_HTTP_' + response.status);
+      const data = await response.json();
+      if (!data?.source?.url) return { ok: false, reason: data?.satellite?.status || 'CASTSAT_UNAVAILABLE' };
+      return { ok: true, url: data.source.url, metadata: data };
+    } catch (error) {
+      return { ok: false, reason: String(error) };
+    }
+  }
+
+  async function loadSatelliteFallback(channel, mode, reason) {
+    const player = root.NTS14LavaPlayer;
+    const result = await resolveSatellite(channel, reason);
+    if (!result.ok) {
+      if (player && typeof player.setStatus === 'function') player.setStatus('Live indisponible — secours satellite non configuré','error');
+      root.dispatchEvent(new CustomEvent('streamlive:source-unavailable', { detail: { channel, source: 'cast-sat', reason: result.reason } }));
+      return false;
+    }
+    if (player && typeof player.loadNTSMedia === 'function') {
+      player.loadNTSMedia(result.url, mode);
+      if (typeof player.setStatus === 'function') player.setStatus('Secours satellite — chargement…');
+    }
+    root.dispatchEvent(new CustomEvent('streamlive:source-fallback', { detail: { channel, source: 'cast-sat', reason } }));
+    return true;
+  }
+
+  function bindPlayerFailover(channel, mode) {
+    const handler = (event) => {
+      if (event.detail?.channelId !== channel.id) return;
+      root.removeEventListener('streamlive:player-error', handler);
+      loadSatelliteFallback(channel, mode, event.detail?.reason || 'PLAYER_ERROR');
+    };
+    root.addEventListener('streamlive:player-error', handler, { once: true });
+  }
+
   function select(identifier, options) {
     const player = root.NTS14LavaPlayer;
     const channel = getChannel(identifier);
-
-    if (!channel) {
-      return { ok: false, code: 'CHANNEL_NOT_FOUND', channel: null };
-    }
-
-    if (!channel.streamEnabled || !channel.streamConfigured || (!channel.productionUrl && !channel.youtubeChannelId)) {
-      if (player && typeof player.cleanup === 'function') player.cleanup();
-      if (player && typeof player.setStatus === 'function') player.setStatus('Flux indisponible — source non configurée','error');
-      return { ok: false, code: 'STREAM_UNAVAILABLE', channel: channel };
-    }
-
-    if (!player || typeof player.loadNTSMedia !== 'function') {
-      return { ok: false, code: 'PLAYER_NOT_READY', channel: channel };
-    }
-
+    if (!channel) return { ok: false, code: 'CHANNEL_NOT_FOUND', channel: null };
+    if (!player || typeof player.loadNTSMedia !== 'function') return { ok: false, code: 'PLAYER_NOT_READY', channel };
     const mode = options && options.mode === 'live' ? 'live' : 'replay';
-    if (channel.streamSource === 'youtube-live' && channel.youtubeChannelId && typeof player.loadYouTubeLive === 'function') {
+
+    if (channel.productionUrl) {
+      bindPlayerFailover(channel, mode);
+      if (channel.streamSource === 'youtube-live' && channel.youtubeChannelId && typeof player.loadYouTubeLive === 'function') {
+        player.loadYouTubeLive(channel.youtubeChannelId);
+      } else {
+        player.loadNTSMedia(channel.productionUrl, mode);
+      }
+    } else if (channel.youtubeChannelId && channel.streamSource === 'youtube-live') {
       player.loadYouTubeLive(channel.youtubeChannelId);
     } else {
-      player.loadNTSMedia(channel.productionUrl, mode);
+      loadSatelliteFallback(channel, mode, 'LIVE_NOT_CONFIGURED');
     }
 
-    root.dispatchEvent(new CustomEvent('streamlive:channel-selected', {
-      detail: { channel: channel, mode: mode }
-    }));
-
-    return { ok: true, code: 'LOADED', channel: channel, mode: mode };
+    root.dispatchEvent(new CustomEvent('streamlive:channel-selected', { detail: { channel, mode } }));
+    return { ok: true, code: channel.productionUrl || channel.youtubeChannelId ? 'LOADED' : 'FALLBACK_PENDING', channel, mode };
   }
 
   function selectFromUrl() {
