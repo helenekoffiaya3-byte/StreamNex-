@@ -7825,8 +7825,7 @@ export const castSat = {
       "video": "HEVC"
     }
   ]
-
-
+,
   "receiverInfrastructure": {
     "status": "configuration-ready-hardware-required",
     "purpose": "Réception DVB-S/S2, scan des transpondeurs, sélection des services, puis sortie IP/HLS après descrambling autorisé.",
