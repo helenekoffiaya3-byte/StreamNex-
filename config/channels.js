@@ -339,6 +339,7 @@ const CHANNELS = [
   { channelNumber: 336, id: "c3-benin", tvgId: "c3-benin", name: "C3 Benin", group: "Afrique / International", logoUrl: "/assets/logos/channel-placeholder.svg", productionUrl: env("CHANNEL_336_HLS_URL") || null, streamEnabled: Boolean(env("CHANNEL_336_HLS_URL")), streamEnv: "CHANNEL_336_HLS_URL" },
   { channelNumber: 337, id: "canal-education", tvgId: "canal-education", name: "Canal Education", group: "Éducation", logoUrl: "/assets/logos/channel-placeholder.svg", productionUrl: env("CHANNEL_337_HLS_URL") || null, streamEnabled: Boolean(env("CHANNEL_337_HLS_URL")), streamEnv: "CHANNEL_337_HLS_URL" },
   { channelNumber: 338, id: "carrefour-tv", tvgId: "carrefour-tv", name: "Carrefour TV", group: "Afrique / International", logoUrl: "/assets/logos/channel-placeholder.svg", productionUrl: env("CHANNEL_338_HLS_URL") || null, streamEnabled: Boolean(env("CHANNEL_338_HLS_URL")), streamEnv: "CHANNEL_338_HLS_URL" },
+  { channelNumber: 339, id: "africanews", tvgId: "africanews", name: "Africanews", group: "Information", logoUrl: "/assets/logos/africanews.svg", youtubeChannelId: "UC1_E8NeF5QHY2dtdLRBCCLA", streamSource: "youtube-live", productionUrl: null, streamEnabled: true, streamEnv: "YOUTUBE_OFFICIAL_LIVE", liveOnly: true },
 ];
 
 // Catalogue integrity checks (development/build-time):
