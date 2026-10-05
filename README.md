@@ -1,73 +1,148 @@
 # StreamLive
 
-StreamLive est une interface de catalogue et de lecture de chaînes TV. Le catalogue actuel contient 234 entrées uniques. Le lecteur **NTS-1.4-Lava** reste indépendant du catalogue : les métadonnées et les URLs de production sont fournies par la fonction Netlify `/api/channels`.
+StreamLive est un catalogue et un lecteur de chaînes TV avec **deux voies de réception complémentaires** :
+
+1. **Live/IP en priorité** : HLS de production ou YouTube Live officiel.
+2. **Cast Sat en secours** : réception satellite DVB-S/DVB-S2 via un tuner/gateway autorisé, conversion en IP/HLS, puis bascule automatique lorsque la source Live est indisponible.
+
+Le lecteur **NTS-1.4-Lava** est conservé. Cast Sat n'est pas un deuxième catalogue concurrent : c'est une source de secours associée à la même chaîne.
 
 ## Architecture
 
-- `config/channels.js` — catalogue source.
+- `config/channels.js` — catalogue source actuel : **338 chaînes**.
+- `config/cast-sat.js` — cartographie satellite et paramètres de réception.
 - `netlify/functions/channels.mjs` — API `/api/channels`.
-- `player/index.html` — interface et lecteur HLS.
-- `player/channel-manager.js` — sélection et orchestration.
+- `netlify/functions/stream-status.mjs` — état des sources Live.
+- `netlify/functions/stream-check.mjs` — vérification des HLS configurés.
+- `netlify/functions/source-resolve.mjs` — résolution de la source de secours Cast Sat.
+- `player/index.html` — lecteur NTS-1.4-Lava.
+- `player/channel-manager.js` — sélection et bascule Live → Cast Sat.
 - `player/channel-selector.js` — recherche et catégories.
-- `player/favorite-manager.js` — favoris persistants dans `localStorage`.
+- `player/favorite-manager.js` — favoris persistants.
 
-## Développement local
+## Priorité des sources
 
-Application statique + fonction Netlify :
+Pour une chaîne donnée, StreamLive applique cette logique :
+
+```text
+Live/IP disponible
+      │
+      ├── oui → lecture Live
+      │
+      └── non / erreur fatale
+               │
+               ▼
+       Cast Sat configuré ?
+               │
+          ┌────┴────┐
+         oui       non
+          │         │
+          ▼         ▼
+       HLS      indisponible
+      satellite
+```
+
+Une erreur HLS réseau/média fatale déclenche l'événement `streamlive:player-error`, puis le gestionnaire tente `/api/source-resolve` avec `preferSatellite=1`.
+
+## Cast Sat
+
+Cast Sat représente la **réception physique satellite** et non un contournement de chiffrement.
+
+Le pipeline attendu est :
+
+```text
+Antenne + LNB
+   ↓
+Tuner DVB-S/DVB-S2
+   ↓
+Scan transpondeur
+   ↓
+Service TV autorisé / en clair
+   ↓
+MPEG-TS / SAT>IP
+   ↓
+Packager HLS
+   ↓
+StreamLive
+```
+
+Les services chiffrés restent marqués comme chiffrés. Aucun accès conditionnel, aucune clé, aucun Control Word et aucun contournement CAS ne doit être stocké dans Git. La redistribution n'est activée que lorsqu'elle est autorisée.
+
+Pour chaque chaîne, le secours HLS satellite utilise, lorsqu'il est configuré, une variable Netlify :
+
+`CASTSAT_<CHANNEL_ID_NORMALISE>_HLS_URL`
+
+Exemple pour RTI 1 :
+
+`CASTSAT_RTI_1_HLS_URL`
+
+La valeur réelle reste dans Netlify et **n'est jamais commitée dans Git**.
+
+## Satellite
+
+La configuration actuelle contient notamment une cartographie SES-4 / 22°W issue des vérifications précédentes et conserve la cible demandée Eutelsat 16A / 16°E comme information distincte. Une position satellite ne doit être considérée comme opérationnelle qu'après réception physique et validation du transpondeur.
+
+Le système est prévu pour évoluer vers plusieurs satellites sans modifier le catalogue maître : chaque entrée satellite doit fournir son propre service, transpondeur et éventuelle sortie IP/HLS autorisée.
+
+## Catalogue
+
+Le catalogue actuel contient **338 entrées** avec numéros et IDs uniques.
+
+Chaque chaîne contient notamment :
+
+- `channelNumber`
+- `id`
+- `tvgId`
+- `name`
+- `group`
+- `logoUrl`
+- `productionUrl`
+- `streamEnabled`
+- `streamEnv`
+- éventuellement `youtubeChannelId`
+
+Les URLs HLS privées sont injectées par les variables d'environnement Netlify.
+
+## Logos
+
+Les logos locaux sont servis depuis `player/assets/logos/`. Une référence de logo ne doit pas être considérée comme un fichier valide tant que le fichier n'a pas été contrôlé dans Git.
+
+## Développement
 
 ```bash
 netlify dev
 ```
 
-L'interface est publiée depuis `player` et les fonctions depuis `netlify/functions`.
+L'application est publiée depuis `player` et les fonctions depuis `netlify/functions`.
 
-## Catalogue
+## API
 
-Chaque chaîne contient notamment `channelNumber`, `id`, `name`, `group`, `logoUrl`, `productionUrl`, `streamEnabled` et `streamEnv`.
+### `GET /api/channels`
 
-Les URLs de flux de production sont injectées par les variables d'environnement Netlify et ne doivent pas être commitées.
+Retourne le catalogue public.
 
-## Ajouter une chaîne
+### `GET /api/stream-status`
 
-1. Ajouter une entrée unique dans `config/channels.js`.
-2. Garantir un `channelNumber` et un `id` uniques.
-3. Définir le nom, la catégorie et le logo.
-4. Associer le flux HLS à une variable d'environnement Netlify.
-5. Vérifier `streamEnabled`.
-6. Tester `/api/channels` puis la sélection dans le lecteur.
-7. Contrôler `/api/stream-status` pour vérifier combien de flux HLS sont réellement configurés.
+Retourne la couverture des sources Live sans exposer les valeurs des variables d'environnement.
 
-## Logos
+### `GET /api/stream-check`
 
-Les logos locaux référencés par le catalogue existent sous le dossier publié `player/assets/logos/`. Le catalogue contient actuellement 68 références locales, 133 références externes et 33 entrées S+ sans `logoUrl` volontairement conservées sans modification.
+Teste les HLS réellement configurés.
 
-Le contrôle du catalogue confirme que les 234 entrées ont des `id`, `tvgId`, `name` et `group` uniques. Les numéros de chaîne sont également uniques ; ils ne sont pas volontairement renumérotés afin de préserver les identifiants existants.
+### `GET /api/source-resolve?id=<channel>&preferSatellite=1`
 
-## Déploiement Netlify
-
-Le fichier `netlify.toml` configure le dossier publié `player` et les fonctions `netlify/functions`.
-
-Configurer les variables HLS dans Netlify, jamais dans Git. Tester le catalogue et le lecteur avant une publication de production.
-
-## Flux HLS
-
-Les flux ne sont pas inventés ni stockés en clair dans Git : les chaînes HLS référencent une variable `*_HLS_URL` via `streamEnv`, tandis que les sources YouTube Live utilisent un identifiant de chaîne public. Tant que la variable Netlify correspondante n'est pas définie, `productionUrl` reste `null`, `streamConfigured` est `false` et le lecteur affiche explicitement l'état indisponible. `/api/stream-status` permet de contrôler la couverture de configuration sans exposer les valeurs des variables d'environnement.
-
-Le lecteur HLS utilise Hls.js lorsque disponible et le HLS natif lorsqu'il est supporté par le navigateur. Le lecteur prend aussi en charge les sources YouTube Live via leur lecteur officiel intégré. Les erreurs réseau/média et les états d'attente sont gérés.
+Cherche une sortie Cast Sat/HLS configurée pour la chaîne et retourne uniquement les métadonnées nécessaires au basculement.
 
 ## Sécurité
 
-Ne jamais committer de clés, tokens, mots de passe ou URLs privées. Les données sensibles restent dans les variables d'environnement Netlify.
+- Aucun secret ou URL privée dans Git.
+- Aucun contournement CAS.
+- Aucun stockage de clés de déchiffrement.
+- Les flux satellite chiffrés ne sont utilisables que via une réception et une autorisation légitimes.
+- Les variables HLS restent dans Netlify.
 
-## Validation Étape 5
+## État de finalisation
 
-Les contrôles du catalogue vérifient `id`, `tvgId`, `channelNumber`, `name`, `group`, `logoUrl`, `productionUrl` et le type de `streamEnabled`. Les favoris utilisent `localStorage`. Le lecteur valide les URLs HTTP(S), gère les états de chargement/erreur et ne charge qu'un seul flux à la fois.
+Le catalogue et l'orchestration Live → Cast Sat sont maintenant structurés. La partie matérielle satellite reste nécessaire pour produire réellement les sorties HLS de secours : StreamLive ne peut pas créer une réception satellite sans tuner/gateway physique.
 
-### État actuel
-
-- Catalogue : 234 chaînes, IDs/TVG IDs/canaux uniques.
-- Favoris : ajout, retrait, persistance et filtre.
-- Lecteur : HLS.js + HLS natif, Play/Pause, volume, plein écran, seek en replay et gestion d'erreurs.
-- Netlify : publication `player`, fonctions `netlify/functions`, API `/api/channels`.
-- Logos : 140 URLs externes et 94 URLs locales référencées. Les références locales disposent d’un fallback visuel dans le sélecteur afin qu’un logo indisponible ne casse pas l’interface ; les fichiers sources locaux restent à restaurer ou remplacer par des sources externes stables.
-- Flux : la structure de vérification HLS est en place (`streamEnv`, `streamConfigured`, `/api/stream-status`) ; la lecture réelle dépend de la configuration des variables `*_HLS_URL` dans l'environnement Netlify.
+Avant la mise en production complète, il faut valider les 338 chaînes, les logos réellement présents, les variables HLS Live, les sorties Cast Sat effectivement configurées et les tests de bascule.
