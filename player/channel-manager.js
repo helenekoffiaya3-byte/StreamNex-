@@ -56,61 +56,54 @@
       return { ok: false, code: 'CHANNEL_NOT_FOUND', channel: null };
     }
 
-    if (channel.id === 'a-plus-ivoire') {\n      if (!player || typeof player.loadNCILive !== 'function') return { ok: false, code: 'PLAYER_NOT_READY', channel: channel };\n      player.loadNCILive(channel.aplusIvoireLiveUrl || 'https://aplusivoire.web-prod2.direct.canal-overseas.com/live');\n      root.dispatchEvent(new CustomEvent('streamlive:channel-selected', { detail: { channel: channel, mode: 'live', source: 'a-plus-ivoire-official' } }));\n      return { ok: true, code: 'LOADED', channel: channel, mode: 'live', source: 'a-plus-ivoire-official' };\n    }\n\n    if (channel.id === 'nci') {\n      if (!player || typeof player.loadNCILive !== 'function') return { ok: false, code: 'PLAYER_NOT_READY', channel: channel };\n      player.loadNCILive(channel.nciDirectUrl || 'https://www.nci.ci/direct');\n      root.dispatchEvent(new CustomEvent('streamlive:channel-selected', { detail: { channel: channel, mode: 'live', source: 'nci-official' } }));\n      return { ok: true, code: 'LOADED', channel: channel, mode: 'live', source: 'nci-official' };\n    }\n\n    if (channel.id === 'dntv') {
-      if (!player || typeof player.loadNCILive !== 'function') return { ok: false, code: 'PLAYER_NOT_READY', channel: channel };
-      player.loadNCILive('https://www.dntv.ci/direct');
-      root.dispatchEvent(new CustomEvent('streamlive:channel-selected', {
-        detail: { channel: channel, mode: 'live', source: 'dntv-official' }
-      }));
-      return { ok: true, code: 'LOADED', channel: channel, mode: 'live', source: 'dntv-official' };
+    function loadDedicatedLiveFile(channel) {
+      return new Promise(function (resolve, reject) {
+        const existing = root.STREAMLIVE_LIVE_SOURCE;
+        if (existing && existing.channelId === channel.id) {
+          resolve(existing);
+          return;
+        }
+
+        root.STREAMLIVE_LIVE_SOURCE = null;
+        const script = root.document.createElement('script');
+        script.src = '/live/' + encodeURIComponent(channel.id) + '.js';
+        script.async = true;
+        script.onload = function () {
+          const source = root.STREAMLIVE_LIVE_SOURCE;
+          if (!source || source.channelId !== channel.id || !source.url) {
+            reject(new Error('LIVE_SOURCE_NOT_CONFIGURED'));
+            return;
+          }
+          resolve(source);
+        };
+        script.onerror = function () {
+          reject(new Error('LIVE_SOURCE_FILE_NOT_FOUND'));
+        };
+        root.document.head.appendChild(script);
+      });
     }
 
-    if (channel.id === 'life-tv') {
-      if (!player || typeof player.loadNCILive !== 'function') return { ok: false, code: 'PLAYER_NOT_READY', channel: channel };
-      player.loadNCILive(channel.lifeTvLiveUrl || 'https://lifeplay.ci/live/');
-      root.dispatchEvent(new CustomEvent('streamlive:channel-selected', {
-        detail: { channel: channel, mode: 'live', source: 'lifeplay-official' }
-      }));
-      return { ok: true, code: 'LOADED', channel: channel, mode: 'live', source: 'lifeplay-official' };
-    }
-
-    if (['rti-1', 'rti-2', 'la-3'].includes(channel.id)) {
-      if (!player || typeof player.loadRTIPlay !== 'function') return { ok: false, code: 'PLAYER_NOT_READY', channel: channel };
-      if (typeof root.fetch !== 'function') {
-        player.setStatus('Vérification RTI Play indisponible', 'error');
-        return { ok: false, code: 'RTI_STATUS_UNAVAILABLE', channel: channel };
+    const dedicatedIds = ['a-plus-ivoire', 'nci', 'dntv', 'life-tv', 'rti-1', 'rti-2', 'la-3'];
+    if (dedicatedIds.includes(channel.id)) {
+      if (!player || typeof player.loadNCILive !== 'function') {
+        return { ok: false, code: 'PLAYER_NOT_READY', channel: channel };
       }
 
       player.cleanup?.();
-      player.setStatus('Vérification RTI Play…');
+      player.setStatus('Chargement du Live officiel…');
 
-      root.fetch('/api/rti-live-status', { cache: 'no-store' })
-        .then(function (response) {
-          if (!response.ok) throw new Error('RTI_STATUS_HTTP');
-          return response.json();
-        })
-        .then(function (status) {
-          if (!status.available) {
-            player.setStatus('LIVE NON DISPONIBLE', 'error');
-            return;
-          }
-          if (status.activeChannel !== channel.id) {
-            player.setStatus('LIVE NON DISPONIBLE', 'error');
-            root.dispatchEvent(new CustomEvent('streamlive:rti-unavailable', {
-              detail: { channel: channel, activeChannel: status.activeChannel || null }
-            }));
-            return;
-          }
-          player.loadRTIPlay(status.liveUrl || channel.rtiplayUrl || 'https://www.rtiplay.ci/', status.activeName || channel.name);
+      loadDedicatedLiveFile(channel)
+        .then(function (source) {
+          player.loadNCILive(source.url);
           root.dispatchEvent(new CustomEvent('streamlive:channel-selected', {
-            detail: { channel: channel, mode: 'live', source: 'rtiplay', activeChannel: status.activeChannel }
+            detail: { channel: channel, mode: 'live', source: source.source || 'dedicated-live-file' }
           }));
         })
         .catch(function () {
-          player.setStatus('LIVE NON DISPONIBLE', 'error');
+          player.setStatus('LIVE NON DISPONIBLE — fichier Live non configuré', 'error');
         });
 
-      return { ok: true, code: 'CHECKING', channel: channel, mode: 'live', source: 'rtiplay' };
+      return { ok: true, code: 'CHECKING', channel: channel, mode: 'live', source: 'dedicated-live-file' };
     }
 
     if (!channel.streamEnabled || !channel.streamConfigured || (!channel.productionUrl && !channel.youtubeChannelId)) {
