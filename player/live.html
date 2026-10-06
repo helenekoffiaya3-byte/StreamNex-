@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="application-name" content="StreamLive — Espace utilisateur privé">
+<title>En direct — StreamLive</title>
+<style>
+*{box-sizing:border-box}html{background:#090909}body{margin:0;background:#090909;color:#fff;font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+.app{max-width:760px;margin:auto;min-height:100vh;padding:20px 18px 88px}.top{display:flex;align-items:center;justify-content:space-between}.title{font-size:30px;font-weight:850;font-style:italic;letter-spacing:.2px}.profile{width:48px;height:48px;border-radius:50%;object-fit:cover}
+.tabs{display:flex;gap:34px;overflow-x:auto;scrollbar-width:none;margin:20px 0 24px;border-bottom:1px solid #151515;padding:0 10px}.tabs::-webkit-scrollbar{display:none}.tab{flex:none;border:0;background:none;color:#8e8e8e;font-size:18px;font-weight:850;font-style:italic;padding:0 0 12px;cursor:pointer;white-space:nowrap}.tab.active{color:#fff;border-bottom:4px solid #e52b5b}
+.count{color:#999;font-size:13px;margin:0 0 12px 10px}.list{display:flex;flex-direction:column;gap:14px}.channel{display:grid;grid-template-columns:306px minmax(0,1fr);gap:24px;align-items:center;background:transparent;border:0;color:#fff;text-align:left;padding:0;cursor:pointer;width:100%}.thumb{width:306px;height:172px;background:#171a1f;border-radius:2px;display:grid;place-items:center;overflow:hidden;position:relative}.thumb img{width:100%;height:100%;object-fit:contain;background:#0c0c0c}.fallback{font-weight:900;font-size:24px;color:#bbb;text-align:center;padding:15px}.meta{min-width:0}.name{font-size:22px;font-weight:800;line-height:1.08;margin-bottom:6px}.group{font-size:17px;color:#999;line-height:1.15}.number{font-size:13px;color:#666;margin-top:8px}.state{font-size:11px;color:#e52b5b;margin-top:7px;font-weight:700}.fav{position:absolute;right:8px;bottom:8px;border:0;background:rgba(0,0,0,.72);color:#fff;border-radius:5px;width:38px;height:38px;font-size:20px;z-index:2}.empty{padding:30px;text-align:center;color:#999}.nav{position:fixed;bottom:0;left:0;right:0;height:72px;background:#181818;display:flex;justify-content:center;z-index:10}.nav-inner{width:min(760px,100%);display:grid;grid-template-columns:repeat(5,1fr)}.nav a{color:#aaa;text-decoration:none;display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:12px;gap:3px}.nav a.active{color:#e52b5b}.nav-icon{font-size:25px;line-height:1}@media(max-width:650px){.app{padding:18px 14px 86px}.title{font-size:28px}.tabs{gap:28px;margin-top:17px}.tab{font-size:17px}.channel{grid-template-columns:46% minmax(0,1fr);gap:18px}.thumb{width:100%;height:auto;aspect-ratio:16/9}.name{font-size:18px}.group{font-size:15px}.number{font-size:12px}.state{font-size:10px}.fav{width:34px;height:34px;font-size:18px}.nav{height:70px}}
+</style>
+</head>
+<body>
+<main class="app">
+<header class="top"><h1 class="title">EN DIRECT</h1><img class="profile" src="./assets/home-user.jpg" alt="Profil utilisateur"></header>
+<nav class="tabs" id="tabs" aria-label="Catégories en direct"></nav>
+<div id="count" class="count">Chargement des chaînes…</div>
+<section id="list" class="list" aria-live="polite"></section>
+</main>
+<nav class="nav"><div class="nav-inner">
+<a href="./index.html"><span class="nav-icon">⌂</span><span>Accueil</span></a>
+<a href="./user-search.html"><span class="nav-icon">⌕</span><span>Recherche</span></a>
+<a class="active" href="./live.html"><span class="nav-icon">▣</span><span>En direct</span></a>
+<a href="./index.html"><span class="nav-icon">▦</span><span>Chaînes &amp; Apps</span></a>
+<a href="./index.html"><span class="nav-icon">•••</span><span>En plus</span></a>
+</div></nav>
+<script src="./catalog-loader.js"></script>
+<script src="./live.js"></script>
+</body>
+</html>
