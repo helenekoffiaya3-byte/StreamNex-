@@ -17,6 +17,8 @@ export default async function handler(request) {
     name: channel.name,
     group: channel.group || "",
     logoUrl: channel.logoUrl || "",
+    bouquet: channel.bouquet || null,
+    bouquets: ["allBucket", ...(channel.bouquet ? [channel.bouquet] : [])],
     productionUrl: channel.productionUrl || null,
     streamEnabled: Boolean(channel.streamEnabled),
     streamConfigured: Boolean(channel.productionUrl || channel.youtubeChannelId),
