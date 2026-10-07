@@ -1,4 +1,9 @@
-const PROGRAMS=[
+const PROGRAMS=[\n{ id:"nick-loud", name:"Bienvenue chez les Loud", genre:"Galères scolaires", provider:"Nickelodeon", available:true, channelId:"nickelodeon" },
+{ id:"nick-henry-danger", name:"Henry Danger", genre:"Zéro zéro Kid", provider:"Nickelodeon", available:true, channelId:"nickelodeon" },
+{ id:"nick-thunderman", name:"Les Thunderman", genre:"Cruel été", provider:"Nickelodeon", available:true, channelId:"nickelodeon" },
+{ id:"nick-patrick-super-star", name:"Patrick super star", genre:"Vacances en famille", provider:"Nickelodeon", available:true, channelId:"nickelodeon" },
+{ id:"nick-spongebob", name:"Bob l'éponge", genre:"Aventures à Bikini Bottom", provider:"Nickelodeon", available:true, channelId:"nickelodeon" },
+
 { id:"cacao", name:"Cacao", genre:"Séries", provider:"S+", available:true, channelId:null },
 { id:"karate-kid-legends", name:"Karate Kid Legends", genre:"Cinéma", provider:"S+", available:true, channelId:null },
 { id:"invisible", name:"Invisible", genre:"Séries", provider:"S+", available:true, channelId:null },
