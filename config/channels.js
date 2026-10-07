@@ -430,6 +430,7 @@ const CHANNELS = [
   { channelNumber: 433, id: "madi-tv", tvgId: "madi-tv", name: "Madi TV", group: "Afrique — RDC", logoUrl: "/assets/logos/channel-placeholder.svg", productionUrl: env("CHANNEL_433_HLS_URL") || null, streamEnabled: Boolean(env("CHANNEL_433_HLS_URL")), streamEnv: "CHANNEL_433_HLS_URL", liveOnly: true },
   { channelNumber: 434, id: "amen-tv", tvgId: "amen-tv", name: "Amen TV", group: "Afrique — RDC", logoUrl: "/assets/logos/channel-placeholder.svg", productionUrl: env("CHANNEL_434_HLS_URL") || null, streamEnabled: Boolean(env("CHANNEL_434_HLS_URL")), streamEnv: "CHANNEL_434_HLS_URL", liveOnly: true },
   { channelNumber: 435, id: "mwangaza-tv", tvgId: "mwangaza-tv", name: "Mwangaza TV", group: "Afrique — RDC", logoUrl: "/assets/logos/channel-placeholder.svg", productionUrl: env("CHANNEL_435_HLS_URL") || null, streamEnabled: Boolean(env("CHANNEL_435_HLS_URL")), streamEnv: "CHANNEL_435_HLS_URL", liveOnly: true },
+  { channelNumber: 436, id: "mieux", tvgId: "mieux", name: "Mieux", bouquet: "StreetStart", group: "France", logoUrl: "", productionUrl: "https://www.france.tv/mieux/direct.html", streamSource: "web-live", webUrl: "https://www.france.tv/mieux/direct.html", streamEnabled: true, streamEnv: "WEB_LIVE" },
 ];
 
 // Catalogue integrity checks (development/build-time):
