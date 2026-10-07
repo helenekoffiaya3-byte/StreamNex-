@@ -29,7 +29,8 @@
       streamEnabled: Boolean(channel.streamEnabled),
       streamConfigured: Boolean(channel.streamConfigured ?? channel.productionUrl ?? channel.youtubeChannelId),
       streamSource: String(channel.streamSource || (channel.youtubeChannelId ? 'youtube-live' : 'hls')),\n      liveOnly: Boolean(channel.liveOnly),\n      satelliteFallback: Boolean(channel.satelliteFallback),
-      youtubeChannelId: channel.youtubeChannelId || null
+      youtubeChannelId: channel.youtubeChannelId || null,
+      webUrl: channel.webUrl || null
     };
   }
 
@@ -92,7 +93,9 @@
 
     if (channel.productionUrl) {
       bindPlayerFailover(channel, mode);
-      if (channel.streamSource === 'youtube-live' && channel.youtubeChannelId && typeof player.loadYouTubeLive === 'function') {
+      if (channel.streamSource === 'web-live' && channel.webUrl && typeof player.loadWebLive === 'function') {
+        player.loadWebLive(channel.webUrl);
+      } else if (channel.streamSource === 'youtube-live' && channel.youtubeChannelId && typeof player.loadYouTubeLive === 'function') {
         player.loadYouTubeLive(channel.youtubeChannelId);
       } else {
         player.loadNTSMedia(channel.productionUrl, mode);
