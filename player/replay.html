@@ -13,7 +13,7 @@ body{min-height:100vh}
 .back{width:42px;height:42px;border:0;border-radius:50%;background:#202020;color:#fff;font-size:31px;line-height:1;cursor:pointer}
 .title{margin:0;font-size:25px;font-weight:900;font-style:italic}
 .channel{margin-top:2px;color:#a9a9a9;font-size:14px}
-.hero{position:relative;overflow:hidden;border-radius:18px;min-height:280px;background:linear-gradient(135deg,#1b0b28,#171717 55%,#2a0b42);margin-bottom:26px}
+.hero{position:relative;border:0;padding:0;width:100%;text-align:left;color:#fff;cursor:pointer;display:block;overflow:hidden;border-radius:18px;min-height:280px;background:linear-gradient(135deg,#1b0b28,#171717 55%,#2a0b42);margin-bottom:26px}
 .hero.has-poster{background-size:cover;background-position:center}
 .hero:after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(0,0,0,.84),rgba(0,0,0,.32) 55%,rgba(0,0,0,.05))}
 .hero-content{position:relative;z-index:1;min-height:280px;padding:28px;display:flex;flex-direction:column;justify-content:flex-end}
@@ -41,9 +41,9 @@ body{min-height:100vh}
 <button class="back" onclick="history.back()" aria-label="Retour">‹</button>
 <div><h1 class="title">CHAÎNE &amp; APPS</h1><div id="channel" class="channel">Chargement…</div></div>
 </header>
-<section id="hero" class="hero">
+<button id="hero" class="hero" type="button" aria-label="Regarder en direct">
 <div class="hero-content"><div class="eyebrow">En ce moment sur la chaîne</div><h2 id="hero-title">Chargement…</h2><p id="hero-meta"></p></div>
-</section>
+</button>
 <h2 class="section-title">Tous les contenus</h2>
 <section id="content"><div class="empty">Chargement des programmes…</div></section>
 </main>
@@ -59,6 +59,7 @@ body{min-height:100vh}
  const q=new URLSearchParams(location.search),id=q.get('channel');
  const content=document.getElementById('content'),channelEl=document.getElementById('channel');
  const hero=document.getElementById('hero'),heroTitle=document.getElementById('hero-title'),heroMeta=document.getElementById('hero-meta');
+ hero.addEventListener("click",()=>{ if(id) location.href="./index.html?channel="+encodeURIComponent(id)+"&mode=live"; });
  const esc=v=>String(v??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
  try{
   const cr=await fetch('/api/channels',{cache:'no-store'});
