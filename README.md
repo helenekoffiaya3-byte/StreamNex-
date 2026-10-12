@@ -9,7 +9,7 @@ Le lecteur **NTS-1.4-Lava** est conservé. Cast Sat n'est pas un deuxième catal
 
 ## Architecture
 
-- `config/channels.js` — catalogue source actuel : **338 chaînes**.
+- `config/channels.js` — catalogue source actuel : **431 entrées** (inventaire réconcilié dans `docs/catalogue-inventory.json`).
 - `config/cast-sat.js` — cartographie satellite et paramètres de réception.
 - `netlify/functions/channels.mjs` — API `/api/channels`.
 - `netlify/functions/stream-status.mjs` — état des sources Live.
@@ -86,7 +86,7 @@ Le système est prévu pour évoluer vers plusieurs satellites sans modifier le 
 
 ## Catalogue
 
-Le catalogue actuel contient **338 entrées** avec numéros et IDs uniques.
+Le catalogue actuel contient **431 entrées** ; l’audit statique trouve 431 IDs uniques et 431 numéros uniques. Les numéros absents 131, 133, 144, 145 et 146 sont consignés sans être complétés..
 
 Chaque chaîne contient notamment :
 
