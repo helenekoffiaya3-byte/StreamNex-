@@ -1,7 +1,7 @@
 // StreamLive channel catalogue. Environment-backed stream URLs are server-side only.
 const env = (name) => typeof Netlify !== "undefined" ? Netlify.env.get(name) : null;
 const CHANNELS = [
-  { channelNumber: 1, id: "rti-1", tvgId: "rti-1", name: "RTI 1", bouquet: "StreetStart", group: "Côte d’Ivoire", logoUrl: "/assets/logos/rti-1.svg", productionUrl: env("RTI_1_HLS_URL") || null, streamEnabled: Boolean(env("RTI_1_HLS_URL")), streamEnv: "RTI_1_HLS_URL" },
+  { channelNumber: 1, id: "rti-1", tvgId: "rti-1", name: "RTI 1", bouquet: "StreetStart", group: "Côte d’Ivoire", logoUrl: "/assets/logos/rti-1.svg", productionUrl: "https://rtiplay.ci/rti1/direct", streamSource: "web-live", webUrl: "https://rtiplay.ci/rti1/direct", streamEnabled: true, streamEnv: "WEB_LIVE" },
   { channelNumber: 2, id: "rti-2", tvgId: "rti-2", name: "RTI 2", bouquet: "StreetStart", group: "Côte d’Ivoire", logoUrl: "/assets/logos/rti-2.svg", productionUrl: env("RTI_2_HLS_URL") || null, streamEnabled: Boolean(env("RTI_2_HLS_URL")), streamEnv: "RTI_2_HLS_URL" },
   { channelNumber: 3, id: "la-3", tvgId: "la-3", name: "La 3", bouquet: "StreetStart", group: "Côte d’Ivoire", logoUrl: "/assets/logos/la-3.svg", productionUrl: env("LA_3_HLS_URL") || null, streamEnabled: Boolean(env("LA_3_HLS_URL")), streamEnv: "LA_3_HLS_URL" },
   { channelNumber: 4, id: "a-plus-ivoire", tvgId: "a-plus-ivoire", name: "A+ Ivoire", bouquet: "StreetStart", group: "Côte d’Ivoire", logoUrl: "/assets/logos/a-plus-ivoire.png", productionUrl: env("A_PLUS_IVOIRE_HLS_URL") || null, streamEnabled: Boolean(env("A_PLUS_IVOIRE_HLS_URL")), streamEnv: "A_PLUS_IVOIRE_HLS_URL" },
