@@ -28,7 +28,9 @@
       productionUrl: channel.productionUrl || null,
       streamEnabled: Boolean(channel.streamEnabled),
       streamConfigured: Boolean(channel.streamConfigured ?? channel.productionUrl ?? channel.youtubeChannelId),
-      streamSource: String(channel.streamSource || (channel.youtubeChannelId ? 'youtube-live' : 'hls')),\n      liveOnly: Boolean(channel.liveOnly),\n      satelliteFallback: Boolean(channel.satelliteFallback),
+      streamSource: String(channel.streamSource || (channel.youtubeChannelId ? 'youtube-live' : 'hls')),
+      liveOnly: Boolean(channel.liveOnly),
+      satelliteFallback: Boolean(channel.satelliteFallback),
       youtubeChannelId: channel.youtubeChannelId || null,
       webUrl: channel.webUrl || null
     };
@@ -90,6 +92,7 @@
     if (!channel) return { ok: false, code: 'CHANNEL_NOT_FOUND', channel: null };
     if (!player || typeof player.loadNTSMedia !== 'function') return { ok: false, code: 'PLAYER_NOT_READY', channel };
     const mode = options && options.mode === 'live' ? 'live' : 'replay';
+    root.StreamLiveCurrentChannelId = channel.id;
 
     if (channel.productionUrl) {
       bindPlayerFailover(channel, mode);
