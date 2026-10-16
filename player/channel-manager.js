@@ -65,7 +65,7 @@
     const player = root.NTS14LavaPlayer;
     const result = await resolveSatellite(channel, reason);
     if (!result.ok) {
-      if (player && typeof player.setStatus === 'function') player.setStatus('Live indisponible — secours satellite non configuré','error');
+      if (player && typeof player.setStatus === 'function') player.setStatus('Live indisponible — secours satellite non validé, non autorisé ou non configuré','error');
       root.dispatchEvent(new CustomEvent('streamlive:source-unavailable', { detail: { channel, source: 'cast-sat', reason: result.reason } }));
       return false;
     }
@@ -94,32 +94,37 @@
     const mode = options && options.mode === 'live' ? 'live' : 'replay';
     root.StreamLiveCurrentChannelId = channel.id;
 
-    if (!channel.streamEnabled) {
-      if (typeof player.setStatus === 'function') player.setStatus('Flux désactivé ou non autorisé pour cette chaîne', 'error');
-      return { ok: false, code: 'STREAM_UNAVAILABLE', channel, mode };
-    }
-    if (channel.streamSource === 'youtube-live' && !channel.youtubeChannelId) {
-      if (typeof player.setStatus === 'function') player.setStatus('Source YouTube Live non configurée avec un identifiant de chaîne valide', 'error');
-      return { ok: false, code: 'STREAM_UNAVAILABLE', channel, mode };
-    }
+    const hasValidYouTubeId = Boolean(
+      channel.youtubeChannelId &&
+      /^[A-Za-z0-9_-]{20,}$/.test(String(channel.youtubeChannelId))
+    );
+    const liveAvailable = channel.streamEnabled && Boolean(
+      (channel.productionUrl && (channel.streamSource !== 'youtube-live' || hasValidYouTubeId)) ||
+      (channel.streamSource === 'youtube-live' && hasValidYouTubeId)
+    );
 
-    if (channel.productionUrl) {
+    if (liveAvailable) {
       bindPlayerFailover(channel, mode);
       if (channel.streamSource === 'web-live' && channel.webUrl && typeof player.loadWebLive === 'function') {
         player.loadWebLive(channel.webUrl);
-      } else if (channel.streamSource === 'youtube-live' && channel.youtubeChannelId && typeof player.loadYouTubeLive === 'function') {
+      } else if (channel.streamSource === 'youtube-live' && hasValidYouTubeId && typeof player.loadYouTubeLive === 'function') {
         player.loadYouTubeLive(channel.youtubeChannelId);
-      } else {
+      } else if (channel.productionUrl) {
         player.loadNTSMedia(channel.productionUrl, mode);
+      } else {
+        loadSatelliteFallback(channel, mode, 'LIVE_SOURCE_INVALID');
       }
-    } else if (channel.youtubeChannelId && channel.streamSource === 'youtube-live') {
-      player.loadYouTubeLive(channel.youtubeChannelId);
     } else {
-      loadSatelliteFallback(channel, mode, 'LIVE_NOT_CONFIGURED');
+      loadSatelliteFallback(channel, mode, channel.streamEnabled ? 'LIVE_NOT_CONFIGURED' : 'LIVE_DISABLED');
     }
 
     root.dispatchEvent(new CustomEvent('streamlive:channel-selected', { detail: { channel, mode } }));
-    return { ok: true, code: channel.productionUrl || channel.youtubeChannelId ? 'LOADED' : 'FALLBACK_PENDING', channel, mode };
+    return {
+      ok: true,
+      code: liveAvailable ? 'LOADED' : 'FALLBACK_PENDING',
+      channel,
+      mode
+    };
   }
 
   function selectFromUrl() {
