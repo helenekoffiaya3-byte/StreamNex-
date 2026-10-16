@@ -127,7 +127,7 @@ Retourne la couverture des sources Live sans exposer les valeurs des variables d
 
 ### `GET /api/stream-check`
 
-Teste les HLS réellement configurés.
+Teste les HLS réellement configurés. Cette route est réservée à l’administration : configure `STREAM_CHECK_TOKEN` dans les variables d’environnement Netlify, puis envoie `Authorization: Bearer <STREAM_CHECK_TOKEN>`. Sans token configuré, la route répond `503`; sans token valide, elle répond `401`. Les URL sources et URL finales ne sont jamais renvoyées par cette route.
 
 ### `GET /api/source-resolve?id=<channel>&preferSatellite=1`
 
@@ -145,4 +145,4 @@ Cherche une sortie Cast Sat/HLS configurée pour la chaîne et retourne uniqueme
 
 Le catalogue et l'orchestration Live → Cast Sat sont maintenant structurés. La partie matérielle satellite reste nécessaire pour produire réellement les sorties HLS de secours : StreamLive ne peut pas créer une réception satellite sans tuner/gateway physique.
 
-Avant la mise en production complète, il faut valider les 338 chaînes, les logos réellement présents, les variables HLS Live, les sorties Cast Sat effectivement configurées et les tests de bascule.
+Avant la mise en production complète, il faut valider les 431 entrées du catalogue, les logos réellement présents, les variables HLS Live, les sorties Cast Sat effectivement configurées et les tests de bascule.
