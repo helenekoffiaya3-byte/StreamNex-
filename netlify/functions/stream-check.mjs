@@ -1,17 +1,14 @@
 import channels from "../../config/channels.js";
 
-function json(data, status=200) {
+function json(data, status = 200) {
   return new Response(JSON.stringify(data), {
     status,
     headers: {
       "content-type": "application/json; charset=utf-8",
-      "cache-control": "no-store"
+      "cache-control": "no-store",
+      "x-content-type-options": "nosniff"
     }
   });
-}
-
-function timeout(ms) {
-  return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
 async function probe(url) {
@@ -24,19 +21,32 @@ async function probe(url) {
       signal: controller.signal,
       redirect: "follow"
     });
-    const text = await response.text();
+    // Read only a small prefix; never return source URLs or manifest contents to callers.
+    const reader = response.body?.getReader();
+    let prefix = "";
+    if (reader) {
+      try {
+        while (prefix.length < 512) {
+          const { done, value } = await reader.read();
+          if (done) break;
+          prefix += new TextDecoder().decode(value, { stream: true });
+          if (prefix.includes("\\n") || prefix.includes("\\r")) break;
+        }
+      } finally {
+        await reader.cancel().catch(() => {});
+      }
+    }
     const contentType = response.headers.get("content-type") || "";
-    const looksHls = text.trimStart().startsWith("#EXTM3U");
+    const looksHls = prefix.trimStart().startsWith("#EXTM3U");
     return {
       ok: response.ok && looksHls,
       httpStatus: response.status,
       contentType,
       looksHls,
-      finalUrl: response.url,
       error: response.ok ? (looksHls ? null : "INVALID_M3U8") : "HTTP_ERROR"
     };
   } catch (error) {
-    return { ok: false, httpStatus: 0, contentType: "", looksHls: false, finalUrl: url, error: error.name === "AbortError" ? "TIMEOUT" : "FETCH_ERROR" };
+    return { ok: false, httpStatus: 0, contentType: "", looksHls: false, error: error.name === "AbortError" ? "TIMEOUT" : "FETCH_ERROR" };
   } finally {
     clearTimeout(timer);
   }
@@ -44,6 +54,11 @@ async function probe(url) {
 
 export default async function handler(request) {
   if (request.method !== "GET") return json({ error: "METHOD_NOT_ALLOWED" }, 405);
+
+  const token = typeof process !== "undefined" ? process.env.STREAM_CHECK_TOKEN : null;
+  if (!token) return json({ error: "STREAM_CHECK_NOT_CONFIGURED" }, 503);
+  const supplied = request.headers.get("authorization") || "";
+  if (supplied !== `Bearer ${token}`) return json({ error: "UNAUTHORIZED" }, 401);
 
   const results = [];
   for (const channel of channels) {
@@ -62,7 +77,6 @@ export default async function handler(request) {
       name: channel.name,
       source: "hls",
       status: "checking",
-      url: source,
       ...(await probe(source))
     });
   }
