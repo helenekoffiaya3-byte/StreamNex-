@@ -1,6 +1,6 @@
 (function(){
 'use strict';
-const tabs=document.getElementById('tabs'),list=document.getElementById('list'),count=document.getElementById('count');
+const tabs=document.getElementById('tabs'),list=document.getElementById('list'),count=document.getElementById('count'),sportUnder=document.getElementById('sport-under-panel');
 let channels=[],active='__all__';
 function esc(v){return String(v??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]))}
 function initials(v){return String(v||'Chaîne').trim().split(/\s+/).slice(0,2).map(x=>x[0]||'').join('').toUpperCase()||'TV'}
@@ -9,7 +9,7 @@ function toggleFav(id){const s=favSet();s.has(id)?s.delete(id):s.add(id);localSt
 function groups(){return Array.from(new Set(channels.map(c=>c.group).filter(Boolean))).sort((a,b)=>a.localeCompare(b,'fr'))}
 function renderTabs(){
  const gs=groups();tabs.innerHTML='';
- [['__all__','TOUTES LES CHAÎNES'],['__fav__','FAVORIS'],['__sport__','SPORT']].forEach(([id,label])=>{const b=document.createElement('button');b.className='tab'+(active===id?' active':'');b.textContent=label;b.onclick=()=>{active=id;renderTabs();render()};tabs.appendChild(b)});
+ [['__all__','TOUTES LES CHAÎNES'],['__fav__','FAVORIS'],['__sport__','SPORT'],['__sport_under__','SPORT UNDER']].forEach(([id,label])=>{const b=document.createElement('button');b.className='tab'+(active===id?' active':'');b.textContent=label;b.onclick=()=>{active=id;renderTabs();render()};tabs.appendChild(b)});
  gs.filter(g=>g!=='Sport').forEach(g=>{const b=document.createElement('button');b.className='tab'+(active===g?' active':'');b.textContent=g.toUpperCase();b.onclick=()=>{active=g;renderTabs();render()};tabs.appendChild(b)});
 }
 function filtered(){
@@ -29,7 +29,9 @@ function card(c){
  article.onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();open()}};return article;
 }
 function render(){
- const arr=filtered();list.innerHTML='';count.textContent=arr.length+' chaîne'+(arr.length>1?'s':'');
+ const isSportUnder=active==='__sport_under__';if(sportUnder)sportUnder.hidden=!isSportUnder;list.hidden=isSportUnder;
+ if(isSportUnder){count.textContent='SPORT UNDER · SCORES EN DIRECT';list.innerHTML='';return}
+ const arr=filtered();list.hidden=false;list.innerHTML='';count.textContent=arr.length+' chaîne'+(arr.length>1?'s':'');
  if(!arr.length){list.innerHTML='<div class="empty">'+(active==='__fav__'?'Aucun favori enregistré.':'Aucune chaîne dans cette catégorie.')+'</div>';return}
  const frag=document.createDocumentFragment();arr.forEach(c=>frag.appendChild(card(c)));list.appendChild(frag);
 }
