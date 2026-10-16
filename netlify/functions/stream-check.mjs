@@ -13,7 +13,7 @@ function json(data, status = 200) {
 
 async function probe(url) {
   const controller = new AbortController();
-  const timer = setTimeout(() => controller.abort(), 7000);
+  const timer = setTimeout(() => controller.abort(), 2500);
   try {
     const response = await fetch(url, {
       method: "GET",
@@ -60,33 +60,36 @@ export default async function handler(request) {
   const supplied = request.headers.get("authorization") || "";
   if (supplied !== `Bearer ${token}`) return json({ error: "UNAUTHORIZED" }, 401);
 
-  const results = [];
-  for (const channel of channels) {
-    const source = channel.productionUrl || null;
-    if (!source) {
-      results.push({
-        id: channel.id,
-        name: channel.name,
-        source: channel.youtubeChannelId ? "youtube-live" : null,
-        status: channel.youtubeChannelId ? "youtube-live" : "unconfigured"
-      });
-      continue;
-    }
-    results.push({
-      id: channel.id,
-      name: channel.name,
-      source: "hls",
-      status: "checking",
-      ...(await probe(source))
-    });
-  }
+  const url = new URL(request.url);
+  const requestedLimit = Number.parseInt(url.searchParams.get("limit") || "12", 10);
+  const requestedOffset = Number.parseInt(url.searchParams.get("offset") || "0", 10);
+  const limit = Number.isFinite(requestedLimit) ? Math.min(20, Math.max(1, requestedLimit)) : 12;
+  const offset = Number.isFinite(requestedOffset) ? Math.max(0, requestedOffset) : 0;
 
+  // Website embeds and YouTube channel pages are not HLS manifests.
+  // Keep each request small enough for a serverless function execution window.
+  const hlsCandidates = channels.filter((channel) => {
+    const sourceType = channel.streamSource || (channel.productionUrl ? "hls" : null);
+    return Boolean(channel.productionUrl) &&
+      sourceType !== "web-live" &&
+      sourceType !== "youtube-live";
+  });
+  const page = hlsCandidates.slice(offset, offset + limit);
+  const results = await Promise.all(page.map(async (channel) => ({
+    id: channel.id,
+    name: channel.name,
+    source: "hls",
+    ...(await probe(channel.productionUrl))
+  })));
+
+  const nextOffset = offset + page.length < hlsCandidates.length ? offset + page.length : null;
   return json({
     checkedAt: new Date().toISOString(),
-    total: results.length,
-    hls: results.filter((r) => r.source === "hls").length,
-    youtubeLive: results.filter((r) => r.source === "youtube-live").length,
-    unconfigured: results.filter((r) => r.status === "unconfigured").length,
+    total: hlsCandidates.length,
+    offset,
+    limit,
+    nextOffset,
+    checked: results.length,
     results
   });
 }
