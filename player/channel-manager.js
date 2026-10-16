@@ -94,6 +94,15 @@
     const mode = options && options.mode === 'live' ? 'live' : 'replay';
     root.StreamLiveCurrentChannelId = channel.id;
 
+    if (!channel.streamEnabled) {
+      if (typeof player.setStatus === 'function') player.setStatus('Flux désactivé ou non autorisé pour cette chaîne', 'error');
+      return { ok: false, code: 'STREAM_UNAVAILABLE', channel, mode };
+    }
+    if (channel.streamSource === 'youtube-live' && !channel.youtubeChannelId) {
+      if (typeof player.setStatus === 'function') player.setStatus('Source YouTube Live non configurée avec un identifiant de chaîne valide', 'error');
+      return { ok: false, code: 'STREAM_UNAVAILABLE', channel, mode };
+    }
+
     if (channel.productionUrl) {
       bindPlayerFailover(channel, mode);
       if (channel.streamSource === 'web-live' && channel.webUrl && typeof player.loadWebLive === 'function') {
