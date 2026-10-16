@@ -127,7 +127,9 @@ Retourne la couverture des sources Live sans exposer les valeurs des variables d
 
 ### `GET /api/stream-check`
 
-Teste les HLS réellement configurés. Cette route est réservée à l’administration : configure `STREAM_CHECK_TOKEN` dans les variables d’environnement Netlify, puis envoie `Authorization: Bearer <STREAM_CHECK_TOKEN>`. Sans token configuré, la route répond `503`; sans token valide, elle répond `401`. Les URL sources et URL finales ne sont jamais renvoyées par cette route.
+Teste les HLS configurés par lots afin de limiter le temps d’exécution serverless. Cette route est réservée à l’administration : configure `STREAM_CHECK_TOKEN` dans les variables d’environnement Netlify, puis envoie `Authorization: Bearer <STREAM_CHECK_TOKEN>`. Sans token configuré, la route répond `503`; sans token valide, elle répond `401`.
+
+Paramètres facultatifs : `limit` (12 par défaut, maximum 20) et `offset` (0 par défaut). La réponse fournit `nextOffset` pour demander le lot suivant. Les pages web Live et YouTube sont exclues du contrôle HLS. Les URL sources et les contenus des manifestes ne sont jamais renvoyés par cette route.
 
 ### `GET /api/source-resolve?id=<channel>&preferSatellite=1`
 
