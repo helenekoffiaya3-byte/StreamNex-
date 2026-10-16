@@ -35,23 +35,34 @@ export default async function handler(request) {
   const envName = envNameFor(channelId);
   const satelliteUrl = envName ? Netlify.env.get(envName) : null;
 
+  // Never expose or use a configured satellite URL unless both reception and
+  // redistribution have been explicitly verified for this exact catalogue entry.
+  const satelliteAuthorized = Boolean(
+    match &&
+    match.sourceVerified === true &&
+    match.physicalReceptionVerified === true &&
+    match.redistributionEnabled === true &&
+    satelliteUrl
+  );
+  const canUseSatellite = preferSatellite && satelliteAuthorized;
+
   return json({
     channelId,
-    preferredSource: preferSatellite && satelliteUrl ? "cast-sat" : "live",
+    preferredSource: canUseSatellite ? "cast-sat" : "live",
     liveFallbackAllowed: true,
     satellite: match ? {
       satelliteId: match.satelliteId || null,
       serviceId: match.serviceId || null,
       status: match.status || "unknown",
-      physicalReceptionVerified: Boolean(match.physicalReceptionVerified),
-      redistributionEnabled: Boolean(match.redistributionEnabled)
+      sourceVerified: match.sourceVerified === true,
+      physicalReceptionVerified: match.physicalReceptionVerified === true,
+      redistributionEnabled: match.redistributionEnabled === true
     } : null,
     castSat: {
       configured: Boolean(satelliteUrl),
-      env: envName,
-      url: satelliteUrl || null
+      available: satelliteAuthorized
     },
-    source: satelliteUrl && preferSatellite ? {
+    source: canUseSatellite ? {
       type: "hls",
       mode: "cast-sat",
       url: satelliteUrl
