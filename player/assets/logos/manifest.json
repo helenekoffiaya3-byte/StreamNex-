@@ -988,15 +988,6 @@
       "source": "Pack logos S+ fourni par l'utilisateur"
     },
     {
-      "channelNumber": 176,
-      "id": "s-plus-sport-6",
-      "name": "S+ Sport 6",
-      "expectedFile": "assets/logos/s-plus-sport-6.svg",
-      "status": "PRESENT",
-      "sourceStatus": "USER_PROVIDED_PACK",
-      "source": "Pack logos S+ fourni par l'utilisateur"
-    },
-    {
       "channelNumber": 177,
       "id": "s-plus-movies",
       "name": "S+ Movies",
@@ -1031,23 +1022,6 @@
       "status": "PRESENT",
       "sourceStatus": "USER_PROVIDED_PACK",
       "source": "Pack logos S+ fourni par l'utilisateur"
-    },
-    {
-      "channelNumber": 181,
-      "id": "s-plus-lloliwood",
-      "name": "S+ LLOLIWOOD",
-      "expectedFile": "assets/logos/s-plus-lloliwood.svg",
-      "status": "PRESENT",
-      "sourceStatus": "USER_PROVIDED_PACK",
-      "source": "Pack logos S+ fourni par l'utilisateur"
-    },
-    {
-      "channelNumber": 182,
-      "id": "s-plus-bl",
-      "name": "S+ BL",
-      "expectedFile": "assets/logos/s-plus-bl.png",
-      "status": "MISSING",
-      "sourceStatus": "SOURCE_REQUIRED"
     },
     {
       "channelNumber": 183,
