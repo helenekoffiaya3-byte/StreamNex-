@@ -26,6 +26,10 @@ const BOUQUETS = [
     pendingVerificationChannelIds: [
       "okoo",
       "gulli"
+    ],
+    excludedPaidChannelIds: [
+      "teletoon-plus",
+      "piwi-plus"
     ]
   }
 ];
