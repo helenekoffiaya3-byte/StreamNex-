@@ -3,7 +3,7 @@
   "purpose": "Catalogue inventory for reconciliation; config/channels.js remains the runtime source of truth.",
   "source": {
     "path": "config/channels.js",
-    "blobSha": "dc17721c851908dc8ffea97a9157a5f8f235d769",
+    "blobSha": "32c2c8e63461030badaefda098a5e9b459664c1c",
     "readmeBlobSha": "0d2993b79f56fab61207eef112087ea22a4d575f"
   },
   "generatedOn": "2026-10-17",
@@ -258,7 +258,7 @@
       "tvgId": "cnn-international",
       "group": "Information",
       "logoUrl": "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/international/cnn-international-int.png",
-      "webUrl": "https://www.youtube.com/@CNN",
+      "webUrl": "https://www.youtube.com/@CNN/live",
       "liveOnly": true
     },
     {
@@ -268,7 +268,7 @@
       "tvgId": "dw",
       "group": "Information",
       "logoUrl": "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/international/dw-int.png",
-      "webUrl": "https://www.youtube.com/@dwnews",
+      "webUrl": "https://www.youtube.com/@dwnews/live",
       "liveOnly": true
     },
     {
@@ -278,7 +278,7 @@
       "tvgId": "euronews",
       "group": "Information",
       "logoUrl": "/assets/logos/euronews.svg",
-      "webUrl": "https://www.youtube.com/@euronewsfr",
+      "webUrl": "https://www.youtube.com/@euronewsfr/live",
       "liveOnly": true
     },
     {
@@ -288,7 +288,7 @@
       "tvgId": "fox-business",
       "group": "Information",
       "logoUrl": "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/united-states/fox-business-us.png",
-      "webUrl": "https://www.youtube.com/@FoxBusiness"
+      "webUrl": "https://www.youtube.com/@FoxBusiness/live"
     },
     {
       "number": 24,
@@ -297,7 +297,7 @@
       "tvgId": "fox-news",
       "group": "Information",
       "logoUrl": "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/united-states/fox-news-us.png",
-      "webUrl": "https://www.youtube.com/channel/UCXIJgqnII2ZOINSWNOGFThA",
+      "webUrl": "https://www.youtube.com/channel/UCXIJgqnII2ZOINSWNOGFThA/live",
       "liveOnly": true
     },
     {
@@ -307,7 +307,7 @@
       "tvgId": "france-24",
       "group": "France",
       "logoUrl": "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/france/france-24-fr.png",
-      "webUrl": "https://www.france.tv/france-24/direct.html"
+      "webUrl": "https://www.youtube.com/@FRANCE24/live"
     },
     {
       "number": 26,
@@ -316,7 +316,7 @@
       "tvgId": "hln",
       "group": "Information",
       "logoUrl": "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/united-states/hln-us.png",
-      "webUrl": "https://www.youtube.com/channel/UCyAN55vvo8odHHg7QY1pf5w",
+      "webUrl": "https://www.youtube.com/channel/UCyAN55vvo8odHHg7QY1pf5w/live",
       "liveOnly": true
     },
     {
@@ -326,7 +326,7 @@
       "tvgId": "i24news-fr",
       "group": "Information",
       "logoUrl": "/assets/logos/i24news.svg",
-      "webUrl": "https://www.youtube.com/@i24NEWS_FR"
+      "webUrl": "https://www.youtube.com/@i24NEWS_FR/live"
     },
     {
       "number": 28,
@@ -335,7 +335,7 @@
       "tvgId": "ms-now",
       "group": "Information",
       "logoUrl": "/assets/logos/msnbc.svg",
-      "webUrl": "https://www.youtube.com/@msnow",
+      "webUrl": "https://www.youtube.com/@msnow/live",
       "liveOnly": true
     },
     {
@@ -1605,7 +1605,7 @@
       "tvgId": "abc-news-live",
       "group": "Information",
       "logoUrl": "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/united-states/abc-news-live-us.png",
-      "webUrl": "https://www.youtube.com/channel/UCBi2mrWuNuyYy4gbM6fU18Q",
+      "webUrl": "https://www.youtube.com/channel/UCBi2mrWuNuyYy4gbM6fU18Q/live",
       "liveOnly": true
     },
     {
@@ -1615,7 +1615,7 @@
       "tvgId": "al-jazeera",
       "group": "Information",
       "logoUrl": "/assets/logos/al-jazeera.jpg",
-      "webUrl": "https://www.youtube.com/channel/UCNye-wNBqNL5ZzHSJj3l8Bg",
+      "webUrl": "https://www.youtube.com/channel/UCNye-wNBqNL5ZzHSJj3l8Bg/live",
       "liveOnly": true
     },
     {
@@ -1625,7 +1625,7 @@
       "tvgId": "bbc-news",
       "group": "Information",
       "logoUrl": "/assets/logos/bbc-news.svg",
-      "webUrl": "https://www.youtube.com/channel/UC16niRr50-MSBwiO3YDb3RA",
+      "webUrl": "https://www.youtube.com/channel/UC16niRr50-MSBwiO3YDb3RA/live",
       "liveOnly": true
     },
     {
@@ -1635,7 +1635,7 @@
       "tvgId": "bloomberg-tv",
       "group": "Information",
       "logoUrl": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Bloomberg_Television_logo.svg",
-      "webUrl": "https://www.youtube.com/@markets"
+      "webUrl": "https://www.youtube.com/@markets/live"
     },
     {
       "number": 201,
@@ -1644,7 +1644,7 @@
       "tvgId": "c-span",
       "group": "Information",
       "logoUrl": "/assets/logos/c-span.svg",
-      "webUrl": "https://www.youtube.com/channel/UCb--64Gl51jIEVE-GLDAVTg",
+      "webUrl": "https://www.youtube.com/channel/UCb--64Gl51jIEVE-GLDAVTg/live",
       "liveOnly": true
     },
     {
@@ -1654,7 +1654,7 @@
       "tvgId": "cbs-news-24-7",
       "group": "Information",
       "logoUrl": "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/united-states/cbs-news-24-7-us.png",
-      "webUrl": "https://www.youtube.com/channel/UC8p1vwvWtl6T73JiExfWs1g",
+      "webUrl": "https://www.youtube.com/channel/UC8p1vwvWtl6T73JiExfWs1g/live",
       "liveOnly": true
     },
     {
@@ -1664,7 +1664,7 @@
       "tvgId": "cgtn",
       "group": "Information",
       "logoUrl": "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/international/cgtn-int.png",
-      "webUrl": "https://www.youtube.com/channel/UCgrNz-aDmcr2uuto8_DL2jg",
+      "webUrl": "https://www.youtube.com/channel/UCgrNz-aDmcr2uuto8_DL2jg/live",
       "liveOnly": true
     },
     {
@@ -1674,7 +1674,7 @@
       "tvgId": "cnbc",
       "group": "Information",
       "logoUrl": "https://commons.wikimedia.org/wiki/Special:Redirect/file/CNBC_2025.svg",
-      "webUrl": "https://www.youtube.com/channel/UCvJJ_dzjViJCoLf5uKUTwoA",
+      "webUrl": "https://www.youtube.com/channel/UCvJJ_dzjViJCoLf5uKUTwoA/live",
       "liveOnly": true
     },
     {
@@ -1684,7 +1684,7 @@
       "tvgId": "cnn",
       "group": "Information",
       "logoUrl": "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/united-states/cnn-us.png",
-      "webUrl": "https://www.youtube.com/channel/UCupvZG-5ko_eiXAupbDfxWw",
+      "webUrl": "https://www.youtube.com/channel/UCupvZG-5ko_eiXAupbDfxWw/live",
       "liveOnly": true
     },
     {
@@ -1694,7 +1694,7 @@
       "tvgId": "nbc-news-now",
       "group": "Information",
       "logoUrl": "https://commons.wikimedia.org/wiki/Special:Redirect/file/NBC_News_Now_2023.svg",
-      "webUrl": "https://www.youtube.com/channel/UCeY0bbntWzzVIaj2z3QigXg",
+      "webUrl": "https://www.youtube.com/channel/UCeY0bbntWzzVIaj2z3QigXg/live",
       "liveOnly": true
     },
     {
@@ -1704,7 +1704,7 @@
       "tvgId": "newsmax",
       "group": "Information",
       "logoUrl": "/assets/logos/newsmax.svg",
-      "webUrl": "https://www.youtube.com/channel/UCx6h-dWzJ5NpAlja1YsApdg",
+      "webUrl": "https://www.youtube.com/channel/UCx6h-dWzJ5NpAlja1YsApdg/live",
       "liveOnly": true
     },
     {
@@ -1714,7 +1714,7 @@
       "tvgId": "newsnation",
       "group": "Information",
       "logoUrl": "/assets/logos/newsnation.svg",
-      "webUrl": "https://www.youtube.com/@NewsNation"
+      "webUrl": "https://www.youtube.com/@NewsNation/live"
     },
     {
       "number": 209,
@@ -1723,7 +1723,7 @@
       "tvgId": "nhk-world",
       "group": "Information",
       "logoUrl": "/assets/logos/nhk-world.svg",
-      "webUrl": "https://www.youtube.com/channel/UCSPEjw8F2nQDtmUKPFNF7_A",
+      "webUrl": "https://www.youtube.com/channel/UCSPEjw8F2nQDtmUKPFNF7_A/live",
       "liveOnly": true
     },
     {
@@ -1733,7 +1733,7 @@
       "tvgId": "oan",
       "group": "Information",
       "logoUrl": "/assets/logos/oan.svg",
-      "webUrl": "https://www.youtube.com/channel/UCNbIDJNNgaRrXOD7VllIMRQ",
+      "webUrl": "https://www.youtube.com/channel/UCNbIDJNNgaRrXOD7VllIMRQ/live",
       "liveOnly": true
     },
     {
@@ -1743,7 +1743,7 @@
       "tvgId": "sky-news",
       "group": "Information",
       "logoUrl": "/assets/logos/sky-news.svg",
-      "webUrl": "https://www.youtube.com/channel/UCoMdktPbSTixAyNGwb-UYkQ",
+      "webUrl": "https://www.youtube.com/channel/UCoMdktPbSTixAyNGwb-UYkQ/live",
       "liveOnly": true
     },
     {
@@ -1753,7 +1753,7 @@
       "tvgId": "the-weather-channel",
       "group": "Information",
       "logoUrl": "/assets/logos/the-weather-channel.svg",
-      "webUrl": "https://www.youtube.com/@TheWeatherChannel"
+      "webUrl": "https://www.youtube.com/@TheWeatherChannel/live"
     },
     {
       "number": 213,
@@ -1762,7 +1762,7 @@
       "tvgId": "trt-world",
       "group": "Information",
       "logoUrl": "/assets/logos/trt-world.svg",
-      "webUrl": "https://www.youtube.com/channel/UC7fWeaHhqgM4Ry-RMpM2YYw",
+      "webUrl": "https://www.youtube.com/channel/UC7fWeaHhqgM4Ry-RMpM2YYw/live",
       "liveOnly": true
     },
     {
