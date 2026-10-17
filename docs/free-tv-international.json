@@ -1,0 +1,98 @@
+{
+  "title": "StreamLive — Bouquet Free TV International",
+  "id": "free-tv-international",
+  "name": "Free TV International",
+  "status": "saved-proposal",
+  "expectedChannelCount": 20,
+  "videoService": {
+    "id": "paramount-plus",
+    "name": "Paramount+"
+  },
+  "regionalAvailability": {
+    "pufftvInternational": [
+      "Amérique",
+      "Asie"
+    ],
+    "unavailableIn": [
+      "Europe",
+      "Afrique",
+      "Côte d’Ivoire"
+    ],
+    "note": "Disponibilité régionale indiquée selon la consigne du projet; à vérifier avant activation."
+  },
+  "categories": [
+    {
+      "id": "selection-initiale",
+      "name": "Sélection initiale",
+      "channels": [
+        "France 24",
+        "Sky News",
+        "Discovery Channel",
+        "See World",
+        "TFX"
+      ]
+    },
+    {
+      "id": "information",
+      "name": "Information",
+      "channels": [
+        "France 24",
+        "BBC News",
+        "Al Jazeera English",
+        "Bloomberg TV",
+        "DW"
+      ]
+    },
+    {
+      "id": "jeunesse",
+      "name": "Jeunesse",
+      "channels": [
+        "Disney Channel",
+        "Nickelodeon",
+        "Cartoon Network",
+        "Boing",
+        "DreamWorks Channel"
+      ]
+    },
+    {
+      "id": "cinema",
+      "name": "Cinéma",
+      "channels": [
+        "M-Net Movies 3",
+        "eMovies",
+        "Universal TV Africa",
+        "Studio Universal",
+        "FilmBox"
+      ]
+    }
+  ],
+  "channels": [
+    "France 24",
+    "Sky News",
+    "Discovery Channel",
+    "See World",
+    "TFX",
+    "BBC News",
+    "Al Jazeera English",
+    "Bloomberg TV",
+    "DW",
+    "Euronews",
+    "Disney Channel",
+    "Nickelodeon",
+    "Cartoon Network",
+    "Boing",
+    "DreamWorks Channel",
+    "M-Net Movies 3",
+    "eMovies",
+    "Universal TV Africa",
+    "Studio Universal",
+    "FilmBox"
+  ],
+  "notes": [
+    "Bouquet enregistré comme proposition documentaire; il n'est pas activé automatiquement dans l'application.",
+    "France 24 est obligatoire.",
+    "See World doit être identifié et son entrée catalogue confirmée.",
+    "Vérifier la présence de chaque chaîne dans config/channels.js ainsi que les sources de diffusion et la disponibilité régionale avant activation.",
+    "Les catégories de sélection initiale et information se recoupent sur France 24; la liste globale channels contient 20 noms distincts."
+  ]
+}
