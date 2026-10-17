@@ -1,7 +1,7 @@
 // StreamLive bouquet definitions.
 // Membership is intentionally manual: do not populate these lists automatically.
 // Keep channel IDs here; never duplicate or alter catalogue entries.
-// Free TV membership requires verified free-to-watch access for each channel.
+// Free TV membership requires verified free-to-watch access in the intended region.
 const BOUQUETS = [
   {
     id: "news",
@@ -13,7 +13,7 @@ const BOUQUETS = [
   {
     id: "free-tv",
     name: "Free TV",
-    description: "Chaînes dont l'accès gratuit a été vérifié, sélectionnées manuellement.",
+    description: "Chaînes dont l'accès gratuit dans la région cible a été vérifié.",
     selectionMode: "manual",
     freeAccessVerificationRequired: true,
     channelIds: [
@@ -22,6 +22,10 @@ const BOUQUETS = [
       "rti-2",
       "la-3",
       "nci"
+    ],
+    pendingVerificationChannelIds: [
+      "okoo",
+      "gulli"
     ]
   }
 ];
