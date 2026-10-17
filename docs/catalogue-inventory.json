@@ -28,8 +28,8 @@
       "tvgIds": [],
       "numbers": []
     },
-    "webConfigured": 67,
-    "webUrlMissing": 366,
+    "webConfigured": 69,
+    "webUrlMissing": 364,
     "countsByGroup": {
       "Côte d’Ivoire": 6,
       "S+": 32,
@@ -124,7 +124,8 @@
       "name": "Life TV",
       "tvgId": "life-tv",
       "group": "Côte d’Ivoire",
-      "logoUrl": "/assets/logos/life-tv.svg"
+      "logoUrl": "/assets/logos/life-tv.svg",
+      "webUrl": "https://lifetv.ci/"
     },
     {
       "number": 6,
@@ -2608,8 +2609,9 @@
       "id": "7-info",
       "name": "7.info",
       "tvgId": "7-info",
-      "group": "Information",
-      "logoUrl": "/assets/logos/channel-placeholder.svg"
+      "group": "Côte d’Ivoire",
+      "logoUrl": "/assets/logos/channel-placeholder.svg",
+      "webUrl": "https://7info.ci/"
     },
     {
       "number": 315,
