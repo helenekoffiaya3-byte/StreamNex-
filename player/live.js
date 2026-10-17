@@ -22,7 +22,7 @@ function filtered(){
 function card(c){
  const f=favSet(),article=document.createElement('article');article.className='channel';article.tabIndex=0;
  const logo=c.logoUrl?'<img loading="lazy" src="'+esc(c.logoUrl)+'" alt="">':'<div class="fallback">'+esc(initials(c.name))+'</div>';
- article.innerHTML='<div class="thumb">'+logo+'<button class="fav" type="button" aria-label="'+(f.has(c.id)?'Retirer des favoris':'Ajouter aux favoris')+'">'+(f.has(c.id)?'★':'☆')+'</button></div><div class="meta"><div class="name">'+esc(c.name)+'</div><div class="group">'+esc(c.group||'En direct')+'</div><div class="number">Canal '+esc(c.channelNumber)+'</div><div class="state">● EN DIRECT</div></div>';
+ article.innerHTML='<div class="thumb">'+logo+'<button class="fav" type="button" aria-label="'+(f.has(c.id)?'Retirer des favoris':'Ajouter aux favoris')+'">'+(f.has(c.id)?'★':'☆')+'</button></div><div class="meta"><div class="name">'+esc(c.name)+'</div><div class="group">'+esc(c.group||'En direct')+'</div><div class="number">Canal '+esc(c.channelNumber)+'</div><div class="state">'+(c.webUrl?'● LIEN WEB DISPONIBLE':'○ LIEN WEB MANQUANT')+'</div></div>';
  const img=article.querySelector('img');if(img)img.addEventListener('error',()=>{img.replaceWith(Object.assign(document.createElement('div'),{className:'fallback',textContent:initials(c.name)}))},{once:true});
  article.querySelector('.fav').onclick=e=>{e.stopPropagation();toggleFav(c.id)};
  const open=()=>{location.href='./index.html?channel='+encodeURIComponent(c.id)+'&mode=live'};article.onclick=open;
