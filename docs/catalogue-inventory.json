@@ -3,17 +3,17 @@
   "purpose": "Catalogue inventory for reconciliation; config/channels.js remains the runtime source of truth.",
   "source": {
     "path": "config/channels.js",
-    "blobSha": "32c2c8e63461030badaefda098a5e9b459664c1c",
+    "blobSha": "fe4ea321429caa0964cdb3e6bb54687f849f3103",
     "readmeBlobSha": "0d2993b79f56fab61207eef112087ea22a4d575f"
   },
   "generatedOn": "2026-10-17",
   "summary": {
-    "entryCount": 433,
-    "uniqueIds": 433,
-    "uniqueTvgIds": 433,
-    "uniqueNumbers": 433,
+    "entryCount": 438,
+    "uniqueIds": 438,
+    "uniqueTvgIds": 438,
+    "uniqueNumbers": 438,
     "minimumNumber": 1,
-    "maximumNumber": 440,
+    "maximumNumber": 445,
     "missingNumbers": [
       131,
       133,
@@ -28,15 +28,15 @@
       "tvgIds": [],
       "numbers": []
     },
-    "webConfigured": 71,
+    "webConfigured": 76,
     "webUrlMissing": 362,
     "countsByGroup": {
-      "Côte d’Ivoire": 6,
+      "Côte d’Ivoire": 7,
       "S+": 32,
       "France": 15,
-      "Information": 61,
+      "Information": 60,
       "Cinéma": 27,
-      "Service vidéo": 3,
+      "Service vidéo": 8,
       "Séries & SF": 25,
       "Novelas": 1,
       "Jeunesse": 36,
@@ -3728,6 +3728,51 @@
       "group": "Cuisine",
       "logoUrl": "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/france/tv5-monde-fr.png",
       "webUrl": "https://www.tv5mondeplus.com/fr/direct?channelid=32"
+    },
+    {
+      "number": 441,
+      "id": "hbo-max",
+      "name": "HBO Max",
+      "tvgId": "hbo-max",
+      "group": "Service vidéo",
+      "logoUrl": "",
+      "webUrl": "https://www.hbomax.com/"
+    },
+    {
+      "number": 442,
+      "id": "paramount-plus",
+      "name": "Paramount+",
+      "tvgId": "paramount-plus",
+      "group": "Service vidéo",
+      "logoUrl": "",
+      "webUrl": "https://www.paramountplus.com/"
+    },
+    {
+      "number": 443,
+      "id": "netflix",
+      "name": "Netflix",
+      "tvgId": "netflix",
+      "group": "Service vidéo",
+      "logoUrl": "",
+      "webUrl": "https://www.netflix.com/ci-en/"
+    },
+    {
+      "number": 444,
+      "id": "tf1-plus",
+      "name": "TF1+",
+      "tvgId": "tf1-plus",
+      "group": "Service vidéo",
+      "logoUrl": "",
+      "webUrl": "https://www.tf1.fr/"
+    },
+    {
+      "number": 445,
+      "id": "m6-plus",
+      "name": "M6+",
+      "tvgId": "m6-plus",
+      "group": "Service vidéo",
+      "logoUrl": "",
+      "webUrl": "https://www.m6.fr/"
     }
   ]
 }
