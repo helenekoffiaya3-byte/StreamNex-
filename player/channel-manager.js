@@ -1,6 +1,6 @@
 /* StreamLive — Web-link Channel Manager for NTS-1.4-Lava
  * The catalogue is injected as window.STREAMLIVE_CHANNELS.
- * Every channel is opened from its official webUrl; no HLS or satellite fallback.
+ * Every channel is opened from its official webUrl.
  */
 (function (root) {
   'use strict';
