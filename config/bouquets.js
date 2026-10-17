@@ -14,6 +14,7 @@ const BOUQUETS = [
     name: "Free TV",
     description: "Chaînes dont l'accès gratuit dans la région cible a été vérifié.",
     selectionMode: "manual",
+    videoServiceId: "m6-plus",
     freeAccessVerificationRequired: true,
     channelIds: [
       "france-24",
