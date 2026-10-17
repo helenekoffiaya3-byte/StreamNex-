@@ -3,7 +3,7 @@
   "purpose": "Catalogue inventory for reconciliation; config/channels.js remains the runtime source of truth.",
   "source": {
     "path": "config/channels.js",
-    "blobSha": "d155188f643161a41f611f13da7fed8f0b2ed720",
+    "blobSha": "850bd948cb37f30da08428cc97aea82d80ac6aa4",
     "readmeBlobSha": "0d2993b79f56fab61207eef112087ea22a4d575f"
   },
   "generatedOn": "2026-10-17",
@@ -87,7 +87,6 @@
       "tvgId": "rti-1",
       "group": "Côte d’Ivoire",
       "logoUrl": "/assets/logos/rti-1.svg",
-      "bouquet": "StreetStart",
       "webUrl": "https://rtiplay.ci/rti1/direct"
     },
     {
@@ -97,7 +96,6 @@
       "tvgId": "rti-2",
       "group": "Côte d’Ivoire",
       "logoUrl": "/assets/logos/rti-2.svg",
-      "bouquet": "StreetStart",
       "webUrl": "https://rtiplay.ci/rti2/direct"
     },
     {
@@ -107,7 +105,6 @@
       "tvgId": "la-3",
       "group": "Côte d’Ivoire",
       "logoUrl": "/assets/logos/la-3.svg",
-      "bouquet": "StreetStart",
       "webUrl": "https://rtiplay.ci/la3/direct"
     },
     {
@@ -117,7 +114,6 @@
       "tvgId": "a-plus-ivoire",
       "group": "Côte d’Ivoire",
       "logoUrl": "/assets/logos/a-plus-ivoire.png",
-      "bouquet": "StreetStart",
       "webUrl": "https://aplusivoire.web-prod2.direct.canal-overseas.com/live"
     },
     {
@@ -126,8 +122,7 @@
       "name": "Life TV",
       "tvgId": "life-tv",
       "group": "Côte d’Ivoire",
-      "logoUrl": "/assets/logos/life-tv.svg",
-      "bouquet": "StreetStart"
+      "logoUrl": "/assets/logos/life-tv.svg"
     },
     {
       "number": 6,
@@ -136,7 +131,6 @@
       "tvgId": "nci",
       "group": "Côte d’Ivoire",
       "logoUrl": "/assets/logos/nci.svg",
-      "bouquet": "StreetStart",
       "webUrl": "https://www.nci.ci/direct"
     },
     {
@@ -154,7 +148,6 @@
       "tvgId": "6ter",
       "group": "France",
       "logoUrl": "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/france/6ter-fr.png",
-      "bouquet": "StreetStart",
       "webUrl": "https://www.m6.fr/6ter/direct"
     },
     {
@@ -164,7 +157,6 @@
       "tvgId": "arte",
       "group": "France",
       "logoUrl": "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/france/arte-fr.png",
-      "bouquet": "StreetStart",
       "webUrl": "https://www.france.tv/arte/direct.html"
     },
     {
@@ -173,8 +165,7 @@
       "name": "S+",
       "tvgId": "s-plus",
       "group": "S+",
-      "logoUrl": "",
-      "bouquet": "StreetStart"
+      "logoUrl": ""
     },
     {
       "number": 11,
@@ -183,7 +174,6 @@
       "tvgId": "france-2",
       "group": "France",
       "logoUrl": "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/france/france-2-fr.png",
-      "bouquet": "StreetStart",
       "webUrl": "https://www.france.tv/france-2/direct.html"
     },
     {
@@ -193,7 +183,6 @@
       "tvgId": "france-3",
       "group": "France",
       "logoUrl": "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/france/france-3-fr.png",
-      "bouquet": "StreetStart",
       "webUrl": "https://www.france.tv/france-3/direct.html"
     },
     {
@@ -239,7 +228,6 @@
       "tvgId": "tfx",
       "group": "France",
       "logoUrl": "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/france/tfx-fr.png",
-      "bouquet": "StreetStart",
       "webUrl": "https://www.tf1.fr/fr-ci/tfx/direct"
     },
     {
@@ -316,7 +304,6 @@
       "tvgId": "france-24",
       "group": "France",
       "logoUrl": "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/france/france-24-fr.png",
-      "bouquet": "StreetStart",
       "webUrl": "https://www.france.tv/france-24/direct.html"
     },
     {
@@ -336,7 +323,6 @@
       "tvgId": "i24news-fr",
       "group": "Information",
       "logoUrl": "/assets/logos/i24news.svg",
-      "bouquet": "StreetStart",
       "webUrl": "https://www.youtube.com/@i24NEWS_FR"
     },
     {
@@ -346,7 +332,6 @@
       "tvgId": "ms-now",
       "group": "Information",
       "logoUrl": "/assets/logos/msnbc.svg",
-      "bouquet": "StreetStart",
       "webUrl": "https://www.youtube.com/@msnow",
       "liveOnly": true
     },
@@ -356,8 +341,7 @@
       "name": "AB1",
       "tvgId": "ab1",
       "group": "Cinéma",
-      "logoUrl": "https://commons.wikimedia.org/wiki/Special:Redirect/file/AB1_logo.svg",
-      "bouquet": "StreetStart"
+      "logoUrl": "https://commons.wikimedia.org/wiki/Special:Redirect/file/AB1_logo.svg"
     },
     {
       "number": 30,
@@ -365,8 +349,7 @@
       "name": "Action",
       "tvgId": "action",
       "group": "Cinéma",
-      "logoUrl": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Action_logo.svg",
-      "bouquet": "StreetStart"
+      "logoUrl": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Action_logo.svg"
     },
     {
       "number": 31,
@@ -374,8 +357,7 @@
       "name": "S+ Action",
       "tvgId": "s-plus-action",
       "group": "S+",
-      "logoUrl": "",
-      "bouquet": "StreetStart"
+      "logoUrl": ""
     },
     {
       "number": 32,
@@ -391,8 +373,7 @@
       "name": "S+ Family",
       "tvgId": "s-plus-family-cinema",
       "group": "S+",
-      "logoUrl": "",
-      "bouquet": "StreetStart"
+      "logoUrl": ""
     },
     {
       "number": 34,
@@ -400,8 +381,7 @@
       "name": "S+ Magic",
       "tvgId": "s-plus-magic",
       "group": "S+",
-      "logoUrl": "",
-      "bouquet": "StreetStart"
+      "logoUrl": ""
     },
     {
       "number": 35,
@@ -418,7 +398,6 @@
       "tvgId": "charge",
       "group": "Cinéma",
       "logoUrl": "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/united-states/charge-us.png",
-      "bouquet": "StreetStart",
       "webUrl": "https://watchcharge.com/watch-live/"
     },
     {
@@ -427,8 +406,7 @@
       "name": "Cinemax",
       "tvgId": "cinemax",
       "group": "Cinéma",
-      "logoUrl": "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/united-states/cinemax-us.png",
-      "bouquet": "StreetStart"
+      "logoUrl": "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/united-states/cinemax-us.png"
     },
     {
       "number": 38,
@@ -437,7 +415,6 @@
       "tvgId": "comet",
       "group": "Cinéma",
       "logoUrl": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Comet_logo.svg",
-      "bouquet": "StreetStart",
       "webUrl": "https://comettv.com/watch-live/"
     },
     {
@@ -446,8 +423,7 @@
       "name": "Estrella TV",
       "tvgId": "estrella-tv",
       "group": "Cinéma",
-      "logoUrl": "/assets/logos/estrella-tv.svg",
-      "bouquet": "StreetStart"
+      "logoUrl": "/assets/logos/estrella-tv.svg"
     },
     {
       "number": 40,
@@ -455,8 +431,7 @@
       "name": "Galavisión",
       "tvgId": "galavision",
       "group": "Cinéma",
-      "logoUrl": "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/united-states/galavision-us.png",
-      "bouquet": "StreetStart"
+      "logoUrl": "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/united-states/galavision-us.png"
     },
     {
       "number": 41,
@@ -464,8 +439,7 @@
       "name": "getTV",
       "tvgId": "gettv",
       "group": "Cinéma",
-      "logoUrl": "/assets/logos/gettv.svg",
-      "bouquet": "StreetStart"
+      "logoUrl": "/assets/logos/gettv.svg"
     },
     {
       "number": 42,
@@ -473,8 +447,7 @@
       "name": "Grit",
       "tvgId": "grit",
       "group": "Cinéma",
-      "logoUrl": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Grit_TV_logo.svg",
-      "bouquet": "StreetStart"
+      "logoUrl": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Grit_TV_logo.svg"
     },
     {
       "number": 43,
@@ -579,8 +552,7 @@
       "name": "13ème Rue",
       "tvgId": "13eme-rue",
       "group": "Séries & SF",
-      "logoUrl": "/assets/logos/13eme-rue.png",
-      "bouquet": "StreetStart"
+      "logoUrl": "/assets/logos/13eme-rue.png"
     },
     {
       "number": 56,
@@ -588,8 +560,7 @@
       "name": "AMC",
       "tvgId": "amc",
       "group": "Séries & SF",
-      "logoUrl": "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/united-states/amc-us.png",
-      "bouquet": "StreetStart"
+      "logoUrl": "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/united-states/amc-us.png"
     },
     {
       "number": 57,
@@ -606,7 +577,6 @@
       "tvgId": "freeform",
       "group": "Séries & SF",
       "logoUrl": "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/united-states/freeform-us.png",
-      "bouquet": "StreetStart",
       "webUrl": "https://www.freeform.com/watch-live"
     },
     {
@@ -631,8 +601,7 @@
       "name": "Hallmark Drama",
       "tvgId": "hallmark-drama",
       "group": "Séries & SF",
-      "logoUrl": "/assets/logos/hallmark-drama.svg",
-      "bouquet": "StreetStart"
+      "logoUrl": "/assets/logos/hallmark-drama.svg"
     },
     {
       "number": 62,
@@ -640,8 +609,7 @@
       "name": "HBO",
       "tvgId": "hbo",
       "group": "Service vidéo",
-      "logoUrl": "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/united-states/hbo-us.png",
-      "bouquet": "StreetStart"
+      "logoUrl": "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/united-states/hbo-us.png"
     },
     {
       "number": 63,
@@ -649,8 +617,7 @@
       "name": "Heroes & Icons",
       "tvgId": "heroes-icons",
       "group": "Séries & SF",
-      "logoUrl": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Heroes%26Icons_Logo.png",
-      "bouquet": "StreetStart"
+      "logoUrl": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Heroes%26Icons_Logo.png"
     },
     {
       "number": 64,
@@ -658,8 +625,7 @@
       "name": "IFC",
       "tvgId": "ifc",
       "group": "Séries & SF",
-      "logoUrl": "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/united-states/ifc-us.png",
-      "bouquet": "StreetStart"
+      "logoUrl": "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/united-states/ifc-us.png"
     },
     {
       "number": 65,
@@ -667,8 +633,7 @@
       "name": "Ion",
       "tvgId": "ion",
       "group": "Séries & SF",
-      "logoUrl": "/assets/logos/ion.svg",
-      "bouquet": "StreetStart"
+      "logoUrl": "/assets/logos/ion.svg"
     },
     {
       "number": 66,
@@ -692,8 +657,7 @@
       "name": "Novelas+",
       "tvgId": "novelas-plus",
       "group": "Novelas",
-      "logoUrl": "/assets/logos/novelas-plus.svg",
-      "bouquet": "StreetStart"
+      "logoUrl": "/assets/logos/novelas-plus.svg"
     },
     {
       "number": 69,
@@ -781,8 +745,7 @@
       "name": "Boing",
       "tvgId": "boing",
       "group": "Jeunesse",
-      "logoUrl": "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/france/boing-fr.png",
-      "bouquet": "StreetStart"
+      "logoUrl": "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/france/boing-fr.png"
     },
     {
       "number": 80,
@@ -799,8 +762,7 @@
       "name": "Boomerang +1",
       "tvgId": "boomerang-plus-1",
       "group": "Jeunesse",
-      "logoUrl": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Boomerang-Logo.svg",
-      "bouquet": "StreetStart"
+      "logoUrl": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Boomerang-Logo.svg"
     },
     {
       "number": 82,
@@ -816,8 +778,7 @@
       "name": "Cartoonito",
       "tvgId": "cartoonito",
       "group": "Jeunesse",
-      "logoUrl": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Cartoonito_-_Logo_2021.svg",
-      "bouquet": "StreetStart"
+      "logoUrl": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Cartoonito_-_Logo_2021.svg"
     },
     {
       "number": 85,
@@ -866,8 +827,7 @@
       "name": "Gulli Africa",
       "tvgId": "gulli-africa",
       "group": "Jeunesse",
-      "logoUrl": "/assets/logos/gulli-africa.svg",
-      "bouquet": "StreetStart"
+      "logoUrl": "/assets/logos/gulli-africa.svg"
     },
     {
       "number": 91,
@@ -875,8 +835,7 @@
       "name": "J-One",
       "tvgId": "j-one",
       "group": "Jeunesse",
-      "logoUrl": "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/france/j-one-fr.png",
-      "bouquet": "StreetStart"
+      "logoUrl": "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/france/j-one-fr.png"
     },
     {
       "number": 92,
@@ -884,8 +843,7 @@
       "name": "Ludikids",
       "tvgId": "ludikids",
       "group": "Jeunesse",
-      "logoUrl": "/assets/logos/ludikids.png",
-      "bouquet": "StreetStart"
+      "logoUrl": "/assets/logos/ludikids.png"
     },
     {
       "number": 93,
@@ -893,8 +851,7 @@
       "name": "Mangas",
       "tvgId": "mangas",
       "group": "Jeunesse",
-      "logoUrl": "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/france/mangas-fr.png",
-      "bouquet": "StreetStart"
+      "logoUrl": "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/france/mangas-fr.png"
     },
     {
       "number": 94,
@@ -910,8 +867,7 @@
       "name": "Nickelodeon",
       "tvgId": "nickelodeon",
       "group": "Jeunesse",
-      "logoUrl": "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/france/nickelodeon-fr.png",
-      "bouquet": "StreetStart"
+      "logoUrl": "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/france/nickelodeon-fr.png"
     },
     {
       "number": 96,
@@ -919,8 +875,7 @@
       "name": "Nickelodeon Junior",
       "tvgId": "nickelodeon-junior",
       "group": "Jeunesse",
-      "logoUrl": "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/france/nickelodeon-junior-fr.png",
-      "bouquet": "StreetStart"
+      "logoUrl": "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/france/nickelodeon-junior-fr.png"
     },
     {
       "number": 97,
@@ -936,8 +891,7 @@
       "name": "NickToons",
       "tvgId": "nicktoons",
       "group": "Jeunesse",
-      "logoUrl": "/assets/logos/nicktoons.svg",
-      "bouquet": "StreetStart"
+      "logoUrl": "/assets/logos/nicktoons.svg"
     },
     {
       "number": 99,
@@ -954,7 +908,6 @@
       "tvgId": "okoo",
       "group": "Jeunesse",
       "logoUrl": "/assets/logos/okoo.svg",
-      "bouquet": "StreetStart",
       "webUrl": "https://www.france.tv/enfants/"
     },
     {
@@ -963,8 +916,7 @@
       "name": "Piwi+",
       "tvgId": "piwi-plus",
       "group": "Jeunesse",
-      "logoUrl": "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/france/piwi-plus-fr.png",
-      "bouquet": "StreetStart"
+      "logoUrl": "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/france/piwi-plus-fr.png"
     },
     {
       "number": 102,
@@ -1045,8 +997,7 @@
       "name": "TV Tokyo",
       "tvgId": "tv-tokyo",
       "group": "International",
-      "logoUrl": "https://commons.wikimedia.org/wiki/Special:Redirect/file/TV_Tokyo_logo_2023.svg",
-      "bouquet": "StreetStart"
+      "logoUrl": "https://commons.wikimedia.org/wiki/Special:Redirect/file/TV_Tokyo_logo_2023.svg"
     },
     {
       "number": 112,
@@ -1119,8 +1070,7 @@
       "name": "S+ Kids",
       "tvgId": "s-plus-kids",
       "group": "S+",
-      "logoUrl": "",
-      "bouquet": "StreetStart"
+      "logoUrl": ""
     },
     {
       "number": 121,
@@ -1200,8 +1150,7 @@
       "name": "S+ BL",
       "tvgId": "s-plus-bl",
       "group": "S+",
-      "logoUrl": "",
-      "bouquet": "StreetStart"
+      "logoUrl": ""
     },
     {
       "number": 138,
@@ -1649,7 +1598,6 @@
       "tvgId": "la-chaine-meteo",
       "group": "Information",
       "logoUrl": "https://commons.wikimedia.org/wiki/Special:Redirect/file/La_chaine_m%C3%A9teo_%28logo%29.svg",
-      "bouquet": "StreetStart",
       "webUrl": "https://www.youtube.com/@lachainemeteo"
     },
     {
@@ -1659,7 +1607,6 @@
       "tvgId": "7info",
       "group": "Information",
       "logoUrl": "/assets/logos/7info.png",
-      "bouquet": "StreetStart",
       "webUrl": "https://www.youtube.com/channel/UCYHo8lQ0-FpkNPyul54t5Sg",
       "liveOnly": true
     },
@@ -1670,7 +1617,6 @@
       "tvgId": "abc-news-live",
       "group": "Information",
       "logoUrl": "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/united-states/abc-news-live-us.png",
-      "bouquet": "StreetStart",
       "webUrl": "https://www.youtube.com/channel/UCBi2mrWuNuyYy4gbM6fU18Q",
       "liveOnly": true
     },
@@ -1681,7 +1627,6 @@
       "tvgId": "al-jazeera",
       "group": "Information",
       "logoUrl": "/assets/logos/al-jazeera.jpg",
-      "bouquet": "StreetStart",
       "webUrl": "https://www.youtube.com/channel/UCNye-wNBqNL5ZzHSJj3l8Bg",
       "liveOnly": true
     },
@@ -1692,7 +1637,6 @@
       "tvgId": "bbc-news",
       "group": "Information",
       "logoUrl": "/assets/logos/bbc-news.svg",
-      "bouquet": "StreetStart",
       "webUrl": "https://www.youtube.com/channel/UC16niRr50-MSBwiO3YDb3RA",
       "liveOnly": true
     },
@@ -1703,7 +1647,6 @@
       "tvgId": "bloomberg-tv",
       "group": "Information",
       "logoUrl": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Bloomberg_Television_logo.svg",
-      "bouquet": "StreetStart",
       "webUrl": "https://www.youtube.com/@markets"
     },
     {
@@ -1713,7 +1656,6 @@
       "tvgId": "c-span",
       "group": "Information",
       "logoUrl": "/assets/logos/c-span.svg",
-      "bouquet": "StreetStart",
       "webUrl": "https://www.youtube.com/channel/UCb--64Gl51jIEVE-GLDAVTg",
       "liveOnly": true
     },
@@ -1724,7 +1666,6 @@
       "tvgId": "cbs-news-24-7",
       "group": "Information",
       "logoUrl": "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/united-states/cbs-news-24-7-us.png",
-      "bouquet": "StreetStart",
       "webUrl": "https://www.youtube.com/channel/UC8p1vwvWtl6T73JiExfWs1g",
       "liveOnly": true
     },
@@ -1735,7 +1676,6 @@
       "tvgId": "cgtn",
       "group": "Information",
       "logoUrl": "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/international/cgtn-int.png",
-      "bouquet": "StreetStart",
       "webUrl": "https://www.youtube.com/channel/UCgrNz-aDmcr2uuto8_DL2jg",
       "liveOnly": true
     },
@@ -1746,7 +1686,6 @@
       "tvgId": "cnbc",
       "group": "Information",
       "logoUrl": "https://commons.wikimedia.org/wiki/Special:Redirect/file/CNBC_2025.svg",
-      "bouquet": "StreetStart",
       "webUrl": "https://www.youtube.com/channel/UCvJJ_dzjViJCoLf5uKUTwoA",
       "liveOnly": true
     },
@@ -1757,7 +1696,6 @@
       "tvgId": "cnn",
       "group": "Information",
       "logoUrl": "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/united-states/cnn-us.png",
-      "bouquet": "StreetStart",
       "webUrl": "https://www.youtube.com/channel/UCupvZG-5ko_eiXAupbDfxWw",
       "liveOnly": true
     },
@@ -1845,8 +1783,7 @@
       "name": "A+",
       "tvgId": "a-plus",
       "group": "Afrique",
-      "logoUrl": "/assets/logos/a-plus.jpg",
-      "bouquet": "StreetStart"
+      "logoUrl": "/assets/logos/a-plus.jpg"
     },
     {
       "number": 215,
@@ -1854,8 +1791,7 @@
       "name": "M6 International",
       "tvgId": "m6-international",
       "group": "Afrique",
-      "logoUrl": "https://commons.wikimedia.org/wiki/Special:Redirect/file/M6_International_logo.svg",
-      "bouquet": "StreetStart"
+      "logoUrl": "https://commons.wikimedia.org/wiki/Special:Redirect/file/M6_International_logo.svg"
     },
     {
       "number": 216,
@@ -1863,8 +1799,7 @@
       "name": "Maboke TV",
       "tvgId": "maboke-tv",
       "group": "Afrique",
-      "logoUrl": "/assets/logos/maboke-tv.svg",
-      "bouquet": "StreetStart"
+      "logoUrl": "/assets/logos/maboke-tv.svg"
     },
     {
       "number": 217,
@@ -1872,8 +1807,7 @@
       "name": "MAGC TV",
       "tvgId": "magc-tv",
       "group": "Afrique",
-      "logoUrl": "/assets/logos/magc-tv.svg",
-      "bouquet": "StreetStart"
+      "logoUrl": "/assets/logos/magc-tv.svg"
     },
     {
       "number": 218,
@@ -1881,8 +1815,7 @@
       "name": "Sunu Yeuf",
       "tvgId": "sunu-yeuf",
       "group": "Afrique",
-      "logoUrl": "/assets/logos/sunu-yeuf.svg",
-      "bouquet": "StreetStart"
+      "logoUrl": "/assets/logos/sunu-yeuf.svg"
     },
     {
       "number": 219,
@@ -1890,8 +1823,7 @@
       "name": "VIFI TV",
       "tvgId": "vifi-tv",
       "group": "Afrique",
-      "logoUrl": "/assets/logos/vifi-tv.svg",
-      "bouquet": "StreetStart"
+      "logoUrl": "/assets/logos/vifi-tv.svg"
     },
     {
       "number": 220,
@@ -1899,8 +1831,7 @@
       "name": "Zacu TV",
       "tvgId": "zacu-tv",
       "group": "Afrique",
-      "logoUrl": "/assets/logos/zacu-tv.svg",
-      "bouquet": "StreetStart"
+      "logoUrl": "/assets/logos/zacu-tv.svg"
     },
     {
       "number": 221,
@@ -1908,8 +1839,7 @@
       "name": "ZBC",
       "tvgId": "zbc",
       "group": "Afrique",
-      "logoUrl": "/assets/logos/zbc.svg",
-      "bouquet": "StreetStart"
+      "logoUrl": "/assets/logos/zbc.svg"
     },
     {
       "number": 222,
@@ -1917,8 +1847,7 @@
       "name": "EMCI TV",
       "tvgId": "emci-tv",
       "group": "Religion",
-      "logoUrl": "/assets/logos/emci-tv.svg",
-      "bouquet": "StreetStart"
+      "logoUrl": "/assets/logos/emci-tv.svg"
     },
     {
       "number": 223,
@@ -1926,8 +1855,7 @@
       "name": "Espérance TV",
       "tvgId": "esperance-tv",
       "group": "Religion",
-      "logoUrl": "/assets/logos/esperance-tv.svg",
-      "bouquet": "StreetStart"
+      "logoUrl": "/assets/logos/esperance-tv.svg"
     },
     {
       "number": 224,
@@ -1935,8 +1863,7 @@
       "name": "EWTN",
       "tvgId": "ewtn",
       "group": "Religion",
-      "logoUrl": "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/international/ewtn-int.png",
-      "bouquet": "StreetStart"
+      "logoUrl": "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/international/ewtn-int.png"
     },
     {
       "number": 225,
@@ -1944,8 +1871,7 @@
       "name": "Hope Channel",
       "tvgId": "hope-channel",
       "group": "Religion",
-      "logoUrl": "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/united-states/hope-channel-us.png",
-      "bouquet": "StreetStart"
+      "logoUrl": "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/united-states/hope-channel-us.png"
     },
     {
       "number": 226,
@@ -1953,8 +1879,7 @@
       "name": "KTO",
       "tvgId": "kto",
       "group": "Religion",
-      "logoUrl": "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/france/kto-fr.png",
-      "bouquet": "StreetStart"
+      "logoUrl": "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/france/kto-fr.png"
     },
     {
       "number": 227,
@@ -2010,8 +1935,7 @@
       "name": "Clique TV",
       "tvgId": "clique-tv",
       "group": "Divertissement",
-      "logoUrl": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Clique_TV.webp",
-      "bouquet": "StreetStart"
+      "logoUrl": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Clique_TV.webp"
     },
     {
       "number": 234,
@@ -2187,8 +2111,7 @@
       "name": "Dorcel TV",
       "tvgId": "dorcel-tv",
       "group": "Adulte",
-      "logoUrl": "/assets/logos/channel-placeholder.svg",
-      "bouquet": "StreetStart"
+      "logoUrl": "/assets/logos/channel-placeholder.svg"
     },
     {
       "number": 251,
@@ -2236,8 +2159,7 @@
       "name": "Delta TV",
       "tvgId": "delta-tv",
       "group": "Afrique",
-      "logoUrl": "/assets/logos/channel-placeholder.svg",
-      "bouquet": "StreetStart"
+      "logoUrl": "/assets/logos/channel-placeholder.svg"
     },
     {
       "number": 257,
@@ -2245,8 +2167,7 @@
       "name": "RTG",
       "tvgId": "rtg",
       "group": "Afrique",
-      "logoUrl": "/assets/logos/channel-placeholder.svg",
-      "bouquet": "StreetStart"
+      "logoUrl": "/assets/logos/channel-placeholder.svg"
     },
     {
       "number": 258,
@@ -2254,8 +2175,7 @@
       "name": "RTB",
       "tvgId": "rtb",
       "group": "Afrique",
-      "logoUrl": "/assets/logos/channel-placeholder.svg",
-      "bouquet": "StreetStart"
+      "logoUrl": "/assets/logos/channel-placeholder.svg"
     },
     {
       "number": 259,
@@ -2263,8 +2183,7 @@
       "name": "RTNC",
       "tvgId": "rtnc",
       "group": "Afrique",
-      "logoUrl": "/assets/logos/channel-placeholder.svg",
-      "bouquet": "StreetStart"
+      "logoUrl": "/assets/logos/channel-placeholder.svg"
     },
     {
       "number": 260,
@@ -2272,8 +2191,7 @@
       "name": "RTNK TV",
       "tvgId": "rtnk-tv",
       "group": "Afrique",
-      "logoUrl": "/assets/logos/channel-placeholder.svg",
-      "bouquet": "StreetStart"
+      "logoUrl": "/assets/logos/channel-placeholder.svg"
     },
     {
       "number": 261,
@@ -2281,8 +2199,7 @@
       "name": "RTV",
       "tvgId": "rtv",
       "group": "Afrique",
-      "logoUrl": "/assets/logos/channel-placeholder.svg",
-      "bouquet": "StreetStart"
+      "logoUrl": "/assets/logos/channel-placeholder.svg"
     },
     {
       "number": 262,
@@ -2290,8 +2207,7 @@
       "name": "Sahara TV",
       "tvgId": "sahara-tv",
       "group": "Afrique",
-      "logoUrl": "/assets/logos/channel-placeholder.svg",
-      "bouquet": "StreetStart"
+      "logoUrl": "/assets/logos/channel-placeholder.svg"
     },
     {
       "number": 263,
@@ -2299,8 +2215,7 @@
       "name": "RTS",
       "tvgId": "rts",
       "group": "Afrique",
-      "logoUrl": "/assets/logos/channel-placeholder.svg",
-      "bouquet": "StreetStart"
+      "logoUrl": "/assets/logos/channel-placeholder.svg"
     },
     {
       "number": 264,
@@ -2308,8 +2223,7 @@
       "name": "Savane TV Medias",
       "tvgId": "savane-tv-medias",
       "group": "Afrique",
-      "logoUrl": "/assets/logos/channel-placeholder.svg",
-      "bouquet": "StreetStart"
+      "logoUrl": "/assets/logos/channel-placeholder.svg"
     },
     {
       "number": 265,
@@ -2317,8 +2231,7 @@
       "name": "Segou TV",
       "tvgId": "segou-tv",
       "group": "Afrique",
-      "logoUrl": "/assets/logos/channel-placeholder.svg",
-      "bouquet": "StreetStart"
+      "logoUrl": "/assets/logos/channel-placeholder.svg"
     },
     {
       "number": 266,
@@ -2326,8 +2239,7 @@
       "name": "SEN TV",
       "tvgId": "sen-tv",
       "group": "Afrique",
-      "logoUrl": "/assets/logos/channel-placeholder.svg",
-      "bouquet": "StreetStart"
+      "logoUrl": "/assets/logos/channel-placeholder.svg"
     },
     {
       "number": 267,
@@ -2335,8 +2247,7 @@
       "name": "Sensation TV",
       "tvgId": "sensation-tv",
       "group": "Afrique",
-      "logoUrl": "/assets/logos/channel-placeholder.svg",
-      "bouquet": "StreetStart"
+      "logoUrl": "/assets/logos/channel-placeholder.svg"
     },
     {
       "number": 268,
@@ -3781,7 +3692,6 @@
       "tvgId": "mieux",
       "group": "France",
       "logoUrl": "",
-      "bouquet": "StreetStart",
       "webUrl": "https://www.france.tv/mieux/direct.html"
     },
     {
@@ -3791,7 +3701,6 @@
       "tvgId": "lci",
       "group": "France",
       "logoUrl": "",
-      "bouquet": "StreetStart",
       "webUrl": "https://www.tf1.fr/fr-ci/lci/direct"
     },
     {
