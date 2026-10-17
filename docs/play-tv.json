@@ -1,0 +1,130 @@
+{
+  "title": "StreamLive — Bouquet Play TV",
+  "status": "saved-proposal",
+  "bouquet": {
+    "id": "play-tv",
+    "name": "Play TV",
+    "genre": "payant",
+    "region": "Afrique",
+    "price": {
+      "amount": 3350,
+      "currency": "XOF",
+      "period": "mensuel"
+    },
+    "channelCount": 70,
+    "note": "Proposition de sélection. Les flux et droits commerciaux doivent être vérifiés avant activation.",
+    "categories": [
+      {
+        "id": "ivoirien-africain",
+        "name": "Côte d’Ivoire et Afrique",
+        "channels": [
+          "RTI 1",
+          "RTI 2",
+          "La 3",
+          "A+ Ivoire",
+          "Life TV",
+          "NCI",
+          "7info",
+          "A+",
+          "M6 International",
+          "Africa 24 Infinity",
+          "Africable",
+          "Vox Africa",
+          "Africanews",
+          "Africa 24 English",
+          "CNBC Africa",
+          "Global Africa Telesud",
+          "RTB",
+          "RTG",
+          "RTV"
+        ]
+      },
+      {
+        "id": "information",
+        "name": "Information",
+        "channels": [
+          "France 24",
+          "BBC News",
+          "Al Jazeera",
+          "Bloomberg TV",
+          "DW",
+          "Euronews",
+          "Sky News",
+          "CGTN Français",
+          "CNEWS",
+          "Medi1"
+        ]
+      },
+      {
+        "id": "films-series",
+        "name": "Cinéma et séries",
+        "channels": [
+          "M-Net Movies 3",
+          "M-Net Movies 4",
+          "Studio Universal",
+          "Universal TV Africa",
+          "TNT Africa",
+          "eMovies",
+          "eMovies Extra",
+          "Africa Magic Showcase",
+          "Africa Magic Epic",
+          "Africa Magic Urban",
+          "Africa Magic Family",
+          "Zee World",
+          "Star Life",
+          "Novelas+"
+        ]
+      },
+      {
+        "id": "jeunesse",
+        "name": "Jeunesse et famille",
+        "channels": [
+          "A+ Kids",
+          "Gulli Africa",
+          "Cartoon Network",
+          "Disney Channel",
+          "DreamWorks",
+          "Nickelodeon"
+        ]
+      },
+      {
+        "id": "sport",
+        "name": "Sport",
+        "channels": [
+          "SuperSport Grandstand",
+          "SuperSport Premier League",
+          "SuperSport La Liga",
+          "SuperSport Football",
+          "SuperSport Football Plus",
+          "SuperSport Blitz",
+          "ESPN",
+          "ESPN 2"
+        ]
+      },
+      {
+        "id": "culture-musique-decouverte",
+        "name": "Musique, culture et découverte",
+        "channels": [
+          "Trace Africa",
+          "Trace Urban",
+          "Trace Gospel",
+          "Trace Ivoire",
+          "BBC Earth",
+          "Discovery Channel",
+          "National Geographic",
+          "Nat Geo Wild",
+          "History Channel",
+          "Travel Channel",
+          "Trace Mboa",
+          "Trace Mziki",
+          "NRJ Hits"
+        ]
+      }
+    ],
+    "implementationNotes": [
+      "Bouquet payant distinct de Free TV.",
+      "Tarif : 3 350 F CFA par mois.",
+      "Ne pas marquer comme actif avant vérification des sources de lecture et des droits de diffusion."
+    ]
+  }
+}
