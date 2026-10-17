@@ -16,7 +16,13 @@ const BOUQUETS = [
     description: "Chaînes dont l'accès gratuit a été vérifié, sélectionnées manuellement.",
     selectionMode: "manual",
     freeAccessVerificationRequired: true,
-    channelIds: []
+    channelIds: [
+      "france-24",
+      "rti-1",
+      "rti-2",
+      "la-3",
+      "nci"
+    ]
   }
 ];
 
