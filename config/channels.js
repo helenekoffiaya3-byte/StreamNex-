@@ -23,9 +23,9 @@ const CHANNELS = [
 { channelNumber: 21, id: "dw", tvgId: "dw", name: "DW", group: "Information", logoUrl: "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/international/dw-int.png", webUrl: "https://www.youtube.com/@dwnews", liveOnly: true },
 { channelNumber: 22, id: "euronews", tvgId: "euronews", name: "Euronews", group: "Information", logoUrl: "/assets/logos/euronews.svg", webUrl: "https://www.youtube.com/@euronewsfr", liveOnly: true },
 { channelNumber: 23, id: "fox-business", tvgId: "fox-business", name: "Fox Business", group: "Information", logoUrl: "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/united-states/fox-business-us.png", webUrl: "https://www.youtube.com/@FoxBusiness" },
-{ channelNumber: 24, id: "fox-news", tvgId: "fox-news", name: "Fox News", group: "Information", logoUrl: "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/united-states/fox-news-us.png", webUrl: "https://www.youtube.com/channel/UCXIJgqnII2ZOINSWNOGFThA", productionUrl: null, liveOnly: true },
+{ channelNumber: 24, id: "fox-news", tvgId: "fox-news", name: "Fox News", group: "Information", logoUrl: "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/united-states/fox-news-us.png", webUrl: "https://www.youtube.com/channel/UCXIJgqnII2ZOINSWNOGFThA", liveOnly: true },
 { channelNumber: 25, id: "france-24", tvgId: "france-24", name: "France 24", bouquet: "StreetStart", group: "France", logoUrl: "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/france/france-24-fr.png", webUrl: "https://www.france.tv/france-24/direct.html" },
-{ channelNumber: 26, id: "hln", tvgId: "hln", name: "HLN", group: "Information", logoUrl: "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/united-states/hln-us.png", webUrl: "https://www.youtube.com/channel/UCyAN55vvo8odHHg7QY1pf5w", productionUrl: null, liveOnly: true },
+{ channelNumber: 26, id: "hln", tvgId: "hln", name: "HLN", group: "Information", logoUrl: "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/united-states/hln-us.png", webUrl: "https://www.youtube.com/channel/UCyAN55vvo8odHHg7QY1pf5w", liveOnly: true },
 { channelNumber: 27, id: "i24news-fr", tvgId: "i24news-fr", name: "i24NEWS Français", bouquet: "StreetStart", group: "Information", logoUrl: "/assets/logos/i24news.svg", webUrl: "https://www.youtube.com/@i24NEWS_FR" },
 { channelNumber: 28, id: "ms-now", tvgId: "ms-now", name: "MS NOW", bouquet: "StreetStart", group: "Information", logoUrl: "/assets/logos/msnbc.svg", webUrl: "https://www.youtube.com/@msnow", liveOnly: true },
   { channelNumber: 29, id: "ab1", tvgId: "ab1", name: "AB1", bouquet: "StreetStart", group: "Cinéma", logoUrl: "https://commons.wikimedia.org/wiki/Special:Redirect/file/AB1_logo.svg" },
@@ -184,24 +184,24 @@ const CHANNELS = [
   { channelNumber: 193, id: "sport-3", tvgId: "sport-3", name: "Sport 3", group: "Sport", logoUrl: "https://commons.wikimedia.org/wiki/Special:Redirect/file/Logo_RMC_Sport_3_2018.svg" },
   { channelNumber: 194, id: "sport-4", tvgId: "sport-4", name: "Sport 4", group: "Sport", logoUrl: "https://commons.wikimedia.org/wiki/Special:Redirect/file/Logo_RMC_Sport_4_2018.svg" },
 { channelNumber: 195, id: "la-chaine-meteo", tvgId: "la-chaine-meteo", name: "La Chaîne Météo", bouquet: "StreetStart", group: "Information", webUrl: "https://www.youtube.com/@lachainemeteo", logoUrl: "https://commons.wikimedia.org/wiki/Special:Redirect/file/La_chaine_m%C3%A9teo_%28logo%29.svg" },
-{ channelNumber: 196, id: "7info", tvgId: "7info", name: "7info", bouquet: "StreetStart", group: "Information", logoUrl: "/assets/logos/7info.png", webUrl: "https://www.youtube.com/channel/UCYHo8lQ0-FpkNPyul54t5Sg", productionUrl: null, liveOnly: true },
-{ channelNumber: 197, id: "abc-news-live", tvgId: "abc-news-live", name: "ABC News Live", bouquet: "StreetStart", group: "Information", logoUrl: "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/united-states/abc-news-live-us.png", webUrl: "https://www.youtube.com/channel/UCBi2mrWuNuyYy4gbM6fU18Q", productionUrl: null, liveOnly: true },
-{ channelNumber: 198, id: "al-jazeera", tvgId: "al-jazeera", name: "Al Jazeera", bouquet: "StreetStart", group: "Information", logoUrl: "/assets/logos/al-jazeera.jpg", webUrl: "https://www.youtube.com/channel/UCNye-wNBqNL5ZzHSJj3l8Bg", productionUrl: null, liveOnly: true },
-{ channelNumber: 199, id: "bbc-news", tvgId: "bbc-news", name: "BBC News", bouquet: "StreetStart", group: "Information", logoUrl: "/assets/logos/bbc-news.svg", webUrl: "https://www.youtube.com/channel/UC16niRr50-MSBwiO3YDb3RA", productionUrl: null, liveOnly: true },
+{ channelNumber: 196, id: "7info", tvgId: "7info", name: "7info", bouquet: "StreetStart", group: "Information", logoUrl: "/assets/logos/7info.png", webUrl: "https://www.youtube.com/channel/UCYHo8lQ0-FpkNPyul54t5Sg", liveOnly: true },
+{ channelNumber: 197, id: "abc-news-live", tvgId: "abc-news-live", name: "ABC News Live", bouquet: "StreetStart", group: "Information", logoUrl: "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/united-states/abc-news-live-us.png", webUrl: "https://www.youtube.com/channel/UCBi2mrWuNuyYy4gbM6fU18Q", liveOnly: true },
+{ channelNumber: 198, id: "al-jazeera", tvgId: "al-jazeera", name: "Al Jazeera", bouquet: "StreetStart", group: "Information", logoUrl: "/assets/logos/al-jazeera.jpg", webUrl: "https://www.youtube.com/channel/UCNye-wNBqNL5ZzHSJj3l8Bg", liveOnly: true },
+{ channelNumber: 199, id: "bbc-news", tvgId: "bbc-news", name: "BBC News", bouquet: "StreetStart", group: "Information", logoUrl: "/assets/logos/bbc-news.svg", webUrl: "https://www.youtube.com/channel/UC16niRr50-MSBwiO3YDb3RA", liveOnly: true },
 { channelNumber: 200, id: "bloomberg-tv", tvgId: "bloomberg-tv", name: "Bloomberg TV", bouquet: "StreetStart", group: "Information", logoUrl: "https://commons.wikimedia.org/wiki/Special:Redirect/file/Bloomberg_Television_logo.svg", webUrl: "https://www.youtube.com/@markets" },
-{ channelNumber: 201, id: "c-span", tvgId: "c-span", name: "C-SPAN", bouquet: "StreetStart", group: "Information", logoUrl: "/assets/logos/c-span.svg", webUrl: "https://www.youtube.com/channel/UCb--64Gl51jIEVE-GLDAVTg", productionUrl: null, liveOnly: true },
-{ channelNumber: 202, id: "cbs-news-24-7", tvgId: "cbs-news-24-7", name: "CBS News 24/7", bouquet: "StreetStart", group: "Information", logoUrl: "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/united-states/cbs-news-24-7-us.png", webUrl: "https://www.youtube.com/channel/UC8p1vwvWtl6T73JiExfWs1g", productionUrl: null, liveOnly: true },
-{ channelNumber: 203, id: "cgtn", tvgId: "cgtn", name: "CGTN", bouquet: "StreetStart", group: "Information", logoUrl: "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/international/cgtn-int.png", webUrl: "https://www.youtube.com/channel/UCgrNz-aDmcr2uuto8_DL2jg", productionUrl: null, liveOnly: true },
-{ channelNumber: 204, id: "cnbc", tvgId: "cnbc", name: "CNBC", bouquet: "StreetStart", group: "Information", logoUrl: "https://commons.wikimedia.org/wiki/Special:Redirect/file/CNBC_2025.svg", webUrl: "https://www.youtube.com/channel/UCvJJ_dzjViJCoLf5uKUTwoA", productionUrl: null, liveOnly: true },
-{ channelNumber: 205, id: "cnn", tvgId: "cnn", name: "CNN", bouquet: "StreetStart", group: "Information", logoUrl: "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/united-states/cnn-us.png", webUrl: "https://www.youtube.com/channel/UCupvZG-5ko_eiXAupbDfxWw", productionUrl: null, liveOnly: true },
-{ channelNumber: 206, id: "nbc-news-now", tvgId: "nbc-news-now", name: "NBC News NOW", group: "Information", logoUrl: "https://commons.wikimedia.org/wiki/Special:Redirect/file/NBC_News_Now_2023.svg", webUrl: "https://www.youtube.com/channel/UCeY0bbntWzzVIaj2z3QigXg", productionUrl: null, liveOnly: true },
-{ channelNumber: 207, id: "newsmax", tvgId: "newsmax", name: "Newsmax", group: "Information", logoUrl: "/assets/logos/newsmax.svg", webUrl: "https://www.youtube.com/channel/UCx6h-dWzJ5NpAlja1YsApdg", productionUrl: null, liveOnly: true },
+{ channelNumber: 201, id: "c-span", tvgId: "c-span", name: "C-SPAN", bouquet: "StreetStart", group: "Information", logoUrl: "/assets/logos/c-span.svg", webUrl: "https://www.youtube.com/channel/UCb--64Gl51jIEVE-GLDAVTg", liveOnly: true },
+{ channelNumber: 202, id: "cbs-news-24-7", tvgId: "cbs-news-24-7", name: "CBS News 24/7", bouquet: "StreetStart", group: "Information", logoUrl: "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/united-states/cbs-news-24-7-us.png", webUrl: "https://www.youtube.com/channel/UC8p1vwvWtl6T73JiExfWs1g", liveOnly: true },
+{ channelNumber: 203, id: "cgtn", tvgId: "cgtn", name: "CGTN", bouquet: "StreetStart", group: "Information", logoUrl: "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/international/cgtn-int.png", webUrl: "https://www.youtube.com/channel/UCgrNz-aDmcr2uuto8_DL2jg", liveOnly: true },
+{ channelNumber: 204, id: "cnbc", tvgId: "cnbc", name: "CNBC", bouquet: "StreetStart", group: "Information", logoUrl: "https://commons.wikimedia.org/wiki/Special:Redirect/file/CNBC_2025.svg", webUrl: "https://www.youtube.com/channel/UCvJJ_dzjViJCoLf5uKUTwoA", liveOnly: true },
+{ channelNumber: 205, id: "cnn", tvgId: "cnn", name: "CNN", bouquet: "StreetStart", group: "Information", logoUrl: "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/united-states/cnn-us.png", webUrl: "https://www.youtube.com/channel/UCupvZG-5ko_eiXAupbDfxWw", liveOnly: true },
+{ channelNumber: 206, id: "nbc-news-now", tvgId: "nbc-news-now", name: "NBC News NOW", group: "Information", logoUrl: "https://commons.wikimedia.org/wiki/Special:Redirect/file/NBC_News_Now_2023.svg", webUrl: "https://www.youtube.com/channel/UCeY0bbntWzzVIaj2z3QigXg", liveOnly: true },
+{ channelNumber: 207, id: "newsmax", tvgId: "newsmax", name: "Newsmax", group: "Information", logoUrl: "/assets/logos/newsmax.svg", webUrl: "https://www.youtube.com/channel/UCx6h-dWzJ5NpAlja1YsApdg", liveOnly: true },
 { channelNumber: 208, id: "newsnation", tvgId: "newsnation", name: "NewsNation", group: "Information", logoUrl: "/assets/logos/newsnation.svg", webUrl: "https://www.youtube.com/@NewsNation" },
-{ channelNumber: 209, id: "nhk-world", tvgId: "nhk-world", name: "NHK World", group: "Information", logoUrl: "/assets/logos/nhk-world.svg", webUrl: "https://www.youtube.com/channel/UCSPEjw8F2nQDtmUKPFNF7_A", productionUrl: null, liveOnly: true },
-{ channelNumber: 210, id: "oan", tvgId: "oan", name: "OAN", group: "Information", logoUrl: "/assets/logos/oan.svg", webUrl: "https://www.youtube.com/channel/UCNbIDJNNgaRrXOD7VllIMRQ", productionUrl: null, liveOnly: true },
-{ channelNumber: 211, id: "sky-news", tvgId: "sky-news", name: "Sky News", group: "Information", logoUrl: "/assets/logos/sky-news.svg", webUrl: "https://www.youtube.com/channel/UCoMdktPbSTixAyNGwb-UYkQ", productionUrl: null, liveOnly: true },
+{ channelNumber: 209, id: "nhk-world", tvgId: "nhk-world", name: "NHK World", group: "Information", logoUrl: "/assets/logos/nhk-world.svg", webUrl: "https://www.youtube.com/channel/UCSPEjw8F2nQDtmUKPFNF7_A", liveOnly: true },
+{ channelNumber: 210, id: "oan", tvgId: "oan", name: "OAN", group: "Information", logoUrl: "/assets/logos/oan.svg", webUrl: "https://www.youtube.com/channel/UCNbIDJNNgaRrXOD7VllIMRQ", liveOnly: true },
+{ channelNumber: 211, id: "sky-news", tvgId: "sky-news", name: "Sky News", group: "Information", logoUrl: "/assets/logos/sky-news.svg", webUrl: "https://www.youtube.com/channel/UCoMdktPbSTixAyNGwb-UYkQ", liveOnly: true },
 { channelNumber: 212, id: "the-weather-channel", tvgId: "the-weather-channel", name: "The Weather Channel", group: "Information", logoUrl: "/assets/logos/the-weather-channel.svg", webUrl: "https://www.youtube.com/@TheWeatherChannel" },
-{ channelNumber: 213, id: "trt-world", tvgId: "trt-world", name: "TRT World", group: "Information", logoUrl: "/assets/logos/trt-world.svg", webUrl: "https://www.youtube.com/channel/UC7fWeaHhqgM4Ry-RMpM2YYw", productionUrl: null, liveOnly: true },
+{ channelNumber: 213, id: "trt-world", tvgId: "trt-world", name: "TRT World", group: "Information", logoUrl: "/assets/logos/trt-world.svg", webUrl: "https://www.youtube.com/channel/UC7fWeaHhqgM4Ry-RMpM2YYw", liveOnly: true },
   { channelNumber: 214, id: "a-plus", tvgId: "a-plus", name: "A+", bouquet: "StreetStart", group: "Afrique", logoUrl: "/assets/logos/a-plus.jpg" },
   { channelNumber: 215, id: "m6-international", tvgId: "m6-international", name: "M6 International", bouquet: "StreetStart", group: "Afrique", logoUrl: "https://commons.wikimedia.org/wiki/Special:Redirect/file/M6_International_logo.svg" },
   { channelNumber: 216, id: "maboke-tv", tvgId: "maboke-tv", name: "Maboke TV", bouquet: "StreetStart", group: "Afrique", logoUrl: "/assets/logos/maboke-tv.svg" },
@@ -238,11 +238,11 @@ const CHANNELS = [
   { channelNumber: 247, id: "esport-en-france", tvgId: "esport-en-france", name: "Esport en France", group: "Sport", logoUrl: "/assets/logos/channel-placeholder.svg" },
   { channelNumber: 248, id: "trek", tvgId: "trek", name: "Trek", group: "Sport", logoUrl: "/assets/logos/channel-placeholder.svg" },
   { channelNumber: 249, id: "w-sport", tvgId: "w-sport", name: "W-Sport", group: "Sport", logoUrl: "/assets/logos/channel-placeholder.svg" },
-  { channelNumber: 126, id: "s-plus-sport-1", tvgId: "s-plus-sport-1", name: "S+ Sport 1", group: "S+", logoUrl: "", productionUrl: null },
-  { channelNumber: 127, id: "s-plus-sport-2", tvgId: "s-plus-sport-2", name: "S+ Sport 2", group: "S+", logoUrl: "", productionUrl: null },
-  { channelNumber: 128, id: "s-plus-sport-3", tvgId: "s-plus-sport-3", name: "S+ Sport 3", group: "S+", logoUrl: "", productionUrl: null },
-  { channelNumber: 129, id: "s-plus-sport-4", tvgId: "s-plus-sport-4", name: "S+ Sport 4", group: "S+", logoUrl: "", productionUrl: null },
-  { channelNumber: 130, id: "s-plus-sport-5", tvgId: "s-plus-sport-5", name: "S+ Sport 5", group: "S+", logoUrl: "", productionUrl: null },
+  { channelNumber: 126, id: "s-plus-sport-1", tvgId: "s-plus-sport-1", name: "S+ Sport 1", group: "S+", logoUrl: "" },
+  { channelNumber: 127, id: "s-plus-sport-2", tvgId: "s-plus-sport-2", name: "S+ Sport 2", group: "S+", logoUrl: "" },
+  { channelNumber: 128, id: "s-plus-sport-3", tvgId: "s-plus-sport-3", name: "S+ Sport 3", group: "S+", logoUrl: "" },
+  { channelNumber: 129, id: "s-plus-sport-4", tvgId: "s-plus-sport-4", name: "S+ Sport 4", group: "S+", logoUrl: "" },
+  { channelNumber: 130, id: "s-plus-sport-5", tvgId: "s-plus-sport-5", name: "S+ Sport 5", group: "S+", logoUrl: "" },
   { channelNumber: 250, id: "dorcel-tv", tvgId: "dorcel-tv", name: "Dorcel TV", bouquet: "StreetStart", group: "Adulte", logoUrl: "/assets/logos/channel-placeholder.svg" },
   { channelNumber: 251, id: "dorcel-tv-africa", tvgId: "dorcel-tv-africa", name: "Dorcel TV Africa", group: "Adulte", logoUrl: "/assets/logos/channel-placeholder.svg" },
   { channelNumber: 252, id: "hustler-hd", tvgId: "hustler-hd", name: "Hustler HD", group: "Adulte", logoUrl: "/assets/logos/channel-placeholder.svg" },
@@ -439,8 +439,7 @@ const CHANNELS = [
 
 // Catalogue integrity checks (development/build-time):
 // - every channel must have unique id, tvgId and channelNumber
-// - every channel must have a logoUrl and productionUrl field; S+ entries intentionally have an empty logoUrl
-// - streamEnv identifies the Netlify environment variable used for the production HLS URL
+// - every channel must preserve its catalogue identity; webUrl is optional until an official page is known
 const channelIds = new Set();
 const channelTvgIds = new Set();
 const channelNumbers = new Set();
@@ -454,10 +453,7 @@ for (const channel of CHANNELS) {
   if (channelTvgIds.has(channel.tvgId)) throw new Error(`Duplicate tvgId: ${channel.tvgId}`);
   if (channelNumbers.has(channel.channelNumber)) throw new Error(`Duplicate channel number: ${channel.channelNumber}`);
   if (typeof channel.logoUrl !== "string" || (!channel.logoUrl && !channel.id.startsWith("s-plus"))) throw new Error(`Missing logoUrl: ${channel.id}`);
-  if (!Object.prototype.hasOwnProperty.call(channel, "productionUrl")) throw new Error(`Missing productionUrl: ${channel.id}`);
-  if (channel.productionUrl !== null && typeof channel.productionUrl !== "string") throw new Error(`Invalid productionUrl: ${channel.id}`);
-  if (!channel.streamEnv || typeof channel.streamEnv !== "string") throw new Error(`Missing streamEnv: ${channel.id}`);
-  if (typeof channel.streamEnabled !== "boolean") throw new Error(`Invalid streamEnabled: ${channel.id}`);
+  if (channel.webUrl !== undefined && (typeof channel.webUrl !== "string" || !/^https?:\\/\\//.test(channel.webUrl))) throw new Error(`Invalid webUrl: ${channel.id}`);
   channelIds.add(channel.id);
   channelTvgIds.add(channel.tvgId);
   channelNumbers.add(channel.channelNumber);
