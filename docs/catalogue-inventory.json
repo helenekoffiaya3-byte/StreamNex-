@@ -3,7 +3,7 @@
   "purpose": "Catalogue inventory for reconciliation; config/channels.js remains the runtime source of truth.",
   "source": {
     "path": "config/channels.js",
-    "blobSha": "0936c1b13ff6ef3668a91d231389ba450aa44e2b",
+    "blobSha": "dc17721c851908dc8ffea97a9157a5f8f235d769",
     "readmeBlobSha": "0d2993b79f56fab61207eef112087ea22a4d575f"
   },
   "generatedOn": "2026-10-17",
@@ -28,8 +28,8 @@
       "tvgIds": [],
       "numbers": []
     },
-    "webConfigured": 69,
-    "webUrlMissing": 364,
+    "webConfigured": 71,
+    "webUrlMissing": 362,
     "countsByGroup": {
       "Côte d’Ivoire": 6,
       "S+": 32,
@@ -716,7 +716,8 @@
       "name": "TF1 Séries Films",
       "tvgId": "tf1-series-films",
       "group": "Séries & SF",
-      "logoUrl": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Logo_TF1_S%C3%A9ries_Films_2018.jpg"
+      "logoUrl": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Logo_TF1_S%C3%A9ries_Films_2018.jpg",
+      "webUrl": "https://www.tf1.fr/tf1-series-films/direct"
     },
     {
       "number": 76,
@@ -3010,7 +3011,8 @@
       "tvgId": "cnews",
       "group": "Information",
       "logoUrl": "/assets/logos/channel-placeholder.svg",
-      "liveOnly": true
+      "liveOnly": true,
+      "webUrl": "https://www.cnews.fr/direct"
     },
     {
       "number": 362,
