@@ -170,7 +170,7 @@ const CHANNELS = [
   { channelNumber: 179, id: "cheval-tv", tvgId: "cheval-tv", name: "Cheval TV", group: "Documentaires" , logoUrl: "/assets/logos/cheval-tv.png"},
   { channelNumber: 180, id: "mieux-tv", tvgId: "mieux-tv", name: "Mieux TV", group: "Documentaires" , logoUrl: "/assets/logos/mieux-tv.png", webUrl: "https://www.france.tv/mieux/direct.html" },
   { channelNumber: 181, id: "dog-cat-tv", tvgId: "dog-cat-tv", name: "Dog & Cat TV", group: "Documentaires" , logoUrl: "/assets/logos/dog-and-cat-tv.png"},
-  { channelNumber: 182, id: "love-nature", tvgId: "love-nature", name: "Love Nature", group: "Documentaires", logoUrl: "https://commons.wikimedia.org/wiki/Special:Redirect/file/Love_Nature_logo_%282025%29.svg" },
+  { channelNumber: 182, id: "love-nature", tvgId: "love-nature", name: "Love Nature", group: "Documentaires", logoUrl: "https://commons.wikimedia.org/wiki/Special:Redirect/file/Love_Nature_logo_%282025%29.svg", webUrl: "https://lovenature.com/channel-finder/" },
   { channelNumber: 183, id: "museum-tv", tvgId: "museum-tv", name: "Museum TV", group: "Documentaires", logoUrl: "https://commons.wikimedia.org/wiki/Special:Redirect/file/Museum_TV_Paris.png" },
   { channelNumber: 184, id: "planete-plus-crime", tvgId: "planete-plus-crime", name: "Planète+ Crime", group: "Documentaires", logoUrl: "https://commons.wikimedia.org/wiki/Special:Redirect/file/PLAN%C3%88TE%2B_ci.png" },
   { channelNumber: 185, id: "planete-plus-aventure", tvgId: "planete-plus-aventure", name: "Planète+ Aventure", group: "Documentaires", logoUrl: "https://commons.wikimedia.org/wiki/Special:Redirect/file/PLAN%C3%88TE%2B_A%26E.png" },
