@@ -433,11 +433,11 @@ const CHANNELS = [
   { channelNumber: 438, id: "tv5monde-jeunesse", tvgId: "tv5monde-jeunesse", name: "TV5MONDE Jeunesse", group: "Jeunesse", logoUrl: "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/france/tv5-monde-fr.png", webUrl: "https://www.tv5mondeplus.com/fr/direct?channelid=21" },
   { channelNumber: 439, id: "tv5monde-voyage", tvgId: "tv5monde-voyage", name: "TV5MONDE Voyage", group: "Documentaires", logoUrl: "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/france/tv5-monde-fr.png", webUrl: "https://www.tv5mondeplus.com/fr/direct?channelid=31" },
   { channelNumber: 440, id: "tv5monde-chef", tvgId: "tv5monde-chef", name: "TV5MONDE Chef", group: "Cuisine", logoUrl: "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/france/tv5-monde-fr.png", webUrl: "https://www.tv5mondeplus.com/fr/direct?channelid=32" },
-  { channelNumber: 441, id: "hbo-max", tvgId: "hbo-max", name: "HBO Max", group: "Service vidéo", logoUrl: "", webUrl: "https://www.hbomax.com/" },
-  { channelNumber: 442, id: "paramount-plus", tvgId: "paramount-plus", name: "Paramount+", group: "Service vidéo", logoUrl: "", webUrl: "https://www.paramountplus.com/" },
-  { channelNumber: 443, id: "netflix", tvgId: "netflix", name: "Netflix", group: "Service vidéo", logoUrl: "", webUrl: "https://www.netflix.com/ci-en/" },
-  { channelNumber: 444, id: "tf1-plus", tvgId: "tf1-plus", name: "TF1+", group: "Service vidéo", logoUrl: "", webUrl: "https://www.tf1.fr/" },
-  { channelNumber: 445, id: "m6-plus", tvgId: "m6-plus", name: "M6+", group: "Service vidéo", logoUrl: "", webUrl: "https://www.m6.fr/" },
+  { channelNumber: 441, id: "hbo-max", tvgId: "hbo-max", name: "HBO Max", group: "Service vidéo", logoUrl: "/assets/logos/channel-placeholder.svg", webUrl: "https://www.hbomax.com/" },
+  { channelNumber: 442, id: "paramount-plus", tvgId: "paramount-plus", name: "Paramount+", group: "Service vidéo", logoUrl: "/assets/logos/channel-placeholder.svg", webUrl: "https://www.paramountplus.com/" },
+  { channelNumber: 443, id: "netflix", tvgId: "netflix", name: "Netflix", group: "Service vidéo", logoUrl: "/assets/logos/channel-placeholder.svg", webUrl: "https://www.netflix.com/ci-en/" },
+  { channelNumber: 444, id: "tf1-plus", tvgId: "tf1-plus", name: "TF1+", group: "Service vidéo", logoUrl: "/assets/logos/channel-placeholder.svg", webUrl: "https://www.tf1.fr/" },
+  { channelNumber: 445, id: "m6-plus", tvgId: "m6-plus", name: "M6+", group: "Service vidéo", logoUrl: "/assets/logos/channel-placeholder.svg", webUrl: "https://www.m6.fr/" },
 ];
 
 // Catalogue integrity checks (development/build-time):
