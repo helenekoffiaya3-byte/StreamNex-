@@ -1,6 +1,5 @@
 // StreamLive bouquet definitions.
-// Membership is intentionally manual: do not populate these lists automatically.
-// Keep channel IDs here; never duplicate or alter catalogue entries.
+// Membership is intentionally manual; catalogue entries remain unchanged.
 // Free TV membership requires verified free-to-watch access in the intended region.
 const BOUQUETS = [
   {
@@ -21,7 +20,8 @@ const BOUQUETS = [
       "rti-1",
       "rti-2",
       "la-3",
-      "nci"
+      "nci",
+      "i24news-fr"
     ],
     pendingVerificationChannelIds: [
       "okoo",
@@ -29,7 +29,8 @@ const BOUQUETS = [
     ],
     excludedPaidChannelIds: [
       "teletoon-plus",
-      "piwi-plus"
+      "piwi-plus",
+      "science-et-vie-tv"
     ]
   }
 ];
