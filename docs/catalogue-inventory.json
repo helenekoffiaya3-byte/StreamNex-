@@ -3,20 +3,22 @@
   "purpose": "Catalogue inventory for reconciliation; config/channels.js remains the runtime source of truth.",
   "source": {
     "path": "config/channels.js",
-    "blobSha": "850bd948cb37f30da08428cc97aea82d80ac6aa4",
+    "blobSha": "0936c1b13ff6ef3668a91d231389ba450aa44e2b",
     "readmeBlobSha": "0d2993b79f56fab61207eef112087ea22a4d575f"
   },
   "generatedOn": "2026-10-17",
   "summary": {
-    "entryCount": 435,
-    "uniqueIds": 435,
-    "uniqueTvgIds": 435,
-    "uniqueNumbers": 435,
+    "entryCount": 433,
+    "uniqueIds": 433,
+    "uniqueTvgIds": 433,
+    "uniqueNumbers": 433,
     "minimumNumber": 1,
     "maximumNumber": 440,
     "missingNumbers": [
       131,
       133,
+      136,
+      137,
       144,
       145,
       146
@@ -27,10 +29,10 @@
       "numbers": []
     },
     "webConfigured": 67,
-    "webUrlMissing": 368,
+    "webUrlMissing": 366,
     "countsByGroup": {
       "Côte d’Ivoire": 6,
-      "S+": 34,
+      "S+": 32,
       "France": 15,
       "Information": 61,
       "Cinéma": 27,
@@ -1133,22 +1135,6 @@
       "id": "s-plus-media",
       "name": "S+ Media",
       "tvgId": "s-plus-media",
-      "group": "S+",
-      "logoUrl": ""
-    },
-    {
-      "number": 136,
-      "id": "s-plus-lloliwood",
-      "name": "S+ LLOLIWOOD",
-      "tvgId": "s-plus-lloliwood",
-      "group": "S+",
-      "logoUrl": ""
-    },
-    {
-      "number": 137,
-      "id": "s-plus-bl",
-      "name": "S+ BL",
-      "tvgId": "s-plus-bl",
       "group": "S+",
       "logoUrl": ""
     },
