@@ -1,78 +1,261 @@
 {
-  "title": "StreamLive — Options de bouquets Free TV",
-  "status": "draft",
-  "note": "Spécification enregistrée séparément. Ces options ne sont pas activées automatiquement dans l'application; vérifier les chaînes et l'accès régional avant activation.",
-  "options": [
-    {
-      "id": "free-tv-cote-divoire",
-      "name": "Free TV Côte d’Ivoire",
-      "country": "Côte d’Ivoire",
-      "expectedChannelCount": 15,
-      "videoService": {
+  "title": "StreamLive — Bouquet unique Free TV",
+  "status": "saved-proposal",
+  "note": "Tous les anciens bouquets régionaux Free TV sont regroupés dans un seul bouquet nommé « Free TV ». Les régions sont conservées uniquement comme catégories/repères de sélection, pas comme bouquets séparés. Cette proposition documentaire n'active pas automatiquement les chaînes dans l'application. Vérifier chaque entrée du catalogue et chaque source de diffusion avant activation.",
+  "bouquet": {
+    "id": "free-tv",
+    "name": "Free TV",
+    "status": "saved-proposal",
+    "videoServices": [
+      {
         "id": "m6-plus",
-        "name": "M6+"
+        "name": "M6+",
+        "associatedOriginallyWith": "sélection Côte d’Ivoire"
       },
-      "channels": [
-        "RTI 1",
-        "RTI 2",
-        "La 3",
-        "NCI",
-        "A+ Ivoire",
-        "Life TV",
-        "7info",
-        "France 2",
-        "France 24",
-        "TV5MONDE",
-        "BBC News",
-        "Al Jazeera",
-        "Africa 24",
-        "Trace Africa",
-        "W9"
-      ],
-      "status": "saved-proposal"
-    },
-    {
-      "id": "free-tv-afrique",
-      "name": "Free TV Afrique",
-      "region": "Afrique",
-      "expectedChannelCount": 14,
-      "channels": [
-        "France 24",
-        "TV5MONDE",
-        "Sky News",
-        "Trace Africa",
-        "Trace Gospel",
-        "A+ Bénin",
-        {
-          "slot": "Ghana 1",
-          "channelName": null
-        },
-        {
-          "slot": "Ghana 2",
-          "channelName": null
-        },
-        {
-          "slot": "Ghana 3",
-          "channelName": null
-        },
-        {
-          "slot": "Bénin 1",
-          "channelName": null
-        },
-        {
-          "slot": "Bénin 2",
-          "channelName": null
-        },
-        "Nollywood",
-        "M6",
-        "STREAMNEX Première"
-      ],
-      "status": "saved-proposal",
-      "pending": [
-        "Choisir les noms exacts des trois chaînes du Ghana",
-        "Choisir les noms exacts des deux chaînes du Bénin",
-        "Vérifier les sources de diffusion et la disponibilité régionale avant activation"
-      ]
-    }
-  ]
+      {
+        "id": "paramount-plus",
+        "name": "Paramount+",
+        "associatedOriginallyWith": "sélection internationale"
+      }
+    ],
+    "regionalAvailabilityNotes": [
+      "PUFFTV International : selon la consigne du projet, ne pas proposer en Europe, en Afrique ni en Côte d’Ivoire; disponibilité annoncée en Amérique et en Asie, à vérifier avant activation."
+    ],
+    "regionalSelections": [
+      {
+        "id": "cote-divoire",
+        "label": "Sélection Côte d’Ivoire",
+        "channels": [
+          "RTI 1",
+          "RTI 2",
+          "La 3",
+          "NCI",
+          "A+ Ivoire",
+          "Life TV",
+          "7info",
+          "France 2",
+          "France 24",
+          "TV5MONDE",
+          "BBC News",
+          "Al Jazeera",
+          "Africa 24",
+          "Trace Africa",
+          "W9"
+        ]
+      },
+      {
+        "id": "afrique",
+        "label": "Sélection Afrique",
+        "channels": [
+          "France 24",
+          "TV5MONDE",
+          "Sky News",
+          "Trace Africa",
+          "Trace Gospel",
+          "A+ Bénin",
+          {
+            "slot": "Ghana 1",
+            "channelName": null
+          },
+          {
+            "slot": "Ghana 2",
+            "channelName": null
+          },
+          {
+            "slot": "Ghana 3",
+            "channelName": null
+          },
+          {
+            "slot": "Bénin 1",
+            "channelName": null
+          },
+          {
+            "slot": "Bénin 2",
+            "channelName": null
+          },
+          "Nollywood",
+          "M6",
+          "STREAMNEX Première"
+        ],
+        "pending": [
+          "Les trois chaînes du Ghana restent à identifier.",
+          "Les deux chaînes du Bénin restent à identifier."
+        ]
+      },
+      {
+        "id": "europa",
+        "label": "Sélection Europe",
+        "channels": [
+          "France 24",
+          "Europa League",
+          "France 2",
+          "franceinfo",
+          "RTS Suisse",
+          "StreamNex Ciné",
+          "DStv English (chaîne à choisir)",
+          "W9",
+          "Okoo",
+          "Disney Channel",
+          "StreamNex Cartonn",
+          "Sport 1",
+          "Sport 2",
+          "TF1",
+          "LCI",
+          "EMCI TV"
+        ],
+        "notes": [
+          "Europa League est un contenu/une compétition, pas nécessairement une chaîne de télévision.",
+          "La chaîne DStv English reste à choisir."
+        ]
+      },
+      {
+        "id": "international",
+        "label": "Sélection internationale",
+        "channels": [
+          "France 24",
+          "Sky News",
+          "Discovery Channel",
+          "See World",
+          "TFX",
+          "BBC News",
+          "Al Jazeera English",
+          "Bloomberg TV",
+          "DW",
+          "Euronews",
+          "Disney Channel",
+          "Nickelodeon",
+          "Cartoon Network",
+          "Boing",
+          "DreamWorks Channel",
+          "M-Net Movies 3",
+          "eMovies",
+          "Universal TV Africa",
+          "Studio Universal",
+          "FilmBox"
+        ],
+        "requiredChannels": [
+          "France 24"
+        ],
+        "notes": [
+          "See World doit être identifié et son entrée catalogue confirmée."
+        ]
+      }
+    ],
+    "categories": [
+      {
+        "id": "information",
+        "name": "Information",
+        "channels": [
+          "France 24",
+          "BBC News",
+          "Al Jazeera English",
+          "Bloomberg TV",
+          "DW",
+          "Sky News",
+          "Euronews",
+          "franceinfo",
+          "Africa 24",
+          "7info"
+        ]
+      },
+      {
+        "id": "jeunesse",
+        "name": "Jeunesse",
+        "channels": [
+          "Disney Channel",
+          "Nickelodeon",
+          "Cartoon Network",
+          "Boing",
+          "DreamWorks Channel",
+          "Okoo",
+          "StreamNex Cartonn"
+        ]
+      },
+      {
+        "id": "cinema",
+        "name": "Cinéma",
+        "channels": [
+          "M-Net Movies 3",
+          "eMovies",
+          "Universal TV Africa",
+          "Studio Universal",
+          "FilmBox",
+          "StreamNex Ciné",
+          "Nollywood"
+        ]
+      },
+      {
+        "id": "sport",
+        "name": "Sport",
+        "channels": [
+          "Sport 1",
+          "Sport 2",
+          "SuperSport Grandstand",
+          "SuperSport Premier League",
+          "Europa League"
+        ]
+      }
+    ],
+    "uniqueChannelNames": [
+      "RTI 1",
+      "RTI 2",
+      "La 3",
+      "NCI",
+      "A+ Ivoire",
+      "Life TV",
+      "7info",
+      "France 2",
+      "France 24",
+      "TV5MONDE",
+      "BBC News",
+      "Al Jazeera",
+      "Al Jazeera English",
+      "Africa 24",
+      "Trace Africa",
+      "W9",
+      "Sky News",
+      "Trace Gospel",
+      "A+ Bénin",
+      "Nollywood",
+      "M6",
+      "STREAMNEX Première",
+      "franceinfo",
+      "RTS Suisse",
+      "StreamNex Ciné",
+      "DStv English (chaîne à choisir)",
+      "Okoo",
+      "Disney Channel",
+      "StreamNex Cartonn",
+      "Sport 1",
+      "Sport 2",
+      "TF1",
+      "LCI",
+      "EMCI TV",
+      "Discovery Channel",
+      "See World",
+      "TFX",
+      "Bloomberg TV",
+      "DW",
+      "Euronews",
+      "Nickelodeon",
+      "Cartoon Network",
+      "Boing",
+      "DreamWorks Channel",
+      "M-Net Movies 3",
+      "eMovies",
+      "Universal TV Africa",
+      "Studio Universal",
+      "FilmBox",
+      "Europa League",
+      "SuperSport Grandstand",
+      "SuperSport Premier League"
+    ],
+    "implementationNotes": [
+      "Un seul nom de bouquet doit être affiché à l'utilisateur : Free TV.",
+      "Ne pas créer ni afficher des bouquets distincts nommés Free TV Côte d’Ivoire, Free TV Afrique, Free TV Europa ou Free TV International.",
+      "Les anciens regroupements géographiques sont conservés uniquement comme repères internes de sélection et ne sont pas des options/bouquets séparés.",
+      "Cette fusion documentaire ne signifie pas que les flux sont tous disponibles, gratuits ou fonctionnels.",
+      "Ne pas inventer d'URL de diffusion; vérifier les URL existantes du catalogue avant de relier les chaînes."
+    ]
+  }
 }
