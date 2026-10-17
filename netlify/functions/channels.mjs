@@ -19,13 +19,9 @@ export default async function handler(request) {
     logoUrl: channel.logoUrl || "",
     bouquet: channel.bouquet || null,
     bouquets: ["allBucket", ...(channel.bouquet ? [channel.bouquet] : [])],
-    productionUrl: channel.productionUrl || null,
-    streamEnabled: Boolean(channel.streamEnabled),
-    streamConfigured: Boolean(channel.productionUrl || channel.youtubeChannelId),
-    liveOnly: Boolean(channel.liveOnly),
-    streamEnv: channel.streamEnv || null,
-    streamSource: channel.streamSource || (channel.productionUrl ? "hls" : null),
-    youtubeChannelId: channel.youtubeChannelId || null
+    webUrl: channel.webUrl || null,
+    webConfigured: Boolean(channel.webUrl),
+    liveOnly: Boolean(channel.liveOnly)
   }));
 
   return new Response(JSON.stringify(publicChannels), {
