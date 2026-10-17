@@ -8,29 +8,27 @@ export default async function handler(request) {
     });
   }
 
-  const configured = channels.filter((channel) => Boolean(channel.productionUrl || channel.youtubeChannelId));
-  const missing = channels
-    .filter((channel) => !channel.productionUrl && !channel.youtubeChannelId)
-    .map((channel) => ({
-      id: channel.id,
-      name: channel.name,
-      streamEnv: channel.streamEnv
-    }));
+  const configured = channels.filter((channel) => Boolean(channel.webUrl));
+  const missing = channels.filter((channel) => !channel.webUrl).map((channel) => ({
+    id: channel.id,
+    name: channel.name,
+    channelNumber: channel.channelNumber,
+    configured: false,
+    reason: "WEB_URL_MISSING"
+  }));
 
   return new Response(JSON.stringify({
     total: channels.length,
     configured: configured.length,
     unavailable: missing.length,
     allConfigured: missing.length === 0,
+    sourceType: "official-web-link",
     channels: channels.map((channel) => ({
       id: channel.id,
       name: channel.name,
       channelNumber: channel.channelNumber,
-      streamEnv: channel.streamEnv,
-      configured: Boolean(channel.productionUrl || channel.youtubeChannelId),
-      streamEnabled: Boolean(channel.streamEnabled),
-      streamSource: channel.streamSource || (channel.youtubeChannelId ? "youtube-live" : "hls"),
-      youtubeChannelId: channel.youtubeChannelId || null
+      configured: Boolean(channel.webUrl),
+      webUrl: channel.webUrl || null
     }))
   }), {
     status: 200,
