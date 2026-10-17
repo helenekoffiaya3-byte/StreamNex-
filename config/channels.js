@@ -127,8 +127,6 @@ const CHANNELS = [
   { channelNumber: 132, id: "s-plus-movies", tvgId: "s-plus-movies", name: "S+ Movies", logoUrl: "", group: "S+" },
   { channelNumber: 134, id: "s-plus-infos", tvgId: "s-plus-infos", name: "S+ Infos", logoUrl: "", group: "S+" },
   { channelNumber: 135, id: "s-plus-media", tvgId: "s-plus-media", name: "S+ Media", logoUrl: "", group: "S+" },
-  { channelNumber: 136, id: "s-plus-lloliwood", tvgId: "s-plus-lloliwood", name: "S+ LLOLIWOOD", logoUrl: "", group: "S+" },
-  { channelNumber: 137, id: "s-plus-bl", tvgId: "s-plus-bl", name: "S+ BL", group: "S+" , logoUrl: ""},
   { channelNumber: 138, id: "s-plus-jeunesse", tvgId: "s-plus-jeunesse", name: "S+ Jeunesse", logoUrl: "", group: "S+" },
   { channelNumber: 139, id: "berbere-jeunesse", tvgId: "berbere-jeunesse", name: "Berbère Jeunesse", group: "Jeunesse" , logoUrl: "/assets/logos/berbere-jeunesse.png"},
   { channelNumber: 140, id: "chaine-pere-noel", tvgId: "chaine-pere-noel", name: "La Chaîne du Père Noël", group: "Jeunesse" , logoUrl: "/assets/logos/la-chaine-du-pere-noel.png"},
