@@ -3,7 +3,7 @@
   "purpose": "Catalogue inventory for reconciliation; config/channels.js remains the runtime source of truth.",
   "source": {
     "path": "config/channels.js",
-    "blobSha": "fe4ea321429caa0964cdb3e6bb54687f849f3103",
+    "blobSha": "13d32e1832e0bd6ec67a18a07dbb5b4e09343b87",
     "readmeBlobSha": "0d2993b79f56fab61207eef112087ea22a4d575f"
   },
   "generatedOn": "2026-10-17",
@@ -3735,7 +3735,7 @@
       "name": "HBO Max",
       "tvgId": "hbo-max",
       "group": "Service vidéo",
-      "logoUrl": "",
+      "logoUrl": "/assets/logos/channel-placeholder.svg",
       "webUrl": "https://www.hbomax.com/"
     },
     {
@@ -3744,7 +3744,7 @@
       "name": "Paramount+",
       "tvgId": "paramount-plus",
       "group": "Service vidéo",
-      "logoUrl": "",
+      "logoUrl": "/assets/logos/channel-placeholder.svg",
       "webUrl": "https://www.paramountplus.com/"
     },
     {
@@ -3753,7 +3753,7 @@
       "name": "Netflix",
       "tvgId": "netflix",
       "group": "Service vidéo",
-      "logoUrl": "",
+      "logoUrl": "/assets/logos/channel-placeholder.svg",
       "webUrl": "https://www.netflix.com/ci-en/"
     },
     {
@@ -3762,7 +3762,7 @@
       "name": "TF1+",
       "tvgId": "tf1-plus",
       "group": "Service vidéo",
-      "logoUrl": "",
+      "logoUrl": "/assets/logos/channel-placeholder.svg",
       "webUrl": "https://www.tf1.fr/"
     },
     {
@@ -3771,7 +3771,7 @@
       "name": "M6+",
       "tvgId": "m6-plus",
       "group": "Service vidéo",
-      "logoUrl": "",
+      "logoUrl": "/assets/logos/channel-placeholder.svg",
       "webUrl": "https://www.m6.fr/"
     }
   ]
