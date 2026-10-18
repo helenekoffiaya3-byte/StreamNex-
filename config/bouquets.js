@@ -1,6 +1,6 @@
 // StreamLive bouquet definitions.
 // Membership is intentionally manual; catalogue entries remain unchanged.
-// Free TV membership requires verified free-to-watch access in the intended region.
+// Bouquet prices describe StreamLive/StreamNex access, not the price of third-party service subscriptions.
 const BOUQUETS = [
   {
     id: "news",
@@ -12,13 +12,14 @@ const BOUQUETS = [
   {
     id: "free-tv",
     name: "Free TV",
-    description: "Bouquet de 20 chaînes sélectionnées pour la Côte d’Ivoire; l’accès gratuit et la disponibilité de chaque flux doivent être confirmés avant activation.",
+    description: "Bouquet payant de 20 chaînes pour la Côte d’Ivoire, accessible en streaming via StreamLive ou StreamNex. Prix : 400 F CFA.",
     selectionMode: "manual",
     targetRegion: "CI",
     targetChannelCount: 20,
     videoServiceId: "m6-plus",
     videoServiceIds: ["m6-plus"],
-    freeAccessVerificationRequired: true,
+    price: { amount: 400, currency: "XOF", display: "400 F CFA", billingPeriod: "bouquet" },
+    accessPlatforms: ["StreamLive", "StreamNex"],
     channelIds: [
       "rti-1",
       "rti-2",
