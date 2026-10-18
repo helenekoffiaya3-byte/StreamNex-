@@ -147,8 +147,8 @@
       "singleBouquet": true,
       "regionalVariants": false,
       "pricing": {
-        "default": "55 EUR/month",
-        "americas": "49 USD/month"
+        "default": "59.99 EUR/month",
+        "americas": "60 USD/month"
       },
       "activationStatus": "proposed-not-activated",
       "sourceDocument": "docs/supa-boom-tv.json"
