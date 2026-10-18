@@ -15,6 +15,7 @@ const BOUQUETS = [
     description: "Chaînes dont l'accès gratuit dans la région cible a été vérifié.",
     selectionMode: "manual",
     videoServiceId: "m6-plus",
+    videoServiceIds: ["m6-plus"],
     freeAccessVerificationRequired: true,
     channelIds: [
       "france-24",
@@ -37,6 +38,7 @@ const BOUQUETS = [
   {
     id: "now-tv",
     name: "Now TV",
+    videoServiceIds: ["netflix", "hbo-max", "paramount-plus", "tf1-plus", "m6-plus"],
     description: "Bouquet complet comprenant toutes les chaînes du catalogue StreamLive.",
     selectionMode: "all-current-catalogue-channels",
     channelIds: [
