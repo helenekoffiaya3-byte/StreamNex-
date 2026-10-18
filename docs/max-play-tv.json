@@ -62,6 +62,25 @@
         ]
       },
       {
+        "id": "french",
+        "name": "Chaînes françaises",
+        "channels": [
+          "6ter",
+          "Arte",
+          "France 2",
+          "France 3",
+          "M6",
+          "TF1",
+          "TFX",
+          "TMC",
+          "W9",
+          "France 24",
+          "TV5 Monde",
+          "Mieux",
+          "LCI"
+        ]
+      },
+      {
         "id": "films",
         "name": "Cinéma",
         "targetCount": 18,
@@ -110,6 +129,7 @@
           "TiJi",
           "Nickelodeon Junior",
           "Nickelodeon Teen",
+          "Nickelodeon",
           "Pitchoun Kids Music"
         ]
       },
@@ -157,28 +177,11 @@
         "channels": [
           "France 24",
           "CNEWS",
-          "LCI",
           "BBC News",
           "Euronews",
-          "Sky News"
-        ]
-      },
-      {
-        "id": "french",
-        "name": "Autres chaînes françaises",
-        "channels": [
-          "6ter",
-          "Arte",
-          "France 2",
-          "France 3",
-          "M6",
-          "TF1",
-          "TFX",
-          "TMC",
-          "W9",
-          "France 24",
-          "TV5 Monde",
-          "LCI"
+          "Sky News",
+          "DW",
+          "i24NEWS Français"
         ]
       },
       {
@@ -193,8 +196,6 @@
           "NCI",
           "S+ Côte d’Ivoire",
           "S+",
-          "DW",
-          "i24NEWS Français",
           "S+ Action",
           "S+ Cinéma",
           "S+ Family",
@@ -246,7 +247,6 @@
           "Ludikids",
           "Mangas",
           "Nathan+",
-          "Nickelodeon",
           "Nickelodeon +1",
           "NickToons",
           "Okoo",
@@ -335,14 +335,13 @@
           "EMCI TV",
           "Espérance TV",
           "EWTN",
-          "Hope Channel",
-          "KTO"
+          "Hope Channel"
         ]
       }
     ],
     "reconciliation": {
       "selectedChannelCount": 230,
-      "status": "liste de 230 chaînes distinctes préparée depuis config/channels.js; flux et droits non validés",
+      "status": "230 entrées distinctes enregistrées; flux, rattachements de groupe et droits restent à vérifier",
       "exclusions": [
         "France 4",
         "France 5",
@@ -441,1301 +440,1303 @@
         },
         {
           "number": 16,
-          "name": "StreamNex Fiction",
-          "category": "StreamNex",
-          "catalogueId": null
+          "name": "Arte",
+          "category": "Chaînes françaises",
+          "catalogueId": "arte"
         },
         {
           "number": 17,
-          "name": "StreamNex Channel",
-          "category": "StreamNex",
-          "catalogueId": null
+          "name": "France 2",
+          "category": "Chaînes françaises",
+          "catalogueId": "france-2"
         },
         {
           "number": 18,
-          "name": "StreamNex J",
-          "category": "StreamNex",
-          "catalogueId": null
+          "name": "France 3",
+          "category": "Chaînes françaises",
+          "catalogueId": "france-3"
         },
         {
           "number": 19,
-          "name": "StreamNex Actions",
-          "category": "StreamNex",
-          "catalogueId": null
+          "name": "France 24",
+          "category": "Chaînes françaises",
+          "catalogueId": "france-24"
         },
         {
           "number": 20,
-          "name": "StreamNex Cinema",
-          "category": "StreamNex",
-          "catalogueId": null
+          "name": "TV5 Monde",
+          "category": "Chaînes françaises",
+          "catalogueId": "tv5-monde"
         },
         {
           "number": 21,
-          "name": "TiVi5MONDE",
-          "category": "Jeunesse",
-          "catalogueId": "tivi5monde"
+          "name": "Mieux",
+          "category": "Chaînes françaises",
+          "catalogueId": "mieux"
         },
         {
           "number": 22,
-          "name": "Cartoon Network",
-          "category": "Jeunesse",
-          "catalogueId": "cartoon-network"
-        },
-        {
-          "number": 23,
-          "name": "Cartoonito",
-          "category": "Jeunesse",
-          "catalogueId": "cartoonito"
-        },
-        {
-          "number": 24,
-          "name": "Boomerang",
-          "category": "Jeunesse",
-          "catalogueId": "boomerang"
-        },
-        {
-          "number": 25,
-          "name": "TiJi",
-          "category": "Jeunesse",
-          "catalogueId": "tiji"
-        },
-        {
-          "number": 26,
-          "name": "Nickelodeon Junior",
-          "category": "Jeunesse",
-          "catalogueId": "nickelodeon-junior"
-        },
-        {
-          "number": 27,
-          "name": "Nickelodeon Teen",
-          "category": "Jeunesse",
-          "catalogueId": "nickelodeon-teen"
-        },
-        {
-          "number": 28,
-          "name": "Pitchoun Kids Music",
-          "category": "Jeunesse",
-          "catalogueId": "pitchoun-kids-music"
-        },
-        {
-          "number": 29,
           "name": "M6 Films",
           "category": "Cinéma",
           "catalogueId": "m6-films"
         },
         {
-          "number": 30,
+          "number": 23,
           "name": "Action",
           "category": "Cinéma",
           "catalogueId": "action"
         },
         {
-          "number": 31,
+          "number": 24,
           "name": "Ciné+ Frisson",
           "category": "Cinéma",
           "catalogueId": "cine-plus-frisson"
         },
         {
-          "number": 32,
+          "number": 25,
           "name": "Ciné+ Emotion",
           "category": "Cinéma",
           "catalogueId": "cine-plus-emotion"
         },
         {
-          "number": 33,
+          "number": 26,
           "name": "Ciné+ Family",
           "category": "Cinéma",
           "catalogueId": "cine-plus-family"
         },
         {
-          "number": 34,
+          "number": 27,
           "name": "Ciné+ Festival",
           "category": "Cinéma",
           "catalogueId": "cine-plus-festival"
         },
         {
-          "number": 35,
+          "number": 28,
           "name": "Ciné+ Classic",
           "category": "Cinéma",
           "catalogueId": "cine-plus-classic"
         },
         {
-          "number": 36,
+          "number": 29,
           "name": "POLAR+",
           "category": "Cinéma",
           "catalogueId": "polar-plus"
         },
         {
-          "number": 37,
+          "number": 30,
           "name": "AB1",
           "category": "Cinéma",
           "catalogueId": "ab1"
         },
         {
-          "number": 38,
+          "number": 31,
           "name": "RTL 9",
           "category": "Cinéma",
           "catalogueId": "rtl-9"
         },
         {
-          "number": 39,
+          "number": 32,
           "name": "Cinemax",
           "category": "Cinéma",
           "catalogueId": "cinemax"
         },
         {
-          "number": 40,
+          "number": 33,
           "name": "TCM",
           "category": "Cinéma",
           "catalogueId": "tcm"
         },
         {
-          "number": 41,
+          "number": 34,
           "name": "Movies!",
           "category": "Cinéma",
           "catalogueId": "movies"
         },
         {
-          "number": 42,
+          "number": 35,
           "name": "MGM TV",
           "category": "Cinéma",
           "catalogueId": "mgm-tv"
         },
         {
-          "number": 43,
+          "number": 36,
           "name": "Studio Universal",
           "category": "Cinéma",
           "catalogueId": "studio-universal"
         },
         {
-          "number": 44,
+          "number": 37,
           "name": "C Movies",
           "category": "Cinéma",
           "catalogueId": "c-movies"
         },
         {
-          "number": 45,
+          "number": 38,
           "name": "Nollywood TV",
           "category": "Cinéma",
           "catalogueId": "nollywood-tv"
         },
         {
-          "number": 46,
+          "number": 39,
           "name": "Nollywood TV Epic",
           "category": "Cinéma",
           "catalogueId": "nollywood-tv-epic"
         },
         {
+          "number": 40,
+          "name": "TiVi5MONDE",
+          "category": "Jeunesse",
+          "catalogueId": "tivi5monde"
+        },
+        {
+          "number": 41,
+          "name": "Cartoon Network",
+          "category": "Jeunesse",
+          "catalogueId": "cartoon-network"
+        },
+        {
+          "number": 42,
+          "name": "Cartoonito",
+          "category": "Jeunesse",
+          "catalogueId": "cartoonito"
+        },
+        {
+          "number": 43,
+          "name": "Boomerang",
+          "category": "Jeunesse",
+          "catalogueId": "boomerang"
+        },
+        {
+          "number": 44,
+          "name": "TiJi",
+          "category": "Jeunesse",
+          "catalogueId": "tiji"
+        },
+        {
+          "number": 45,
+          "name": "Nickelodeon Junior",
+          "category": "Jeunesse",
+          "catalogueId": "nickelodeon-junior"
+        },
+        {
+          "number": 46,
+          "name": "Nickelodeon Teen",
+          "category": "Jeunesse",
+          "catalogueId": "nickelodeon-teen"
+        },
+        {
           "number": 47,
-          "name": "CNN International",
-          "category": "Chaînes américaines",
-          "catalogueId": "cnn-international"
-        },
-        {
-          "number": 48,
-          "name": "Fox News",
-          "category": "Chaînes américaines",
-          "catalogueId": "fox-news"
-        },
-        {
-          "number": 49,
-          "name": "Fox Business",
-          "category": "Chaînes américaines",
-          "catalogueId": "fox-business"
-        },
-        {
-          "number": 50,
-          "name": "ABC News Live",
-          "category": "Chaînes américaines",
-          "catalogueId": "abc-news-live"
-        },
-        {
-          "number": 51,
-          "name": "CBS News 24/7",
-          "category": "Chaînes américaines",
-          "catalogueId": "cbs-news-24-7"
-        },
-        {
-          "number": 52,
-          "name": "NBC News NOW",
-          "category": "Chaînes américaines",
-          "catalogueId": "nbc-news-now"
-        },
-        {
-          "number": 53,
-          "name": "CNN",
-          "category": "Chaînes américaines",
-          "catalogueId": "cnn"
-        },
-        {
-          "number": 54,
-          "name": "CNBC",
-          "category": "Chaînes américaines",
-          "catalogueId": "cnbc"
-        },
-        {
-          "number": 55,
-          "name": "Bloomberg TV",
-          "category": "Chaînes américaines",
-          "catalogueId": "bloomberg-tv"
-        },
-        {
-          "number": 56,
-          "name": "C-SPAN",
-          "category": "Chaînes américaines",
-          "catalogueId": "c-span"
-        },
-        {
-          "number": 57,
-          "name": "Newsmax",
-          "category": "Chaînes américaines",
-          "catalogueId": "newsmax"
-        },
-        {
-          "number": 58,
-          "name": "NewsNation",
-          "category": "Chaînes américaines",
-          "catalogueId": "newsnation"
-        },
-        {
-          "number": 59,
-          "name": "OAN",
-          "category": "Chaînes américaines",
-          "catalogueId": "oan"
-        },
-        {
-          "number": 60,
-          "name": "HLN",
-          "category": "Chaînes américaines",
-          "catalogueId": "hln"
-        },
-        {
-          "number": 61,
-          "name": "MS NOW",
-          "category": "Chaînes américaines",
-          "catalogueId": "ms-now"
-        },
-        {
-          "number": 62,
-          "name": "SuperSport Grandstand",
-          "category": "DStv / SuperSport",
-          "catalogueId": "supersport-grandstand"
-        },
-        {
-          "number": 63,
-          "name": "SuperSport Premier League",
-          "category": "DStv / SuperSport",
-          "catalogueId": "supersport-premier-league"
-        },
-        {
-          "number": 64,
-          "name": "SuperSport La Liga",
-          "category": "DStv / SuperSport",
-          "catalogueId": "supersport-la-liga"
-        },
-        {
-          "number": 65,
-          "name": "SuperSport Football",
-          "category": "DStv / SuperSport",
-          "catalogueId": "supersport-football"
-        },
-        {
-          "number": 66,
-          "name": "SuperSport Football Plus",
-          "category": "DStv / SuperSport",
-          "catalogueId": "supersport-football-plus"
-        },
-        {
-          "number": 67,
-          "name": "SuperSport Variety 1",
-          "category": "DStv / SuperSport",
-          "catalogueId": "supersport-variety-1"
-        },
-        {
-          "number": 68,
-          "name": "SuperSport Blitz",
-          "category": "DStv / SuperSport",
-          "catalogueId": "supersport-blitz"
-        },
-        {
-          "number": 69,
-          "name": "SuperSport Cricket",
-          "category": "DStv / SuperSport",
-          "catalogueId": "supersport-cricket"
-        },
-        {
-          "number": 70,
-          "name": "France 24",
-          "category": "Information",
-          "catalogueId": "france-24"
-        },
-        {
-          "number": 71,
-          "name": "CNEWS",
-          "category": "Information",
-          "catalogueId": "cnews"
-        },
-        {
-          "number": 72,
-          "name": "BBC News",
-          "category": "Information",
-          "catalogueId": "bbc-news"
-        },
-        {
-          "number": 73,
-          "name": "Euronews",
-          "category": "Information",
-          "catalogueId": "euronews"
-        },
-        {
-          "number": 74,
-          "name": "Sky News",
-          "category": "Information",
-          "catalogueId": "sky-news"
-        },
-        {
-          "number": 75,
-          "name": "RTI 1",
-          "category": "Côte d’Ivoire",
-          "catalogueId": "rti-1"
-        },
-        {
-          "number": 76,
-          "name": "RTI 2",
-          "category": "Côte d’Ivoire",
-          "catalogueId": "rti-2"
-        },
-        {
-          "number": 77,
-          "name": "La 3",
-          "category": "Côte d’Ivoire",
-          "catalogueId": "la-3"
-        },
-        {
-          "number": 78,
-          "name": "A+ Ivoire",
-          "category": "Côte d’Ivoire",
-          "catalogueId": "a-plus-ivoire"
-        },
-        {
-          "number": 79,
-          "name": "Life TV",
-          "category": "Côte d’Ivoire",
-          "catalogueId": "life-tv"
-        },
-        {
-          "number": 80,
-          "name": "NCI",
-          "category": "Côte d’Ivoire",
-          "catalogueId": "nci"
-        },
-        {
-          "number": 81,
-          "name": "S+ Côte d’Ivoire",
-          "category": "S+",
-          "catalogueId": "s-plus-cote-divoire"
-        },
-        {
-          "number": 82,
-          "name": "Arte",
-          "category": "France",
-          "catalogueId": "arte"
-        },
-        {
-          "number": 83,
-          "name": "S+",
-          "category": "S+",
-          "catalogueId": "s-plus"
-        },
-        {
-          "number": 84,
-          "name": "France 2",
-          "category": "France",
-          "catalogueId": "france-2"
-        },
-        {
-          "number": 85,
-          "name": "France 3",
-          "category": "France",
-          "catalogueId": "france-3"
-        },
-        {
-          "number": 86,
-          "name": "DW",
-          "category": "Information",
-          "catalogueId": "dw"
-        },
-        {
-          "number": 87,
-          "name": "i24NEWS Français",
-          "category": "Information",
-          "catalogueId": "i24news-fr"
-        },
-        {
-          "number": 88,
-          "name": "S+ Action",
-          "category": "S+",
-          "catalogueId": "s-plus-action"
-        },
-        {
-          "number": 89,
-          "name": "S+ Cinéma",
-          "category": "S+",
-          "catalogueId": "s-plus-cinema"
-        },
-        {
-          "number": 90,
-          "name": "S+ Family",
-          "category": "S+",
-          "catalogueId": "s-plus-family-cinema"
-        },
-        {
-          "number": 91,
-          "name": "S+ Magic",
-          "category": "S+",
-          "catalogueId": "s-plus-magic"
-        },
-        {
-          "number": 92,
-          "name": "S+ Pop",
-          "category": "S+",
-          "catalogueId": "s-plus-pop"
-        },
-        {
-          "number": 93,
-          "name": "Charge!",
-          "category": "Cinéma",
-          "catalogueId": "charge"
-        },
-        {
-          "number": 94,
-          "name": "Comet",
-          "category": "Cinéma",
-          "catalogueId": "comet"
-        },
-        {
-          "number": 95,
-          "name": "Estrella TV",
-          "category": "Cinéma",
-          "catalogueId": "estrella-tv"
-        },
-        {
-          "number": 96,
-          "name": "Galavisión",
-          "category": "Cinéma",
-          "catalogueId": "galavision"
-        },
-        {
-          "number": 97,
-          "name": "getTV",
-          "category": "Cinéma",
-          "catalogueId": "gettv"
-        },
-        {
-          "number": 98,
-          "name": "Grit",
-          "category": "Cinéma",
-          "catalogueId": "grit"
-        },
-        {
-          "number": 99,
-          "name": "Peacock",
-          "category": "Cinéma",
-          "catalogueId": "peacock"
-        },
-        {
-          "number": 100,
-          "name": "Pluto TV",
-          "category": "Service vidéo",
-          "catalogueId": "pluto-tv"
-        },
-        {
-          "number": 101,
-          "name": "Sci-Fi",
-          "category": "Séries & SF",
-          "catalogueId": "sci-fi"
-        },
-        {
-          "number": 102,
-          "name": "Telemundo",
-          "category": "Cinéma",
-          "catalogueId": "telemundo"
-        },
-        {
-          "number": 103,
-          "name": "Tubi",
-          "category": "Cinéma",
-          "catalogueId": "tubi"
-        },
-        {
-          "number": 104,
-          "name": "UniMás",
-          "category": "Cinéma",
-          "catalogueId": "unimas"
-        },
-        {
-          "number": 105,
-          "name": "Univision",
-          "category": "Cinéma",
-          "catalogueId": "univision"
-        },
-        {
-          "number": 106,
-          "name": "13ème Rue",
-          "category": "Séries & SF",
-          "catalogueId": "13eme-rue"
-        },
-        {
-          "number": 107,
-          "name": "AMC",
-          "category": "Séries & SF",
-          "catalogueId": "amc"
-        },
-        {
-          "number": 108,
-          "name": "Bravo",
-          "category": "Séries & SF",
-          "catalogueId": "bravo"
-        },
-        {
-          "number": 109,
-          "name": "Freeform",
-          "category": "Séries & SF",
-          "catalogueId": "freeform"
-        },
-        {
-          "number": 110,
-          "name": "FX",
-          "category": "Séries & SF",
-          "catalogueId": "fx"
-        },
-        {
-          "number": 111,
-          "name": "FXX",
-          "category": "Séries & SF",
-          "catalogueId": "fxx"
-        },
-        {
-          "number": 112,
-          "name": "Hallmark Drama",
-          "category": "Séries & SF",
-          "catalogueId": "hallmark-drama"
-        },
-        {
-          "number": 113,
-          "name": "HBO",
-          "category": "Service vidéo",
-          "catalogueId": "hbo"
-        },
-        {
-          "number": 114,
-          "name": "Heroes & Icons",
-          "category": "Séries & SF",
-          "catalogueId": "heroes-icons"
-        },
-        {
-          "number": 115,
-          "name": "IFC",
-          "category": "Séries & SF",
-          "catalogueId": "ifc"
-        },
-        {
-          "number": 116,
-          "name": "Ion",
-          "category": "Séries & SF",
-          "catalogueId": "ion"
-        },
-        {
-          "number": 117,
-          "name": "Lifetime",
-          "category": "Séries & SF",
-          "catalogueId": "lifetime"
-        },
-        {
-          "number": 118,
-          "name": "MGM+",
-          "category": "Service vidéo",
-          "catalogueId": "mgm-plus"
-        },
-        {
-          "number": 119,
-          "name": "Novelas+",
-          "category": "Novelas",
-          "catalogueId": "novelas-plus"
-        },
-        {
-          "number": 120,
-          "name": "Paramount Network",
-          "category": "Séries & SF",
-          "catalogueId": "paramount-network"
-        },
-        {
-          "number": 121,
-          "name": "S+ Première",
-          "category": "S+",
-          "catalogueId": "s-plus-premiere"
-        },
-        {
-          "number": 122,
-          "name": "S+ Avant Première",
-          "category": "S+",
-          "catalogueId": "s-plus-avant-premiere"
-        },
-        {
-          "number": 123,
-          "name": "Sundance TV",
-          "category": "Séries & SF",
-          "catalogueId": "sundance-tv"
-        },
-        {
-          "number": 124,
-          "name": "Syfy",
-          "category": "Séries & SF",
-          "catalogueId": "syfy"
-        },
-        {
-          "number": 125,
-          "name": "TBS",
-          "category": "Séries & SF",
-          "catalogueId": "tbs"
-        },
-        {
-          "number": 126,
-          "name": "TNT",
-          "category": "Séries & SF",
-          "catalogueId": "tnt"
-        },
-        {
-          "number": 127,
-          "name": "USA Network",
-          "category": "Séries & SF",
-          "catalogueId": "usa-network"
-        },
-        {
-          "number": 128,
-          "name": "A+ Kids",
-          "category": "Jeunesse",
-          "catalogueId": "a-plus-kids"
-        },
-        {
-          "number": 129,
-          "name": "Boing",
-          "category": "Jeunesse",
-          "catalogueId": "boing"
-        },
-        {
-          "number": 130,
-          "name": "Boomerang +1",
-          "category": "Jeunesse",
-          "catalogueId": "boomerang-plus-1"
-        },
-        {
-          "number": 131,
-          "name": "Canal J",
-          "category": "Jeunesse",
-          "catalogueId": "canal-j"
-        },
-        {
-          "number": 132,
-          "name": "Disney Channel",
-          "category": "Jeunesse",
-          "catalogueId": "disney-channel"
-        },
-        {
-          "number": 133,
-          "name": "Disney Junior",
-          "category": "Jeunesse",
-          "catalogueId": "disney-junior"
-        },
-        {
-          "number": 134,
-          "name": "DreamWorks",
-          "category": "Jeunesse",
-          "catalogueId": "dreamworks"
-        },
-        {
-          "number": 135,
-          "name": "J-One",
-          "category": "Jeunesse",
-          "catalogueId": "j-one"
-        },
-        {
-          "number": 136,
-          "name": "Ludikids",
-          "category": "Jeunesse",
-          "catalogueId": "ludikids"
-        },
-        {
-          "number": 137,
-          "name": "Mangas",
-          "category": "Jeunesse",
-          "catalogueId": "mangas"
-        },
-        {
-          "number": 138,
-          "name": "Nathan+",
-          "category": "Jeunesse",
-          "catalogueId": "nathan-plus"
-        },
-        {
-          "number": 139,
           "name": "Nickelodeon",
           "category": "Jeunesse",
           "catalogueId": "nickelodeon"
         },
         {
+          "number": 48,
+          "name": "Pitchoun Kids Music",
+          "category": "Jeunesse",
+          "catalogueId": "pitchoun-kids-music"
+        },
+        {
+          "number": 49,
+          "name": "CNN International",
+          "category": "Chaînes américaines",
+          "catalogueId": "cnn-international"
+        },
+        {
+          "number": 50,
+          "name": "Fox News",
+          "category": "Chaînes américaines",
+          "catalogueId": "fox-news"
+        },
+        {
+          "number": 51,
+          "name": "Fox Business",
+          "category": "Chaînes américaines",
+          "catalogueId": "fox-business"
+        },
+        {
+          "number": 52,
+          "name": "ABC News Live",
+          "category": "Chaînes américaines",
+          "catalogueId": "abc-news-live"
+        },
+        {
+          "number": 53,
+          "name": "CBS News 24/7",
+          "category": "Chaînes américaines",
+          "catalogueId": "cbs-news-24-7"
+        },
+        {
+          "number": 54,
+          "name": "NBC News NOW",
+          "category": "Chaînes américaines",
+          "catalogueId": "nbc-news-now"
+        },
+        {
+          "number": 55,
+          "name": "CNN",
+          "category": "Chaînes américaines",
+          "catalogueId": "cnn"
+        },
+        {
+          "number": 56,
+          "name": "CNBC",
+          "category": "Chaînes américaines",
+          "catalogueId": "cnbc"
+        },
+        {
+          "number": 57,
+          "name": "Bloomberg TV",
+          "category": "Chaînes américaines",
+          "catalogueId": "bloomberg-tv"
+        },
+        {
+          "number": 58,
+          "name": "C-SPAN",
+          "category": "Chaînes américaines",
+          "catalogueId": "c-span"
+        },
+        {
+          "number": 59,
+          "name": "Newsmax",
+          "category": "Chaînes américaines",
+          "catalogueId": "newsmax"
+        },
+        {
+          "number": 60,
+          "name": "NewsNation",
+          "category": "Chaînes américaines",
+          "catalogueId": "newsnation"
+        },
+        {
+          "number": 61,
+          "name": "OAN",
+          "category": "Chaînes américaines",
+          "catalogueId": "oan"
+        },
+        {
+          "number": 62,
+          "name": "HLN",
+          "category": "Chaînes américaines",
+          "catalogueId": "hln"
+        },
+        {
+          "number": 63,
+          "name": "MS NOW",
+          "category": "Chaînes américaines",
+          "catalogueId": "ms-now"
+        },
+        {
+          "number": 64,
+          "name": "SuperSport Grandstand",
+          "category": "DStv / SuperSport",
+          "catalogueId": "supersport-grandstand"
+        },
+        {
+          "number": 65,
+          "name": "SuperSport Premier League",
+          "category": "DStv / SuperSport",
+          "catalogueId": "supersport-premier-league"
+        },
+        {
+          "number": 66,
+          "name": "SuperSport La Liga",
+          "category": "DStv / SuperSport",
+          "catalogueId": "supersport-la-liga"
+        },
+        {
+          "number": 67,
+          "name": "SuperSport Football",
+          "category": "DStv / SuperSport",
+          "catalogueId": "supersport-football"
+        },
+        {
+          "number": 68,
+          "name": "SuperSport Football Plus",
+          "category": "DStv / SuperSport",
+          "catalogueId": "supersport-football-plus"
+        },
+        {
+          "number": 69,
+          "name": "SuperSport Variety 1",
+          "category": "DStv / SuperSport",
+          "catalogueId": "supersport-variety-1"
+        },
+        {
+          "number": 70,
+          "name": "SuperSport Blitz",
+          "category": "DStv / SuperSport",
+          "catalogueId": "supersport-blitz"
+        },
+        {
+          "number": 71,
+          "name": "SuperSport Cricket",
+          "category": "DStv / SuperSport",
+          "catalogueId": "supersport-cricket"
+        },
+        {
+          "number": 72,
+          "name": "CNEWS",
+          "category": "Information",
+          "catalogueId": "cnews"
+        },
+        {
+          "number": 73,
+          "name": "BBC News",
+          "category": "Information",
+          "catalogueId": "bbc-news"
+        },
+        {
+          "number": 74,
+          "name": "Euronews",
+          "category": "Information",
+          "catalogueId": "euronews"
+        },
+        {
+          "number": 75,
+          "name": "Sky News",
+          "category": "Information",
+          "catalogueId": "sky-news"
+        },
+        {
+          "number": 76,
+          "name": "DW",
+          "category": "Information",
+          "catalogueId": "dw"
+        },
+        {
+          "number": 77,
+          "name": "i24NEWS Français",
+          "category": "Information",
+          "catalogueId": "i24news-fr"
+        },
+        {
+          "number": 78,
+          "name": "StreamNex Fiction",
+          "category": "StreamNex",
+          "catalogueId": null
+        },
+        {
+          "number": 79,
+          "name": "StreamNex Channel",
+          "category": "StreamNex",
+          "catalogueId": null
+        },
+        {
+          "number": 80,
+          "name": "StreamNex J",
+          "category": "StreamNex",
+          "catalogueId": null
+        },
+        {
+          "number": 81,
+          "name": "StreamNex Actions",
+          "category": "StreamNex",
+          "catalogueId": null
+        },
+        {
+          "number": 82,
+          "name": "StreamNex Cinema",
+          "category": "StreamNex",
+          "catalogueId": null
+        },
+        {
+          "number": 83,
+          "name": "RTI 1",
+          "category": "Côte d’Ivoire",
+          "catalogueId": "rti-1"
+        },
+        {
+          "number": 84,
+          "name": "RTI 2",
+          "category": "Côte d’Ivoire",
+          "catalogueId": "rti-2"
+        },
+        {
+          "number": 85,
+          "name": "La 3",
+          "category": "Côte d’Ivoire",
+          "catalogueId": "la-3"
+        },
+        {
+          "number": 86,
+          "name": "A+ Ivoire",
+          "category": "Côte d’Ivoire",
+          "catalogueId": "a-plus-ivoire"
+        },
+        {
+          "number": 87,
+          "name": "Life TV",
+          "category": "Côte d’Ivoire",
+          "catalogueId": "life-tv"
+        },
+        {
+          "number": 88,
+          "name": "NCI",
+          "category": "Côte d’Ivoire",
+          "catalogueId": "nci"
+        },
+        {
+          "number": 89,
+          "name": "S+ Côte d’Ivoire",
+          "category": "S+",
+          "catalogueId": "s-plus-cote-divoire"
+        },
+        {
+          "number": 90,
+          "name": "S+",
+          "category": "S+",
+          "catalogueId": "s-plus"
+        },
+        {
+          "number": 91,
+          "name": "S+ Action",
+          "category": "S+",
+          "catalogueId": "s-plus-action"
+        },
+        {
+          "number": 92,
+          "name": "S+ Cinéma",
+          "category": "S+",
+          "catalogueId": "s-plus-cinema"
+        },
+        {
+          "number": 93,
+          "name": "S+ Family",
+          "category": "S+",
+          "catalogueId": "s-plus-family-cinema"
+        },
+        {
+          "number": 94,
+          "name": "S+ Magic",
+          "category": "S+",
+          "catalogueId": "s-plus-magic"
+        },
+        {
+          "number": 95,
+          "name": "S+ Pop",
+          "category": "S+",
+          "catalogueId": "s-plus-pop"
+        },
+        {
+          "number": 96,
+          "name": "Charge!",
+          "category": "Cinéma",
+          "catalogueId": "charge"
+        },
+        {
+          "number": 97,
+          "name": "Comet",
+          "category": "Cinéma",
+          "catalogueId": "comet"
+        },
+        {
+          "number": 98,
+          "name": "Estrella TV",
+          "category": "Cinéma",
+          "catalogueId": "estrella-tv"
+        },
+        {
+          "number": 99,
+          "name": "Galavisión",
+          "category": "Cinéma",
+          "catalogueId": "galavision"
+        },
+        {
+          "number": 100,
+          "name": "getTV",
+          "category": "Cinéma",
+          "catalogueId": "gettv"
+        },
+        {
+          "number": 101,
+          "name": "Grit",
+          "category": "Cinéma",
+          "catalogueId": "grit"
+        },
+        {
+          "number": 102,
+          "name": "Peacock",
+          "category": "Cinéma",
+          "catalogueId": "peacock"
+        },
+        {
+          "number": 103,
+          "name": "Pluto TV",
+          "category": "Service vidéo",
+          "catalogueId": "pluto-tv"
+        },
+        {
+          "number": 104,
+          "name": "Sci-Fi",
+          "category": "Séries & SF",
+          "catalogueId": "sci-fi"
+        },
+        {
+          "number": 105,
+          "name": "Telemundo",
+          "category": "Cinéma",
+          "catalogueId": "telemundo"
+        },
+        {
+          "number": 106,
+          "name": "Tubi",
+          "category": "Cinéma",
+          "catalogueId": "tubi"
+        },
+        {
+          "number": 107,
+          "name": "UniMás",
+          "category": "Cinéma",
+          "catalogueId": "unimas"
+        },
+        {
+          "number": 108,
+          "name": "Univision",
+          "category": "Cinéma",
+          "catalogueId": "univision"
+        },
+        {
+          "number": 109,
+          "name": "13ème Rue",
+          "category": "Séries & SF",
+          "catalogueId": "13eme-rue"
+        },
+        {
+          "number": 110,
+          "name": "AMC",
+          "category": "Séries & SF",
+          "catalogueId": "amc"
+        },
+        {
+          "number": 111,
+          "name": "Bravo",
+          "category": "Séries & SF",
+          "catalogueId": "bravo"
+        },
+        {
+          "number": 112,
+          "name": "Freeform",
+          "category": "Séries & SF",
+          "catalogueId": "freeform"
+        },
+        {
+          "number": 113,
+          "name": "FX",
+          "category": "Séries & SF",
+          "catalogueId": "fx"
+        },
+        {
+          "number": 114,
+          "name": "FXX",
+          "category": "Séries & SF",
+          "catalogueId": "fxx"
+        },
+        {
+          "number": 115,
+          "name": "Hallmark Drama",
+          "category": "Séries & SF",
+          "catalogueId": "hallmark-drama"
+        },
+        {
+          "number": 116,
+          "name": "HBO",
+          "category": "Service vidéo",
+          "catalogueId": "hbo"
+        },
+        {
+          "number": 117,
+          "name": "Heroes & Icons",
+          "category": "Séries & SF",
+          "catalogueId": "heroes-icons"
+        },
+        {
+          "number": 118,
+          "name": "IFC",
+          "category": "Séries & SF",
+          "catalogueId": "ifc"
+        },
+        {
+          "number": 119,
+          "name": "Ion",
+          "category": "Séries & SF",
+          "catalogueId": "ion"
+        },
+        {
+          "number": 120,
+          "name": "Lifetime",
+          "category": "Séries & SF",
+          "catalogueId": "lifetime"
+        },
+        {
+          "number": 121,
+          "name": "MGM+",
+          "category": "Service vidéo",
+          "catalogueId": "mgm-plus"
+        },
+        {
+          "number": 122,
+          "name": "Novelas+",
+          "category": "Novelas",
+          "catalogueId": "novelas-plus"
+        },
+        {
+          "number": 123,
+          "name": "Paramount Network",
+          "category": "Séries & SF",
+          "catalogueId": "paramount-network"
+        },
+        {
+          "number": 124,
+          "name": "S+ Première",
+          "category": "S+",
+          "catalogueId": "s-plus-premiere"
+        },
+        {
+          "number": 125,
+          "name": "S+ Avant Première",
+          "category": "S+",
+          "catalogueId": "s-plus-avant-premiere"
+        },
+        {
+          "number": 126,
+          "name": "Sundance TV",
+          "category": "Séries & SF",
+          "catalogueId": "sundance-tv"
+        },
+        {
+          "number": 127,
+          "name": "Syfy",
+          "category": "Séries & SF",
+          "catalogueId": "syfy"
+        },
+        {
+          "number": 128,
+          "name": "TBS",
+          "category": "Séries & SF",
+          "catalogueId": "tbs"
+        },
+        {
+          "number": 129,
+          "name": "TNT",
+          "category": "Séries & SF",
+          "catalogueId": "tnt"
+        },
+        {
+          "number": 130,
+          "name": "USA Network",
+          "category": "Séries & SF",
+          "catalogueId": "usa-network"
+        },
+        {
+          "number": 131,
+          "name": "A+ Kids",
+          "category": "Jeunesse",
+          "catalogueId": "a-plus-kids"
+        },
+        {
+          "number": 132,
+          "name": "Boing",
+          "category": "Jeunesse",
+          "catalogueId": "boing"
+        },
+        {
+          "number": 133,
+          "name": "Boomerang +1",
+          "category": "Jeunesse",
+          "catalogueId": "boomerang-plus-1"
+        },
+        {
+          "number": 134,
+          "name": "Canal J",
+          "category": "Jeunesse",
+          "catalogueId": "canal-j"
+        },
+        {
+          "number": 135,
+          "name": "Disney Channel",
+          "category": "Jeunesse",
+          "catalogueId": "disney-channel"
+        },
+        {
+          "number": 136,
+          "name": "Disney Junior",
+          "category": "Jeunesse",
+          "catalogueId": "disney-junior"
+        },
+        {
+          "number": 137,
+          "name": "DreamWorks",
+          "category": "Jeunesse",
+          "catalogueId": "dreamworks"
+        },
+        {
+          "number": 138,
+          "name": "J-One",
+          "category": "Jeunesse",
+          "catalogueId": "j-one"
+        },
+        {
+          "number": 139,
+          "name": "Ludikids",
+          "category": "Jeunesse",
+          "catalogueId": "ludikids"
+        },
+        {
           "number": 140,
+          "name": "Mangas",
+          "category": "Jeunesse",
+          "catalogueId": "mangas"
+        },
+        {
+          "number": 141,
+          "name": "Nathan+",
+          "category": "Jeunesse",
+          "catalogueId": "nathan-plus"
+        },
+        {
+          "number": 142,
           "name": "Nickelodeon +1",
           "category": "Jeunesse",
           "catalogueId": "nickelodeon-plus-1"
         },
         {
-          "number": 141,
+          "number": 143,
           "name": "NickToons",
           "category": "Jeunesse",
           "catalogueId": "nicktoons"
         },
         {
-          "number": 142,
+          "number": 144,
           "name": "Okoo",
           "category": "Jeunesse",
           "catalogueId": "okoo"
         },
         {
-          "number": 143,
+          "number": 145,
           "name": "Piwi+",
           "category": "Jeunesse",
           "catalogueId": "piwi-plus"
         },
         {
-          "number": 144,
+          "number": 146,
           "name": "Pitchoun Kids Music Africa",
           "category": "Jeunesse",
           "catalogueId": "pitchoun-kids-music-africa"
         },
         {
-          "number": 145,
+          "number": 147,
           "name": "TV Pitchoun",
           "category": "Jeunesse",
           "catalogueId": "tv-pitchoun"
         },
         {
-          "number": 146,
+          "number": 148,
           "name": "Télétoon+",
           "category": "Jeunesse",
           "catalogueId": "teletoon-plus"
         },
         {
-          "number": 147,
+          "number": 149,
           "name": "Télétoon +1",
           "category": "Jeunesse",
           "catalogueId": "teletoon-plus-1"
         },
         {
-          "number": 148,
+          "number": 150,
           "name": "Toonami",
           "category": "Jeunesse",
           "catalogueId": "toonami"
         },
         {
-          "number": 149,
+          "number": 151,
           "name": "ducktv",
           "category": "Jeunesse",
           "catalogueId": "ducktv"
         },
         {
-          "number": 150,
+          "number": 152,
           "name": "TV Tokyo",
           "category": "International",
           "catalogueId": "tv-tokyo"
         },
         {
-          "number": 151,
+          "number": 153,
           "name": "Fuji TV",
           "category": "International",
           "catalogueId": "fuji-tv"
         },
         {
-          "number": 152,
+          "number": 154,
           "name": "Warner TV Next",
           "category": "Jeunesse",
           "catalogueId": "warner-tv-next"
         },
         {
-          "number": 153,
+          "number": 155,
           "name": "Pêche & Sons",
           "category": "Documentaires",
           "catalogueId": "peche-sons"
         },
         {
-          "number": 154,
+          "number": 156,
           "name": "Planète+",
           "category": "S+",
           "catalogueId": "planete-plus"
         },
         {
-          "number": 155,
+          "number": 157,
           "name": "S+ Docs",
           "category": "S+",
           "catalogueId": "s-plus-docs"
         },
         {
-          "number": 156,
-          "name": "TV5 Monde",
-          "category": "France",
-          "catalogueId": "tv5-monde"
-        },
-        {
-          "number": 157,
+          "number": 158,
           "name": "S+ Prime",
           "category": "S+",
           "catalogueId": "s-plus-prime"
         },
         {
-          "number": 158,
+          "number": 159,
           "name": "S+ Ciné",
           "category": "S+",
           "catalogueId": "s-plus-cine"
         },
         {
-          "number": 159,
+          "number": 160,
           "name": "S+ Kids",
           "category": "S+",
           "catalogueId": "s-plus-kids"
         },
         {
-          "number": 160,
+          "number": 161,
           "name": "S+ Fiction",
           "category": "S+",
           "catalogueId": "s-plus-fiction"
         },
         {
-          "number": 161,
+          "number": 162,
           "name": "S+ Channel",
           "category": "S+",
           "catalogueId": "s-plus-channel"
         },
         {
-          "number": 162,
+          "number": 163,
           "name": "S+ Music",
           "category": "S+",
           "catalogueId": "s-plus-music"
         },
         {
-          "number": 163,
+          "number": 164,
           "name": "S+ TV",
           "category": "S+",
           "catalogueId": "s-plus-tv"
         },
         {
-          "number": 164,
+          "number": 165,
           "name": "S+ Movies",
           "category": "S+",
           "catalogueId": "s-plus-movies"
         },
         {
-          "number": 165,
+          "number": 166,
           "name": "S+ Infos",
           "category": "S+",
           "catalogueId": "s-plus-infos"
         },
         {
-          "number": 166,
+          "number": 167,
           "name": "S+ Media",
           "category": "S+",
           "catalogueId": "s-plus-media"
         },
         {
-          "number": 167,
+          "number": 168,
           "name": "S+ Jeunesse",
           "category": "S+",
           "catalogueId": "s-plus-jeunesse"
         },
         {
-          "number": 168,
+          "number": 169,
           "name": "Berbère Jeunesse",
           "category": "Jeunesse",
           "catalogueId": "berbere-jeunesse"
         },
         {
-          "number": 169,
+          "number": 170,
           "name": "La Chaîne du Père Noël",
           "category": "Jeunesse",
           "catalogueId": "chaine-pere-noel"
         },
         {
-          "number": 170,
+          "number": 171,
           "name": "S+ Box Office",
           "category": "S+",
           "catalogueId": "s-plus-box-office"
         },
         {
-          "number": 171,
+          "number": 172,
           "name": "S+ Grand Ecran",
           "category": "S+",
           "catalogueId": "s-plus-grand-ecran"
         },
         {
-          "number": 172,
+          "number": 173,
           "name": "S+ Cinéma(s)",
           "category": "S+",
           "catalogueId": "s-plus-cinema-s"
         },
         {
-          "number": 173,
+          "number": 174,
           "name": "beIN SPORTS",
           "category": "Sport",
           "catalogueId": "bein-sports"
         },
         {
-          "number": 174,
+          "number": 175,
           "name": "Eurosport 1",
           "category": "Sport",
           "catalogueId": "eurosport-1"
         },
         {
-          "number": 175,
+          "number": 176,
           "name": "Automoto",
           "category": "Sport",
           "catalogueId": "automoto"
         },
         {
-          "number": 176,
+          "number": 177,
           "name": "Equidia",
           "category": "Sport",
           "catalogueId": "equidia"
         },
         {
-          "number": 177,
+          "number": 178,
           "name": "Comédie+",
           "category": "Séries & SF",
           "catalogueId": "comedie-plus"
         },
         {
-          "number": 178,
+          "number": 179,
           "name": "Série Club",
           "category": "Séries & SF",
           "catalogueId": "serie-club"
         },
         {
-          "number": 179,
+          "number": 180,
           "name": "Showtime",
           "category": "Séries & SF",
           "catalogueId": "showtime"
         },
         {
-          "number": 180,
+          "number": 181,
           "name": "Starz",
           "category": "Séries & SF",
           "catalogueId": "starz"
         },
         {
-          "number": 181,
+          "number": 182,
           "name": "NRJ Hits",
           "category": "Musique",
           "catalogueId": "nrj-hits"
         },
         {
-          "number": 182,
+          "number": 183,
           "name": "Europe 2 POP TV",
           "category": "Musique",
           "catalogueId": "europe-2-pop-tv"
         },
         {
-          "number": 183,
+          "number": 184,
           "name": "Trace Urban",
           "category": "Musique",
           "catalogueId": "trace-urban"
         },
         {
-          "number": 184,
+          "number": 185,
           "name": "RFM TV",
           "category": "Musique",
           "catalogueId": "rfm-tv"
         },
         {
-          "number": 185,
+          "number": 186,
           "name": "Deutsche Grammophon+",
           "category": "Musique",
           "catalogueId": "deutsche-grammophon-plus"
         },
         {
-          "number": 186,
+          "number": 187,
           "name": "Melody",
           "category": "Musique",
           "catalogueId": "melody"
         },
         {
-          "number": 187,
+          "number": 188,
           "name": "Mezzo",
           "category": "Musique",
           "catalogueId": "mezzo"
         },
         {
-          "number": 188,
+          "number": 189,
           "name": "Mezzo Live HD",
           "category": "Musique",
           "catalogueId": "mezzo-live-hd"
         },
         {
-          "number": 189,
+          "number": 190,
           "name": "MTV",
           "category": "Musique",
           "catalogueId": "mtv"
         },
         {
-          "number": 190,
+          "number": 191,
           "name": "Trace Africa",
           "category": "Musique",
           "catalogueId": "trace-africa"
         },
         {
-          "number": 191,
+          "number": 192,
           "name": "Trace Ivoire",
           "category": "Musique",
           "catalogueId": "trace-ivoire"
         },
         {
-          "number": 192,
+          "number": 193,
           "name": "Z Magic",
           "category": "Musique",
           "catalogueId": "z-magic"
         },
         {
-          "number": 193,
+          "number": 194,
           "name": "Seasons",
           "category": "Documentaires",
           "catalogueId": "seasons"
         },
         {
-          "number": 194,
+          "number": 195,
           "name": "Chasse et Pêche",
           "category": "Documentaires",
           "catalogueId": "chasse-et-peche"
         },
         {
-          "number": 195,
+          "number": 196,
           "name": "Animaux",
           "category": "Documentaires",
           "catalogueId": "animaux"
         },
         {
-          "number": 196,
+          "number": 197,
           "name": "Cheval TV",
           "category": "Documentaires",
           "catalogueId": "cheval-tv"
         },
         {
-          "number": 197,
+          "number": 198,
           "name": "Mieux TV",
           "category": "Documentaires",
           "catalogueId": "mieux-tv"
         },
         {
-          "number": 198,
+          "number": 199,
           "name": "Dog & Cat TV",
           "category": "Documentaires",
           "catalogueId": "dog-cat-tv"
         },
         {
-          "number": 199,
+          "number": 200,
           "name": "Love Nature",
           "category": "Documentaires",
           "catalogueId": "love-nature"
         },
         {
-          "number": 200,
+          "number": 201,
           "name": "Museum TV",
           "category": "Documentaires",
           "catalogueId": "museum-tv"
         },
         {
-          "number": 201,
+          "number": 202,
           "name": "Planète+ Crime",
           "category": "Documentaires",
           "catalogueId": "planete-plus-crime"
         },
         {
-          "number": 202,
+          "number": 203,
           "name": "Planète+ Aventure",
           "category": "Documentaires",
           "catalogueId": "planete-plus-aventure"
         },
         {
-          "number": 203,
+          "number": 204,
           "name": "Science & Vie TV",
           "category": "Documentaires",
           "catalogueId": "science-et-vie-tv"
         },
         {
-          "number": 204,
+          "number": 205,
           "name": "Toute l'Histoire",
           "category": "Documentaires",
           "catalogueId": "toute-l-histoire"
         },
         {
-          "number": 205,
+          "number": 206,
           "name": "MGG TV",
           "category": "Sport",
           "catalogueId": "mgg-tv"
         },
         {
-          "number": 206,
+          "number": 207,
           "name": "GOLF+",
           "category": "Sport",
           "catalogueId": "golf-plus"
         },
         {
-          "number": 207,
+          "number": 208,
           "name": "Infosport",
           "category": "Sport",
           "catalogueId": "infosport"
         },
         {
-          "number": 208,
+          "number": 209,
           "name": "Sport 1",
           "category": "Sport",
           "catalogueId": "sport-1"
         },
         {
-          "number": 209,
+          "number": 210,
           "name": "Sport 2",
           "category": "Sport",
           "catalogueId": "sport-2"
         },
         {
-          "number": 210,
+          "number": 211,
           "name": "Sport 3",
           "category": "Sport",
           "catalogueId": "sport-3"
         },
         {
-          "number": 211,
+          "number": 212,
           "name": "Sport 4",
           "category": "Sport",
           "catalogueId": "sport-4"
         },
         {
-          "number": 212,
+          "number": 213,
           "name": "La Chaîne Météo",
           "category": "Information",
           "catalogueId": "la-chaine-meteo"
         },
         {
-          "number": 213,
+          "number": 214,
           "name": "7info",
           "category": "Information",
           "catalogueId": "7info"
         },
         {
-          "number": 214,
+          "number": 215,
           "name": "Al Jazeera",
           "category": "Information",
           "catalogueId": "al-jazeera"
         },
         {
-          "number": 215,
+          "number": 216,
           "name": "CGTN",
           "category": "Information",
           "catalogueId": "cgtn"
         },
         {
-          "number": 216,
+          "number": 217,
           "name": "NHK World",
           "category": "Information",
           "catalogueId": "nhk-world"
         },
         {
-          "number": 217,
+          "number": 218,
           "name": "The Weather Channel",
           "category": "Information",
           "catalogueId": "the-weather-channel"
         },
         {
-          "number": 218,
+          "number": 219,
           "name": "TRT World",
           "category": "Information",
           "catalogueId": "trt-world"
         },
         {
-          "number": 219,
+          "number": 220,
           "name": "A+",
           "category": "Afrique",
           "catalogueId": "a-plus"
         },
         {
-          "number": 220,
+          "number": 221,
           "name": "Maboke TV",
           "category": "Afrique",
           "catalogueId": "maboke-tv"
         },
         {
-          "number": 221,
+          "number": 222,
           "name": "MAGC TV",
           "category": "Afrique",
           "catalogueId": "magc-tv"
         },
         {
-          "number": 222,
+          "number": 223,
           "name": "Sunu Yeuf",
           "category": "Afrique",
           "catalogueId": "sunu-yeuf"
         },
         {
-          "number": 223,
+          "number": 224,
           "name": "VIFI TV",
           "category": "Afrique",
           "catalogueId": "vifi-tv"
         },
         {
-          "number": 224,
+          "number": 225,
           "name": "Zacu TV",
           "category": "Afrique",
           "catalogueId": "zacu-tv"
         },
         {
-          "number": 225,
+          "number": 226,
           "name": "ZBC",
           "category": "Afrique",
           "catalogueId": "zbc"
         },
         {
-          "number": 226,
+          "number": 227,
           "name": "EMCI TV",
           "category": "Religion",
           "catalogueId": "emci-tv"
         },
         {
-          "number": 227,
+          "number": 228,
           "name": "Espérance TV",
           "category": "Religion",
           "catalogueId": "esperance-tv"
         },
         {
-          "number": 228,
+          "number": 229,
           "name": "EWTN",
           "category": "Religion",
           "catalogueId": "ewtn"
         },
         {
-          "number": 229,
+          "number": 230,
           "name": "Hope Channel",
           "category": "Religion",
           "catalogueId": "hope-channel"
-        },
-        {
-          "number": 230,
-          "name": "KTO",
-          "category": "Religion",
-          "catalogueId": "kto"
         }
       ],
       "notes": [
-        "La liste principale comporte exactement 230 noms distincts, sélectionnés à partir du catalogue actuel.",
-        "Les exclusions explicites France 4, France 5 et TF1 Séries Films sont appliquées.",
-        "Les chaînes StreamNex demandées n’existent pas sous ces noms exacts dans le catalogue source; elles sont gardées dans la catégorie StreamNex mais leurs catalogueId restent null et elles nécessitent une création/configuration séparée.",
-        "Les regroupements TF1 et M6 sont une sélection de travail basée sur les chaînes identifiées; confirmer la liste des chaînes de chaque groupe avant lancement commercial.",
-        "Le catalogue comprend des noms dont les flux et les droits de diffusion doivent encore être contrôlés; le bouquet n’est pas activé."
+        "La liste comprend 230 noms uniques : 225 entrées du catalogue config/channels.js et cinq noms StreamNex demandés.",
+        "France 4, France 5 et TF1 Séries Films sont exclus.",
+        "Toutes les entrées du catalogue portant group='France' sont prioritaires, sous réserve des trois exclusions.",
+        "Les cinq chaînes StreamNex sont des noms demandés mais ne disposent pas encore d’identifiants dans le catalogue.",
+        "Les listes des groupes TF1 et M6 sont une sélection de travail et doivent être confirmées avant commercialisation.",
+        "La catégorie Information contient sept chaînes; les catégories peuvent se recouper et le total général ne compte chaque nom qu’une fois.",
+        "Le bouquet n’est pas activé; vérifier les sources, la disponibilité territoriale et les droits avant mise en service."
       ]
     }
   }
