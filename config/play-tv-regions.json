@@ -134,6 +134,24 @@
       "regionalVariants": false,
       "behavior": "Afficher le même bouquet Max TV dans les trois régions, sans créer de variantes ou d’abonnements Max TV séparés.",
       "sourceDocument": "docs/max-play-tv.json"
+    },
+    {
+      "id": "supa-boom-tv",
+      "displayName": "Supa Boom TV",
+      "targetChannelCount": 320,
+      "regionalPresence": [
+        "Amérique",
+        "Europa",
+        "Côte d’Ivoire"
+      ],
+      "singleBouquet": true,
+      "regionalVariants": false,
+      "pricing": {
+        "default": "55 EUR/month",
+        "americas": "49 USD/month"
+      },
+      "activationStatus": "proposed-not-activated",
+      "sourceDocument": "docs/supa-boom-tv.json"
     }
   ]
 }
