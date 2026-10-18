@@ -11,7 +11,7 @@
       "period": "mensuel",
       "status": "à définir par l’utilisateur"
     },
-    "channelCount": 60,
+    "channelCount": 66,
     "categories": [
       {
         "id": "information",
@@ -77,7 +77,7 @@
       },
       {
         "id": "sport",
-        "name": "Sport (8)",
+        "name": "Sport et DSTV (14)",
         "channels": [
           "SuperSport 1",
           "SuperSport 2",
@@ -86,7 +86,13 @@
           "Eurosport 1",
           "Eurosport 2",
           "beIN SPORTS 1",
-          "CANAL+ Sport"
+          "CANAL+ Sport",
+          "SuperSport Football",
+          "SuperSport Cricket",
+          "SuperSport Rugby",
+          "SuperSport Golf",
+          "SuperSport Tennis",
+          "SuperSport Motorsport"
         ]
       },
       {
@@ -118,11 +124,11 @@
     ],
     "implementationNotes": [
       "Bouquet international distinct de Play TV, Play TV Côte d’Ivoire et Play TV Europa.",
-      "Sélection initiale de 60 noms uniques; les catégories sont organisées sans doublons dans ce fichier.",
       "Le tarif mensuel reste à définir par l’utilisateur.",
       "Réconcilier chaque nom avec config/channels.js et ses identifiants exacts avant intégration au parcours utilisateur.",
       "Vérifier les URL de lecture, la disponibilité selon la région et les droits de diffusion avant activation.",
-      "Ne pas marquer le bouquet actif avant validation des identifiants et tests réels des flux."
+      "Ne pas marquer le bouquet actif avant validation des identifiants et tests réels des flux.",
+      "Six chaînes thématiques SuperSport/DStv supplémentaires ont été ajoutées à la catégorie Sport; leurs appellations commerciales, disponibilité et flux doivent être vérifiés avant activation."
     ]
   }
 }
