@@ -1,0 +1,39 @@
+{
+  "title": "StreamLive — Bouquet Supa Boom TV",
+  "status": "proposed-not-activated",
+  "bouquet": {
+    "id": "supa-boom-tv",
+    "name": "Supa Boom TV",
+    "targetChannelCount": 320,
+    "channelCountStatus": "objectif demandé; liste détaillée des chaînes à définir et à réconcilier avec config/channels.js",
+    "price": {
+      "default": {
+        "amount": 55,
+        "currency": "EUR",
+        "period": "mensuel"
+      },
+      "regional": [
+        {
+          "region": "Amérique",
+          "amount": 49,
+          "currency": "USD",
+          "period": "mensuel"
+        }
+      ],
+      "status": "prix demandé par l’utilisateur",
+      "note": "55 € par mois comme tarif standard; 49 $ US par mois en Amérique. Le tarif Côte d’Ivoire n’a pas été précisé séparément."
+    },
+    "regionalPresence": [
+      "Amérique",
+      "Europa",
+      "Côte d’Ivoire"
+    ],
+    "selectionMode": "pending-manual-reconciliation",
+    "channelSelection": {
+      "status": "pending",
+      "targetUniqueChannels": 320,
+      "source": "config/channels.js",
+      "rule": "Sélectionner 320 chaînes uniques du catalogue existant; ne pas inventer de chaînes ni considérer le bouquet comme activé avant vérification."
+    }
+  }
+}
