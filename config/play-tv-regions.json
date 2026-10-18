@@ -97,8 +97,8 @@
       "Permettre à l’utilisateur de corriger son pays si la géolocalisation est indisponible ou incorrecte."
     ]
   },
-  "implementationStatus": "integrated-in-player-index-and-apps",
-  "note": "Le script player/play-tv-region.js est chargé sur l’accueil et la page Chaînes & Apps. La détection démarre lorsque l’utilisateur appuie sur « Détecter mon pays » et autorise la localisation. Les coordonnées sont transmises à OpenStreetMap Nominatim pour obtenir le code pays.",
+  "implementationStatus": "integrated-in-player-index-and-bouquet-display",
+  "note": "La détection régionale Play TV est chargée sur l’accueil et la page Chaînes & Apps. player/bouquet-region.js affiche sur l’accueil une seule variante Play TV selon le pays et un seul bouquet Max TV commun à Amérique, Europa et Côte d’Ivoire. La détection commence après consentement de l’utilisateur.",
   "deviceGeolocation": {
     "enabled": true,
     "api": "navigator.geolocation",
