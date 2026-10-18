@@ -5,7 +5,7 @@
     "id": "play-tv-cote-ivoire",
     "name": "Play TV Côte d’Ivoire",
     "region": "Côte d’Ivoire",
-    "channelCount": 25,
+    "channelCount": 37,
     "channels": [
       {
         "name": "RTI 1",
@@ -106,6 +106,54 @@
       {
         "name": "Gulli",
         "sourceCatalogId": "gulli"
+      },
+      {
+        "name": "France 4",
+        "sourceCatalogId": "france-4"
+      },
+      {
+        "name": "France 5",
+        "sourceCatalogId": "france-5"
+      },
+      {
+        "name": "6ter",
+        "sourceCatalogId": "6ter"
+      },
+      {
+        "name": "Arte",
+        "sourceCatalogId": "arte"
+      },
+      {
+        "name": "TMC",
+        "sourceCatalogId": "tmc"
+      },
+      {
+        "name": "A+ Kids",
+        "sourceCatalogId": "a-plus-kids"
+      },
+      {
+        "name": "Boing",
+        "sourceCatalogId": "boing"
+      },
+      {
+        "name": "Boomerang",
+        "sourceCatalogId": "boomerang"
+      },
+      {
+        "name": "Cartoon Network",
+        "sourceCatalogId": "cartoon-network"
+      },
+      {
+        "name": "Disney Channel",
+        "sourceCatalogId": "disney-channel"
+      },
+      {
+        "name": "DreamWorks",
+        "sourceCatalogId": "dreamworks"
+      },
+      {
+        "name": "Nickelodeon",
+        "sourceCatalogId": "nickelodeon"
       }
     ],
     "videoService": "TFOU",
@@ -115,7 +163,8 @@
       "Ajouts : TF1, TFX, France 2, France 3, M6, W9, franceinfo, CNEWS, EMCI TV, LMTV, Espérance TV, Béni TV, Tivi5 et Gulli.",
       "Service vidéo associé : TFOU.",
       "Le prix mensuel n'a pas encore été communiqué et doit être confirmé.",
-      "Les noms ajoutés doivent être rapprochés des entrées réelles du catalogue et leurs flux/droits vérifiés avant activation."
+      "Les noms ajoutés doivent être rapprochés des entrées réelles du catalogue et leurs flux/droits vérifiés avant activation.",
+      "Extension du bouquet à 37 chaînes : ajout de France 4, France 5, 6ter, Arte, TMC, A+ Kids, Boing, Boomerang, Cartoon Network, Disney Channel, DreamWorks et Nickelodeon."
     ],
     "price": {
       "amount": null,
@@ -143,7 +192,12 @@
           "France 2",
           "France 3",
           "M6",
-          "W9"
+          "W9",
+          "France 4",
+          "France 5",
+          "6ter",
+          "Arte",
+          "TMC"
         ]
       },
       {
@@ -160,7 +214,14 @@
           "Okoo",
           "TFOU",
           "Tivi5",
-          "Gulli"
+          "Gulli",
+          "A+ Kids",
+          "Boing",
+          "Boomerang",
+          "Cartoon Network",
+          "Disney Channel",
+          "DreamWorks",
+          "Nickelodeon"
         ]
       },
       {
