@@ -1,0 +1,128 @@
+{
+  "title": "StreamLive — Bouquet Play TV International",
+  "status": "proposed-not-activated",
+  "bouquet": {
+    "id": "play-tv-international",
+    "name": "Play TV International",
+    "region": "International",
+    "price": {
+      "amount": null,
+      "currency": null,
+      "period": "mensuel",
+      "status": "à définir par l’utilisateur"
+    },
+    "channelCount": 60,
+    "categories": [
+      {
+        "id": "information",
+        "name": "Information internationale (10)",
+        "channels": [
+          "France 24",
+          "BBC News",
+          "CNN International",
+          "Sky News",
+          "Euronews",
+          "Al Jazeera",
+          "DW",
+          "Bloomberg TV",
+          "CNBC",
+          "ABC News Live"
+        ]
+      },
+      {
+        "id": "afrique",
+        "name": "Afrique et chaînes nationales (10)",
+        "channels": [
+          "RTI 1",
+          "RTI 2",
+          "La 3",
+          "A+ Ivoire",
+          "Life TV",
+          "NCI",
+          "7info",
+          "Africa 24 Infinity",
+          "Vox Africa",
+          "Africanews"
+        ]
+      },
+      {
+        "id": "films-series",
+        "name": "Cinéma et séries (10)",
+        "channels": [
+          "M6 Films",
+          "Action",
+          "Ciné+ Frisson",
+          "Ciné+ Emotion",
+          "Ciné+ Family",
+          "Ciné+ Festival",
+          "RTL9",
+          "AB1",
+          "TF1 Séries Films",
+          "Paramount Network"
+        ]
+      },
+      {
+        "id": "jeunesse",
+        "name": "Jeunesse et famille (8)",
+        "channels": [
+          "Okoo",
+          "Gulli",
+          "TiVi5MONDE",
+          "Cartoon Network",
+          "Disney Channel",
+          "Nickelodeon",
+          "Nickelodeon Junior",
+          "DreamWorks"
+        ]
+      },
+      {
+        "id": "sport",
+        "name": "Sport (8)",
+        "channels": [
+          "SuperSport 1",
+          "SuperSport 2",
+          "SuperSport 3",
+          "ESPN",
+          "Eurosport 1",
+          "Eurosport 2",
+          "beIN SPORTS 1",
+          "CANAL+ Sport"
+        ]
+      },
+      {
+        "id": "musique-decouverte",
+        "name": "Musique, culture et découverte (7)",
+        "channels": [
+          "Trace Africa",
+          "Trace Urban",
+          "Trace Gospel",
+          "Trace Ivoire",
+          "Discovery Channel",
+          "National Geographic",
+          "M6 Music"
+        ]
+      },
+      {
+        "id": "spiritualite",
+        "name": "Foi et spiritualité (7)",
+        "channels": [
+          "EMCI TV",
+          "LMTV",
+          "Espérance TV",
+          "Béni TV",
+          "Gospel Music",
+          "Christ Gospel",
+          "Trace Gospel TV"
+        ]
+      }
+    ],
+    "implementationNotes": [
+      "Bouquet international distinct de Play TV, Play TV Côte d’Ivoire et Play TV Europa.",
+      "Sélection initiale de 60 noms uniques; les catégories sont organisées sans doublons dans ce fichier.",
+      "Le tarif mensuel reste à définir par l’utilisateur.",
+      "Réconcilier chaque nom avec config/channels.js et ses identifiants exacts avant intégration au parcours utilisateur.",
+      "Vérifier les URL de lecture, la disponibilité selon la région et les droits de diffusion avant activation.",
+      "Ne pas marquer le bouquet actif avant validation des identifiants et tests réels des flux."
+    ]
+  }
+}
