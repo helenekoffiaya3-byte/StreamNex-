@@ -6,10 +6,10 @@
     "name": "Play TV Europa",
     "region": "Europe et international",
     "price": {
-      "amount": null,
-      "currency": "XOF",
+      "amount": 8.5,
+      "currency": "EUR",
       "period": "mensuel",
-      "status": "à définir"
+      "status": "défini par l’utilisateur"
     },
     "categories": [
       {
@@ -132,9 +132,9 @@
       "Okoo, Gulli et TiVi5MONDE sont inclus dans la catégorie Jeunesse.",
       "Les catégories peuvent se recouper : une chaîne française peut aussi être classée en jeunesse, cinéma ou information.",
       "La liste française est construite à partir des chaînes françaises déjà repérées dans le catalogue StreamLive; vérifier le catalogue complet pour confirmer qu’aucune chaîne française supplémentaire n’a été oubliée.",
-      "Le prix mensuel reste à définir.",
       "Les trois chaînes SuperSport sont une sélection DSTV; disponibilité régionale, flux et droits doivent être vérifiés avant activation.",
-      "Ne pas marquer le bouquet actif avant réconciliation des identifiants du catalogue, test des flux et vérification des droits de diffusion."
+      "Ne pas marquer le bouquet actif avant réconciliation des identifiants du catalogue, test des flux et vérification des droits de diffusion.",
+      "Prix mensuel fixé à 8,50 EUR à la demande de l’utilisateur."
     ],
     "channelCount": 49
   }
