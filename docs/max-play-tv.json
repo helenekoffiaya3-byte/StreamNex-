@@ -3,7 +3,7 @@
   "status": "proposed-not-activated",
   "bouquet": {
     "id": "max-play-tv",
-    "name": "Max Play TV",
+    "name": "Max TV",
     "targetChannelCount": 230,
     "price": {
       "amount": 50,
@@ -1745,6 +1745,14 @@
         "La catégorie Information contient sept chaînes; les catégories peuvent se recouper et le total général ne compte chaque nom qu’une fois.",
         "Le bouquet n’est pas activé; vérifier les sources, la disponibilité territoriale et les droits avant mise en service."
       ]
-    }
+    },
+    "singleBouquet": true,
+    "regionalPresence": [
+      "Amérique",
+      "Europa",
+      "Côte d’Ivoire"
+    ],
+    "regionalVariants": false,
+    "availabilityNote": "Un seul bouquet Max TV, présent en Amérique, en Europa et en Côte d’Ivoire. La présence régionale ne crée pas de bouquets séparés."
   }
 }
