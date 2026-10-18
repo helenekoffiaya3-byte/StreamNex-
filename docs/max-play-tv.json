@@ -6,10 +6,17 @@
     "name": "Max Play TV",
     "targetChannelCount": 230,
     "price": {
-      "amount": null,
-      "currency": null,
+      "amount": 50,
+      "currency": "EUR",
+      "alternatePrices": [
+        {
+          "amount": 50,
+          "currency": "USD"
+        }
+      ],
       "period": "mensuel",
-      "status": "à définir par l’utilisateur"
+      "status": "prix proposé par l’utilisateur",
+      "note": "Tarifs saisis tels que demandés : 50 € / mois ou 50 $ US / mois. Le montant en USD n’est pas une conversion du montant en EUR."
     },
     "selectionRules": [
       {
