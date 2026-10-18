@@ -39,7 +39,7 @@ const BOUQUETS = [
       "tele-sahel",
       "gabon-1ere",
       "m6-international",
-      "africable"
+      "tfx"
     ],
     pendingVerificationChannelIds: [
       "france-24",
