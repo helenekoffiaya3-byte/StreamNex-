@@ -50,7 +50,7 @@ const CHANNELS = [
   { channelNumber: 48, id: "rtl-9", tvgId: "rtl-9", name: "RTL 9", group: "Cinéma", logoUrl: "/assets/logos/rtl-9.svg" },
   { channelNumber: 49, id: "sci-fi", tvgId: "sci-fi", name: "Sci-Fi", group: "Séries & SF", logoUrl: "/assets/logos/sci-fi.svg" },
   { channelNumber: 50, id: "tcm", tvgId: "tcm", name: "TCM", group: "Cinéma", logoUrl: "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/united-states/tcm-us.png" },
-  { channelNumber: 51, id: "telemundo", tvgId: "telemundo", name: "Telemundo", group: "Cinéma", logoUrl: "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/united-states/telemundo-us.png" },
+  { channelNumber: 51, id: "telemundo", tvgId: "telemundo", name: "Telemundo", group: "Cinéma", logoUrl: "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/united-states/telemundo-us.png", webUrl: "https://pluto.tv/us/watch/live-tv/#20333" }
   { channelNumber: 52, id: "tubi", tvgId: "tubi", name: "Tubi", group: "Cinéma", logoUrl: "/assets/logos/tubi.svg" },
   { channelNumber: 53, id: "unimas", tvgId: "unimas", name: "UniMás", group: "Cinéma", logoUrl: "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/united-states/unimas-us.png" },
   { channelNumber: 54, id: "univision", tvgId: "univision", name: "Univision", group: "Cinéma", logoUrl: "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/united-states/univision-us.png" },
