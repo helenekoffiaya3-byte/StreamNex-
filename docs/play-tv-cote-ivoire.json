@@ -1,0 +1,65 @@
+{
+  "title": "StreamLive — Bouquet Play TV Côte d’Ivoire",
+  "status": "proposed-not-activated",
+  "bouquet": {
+    "id": "play-tv-cote-ivoire",
+    "name": "Play TV Côte d’Ivoire",
+    "region": "Côte d’Ivoire",
+    "channelCount": 11,
+    "channels": [
+      {
+        "name": "RTI 1",
+        "sourceCatalogId": "rti-1"
+      },
+      {
+        "name": "RTI 2",
+        "sourceCatalogId": "rti-2"
+      },
+      {
+        "name": "La 3",
+        "sourceCatalogId": "la-3"
+      },
+      {
+        "name": "A+ Ivoire",
+        "sourceCatalogId": "a-plus-ivoire"
+      },
+      {
+        "name": "Life TV",
+        "sourceCatalogId": "life-tv"
+      },
+      {
+        "name": "NCI",
+        "sourceCatalogId": "nci"
+      },
+      {
+        "name": "StreamNex Action",
+        "sourceCatalogId": null
+      },
+      {
+        "name": "StreamNex Sport 2",
+        "sourceCatalogId": null
+      },
+      {
+        "name": "Okoo",
+        "sourceCatalogId": null
+      },
+      {
+        "name": "Trace Ivoire",
+        "sourceCatalogId": null
+      },
+      {
+        "name": "France 24",
+        "sourceCatalogId": null
+      }
+    ],
+    "videoService": "TFOU",
+    "notes": [
+      "7info retirée de ce bouquet.",
+      "StreamNex Sport 1 retirée de ce bouquet.",
+      "Trace Ivoire et France 24 ajoutées.",
+      "Le service vidéo associé est TFOU; il est distinct des chaînes linéaires.",
+      "11 chaînes listées actuellement, soit une de plus que l’objectif initial de 10.",
+      "Les chaînes StreamNex, Okoo et Trace Ivoire doivent être rapprochées de leurs entrées réelles dans le catalogue avant activation; les flux et droits de diffusion restent à vérifier."
+    ]
+  }
+}
