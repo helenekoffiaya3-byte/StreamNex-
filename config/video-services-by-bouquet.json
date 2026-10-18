@@ -1,0 +1,98 @@
+{
+  "schemaVersion": 1,
+  "title": "StreamLive — Services vidéo par bouquet",
+  "status": "configured-pending-service-access-verification",
+  "note": "Les services listés sont des destinations de services vidéo externes. Leur présence dans un bouquet ne garantit pas un abonnement fourni par StreamLive ni un accès gratuit; l'utilisateur peut devoir disposer de son propre compte ou abonnement.",
+  "bouquets": [
+    {
+      "id": "free-tv",
+      "name": "Free TV",
+      "videoServices": [
+        {
+          "id": "m6-plus",
+          "name": "M6+",
+          "url": "https://www.m6.fr/"
+        }
+      ]
+    },
+    {
+      "id": "play-tv",
+      "name": "Play TV",
+      "videoServices": [
+        {
+          "id": "tf1-plus",
+          "name": "TF1+",
+          "url": "https://www.tf1.fr/"
+        }
+      ]
+    },
+    {
+      "id": "max-play-tv",
+      "name": "Max Play TV",
+      "videoServices": [
+        {
+          "id": "paramount-plus",
+          "name": "Paramount+",
+          "url": "https://www.paramountplus.com/"
+        },
+        {
+          "id": "m6-plus",
+          "name": "M6+",
+          "url": "https://www.m6.fr/"
+        }
+      ]
+    },
+    {
+      "id": "supa-boom-tv",
+      "name": "Supa Boom TV",
+      "videoServices": [
+        {
+          "id": "tf1-plus",
+          "name": "TF1+",
+          "url": "https://www.tf1.fr/"
+        },
+        {
+          "id": "paramount-plus",
+          "name": "Paramount+",
+          "url": "https://www.paramountplus.com/"
+        },
+        {
+          "id": "m6-plus",
+          "name": "M6+",
+          "url": "https://www.m6.fr/"
+        }
+      ]
+    },
+    {
+      "id": "now-tv",
+      "name": "Now TV",
+      "videoServices": [
+        {
+          "id": "netflix",
+          "name": "Netflix",
+          "url": "https://www.netflix.com/ci-en/"
+        },
+        {
+          "id": "hbo-max",
+          "name": "HBO Max",
+          "url": "https://www.hbomax.com/"
+        },
+        {
+          "id": "paramount-plus",
+          "name": "Paramount+",
+          "url": "https://www.paramountplus.com/"
+        },
+        {
+          "id": "tf1-plus",
+          "name": "TF1+",
+          "url": "https://www.tf1.fr/"
+        },
+        {
+          "id": "m6-plus",
+          "name": "M6+",
+          "url": "https://www.m6.fr/"
+        }
+      ]
+    }
+  ]
+}
