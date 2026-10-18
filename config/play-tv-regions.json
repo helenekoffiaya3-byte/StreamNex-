@@ -110,5 +110,30 @@
     ],
     "persistence": "localStorage",
     "behavior": "Une seule offre Play TV est affichée; la variante et le tarif changent selon le code pays détecté."
-  }
+  },
+  "bouquetDisplayPolicy": {
+    "appliesTo": "Tous les bouquets régionaux de StreamLive",
+    "behavior": "Détecter le pays et n'afficher que la variante régionale du bouquet concerné lorsqu’il existe des variantes régionales.",
+    "regionalVariants": [
+      "Côte d’Ivoire",
+      "Europa",
+      "Amérique"
+    ],
+    "note": "Les bouquets qui ne possèdent pas de variantes régionales restent un seul bouquet."
+  },
+  "products": [
+    {
+      "id": "max-play-tv",
+      "displayName": "Max TV",
+      "singleBouquet": true,
+      "regionalPresence": [
+        "Amérique",
+        "Europa",
+        "Côte d’Ivoire"
+      ],
+      "regionalVariants": false,
+      "behavior": "Afficher le même bouquet Max TV dans les trois régions, sans créer de variantes ou d’abonnements Max TV séparés.",
+      "sourceDocument": "docs/max-play-tv.json"
+    }
+  ]
 }
