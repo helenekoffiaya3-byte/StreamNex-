@@ -46,7 +46,7 @@ const CHANNELS = [
   { channelNumber: 44, id: "mgm-tv", tvgId: "mgm-tv", name: "MGM TV", group: "Cinéma", logoUrl: "/assets/logos/mgm-tv.svg", webUrl: "https://www.mgmplus.com/live" },
   { channelNumber: 45, id: "movies", tvgId: "movies", name: "Movies!", group: "Cinéma", logoUrl: "https://commons.wikimedia.org/wiki/Special:Redirect/file/Movies%21_logo.svg" },
   { channelNumber: 46, id: "peacock", tvgId: "peacock", name: "Peacock", group: "Cinéma", logoUrl: "https://commons.wikimedia.org/wiki/Special:Redirect/file/NBCUniversal_Peacock_Logo_%282026%29.svg" },
-  { channelNumber: 47, id: "pluto-tv", tvgId: "pluto-tv", name: "Pluto TV", group: "Service vidéo", logoUrl: "/assets/logos/pluto-tv.svg" },
+  { channelNumber: 47, id: "pluto-tv", tvgId: "pluto-tv", name: "Pluto TV", group: "Service vidéo", logoUrl: "/assets/logos/pluto-tv.svg", webUrl: "https://pluto.tv/us/watch/live-tv/#29215" }
   { channelNumber: 48, id: "rtl-9", tvgId: "rtl-9", name: "RTL 9", group: "Cinéma", logoUrl: "/assets/logos/rtl-9.svg" },
   { channelNumber: 49, id: "sci-fi", tvgId: "sci-fi", name: "Sci-Fi", group: "Séries & SF", logoUrl: "/assets/logos/sci-fi.svg" },
   { channelNumber: 50, id: "tcm", tvgId: "tcm", name: "TCM", group: "Cinéma", logoUrl: "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/united-states/tcm-us.png" },
