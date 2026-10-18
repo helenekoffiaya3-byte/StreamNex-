@@ -5,7 +5,7 @@
     "id": "play-tv-cote-ivoire",
     "name": "Play TV Côte d’Ivoire",
     "region": "Côte d’Ivoire",
-    "channelCount": 11,
+    "channelCount": 25,
     "channels": [
       {
         "name": "RTI 1",
@@ -50,16 +50,136 @@
       {
         "name": "France 24",
         "sourceCatalogId": null
+      },
+      {
+        "name": "TF1",
+        "sourceCatalogId": "tf1"
+      },
+      {
+        "name": "TFX",
+        "sourceCatalogId": "tfx"
+      },
+      {
+        "name": "France 2",
+        "sourceCatalogId": "france-2"
+      },
+      {
+        "name": "France 3",
+        "sourceCatalogId": "france-3"
+      },
+      {
+        "name": "M6",
+        "sourceCatalogId": "m6"
+      },
+      {
+        "name": "W9",
+        "sourceCatalogId": "w9"
+      },
+      {
+        "name": "franceinfo",
+        "sourceCatalogId": "franceinfo"
+      },
+      {
+        "name": "CNEWS",
+        "sourceCatalogId": "cnews"
+      },
+      {
+        "name": "EMCI TV",
+        "sourceCatalogId": "emci-tv"
+      },
+      {
+        "name": "LMTV",
+        "sourceCatalogId": "lmtv"
+      },
+      {
+        "name": "Espérance TV",
+        "sourceCatalogId": "esperance-tv"
+      },
+      {
+        "name": "Béni TV",
+        "sourceCatalogId": "beni-tv"
+      },
+      {
+        "name": "Tivi5",
+        "sourceCatalogId": "tivi5"
+      },
+      {
+        "name": "Gulli",
+        "sourceCatalogId": "gulli"
       }
     ],
     "videoService": "TFOU",
     "notes": [
-      "7info retirée de ce bouquet.",
-      "StreamNex Sport 1 retirée de ce bouquet.",
-      "Trace Ivoire et France 24 ajoutées.",
-      "Le service vidéo associé est TFOU; il est distinct des chaînes linéaires.",
-      "11 chaînes listées actuellement, soit une de plus que l’objectif initial de 10.",
-      "Les chaînes StreamNex, Okoo et Trace Ivoire doivent être rapprochées de leurs entrées réelles dans le catalogue avant activation; les flux et droits de diffusion restent à vérifier."
+      "7info retirée du bouquet.",
+      "StreamNex Sport 1 retirée du bouquet; StreamNex Sport 2 conservée.",
+      "Ajouts : TF1, TFX, France 2, France 3, M6, W9, franceinfo, CNEWS, EMCI TV, LMTV, Espérance TV, Béni TV, Tivi5 et Gulli.",
+      "Service vidéo associé : TFOU.",
+      "Le prix mensuel n'a pas encore été communiqué et doit être confirmé.",
+      "Les noms ajoutés doivent être rapprochés des entrées réelles du catalogue et leurs flux/droits vérifiés avant activation."
+    ],
+    "price": {
+      "amount": null,
+      "currency": "XOF",
+      "period": "mensuel",
+      "status": "à confirmer"
+    },
+    "categories": [
+      {
+        "name": "Chaînes ivoiriennes",
+        "channels": [
+          "RTI 1",
+          "RTI 2",
+          "La 3",
+          "A+ Ivoire",
+          "Life TV",
+          "NCI"
+        ]
+      },
+      {
+        "name": "Chaînes françaises généralistes",
+        "channels": [
+          "TF1",
+          "TFX",
+          "France 2",
+          "France 3",
+          "M6",
+          "W9"
+        ]
+      },
+      {
+        "name": "Information",
+        "channels": [
+          "France 24",
+          "franceinfo",
+          "CNEWS"
+        ]
+      },
+      {
+        "name": "Jeunesse et vidéo",
+        "channels": [
+          "Okoo",
+          "TFOU",
+          "Tivi5",
+          "Gulli"
+        ]
+      },
+      {
+        "name": "Sport et divertissement",
+        "channels": [
+          "StreamNex Action",
+          "StreamNex Sport 2",
+          "Trace Ivoire"
+        ]
+      },
+      {
+        "name": "Chaînes chrétiennes",
+        "channels": [
+          "EMCI TV",
+          "LMTV",
+          "Espérance TV",
+          "Béni TV"
+        ]
+      }
     ]
   }
 }
