@@ -1,0 +1,96 @@
+{
+  "title": "StreamLive — Bouquet Max Play TV",
+  "status": "proposed-not-activated",
+  "bouquet": {
+    "id": "max-play-tv",
+    "name": "Max Play TV",
+    "targetChannelCount": 230,
+    "price": {
+      "amount": null,
+      "currency": null,
+      "period": "mensuel",
+      "status": "à définir par l’utilisateur"
+    },
+    "selectionRules": [
+      {
+        "id": "tf1-group",
+        "name": "Groupe TF1",
+        "rule": "Inclure toutes les chaînes du groupe TF1 sauf TF1 Séries Films."
+      },
+      {
+        "id": "m6-group",
+        "name": "Groupe M6",
+        "rule": "Inclure toutes les chaînes du groupe M6."
+      },
+      {
+        "id": "french-channels",
+        "name": "Chaînes françaises",
+        "rule": "Inclure toutes les chaînes françaises sauf France 4, France 5 et TF1 Séries Films."
+      }
+    ],
+    "categories": [
+      {
+        "id": "films",
+        "name": "Cinéma",
+        "targetCount": 18,
+        "channels": []
+      },
+      {
+        "id": "streamnex",
+        "name": "Chaînes StreamNex",
+        "targetCount": 5,
+        "channels": [
+          "StreamNex Fiction",
+          "StreamNex Channel",
+          "StreamNex J",
+          "StreamNex Actions",
+          "StreamNex Cinema"
+        ]
+      },
+      {
+        "id": "jeunesse",
+        "name": "Jeunesse",
+        "channels": [
+          "TiVi5MONDE",
+          "Gulli",
+          "Cartoon Network",
+          "Cartoonito",
+          "Boomerang",
+          "TiJi",
+          "Nickelodeon Junior",
+          "Nickelodeon Teens",
+          "Nickelodeon Music"
+        ]
+      },
+      {
+        "id": "usa",
+        "name": "Chaînes américaines",
+        "targetCount": 15,
+        "channels": []
+      },
+      {
+        "id": "dstv",
+        "name": "DStv / SuperSport",
+        "targetCount": 8,
+        "channels": []
+      },
+      {
+        "id": "information",
+        "name": "Information",
+        "targetCount": 7,
+        "channels": []
+      }
+    ],
+    "reconciliation": {
+      "selectedChannelCount": null,
+      "status": "à réconcilier avec config/channels.js",
+      "notes": [
+        "Le total visé est de 230 chaînes uniques dans le bouquet final.",
+        "Les catégories peuvent se recouper; le total final doit compter chaque chaîne une seule fois.",
+        "Compléter les sélections de cinéma, USA, DStv et information avec les chaînes du catalogue StreamLive.",
+        "Les noms StreamNex demandés doivent être vérifiés dans le catalogue et ajoutés à celui-ci s’ils n’y figurent pas.",
+        "Vérifier les flux et les droits de diffusion avant activation."
+      ]
+    }
+  }
+}
