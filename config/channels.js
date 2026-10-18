@@ -38,7 +38,7 @@ const CHANNELS = [
   { channelNumber: 36, id: "charge", tvgId: "charge", name: "Charge!", group: "Cinéma", logoUrl: "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/united-states/charge-us.png", webUrl: "https://watchcharge.com/watch-live/" },
   { channelNumber: 37, id: "cinemax", tvgId: "cinemax", name: "Cinemax", group: "Cinéma", logoUrl: "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/united-states/cinemax-us.png" },
   { channelNumber: 38, id: "comet", tvgId: "comet", name: "Comet", group: "Cinéma", logoUrl: "https://commons.wikimedia.org/wiki/Special:Redirect/file/Comet_logo.svg", webUrl: "https://comettv.com/watch-live/" },
-  { channelNumber: 39, id: "estrella-tv", tvgId: "estrella-tv", name: "Estrella TV", group: "Cinéma", logoUrl: "/assets/logos/estrella-tv.svg" },
+  { channelNumber: 39, id: "estrella-tv", tvgId: "estrella-tv", name: "Estrella TV", group: "Cinéma", logoUrl: "/assets/logos/estrella-tv.svg", webUrl: "https://play.xumo.com/live-guide/estrellatv" }
   { channelNumber: 40, id: "galavision", tvgId: "galavision", name: "Galavisión", group: "Cinéma", logoUrl: "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/united-states/galavision-us.png" },
   { channelNumber: 41, id: "gettv", tvgId: "gettv", name: "getTV", group: "Cinéma", logoUrl: "/assets/logos/gettv.svg" },
   { channelNumber: 42, id: "grit", tvgId: "grit", name: "Grit", group: "Cinéma", logoUrl: "https://commons.wikimedia.org/wiki/Special:Redirect/file/Grit_TV_logo.svg" },
