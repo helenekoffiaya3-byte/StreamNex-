@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "title": "StreamLive — Services vidéo par bouquet",
   "status": "configured-pending-service-access-verification",
-  "note": "Les services listés sont des destinations de services vidéo externes. Leur présence dans un bouquet ne garantit pas un abonnement fourni par StreamLive ni un accès gratuit; l'utilisateur peut devoir disposer de son propre compte ou abonnement.",
+  "note": "Les tarifs indiqués sont ceux des bouquets StreamLive/StreamNex. Les services vidéo listés sont des destinations externes : leur présence dans un bouquet ne garantit pas qu'un abonnement tiers soit fourni par StreamLive/StreamNex ni inclus dans le prix du bouquet.",
   "bouquets": [
     {
       "id": "free-tv",
@@ -13,6 +13,16 @@
           "name": "M6+",
           "url": "https://www.m6.fr/"
         }
+      ],
+      "price": {
+        "amount": 400,
+        "currency": "XOF",
+        "display": "400 F CFA",
+        "billingPeriod": "bouquet"
+      },
+      "accessPlatforms": [
+        "StreamLive",
+        "StreamNex"
       ]
     },
     {
