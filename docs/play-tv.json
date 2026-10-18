@@ -12,7 +12,7 @@
       "period": "mensuel"
     },
     "channelCount": 70,
-    "note": "Proposition de sélection. Les flux et droits commerciaux doivent être vérifiés avant activation.",
+    "note": "Proposition enregistrée. Les corrections de noms sont consignées; la liste complète doit être réconciliée à 70 chaînes uniques. Les flux et droits commerciaux doivent être vérifiés avant activation.",
     "categories": [
       {
         "id": "ivoirien-africain",
@@ -125,6 +125,18 @@
       "Bouquet payant distinct de Free TV.",
       "Tarif : 3 350 F CFA par mois.",
       "Ne pas marquer comme actif avant vérification des sources de lecture et des droits de diffusion."
-    ]
+    ],
+    "userCorrections": {
+      "biblicalChannels": [
+        "Gospel Music",
+        "Christ Gospel",
+        "Espérance TV",
+        "EMCI TV",
+        "Béni TV"
+      ],
+      "additionalChannelName": "LMTV",
+      "status": "recorded-for-reconciliation",
+      "note": "Noms corrigés par l’utilisateur. À intégrer dans la sélection finale après dédoublonnage et vérification du total de 70 chaînes."
+    }
   }
 }
