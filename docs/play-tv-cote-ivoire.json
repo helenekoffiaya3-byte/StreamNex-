@@ -178,18 +178,18 @@
       "StreamNex Sport 1 retirée du bouquet; StreamNex Sport 2 conservée.",
       "Ajouts : TF1, TFX, France 2, France 3, M6, W9, franceinfo, CNEWS, EMCI TV, LMTV, Espérance TV, Béni TV, Tivi5 et Gulli.",
       "Service vidéo associé : TFOU.",
-      "Le prix mensuel n'a pas encore été communiqué et doit être confirmé.",
       "Les noms ajoutés doivent être rapprochés des entrées réelles du catalogue et leurs flux/droits vérifiés avant activation.",
       "Extension du bouquet à 37 chaînes : ajout de France 4, France 5, 6ter, Arte, TMC, A+ Kids, Boing, Boomerang, Cartoon Network, Disney Channel, DreamWorks et Nickelodeon.",
       "France 4 et France 5 retirées du bouquet à la demande de l’utilisateur.",
       "Ajout demandé : LCI comme chaîne d’information, puis AB1, Action, Ciné+ Frisson, Ciné+ Emotion et RTL9 dans la sélection cinéma.",
-      "RTL9 est ajouté au bouquet, mais son identifiant dans config/channels.js et son flux doivent encore être réconciliés avant activation."
+      "RTL9 est ajouté au bouquet, mais son identifiant dans config/channels.js et son flux doivent encore être réconciliés avant activation.",
+      "Prix mensuel fixé à 3 000 XOF à la demande de l’utilisateur."
     ],
     "price": {
-      "amount": null,
+      "amount": 3000,
       "currency": "XOF",
       "period": "mensuel",
-      "status": "à confirmer"
+      "status": "défini par l’utilisateur"
     },
     "categories": [
       {
