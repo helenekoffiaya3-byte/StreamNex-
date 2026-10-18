@@ -97,6 +97,18 @@
       "Permettre à l’utilisateur de corriger son pays si la géolocalisation est indisponible ou incorrecte."
     ]
   },
-  "implementationStatus": "configuration-defined-runtime-integration-pending",
-  "note": "Ce fichier définit les règles de sélection. Il faut encore brancher ces règles à l’interface et à la géolocalisation côté application pour que l’affichage change réellement."
+  "implementationStatus": "integrated-in-player-index-and-apps",
+  "note": "Le script player/play-tv-region.js est chargé sur l’accueil et la page Chaînes & Apps. La détection démarre lorsque l’utilisateur appuie sur « Détecter mon pays » et autorise la localisation. Les coordonnées sont transmises à OpenStreetMap Nominatim pour obtenir le code pays.",
+  "deviceGeolocation": {
+    "enabled": true,
+    "api": "navigator.geolocation",
+    "countryLookup": "OpenStreetMap Nominatim reverse geocoding",
+    "userConsentRequired": true,
+    "pages": [
+      "player/index.html",
+      "player/apps.html"
+    ],
+    "persistence": "localStorage",
+    "behavior": "Une seule offre Play TV est affichée; la variante et le tarif changent selon le code pays détecté."
+  }
 }
