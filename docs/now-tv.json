@@ -1,0 +1,2983 @@
+{
+  "title": "StreamLive — Bouquet Now TV",
+  "status": "proposed-not-activated",
+  "bouquet": {
+    "id": "now-tv",
+    "name": "Now TV",
+    "scope": "Toutes les chaînes du catalogue StreamLive",
+    "channelCount": 491,
+    "source": "config/channels.js",
+    "selectionMode": "all-current-catalogue-channels",
+    "channelSelectionStatus": "Toutes les chaînes présentes au moment de la création sont incluses; vérifier les sources de lecture avant activation.",
+    "price": {
+      "default": {
+        "amount": 70,
+        "currency": "EUR",
+        "period": "mensuel"
+      },
+      "alternatePrices": [
+        {
+          "region": "Amérique",
+          "amount": 69,
+          "currency": "USD",
+          "period": "mensuel"
+        }
+      ],
+      "status": "prix demandé par l’utilisateur",
+      "note": "70 € par mois comme tarif standard; 69 $ US par mois en Amérique."
+    },
+    "regionalPresence": [
+      "Amérique",
+      "Europa",
+      "Côte d’Ivoire"
+    ],
+    "channels": [
+      {
+        "id": "rti-1",
+        "name": "RTI 1",
+        "channelNumber": 1,
+        "category": "Côte d’Ivoire"
+      },
+      {
+        "id": "rti-2",
+        "name": "RTI 2",
+        "channelNumber": 2,
+        "category": "Côte d’Ivoire"
+      },
+      {
+        "id": "la-3",
+        "name": "La 3",
+        "channelNumber": 3,
+        "category": "Côte d’Ivoire"
+      },
+      {
+        "id": "a-plus-ivoire",
+        "name": "A+ Ivoire",
+        "channelNumber": 4,
+        "category": "Côte d’Ivoire"
+      },
+      {
+        "id": "life-tv",
+        "name": "Life TV",
+        "channelNumber": 5,
+        "category": "Côte d’Ivoire"
+      },
+      {
+        "id": "nci",
+        "name": "NCI",
+        "channelNumber": 6,
+        "category": "Côte d’Ivoire"
+      },
+      {
+        "id": "s-plus-cote-divoire",
+        "name": "S+ Côte d’Ivoire",
+        "channelNumber": 7,
+        "category": "S+"
+      },
+      {
+        "id": "6ter",
+        "name": "6ter",
+        "channelNumber": 8,
+        "category": "France"
+      },
+      {
+        "id": "arte",
+        "name": "Arte",
+        "channelNumber": 9,
+        "category": "France"
+      },
+      {
+        "id": "s-plus",
+        "name": "S+",
+        "channelNumber": 10,
+        "category": "S+"
+      },
+      {
+        "id": "france-2",
+        "name": "France 2",
+        "channelNumber": 11,
+        "category": "France"
+      },
+      {
+        "id": "france-3",
+        "name": "France 3",
+        "channelNumber": 12,
+        "category": "France"
+      },
+      {
+        "id": "france-4",
+        "name": "France 4",
+        "channelNumber": 13,
+        "category": "France"
+      },
+      {
+        "id": "france-5",
+        "name": "France 5",
+        "channelNumber": 14,
+        "category": "France"
+      },
+      {
+        "id": "m6",
+        "name": "M6",
+        "channelNumber": 15,
+        "category": "France"
+      },
+      {
+        "id": "tf1",
+        "name": "TF1",
+        "channelNumber": 16,
+        "category": "France"
+      },
+      {
+        "id": "tfx",
+        "name": "TFX",
+        "channelNumber": 17,
+        "category": "France"
+      },
+      {
+        "id": "tmc",
+        "name": "TMC",
+        "channelNumber": 18,
+        "category": "France"
+      },
+      {
+        "id": "w9",
+        "name": "W9",
+        "channelNumber": 19,
+        "category": "France"
+      },
+      {
+        "id": "cnn-international",
+        "name": "CNN International",
+        "channelNumber": 20,
+        "category": "Information"
+      },
+      {
+        "id": "dw",
+        "name": "DW",
+        "channelNumber": 21,
+        "category": "Information"
+      },
+      {
+        "id": "euronews",
+        "name": "Euronews",
+        "channelNumber": 22,
+        "category": "Information"
+      },
+      {
+        "id": "fox-business",
+        "name": "Fox Business",
+        "channelNumber": 23,
+        "category": "Information"
+      },
+      {
+        "id": "fox-news",
+        "name": "Fox News",
+        "channelNumber": 24,
+        "category": "Information"
+      },
+      {
+        "id": "france-24",
+        "name": "France 24",
+        "channelNumber": 25,
+        "category": "France"
+      },
+      {
+        "id": "hln",
+        "name": "HLN",
+        "channelNumber": 26,
+        "category": "Information"
+      },
+      {
+        "id": "i24news-fr",
+        "name": "i24NEWS Français",
+        "channelNumber": 27,
+        "category": "Information"
+      },
+      {
+        "id": "ms-now",
+        "name": "MS NOW",
+        "channelNumber": 28,
+        "category": "Information"
+      },
+      {
+        "id": "ab1",
+        "name": "AB1",
+        "channelNumber": 29,
+        "category": "Cinéma"
+      },
+      {
+        "id": "action",
+        "name": "Action",
+        "channelNumber": 30,
+        "category": "Cinéma"
+      },
+      {
+        "id": "s-plus-action",
+        "name": "S+ Action",
+        "channelNumber": 31,
+        "category": "S+"
+      },
+      {
+        "id": "s-plus-cinema",
+        "name": "S+ Cinéma",
+        "channelNumber": 32,
+        "category": "S+"
+      },
+      {
+        "id": "s-plus-family-cinema",
+        "name": "S+ Family",
+        "channelNumber": 33,
+        "category": "S+"
+      },
+      {
+        "id": "s-plus-magic",
+        "name": "S+ Magic",
+        "channelNumber": 34,
+        "category": "S+"
+      },
+      {
+        "id": "s-plus-pop",
+        "name": "S+ Pop",
+        "channelNumber": 35,
+        "category": "S+"
+      },
+      {
+        "id": "charge",
+        "name": "Charge!",
+        "channelNumber": 36,
+        "category": "Cinéma"
+      },
+      {
+        "id": "cinemax",
+        "name": "Cinemax",
+        "channelNumber": 37,
+        "category": "Cinéma"
+      },
+      {
+        "id": "comet",
+        "name": "Comet",
+        "channelNumber": 38,
+        "category": "Cinéma"
+      },
+      {
+        "id": "estrella-tv",
+        "name": "Estrella TV",
+        "channelNumber": 39,
+        "category": "Cinéma"
+      },
+      {
+        "id": "galavision",
+        "name": "Galavisión",
+        "channelNumber": 40,
+        "category": "Cinéma"
+      },
+      {
+        "id": "gettv",
+        "name": "getTV",
+        "channelNumber": 41,
+        "category": "Cinéma"
+      },
+      {
+        "id": "grit",
+        "name": "Grit",
+        "channelNumber": 42,
+        "category": "Cinéma"
+      },
+      {
+        "id": "m6-films",
+        "name": "M6 Films",
+        "channelNumber": 43,
+        "category": "Cinéma"
+      },
+      {
+        "id": "mgm-tv",
+        "name": "MGM TV",
+        "channelNumber": 44,
+        "category": "Cinéma"
+      },
+      {
+        "id": "movies",
+        "name": "Movies!",
+        "channelNumber": 45,
+        "category": "Cinéma"
+      },
+      {
+        "id": "peacock",
+        "name": "Peacock",
+        "channelNumber": 46,
+        "category": "Cinéma"
+      },
+      {
+        "id": "pluto-tv",
+        "name": "Pluto TV",
+        "channelNumber": 47,
+        "category": "Service vidéo"
+      },
+      {
+        "id": "rtl-9",
+        "name": "RTL 9",
+        "channelNumber": 48,
+        "category": "Cinéma"
+      },
+      {
+        "id": "sci-fi",
+        "name": "Sci-Fi",
+        "channelNumber": 49,
+        "category": "Séries & SF"
+      },
+      {
+        "id": "tcm",
+        "name": "TCM",
+        "channelNumber": 50,
+        "category": "Cinéma"
+      },
+      {
+        "id": "telemundo",
+        "name": "Telemundo",
+        "channelNumber": 51,
+        "category": "Cinéma"
+      },
+      {
+        "id": "tubi",
+        "name": "Tubi",
+        "channelNumber": 52,
+        "category": "Cinéma"
+      },
+      {
+        "id": "unimas",
+        "name": "UniMás",
+        "channelNumber": 53,
+        "category": "Cinéma"
+      },
+      {
+        "id": "univision",
+        "name": "Univision",
+        "channelNumber": 54,
+        "category": "Cinéma"
+      },
+      {
+        "id": "13eme-rue",
+        "name": "13ème Rue",
+        "channelNumber": 55,
+        "category": "Séries & SF"
+      },
+      {
+        "id": "amc",
+        "name": "AMC",
+        "channelNumber": 56,
+        "category": "Séries & SF"
+      },
+      {
+        "id": "bravo",
+        "name": "Bravo",
+        "channelNumber": 57,
+        "category": "Séries & SF"
+      },
+      {
+        "id": "freeform",
+        "name": "Freeform",
+        "channelNumber": 58,
+        "category": "Séries & SF"
+      },
+      {
+        "id": "fx",
+        "name": "FX",
+        "channelNumber": 59,
+        "category": "Séries & SF"
+      },
+      {
+        "id": "fxx",
+        "name": "FXX",
+        "channelNumber": 60,
+        "category": "Séries & SF"
+      },
+      {
+        "id": "hallmark-drama",
+        "name": "Hallmark Drama",
+        "channelNumber": 61,
+        "category": "Séries & SF"
+      },
+      {
+        "id": "hbo",
+        "name": "HBO",
+        "channelNumber": 62,
+        "category": "Service vidéo"
+      },
+      {
+        "id": "heroes-icons",
+        "name": "Heroes & Icons",
+        "channelNumber": 63,
+        "category": "Séries & SF"
+      },
+      {
+        "id": "ifc",
+        "name": "IFC",
+        "channelNumber": 64,
+        "category": "Séries & SF"
+      },
+      {
+        "id": "ion",
+        "name": "Ion",
+        "channelNumber": 65,
+        "category": "Séries & SF"
+      },
+      {
+        "id": "lifetime",
+        "name": "Lifetime",
+        "channelNumber": 66,
+        "category": "Séries & SF"
+      },
+      {
+        "id": "mgm-plus",
+        "name": "MGM+",
+        "channelNumber": 67,
+        "category": "Service vidéo"
+      },
+      {
+        "id": "novelas-plus",
+        "name": "Novelas+",
+        "channelNumber": 68,
+        "category": "Novelas"
+      },
+      {
+        "id": "paramount-network",
+        "name": "Paramount Network",
+        "channelNumber": 69,
+        "category": "Séries & SF"
+      },
+      {
+        "id": "s-plus-premiere",
+        "name": "S+ Première",
+        "channelNumber": 70,
+        "category": "S+"
+      },
+      {
+        "id": "s-plus-avant-premiere",
+        "name": "S+ Avant Première",
+        "channelNumber": 71,
+        "category": "S+"
+      },
+      {
+        "id": "sundance-tv",
+        "name": "Sundance TV",
+        "channelNumber": 72,
+        "category": "Séries & SF"
+      },
+      {
+        "id": "syfy",
+        "name": "Syfy",
+        "channelNumber": 73,
+        "category": "Séries & SF"
+      },
+      {
+        "id": "tbs",
+        "name": "TBS",
+        "channelNumber": 74,
+        "category": "Séries & SF"
+      },
+      {
+        "id": "tf1-series-films",
+        "name": "TF1 Séries Films",
+        "channelNumber": 75,
+        "category": "Séries & SF"
+      },
+      {
+        "id": "tnt",
+        "name": "TNT",
+        "channelNumber": 76,
+        "category": "Séries & SF"
+      },
+      {
+        "id": "usa-network",
+        "name": "USA Network",
+        "channelNumber": 77,
+        "category": "Séries & SF"
+      },
+      {
+        "id": "a-plus-kids",
+        "name": "A+ Kids",
+        "channelNumber": 78,
+        "category": "Jeunesse"
+      },
+      {
+        "id": "boing",
+        "name": "Boing",
+        "channelNumber": 79,
+        "category": "Jeunesse"
+      },
+      {
+        "id": "boomerang",
+        "name": "Boomerang",
+        "channelNumber": 80,
+        "category": "Jeunesse"
+      },
+      {
+        "id": "boomerang-plus-1",
+        "name": "Boomerang +1",
+        "channelNumber": 81,
+        "category": "Jeunesse"
+      },
+      {
+        "id": "canal-j",
+        "name": "Canal J",
+        "channelNumber": 82,
+        "category": "Jeunesse"
+      },
+      {
+        "id": "cartoonito",
+        "name": "Cartoonito",
+        "channelNumber": 84,
+        "category": "Jeunesse"
+      },
+      {
+        "id": "cartoon-network",
+        "name": "Cartoon Network",
+        "channelNumber": 85,
+        "category": "Jeunesse"
+      },
+      {
+        "id": "disney-channel",
+        "name": "Disney Channel",
+        "channelNumber": 86,
+        "category": "Jeunesse"
+      },
+      {
+        "id": "disney-junior",
+        "name": "Disney Junior",
+        "channelNumber": 87,
+        "category": "Jeunesse"
+      },
+      {
+        "id": "dreamworks",
+        "name": "DreamWorks",
+        "channelNumber": 88,
+        "category": "Jeunesse"
+      },
+      {
+        "id": "gulli",
+        "name": "Gulli",
+        "channelNumber": 89,
+        "category": "Jeunesse"
+      },
+      {
+        "id": "gulli-africa",
+        "name": "Gulli Africa",
+        "channelNumber": 90,
+        "category": "Jeunesse"
+      },
+      {
+        "id": "j-one",
+        "name": "J-One",
+        "channelNumber": 91,
+        "category": "Jeunesse"
+      },
+      {
+        "id": "ludikids",
+        "name": "Ludikids",
+        "channelNumber": 92,
+        "category": "Jeunesse"
+      },
+      {
+        "id": "mangas",
+        "name": "Mangas",
+        "channelNumber": 93,
+        "category": "Jeunesse"
+      },
+      {
+        "id": "nathan-plus",
+        "name": "Nathan+",
+        "channelNumber": 94,
+        "category": "Jeunesse"
+      },
+      {
+        "id": "nickelodeon",
+        "name": "Nickelodeon",
+        "channelNumber": 95,
+        "category": "Jeunesse"
+      },
+      {
+        "id": "nickelodeon-junior",
+        "name": "Nickelodeon Junior",
+        "channelNumber": 96,
+        "category": "Jeunesse"
+      },
+      {
+        "id": "nickelodeon-plus-1",
+        "name": "Nickelodeon +1",
+        "channelNumber": 97,
+        "category": "Jeunesse"
+      },
+      {
+        "id": "nicktoons",
+        "name": "NickToons",
+        "channelNumber": 98,
+        "category": "Jeunesse"
+      },
+      {
+        "id": "nickelodeon-teen",
+        "name": "Nickelodeon Teen",
+        "channelNumber": 99,
+        "category": "Jeunesse"
+      },
+      {
+        "id": "okoo",
+        "name": "Okoo",
+        "channelNumber": 100,
+        "category": "Jeunesse"
+      },
+      {
+        "id": "piwi-plus",
+        "name": "Piwi+",
+        "channelNumber": 101,
+        "category": "Jeunesse"
+      },
+      {
+        "id": "pitchoun-kids-music",
+        "name": "Pitchoun Kids Music",
+        "channelNumber": 102,
+        "category": "Jeunesse"
+      },
+      {
+        "id": "pitchoun-kids-music-africa",
+        "name": "Pitchoun Kids Music Africa",
+        "channelNumber": 103,
+        "category": "Jeunesse"
+      },
+      {
+        "id": "tv-pitchoun",
+        "name": "TV Pitchoun",
+        "channelNumber": 104,
+        "category": "Jeunesse"
+      },
+      {
+        "id": "teletoon-plus",
+        "name": "Télétoon+",
+        "channelNumber": 105,
+        "category": "Jeunesse"
+      },
+      {
+        "id": "teletoon-plus-1",
+        "name": "Télétoon +1",
+        "channelNumber": 106,
+        "category": "Jeunesse"
+      },
+      {
+        "id": "tiji",
+        "name": "TiJi",
+        "channelNumber": 107,
+        "category": "Jeunesse"
+      },
+      {
+        "id": "tivi5monde",
+        "name": "TiVi5MONDE",
+        "channelNumber": 108,
+        "category": "Jeunesse"
+      },
+      {
+        "id": "toonami",
+        "name": "Toonami",
+        "channelNumber": 109,
+        "category": "Jeunesse"
+      },
+      {
+        "id": "ducktv",
+        "name": "ducktv",
+        "channelNumber": 110,
+        "category": "Jeunesse"
+      },
+      {
+        "id": "tv-tokyo",
+        "name": "TV Tokyo",
+        "channelNumber": 111,
+        "category": "International"
+      },
+      {
+        "id": "fuji-tv",
+        "name": "Fuji TV",
+        "channelNumber": 112,
+        "category": "International"
+      },
+      {
+        "id": "warner-tv-next",
+        "name": "Warner TV Next",
+        "channelNumber": 113,
+        "category": "Jeunesse"
+      },
+      {
+        "id": "peche-sons",
+        "name": "Pêche & Sons",
+        "channelNumber": 114,
+        "category": "Documentaires"
+      },
+      {
+        "id": "planete-plus",
+        "name": "Planète+",
+        "channelNumber": 115,
+        "category": "S+"
+      },
+      {
+        "id": "s-plus-docs",
+        "name": "S+ Docs",
+        "channelNumber": 116,
+        "category": "S+"
+      },
+      {
+        "id": "tv5-monde",
+        "name": "TV5 Monde",
+        "channelNumber": 117,
+        "category": "France"
+      },
+      {
+        "id": "s-plus-prime",
+        "name": "S+ Prime",
+        "channelNumber": 118,
+        "category": "S+"
+      },
+      {
+        "id": "s-plus-cine",
+        "name": "S+ Ciné",
+        "channelNumber": 119,
+        "category": "S+"
+      },
+      {
+        "id": "s-plus-kids",
+        "name": "S+ Kids",
+        "channelNumber": 120,
+        "category": "S+"
+      },
+      {
+        "id": "s-plus-fiction",
+        "name": "S+ Fiction",
+        "channelNumber": 121,
+        "category": "S+"
+      },
+      {
+        "id": "s-plus-channel",
+        "name": "S+ Channel",
+        "channelNumber": 122,
+        "category": "S+"
+      },
+      {
+        "id": "s-plus-music",
+        "name": "S+ Music",
+        "channelNumber": 123,
+        "category": "S+"
+      },
+      {
+        "id": "s-plus-tv",
+        "name": "S+ TV",
+        "channelNumber": 124,
+        "category": "S+"
+      },
+      {
+        "id": "s-plus-family",
+        "name": "S+ Family",
+        "channelNumber": 125,
+        "category": "S+"
+      },
+      {
+        "id": "s-plus-movies",
+        "name": "S+ Movies",
+        "channelNumber": 132,
+        "category": "S+"
+      },
+      {
+        "id": "s-plus-infos",
+        "name": "S+ Infos",
+        "channelNumber": 134,
+        "category": "S+"
+      },
+      {
+        "id": "s-plus-media",
+        "name": "S+ Media",
+        "channelNumber": 135,
+        "category": "S+"
+      },
+      {
+        "id": "s-plus-jeunesse",
+        "name": "S+ Jeunesse",
+        "channelNumber": 138,
+        "category": "S+"
+      },
+      {
+        "id": "berbere-jeunesse",
+        "name": "Berbère Jeunesse",
+        "channelNumber": 139,
+        "category": "Jeunesse"
+      },
+      {
+        "id": "chaine-pere-noel",
+        "name": "La Chaîne du Père Noël",
+        "channelNumber": 140,
+        "category": "Jeunesse"
+      },
+      {
+        "id": "s-plus-box-office",
+        "name": "S+ Box Office",
+        "channelNumber": 141,
+        "category": "S+"
+      },
+      {
+        "id": "s-plus-grand-ecran",
+        "name": "S+ Grand Ecran",
+        "channelNumber": 142,
+        "category": "S+"
+      },
+      {
+        "id": "s-plus-cinema-s",
+        "name": "S+ Cinéma(s)",
+        "channelNumber": 143,
+        "category": "S+"
+      },
+      {
+        "id": "bein-sports",
+        "name": "beIN SPORTS",
+        "channelNumber": 147,
+        "category": "Sport"
+      },
+      {
+        "id": "eurosport-1",
+        "name": "Eurosport 1",
+        "channelNumber": 148,
+        "category": "Sport"
+      },
+      {
+        "id": "automoto",
+        "name": "Automoto",
+        "channelNumber": 149,
+        "category": "Sport"
+      },
+      {
+        "id": "equidia",
+        "name": "Equidia",
+        "channelNumber": 150,
+        "category": "Sport"
+      },
+      {
+        "id": "cine-plus-frisson",
+        "name": "Ciné+ Frisson",
+        "channelNumber": 151,
+        "category": "Cinéma"
+      },
+      {
+        "id": "cine-plus-emotion",
+        "name": "Ciné+ Emotion",
+        "channelNumber": 152,
+        "category": "Cinéma"
+      },
+      {
+        "id": "cine-plus-family",
+        "name": "Ciné+ Family",
+        "channelNumber": 153,
+        "category": "Cinéma"
+      },
+      {
+        "id": "cine-plus-festival",
+        "name": "Ciné+ Festival",
+        "channelNumber": 154,
+        "category": "Cinéma"
+      },
+      {
+        "id": "cine-plus-classic",
+        "name": "Ciné+ Classic",
+        "channelNumber": 155,
+        "category": "Cinéma"
+      },
+      {
+        "id": "polar-plus",
+        "name": "POLAR+",
+        "channelNumber": 156,
+        "category": "Cinéma"
+      },
+      {
+        "id": "comedie-plus",
+        "name": "Comédie+",
+        "channelNumber": 157,
+        "category": "Séries & SF"
+      },
+      {
+        "id": "paris-premiere",
+        "name": "Paris Première",
+        "channelNumber": 158,
+        "category": "Séries & SF"
+      },
+      {
+        "id": "teva",
+        "name": "Téva",
+        "channelNumber": 159,
+        "category": "Séries & SF"
+      },
+      {
+        "id": "serie-club",
+        "name": "Série Club",
+        "channelNumber": 160,
+        "category": "Séries & SF"
+      },
+      {
+        "id": "showtime",
+        "name": "Showtime",
+        "channelNumber": 161,
+        "category": "Séries & SF"
+      },
+      {
+        "id": "starz",
+        "name": "Starz",
+        "channelNumber": 162,
+        "category": "Séries & SF"
+      },
+      {
+        "id": "nrj-hits",
+        "name": "NRJ Hits",
+        "channelNumber": 163,
+        "category": "Musique"
+      },
+      {
+        "id": "europe-2-pop-tv",
+        "name": "Europe 2 POP TV",
+        "channelNumber": 164,
+        "category": "Musique"
+      },
+      {
+        "id": "m6-music",
+        "name": "M6 Music",
+        "channelNumber": 165,
+        "category": "Musique"
+      },
+      {
+        "id": "trace-urban",
+        "name": "Trace Urban",
+        "channelNumber": 166,
+        "category": "Musique"
+      },
+      {
+        "id": "rfm-tv",
+        "name": "RFM TV",
+        "channelNumber": 167,
+        "category": "Musique"
+      },
+      {
+        "id": "deutsche-grammophon-plus",
+        "name": "Deutsche Grammophon+",
+        "channelNumber": 168,
+        "category": "Musique"
+      },
+      {
+        "id": "melody",
+        "name": "Melody",
+        "channelNumber": 169,
+        "category": "Musique"
+      },
+      {
+        "id": "mezzo",
+        "name": "Mezzo",
+        "channelNumber": 170,
+        "category": "Musique"
+      },
+      {
+        "id": "mezzo-live-hd",
+        "name": "Mezzo Live HD",
+        "channelNumber": 171,
+        "category": "Musique"
+      },
+      {
+        "id": "mtv",
+        "name": "MTV",
+        "channelNumber": 172,
+        "category": "Musique"
+      },
+      {
+        "id": "trace-africa",
+        "name": "Trace Africa",
+        "channelNumber": 173,
+        "category": "Musique"
+      },
+      {
+        "id": "trace-ivoire",
+        "name": "Trace Ivoire",
+        "channelNumber": 174,
+        "category": "Musique"
+      },
+      {
+        "id": "z-magic",
+        "name": "Z Magic",
+        "channelNumber": 175,
+        "category": "Musique"
+      },
+      {
+        "id": "seasons",
+        "name": "Seasons",
+        "channelNumber": 176,
+        "category": "Documentaires"
+      },
+      {
+        "id": "chasse-et-peche",
+        "name": "Chasse et Pêche",
+        "channelNumber": 177,
+        "category": "Documentaires"
+      },
+      {
+        "id": "animaux",
+        "name": "Animaux",
+        "channelNumber": 178,
+        "category": "Documentaires"
+      },
+      {
+        "id": "cheval-tv",
+        "name": "Cheval TV",
+        "channelNumber": 179,
+        "category": "Documentaires"
+      },
+      {
+        "id": "mieux-tv",
+        "name": "Mieux TV",
+        "channelNumber": 180,
+        "category": "Documentaires"
+      },
+      {
+        "id": "dog-cat-tv",
+        "name": "Dog & Cat TV",
+        "channelNumber": 181,
+        "category": "Documentaires"
+      },
+      {
+        "id": "love-nature",
+        "name": "Love Nature",
+        "channelNumber": 182,
+        "category": "Documentaires"
+      },
+      {
+        "id": "museum-tv",
+        "name": "Museum TV",
+        "channelNumber": 183,
+        "category": "Documentaires"
+      },
+      {
+        "id": "planete-plus-crime",
+        "name": "Planète+ Crime",
+        "channelNumber": 184,
+        "category": "Documentaires"
+      },
+      {
+        "id": "planete-plus-aventure",
+        "name": "Planète+ Aventure",
+        "channelNumber": 185,
+        "category": "Documentaires"
+      },
+      {
+        "id": "science-et-vie-tv",
+        "name": "Science & Vie TV",
+        "channelNumber": 186,
+        "category": "Documentaires"
+      },
+      {
+        "id": "toute-l-histoire",
+        "name": "Toute l'Histoire",
+        "channelNumber": 187,
+        "category": "Documentaires"
+      },
+      {
+        "id": "mgg-tv",
+        "name": "MGG TV",
+        "channelNumber": 188,
+        "category": "Sport"
+      },
+      {
+        "id": "golf-plus",
+        "name": "GOLF+",
+        "channelNumber": 189,
+        "category": "Sport"
+      },
+      {
+        "id": "infosport",
+        "name": "Infosport",
+        "channelNumber": 190,
+        "category": "Sport"
+      },
+      {
+        "id": "sport-1",
+        "name": "Sport 1",
+        "channelNumber": 191,
+        "category": "Sport"
+      },
+      {
+        "id": "sport-2",
+        "name": "Sport 2",
+        "channelNumber": 192,
+        "category": "Sport"
+      },
+      {
+        "id": "sport-3",
+        "name": "Sport 3",
+        "channelNumber": 193,
+        "category": "Sport"
+      },
+      {
+        "id": "sport-4",
+        "name": "Sport 4",
+        "channelNumber": 194,
+        "category": "Sport"
+      },
+      {
+        "id": "la-chaine-meteo",
+        "name": "La Chaîne Météo",
+        "channelNumber": 195,
+        "category": "Information"
+      },
+      {
+        "id": "7info",
+        "name": "7info",
+        "channelNumber": 196,
+        "category": "Information"
+      },
+      {
+        "id": "abc-news-live",
+        "name": "ABC News Live",
+        "channelNumber": 197,
+        "category": "Information"
+      },
+      {
+        "id": "al-jazeera",
+        "name": "Al Jazeera",
+        "channelNumber": 198,
+        "category": "Information"
+      },
+      {
+        "id": "bbc-news",
+        "name": "BBC News",
+        "channelNumber": 199,
+        "category": "Information"
+      },
+      {
+        "id": "bloomberg-tv",
+        "name": "Bloomberg TV",
+        "channelNumber": 200,
+        "category": "Information"
+      },
+      {
+        "id": "c-span",
+        "name": "C-SPAN",
+        "channelNumber": 201,
+        "category": "Information"
+      },
+      {
+        "id": "cbs-news-24-7",
+        "name": "CBS News 24/7",
+        "channelNumber": 202,
+        "category": "Information"
+      },
+      {
+        "id": "cgtn",
+        "name": "CGTN",
+        "channelNumber": 203,
+        "category": "Information"
+      },
+      {
+        "id": "cnbc",
+        "name": "CNBC",
+        "channelNumber": 204,
+        "category": "Information"
+      },
+      {
+        "id": "cnn",
+        "name": "CNN",
+        "channelNumber": 205,
+        "category": "Information"
+      },
+      {
+        "id": "nbc-news-now",
+        "name": "NBC News NOW",
+        "channelNumber": 206,
+        "category": "Information"
+      },
+      {
+        "id": "newsmax",
+        "name": "Newsmax",
+        "channelNumber": 207,
+        "category": "Information"
+      },
+      {
+        "id": "newsnation",
+        "name": "NewsNation",
+        "channelNumber": 208,
+        "category": "Information"
+      },
+      {
+        "id": "nhk-world",
+        "name": "NHK World",
+        "channelNumber": 209,
+        "category": "Information"
+      },
+      {
+        "id": "oan",
+        "name": "OAN",
+        "channelNumber": 210,
+        "category": "Information"
+      },
+      {
+        "id": "sky-news",
+        "name": "Sky News",
+        "channelNumber": 211,
+        "category": "Information"
+      },
+      {
+        "id": "the-weather-channel",
+        "name": "The Weather Channel",
+        "channelNumber": 212,
+        "category": "Information"
+      },
+      {
+        "id": "trt-world",
+        "name": "TRT World",
+        "channelNumber": 213,
+        "category": "Information"
+      },
+      {
+        "id": "a-plus",
+        "name": "A+",
+        "channelNumber": 214,
+        "category": "Afrique"
+      },
+      {
+        "id": "m6-international",
+        "name": "M6 International",
+        "channelNumber": 215,
+        "category": "Afrique"
+      },
+      {
+        "id": "maboke-tv",
+        "name": "Maboke TV",
+        "channelNumber": 216,
+        "category": "Afrique"
+      },
+      {
+        "id": "magc-tv",
+        "name": "MAGC TV",
+        "channelNumber": 217,
+        "category": "Afrique"
+      },
+      {
+        "id": "sunu-yeuf",
+        "name": "Sunu Yeuf",
+        "channelNumber": 218,
+        "category": "Afrique"
+      },
+      {
+        "id": "vifi-tv",
+        "name": "VIFI TV",
+        "channelNumber": 219,
+        "category": "Afrique"
+      },
+      {
+        "id": "zacu-tv",
+        "name": "Zacu TV",
+        "channelNumber": 220,
+        "category": "Afrique"
+      },
+      {
+        "id": "zbc",
+        "name": "ZBC",
+        "channelNumber": 221,
+        "category": "Afrique"
+      },
+      {
+        "id": "emci-tv",
+        "name": "EMCI TV",
+        "channelNumber": 222,
+        "category": "Religion"
+      },
+      {
+        "id": "esperance-tv",
+        "name": "Espérance TV",
+        "channelNumber": 223,
+        "category": "Religion"
+      },
+      {
+        "id": "ewtn",
+        "name": "EWTN",
+        "channelNumber": 224,
+        "category": "Religion"
+      },
+      {
+        "id": "hope-channel",
+        "name": "Hope Channel",
+        "channelNumber": 225,
+        "category": "Religion"
+      },
+      {
+        "id": "kto",
+        "name": "KTO",
+        "channelNumber": 226,
+        "category": "Religion"
+      },
+      {
+        "id": "top-chretien",
+        "name": "Top Chrétien",
+        "channelNumber": 227,
+        "category": "Religion"
+      },
+      {
+        "id": "trace-gospel",
+        "name": "Trace Gospel",
+        "channelNumber": 228,
+        "category": "Religion"
+      },
+      {
+        "id": "cuisines",
+        "name": "Cuisines",
+        "channelNumber": 229,
+        "category": "Lifestyle"
+      },
+      {
+        "id": "nollywood-tv",
+        "name": "Nollywood TV",
+        "channelNumber": 230,
+        "category": "Cinéma africain"
+      },
+      {
+        "id": "nollywood-tv-epic",
+        "name": "Nollywood TV Epic",
+        "channelNumber": 231,
+        "category": "Cinéma africain"
+      },
+      {
+        "id": "passion-bollywood",
+        "name": "Passion Bollywood",
+        "channelNumber": 232,
+        "category": "Cinéma indien"
+      },
+      {
+        "id": "clique-tv",
+        "name": "Clique TV",
+        "channelNumber": 233,
+        "category": "Divertissement"
+      },
+      {
+        "id": "cine-plus-ocs",
+        "name": "Ciné+ OCS",
+        "channelNumber": 234,
+        "category": "Cinéma"
+      },
+      {
+        "id": "trace-kitoko",
+        "name": "Trace Kitoko",
+        "channelNumber": 235,
+        "category": "Musique"
+      },
+      {
+        "id": "trace-mboa",
+        "name": "Trace Mboa",
+        "channelNumber": 236,
+        "category": "Musique"
+      },
+      {
+        "id": "trace-mziki",
+        "name": "Trace Mziki",
+        "channelNumber": 237,
+        "category": "Musique"
+      },
+      {
+        "id": "trace-teranga",
+        "name": "Trace Teranga",
+        "channelNumber": 238,
+        "category": "Musique"
+      },
+      {
+        "id": "al-bayane",
+        "name": "Al Bayane",
+        "channelNumber": 239,
+        "category": "Religion"
+      },
+      {
+        "id": "benie-tv",
+        "name": "Benie TV",
+        "channelNumber": 240,
+        "category": "Religion"
+      },
+      {
+        "id": "ecclesia-tv",
+        "name": "Ecclesia TV",
+        "channelNumber": 241,
+        "category": "Religion"
+      },
+      {
+        "id": "evtv",
+        "name": "EVTV",
+        "channelNumber": 242,
+        "category": "Religion"
+      },
+      {
+        "id": "lm-tv",
+        "name": "LM TV",
+        "channelNumber": 243,
+        "category": "Religion"
+      },
+      {
+        "id": "africa-sport",
+        "name": "Africa Sport",
+        "channelNumber": 244,
+        "category": "Sport"
+      },
+      {
+        "id": "bobaraba-tv",
+        "name": "Bobaraba TV",
+        "channelNumber": 245,
+        "category": "Sport"
+      },
+      {
+        "id": "nba-tv",
+        "name": "NBA TV",
+        "channelNumber": 246,
+        "category": "Sport"
+      },
+      {
+        "id": "esport-en-france",
+        "name": "Esport en France",
+        "channelNumber": 247,
+        "category": "Sport"
+      },
+      {
+        "id": "trek",
+        "name": "Trek",
+        "channelNumber": 248,
+        "category": "Sport"
+      },
+      {
+        "id": "w-sport",
+        "name": "W-Sport",
+        "channelNumber": 249,
+        "category": "Sport"
+      },
+      {
+        "id": "s-plus-sport-1",
+        "name": "S+ Sport 1",
+        "channelNumber": 126,
+        "category": "S+"
+      },
+      {
+        "id": "s-plus-sport-2",
+        "name": "S+ Sport 2",
+        "channelNumber": 127,
+        "category": "S+"
+      },
+      {
+        "id": "s-plus-sport-3",
+        "name": "S+ Sport 3",
+        "channelNumber": 128,
+        "category": "S+"
+      },
+      {
+        "id": "s-plus-sport-4",
+        "name": "S+ Sport 4",
+        "channelNumber": 129,
+        "category": "S+"
+      },
+      {
+        "id": "s-plus-sport-5",
+        "name": "S+ Sport 5",
+        "channelNumber": 130,
+        "category": "S+"
+      },
+      {
+        "id": "dorcel-tv",
+        "name": "Dorcel TV",
+        "channelNumber": 250,
+        "category": "Adulte"
+      },
+      {
+        "id": "dorcel-tv-africa",
+        "name": "Dorcel TV Africa",
+        "channelNumber": 251,
+        "category": "Adulte"
+      },
+      {
+        "id": "hustler-hd",
+        "name": "Hustler HD",
+        "channelNumber": 252,
+        "category": "Adulte"
+      },
+      {
+        "id": "penthouse-black",
+        "name": "Penthouse Black",
+        "channelNumber": 253,
+        "category": "Adulte"
+      },
+      {
+        "id": "private",
+        "name": "Private",
+        "channelNumber": 254,
+        "category": "Adulte"
+      },
+      {
+        "id": "vixen",
+        "name": "Vixen",
+        "channelNumber": 255,
+        "category": "Adulte"
+      },
+      {
+        "id": "delta-tv",
+        "name": "Delta TV",
+        "channelNumber": 256,
+        "category": "Afrique"
+      },
+      {
+        "id": "rtg",
+        "name": "RTG",
+        "channelNumber": 257,
+        "category": "Afrique"
+      },
+      {
+        "id": "rtb",
+        "name": "RTB",
+        "channelNumber": 258,
+        "category": "Afrique"
+      },
+      {
+        "id": "rtnc",
+        "name": "RTNC",
+        "channelNumber": 259,
+        "category": "Afrique"
+      },
+      {
+        "id": "rtnk-tv",
+        "name": "RTNK TV",
+        "channelNumber": 260,
+        "category": "Afrique"
+      },
+      {
+        "id": "rtv",
+        "name": "RTV",
+        "channelNumber": 261,
+        "category": "Afrique"
+      },
+      {
+        "id": "sahara-tv",
+        "name": "Sahara TV",
+        "channelNumber": 262,
+        "category": "Afrique"
+      },
+      {
+        "id": "rts",
+        "name": "RTS",
+        "channelNumber": 263,
+        "category": "Afrique"
+      },
+      {
+        "id": "savane-tv-medias",
+        "name": "Savane TV Medias",
+        "channelNumber": 264,
+        "category": "Afrique"
+      },
+      {
+        "id": "segou-tv",
+        "name": "Segou TV",
+        "channelNumber": 265,
+        "category": "Afrique"
+      },
+      {
+        "id": "sen-tv",
+        "name": "SEN TV",
+        "channelNumber": 266,
+        "category": "Afrique"
+      },
+      {
+        "id": "sensation-tv",
+        "name": "Sensation TV",
+        "channelNumber": 267,
+        "category": "Afrique"
+      },
+      {
+        "id": "golfe-tv",
+        "name": "Golfe TV",
+        "channelNumber": 268,
+        "category": "Afrique"
+      },
+      {
+        "id": "sinema-zetu",
+        "name": "Sinema Zetu",
+        "channelNumber": 269,
+        "category": "Afrique"
+      },
+      {
+        "id": "sos-docteur-tv",
+        "name": "SOS Docteur TV",
+        "channelNumber": 270,
+        "category": "Santé"
+      },
+      {
+        "id": "ssm-tv",
+        "name": "SSM TV",
+        "channelNumber": 271,
+        "category": "Afrique"
+      },
+      {
+        "id": "o-tv",
+        "name": "O TV",
+        "channelNumber": 272,
+        "category": "Afrique"
+      },
+      {
+        "id": "sun-tv",
+        "name": "SUN+ TV",
+        "channelNumber": 273,
+        "category": "Afrique"
+      },
+      {
+        "id": "sunna-tv",
+        "name": "Sunna TV",
+        "channelNumber": 274,
+        "category": "Religion"
+      },
+      {
+        "id": "sunna-tv-savana",
+        "name": "Sunna TV Savana",
+        "channelNumber": 275,
+        "category": "Religion"
+      },
+      {
+        "id": "tv-tambarin-hausa",
+        "name": "TV Tambarin Hausa",
+        "channelNumber": 276,
+        "category": "Afrique"
+      },
+      {
+        "id": "tbc1",
+        "name": "TBC1",
+        "channelNumber": 277,
+        "category": "Afrique"
+      },
+      {
+        "id": "tempo-24",
+        "name": "Tempo 24",
+        "channelNumber": 278,
+        "category": "Information"
+      },
+      {
+        "id": "tchad-infos-tv",
+        "name": "Tchad Infos TV",
+        "channelNumber": 279,
+        "category": "Information"
+      },
+      {
+        "id": "tele-50",
+        "name": "Télé 50",
+        "channelNumber": 280,
+        "category": "Afrique"
+      },
+      {
+        "id": "tele-africa",
+        "name": "Télé Africa",
+        "channelNumber": 281,
+        "category": "Afrique"
+      },
+      {
+        "id": "tele-congo",
+        "name": "Télé Congo",
+        "channelNumber": 282,
+        "category": "Afrique"
+      },
+      {
+        "id": "evasion-guinee",
+        "name": "Evasion Guinée",
+        "channelNumber": 283,
+        "category": "Afrique"
+      },
+      {
+        "id": "farin-wata",
+        "name": "Farin Wata",
+        "channelNumber": 284,
+        "category": "Afrique"
+      },
+      {
+        "id": "flash-radio-tv",
+        "name": "Flash Radio TV",
+        "channelNumber": 285,
+        "category": "Information"
+      },
+      {
+        "id": "gabon-1ere",
+        "name": "Gabon 1ère",
+        "channelNumber": 286,
+        "category": "Afrique"
+      },
+      {
+        "id": "gabon-culture",
+        "name": "Gabon Culture",
+        "channelNumber": 287,
+        "category": "Culture"
+      },
+      {
+        "id": "gabon-24",
+        "name": "Gabon 24",
+        "channelNumber": 288,
+        "category": "Information"
+      },
+      {
+        "id": "go-tv",
+        "name": "GO TV",
+        "channelNumber": 289,
+        "category": "Afrique"
+      },
+      {
+        "id": "htv",
+        "name": "HTV",
+        "channelNumber": 290,
+        "category": "Afrique"
+      },
+      {
+        "id": "hk6-tele",
+        "name": "HK6 Télé",
+        "channelNumber": 291,
+        "category": "Afrique"
+      },
+      {
+        "id": "hc-tv",
+        "name": "HC TV",
+        "channelNumber": 292,
+        "category": "Afrique"
+      },
+      {
+        "id": "horeb-tv",
+        "name": "Horeb TV",
+        "channelNumber": 293,
+        "category": "Religion"
+      },
+      {
+        "id": "impact-tv",
+        "name": "Impact TV",
+        "channelNumber": 294,
+        "category": "Religion"
+      },
+      {
+        "id": "info-tv",
+        "name": "Info TV",
+        "channelNumber": 295,
+        "category": "Information"
+      },
+      {
+        "id": "isango-tv",
+        "name": "Isango TV",
+        "channelNumber": 296,
+        "category": "Afrique"
+      },
+      {
+        "id": "ishusho-tv",
+        "name": "Ishusho TV",
+        "channelNumber": 297,
+        "category": "Afrique"
+      },
+      {
+        "id": "sibo-tv",
+        "name": "SIBO TV",
+        "channelNumber": 298,
+        "category": "Afrique"
+      },
+      {
+        "id": "itv",
+        "name": "iTV",
+        "channelNumber": 299,
+        "category": "Information"
+      },
+      {
+        "id": "itv-2",
+        "name": "ITV",
+        "channelNumber": 300,
+        "category": "Information"
+      },
+      {
+        "id": "ivoire-tv-music",
+        "name": "Ivoire TV Music",
+        "channelNumber": 301,
+        "category": "Musique"
+      },
+      {
+        "id": "jtv-news",
+        "name": "JTV News",
+        "channelNumber": 302,
+        "category": "Information"
+      },
+      {
+        "id": "kaback-tv",
+        "name": "Kaback TV",
+        "channelNumber": 303,
+        "category": "Afrique"
+      },
+      {
+        "id": "kalac-tv",
+        "name": "Kalac TV",
+        "channelNumber": 304,
+        "category": "Afrique"
+      },
+      {
+        "id": "kayes-tv",
+        "name": "Kayes TV",
+        "channelNumber": 305,
+        "category": "Afrique"
+      },
+      {
+        "id": "k24",
+        "name": "K24",
+        "channelNumber": 306,
+        "category": "Information"
+      },
+      {
+        "id": "ktn",
+        "name": "KTN",
+        "channelNumber": 307,
+        "category": "Information"
+      },
+      {
+        "id": "ktn-news",
+        "name": "KTN News",
+        "channelNumber": 308,
+        "category": "Information"
+      },
+      {
+        "id": "labari",
+        "name": "Labari",
+        "channelNumber": 309,
+        "category": "Information"
+      },
+      {
+        "id": "amp-fall",
+        "name": "AMP FALL",
+        "channelNumber": 310,
+        "category": "Afrique"
+      },
+      {
+        "id": "lca",
+        "name": "LCA",
+        "channelNumber": 311,
+        "category": "Information"
+      },
+      {
+        "id": "leral-tv",
+        "name": "Leral TV",
+        "channelNumber": 312,
+        "category": "Information"
+      },
+      {
+        "id": "3tv",
+        "name": "3TV",
+        "channelNumber": 313,
+        "category": "Information"
+      },
+      {
+        "id": "7-info",
+        "name": "7.info",
+        "channelNumber": 314,
+        "category": "Côte d’Ivoire"
+      },
+      {
+        "id": "bnewst1",
+        "name": "Bnewst1",
+        "channelNumber": 315,
+        "category": "Information"
+      },
+      {
+        "id": "7tv",
+        "name": "7TV",
+        "channelNumber": 316,
+        "category": "Information"
+      },
+      {
+        "id": "a-benin",
+        "name": "A+ Benin",
+        "channelNumber": 317,
+        "category": "Afrique"
+      },
+      {
+        "id": "afrik-info-tv",
+        "name": "Afrik Info TV",
+        "channelNumber": 318,
+        "category": "Information"
+      },
+      {
+        "id": "minanou-tv",
+        "name": "Minanou TV",
+        "channelNumber": 319,
+        "category": "Afrique"
+      },
+      {
+        "id": "alafia-tv",
+        "name": "Alafia TV",
+        "channelNumber": 320,
+        "category": "Afrique"
+      },
+      {
+        "id": "app-tv",
+        "name": "APP TV",
+        "channelNumber": 321,
+        "category": "Information"
+      },
+      {
+        "id": "arewa24",
+        "name": "Arewa24",
+        "channelNumber": 322,
+        "category": "Information"
+      },
+      {
+        "id": "asfiyahi-tv",
+        "name": "Asfiyahi TV",
+        "channelNumber": 323,
+        "category": "Religion"
+      },
+      {
+        "id": "asonga-tv",
+        "name": "Asonga TV",
+        "channelNumber": 324,
+        "category": "Afrique"
+      },
+      {
+        "id": "authentic-tv",
+        "name": "Authentic TV",
+        "channelNumber": 325,
+        "category": "Afrique"
+      },
+      {
+        "id": "balafon-tv",
+        "name": "Balafon TV",
+        "channelNumber": 326,
+        "category": "Afrique"
+      },
+      {
+        "id": "bf1",
+        "name": "BF1",
+        "channelNumber": 327,
+        "category": "Afrique"
+      },
+      {
+        "id": "b-one",
+        "name": "B-One",
+        "channelNumber": 328,
+        "category": "Afrique"
+      },
+      {
+        "id": "bonterey",
+        "name": "Bonterey",
+        "channelNumber": 329,
+        "category": "Afrique"
+      },
+      {
+        "id": "bosolo-tv",
+        "name": "Bosolo TV",
+        "channelNumber": 330,
+        "category": "Afrique"
+      },
+      {
+        "id": "btn",
+        "name": "BTN",
+        "channelNumber": 331,
+        "category": "Information"
+      },
+      {
+        "id": "burkina-info",
+        "name": "Burkina Info",
+        "channelNumber": 332,
+        "category": "Information"
+      },
+      {
+        "id": "am10",
+        "name": "AM10",
+        "channelNumber": 333,
+        "category": "Afrique"
+      },
+      {
+        "id": "canal-3",
+        "name": "Canal 3",
+        "channelNumber": 334,
+        "category": "Afrique"
+      },
+      {
+        "id": "c-movies",
+        "name": "C Movies",
+        "channelNumber": 335,
+        "category": "Cinéma"
+      },
+      {
+        "id": "c3-benin",
+        "name": "C3 Benin",
+        "channelNumber": 336,
+        "category": "Afrique"
+      },
+      {
+        "id": "canal-education",
+        "name": "Canal Education",
+        "channelNumber": 337,
+        "category": "Éducation"
+      },
+      {
+        "id": "carrefour-tv",
+        "name": "Carrefour TV",
+        "channelNumber": 338,
+        "category": "Afrique"
+      },
+      {
+        "id": "africanews",
+        "name": "Africanews",
+        "channelNumber": 339,
+        "category": "Information"
+      },
+      {
+        "id": "s-plus-elles",
+        "name": "S+ Elles",
+        "channelNumber": 340,
+        "category": "S+"
+      },
+      {
+        "id": "africa-24-infinity",
+        "name": "Africa 24 Infinity",
+        "channelNumber": 341,
+        "category": "Information"
+      },
+      {
+        "id": "africable",
+        "name": "Africable",
+        "channelNumber": 342,
+        "category": "Afrique"
+      },
+      {
+        "id": "fashion-africa",
+        "name": "Fashion Africa",
+        "channelNumber": 343,
+        "category": "Divertissement"
+      },
+      {
+        "id": "la-guinee",
+        "name": "La Guinée",
+        "channelNumber": 344,
+        "category": "Afrique"
+      },
+      {
+        "id": "mandeka",
+        "name": "Mandeka",
+        "channelNumber": 345,
+        "category": "Afrique"
+      },
+      {
+        "id": "mtv-lebanon",
+        "name": "MTV Lebanon",
+        "channelNumber": 346,
+        "category": "Musique"
+      },
+      {
+        "id": "pulaagu",
+        "name": "Pulaagu",
+        "channelNumber": 347,
+        "category": "Afrique"
+      },
+      {
+        "id": "sud-1ere",
+        "name": "Sud 1ère",
+        "channelNumber": 348,
+        "category": "Afrique"
+      },
+      {
+        "id": "global-africa-telesud",
+        "name": "Global Africa Telesud",
+        "channelNumber": 349,
+        "category": "Information"
+      },
+      {
+        "id": "vox-africa",
+        "name": "Vox Africa",
+        "channelNumber": 350,
+        "category": "Information"
+      },
+      {
+        "id": "africa-24-sport",
+        "name": "Africa 24 Sport",
+        "channelNumber": 351,
+        "category": "Sport"
+      },
+      {
+        "id": "sport-en-france",
+        "name": "Sport en France",
+        "channelNumber": 352,
+        "category": "Sport"
+      },
+      {
+        "id": "crime-district",
+        "name": "Crime District",
+        "channelNumber": 353,
+        "category": "Découverte"
+      },
+      {
+        "id": "discovery-channel",
+        "name": "Discovery Channel",
+        "channelNumber": 354,
+        "category": "Découverte"
+      },
+      {
+        "id": "bbc-earth",
+        "name": "BBC Earth",
+        "channelNumber": 355,
+        "category": "Découverte"
+      },
+      {
+        "id": "africa-24-english",
+        "name": "Africa 24 English",
+        "channelNumber": 356,
+        "category": "Information"
+      },
+      {
+        "id": "business-24-africa",
+        "name": "Business 24 Africa",
+        "channelNumber": 357,
+        "category": "Information"
+      },
+      {
+        "id": "cgtn-francais",
+        "name": "CGTN Français",
+        "channelNumber": 358,
+        "category": "Information"
+      },
+      {
+        "id": "cnbc-africa",
+        "name": "CNBC Africa",
+        "channelNumber": 359,
+        "category": "Information"
+      },
+      {
+        "id": "medi1",
+        "name": "Medi1",
+        "channelNumber": 360,
+        "category": "Information"
+      },
+      {
+        "id": "cnews",
+        "name": "CNEWS",
+        "channelNumber": 361,
+        "category": "Information"
+      },
+      {
+        "id": "iqraa",
+        "name": "Iqraa",
+        "channelNumber": 362,
+        "category": "Religion"
+      },
+      {
+        "id": "bblack-africa",
+        "name": "Bblack Africa",
+        "channelNumber": 363,
+        "category": "Musique"
+      },
+      {
+        "id": "cstar",
+        "name": "CSTAR",
+        "channelNumber": 364,
+        "category": "Musique"
+      },
+      {
+        "id": "melody-dafrique",
+        "name": "Melody d'Afrique",
+        "channelNumber": 365,
+        "category": "Musique"
+      },
+      {
+        "id": "xxl",
+        "name": "XXL",
+        "channelNumber": 366,
+        "category": "Adulte"
+      },
+      {
+        "id": "rts-1",
+        "name": "RTS 1",
+        "channelNumber": 367,
+        "category": "Afrique — Sénégal"
+      },
+      {
+        "id": "2stv",
+        "name": "2STV",
+        "channelNumber": 368,
+        "category": "Afrique — Sénégal"
+      },
+      {
+        "id": "tfm",
+        "name": "TFM",
+        "channelNumber": 369,
+        "category": "Afrique — Sénégal"
+      },
+      {
+        "id": "walf-tv",
+        "name": "WALF TV",
+        "channelNumber": 370,
+        "category": "Afrique — Sénégal"
+      },
+      {
+        "id": "rts-2",
+        "name": "RTS 2",
+        "channelNumber": 371,
+        "category": "Afrique — Sénégal"
+      },
+      {
+        "id": "lamp-fall-tv",
+        "name": "Lamp Fall TV",
+        "channelNumber": 372,
+        "category": "Afrique — Sénégal"
+      },
+      {
+        "id": "touba-tv",
+        "name": "Touba TV",
+        "channelNumber": 373,
+        "category": "Afrique — Sénégal"
+      },
+      {
+        "id": "telemusik",
+        "name": "TeleMusik",
+        "channelNumber": 374,
+        "category": "Afrique — Sénégal"
+      },
+      {
+        "id": "mourchid-tv",
+        "name": "Mourchid TV",
+        "channelNumber": 375,
+        "category": "Afrique — Sénégal"
+      },
+      {
+        "id": "al-mouridiyyah-tv",
+        "name": "Al Mouridiyyah TV",
+        "channelNumber": 376,
+        "category": "Afrique — Sénégal"
+      },
+      {
+        "id": "malikia-tv",
+        "name": "Malikia TV",
+        "channelNumber": 377,
+        "category": "Afrique — Sénégal"
+      },
+      {
+        "id": "ortm1",
+        "name": "ORTM1",
+        "channelNumber": 378,
+        "category": "Afrique — Mali"
+      },
+      {
+        "id": "ortm2",
+        "name": "ORTM2",
+        "channelNumber": 379,
+        "category": "Afrique — Mali"
+      },
+      {
+        "id": "tm1-mali",
+        "name": "TM1 Mali",
+        "channelNumber": 380,
+        "category": "Afrique — Mali"
+      },
+      {
+        "id": "renaissance-tv",
+        "name": "Renaissance TV",
+        "channelNumber": 381,
+        "category": "Afrique — Mali"
+      },
+      {
+        "id": "joliba-tv-news",
+        "name": "Joliba TV News",
+        "channelNumber": 382,
+        "category": "Afrique — Mali"
+      },
+      {
+        "id": "cherifla-tv",
+        "name": "Cherifla TV",
+        "channelNumber": 383,
+        "category": "Afrique — Mali"
+      },
+      {
+        "id": "rtb-zenith",
+        "name": "RTB Zenith",
+        "channelNumber": 384,
+        "category": "Afrique — Burkina Faso"
+      },
+      {
+        "id": "savane-tv",
+        "name": "Savane TV",
+        "channelNumber": 385,
+        "category": "Afrique — Burkina Faso"
+      },
+      {
+        "id": "tvt",
+        "name": "TVT",
+        "channelNumber": 386,
+        "category": "Afrique — Togo"
+      },
+      {
+        "id": "tv7-togo",
+        "name": "TV7 Togo",
+        "channelNumber": 387,
+        "category": "Afrique — Togo"
+      },
+      {
+        "id": "one-tv",
+        "name": "ONE TV",
+        "channelNumber": 388,
+        "category": "Afrique — Togo"
+      },
+      {
+        "id": "ortb",
+        "name": "ORTB",
+        "channelNumber": 389,
+        "category": "Afrique — Bénin"
+      },
+      {
+        "id": "canal-3-benin",
+        "name": "Canal 3 Benin",
+        "channelNumber": 390,
+        "category": "Afrique — Bénin"
+      },
+      {
+        "id": "tvc-benin",
+        "name": "TVC Benin",
+        "channelNumber": 391,
+        "category": "Afrique — Bénin"
+      },
+      {
+        "id": "etele",
+        "name": "Etele",
+        "channelNumber": 392,
+        "category": "Afrique — Bénin"
+      },
+      {
+        "id": "eden-tv",
+        "name": "Eden TV",
+        "channelNumber": 393,
+        "category": "Afrique — Bénin"
+      },
+      {
+        "id": "liptako-tv",
+        "name": "Liptako TV",
+        "channelNumber": 394,
+        "category": "Afrique — Niger"
+      },
+      {
+        "id": "saraounia-tv",
+        "name": "Saraounia TV",
+        "channelNumber": 395,
+        "category": "Afrique — Niger"
+      },
+      {
+        "id": "tele-sahel",
+        "name": "Télé Sahel",
+        "channelNumber": 396,
+        "category": "Afrique — Niger"
+      },
+      {
+        "id": "dounia-tv",
+        "name": "Dounia TV",
+        "channelNumber": 397,
+        "category": "Afrique — Niger"
+      },
+      {
+        "id": "bonferey",
+        "name": "Bonferey",
+        "channelNumber": 398,
+        "category": "Afrique — Niger"
+      },
+      {
+        "id": "saira-movies",
+        "name": "Saira Movies",
+        "channelNumber": 399,
+        "category": "Afrique — Niger"
+      },
+      {
+        "id": "rtnb",
+        "name": "RTNB",
+        "channelNumber": 400,
+        "category": "Afrique — Guinée"
+      },
+      {
+        "id": "rtg-guinee",
+        "name": "RTG Guinée",
+        "channelNumber": 401,
+        "category": "Afrique — Guinée"
+      },
+      {
+        "id": "cis-tv",
+        "name": "CIS TV",
+        "channelNumber": 402,
+        "category": "Afrique — Guinée"
+      },
+      {
+        "id": "espace-tv",
+        "name": "Espace TV",
+        "channelNumber": 403,
+        "category": "Afrique — Guinée"
+      },
+      {
+        "id": "west-africa-tv",
+        "name": "West Africa TV",
+        "channelNumber": 404,
+        "category": "Afrique — Guinée"
+      },
+      {
+        "id": "tele24-guinee",
+        "name": "Tele24 Guinée",
+        "channelNumber": 405,
+        "category": "Afrique — Guinée"
+      },
+      {
+        "id": "rtg2-guinee",
+        "name": "RTG2 Guinée",
+        "channelNumber": 406,
+        "category": "Afrique — Guinée"
+      },
+      {
+        "id": "gmd-guinee-media-direct",
+        "name": "GMD Guinée Media Direct",
+        "channelNumber": 407,
+        "category": "Afrique — Guinée"
+      },
+      {
+        "id": "tvge",
+        "name": "TVGE",
+        "channelNumber": 408,
+        "category": "Afrique — Guinée équatoriale"
+      },
+      {
+        "id": "tgb",
+        "name": "TGB",
+        "channelNumber": 409,
+        "category": "Afrique — Gabon"
+      },
+      {
+        "id": "tv-afrique",
+        "name": "TV Afrique",
+        "channelNumber": 410,
+        "category": "Afrique — Gabon"
+      },
+      {
+        "id": "electron-tv",
+        "name": "Electron TV",
+        "channelNumber": 411,
+        "category": "Afrique — Gabon"
+      },
+      {
+        "id": "tchad-infos-fm",
+        "name": "Tchad Infos FM",
+        "channelNumber": 412,
+        "category": "Afrique — Tchad"
+      },
+      {
+        "id": "tchad-24",
+        "name": "Tchad 24",
+        "channelNumber": 413,
+        "category": "Afrique — Tchad"
+      },
+      {
+        "id": "toumai-tv",
+        "name": "Toumai TV",
+        "channelNumber": 414,
+        "category": "Afrique — Tchad"
+      },
+      {
+        "id": "mrtv",
+        "name": "MRTV",
+        "channelNumber": 415,
+        "category": "Afrique — Mauritanie"
+      },
+      {
+        "id": "chif-tv",
+        "name": "Chif TV",
+        "channelNumber": 416,
+        "category": "Afrique — Tchad"
+      },
+      {
+        "id": "rtd",
+        "name": "RTD",
+        "channelNumber": 417,
+        "category": "Afrique — Djibouti"
+      },
+      {
+        "id": "tv-mauritanie",
+        "name": "TV Mauritanie",
+        "channelNumber": 418,
+        "category": "Afrique — Mauritanie"
+      },
+      {
+        "id": "chinguit",
+        "name": "Chinguit",
+        "channelNumber": 419,
+        "category": "Afrique — Mauritanie"
+      },
+      {
+        "id": "el-watania",
+        "name": "El Watania",
+        "channelNumber": 420,
+        "category": "Afrique — Tunisie"
+      },
+      {
+        "id": "drtv-international",
+        "name": "DRTV International",
+        "channelNumber": 421,
+        "category": "Afrique — Congo"
+      },
+      {
+        "id": "vox-tv-congo",
+        "name": "Vox TV Congo",
+        "channelNumber": 422,
+        "category": "Afrique — Congo"
+      },
+      {
+        "id": "c-direct",
+        "name": "C Direct",
+        "channelNumber": 423,
+        "category": "Afrique — Congo"
+      },
+      {
+        "id": "lux-tv",
+        "name": "Lux TV",
+        "channelNumber": 424,
+        "category": "Afrique — Congo"
+      },
+      {
+        "id": "mcrtv",
+        "name": "MCRTV",
+        "channelNumber": 425,
+        "category": "Afrique — Congo"
+      },
+      {
+        "id": "tpt",
+        "name": "TPT",
+        "channelNumber": 426,
+        "category": "Afrique — Congo"
+      },
+      {
+        "id": "vision-4-rca",
+        "name": "Vision 4 RCA",
+        "channelNumber": 427,
+        "category": "Afrique — RCA"
+      },
+      {
+        "id": "antenne-a",
+        "name": "Antenne A",
+        "channelNumber": 428,
+        "category": "Afrique — RDC"
+      },
+      {
+        "id": "digital-congo",
+        "name": "Digital Congo",
+        "channelNumber": 429,
+        "category": "Afrique — RDC"
+      },
+      {
+        "id": "ratelki",
+        "name": "Ratelki",
+        "channelNumber": 430,
+        "category": "Afrique — RDC"
+      },
+      {
+        "id": "mikuba",
+        "name": "Mikuba",
+        "channelNumber": 431,
+        "category": "Afrique — RDC"
+      },
+      {
+        "id": "malaika",
+        "name": "Malaika",
+        "channelNumber": 432,
+        "category": "Afrique — RDC"
+      },
+      {
+        "id": "madi-tv",
+        "name": "Madi TV",
+        "channelNumber": 433,
+        "category": "Afrique — RDC"
+      },
+      {
+        "id": "amen-tv",
+        "name": "Amen TV",
+        "channelNumber": 434,
+        "category": "Afrique — RDC"
+      },
+      {
+        "id": "mwangaza-tv",
+        "name": "Mwangaza TV",
+        "channelNumber": 435,
+        "category": "Afrique — RDC"
+      },
+      {
+        "id": "mieux",
+        "name": "Mieux",
+        "channelNumber": 436,
+        "category": "France"
+      },
+      {
+        "id": "lci",
+        "name": "LCI",
+        "channelNumber": 83,
+        "category": "France"
+      },
+      {
+        "id": "tv5monde-info",
+        "name": "TV5MONDE Info",
+        "channelNumber": 437,
+        "category": "Information"
+      },
+      {
+        "id": "tv5monde-jeunesse",
+        "name": "TV5MONDE Jeunesse",
+        "channelNumber": 438,
+        "category": "Jeunesse"
+      },
+      {
+        "id": "tv5monde-voyage",
+        "name": "TV5MONDE Voyage",
+        "channelNumber": 439,
+        "category": "Documentaires"
+      },
+      {
+        "id": "tv5monde-chef",
+        "name": "TV5MONDE Chef",
+        "channelNumber": 440,
+        "category": "Cuisine"
+      },
+      {
+        "id": "hbo-max",
+        "name": "HBO Max",
+        "channelNumber": 441,
+        "category": "Service vidéo"
+      },
+      {
+        "id": "paramount-plus",
+        "name": "Paramount+",
+        "channelNumber": 442,
+        "category": "Service vidéo"
+      },
+      {
+        "id": "netflix",
+        "name": "Netflix",
+        "channelNumber": 443,
+        "category": "Service vidéo"
+      },
+      {
+        "id": "tf1-plus",
+        "name": "TF1+",
+        "channelNumber": 444,
+        "category": "Service vidéo"
+      },
+      {
+        "id": "m6-plus",
+        "name": "M6+",
+        "channelNumber": 445,
+        "category": "Service vidéo"
+      },
+      {
+        "id": "m-net-movies-3",
+        "name": "M-Net Movies 3",
+        "channelNumber": 446,
+        "category": "DStv English — Cinéma"
+      },
+      {
+        "id": "m-net-movies-4",
+        "name": "M-Net Movies 4",
+        "channelNumber": 447,
+        "category": "DStv English — Cinéma"
+      },
+      {
+        "id": "studio-universal",
+        "name": "Studio Universal",
+        "channelNumber": 448,
+        "category": "DStv English — Cinéma"
+      },
+      {
+        "id": "universal-tv-africa",
+        "name": "Universal TV Africa",
+        "channelNumber": 449,
+        "category": "DStv English — Séries"
+      },
+      {
+        "id": "tnt-africa",
+        "name": "TNT Africa",
+        "channelNumber": 450,
+        "category": "DStv English — Cinéma"
+      },
+      {
+        "id": "bbc-first",
+        "name": "BBC First",
+        "channelNumber": 451,
+        "category": "DStv English — Séries"
+      },
+      {
+        "id": "bbc-uk-tv",
+        "name": "BBC UKTV",
+        "channelNumber": 452,
+        "category": "DStv English — Divertissement"
+      },
+      {
+        "id": "emovies",
+        "name": "eMovies",
+        "channelNumber": 453,
+        "category": "DStv English — Cinéma"
+      },
+      {
+        "id": "emovies-extra",
+        "name": "eMovies Extra",
+        "channelNumber": 454,
+        "category": "DStv English — Cinéma"
+      },
+      {
+        "id": "africa-magic-showcase",
+        "name": "Africa Magic Showcase",
+        "channelNumber": 455,
+        "category": "DStv English — Divertissement"
+      },
+      {
+        "id": "africa-magic-epic",
+        "name": "Africa Magic Epic",
+        "channelNumber": 456,
+        "category": "DStv English — Cinéma"
+      },
+      {
+        "id": "africa-magic-urban",
+        "name": "Africa Magic Urban",
+        "channelNumber": 457,
+        "category": "DStv English — Divertissement"
+      },
+      {
+        "id": "africa-magic-family",
+        "name": "Africa Magic Family",
+        "channelNumber": 458,
+        "category": "DStv English — Famille"
+      },
+      {
+        "id": "zee-world",
+        "name": "Zee World",
+        "channelNumber": 459,
+        "category": "DStv English — Séries"
+      },
+      {
+        "id": "star-life",
+        "name": "Star Life",
+        "channelNumber": 460,
+        "category": "DStv English — Séries"
+      },
+      {
+        "id": "telemundo-english",
+        "name": "Telemundo (version anglophone)",
+        "channelNumber": 461,
+        "category": "DStv English — Séries"
+      },
+      {
+        "id": "e-entertainment",
+        "name": "E! Entertainment",
+        "channelNumber": 462,
+        "category": "DStv English — Divertissement"
+      },
+      {
+        "id": "bet-africa",
+        "name": "BET Africa",
+        "channelNumber": 463,
+        "category": "DStv English — Musique"
+      },
+      {
+        "id": "mtv-africa",
+        "name": "MTV Africa",
+        "channelNumber": 464,
+        "category": "DStv English — Musique"
+      },
+      {
+        "id": "cbs-reality",
+        "name": "CBS Reality",
+        "channelNumber": 465,
+        "category": "DStv English — Divertissement"
+      },
+      {
+        "id": "comedy-central",
+        "name": "Comedy Central",
+        "channelNumber": 466,
+        "category": "DStv English — Humour"
+      },
+      {
+        "id": "supersport-grandstand",
+        "name": "SuperSport Grandstand",
+        "channelNumber": 467,
+        "category": "DStv English — Sport"
+      },
+      {
+        "id": "supersport-premier-league",
+        "name": "SuperSport Premier League",
+        "channelNumber": 468,
+        "category": "DStv English — Sport"
+      },
+      {
+        "id": "supersport-la-liga",
+        "name": "SuperSport La Liga",
+        "channelNumber": 469,
+        "category": "DStv English — Sport"
+      },
+      {
+        "id": "supersport-football",
+        "name": "SuperSport Football",
+        "channelNumber": 470,
+        "category": "DStv English — Sport"
+      },
+      {
+        "id": "supersport-football-plus",
+        "name": "SuperSport Football Plus",
+        "channelNumber": 471,
+        "category": "DStv English — Sport"
+      },
+      {
+        "id": "supersport-variety-1",
+        "name": "SuperSport Variety 1",
+        "channelNumber": 472,
+        "category": "DStv English — Sport"
+      },
+      {
+        "id": "supersport-variety-2",
+        "name": "SuperSport Variety 2",
+        "channelNumber": 473,
+        "category": "DStv English — Sport"
+      },
+      {
+        "id": "supersport-variety-3",
+        "name": "SuperSport Variety 3",
+        "channelNumber": 474,
+        "category": "DStv English — Sport"
+      },
+      {
+        "id": "supersport-variety-4",
+        "name": "SuperSport Variety 4",
+        "channelNumber": 475,
+        "category": "DStv English — Sport"
+      },
+      {
+        "id": "supersport-blitz",
+        "name": "SuperSport Blitz",
+        "channelNumber": 476,
+        "category": "DStv English — Sport"
+      },
+      {
+        "id": "supersport-cricket",
+        "name": "SuperSport Cricket",
+        "channelNumber": 477,
+        "category": "DStv English — Sport"
+      },
+      {
+        "id": "supersport-golf",
+        "name": "SuperSport Golf",
+        "channelNumber": 478,
+        "category": "DStv English — Sport"
+      },
+      {
+        "id": "supersport-tennis",
+        "name": "SuperSport Tennis",
+        "channelNumber": 479,
+        "category": "DStv English — Sport"
+      },
+      {
+        "id": "supersport-motorsport",
+        "name": "SuperSport Motorsport",
+        "channelNumber": 480,
+        "category": "DStv English — Sport"
+      },
+      {
+        "id": "espn",
+        "name": "ESPN",
+        "channelNumber": 481,
+        "category": "DStv English — Sport"
+      },
+      {
+        "id": "espn-2",
+        "name": "ESPN 2",
+        "channelNumber": 482,
+        "category": "DStv English — Sport"
+      },
+      {
+        "id": "discovery-family",
+        "name": "Discovery Family",
+        "channelNumber": 483,
+        "category": "DStv English — Documentaires"
+      },
+      {
+        "id": "investigation-discovery",
+        "name": "Investigation Discovery (ID)",
+        "channelNumber": 484,
+        "category": "DStv English — Documentaires"
+      },
+      {
+        "id": "national-geographic",
+        "name": "National Geographic",
+        "channelNumber": 485,
+        "category": "DStv English — Documentaires"
+      },
+      {
+        "id": "nat-geo-wild",
+        "name": "Nat Geo Wild",
+        "channelNumber": 486,
+        "category": "DStv English — Documentaires"
+      },
+      {
+        "id": "bbc-lifestyle",
+        "name": "BBC Lifestyle",
+        "channelNumber": 487,
+        "category": "DStv English — Lifestyle"
+      },
+      {
+        "id": "history-channel",
+        "name": "History Channel",
+        "channelNumber": 488,
+        "category": "DStv English — Documentaires"
+      },
+      {
+        "id": "food-network",
+        "name": "Food Network",
+        "channelNumber": 489,
+        "category": "DStv English — Cuisine"
+      },
+      {
+        "id": "travel-channel",
+        "name": "Travel Channel",
+        "channelNumber": 490,
+        "category": "DStv English — Voyage"
+      },
+      {
+        "id": "bbc-news-dstv",
+        "name": "BBC News",
+        "channelNumber": 491,
+        "category": "DStv English — Information"
+      },
+      {
+        "id": "sky-news-dstv",
+        "name": "Sky News",
+        "channelNumber": 492,
+        "category": "DStv English — Information"
+      },
+      {
+        "id": "al-jazeera-english",
+        "name": "Al Jazeera English",
+        "channelNumber": 493,
+        "category": "DStv English — Information"
+      },
+      {
+        "id": "bloomberg-television",
+        "name": "Bloomberg Television",
+        "channelNumber": 494,
+        "category": "DStv English — Information"
+      },
+      {
+        "id": "africa-news",
+        "name": "Africa News",
+        "channelNumber": 495,
+        "category": "DStv English — Information"
+      },
+      {
+        "id": "nick-jr",
+        "name": "Nick Jr.",
+        "channelNumber": 496,
+        "category": "DStv English — Jeunesse"
+      },
+      {
+        "id": "disney-channel-dstv",
+        "name": "Disney Channel",
+        "channelNumber": 497,
+        "category": "DStv English — Jeunesse"
+      },
+      {
+        "id": "cbeebies",
+        "name": "CBeebies",
+        "channelNumber": 498,
+        "category": "DStv English — Jeunesse"
+      }
+    ]
+  }
+}
