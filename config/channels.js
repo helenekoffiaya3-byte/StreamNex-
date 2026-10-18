@@ -41,7 +41,7 @@ const CHANNELS = [
   { channelNumber: 39, id: "estrella-tv", tvgId: "estrella-tv", name: "Estrella TV", group: "Cinéma", logoUrl: "/assets/logos/estrella-tv.svg", webUrl: "https://play.xumo.com/live-guide/estrellatv" }
   { channelNumber: 40, id: "galavision", tvgId: "galavision", name: "Galavisión", group: "Cinéma", logoUrl: "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/united-states/galavision-us.png" },
   { channelNumber: 41, id: "gettv", tvgId: "gettv", name: "getTV", group: "Cinéma", logoUrl: "/assets/logos/gettv.svg" },
-  { channelNumber: 42, id: "grit", tvgId: "grit", name: "Grit", group: "Cinéma", logoUrl: "https://commons.wikimedia.org/wiki/Special:Redirect/file/Grit_TV_logo.svg" },
+  { channelNumber: 42, id: "grit", tvgId: "grit", name: "Grit", group: "Cinéma", logoUrl: "https://commons.wikimedia.org/wiki/Special:Redirect/file/Grit_TV_logo.svg", webUrl: "https://play.xumo.com/live-guide/grit-xtra" }
   { channelNumber: 43, id: "m6-films", tvgId: "m6-films", name: "M6 Films", group: "Cinéma", logoUrl: "/assets/logos/m6-films.svg" },
   { channelNumber: 44, id: "mgm-tv", tvgId: "mgm-tv", name: "MGM TV", group: "Cinéma", logoUrl: "/assets/logos/mgm-tv.svg", webUrl: "https://www.mgmplus.com/live" },
   { channelNumber: 45, id: "movies", tvgId: "movies", name: "Movies!", group: "Cinéma", logoUrl: "https://commons.wikimedia.org/wiki/Special:Redirect/file/Movies%21_logo.svg" },
