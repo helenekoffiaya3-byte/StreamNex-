@@ -6,10 +6,10 @@
     "name": "Play TV International",
     "region": "International",
     "price": {
-      "amount": null,
-      "currency": null,
+      "amount": 14,
+      "currency": "USD",
       "period": "mensuel",
-      "status": "à définir par l’utilisateur"
+      "status": "défini par l’utilisateur"
     },
     "channelCount": 66,
     "categories": [
@@ -124,11 +124,11 @@
     ],
     "implementationNotes": [
       "Bouquet international distinct de Play TV, Play TV Côte d’Ivoire et Play TV Europa.",
-      "Le tarif mensuel reste à définir par l’utilisateur.",
       "Réconcilier chaque nom avec config/channels.js et ses identifiants exacts avant intégration au parcours utilisateur.",
       "Vérifier les URL de lecture, la disponibilité selon la région et les droits de diffusion avant activation.",
       "Ne pas marquer le bouquet actif avant validation des identifiants et tests réels des flux.",
-      "Six chaînes thématiques SuperSport/DStv supplémentaires ont été ajoutées à la catégorie Sport; leurs appellations commerciales, disponibilité et flux doivent être vérifiés avant activation."
+      "Six chaînes thématiques SuperSport/DStv supplémentaires ont été ajoutées à la catégorie Sport; leurs appellations commerciales, disponibilité et flux doivent être vérifiés avant activation.",
+      "Prix mensuel fixé à 14 USD à la demande de l’utilisateur."
     ]
   }
 }
