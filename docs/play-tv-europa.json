@@ -1,0 +1,141 @@
+{
+  "title": "StreamLive — Bouquet Play TV Europa",
+  "status": "proposed-not-activated",
+  "bouquet": {
+    "id": "play-tv-europa",
+    "name": "Play TV Europa",
+    "region": "Europe et international",
+    "price": {
+      "amount": null,
+      "currency": "XOF",
+      "period": "mensuel",
+      "status": "à définir"
+    },
+    "categories": [
+      {
+        "id": "chaines-francaises",
+        "name": "Toutes les chaînes françaises du catalogue",
+        "channels": [
+          "TF1",
+          "TFX",
+          "TMC",
+          "France 2",
+          "France 3",
+          "France 4",
+          "France 5",
+          "M6",
+          "W9",
+          "6ter",
+          "Arte",
+          "France 24",
+          "franceinfo",
+          "LCI",
+          "CNEWS",
+          "Mieux",
+          "TV5 Monde",
+          "TV5MONDE Info",
+          "TF1 Séries Films",
+          "M6 Films",
+          "M6 Music",
+          "Ciné+ Frisson",
+          "Ciné+ Emotion",
+          "Ciné+ Family",
+          "Ciné+ Festival",
+          "Ciné+ Classic",
+          "POLAR+",
+          "RTL9",
+          "AB1",
+          "Action",
+          "Gulli",
+          "Okoo",
+          "TiVi5MONDE",
+          "M6 International"
+        ]
+      },
+      {
+        "id": "usa",
+        "name": "Chaînes USA (5)",
+        "channels": [
+          "CNN International",
+          "Fox News",
+          "ABC News Live",
+          "CBS News 24/7",
+          "NBC News NOW"
+        ]
+      },
+      {
+        "id": "jeunesse",
+        "name": "Jeunesse",
+        "channels": [
+          "Okoo",
+          "Gulli",
+          "TiVi5MONDE"
+        ]
+      },
+      {
+        "id": "films",
+        "name": "Cinéma (6)",
+        "channels": [
+          "M6 Films",
+          "Action",
+          "Ciné+ Frisson",
+          "Ciné+ Emotion",
+          "Ciné+ Family",
+          "Ciné+ Festival"
+        ]
+      },
+      {
+        "id": "telefilms-series",
+        "name": "Téléfilms et séries (7)",
+        "channels": [
+          "RTL9",
+          "AB1",
+          "TF1 Séries Films",
+          "Paramount Network",
+          "Sundance TV",
+          "Syfy",
+          "Warner TV Next"
+        ]
+      },
+      {
+        "id": "information-france",
+        "name": "Information française (4)",
+        "channels": [
+          "France 24",
+          "franceinfo",
+          "CNEWS",
+          "LCI"
+        ]
+      },
+      {
+        "id": "dstv",
+        "name": "DSTV / SuperSport (3)",
+        "channels": [
+          "SuperSport 1",
+          "SuperSport 2",
+          "SuperSport 3"
+        ]
+      },
+      {
+        "id": "europe",
+        "name": "Chaînes européennes (3)",
+        "channels": [
+          "Euronews",
+          "BBC News",
+          "Sky News"
+        ]
+      }
+    ],
+    "implementationNotes": [
+      "Bouquet séparé de Play TV et de Play TV Côte d’Ivoire.",
+      "France 24 est obligatoirement inclus parmi les quatre chaînes d’information française.",
+      "Okoo, Gulli et TiVi5MONDE sont inclus dans la catégorie Jeunesse.",
+      "Les catégories peuvent se recouper : une chaîne française peut aussi être classée en jeunesse, cinéma ou information.",
+      "La liste française est construite à partir des chaînes françaises déjà repérées dans le catalogue StreamLive; vérifier le catalogue complet pour confirmer qu’aucune chaîne française supplémentaire n’a été oubliée.",
+      "Le prix mensuel reste à définir.",
+      "Les trois chaînes SuperSport sont une sélection DSTV; disponibilité régionale, flux et droits doivent être vérifiés avant activation.",
+      "Ne pas marquer le bouquet actif avant réconciliation des identifiants du catalogue, test des flux et vérification des droits de diffusion."
+    ],
+    "channelCount": 49
+  }
+}
