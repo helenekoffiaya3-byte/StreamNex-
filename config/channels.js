@@ -64,7 +64,7 @@ const CHANNELS = [
   { channelNumber: 62, id: "hbo", tvgId: "hbo", name: "HBO", group: "Service vidéo", logoUrl: "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/united-states/hbo-us.png" },
   { channelNumber: 63, id: "heroes-icons", tvgId: "heroes-icons", name: "Heroes & Icons", group: "Séries & SF", logoUrl: "https://commons.wikimedia.org/wiki/Special:Redirect/file/Heroes%26Icons_Logo.png" },
   { channelNumber: 64, id: "ifc", tvgId: "ifc", name: "IFC", group: "Séries & SF", logoUrl: "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/united-states/ifc-us.png" },
-  { channelNumber: 65, id: "ion", tvgId: "ion", name: "Ion", group: "Séries & SF", logoUrl: "/assets/logos/ion.svg" },
+  { channelNumber: 65, id: "ion", tvgId: "ion", name: "Ion", group: "Séries & SF", logoUrl: "/assets/logos/ion.svg", webUrl: "https://pluto.tv/us/watch/live-tv/#31520" },
   { channelNumber: 66, id: "lifetime", tvgId: "lifetime", name: "Lifetime", group: "Séries & SF", logoUrl: "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/united-states/lifetime-us.png" },
   { channelNumber: 67, id: "mgm-plus", tvgId: "mgm-plus", name: "MGM+", group: "Service vidéo", logoUrl: "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/united-states/mgm-plus-us.png" },
   { channelNumber: 68, id: "novelas-plus", tvgId: "novelas-plus", name: "Novelas+", group: "Novelas", logoUrl: "/assets/logos/novelas-plus.svg" },
