@@ -135,7 +135,7 @@ const CHANNELS = [
   { channelNumber: 147, id: "bein-sports", tvgId: "bein-sports", name: "beIN SPORTS", group: "Sport", logoUrl: "https://commons.wikimedia.org/wiki/Special:Redirect/file/BeIN_Sports_logo.svg" },
   { channelNumber: 148, id: "eurosport-1", tvgId: "eurosport-1", name: "Eurosport 1", group: "Sport", logoUrl: "https://commons.wikimedia.org/wiki/Special:Redirect/file/Eurosport_1_Logo_2015.svg" },
   { channelNumber: 149, id: "automoto", tvgId: "automoto", name: "Automoto", group: "Sport", logoUrl: "https://commons.wikimedia.org/wiki/Special:Redirect/file/Automoto_logo.jpg" },
-  { channelNumber: 150, id: "equidia", tvgId: "equidia", name: "Equidia", group: "Sport", logoUrl: "https://commons.wikimedia.org/wiki/Special:Redirect/file/Equidia_logo_2018.png" },
+  { channelNumber: 150, id: "equidia", tvgId: "equidia", name: "Equidia", group: "Sport", logoUrl: "https://commons.wikimedia.org/wiki/Special:Redirect/file/Equidia_logo_2018.png", webUrl: "https://www.equidia.fr/direct?utm_source=intern&utm_medium=burger_menu" },
   { channelNumber: 151, id: "cine-plus-frisson", tvgId: "cine-plus-frisson", name: "Ciné+ Frisson", group: "Cinéma", logoUrl: "https://commons.wikimedia.org/wiki/Special:Redirect/file/Cin%C3%A9%2BFrisson2024.svg" },
   { channelNumber: 152, id: "cine-plus-emotion", tvgId: "cine-plus-emotion", name: "Ciné+ Emotion", group: "Cinéma", logoUrl: "https://commons.wikimedia.org/wiki/Special:Redirect/file/Cin%C3%A9%2B%C3%89motion2024.svg" },
   { channelNumber: 153, id: "cine-plus-family", tvgId: "cine-plus-family", name: "Ciné+ Family", group: "Cinéma", logoUrl: "https://commons.wikimedia.org/wiki/Special:Redirect/file/Cin%C3%A9%2BFamily2024.svg" },
