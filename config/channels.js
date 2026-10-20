@@ -157,7 +157,7 @@ const CHANNELS = [
   { channelNumber: 169, id: "melody", tvgId: "melody", name: "Melody", group: "Musique", logoUrl: "https://commons.wikimedia.org/wiki/Special:Redirect/file/Melody_logo_2013.png" },
   { channelNumber: 170, id: "mezzo", tvgId: "mezzo", name: "Mezzo", group: "Musique", logoUrl: "https://commons.wikimedia.org/wiki/Special:Redirect/file/Logo_Mezzo_%282023%29.svg" },
   { channelNumber: 171, id: "mezzo-live-hd", tvgId: "mezzo-live-hd", name: "Mezzo Live HD", group: "Musique", logoUrl: "https://commons.wikimedia.org/wiki/Special:Redirect/file/Mezzo_Live_HD_logo.png" },
-  { channelNumber: 172, id: "mtv", tvgId: "mtv", name: "MTV", group: "Musique", logoUrl: "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/united-states/mtv-us.png" },
+  { channelNumber: 172, id: "mtv", tvgId: "mtv", name: "MTV", group: "Musique", logoUrl: "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/united-states/mtv-us.png", webUrl: "https://pluto.tv/fr/watch/live-tv/#29864" },
   { channelNumber: 173, id: "trace-africa", tvgId: "trace-africa", name: "Trace Africa", group: "Musique" , webUrl: "https://trace.plus/en/app/watch/307119128993853751529474658992873493772", logoUrl: "/assets/logos/trace-africa.png"},
   { channelNumber: 174, id: "trace-ivoire", tvgId: "trace-ivoire", name: "Trace Ivoire", group: "Musique" , logoUrl: "/assets/logos/trace-ivoire.png", webUrl: "https://trace.plus/en/app/watch/339848436287722939983407104965048579755" },
   { channelNumber: 175, id: "z-magic", tvgId: "z-magic", name: "Z Magic", group: "Musique", logoUrl: "/assets/logos/z-magic.svg" },
