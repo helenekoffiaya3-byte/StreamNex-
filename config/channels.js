@@ -213,7 +213,7 @@ const CHANNELS = [
   { channelNumber: 225, id: "hope-channel", tvgId: "hope-channel", name: "Hope Channel", group: "Religion", logoUrl: "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/united-states/hope-channel-us.png" },
   { channelNumber: 226, id: "kto", tvgId: "kto", name: "KTO", group: "Religion", logoUrl: "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/france/kto-fr.png" },
   { channelNumber: 227, id: "top-chretien", tvgId: "top-chretien", name: "Top Chrétien", group: "Religion", logoUrl: "/assets/logos/top-chretien.svg" },
-  { channelNumber: 228, id: "trace-gospel", tvgId: "trace-gospel", name: "Trace Gospel", group: "Religion", logoUrl: "/assets/logos/trace-gospel.svg" },
+  { channelNumber: 228, id: "trace-gospel", tvgId: "trace-gospel", name: "Trace Gospel", group: "Religion", logoUrl: "/assets/logos/trace-gospel.svg", webUrl: "https://trace.plus/en/app/watch/187540402807358411226588122994079681148" },
   { channelNumber: 229, id: "cuisines", tvgId: "cuisines", name: "Cuisines", group: "Lifestyle", logoUrl: "/assets/logos/cuisines.svg" },
   { channelNumber: 230, id: "nollywood-tv", tvgId: "nollywood-tv", name: "Nollywood TV", group: "Cinéma africain", logoUrl: "/assets/logos/nollywood-tv.svg" },
   { channelNumber: 231, id: "nollywood-tv-epic", tvgId: "nollywood-tv-epic", name: "Nollywood TV Epic", group: "Cinéma africain", logoUrl: "https://commons.wikimedia.org/wiki/Special:Redirect/file/Nouvelle_logo_de_Nollywood_TV_Epic_en_2021.png" },
