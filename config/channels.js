@@ -229,7 +229,7 @@ const CHANNELS = [
   { channelNumber: 241, id: "ecclesia-tv", tvgId: "ecclesia-tv", name: "Ecclesia TV", group: "Religion", logoUrl: "/assets/logos/channel-placeholder.svg", webUrl: "https://ecclesiatv.ci/mob/live.php" },
   { channelNumber: 242, id: "evtv", tvgId: "evtv", name: "EVTV", group: "Religion", logoUrl: "/assets/logos/channel-placeholder.svg", webUrl: "https://evangile.tv/direct-24-7/" },
   { channelNumber: 243, id: "lm-tv", tvgId: "lm-tv", name: "LM TV", group: "Religion", logoUrl: "/assets/logos/channel-placeholder.svg", webUrl: "https://lumieredumonde.tv/le-direct-24-7/" },
-  { channelNumber: 244, id: "africa-sport", tvgId: "africa-sport", name: "Africa Sport", group: "Sport", logoUrl: "/assets/logos/channel-placeholder.svg" },
+  { channelNumber: 244, id: "africa-sport", tvgId: "africa-sport", name: "Africa Sport", group: "Sport", logoUrl: "/assets/logos/channel-placeholder.svg", webUrl: "https://africa24tv.com/africa24-sport-en-direct/" },
   { channelNumber: 245, id: "bobaraba-tv", tvgId: "bobaraba-tv", name: "Bobaraba TV", group: "Sport", logoUrl: "/assets/logos/channel-placeholder.svg" },
   { channelNumber: 246, id: "nba-tv", tvgId: "nba-tv", name: "NBA TV", group: "Sport", logoUrl: "/assets/logos/channel-placeholder.svg" },
   { channelNumber: 247, id: "esport-en-france", tvgId: "esport-en-france", name: "Esport en France", group: "Sport", logoUrl: "/assets/logos/channel-placeholder.svg" },
