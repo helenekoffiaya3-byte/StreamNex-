@@ -174,7 +174,7 @@ const CHANNELS = [
   { channelNumber: 186, id: "science-et-vie-tv", tvgId: "science-et-vie-tv", name: "Science & Vie TV", group: "Documentaires", logoUrl: "https://commons.wikimedia.org/wiki/Special:Redirect/file/SVTV_LOGO.png" },
   { channelNumber: 187, id: "toute-l-histoire", tvgId: "toute-l-histoire", name: "Toute l'Histoire", group: "Documentaires", logoUrl: "https://commons.wikimedia.org/wiki/Special:Redirect/file/Toute_l%27histoire_logo.svg" },
   { channelNumber: 188, id: "mgg-tv", tvgId: "mgg-tv", name: "MGG TV", group: "Sport" , logoUrl: "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/france/mgg-tv-fr.png"},
-  { channelNumber: 189, id: "golf-plus", tvgId: "golf-plus", name: "GOLF+", group: "Sport" , logoUrl: "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/france/golf-plus-fr.png"},
+  { channelNumber: 189, id: "golf-plus", tvgId: "golf-plus", name: "GOLF+", group: "Sport" , logoUrl: "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/france/golf-plus-fr.png", webUrl: "https://sportenfrance.com/", }
   { channelNumber: 190, id: "infosport", tvgId: "infosport", name: "Infosport", group: "Sport", logoUrl: "https://commons.wikimedia.org/wiki/Special:Redirect/file/Infosport%2B_%282016%29.PNG" },
   { channelNumber: 191, id: "sport-1", tvgId: "sport-1", name: "Sport 1", group: "Sport", logoUrl: "https://commons.wikimedia.org/wiki/Special:Redirect/file/Sport-1-Logo%2C_2013.svg" },
   { channelNumber: 192, id: "sport-2", tvgId: "sport-2", name: "Sport 2", group: "Sport", logoUrl: "https://commons.wikimedia.org/wiki/Special:Redirect/file/Logo_RMC_Sport_2_2018.svg" },
