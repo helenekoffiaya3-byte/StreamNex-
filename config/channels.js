@@ -96,8 +96,8 @@ const CHANNELS = [
   { channelNumber: 95, id: "nickelodeon", tvgId: "nickelodeon", name: "Nickelodeon", group: "Jeunesse", logoUrl: "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/france/nickelodeon-fr.png" },
   { channelNumber: 96, id: "nickelodeon-junior", tvgId: "nickelodeon-junior", name: "Nickelodeon Junior", group: "Jeunesse", logoUrl: "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/france/nickelodeon-junior-fr.png" },
   { channelNumber: 97, id: "nickelodeon-plus-1", tvgId: "nickelodeon-plus-1", name: "Nickelodeon +1", group: "Jeunesse", logoUrl: "https://commons.wikimedia.org/wiki/Special:Redirect/file/Nickelodeon_2023_Logo.svg" },
-  { channelNumber: 98, id: "nicktoons", tvgId: "nicktoons", name: "NickToons", group: "Jeunesse", logoUrl: "/assets/logos/nicktoons.svg" },
-  { channelNumber: 99, id: "nickelodeon-teen", tvgId: "nickelodeon-teen", name: "Nickelodeon Teen", group: "Jeunesse", logoUrl: "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/france/nickelodeon-teen-fr.png" },
+  { channelNumber: 98, id: "nicktoons", tvgId: "nicktoons", name: "NickToons", group: "Jeunesse", logoUrl: "/assets/logos/nicktoons.svg", webUrl: "https://pluto.tv/fr/watch/live-tv/#31693", }
+  { channelNumber: 99, id: "nickelodeon-teen", tvgId: "nickelodeon-teen", name: "Nickelodeon Teen", group: "Jeunesse", logoUrl: "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/france/nickelodeon-teen-fr.png", webUrl: "https://pluto.tv/fr/watch/live-tv/#31863", }
   { channelNumber: 100, id: "okoo", tvgId: "okoo", name: "Okoo", group: "Jeunesse", logoUrl: "/assets/logos/okoo.svg", webUrl: "https://www.france.tv/enfants/" },
   { channelNumber: 101, id: "piwi-plus", tvgId: "piwi-plus", name: "Piwi+", group: "Jeunesse", logoUrl: "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/france/piwi-plus-fr.png" },
   { channelNumber: 102, id: "pitchoun-kids-music", tvgId: "pitchoun-kids-music", name: "Pitchoun Kids Music", group: "Jeunesse" , logoUrl: "/assets/logos/pitchoun-kids-music.png"},
