@@ -207,7 +207,7 @@ const CHANNELS = [
   { channelNumber: 219, id: "vifi-tv", tvgId: "vifi-tv", name: "VIFI TV", group: "Afrique", logoUrl: "/assets/logos/vifi-tv.svg" },
   { channelNumber: 220, id: "zacu-tv", tvgId: "zacu-tv", name: "Zacu TV", group: "Afrique", logoUrl: "/assets/logos/zacu-tv.svg" },
   { channelNumber: 221, id: "zbc", tvgId: "zbc", name: "ZBC", group: "Afrique", logoUrl: "/assets/logos/zbc.svg" },
-  { channelNumber: 222, id: "emci-tv", tvgId: "emci-tv", name: "EMCI TV", group: "Religion", logoUrl: "/assets/logos/emci-tv.svg" },
+  { channelNumber: 222, id: "emci-tv", tvgId: "emci-tv", name: "EMCI TV", group: "Religion", logoUrl: "/assets/logos/emci-tv.svg", webUrl: "https://emcitv.com/direct/" },
   { channelNumber: 223, id: "esperance-tv", tvgId: "esperance-tv", name: "Espérance TV", group: "Religion", logoUrl: "/assets/logos/esperance-tv.svg" },
   { channelNumber: 224, id: "ewtn", tvgId: "ewtn", name: "EWTN", group: "Religion", logoUrl: "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/international/ewtn-int.png" },
   { channelNumber: 225, id: "hope-channel", tvgId: "hope-channel", name: "Hope Channel", group: "Religion", logoUrl: "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/united-states/hope-channel-us.png" },
