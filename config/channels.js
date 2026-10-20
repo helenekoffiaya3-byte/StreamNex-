@@ -220,7 +220,7 @@ const CHANNELS = [
   { channelNumber: 232, id: "passion-bollywood", tvgId: "passion-bollywood", name: "Passion Bollywood", group: "Cinéma indien" , logoUrl: "/assets/logos/passion-bollywood.png"},
   { channelNumber: 233, id: "clique-tv", tvgId: "clique-tv", name: "Clique TV", group: "Divertissement", logoUrl: "https://commons.wikimedia.org/wiki/Special:Redirect/file/Clique_TV.webp" },
   { channelNumber: 234, id: "cine-plus-ocs", tvgId: "cine-plus-ocs", name: "Ciné+ OCS", group: "Cinéma", logoUrl: "https://commons.wikimedia.org/wiki/Special:Redirect/file/Cin%C3%A9%2BOCS_2024.svg" },
-  { channelNumber: 235, id: "trace-kitoko", tvgId: "trace-kitoko", name: "Trace Kitoko", group: "Musique", logoUrl: "/assets/logos/channel-placeholder.svg" },
+  { channelNumber: 235, id: "trace-kitoko", tvgId: "trace-kitoko", name: "Trace Kitoko", group: "Musique", logoUrl: "/assets/logos/channel-placeholder.svg", webUrl: "https://trace.plus/en/app/watch/264301369134318291609204435154631978284" },
   { channelNumber: 236, id: "trace-mboa", tvgId: "trace-mboa", name: "Trace Mboa", group: "Musique", logoUrl: "/assets/logos/channel-placeholder.svg" },
   { channelNumber: 237, id: "trace-mziki", tvgId: "trace-mziki", name: "Trace Mziki", group: "Musique", logoUrl: "/assets/logos/channel-placeholder.svg" },
   { channelNumber: 238, id: "trace-teranga", tvgId: "trace-teranga", name: "Trace Teranga", group: "Musique", logoUrl: "/assets/logos/channel-placeholder.svg" },
