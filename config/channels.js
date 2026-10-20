@@ -199,7 +199,7 @@ const CHANNELS = [
 { channelNumber: 211, id: "sky-news", tvgId: "sky-news", name: "Sky News", group: "Information", logoUrl: "/assets/logos/sky-news.svg", webUrl: "https://www.youtube.com/channel/UCoMdktPbSTixAyNGwb-UYkQ/live", liveOnly: true },
 { channelNumber: 212, id: "the-weather-channel", tvgId: "the-weather-channel", name: "The Weather Channel", group: "Information", logoUrl: "/assets/logos/the-weather-channel.svg", webUrl: "https://www.youtube.com/@TheWeatherChannel/live" },
 { channelNumber: 213, id: "trt-world", tvgId: "trt-world", name: "TRT World", group: "Information", logoUrl: "/assets/logos/trt-world.svg", webUrl: "https://www.youtube.com/channel/UC7fWeaHhqgM4Ry-RMpM2YYw/live", liveOnly: true },
-  { channelNumber: 214, id: "a-plus", tvgId: "a-plus", name: "A+", group: "Afrique", logoUrl: "/assets/logos/a-plus.jpg" },
+  { channelNumber: 214, id: "a-plus", tvgId: "a-plus", name: "A+", group: "Afrique", logoUrl: "/assets/logos/a-plus.jpg", webUrl: "https://aplusivoire.web-prod2.direct.canal-overseas.com/live", }
   { channelNumber: 215, id: "m6-international", tvgId: "m6-international", name: "M6 International", group: "Afrique", logoUrl: "https://commons.wikimedia.org/wiki/Special:Redirect/file/M6_International_logo.svg" },
   { channelNumber: 216, id: "maboke-tv", tvgId: "maboke-tv", name: "Maboke TV", group: "Afrique", logoUrl: "/assets/logos/maboke-tv.svg" },
   { channelNumber: 217, id: "magc-tv", tvgId: "magc-tv", name: "MAGC TV", group: "Afrique", logoUrl: "/assets/logos/magc-tv.svg" },
