@@ -8,10 +8,10 @@
   },
   "generatedOn": "2026-10-17",
   "summary": {
-    "entryCount": 438,
-    "uniqueIds": 438,
-    "uniqueTvgIds": 438,
-    "uniqueNumbers": 438,
+    "entryCount": 437,
+    "uniqueIds": 437,
+    "uniqueTvgIds": 437,
+    "uniqueNumbers": 437,
     "minimumNumber": 1,
     "maximumNumber": 445,
     "missingNumbers": [
@@ -21,7 +21,8 @@
       137,
       144,
       145,
-      146
+      146,
+      268
     ],
     "duplicates": {
       "ids": [],
@@ -29,7 +30,7 @@
       "numbers": []
     },
     "webConfigured": 76,
-    "webUrlMissing": 362,
+    "webUrlMissing": 361,
     "countsByGroup": {
       "Côte d’Ivoire": 7,
       "S+": 32,
@@ -44,7 +45,7 @@
       "Documentaires": 14,
       "Sport": 19,
       "Musique": 22,
-      "Afrique": 63,
+      "Afrique": 62,
       "Religion": 18,
       "Lifestyle": 1,
       "Cinéma africain": 2,
@@ -2234,14 +2235,6 @@
       "id": "sensation-tv",
       "name": "Sensation TV",
       "tvgId": "sensation-tv",
-      "group": "Afrique",
-      "logoUrl": "/assets/logos/channel-placeholder.svg"
-    },
-    {
-      "number": 268,
-      "id": "golfe-tv",
-      "name": "Golfe TV",
-      "tvgId": "golfe-tv",
       "group": "Afrique",
       "logoUrl": "/assets/logos/channel-placeholder.svg"
     },
