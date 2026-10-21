@@ -329,7 +329,6 @@ const BOUQUETS = [
       "segou-tv",
       "sen-tv",
       "sensation-tv",
-      "golfe-tv",
       "sinema-zetu",
       "sos-docteur-tv",
       "ssm-tv",
