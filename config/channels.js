@@ -258,7 +258,6 @@ const CHANNELS = [
   { channelNumber: 265, id: "segou-tv", tvgId: "segou-tv", name: "Segou TV", group: "Afrique", logoUrl: "/assets/logos/channel-placeholder.svg" },
   { channelNumber: 266, id: "sen-tv", tvgId: "sen-tv", name: "SEN TV", group: "Afrique", logoUrl: "/assets/logos/channel-placeholder.svg" },
   { channelNumber: 267, id: "sensation-tv", tvgId: "sensation-tv", name: "Sensation TV", group: "Afrique", logoUrl: "/assets/logos/channel-placeholder.svg" },
-  { channelNumber: 268, id: "golfe-tv", tvgId: "golfe-tv", name: "Golfe TV", group: "Afrique", logoUrl: "/assets/logos/channel-placeholder.svg" },
   { channelNumber: 269, id: "sinema-zetu", tvgId: "sinema-zetu", name: "Sinema Zetu", group: "Afrique", logoUrl: "/assets/logos/channel-placeholder.svg" },
   { channelNumber: 270, id: "sos-docteur-tv", tvgId: "sos-docteur-tv", name: "SOS Docteur TV", group: "Santé", logoUrl: "/assets/logos/channel-placeholder.svg" },
   { channelNumber: 271, id: "ssm-tv", tvgId: "ssm-tv", name: "SSM TV", group: "Afrique", logoUrl: "/assets/logos/channel-placeholder.svg" },
