@@ -40,7 +40,19 @@
         <div style="display:flex;align-items:end;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:12px"><h3 style="font-size:19px">Bouquets</h3><a href="./apps.html" style="font-size:12px;color:var(--accent,#42e8b4);font-weight:750">Voir les chaînes et apps →</a></div>
         <div id="streamlive-bouquet-cards" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px"></div>
       </section>
-      <section id="sl-cat-passes" style="scroll-margin-top:90px;margin-bottom:18px"><h3 style="font-size:19px;margin-bottom:8px">Pass</h3><p style="font-size:13px;color:var(--muted,#9aa8ba);padding:15px;border:1px solid #293443;border-radius:12px">Aucun pass publié pour le moment.</p></section>
+      <section id="sl-cat-passes" style="scroll-margin-top:90px;margin-bottom:18px">
+        <h3 style="font-size:19px;margin-bottom:8px">Pass</h3>
+        <article style="padding:18px;border:1px solid #354154;border-radius:14px;background:linear-gradient(135deg,#28203b,#10151e);max-width:760px">
+          <div style="font-size:11px;color:#d7baff;font-weight:850;letter-spacing:1px;text-transform:uppercase">Pass divertissement</div>
+          <h4 style="font-size:22px;margin:7px 0">DIVERTISSEMENT+</h4>
+          <p style="font-size:13px;color:#bdc8d6;margin-bottom:10px">Chaînes de divertissement, jeunesse, cinéma, musique, découverte et sport.</p>
+          <strong style="font-size:24px">18 €</strong>
+          <p style="font-size:11px;color:#91a0b2;margin-top:5px">Liste de chaînes d’après la capture fournie, à confirmer avant publication définitive.</p>
+          <div style="display:flex;flex-wrap:wrap;gap:6px;margin-top:12px">
+            ${['Cartoonito','Cartoon Network','Boomerang','Nickelodeon','Nickelodeon+1','Nickelodeon Junior','Nicktoons','Télétoon+','Télétoon+1','Piwi+','Tiji','Canal J','Infosport+','Automoto','Equidia','MGGTV','Polar+','Série Club','RTL9','AB1','Novelas+','Action','MTV','Comédie+','Paris Première','Téva','Mangas','Comedy Central','Planète+','Planète+ Crime','Planète+ Aventure','Museum','Toute l’Histoire','La Chaîne Météo','Europe 2 TV','M6 Music','StreamNex Ciné','StreamNex Box-office','StreamNex Sport 360','StreamNex J'].map(name => '<span style="font-size:11px;padding:5px 8px;border-radius:7px;background:#222d3b;color:#e4eaf2;border:1px solid #354154">'+esc(name)+'</span>').join('')}
+          </div>
+        </article>
+      </section>
       <section id="sl-cat-formules" style="scroll-margin-top:90px;margin-bottom:18px"><h3 style="font-size:19px;margin-bottom:8px">Formules</h3><p style="font-size:13px;color:var(--muted,#9aa8ba);padding:15px;border:1px solid #293443;border-radius:12px">Aucune formule publiée pour le moment.</p></section>
       <section id="sl-cat-packs" style="scroll-margin-top:90px;margin-bottom:18px"><h3 style="font-size:19px;margin-bottom:8px">Packs</h3><p style="font-size:13px;color:var(--muted,#9aa8ba);padding:15px;border:1px solid #293443;border-radius:12px">Aucun pack publié pour le moment.</p></section>
       <section id="sl-cat-offres" style="scroll-margin-top:90px;margin-bottom:18px"><h3 style="font-size:19px;margin-bottom:8px">Offres promotionnelles</h3><p style="font-size:13px;color:var(--muted,#9aa8ba);padding:15px;border:1px solid #293443;border-radius:12px">Les offres correspondent aux campagnes promotionnelles. Aucune campagne active n’est publiée pour le moment.</p></section>`;
