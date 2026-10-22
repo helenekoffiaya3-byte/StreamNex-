@@ -35,10 +35,9 @@
         <a href="#sl-cat-packs" style="padding:9px 13px;border:1px solid #354154;border-radius:999px;font-size:12px;font-weight:750">Packs</a>
         <a href="#sl-cat-offres" style="padding:9px 13px;border:1px solid #354154;border-radius:999px;font-size:12px;font-weight:750">Offres promotionnelles</a>
       </nav>
-      <p id="streamlive-bouquet-country" style="font-size:12px;color:var(--muted,#9aa8ba);margin:-8px 0 20px">La région Play TV sera affichée après détection du pays.</p>
       <section id="sl-cat-bouquets" style="scroll-margin-top:90px;margin-bottom:26px">
-        <div style="display:flex;align-items:end;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:12px"><h3 style="font-size:19px">Bouquets</h3><a href="./apps.html" style="font-size:12px;color:var(--accent,#42e8b4);font-weight:750">Voir les chaînes et apps →</a></div>
-        <div id="streamlive-bouquet-cards" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px"></div>
+        <div style="display:flex;align-items:end;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:12px"><h3 style="font-size:19px">Bouquets</h3></div>
+        <p style="font-size:13px;color:var(--muted,#9aa8ba);padding:15px;border:1px solid #293443;border-radius:12px">Tous les anciens bouquets ont été supprimés. Les nouveaux bouquets seront ajoutés ici lors de la prochaine configuration.</p>
       </section>
       <section id="sl-cat-passes" style="scroll-margin-top:90px;margin-bottom:18px">
         <h3 style="font-size:19px;margin-bottom:8px">Pass</h3>
