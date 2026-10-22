@@ -1,20 +1,67 @@
 {
   "name": "Guyane+",
-  "type": "bouquet",
+  "type": "formula",
   "status": "draft-pending-catalogue-reconciliation",
   "source": {
     "type": "user-provided screenshots",
     "capturedAt": "2026-10-22",
-    "description": "Five screenshots of the CANAL+ 'Tout CANAL+' channel catalogue supplied as the reference for the Guyane+ bouquet."
+    "description": "Cinq captures fournies par l'utilisateur comme référence visuelle pour les chaînes candidates de la formule Guyane+."
   },
   "rules": [
-    "This file is an inventory of channels visibly identified in the screenshots, not proof of subscription rights or playback availability.",
-    "Do not invent or copy playback URLs from logos or screenshots.",
-    "Reconcile each channel against config/channels.js by exact identity before activating the bouquet.",
-    "Preserve existing channel IDs and channel numbers; do not duplicate catalogue entries.",
-    "Keep uncertain OCR/logo identifications flagged for manual confirmation."
+    "Guyane+ est une formule destinée à la Guyane française, pas un bouquet.",
+    "La formule contient exactement quatre bouquets distincts : Divertissement+, GF Ciné+Series, TCC StreamNex et Sport+.",
+    "L'inventaire des captures reste une liste de chaînes candidates à rapprocher; ne pas les affecter à un bouquet sans vérifier les captures.",
+    "Ne pas inventer ni déduire des URL de lecture à partir des logos ou captures.",
+    "Rapprocher chaque chaîne de config/channels.js par identité exacte avant de l'activer.",
+    "Préserver les IDs et numéros existants du catalogue; ne pas créer de doublons.",
+    "Signaler les identifications de logos incertaines pour confirmation manuelle.",
+    "Ne pas conclure que des droits de diffusion ou la disponibilité régionale sont acquis du seul fait qu'une chaîne apparaît sur une capture."
   ],
-  "channelsByCategory": {
+  "uncertainIdentifications": [
+    "The logo read as 'Fusion TV' is low-confidence and needs confirmation.",
+    "The local logo read as 'IOTV' is low-confidence and needs confirmation.",
+    "The logos read as 'Trotters TV', 'Zitata.tv', 'eTope / Pop TV', 'Maqolik 100.9 FM' and 'M Radio TV' should be checked against the original service names.",
+    "Some radio logos are included because they are visible in the screenshots; confirm whether Guyane+ is intended to include radio services."
+  ],
+  "catalogueReconciliation": {
+    "status": "pending",
+    "catalogueSource": "config/channels.js",
+    "playbackUrlVerification": "not performed",
+    "rightsAndRegionalAvailabilityVerification": "not performed"
+  },
+  "region": {
+    "country": "France",
+    "territory": "Guyane française",
+    "availabilityScope": "Guyane française uniquement, sauf confirmation ultérieure"
+  },
+  "description": "Formule commerciale Guyane+ regroupant quatre bouquets distincts. Guyane+ n'est pas elle-même un bouquet.",
+  "bouquets": [
+    {
+      "id": "divertissement-plus",
+      "name": "Divertissement+",
+      "status": "draft-pending-channel-assignment",
+      "channels": []
+    },
+    {
+      "id": "gf-cine-series",
+      "name": "GF Ciné+Series",
+      "status": "draft-pending-channel-assignment",
+      "channels": []
+    },
+    {
+      "id": "tcc-streamnex",
+      "name": "TCC StreamNex",
+      "status": "draft-pending-channel-assignment",
+      "channels": []
+    },
+    {
+      "id": "sport-plus",
+      "name": "Sport+",
+      "status": "draft-pending-channel-assignment",
+      "channels": []
+    }
+  ],
+  "referenceInventoryByCategory": {
     "canalPlus": [
       "CANAL+ Box Office",
       "CANAL+ Cinéma(s)",
@@ -191,17 +238,5 @@
       "W9",
       "Warner TV"
     ]
-  },
-  "uncertainIdentifications": [
-    "The logo read as 'Fusion TV' is low-confidence and needs confirmation.",
-    "The local logo read as 'IOTV' is low-confidence and needs confirmation.",
-    "The logos read as 'Trotters TV', 'Zitata.tv', 'eTope / Pop TV', 'Maqolik 100.9 FM' and 'M Radio TV' should be checked against the original service names.",
-    "Some radio logos are included because they are visible in the screenshots; confirm whether Guyane+ is intended to include radio services."
-  ],
-  "catalogueReconciliation": {
-    "status": "pending",
-    "catalogueSource": "config/channels.js",
-    "playbackUrlVerification": "not performed",
-    "rightsAndRegionalAvailabilityVerification": "not performed"
   }
 }
