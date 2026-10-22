@@ -67,6 +67,82 @@
             "StreamNex J"
           ],
           "notes": "La liste issue de la capture correspond aux logos visibles à l’écran ; vérifier les libellés exacts et la liste complète avant publication définitive."
+        },
+        {
+          "id": "my-tv-plus",
+          "name": "My TV+",
+          "status": "configured",
+          "price": {
+            "amount": 3.23,
+            "currency": "EUR",
+            "display": "3,23 €"
+          },
+          "availabilityNote": "CANAL+ indique que l’offre TV+ dépend de la zone géographique. Vérifier l’éligibilité locale et les droits de diffusion avant publication.",
+          "includedChannelGroups": {
+            "tnt": [
+              "TF1",
+              "France 2",
+              "France 3",
+              "France 3 Régions",
+              "M6",
+              "ARTE",
+              "W9",
+              "TMC",
+              "TFX",
+              "LCP Public Sénat",
+              "France 4",
+              "BFM TV",
+              "CNEWS",
+              "CStar",
+              "Gulli",
+              "TF1 Séries Films",
+              "La Chaîne L’Équipe",
+              "6ter",
+              "RMC Story",
+              "RMC Découverte",
+              "RMC Life",
+              "LCI",
+              "France Info"
+            ],
+            "thematic": [
+              "RTL9",
+              "Infosport+",
+              "Sport en France",
+              "Comédie+",
+              "TV5MONDE",
+              "Planète+ Aventure",
+              "TV Monaco",
+              "MTV",
+              "Mangas",
+              "France 24 Français",
+              "Euronews",
+              "BBC News",
+              "BFM Business",
+              "Bloomberg Télévision",
+              "CNN",
+              "CNBC",
+              "i24NEWS",
+              "Al Jazeera",
+              "France 24 English",
+              "ARTE",
+              "Al Jazeera Channel",
+              "Euronews Deutsch",
+              "Arirang",
+              "NHK World Japan"
+            ],
+            "digital": [
+              "Clique TV",
+              "Gym Direct",
+              "Groland",
+              "Comedy Club",
+              "Les Deschiens",
+              "Les Nouveaux Explorateurs",
+              "Les Interviews de Raphaël Mezrahi",
+              "Les Animaux de la 8"
+            ]
+          },
+          "includedChannelCountNote": "Le descriptif fourni annonce toutes les chaînes de la TNT, 25 chaînes thématiques supplémentaires et 8 chaînes digitales. Les intitulés ci-dessus reprennent les chaînes explicitement listées ; les nombres de chaînes supplémentaires restent ceux annoncés dans la description source.",
+          "sourceDescription": "Description de l’offre fournie par l’utilisateur ; disponibilité CANAL+ à confirmer selon la zone."
         }
       ]
     },
