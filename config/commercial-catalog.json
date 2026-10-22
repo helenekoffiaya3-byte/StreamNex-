@@ -92,6 +92,39 @@
   "notes": [
     "Une offre est une campagne promotionnelle, pas une formule d’abonnement.",
     "La présence d’un service vidéo associé ne signifie pas que son abonnement tiers est inclus.",
-    "Les catégories sans items sont définies mais aucun produit n’a encore été enregistré."
+    "Les catégories sans items sont définies mais aucun produit n’a encore été enregistré.",
+    "Les services vidéo sont répertoriés séparément des bouquets ; leur présence dans le catalogue ne signifie pas qu’un abonnement tiers est inclus."
+  ],
+  "videoServices": [
+    {
+      "id": "apple-tv",
+      "name": "Apple TV",
+      "status": "listed"
+    },
+    {
+      "id": "hbo-max",
+      "name": "HBO Max",
+      "status": "listed"
+    },
+    {
+      "id": "paramount-plus",
+      "name": "Paramount+",
+      "status": "listed"
+    },
+    {
+      "id": "netflix",
+      "name": "Netflix",
+      "status": "listed"
+    },
+    {
+      "id": "tf1-plus",
+      "name": "TF1+",
+      "status": "listed"
+    },
+    {
+      "id": "m6-plus",
+      "name": "M6+",
+      "status": "listed"
+    }
   ]
 }
