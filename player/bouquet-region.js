@@ -54,7 +54,7 @@
         <article style="padding:18px;border:1px solid #354154;border-radius:14px;background:linear-gradient(135deg,#173044,#10151e);max-width:760px;margin-top:12px">
           <div style="font-size:11px;color:#8fd7ff;font-weight:850;letter-spacing:1px;text-transform:uppercase">Pass TV · disponibilité régionale à confirmer</div>
           <h4 style="font-size:22px;margin:7px 0">My TV+</h4>
-          <strong style="font-size:24px">3,23 €</strong>
+          <strong style="font-size:24px">3,30 €</strong>
           <p style="font-size:12px;color:#bdc8d6;margin:8px 0">CANAL+ indique que l’accès aux programmes et aux offres dépend de la zone géographique.</p>
           <details style="margin-top:12px"><summary style="cursor:pointer;font-size:13px;font-weight:750">Afficher les chaînes incluses</summary>
             <p style="font-size:12px;color:#9fb0c3;margin-top:10px">TNT</p>
