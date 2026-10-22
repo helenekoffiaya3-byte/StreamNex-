@@ -63,28 +63,11 @@
       code = /^[A-Z]{2}$/.test(code || '') ? code : '';
       const offer = code ? playTvFor(code) : { region:'Pays à détecter', price:'Tarif régional après détection' };
       const supaPrice = AMERICAS.has(code) ? '60 $ US/mois' : '59,99 €/mois';
-      section.querySelector('#streamlive-bouquet-country').textContent = code ? 'Région détectée : ' + regionFor(code) + ' (' + code + ')' : 'Détectez votre pays dans la carte Play TV pour afficher le tarif régional.';
+      section.querySelector('#streamlive-bouquet-country').textContent = 'Les anciens bouquets ont été supprimés. Aucun tarif ni produit de bouquet n’est affiché.';
       cards.innerHTML = `
-        <article style="padding:18px;border:1px solid #354154;border-radius:14px;background:linear-gradient(135deg,#35252a,#10151e)">
-          <div style="font-size:11px;color:#ff8f8f;font-weight:850;letter-spacing:1px;text-transform:uppercase">Côte d’Ivoire</div>
-          
-          <h4 style="font-size:21px;margin:7px 0">Free TV</h4><p style="font-size:13px;color:#bdc8d6;margin-bottom:10px">20 chaînes · streaming via StreamLive ou StreamNex.</p><strong style="font-size:17px">400 F CFA</strong><p style="font-size:11px;color:#91a0b2;margin-top:9px">Service vidéo associé : M6+.</p>
-        </article>
-        <article style="padding:18px;border:1px solid #354154;border-radius:14px;background:linear-gradient(135deg,#15252b,#10151e)">
-          
-          <div style="font-size:11px;color:#42e8b4;font-weight:850;letter-spacing:1px;text-transform:uppercase">Offre régionale</div><h4 style="font-size:21px;margin:7px 0">Play TV</h4><p style="font-size:13px;color:#bdc8d6;margin-bottom:10px">Variante : ${esc(offer.region)}</p><strong style="font-size:17px">${esc(offer.price)}</strong><p style="font-size:11px;color:#91a0b2;margin-top:9px">Service vidéo associé : TF1+.</p>
-        </article>
-        <article style="padding:18px;border:1px solid #354154;border-radius:14px;background:linear-gradient(135deg,#242036,#10151e)">
-          
-          <div style="font-size:11px;color:#c7a8ff;font-weight:850;letter-spacing:1px;text-transform:uppercase">Bouquet unique</div><h4 style="font-size:21px;margin:7px 0">Max Play TV</h4><p style="font-size:13px;color:#bdc8d6;margin-bottom:10px">Un seul bouquet disponible en Amérique, en Europa et en Côte d’Ivoire.</p><strong style="font-size:17px">50 €/mois ou 50 $ US/mois</strong><p style="font-size:11px;color:#91a0b2;margin-top:9px">Services vidéo associés : Paramount+ et M6+.</p>
-        </article>
-        <article style="padding:18px;border:1px solid #354154;border-radius:14px;background:linear-gradient(135deg,#35251a,#10151e)">
-          <div style="font-size:11px;color:#ffbd80;font-weight:850;letter-spacing:1px;text-transform:uppercase">Bouquet régional · en préparation</div><h4 style="font-size:21px;margin:7px 0">Supa Boom TV</h4><p style="font-size:13px;color:#bdc8d6;margin-bottom:10px">320 chaînes prévues · Amérique, Europa et Côte d’Ivoire.</p><strong style="font-size:17px">${supaPrice}</strong><p style="font-size:11px;color:#91a0b2;margin-top:9px">Services vidéo associés : TF1+, Paramount+ et M6+.</p>
-        </article>
-        <article style="padding:18px;border:1px solid #354154;border-radius:14px;background:linear-gradient(135deg,#1c2c42,#10151e)">
-          
-          <div style="font-size:11px;color:#9fc6ff;font-weight:850;letter-spacing:1px;text-transform:uppercase">Catalogue complet · en préparation</div><h4 style="font-size:21px;margin:7px 0">Now TV</h4><p style="font-size:13px;color:#bdc8d6;margin-bottom:10px">Toutes les chaînes du catalogue StreamLive.</p><strong style="font-size:17px">${AMERICAS.has(code) ? '69 $ US/mois' : '70 €/mois'}</strong><p style="font-size:11px;color:#91a0b2;margin-top:9px">Services vidéo associés : Netflix, HBO Max, Paramount+, TF1+ et M6+.</p>
-        </article>`;
+        <div style="grid-column:1/-1;padding:18px;border:1px dashed #354154;border-radius:14px;color:#bdc8d6;font-size:13px">
+          Tous les anciens bouquets ont été supprimés. La catégorie est vide et prête à être reconstruite.
+        </div>`
     }
     let saved = '';
     try { saved = localStorage.getItem('streamlive-play-tv-country') || ''; } catch (_) {}
