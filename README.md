@@ -31,3 +31,10 @@ Renvoie le nombre de chaînes disposant d'un `webUrl` et la liste des entrées s
 ## Ajouter ou corriger un lien
 
 Ajouter le lien de la page officielle dans le champ `webUrl` de la chaîne correspondante dans `config/channels.js`. Ne pas ajouter de variable d'environnement pour remplacer ce lien et ne pas supprimer ni renuméroter une chaîne simplement parce que son lien manque.
+
+## Catalogue commercial
+
+- `config/commercial-catalog.json` — catalogue commercial structuré en cinq catégories distinctes : **Bouquets**, **Pass**, **Formules**, **Packs** et **Offres**.
+- Les **Offres** désignent exclusivement des campagnes promotionnelles (période, remise et conditions), pas un type d’abonnement.
+- `player/bouquet-region.js` affiche les cinq rubriques séparément sur la page d’accueil. Les catégories sans produits enregistrés affichent un état vide plutôt que des produits inventés.
+- Les services vidéo associés à un bouquet sont des services externes ; leur présence ne garantit pas que leur abonnement tiers soit inclus dans le prix StreamLive.
