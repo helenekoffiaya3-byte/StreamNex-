@@ -91,7 +91,63 @@
       "id": "passes",
       "name": "Pass",
       "description": "Accès limité par durée, usage ou événement.",
-      "items": []
+      "items": [
+        {
+          "id": "divertissement-plus",
+          "name": "DIVERTISSEMENT+",
+          "status": "configured",
+          "price": {
+            "amount": 18,
+            "currency": "EUR",
+            "display": "18 €"
+          },
+          "includedChannelsFromScreenshot": [
+            "Cartoonito",
+            "Cartoon Network",
+            "Boomerang",
+            "Nickelodeon",
+            "Nickelodeon+1",
+            "Nickelodeon Junior",
+            "Nicktoons",
+            "Télétoon+",
+            "Télétoon+1",
+            "Piwi+",
+            "Tiji",
+            "Canal J",
+            "Infosport+",
+            "Automoto",
+            "Equidia",
+            "MGGTV",
+            "Polar+",
+            "Série Club",
+            "RTL9",
+            "AB1",
+            "Novelas+",
+            "Action",
+            "MTV",
+            "Comédie+",
+            "Paris Première",
+            "Téva",
+            "Mangas",
+            "Comedy Central",
+            "Planète+",
+            "Planète+ Crime",
+            "Planète+ Aventure",
+            "Museum",
+            "Toute l’Histoire",
+            "La Chaîne Météo",
+            "Europe 2 TV",
+            "M6 Music"
+          ],
+          "additionalChannels": [
+            "StreamNex Ciné",
+            "StreamNex Box-office",
+            "StreamNex Sport 360",
+            "StreamNex J"
+          ],
+          "notes": "La liste issue de la capture correspond aux logos visibles à l’écran ; vérifier les libellés exacts et la liste complète avant publication définitive."
+        }
+      ]
     },
     {
       "id": "formules",
