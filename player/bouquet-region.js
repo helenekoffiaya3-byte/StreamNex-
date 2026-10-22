@@ -51,6 +51,21 @@
             ${['Cartoonito','Cartoon Network','Boomerang','Nickelodeon','Nickelodeon+1','Nickelodeon Junior','Nicktoons','Télétoon+','Télétoon+1','Piwi+','Tiji','Canal J','Infosport+','Automoto','Equidia','MGGTV','Polar+','Série Club','RTL9','AB1','Novelas+','Action','MTV','Comédie+','Paris Première','Téva','Mangas','Comedy Central','Planète+','Planète+ Crime','Planète+ Aventure','Museum','Toute l’Histoire','La Chaîne Météo','Europe 2 TV','M6 Music','StreamNex Ciné','StreamNex Box-office','StreamNex Sport 360','StreamNex J'].map(name => '<span style="font-size:11px;padding:5px 8px;border-radius:7px;background:#222d3b;color:#e4eaf2;border:1px solid #354154">'+esc(name)+'</span>').join('')}
           </div>
         </article>
+        <article style="padding:18px;border:1px solid #354154;border-radius:14px;background:linear-gradient(135deg,#173044,#10151e);max-width:760px;margin-top:12px">
+          <div style="font-size:11px;color:#8fd7ff;font-weight:850;letter-spacing:1px;text-transform:uppercase">Pass TV · disponibilité régionale à confirmer</div>
+          <h4 style="font-size:22px;margin:7px 0">My TV+</h4>
+          <strong style="font-size:24px">3,23 €</strong>
+          <p style="font-size:12px;color:#bdc8d6;margin:8px 0">CANAL+ indique que l’accès aux programmes et aux offres dépend de la zone géographique.</p>
+          <details style="margin-top:12px"><summary style="cursor:pointer;font-size:13px;font-weight:750">Afficher les chaînes incluses</summary>
+            <p style="font-size:12px;color:#9fb0c3;margin-top:10px">TNT</p>
+            <p style="font-size:12px;line-height:1.8;color:#e4eaf2">TF1 · France 2 · France 3 · France 3 Régions · M6 · ARTE · W9 · TMC · TFX · LCP Public Sénat · France 4 · BFM TV · CNEWS · CStar · Gulli · TF1 Séries Films · La Chaîne L’Équipe · 6ter · RMC Story · RMC Découverte · RMC Life · LCI · France Info</p>
+            <p style="font-size:12px;color:#9fb0c3;margin-top:10px">Chaînes thématiques</p>
+            <p style="font-size:12px;line-height:1.8;color:#e4eaf2">RTL9 · Infosport+ · Sport en France · Comédie+ · TV5MONDE · Planète+ Aventure · TV Monaco · MTV · Mangas · France 24 Français · Euronews · BBC News · BFM Business · Bloomberg Télévision · CNN · CNBC · i24NEWS · Al Jazeera · France 24 English · ARTE · Al Jazeera Channel · Euronews Deutsch · Arirang · NHK World Japan</p>
+            <p style="font-size:12px;color:#9fb0c3;margin-top:10px">Chaînes digitales</p>
+            <p style="font-size:12px;line-height:1.8;color:#e4eaf2">Clique TV · Gym Direct · Groland · Comedy Club · Les Deschiens · Les Nouveaux Explorateurs · Les Interviews de Raphaël Mezrahi · Les Animaux de la 8</p>
+            <p style="font-size:11px;color:#91a0b2;margin-top:10px">La description annonce aussi « + 25 chaînes thématiques » et « + 8 chaînes digitales ». La disponibilité réelle doit être confirmée selon le pays.</p>
+          </details>
+        </article>
       </section>
       <section id="sl-cat-formules" style="scroll-margin-top:90px;margin-bottom:18px"><h3 style="font-size:19px;margin-bottom:8px">Formules</h3><p style="font-size:13px;color:var(--muted,#9aa8ba);padding:15px;border:1px solid #293443;border-radius:12px">Aucune formule publiée pour le moment.</p></section>
       <section id="sl-cat-packs" style="scroll-margin-top:90px;margin-bottom:18px"><h3 style="font-size:19px;margin-bottom:8px">Packs</h3><p style="font-size:13px;color:var(--muted,#9aa8ba);padding:15px;border:1px solid #293443;border-radius:12px">Aucun pack publié pour le moment.</p></section>
