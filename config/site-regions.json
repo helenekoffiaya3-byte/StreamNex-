@@ -1,0 +1,59 @@
+{
+  "schemaVersion": 1,
+  "title": "StreamLive — configuration multisite régionale",
+  "architecture": "single-app-multi-region",
+  "defaultRegion": "CI",
+  "regionSelection": {
+    "priority": [
+      "user-selected-region",
+      "trusted-country-detection",
+      "defaultRegion"
+    ],
+    "requireUserConsentForPreciseLocation": true,
+    "allowManualOverride": true
+  },
+  "regions": [
+    {
+      "id": "CI",
+      "countryCode": "CI",
+      "countryName": "Côte d’Ivoire",
+      "displayName": "StreamLive Côte d’Ivoire",
+      "status": "initial-region",
+      "enabled": true,
+      "locale": "fr-CI",
+      "currency": "XOF",
+      "currencyDisplay": "FCFA",
+      "timeZone": "Africa/Abidjan",
+      "domain": null,
+      "notes": [
+        "Première région préparée pour le multisite StreamLive.",
+        "Réutilise le catalogue central config/channels.js; ne crée pas de copies régionales de chaînes.",
+        "Les bouquets et formules ne doivent être affichés que lorsqu'ils sont explicitement configurés dans le catalogue commercial.",
+        "La détection du pays ne doit pas demander la géolocalisation précise sans action et consentement de l'utilisateur."
+      ]
+    },
+    {
+      "id": "GF",
+      "countryCode": "GF",
+      "countryName": "Guyane française",
+      "displayName": "StreamLive Guyane française",
+      "status": "planned",
+      "enabled": false,
+      "locale": "fr-FR",
+      "currency": "EUR",
+      "currencyDisplay": "€",
+      "timeZone": "America/Cayenne",
+      "domain": null,
+      "notes": [
+        "À configurer ultérieurement; ne pas activer les bouquets Guyane+ avant validation."
+      ]
+    }
+  ],
+  "invariants": [
+    "Un seul code source et un seul catalogue technique central.",
+    "Les régions déterminent l'affichage, les tarifs et les offres disponibles, sans dupliquer les chaînes.",
+    "Ne pas modifier les IDs ou numéros de chaînes existants pour créer une variante régionale.",
+    "Ne pas ajouter de chaîne, de bouquet ou de formule sans instruction explicite de l'utilisateur.",
+    "Les droits de diffusion et la disponibilité des flux doivent être vérifiés séparément pour chaque territoire."
+  ]
+}
