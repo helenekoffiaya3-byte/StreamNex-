@@ -41,15 +41,18 @@ function renderSidebar(){
  sideGroups.innerHTML=items.map(([value,icon,label,n])=>'<button type="button" class="side-item'+(active===value?' active':'')+'" data-filter="'+esc(value)+'"><span><span class="side-icon">'+icon+'</span> '+esc(label)+'</span><small>'+n+'</small></button>').join('');
  sideGroups.querySelectorAll('[data-filter]').forEach(b=>b.addEventListener('click',()=>setActive(b.dataset.filter)));
 }
+function normalizeSearch(value){
+ return String(value??'').normalize('NFD').replace(/[\\u0300-\\u036f]/g,'').toLocaleLowerCase('fr').trim();
+}
 function filtered(){
- const fav=favSet(),term=String(search.value||'').trim().toLocaleLowerCase('fr');
- let arr=channels;
+ const fav=favSet(),term=normalizeSearch(search.value);
+ let arr=channels.slice();
  if(active==='__fav__')arr=arr.filter(c=>fav.has(c.id));
  else if(active==='__sport__')arr=arr.filter(c=>/sport|football|rugby|basket|tennis|motorsport/i.test(c.group+' '+c.name));
  else if(active!=='__all__'&&active!=='__sport_under__')arr=arr.filter(c=>groupName(c)===active);
  const selectedGroup=groupFilter.value;
  if(selectedGroup)arr=arr.filter(c=>groupName(c)===selectedGroup);
- if(term)arr=arr.filter(c=>(c.name+' '+c.id+' '+c.channelNumber+' '+c.group).toLocaleLowerCase('fr').includes(term));
+ if(term)arr=arr.filter(c=>normalizeSearch([c.name,c.id,c.tvgId,c.channelNumber,c.group].join(' ')).includes(term));
  return sorted(arr);
 }
 let selectedChannelId=null;
@@ -135,14 +138,25 @@ function render(){
 async function load(){
  try{
   count.textContent='Chargement de toutes les chaînes…';
-  const response=await fetch('/api/channels?mode=live',{headers:{accept:'application/json'},cache:'no-store'});
+  list.innerHTML='<div class="empty">Chargement du catalogue…</div>';
+  const response=await fetch('/api/channels?mode=live&_='+Date.now(),{headers:{accept:'application/json'},cache:'no-store'});
   if(!response.ok)throw new Error('HTTP '+response.status);
-  const source=await response.json();if(!Array.isArray(source))throw new Error('INVALID_CATALOGUE');
-  // Preserve every catalogue entry, including channels whose live source is not configured.
-  channels=source.filter(Boolean).map(c=>({id:String(c.id||c.tvgId||''),channelNumber:Number(c.channelNumber)||0,name:String(c.name||c.id||'Chaîne'),group:String(c.group||'Autres chaînes'),logoUrl:String(c.logoUrl||''),webUrl:c.webUrl||null})).filter(c=>c.id);
-  totalCount.textContent=channels.length;
+  const payload=await response.json();
+  const source=Array.isArray(payload)?payload:(Array.isArray(payload?.channels)?payload.channels:(Array.isArray(payload?.data)?payload.data:null));
+  if(!source)throw new Error('INVALID_CATALOGUE');
+  // Keep every real catalogue entry, even if its ID or live URL is missing.
+  channels=source.filter(c=>c&&typeof c==='object').map((c,index)=>{
+   const name=String(c.name||c.title||c.id||c.tvgId||('Chaîne '+(index+1)));
+   const id=String(c.id||c.tvgId||('channel-'+(c.channelNumber||index+1)+'-'+normalizeSearch(name).replace(/[^a-z0-9]+/g,'-')));
+   return {id,tvgId:String(c.tvgId||c.id||id),channelNumber:Number(c.channelNumber??c.number)||0,name,group:String(c.group||c.category||'Autres chaînes'),logoUrl:String(c.logoUrl||c.logo||''),webUrl:c.webUrl||c.streamUrl||c.url||null};
+  });
+  totalCount.textContent=String(channels.length);
   populateFilter();renderTabs();render();
- }catch(_){totalCount.textContent='—';count.textContent='Catalogue indisponible';list.innerHTML='<div class="empty">Impossible de charger le catalogue. Vérifiez la connexion puis réessayez.</div>'}
+ }catch(error){
+  totalCount.textContent='—';count.textContent='Catalogue indisponible';
+  list.innerHTML='<div class="empty"><strong>Impossible de charger le catalogue.</strong><p>Vérifiez la connexion puis réessayez.</p><button type="button" id="retry-live-catalogue">Réessayer</button></div>';
+  const retry=document.getElementById('retry-live-catalogue');if(retry)retry.addEventListener('click',load);
+ }
 }
 search.addEventListener('input',render);
 groupFilter.addEventListener('change',()=>{active=groupFilter.value||'__all__';renderTabs();render()});
