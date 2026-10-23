@@ -19,9 +19,19 @@ footer{max-width:1500px;margin:auto;padding:20px 24px 32px;border-top:1px solid 
 @media(max-width:1100px){.grid{grid-template-columns:repeat(4,minmax(0,1fr))}.layout{grid-template-columns:190px minmax(0,1fr)}.head{gap:20px}.links{gap:16px!important}}
 @media(max-width:800px){.head{padding:11px 14px;gap:14px}.brand{font-size:19px}.links{gap:14px!important;font-size:12px!important}.links a:nth-child(2){display:none}.profile{padding:9px 11px}main{padding:14px 13px 38px}.hero{padding:23px 20px;min-height:215px}.hero:before{right:-170px}.hero:after{right:-2%;font-size:150px}.layout{grid-template-columns:1fr}.sidebar{position:static;order:2}.content{order:1}.side-groups{grid-template-columns:repeat(2,minmax(0,1fr))}.side-note{display:none}.grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}.toolbar{align-items:stretch}.toolbar select{max-width:190px}.result-line{align-items:flex-start;flex-direction:column}}
 @media(max-width:520px){.head{gap:9px}.brand{font-size:17px}.brand-mark{width:31px;height:31px}.links{gap:10px!important;font-size:11px!important}.links a:nth-child(3){display:none}.profile{font-size:0;padding:9px}.profile:before{content:"SL";font-size:11px}.hero h1{font-size:38px}.hero p{font-size:12px}.stats{gap:10px}.stat{font-size:10px}.toolbar{display:grid;grid-template-columns:1fr}.toolbar select{max-width:none}.grid{grid-template-columns:repeat(2,minmax(0,1fr))}.channel{padding:8px;min-height:145px}.thumb{height:auto;aspect-ratio:16/9}.name{font-size:11px}.group,.number{font-size:9px}.state{font-size:7px}.fav{right:12px;top:12px;width:25px;height:25px}footer{padding:18px 14px;flex-direction:column}}
+
+/* Navigation mobile inférieure StreamLive */
+.sl-bottom-nav{position:fixed;left:0;right:0;bottom:0;z-index:1000;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));align-items:center;gap:0;padding:8px 3px calc(8px + env(safe-area-inset-bottom));background:#121212;border-top:1px solid #292929;color:#9a9a9a;font-family:system-ui,-apple-system,sans-serif;font-size:10px;box-shadow:0 -6px 24px #0005}
+.sl-bottom-nav .sl-tab{min-width:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;padding:1px 0;color:inherit;text-decoration:none;white-space:nowrap;font-weight:500;line-height:1.15}
+.sl-bottom-nav .sl-tab svg{width:23px;height:23px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex:none}
+.sl-bottom-nav .sl-tab .sl-grid-icon,.sl-bottom-nav .sl-tab .sl-dots-icon{fill:currentColor;stroke:none}
+.sl-bottom-nav .sl-tab.active{color:#e50914;font-weight:650}
+body{padding-bottom:calc(68px + env(safe-area-inset-bottom))!important}
+@media(min-width:761px){.sl-bottom-nav{padding-top:10px;padding-bottom:calc(10px + env(safe-area-inset-bottom))}.sl-bottom-nav .sl-tab{font-size:11px}}
+@media(max-width:360px){.sl-bottom-nav{font-size:9px;padding-left:1px;padding-right:1px}.sl-bottom-nav .sl-tab svg{width:21px;height:21px}}
 </style></head>
 <body>
-<header><div class="head"><a class="brand" href="./index.html"><span class="brand-mark">▶</span><span>Stream<em>Live</em></span></a><nav class="links" aria-label="Navigation principale"><a href="./index.html">⌂ Accueil</a><a class="active" href="./live.html">▣ En direct</a><a href="./apps.html">▦ Chaînes &amp; Apps</a></nav><a class="profile" href="./index.html" aria-label="Espace utilisateur">Se connecter</a></div></header>
+<header><div class="head"><a class="brand" href="./index.html"><span class="brand-mark">▶</span><span>Stream<em>Live</em></span></a><a class="profile" href="./index.html" aria-label="Espace utilisateur">Se connecter</a></div></header>
 <main>
 <section class="hero"><div class="hero-content"><div class="live-pill"><span class="dot"></span> EN DIRECT</div><h1>La télévision,<br><span>en direct</span></h1><p>Vos chaînes préférées en un seul endroit. Infos, sport, cinéma, divertissement et bien plus encore.</p><div class="stats"><div class="stat"><strong id="total-count">—</strong> chaînes</div><div class="stat"><strong>◉</strong> Lecteur StreamLive</div><div class="stat"><strong>☆</strong> Vos favoris</div></div></div></section>
 <div class="toolbar"><label class="search"><span>⌕</span><input id="live-search" type="search" placeholder="Rechercher une chaîne, un numéro ou un programme…" aria-label="Rechercher une chaîne en direct"></label><select id="group-filter" aria-label="Filtrer par catégorie"><option value="">Toutes les catégories</option></select></div>
@@ -31,4 +41,11 @@ footer{max-width:1500px;margin:auto;padding:20px 24px 32px;border-top:1px solid 
 </div>
 </main><footer><span>© StreamLive — Espace utilisateur</span><a href="./index.html">Retour à l’accueil ↑</a></footer>
 <script src="./catalog-loader.js"></script><script src="./live.js"></script>
+<nav class="sl-bottom-nav" aria-label="Navigation principale">
+<a class="sl-tab " href="./index.html#top" aria-label="Accueil"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m3 10 9-7 9 7v10a1 1 0 0 1-1 1h-5v-7H9v7H4a1 1 0 0 1-1-1z"/></svg><span>Accueil</span></a>
+<a class="sl-tab " href="./apps.html#channel-search" aria-label="Recherche"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7.5"/><path d="m16.5 16.5 4 4"/></svg><span>Recherche</span></a>
+<a class="sl-tab active" href="./live.html" aria-label="En direct"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2.5" y="3" width="19" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg><span>En direct</span></a>
+<a class="sl-tab " href="./apps.html" aria-label="Chaînes et applications"><svg class="sl-grid-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="8" height="8" rx="1"/><rect x="13" y="3" width="8" height="8" rx="1"/><rect x="3" y="13" width="8" height="8" rx="1"/><rect x="13" y="13" width="8" height="8" rx="1"/></svg><span>Chaînes &amp; Apps</span></a>
+<a class="sl-tab " href="./index.html#guide" aria-label="En plus"><svg class="sl-dots-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="5" cy="12" r="1.7"/><circle cx="12" cy="12" r="1.7"/><circle cx="19" cy="12" r="1.7"/></svg><span>En plus</span></a>
+</nav>
 </body></html>
