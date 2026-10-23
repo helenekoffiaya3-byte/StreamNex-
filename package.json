@@ -3,6 +3,6 @@
   "private": true,
   "type": "module",
   "dependencies": {
-    "@netlify/database": "^0.3.0"
+    "@netlify/database": "*"
   }
 }
