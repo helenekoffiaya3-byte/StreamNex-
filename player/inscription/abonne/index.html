@@ -15,22 +15,15 @@
 <p class="status" id="status" role="status" aria-live="polite"></p>
 <p class="fineprint">En cliquant sur « Continuer », vous confirmez avoir pris connaissance des conditions d’utilisation et de la politique de confidentialité de StreamLive. Votre compte sera créé via Netlify Identity. Une confirmation par e-mail peut être nécessaire.</p>
 </form></main>
-<script type="module">
-import { signup, handleAuthCallback } from "https://esm.sh/@netlify/identity";
+<script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+<script>
 const form = document.getElementById('register-form');
 const password = document.getElementById('password');
 const status = document.getElementById('status');
 const submit = form.querySelector('button[type="submit"]');
 
-try {
-  const callback = await handleAuthCallback();
-  if (callback?.type === 'confirmation') {
-    status.textContent = 'Adresse e-mail confirmée. Vous pouvez maintenant vous connecter.';
-  } else if (callback?.type === 'recovery') {
-    status.textContent = 'Lien de récupération reconnu.';
-  }
-} catch (error) {
-  status.textContent = 'Le lien de confirmation n’a pas pu être traité. Vérifiez qu’Identity est activé sur le site publié.';
+if (!window.netlifyIdentity) {
+  status.textContent = 'Le service de compte sera disponible lorsque Netlify Identity sera activé sur le site publié.';
 }
 
 document.getElementById('toggle-password').addEventListener('click', () => {
@@ -72,19 +65,26 @@ form.addEventListener('submit', async (e) => {
     }
     const numberData = await numberResponse.json();
     const subscriberNumber = String(numberData.subscriberNumber || '');
-    if (!/^\\d+$/.test(subscriberNumber) || Number(subscriberNumber) < 23568) {
+    if (!/^\d+$/.test(subscriberNumber) || Number(subscriberNumber) < 23568) {
       throw new Error('SUBSCRIBER_NUMBER_INVALID');
     }
     subscriberNumberField.value = subscriberNumber;
 
-    await signup(email, p, {
+    if (!window.netlifyIdentity || !window.netlifyIdentity.gotrue) {
+      throw new Error('IDENTITY_UNAVAILABLE');
+    }
+    await window.netlifyIdentity.gotrue.signup(email, p, {
       full_name: email,
       subscriber_number: subscriberNumber,
       accepted_terms: true
     });
-    status.textContent = 'Inscription envoyée. Votre numéro de réabonnement StreamLive est ' + subscriberNumber + '. Conservez ce numéro. Si une confirmation par e-mail est demandée, vérifiez votre boîte de réception.';
+    status.textContent = 'Demande de création envoyée. Votre numéro de réabonnement est ' + subscriberNumber + '. Conservez-le et vérifiez votre e-mail pour confirmer le compte avant de vous connecter.';
   } catch (error) {
     const message = String(error?.message || '');
+    if (/IDENTITY_UNAVAILABLE/i.test(message)) {
+      status.textContent = 'Le service de compte n’est pas disponible. Activez Netlify Identity dans les paramètres du site Netlify.';
+      return;
+    }
     if (/SUBSCRIBER_NUMBER_UNAVAILABLE|SUBSCRIBER_NUMBER_INVALID/i.test(message)) {
       status.textContent = 'Impossible d’attribuer un numéro de réabonnement pour le moment. Réessayez plus tard.';
       return;
