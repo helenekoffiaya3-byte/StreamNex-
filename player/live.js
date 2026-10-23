@@ -17,7 +17,7 @@ function initials(v){return String(v||'TV').trim().split(/\s+/).slice(0,2).map(x
 function favSet(){try{const x=JSON.parse(localStorage.getItem('streamlive:favorites')||'[]');return new Set(Array.isArray(x)?x.map(String):[])}catch(_){return new Set()}}
 function toggleFav(id){try{const s=favSet();s.has(String(id))?s.delete(String(id)):s.add(String(id));localStorage.setItem('streamlive:favorites',JSON.stringify([...s]));render()}catch(_){count.textContent='Impossible de modifier les favoris sur ce navigateur.'}}
 function groupName(c){return String(c.group||'Autres chaînes').trim()||'Autres chaînes'}
-function sorted(arr){return arr.slice().sort((a,b)=>(a.channelNumber||99999)-(b.channelNumber||99999)||a.name.localeCompare(b.name,'fr'))}
+function sorted(arr){return arr.map((c,i)=>({...c,_catalogOrder:i})).sort((a,b)=>{const an=Number(a.channelNumber)||0,bn=Number(b.channelNumber)||0;if(an&&bn)return an-bn;if(an)return -1;if(bn)return 1;return a._catalogOrder-b._catalogOrder})}
 function populateFilter(){
  const groups=[...new Set(channels.map(groupName))].sort((a,b)=>a.localeCompare(b,'fr'));
  const current=groupFilter.value;
