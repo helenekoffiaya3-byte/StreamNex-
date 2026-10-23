@@ -9,7 +9,7 @@
 <label class="field"><input type="email" name="email" id="identifier" autocomplete="email" required placeholder="Adresse e-mail" aria-label="Adresse e-mail"></label>
 <label class="field password-wrap"><input name="password" id="password" type="password" autocomplete="new-password" required placeholder="Mot de passe" aria-label="Mot de passe"><button class="toggle" id="toggle-password" type="button" aria-label="Afficher le mot de passe">◉</button></label>
 <ul class="rules"><li>8 caractères minimum</li><li>Au moins 1 chiffre, 1 majuscule et 1 minuscule</li><li>Évitez les caractères spéciaux non acceptés par le service.</li></ul>
-<label class="field"><input name="subscriber-number" id="subscriber-number" inputmode="numeric" placeholder="Numéro de réabonnement (facultatif)" aria-label="Numéro de réabonnement, facultatif"></label>
+<label class="field"><input name="subscriber-number" id="subscriber-number" inputmode="numeric" placeholder="Numéro attribué automatiquement après inscription" aria-label="Numéro de réabonnement attribué automatiquement" readonly></label>
 <label class="checkline"><input type="checkbox" id="terms" required><span>J’accepte les <a href="/conditions">conditions générales d’utilisation</a> de StreamLive et la <a href="/confidentialite">politique de confidentialité</a>.</span></label>
 <button class="submit" type="submit">CONTINUER</button><button class="back" type="button" onclick="location.href='/inscription'">Retour</button>
 <p class="status" id="status" role="status" aria-live="polite"></p>
@@ -43,7 +43,7 @@ form.addEventListener('submit', async (e) => {
   e.preventDefault();
   const email = document.getElementById('identifier').value.trim();
   const p = password.value;
-  const subscriberNumber = document.getElementById('subscriber-number').value.trim();
+  const subscriberNumberField = document.getElementById('subscriber-number');
 
   if (!document.getElementById('identifier').checkValidity()) {
     status.textContent = 'Saisissez une adresse e-mail valide. Netlify Identity crée les comptes avec une adresse e-mail.';
@@ -62,9 +62,24 @@ form.addEventListener('submit', async (e) => {
   submit.textContent = 'CRÉATION DU COMPTE…';
   status.textContent = 'Création de votre compte en cours…';
   try {
+    const numberResponse = await fetch('/api/subscriber-number', {
+      method: 'POST',
+      headers: { 'content-type': 'application/json' },
+      body: '{}'
+    });
+    if (!numberResponse.ok) {
+      throw new Error('SUBSCRIBER_NUMBER_UNAVAILABLE');
+    }
+    const numberData = await numberResponse.json();
+    const subscriberNumber = String(numberData.subscriberNumber || '');
+    if (!/^\\d+$/.test(subscriberNumber) || Number(subscriberNumber) < 23568) {
+      throw new Error('SUBSCRIBER_NUMBER_INVALID');
+    }
+    subscriberNumberField.value = subscriberNumber;
+
     await signup(email, p, {
       full_name: email,
-      subscriber_number: subscriberNumber || '',
+      subscriber_number: subscriberNumber,
       accepted_terms: true
     });
     status.textContent = 'Compte créé. Redirection vers l’accueil StreamLive…';
@@ -72,6 +87,10 @@ form.addEventListener('submit', async (e) => {
     window.location.replace('/');
   } catch (error) {
     const message = String(error?.message || '');
+    if (/SUBSCRIBER_NUMBER_UNAVAILABLE|SUBSCRIBER_NUMBER_INVALID/i.test(message)) {
+      status.textContent = 'Impossible d’attribuer un numéro de réabonnement pour le moment. Réessayez plus tard.';
+      return;
+    }
     if (/already|exists|registered/i.test(message)) {
       status.textContent = 'Un compte semble déjà exister avec cette adresse. Essayez de vous connecter.';
     } else if (/fetch|network|identity|404/i.test(message)) {
