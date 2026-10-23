@@ -17,7 +17,7 @@ function initials(v){return String(v||'TV').trim().split(/\s+/).slice(0,2).map(x
 function favSet(){try{const x=JSON.parse(localStorage.getItem('streamlive:favorites')||'[]');return new Set(Array.isArray(x)?x.map(String):[])}catch(_){return new Set()}}
 function toggleFav(id){try{const s=favSet();s.has(String(id))?s.delete(String(id)):s.add(String(id));localStorage.setItem('streamlive:favorites',JSON.stringify([...s]));render()}catch(_){count.textContent='Impossible de modifier les favoris sur ce navigateur.'}}
 function groupName(c){return String(c.group||'Autres chaînes').trim()||'Autres chaînes'}
-function sorted(arr){return arr.map((c,i)=>({...c,_catalogOrder:i})).sort((a,b)=>{const an=Number(a.channelNumber)||0,bn=Number(b.channelNumber)||0;if(an&&bn)return an-bn;if(an)return -1;if(bn)return 1;return a._catalogOrder-b._catalogOrder})}
+function sorted(arr){return arr.map((c,i)=>({...c,_catalogOrder:i})).sort((a,b)=>{const an=Number(a.channelNumber)||0,bn=Number(b.channelNumber)||0;if(an!==bn){if(!an)return 1;if(!bn)return -1;return an-bn}return a._catalogOrder-b._catalogOrder})}
 function populateFilter(){
  const groups=[...new Set(channels.map(groupName))].sort((a,b)=>a.localeCompare(b,'fr'));
  const current=groupFilter.value;
@@ -146,6 +146,7 @@ async function load(){
   const payload=await response.json();
   const source=Array.isArray(payload)?payload:(Array.isArray(payload?.channels)?payload.channels:(Array.isArray(payload?.data)?payload.data:null));
   if(!source)throw new Error('INVALID_CATALOGUE');
+  if(source.length===0)throw new Error('EMPTY_CATALOGUE');
   // Keep every real catalogue entry, even if its ID or live URL is missing.
   channels=source.filter(c=>c&&typeof c==='object').map((c,index)=>{
    const name=String(c.name||c.title||c.id||c.tvgId||('Chaîne '+(index+1)));
@@ -156,7 +157,7 @@ async function load(){
   populateFilter();renderTabs();render();
  }catch(error){
   totalCount.textContent='—';count.textContent='Catalogue indisponible';
-  list.innerHTML='<div class="empty"><strong>Impossible de charger le catalogue.</strong><p>Vérifiez la connexion puis réessayez.</p><button type="button" id="retry-live-catalogue">Réessayer</button></div>';
+  list.innerHTML='<div class="empty"><strong>Impossible de charger le catalogue.</strong><p>Erreur : '+esc(error&&error.message||error)+' — vérifiez la connexion puis réessayez.</p><button type="button" id="retry-live-catalogue">Réessayer</button></div>';
   const retry=document.getElementById('retry-live-catalogue');if(retry)retry.addEventListener('click',load);
  }
 }
