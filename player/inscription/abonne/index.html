@@ -6,17 +6,81 @@
 <header class="top"><a class="brand" href="/" aria-label="Accueil StreamLive"><span class="symbol">⌁</span><span>StreamNex</span></a><span class="lock" aria-label="Compte">🔒</span></header>
 <main><h1>CRÉEZ UN COMPTE</h1><p class="intro">Ce compte vous permettra d’accéder aux contenus et services StreamLive sur vos écrans.</p><p class="signin">Vous avez déjà un compte StreamLive ?<br><a href="/connexion">Se connecter ›</a></p>
 <form id="register-form" novalidate>
-<label class="field"><input name="identifier" id="identifier" autocomplete="username" required placeholder="Identifiant (e-mail ou téléphone)" aria-label="Identifiant (e-mail ou téléphone)"></label>
+<label class="field"><input name="identifier" id="identifier" autocomplete="username" required placeholder="Adresse e-mail" aria-label="Identifiant (e-mail ou téléphone)"></label>
 <label class="field password-wrap"><input name="password" id="password" type="password" autocomplete="new-password" required placeholder="Mot de passe" aria-label="Mot de passe"><button class="toggle" id="toggle-password" type="button" aria-label="Afficher le mot de passe">◉</button></label>
 <ul class="rules"><li>8 caractères minimum</li><li>Au moins 1 chiffre, 1 majuscule et 1 minuscule</li><li>Évitez les caractères spéciaux non acceptés par le service.</li></ul>
 <label class="field"><input name="subscriber-number" id="subscriber-number" inputmode="numeric" placeholder="Numéro de réabonnement (facultatif)" aria-label="Numéro de réabonnement, facultatif"></label>
 <label class="checkline"><input type="checkbox" id="terms" required><span>J’accepte les <a href="/conditions">conditions générales d’utilisation</a> de StreamLive et la <a href="/confidentialite">politique de confidentialité</a>.</span></label>
 <button class="submit" type="submit">CONTINUER</button><button class="back" type="button" onclick="location.href='/inscription'">Retour</button>
 <p class="status" id="status" role="status" aria-live="polite"></p>
-<p class="fineprint">En cliquant sur « Continuer », vous confirmez avoir pris connaissance des conditions d’utilisation et de la politique de confidentialité de StreamLive. La création effective du compte nécessite l’activation du service d’authentification.</p>
+<p class="fineprint">En cliquant sur « Continuer », vous confirmez avoir pris connaissance des conditions d’utilisation et de la politique de confidentialité de StreamLive. Votre compte sera créé via Netlify Identity. Une confirmation par e-mail peut être nécessaire.</p>
 </form></main>
-<script>
-const password=document.getElementById('password');
-document.getElementById('toggle-password').addEventListener('click',()=>{const show=password.type==='password';password.type=show?'text':'password';document.getElementById('toggle-password').setAttribute('aria-label',show?'Masquer le mot de passe':'Afficher le mot de passe');});
-document.getElementById('register-form').addEventListener('submit',e=>{e.preventDefault();const id=document.getElementById('identifier').value.trim();const p=password.value;const validId=/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(id)||/^\+?[0-9 ()-]{8,}$/.test(id);if(!validId){document.getElementById('status').textContent='Saisissez une adresse e-mail ou un numéro de téléphone valide.';return;}if(p.length<8||!/[0-9]/.test(p)||!/[A-Z]/.test(p)||!/[a-z]/.test(p)){document.getElementById('status').textContent='Le mot de passe doit contenir au moins 8 caractères, un chiffre, une majuscule et une minuscule.';return;}if(!document.getElementById('terms').checked){document.getElementById('status').textContent='Veuillez accepter les conditions et la politique de confidentialité.';return;}document.getElementById('status').textContent='Informations vérifiées. Ouverture de StreamLive…';window.location.assign('/');});
+<script type="module">
+import { signup, handleAuthCallback } from "https://esm.sh/@netlify/identity";
+const form = document.getElementById('register-form');
+const password = document.getElementById('password');
+const status = document.getElementById('status');
+const submit = form.querySelector('button[type="submit"]');
+
+try {
+  const callback = await handleAuthCallback();
+  if (callback?.type === 'confirmation') {
+    status.textContent = 'Adresse e-mail confirmée. Vous pouvez maintenant vous connecter.';
+  } else if (callback?.type === 'recovery') {
+    status.textContent = 'Lien de récupération reconnu.';
+  }
+} catch (error) {
+  status.textContent = 'Le lien de confirmation n’a pas pu être traité. Vérifiez qu’Identity est activé sur le site publié.';
+}
+
+document.getElementById('toggle-password').addEventListener('click', () => {
+  const show = password.type === 'password';
+  password.type = show ? 'text' : 'password';
+  document.getElementById('toggle-password').setAttribute('aria-label', show ? 'Masquer le mot de passe' : 'Afficher le mot de passe');
+});
+
+form.addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const email = document.getElementById('identifier').value.trim();
+  const p = password.value;
+  const subscriberNumber = document.getElementById('subscriber-number').value.trim();
+
+  if (!/^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/.test(email)) {
+    status.textContent = 'Saisissez une adresse e-mail valide. Netlify Identity crée les comptes avec une adresse e-mail.';
+    return;
+  }
+  if (p.length < 8 || !/[0-9]/.test(p) || !/[A-Z]/.test(p) || !/[a-z]/.test(p)) {
+    status.textContent = 'Le mot de passe doit contenir au moins 8 caractères, un chiffre, une majuscule et une minuscule.';
+    return;
+  }
+  if (!document.getElementById('terms').checked) {
+    status.textContent = 'Veuillez accepter les conditions et la politique de confidentialité.';
+    return;
+  }
+
+  submit.disabled = true;
+  submit.textContent = 'CRÉATION DU COMPTE…';
+  status.textContent = 'Création de votre compte en cours…';
+  try {
+    await signup(email, p, {
+      full_name: email,
+      subscriber_number: subscriberNumber || '',
+      accepted_terms: true
+    });
+    status.textContent = 'Compte créé. Consultez votre boîte e-mail pour confirmer votre adresse, puis connectez-vous.';
+    form.reset();
+  } catch (error) {
+    const message = String(error?.message || '');
+    if (/already|exists|registered/i.test(message)) {
+      status.textContent = 'Un compte semble déjà exister avec cette adresse. Essayez de vous connecter.';
+    } else if (/fetch|network|identity|404/i.test(message)) {
+      status.textContent = 'Création impossible pour le moment : vérifiez que le site est publié et que Netlify Identity est activé avec les inscriptions ouvertes.';
+    } else {
+      status.textContent = 'La création du compte a échoué. ' + (message || 'Vérifiez les informations et réessayez.');
+    }
+  } finally {
+    submit.disabled = false;
+    submit.textContent = 'CONTINUER';
+  }
+});
 </script></body></html>
