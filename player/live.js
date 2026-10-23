@@ -24,7 +24,7 @@ function populateFilter(){
  groupFilter.innerHTML='<option value="">Toutes les catégories</option>'+groups.map(g=>'<option value="'+esc(g)+'">'+esc(g)+'</option>').join('');
  if(groups.includes(current))groupFilter.value=current;
 }
-function setActive(value){active=value;if(value!=='__all__'&&value!=='__fav__'&&value!=='__sport__'&&value!=='__sport_under__')groupFilter.value=value;else if(value==='__all__')groupFilter.value='';renderTabs();render()}
+function setActive(value){active=value;if(value!=='__all__'&&value!=='__fav__'&&value!=='__sport__'&&value!=='__sport_under__')groupFilter.value=value;else groupFilter.value='';renderTabs();render()}
 function renderTabs(){
  const groups=[...new Set(channels.map(groupName))].sort((a,b)=>a.localeCompare(b,'fr'));
  const items=[['__all__','Toutes'],['__fav__','♡ Favoris'],['__sport__','Sport'],['__sport_under__','Sport Under']];
