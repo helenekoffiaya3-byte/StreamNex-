@@ -1,10 +1,25 @@
-import channels from "../../config/channels.js";
+import channelModule from "../../config/channels.js";
+
+const channels = Array.isArray(channelModule)
+  ? channelModule
+  : Array.isArray(channelModule?.default)
+    ? channelModule.default
+    : Array.isArray(channelModule?.CHANNELS)
+      ? channelModule.CHANNELS
+      : [];
 
 export default async function handler(request) {
   if (request.method !== "GET") {
     return new Response(JSON.stringify({ error: "METHOD_NOT_ALLOWED" }), {
       status: 405,
       headers: { "content-type": "application/json", "allow": "GET" }
+    });
+  }
+
+  if (!Array.isArray(channels) || channels.length === 0) {
+    return new Response(JSON.stringify({ error: "EMPTY_CHANNEL_CATALOGUE", channels: [] }), {
+      status: 500,
+      headers: { "content-type": "application/json; charset=utf-8", "cache-control": "no-store" }
     });
   }
 
