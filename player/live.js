@@ -77,13 +77,15 @@ function selectChannel(c){
  const number=document.getElementById('selected-channel-number');
  const status=document.getElementById('player-source-status');
  const open=document.getElementById('open-official-live');
+ const streamSource=c.streamUrl||c.productionUrl||c.hlsUrl||c.directUrl||c.webUrl||null;
+ const officialPage=c.webUrl||streamSource;
  title.textContent=c.name;
- desc.textContent=c.group+' · sélectionnez le bouton officiel si le diffuseur bloque la lecture intégrée.';
+ desc.textContent=c.group+' · le lecteur essaie la source configurée ; si le diffuseur bloque l’intégration, ouvrez son site officiel.';
  number.textContent='Canal '+(c.channelNumber||'—');
- open.hidden=!c.webUrl;
- open.href=c.webUrl||'#';
+ open.hidden=!officialPage;
+ open.href=officialPage||'#';
  stopCurrentMedia();
- if(!c.webUrl){
+ if(!streamSource){
   status.textContent='Source officielle manquante';
   showPlayerMessage('Direct non configuré','Aucun lien officiel n’est enregistré pour cette chaîne. Le lien ne sera pas inventé.',c);
   render();
@@ -92,7 +94,7 @@ function selectChannel(c){
  }
  status.textContent='Chargement du direct officiel…';
  const stage=document.getElementById('live-player-stage');
- const url=String(c.webUrl);
+ const url=String(streamSource);
  if(/\.m3u8(?:$|[?#])/i.test(url)||/\.mpd(?:$|[?#])/i.test(url)){
   const video=document.createElement('video');
   video.controls=true;video.autoplay=true;video.playsInline=true;video.setAttribute('aria-label','Direct de '+c.name);
@@ -148,7 +150,7 @@ async function load(){
   channels=source.filter(c=>c&&typeof c==='object').map((c,index)=>{
    const name=String(c.name||c.title||c.id||c.tvgId||('Chaîne '+(index+1)));
    const id=String(c.id||c.tvgId||('channel-'+(c.channelNumber||index+1)+'-'+normalizeSearch(name).replace(/[^a-z0-9]+/g,'-')));
-   return {id,tvgId:String(c.tvgId||c.id||id),channelNumber:Number(c.channelNumber??c.number)||0,name,group:String(c.group||c.category||'Autres chaînes'),logoUrl:String(c.logoUrl||c.logo||''),webUrl:c.webUrl||c.streamUrl||c.url||null};
+   return {id,tvgId:String(c.tvgId||c.id||id),channelNumber:Number(c.channelNumber??c.number)||0,name,group:String(c.group||c.category||'Autres chaînes'),logoUrl:String(c.logoUrl||c.logo||''),webUrl:c.webUrl||c.url||null,streamUrl:c.streamUrl||c.productionUrl||c.hlsUrl||c.directUrl||null};
   });
   totalCount.textContent=String(channels.length);
   populateFilter();renderTabs();render();
