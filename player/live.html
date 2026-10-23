@@ -31,6 +31,32 @@ body{padding-bottom:calc(68px + env(safe-area-inset-bottom))!important}
 @media(max-width:360px){.sl-bottom-nav{font-size:9px;padding-left:1px;padding-right:1px}.sl-bottom-nav .sl-tab svg{width:21px;height:21px}}
 
 .live-player-panel{margin:18px 0 22px;padding:16px;border:1px solid #17446e;border-radius:16px;background:linear-gradient(145deg,#071a31,#030c18);box-shadow:0 14px 38px #0003}.live-player-heading{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;padding:3px 2px 14px}.live-player-heading h2{font-size:clamp(19px,3vw,27px);margin:7px 0}.live-player-heading p{font-size:12px;line-height:1.5;color:#a9bed5}.player-number{flex:none;border:1px solid #17446e;border-radius:999px;padding:7px 10px;font-size:10px;color:#b9d9f5}.live-player-stage{position:relative;width:100%;aspect-ratio:16/9;min-height:190px;max-height:72vh;overflow:hidden;border-radius:11px;background:#000;border:1px solid #163452}.live-player-stage video,.live-player-stage iframe{display:block;width:100%;height:100%;min-height:190px;border:0;background:#000;object-fit:contain}.player-placeholder,.player-source-error{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:9px;padding:20px;text-align:center;background:radial-gradient(circle at 50% 0,#153b60,#020711 72%)}.placeholder-screen{display:grid;place-items:center;width:54px;height:54px;border-radius:15px;background:#e5091422;color:#ff3340;border:1px solid #e509144d;font-size:24px}.player-placeholder strong,.player-source-error strong{font-size:14px}.player-placeholder span:last-child,.player-source-error p{max-width:450px;font-size:11px;line-height:1.5;color:#9eb5ce}.player-source-error a{display:inline-flex;margin-top:6px;padding:10px 14px;border-radius:8px;background:#e50914;color:#fff;font-size:12px;font-weight:850}.live-player-actions{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;padding-top:12px;font-size:11px;color:#9eb5ce}.official-live-button{padding:9px 12px;border-radius:8px;background:#e50914;color:#fff;font-weight:850}.official-live-button[hidden]{display:none}.channel[aria-pressed="true"]{border-color:#e50914;box-shadow:0 0 0 1px #e5091455}.channel{cursor:pointer}.channel .channel-card-info{cursor:pointer}
+
+/* Liste En direct : rangée classique, défilement continu jusqu'à la dernière chaîne.
+   La navigation StreamLive existante reste inchangée. */
+#list.grid{display:flex;flex-direction:column;gap:8px;overflow:visible;max-height:none}
+#list .channel{display:flex;flex-direction:row;align-items:center;gap:12px;width:100%;min-height:0;padding:9px 12px;border-radius:12px;overflow:visible}
+#list .channel:hover,#list .channel:focus-visible{transform:none}
+#list .channel .channel-card-info{flex:1;min-width:0;display:flex;align-items:center;gap:12px;padding:0}
+#list .channel .channel-logo{width:clamp(92px,18vw,144px);height:auto;aspect-ratio:16/9;flex:none;border-radius:7px}
+#list .channel .channel-logo img{padding:8px}
+#list .channel .channel-card-info .meta{flex:1;min-width:0;padding:0 38px 0 0}
+#list .channel .channel-card-info .name{font-size:14px;line-height:1.35;white-space:normal}
+#list .channel .channel-card-info .group{font-size:11px;margin-top:5px}
+#list .channel .channel-card-info .number{font-size:10px;margin-top:4px}
+#list .channel .channel-card-info .state{font-size:9px;margin-top:7px}
+#list .channel .fav{top:50%;right:12px;transform:translateY(-50%)}
+#list .channel[aria-pressed="true"]{border-color:#e50914;background:#111b2a}
+@media(max-width:520px){
+ #list.grid{gap:7px}
+ #list .channel{padding:8px;gap:9px}
+ #list .channel .channel-card-info{gap:9px}
+ #list .channel .channel-logo{width:clamp(88px,31vw,124px);border-radius:6px}
+ #list .channel .channel-card-info .meta{padding-right:28px}
+ #list .channel .channel-card-info .name{font-size:12px}
+ #list .channel .channel-card-info .group{font-size:10px}
+ #list .channel .channel-card-info .state{font-size:8px}
+}
 </style></head>
 <body>
 <header><div class="head"><a class="brand" href="./index.html"><span class="brand-mark">▶</span><span>Stream<em>Live</em></span></a><a class="profile" href="./index.html" aria-label="Espace utilisateur">Se connecter</a></div></header>
