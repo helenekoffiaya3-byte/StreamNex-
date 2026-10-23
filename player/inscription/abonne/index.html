@@ -67,9 +67,9 @@ form.addEventListener('submit', async (e) => {
       subscriber_number: subscriberNumber || '',
       accepted_terms: true
     });
-    status.textContent = 'Compte créé avec succès. Redirection vers votre espace User…';
+    status.textContent = 'Compte créé. Redirection vers l’accueil StreamLive…';
     form.reset();
-    window.location.replace('/user');
+    window.location.replace('/');
   } catch (error) {
     const message = String(error?.message || '');
     if (/already|exists|registered/i.test(message)) {
