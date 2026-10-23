@@ -53,14 +53,13 @@ function filtered(){
  return sorted(arr);
 }
 function makeCard(c){
- const favorites=favSet(),article=document.createElement('article');article.className='channel';article.tabIndex=0;article.setAttribute('role','link');article.setAttribute('aria-label','Ouvrir '+c.name+' dans le lecteur StreamLive');
- const src=c.logoUrl;
- const logo=src?'<img loading="lazy" decoding="async" src="'+esc(src)+'" alt="'+esc(c.name)+'">':'<div class="fallback">'+esc(initials(c.name))+'</div>';
- article.innerHTML='<div class="thumb">'+logo+'</div><div class="meta"><div class="name">'+esc(c.name)+'</div><div class="group">'+esc(groupName(c))+'</div><div class="number">Canal '+esc(c.channelNumber||'—')+'</div><div class="state '+(c.webUrl?'':'missing')+'">'+(c.webUrl?'● EN DIRECT':'SOURCE À CONFIGURER')+'</div></div><button class="fav" type="button" aria-label="'+(favorites.has(c.id)?'Retirer des favoris':'Ajouter aux favoris')+'" aria-pressed="'+favorites.has(c.id)+'">'+(favorites.has(c.id)?'★':'♡')+'</button>';
- const img=article.querySelector('img');if(img)img.addEventListener('error',()=>{img.replaceWith(Object.assign(document.createElement('div'),{className:'fallback',textContent:initials(c.name)}))},{once:true});
+ const favorites=favSet(),article=document.createElement('article');article.className='channel channel-with-player';
+ const configured=Boolean(c.webUrl);
+ const source= configured ? '<iframe class="channel-player" loading="lazy" title="Direct de '+esc(c.name)+'" src="'+esc(c.webUrl)+'" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe>' : '<div class="channel-player-unavailable"><div class="fallback">'+esc(initials(c.name))+'</div><strong>Direct indisponible</strong><span>Aucune source officielle configurée pour cette chaîne.</span></div>';
+ const logo=c.logoUrl?'<img loading="lazy" decoding="async" src="'+esc(c.logoUrl)+'" alt="'+esc(c.name)+'">':'<div class="fallback">'+esc(initials(c.name))+'</div>';
+ article.innerHTML='<div class="channel-player-wrap">'+source+'</div><div class="channel-card-info"><div class="channel-logo">'+logo+'</div><div class="meta"><div class="name">'+esc(c.name)+'</div><div class="group">'+esc(groupName(c))+'</div><div class="number">Canal '+esc(c.channelNumber||'—')+'</div><div class="state '+(configured?'':'missing')+'">'+(configured?'● SOURCE OFFICIELLE':'SOURCE À CONFIGURER')+'</div>'+(configured?'<a class="official-link" href="'+esc(c.webUrl)+'" target="_blank" rel="noopener noreferrer">Ouvrir le direct officiel ↗</a>':'')+'</div><button class="fav" type="button" aria-label="'+(favorites.has(c.id)?'Retirer des favoris':'Ajouter aux favoris')+'" aria-pressed="'+favorites.has(c.id)+'">'+(favorites.has(c.id)?'★':'♡')+'</button></div>';
+ const img=article.querySelector('.channel-logo img');if(img)img.addEventListener('error',()=>{img.replaceWith(Object.assign(document.createElement('div'),{className:'fallback',textContent:initials(c.name)}))},{once:true});
  article.querySelector('.fav').addEventListener('click',e=>{e.stopPropagation();toggleFav(c.id)});
- const open=()=>{location.href='./index.html?channel='+encodeURIComponent(c.id)+'&mode=live'};
- article.addEventListener('click',open);article.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();open()}});
  return article;
 }
 function render(){
