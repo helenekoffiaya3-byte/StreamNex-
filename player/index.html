@@ -118,4 +118,40 @@ if(url){loadNTSMedia(url,mode)}else if(window.StreamLiveChannelManager){if(windo
  const date=document.getElementById('guide-date');if(date)date.textContent=new Intl.DateTimeFormat('fr-FR',{weekday:'long',day:'numeric',month:'long'}).format(new Date());
  document.querySelectorAll('[data-category]').forEach(card=>card.addEventListener('click',()=>{const group=document.getElementById('channel-group');const wanted=card.dataset.category;const option=[...group.options].find(o=>o.value.toLowerCase().includes(wanted.toLowerCase())||wanted.toLowerCase().includes(o.value.toLowerCase()));if(option){group.value=option.value;group.dispatchEvent(new Event('change',{bubbles:true}));}}));
 })();
-</script></body></html>
+</script>
+<script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+<script id="streamlive-home-identity">
+(function(){
+  const profile=document.querySelector('.profile-chip');
+  const loginLink=document.getElementById('hero-login');
+  function renderUser(user){
+    if(!profile) return;
+    if(user){
+      const email=(user.email||'').trim();
+      profile.textContent=email ? email.slice(0,2).toUpperCase() : 'SL';
+      profile.setAttribute('aria-label',email ? 'Compte connecté : '+email : 'Compte StreamLive connecté');
+      profile.title=email || 'Compte connecté';
+      if(loginLink){loginLink.textContent='Mon compte';loginLink.href='#account';}
+    }else{
+      profile.textContent='SL';
+      profile.setAttribute('aria-label','Profil invité');
+      profile.removeAttribute('title');
+      if(loginLink){loginLink.textContent='▶ Regarder maintenant';loginLink.href='/connexion';}
+    }
+  }
+  function initIdentity(){
+    if(!window.netlifyIdentity) return;
+    window.netlifyIdentity.on('init',renderUser);
+    window.netlifyIdentity.on('login',function(user){renderUser(user);});
+    window.netlifyIdentity.on('logout',function(){renderUser(null);});
+    const hash=window.location.hash||'';
+    if(/(?:confirmation_token|recovery_token|invite_token)=/.test(hash)){
+      window.netlifyIdentity.open();
+    }
+  }
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',initIdentity,{once:true});
+  else initIdentity();
+})();
+</script>
+
+</body></html>
