@@ -33,7 +33,7 @@ function render(){
  const groups=new Map();
  filtered.forEach(c=>{const g=getGroup(c);if(!groups.has(g))groups.set(g,[]);groups.get(g).push(c)});
  const ordered=[...groups.entries()].sort((a,b)=>{
-  const priority=g=>g[0]==='S+'?0:/ivoire|côte d.?ivoire|national/i.test(g[0])?1:2;
+  const priority=entry=>entry[0]==='S+'?0:/ivoire|côte d.?ivoire|national/i.test(entry[0])?1:2;
   return priority(a)-priority(b)||a[0].localeCompare(b[0],'fr');
  });
  for(const [group,list] of ordered){
