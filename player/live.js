@@ -1,48 +1,77 @@
 (function(){
 'use strict';
-const tabs=document.getElementById('tabs'),list=document.getElementById('list'),count=document.getElementById('count'),sportUnder=document.getElementById('sport-under-panel');
-let channels=[],active='__all__';
+const tabs=document.getElementById('tabs');
+const list=document.getElementById('list');
+const count=document.getElementById('count');
+const totalCount=document.getElementById('total-count');
+const search=document.getElementById('live-search');
+const groupFilter=document.getElementById('group-filter');
+const sportUnder=document.getElementById('sport-under-panel');
+let channels=[];
+let active='__all__';
 function esc(v){return String(v??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]))}
-function initials(v){return String(v||'Chaîne').trim().split(/\s+/).slice(0,2).map(x=>x[0]||'').join('').toUpperCase()||'TV'}
-function favSet(){try{return new Set(JSON.parse(localStorage.getItem('streamlive:favorites')||'[]'))}catch(_){return new Set()}}
-function toggleFav(id){const s=favSet();s.has(id)?s.delete(id):s.add(id);localStorage.setItem('streamlive:favorites',JSON.stringify([...s]));render()}
-function groups(){return Array.from(new Set(channels.map(c=>c.group).filter(Boolean))).sort((a,b)=>a.localeCompare(b,'fr'))}
+function initials(v){return String(v||'TV').trim().split(/\s+/).slice(0,2).map(x=>x[0]||'').join('').toUpperCase()||'TV'}
+function favSet(){try{const x=JSON.parse(localStorage.getItem('streamlive:favorites')||'[]');return new Set(Array.isArray(x)?x.map(String):[])}catch(_){return new Set()}}
+function toggleFav(id){try{const s=favSet();s.has(String(id))?s.delete(String(id)):s.add(String(id));localStorage.setItem('streamlive:favorites',JSON.stringify([...s]));render()}catch(_){count.textContent='Impossible de modifier les favoris sur ce navigateur.'}}
+function groupName(c){return String(c.group||'Autres chaînes').trim()||'Autres chaînes'}
+function sorted(arr){return arr.slice().sort((a,b)=>(a.channelNumber||99999)-(b.channelNumber||99999)||a.name.localeCompare(b.name,'fr'))}
+function populateFilter(){
+ const groups=[...new Set(channels.map(groupName))].sort((a,b)=>a.localeCompare(b,'fr'));
+ const current=groupFilter.value;
+ groupFilter.innerHTML='<option value="">Toutes les catégories</option>'+groups.map(g=>'<option value="'+esc(g)+'">'+esc(g)+'</option>').join('');
+ if(groups.includes(current))groupFilter.value=current;
+}
+function setActive(value){active=value;if(value!=='__all__'&&value!=='__fav__'&&value!=='__sport__'&&value!=='__sport_under__')groupFilter.value=value;else if(value==='__all__')groupFilter.value='';renderTabs();render()}
 function renderTabs(){
- const gs=groups();tabs.innerHTML='';
- [['__all__','TOUTES LES CHAÎNES'],['__fav__','FAVORIS'],['__sport__','SPORT'],['__sport_under__','SPORT UNDER']].forEach(([id,label])=>{const b=document.createElement('button');b.className='tab'+(active===id?' active':'');b.textContent=label;b.onclick=()=>{active=id;renderTabs();render()};tabs.appendChild(b)});
- gs.filter(g=>g!=='Sport').forEach(g=>{const b=document.createElement('button');b.className='tab'+(active===g?' active':'');b.textContent=g.toUpperCase();b.onclick=()=>{active=g;renderTabs();render()};tabs.appendChild(b)});
+ const groups=[...new Set(channels.map(groupName))].sort((a,b)=>a.localeCompare(b,'fr'));
+ const items=[['__all__','TOUTES LES CHAÎNES'],['__fav__','★ FAVORIS'],['__sport__','SPORT'],['__sport_under__','SPORT UNDER']];
+ groups.forEach(g=>items.push([g,g.toUpperCase()]));
+ tabs.innerHTML='';
+ items.forEach(([value,label])=>{const b=document.createElement('button');b.type='button';b.className='tab'+(active===value?' active':'');b.textContent=label;b.setAttribute('aria-pressed',String(active===value));b.addEventListener('click',()=>setActive(value));tabs.appendChild(b)});
 }
 function filtered(){
- const f=favSet();
- if(active==='__fav__')return channels.filter(c=>f.has(c.id));
- if(active==='__sport__')return channels.filter(c=>/sport|football/i.test((c.group||'')+' '+(c.name||'')));
- if(active==='__all__')return channels;
- return channels.filter(c=>c.group===active);
+ const fav=favSet(),term=String(search.value||'').trim().toLocaleLowerCase('fr');
+ let arr=channels;
+ if(active==='__fav__')arr=arr.filter(c=>fav.has(c.id));
+ else if(active==='__sport__')arr=arr.filter(c=>/sport|football|football|rugby|basket|tennis|motorsport/i.test(c.group+' '+c.name));
+ else if(active!=='__all__'&&active!=='__sport_under__')arr=arr.filter(c=>groupName(c)===active);
+ const selectedGroup=groupFilter.value;
+ if(selectedGroup)arr=arr.filter(c=>groupName(c)===selectedGroup);
+ if(term)arr=arr.filter(c=>(c.name+' '+c.id+' '+c.channelNumber+' '+c.group).toLocaleLowerCase('fr').includes(term));
+ return sorted(arr);
 }
-function card(c){
- const f=favSet(),article=document.createElement('article');article.className='channel';article.tabIndex=0;
- const logo=c.logoUrl?'<img loading="lazy" src="'+esc(c.logoUrl)+'" alt="">':'<div class="fallback">'+esc(initials(c.name))+'</div>';
- article.innerHTML='<div class="thumb">'+logo+'<button class="fav" type="button" aria-label="'+(f.has(c.id)?'Retirer des favoris':'Ajouter aux favoris')+'">'+(f.has(c.id)?'★':'☆')+'</button></div><div class="meta"><div class="name">'+esc(c.name)+'</div><div class="group">'+esc(c.group||'En direct')+'</div><div class="number">Canal '+esc(c.channelNumber)+'</div><div class="state">'+(c.webUrl?'● LIEN WEB DISPONIBLE':'○ LIEN WEB MANQUANT')+'</div></div>';
+function makeCard(c){
+ const favorites=favSet(),article=document.createElement('article');article.className='channel';article.tabIndex=0;article.setAttribute('role','link');article.setAttribute('aria-label','Ouvrir '+c.name+' dans le lecteur StreamLive');
+ const src=c.logoUrl;
+ const logo=src?'<img loading="lazy" decoding="async" src="'+esc(src)+'" alt="'+esc(c.name)+'">':'<div class="fallback">'+esc(initials(c.name))+'</div>';
+ article.innerHTML='<div class="thumb">'+logo+'</div><div class="meta"><div class="name">'+esc(c.name)+'</div><div class="group">'+esc(groupName(c))+'</div><div class="number">Canal '+esc(c.channelNumber||'—')+'</div><div class="state '+(c.webUrl?'':'missing')+'">'+(c.webUrl?'● SOURCE WEB CONFIGURÉE':'○ SOURCE À CONFIGURER')+'</div></div><button class="fav" type="button" aria-label="'+(favorites.has(c.id)?'Retirer des favoris':'Ajouter aux favoris')+'" aria-pressed="'+favorites.has(c.id)+'">'+(favorites.has(c.id)?'★':'☆')+'</button>';
  const img=article.querySelector('img');if(img)img.addEventListener('error',()=>{img.replaceWith(Object.assign(document.createElement('div'),{className:'fallback',textContent:initials(c.name)}))},{once:true});
- article.querySelector('.fav').onclick=e=>{e.stopPropagation();toggleFav(c.id)};
- const open=()=>{location.href='./index.html?channel='+encodeURIComponent(c.id)+'&mode=live'};article.onclick=open;
- article.onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();open()}};return article;
+ article.querySelector('.fav').addEventListener('click',e=>{e.stopPropagation();toggleFav(c.id)});
+ const open=()=>{location.href='./index.html?channel='+encodeURIComponent(c.id)+'&mode=live'};
+ article.addEventListener('click',open);article.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();open()}});
+ return article;
 }
 function render(){
- const isSportUnder=active==='__sport_under__';if(sportUnder)sportUnder.hidden=!isSportUnder;list.hidden=isSportUnder;
- if(isSportUnder){count.textContent='SPORT UNDER · SCORES EN DIRECT';list.innerHTML='';return}
- const arr=filtered();list.hidden=false;list.innerHTML='';count.textContent=arr.length+' chaîne'+(arr.length>1?'s':'');
- if(!arr.length){list.innerHTML='<div class="empty">'+(active==='__fav__'?'Aucun favori enregistré.':'Aucune chaîne dans cette catégorie.')+'</div>';return}
- const frag=document.createDocumentFragment();arr.forEach(c=>frag.appendChild(card(c)));list.appendChild(frag);
+ const under=active==='__sport_under__';sportUnder.classList.toggle('hidden',!under);list.classList.toggle('hidden',under);
+ if(under){count.textContent='SPORT UNDER · SCORES EN DIRECT';list.innerHTML='';return}
+ const arr=filtered();list.innerHTML='';
+ count.innerHTML='<strong>'+arr.length+'</strong> chaîne'+(arr.length>1?'s':'')+' affichée'+(arr.length>1?'s':'')+(search.value.trim()||groupFilter.value?' sur '+channels.length:' au total');
+ if(!arr.length){list.innerHTML='<div class="empty">'+(active==='__fav__'?'Aucun favori enregistré pour le moment.':'Aucune chaîne ne correspond à ces filtres.')+'</div>';return}
+ const fragment=document.createDocumentFragment();arr.forEach(c=>fragment.appendChild(makeCard(c)));list.appendChild(fragment);
 }
 async function load(){
  try{
   count.textContent='Chargement de toutes les chaînes…';
-  const r=await fetch('/api/channels?mode=live',{headers:{accept:'application/json'},cache:'no-store'});
-  if(!r.ok)throw new Error('HTTP_'+r.status);const source=await r.json();if(!Array.isArray(source))throw new Error('INVALID_CATALOGUE');
-  channels=source.filter(Boolean).map(c=>({...c,id:String(c.id||''),channelNumber:Number(c.channelNumber||0),name:String(c.name||c.id||'Chaîne'),group:String(c.group||'En direct'),logoUrl:c.logoUrl||''}));
-  renderTabs();render();
- }catch(_){count.textContent='Catalogue indisponible';list.innerHTML='<div class="empty">Impossible de charger toutes les chaînes.</div>'}
+  const response=await fetch('/api/channels?mode=live',{headers:{accept:'application/json'},cache:'no-store'});
+  if(!response.ok)throw new Error('HTTP '+response.status);
+  const source=await response.json();if(!Array.isArray(source))throw new Error('INVALID_CATALOGUE');
+  // mode=live intentionally includes every channel, even if its web source is not configured.
+  channels=source.filter(Boolean).map(c=>({id:String(c.id||c.tvgId||''),channelNumber:Number(c.channelNumber)||0,name:String(c.name||c.id||'Chaîne'),group:String(c.group||'Autres chaînes'),logoUrl:String(c.logoUrl||''),webUrl:c.webUrl||null})).filter(c=>c.id);
+  totalCount.textContent=channels.length;
+  populateFilter();renderTabs();render();
+ }catch(_){totalCount.textContent='—';count.textContent='Catalogue indisponible';list.innerHTML='<div class="empty">Impossible de charger le catalogue. Vérifiez la connexion puis réessayez.</div>'}
 }
+search.addEventListener('input',render);
+groupFilter.addEventListener('change',()=>{active=groupFilter.value||'__all__';renderTabs();render()});
 load();
 })();
