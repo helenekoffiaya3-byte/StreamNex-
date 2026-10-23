@@ -1,7 +1,6 @@
 {
   "name": "streamlive",
   "private": true,
-  "type": "module",
   "dependencies": {
     "@netlify/database": "*"
   }
