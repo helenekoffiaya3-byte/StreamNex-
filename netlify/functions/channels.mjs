@@ -20,7 +20,8 @@ export default async function handler(request) {
     bouquet: null,
     bouquets: [],
     webUrl: channel.webUrl || null,
-    webConfigured: Boolean(channel.webUrl),
+    streamUrl: channel.streamUrl || channel.productionUrl || channel.hlsUrl || channel.directUrl || null,
+    webConfigured: Boolean(channel.webUrl || channel.streamUrl || channel.productionUrl || channel.hlsUrl || channel.directUrl),
     liveOnly: Boolean(channel.liveOnly)
   }));
 
