@@ -38,20 +38,20 @@ const CHANNELS = [
   { channelNumber: 36, id: "charge", tvgId: "charge", name: "Charge!", group: "Cinéma", logoUrl: "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/united-states/charge-us.png", webUrl: "https://watchcharge.com/watch-live/" },
   { channelNumber: 37, id: "cinemax", tvgId: "cinemax", name: "Cinemax", group: "Cinéma", logoUrl: "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/united-states/cinemax-us.png" },
   { channelNumber: 38, id: "comet", tvgId: "comet", name: "Comet", group: "Cinéma", logoUrl: "https://commons.wikimedia.org/wiki/Special:Redirect/file/Comet_logo.svg", webUrl: "https://comettv.com/watch-live/" },
-  { channelNumber: 39, id: "estrella-tv", tvgId: "estrella-tv", name: "Estrella TV", group: "Cinéma", logoUrl: "/assets/logos/estrella-tv.svg", webUrl: "https://play.xumo.com/live-guide/estrellatv" }
+  { channelNumber: 39, id: "estrella-tv", tvgId: "estrella-tv", name: "Estrella TV", group: "Cinéma", logoUrl: "/assets/logos/estrella-tv.svg", webUrl: "https://play.xumo.com/live-guide/estrellatv" },
   { channelNumber: 40, id: "galavision", tvgId: "galavision", name: "Galavisión", group: "Cinéma", logoUrl: "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/united-states/galavision-us.png" },
   { channelNumber: 41, id: "gettv", tvgId: "gettv", name: "getTV", group: "Cinéma", logoUrl: "/assets/logos/gettv.svg" },
-  { channelNumber: 42, id: "grit", tvgId: "grit", name: "Grit", group: "Cinéma", logoUrl: "https://commons.wikimedia.org/wiki/Special:Redirect/file/Grit_TV_logo.svg", webUrl: "https://play.xumo.com/live-guide/grit-xtra" }
+  { channelNumber: 42, id: "grit", tvgId: "grit", name: "Grit", group: "Cinéma", logoUrl: "https://commons.wikimedia.org/wiki/Special:Redirect/file/Grit_TV_logo.svg", webUrl: "https://play.xumo.com/live-guide/grit-xtra" },
   { channelNumber: 43, id: "m6-films", tvgId: "m6-films", name: "M6 Films", group: "Cinéma", logoUrl: "/assets/logos/m6-films.svg" },
   { channelNumber: 44, id: "mgm-tv", tvgId: "mgm-tv", name: "MGM TV", group: "Cinéma", logoUrl: "/assets/logos/mgm-tv.svg", webUrl: "https://www.mgmplus.com/live" },
   { channelNumber: 45, id: "movies", tvgId: "movies", name: "Movies!", group: "Cinéma", logoUrl: "https://commons.wikimedia.org/wiki/Special:Redirect/file/Movies%21_logo.svg" },
   { channelNumber: 46, id: "peacock", tvgId: "peacock", name: "Peacock", group: "Cinéma", logoUrl: "https://commons.wikimedia.org/wiki/Special:Redirect/file/NBCUniversal_Peacock_Logo_%282026%29.svg" },
-  { channelNumber: 47, id: "pluto-tv", tvgId: "pluto-tv", name: "Pluto TV", group: "Service vidéo", logoUrl: "/assets/logos/pluto-tv.svg", webUrl: "https://pluto.tv/us/watch/live-tv/#29215" }
+  { channelNumber: 47, id: "pluto-tv", tvgId: "pluto-tv", name: "Pluto TV", group: "Service vidéo", logoUrl: "/assets/logos/pluto-tv.svg", webUrl: "https://pluto.tv/us/watch/live-tv/#29215" },
   { channelNumber: 48, id: "rtl-9", tvgId: "rtl-9", name: "RTL 9", group: "Cinéma", logoUrl: "/assets/logos/rtl-9.svg" },
   { channelNumber: 49, id: "sci-fi", tvgId: "sci-fi", name: "Sci-Fi", group: "Séries & SF", logoUrl: "/assets/logos/sci-fi.svg" },
   { channelNumber: 50, id: "tcm", tvgId: "tcm", name: "TCM", group: "Cinéma", logoUrl: "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/united-states/tcm-us.png" },
-  { channelNumber: 51, id: "telemundo", tvgId: "telemundo", name: "Telemundo", group: "Cinéma", logoUrl: "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/united-states/telemundo-us.png", webUrl: "https://pluto.tv/us/watch/live-tv/#20333" }
-  { channelNumber: 52, id: "tubi", tvgId: "tubi", name: "Tubi", group: "Cinéma", logoUrl: "/assets/logos/tubi.svg", webUrl: "https://tubitv.com/live" }
+  { channelNumber: 51, id: "telemundo", tvgId: "telemundo", name: "Telemundo", group: "Cinéma", logoUrl: "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/united-states/telemundo-us.png", webUrl: "https://pluto.tv/us/watch/live-tv/#20333" },
+  { channelNumber: 52, id: "tubi", tvgId: "tubi", name: "Tubi", group: "Cinéma", logoUrl: "/assets/logos/tubi.svg", webUrl: "https://tubitv.com/live" },
   { channelNumber: 53, id: "unimas", tvgId: "unimas", name: "UniMás", group: "Cinéma", logoUrl: "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/united-states/unimas-us.png" },
   { channelNumber: 54, id: "univision", tvgId: "univision", name: "Univision", group: "Cinéma", logoUrl: "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/united-states/univision-us.png" },
   { channelNumber: 55, id: "13eme-rue", tvgId: "13eme-rue", name: "13ème Rue", group: "Séries & SF", logoUrl: "/assets/logos/13eme-rue.png" },
@@ -96,8 +96,8 @@ const CHANNELS = [
   { channelNumber: 95, id: "nickelodeon", tvgId: "nickelodeon", name: "Nickelodeon", group: "Jeunesse", logoUrl: "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/france/nickelodeon-fr.png" },
   { channelNumber: 96, id: "nickelodeon-junior", tvgId: "nickelodeon-junior", name: "Nickelodeon Junior", group: "Jeunesse", logoUrl: "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/france/nickelodeon-junior-fr.png" },
   { channelNumber: 97, id: "nickelodeon-plus-1", tvgId: "nickelodeon-plus-1", name: "Nickelodeon +1", group: "Jeunesse", logoUrl: "https://commons.wikimedia.org/wiki/Special:Redirect/file/Nickelodeon_2023_Logo.svg" },
-  { channelNumber: 98, id: "nicktoons", tvgId: "nicktoons", name: "NickToons", group: "Jeunesse", logoUrl: "/assets/logos/nicktoons.svg", webUrl: "https://pluto.tv/fr/watch/live-tv/#31693", }
-  { channelNumber: 99, id: "nickelodeon-teen", tvgId: "nickelodeon-teen", name: "Nickelodeon Teen", group: "Jeunesse", logoUrl: "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/france/nickelodeon-teen-fr.png", webUrl: "https://pluto.tv/fr/watch/live-tv/#31863", }
+  { channelNumber: 98, id: "nicktoons", tvgId: "nicktoons", name: "NickToons", group: "Jeunesse", logoUrl: "/assets/logos/nicktoons.svg", webUrl: "https://pluto.tv/fr/watch/live-tv/#31693", },
+  { channelNumber: 99, id: "nickelodeon-teen", tvgId: "nickelodeon-teen", name: "Nickelodeon Teen", group: "Jeunesse", logoUrl: "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/france/nickelodeon-teen-fr.png", webUrl: "https://pluto.tv/fr/watch/live-tv/#31863", },
   { channelNumber: 100, id: "okoo", tvgId: "okoo", name: "Okoo", group: "Jeunesse", logoUrl: "/assets/logos/okoo.svg", webUrl: "https://www.france.tv/enfants/" },
   { channelNumber: 101, id: "piwi-plus", tvgId: "piwi-plus", name: "Piwi+", group: "Jeunesse", logoUrl: "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/france/piwi-plus-fr.png" },
   { channelNumber: 102, id: "pitchoun-kids-music", tvgId: "pitchoun-kids-music", name: "Pitchoun Kids Music", group: "Jeunesse" , logoUrl: "/assets/logos/pitchoun-kids-music.png"},
@@ -174,7 +174,7 @@ const CHANNELS = [
   { channelNumber: 186, id: "science-et-vie-tv", tvgId: "science-et-vie-tv", name: "Science & Vie TV", group: "Documentaires", logoUrl: "https://commons.wikimedia.org/wiki/Special:Redirect/file/SVTV_LOGO.png" },
   { channelNumber: 187, id: "toute-l-histoire", tvgId: "toute-l-histoire", name: "Toute l'Histoire", group: "Documentaires", logoUrl: "https://commons.wikimedia.org/wiki/Special:Redirect/file/Toute_l%27histoire_logo.svg" },
   { channelNumber: 188, id: "mgg-tv", tvgId: "mgg-tv", name: "MGG TV", group: "Sport" , logoUrl: "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/france/mgg-tv-fr.png"},
-  { channelNumber: 189, id: "golf-plus", tvgId: "golf-plus", name: "GOLF+", group: "Sport" , logoUrl: "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/france/golf-plus-fr.png", webUrl: "https://sportenfrance.com/", }
+  { channelNumber: 189, id: "golf-plus", tvgId: "golf-plus", name: "GOLF+", group: "Sport" , logoUrl: "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/france/golf-plus-fr.png", webUrl: "https://sportenfrance.com/", },
   { channelNumber: 190, id: "infosport", tvgId: "infosport", name: "Infosport", group: "Sport", logoUrl: "https://commons.wikimedia.org/wiki/Special:Redirect/file/Infosport%2B_%282016%29.PNG" },
   { channelNumber: 191, id: "sport-1", tvgId: "sport-1", name: "Sport 1", group: "Sport", logoUrl: "https://commons.wikimedia.org/wiki/Special:Redirect/file/Sport-1-Logo%2C_2013.svg" },
   { channelNumber: 192, id: "sport-2", tvgId: "sport-2", name: "Sport 2", group: "Sport", logoUrl: "https://commons.wikimedia.org/wiki/Special:Redirect/file/Logo_RMC_Sport_2_2018.svg" },
@@ -199,7 +199,7 @@ const CHANNELS = [
 { channelNumber: 211, id: "sky-news", tvgId: "sky-news", name: "Sky News", group: "Information", logoUrl: "/assets/logos/sky-news.svg", webUrl: "https://www.youtube.com/channel/UCoMdktPbSTixAyNGwb-UYkQ/live", liveOnly: true },
 { channelNumber: 212, id: "the-weather-channel", tvgId: "the-weather-channel", name: "The Weather Channel", group: "Information", logoUrl: "/assets/logos/the-weather-channel.svg", webUrl: "https://www.youtube.com/@TheWeatherChannel/live" },
 { channelNumber: 213, id: "trt-world", tvgId: "trt-world", name: "TRT World", group: "Information", logoUrl: "/assets/logos/trt-world.svg", webUrl: "https://www.youtube.com/channel/UC7fWeaHhqgM4Ry-RMpM2YYw/live", liveOnly: true },
-  { channelNumber: 214, id: "a-plus", tvgId: "a-plus", name: "A+", group: "Afrique", logoUrl: "/assets/logos/a-plus.jpg", webUrl: "https://aplusivoire.web-prod2.direct.canal-overseas.com/live", }
+  { channelNumber: 214, id: "a-plus", tvgId: "a-plus", name: "A+", group: "Afrique", logoUrl: "/assets/logos/a-plus.jpg", webUrl: "https://aplusivoire.web-prod2.direct.canal-overseas.com/live", },
   { channelNumber: 215, id: "m6-international", tvgId: "m6-international", name: "M6 International", group: "Afrique", logoUrl: "https://commons.wikimedia.org/wiki/Special:Redirect/file/M6_International_logo.svg" },
   { channelNumber: 216, id: "maboke-tv", tvgId: "maboke-tv", name: "Maboke TV", group: "Afrique", logoUrl: "/assets/logos/maboke-tv.svg" },
   { channelNumber: 217, id: "magc-tv", tvgId: "magc-tv", name: "MAGC TV", group: "Afrique", logoUrl: "/assets/logos/magc-tv.svg" },
