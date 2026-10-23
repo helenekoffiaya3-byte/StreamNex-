@@ -44,9 +44,9 @@
       filtered.forEach(channel=>{
         const button=document.createElement('button');
         button.type='button';
-        button.className='channel-item'+(channel.id===selectedId?' selected':'');
+        const streamReady=Boolean(channel.webUrl);\n        button.className='channel-item'+(channel.id===selectedId?' selected':'')+(!streamReady?' unavailable':'');
         button.dataset.channelId=channel.id;
-        button.setAttribute('aria-label',(channel.webUrl?'Ouvrir ':'Lien manquant pour ')+channel.name);
+        button.setAttribute('aria-label',(streamReady?'Ouvrir ':'Indisponible — direct non configuré pour ')+channel.name);
         const logo=channel.logoUrl?'<img loading="lazy" alt="" src="'+escapeHtml(channel.logoUrl)+'" onerror="this.replaceWith(Object.assign(document.createElement(\'span\'),{textContent:initials(channel.name),className:\'logo-fallback\'}))">':'';
         const fav=favorites?.isFavorite(channel.id);
         const streamReady=Boolean(channel.webUrl);
