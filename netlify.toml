@@ -1,6 +1,0 @@
-[build]
-  publish = "player"
-
-[functions]
-  directory = "netlify/functions"
-  node_bundler = "esbuild"

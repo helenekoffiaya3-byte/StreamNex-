@@ -1,7 +1,0 @@
-{
-  "schemaVersion": 1,
-  "title": "StreamLive — Services vidéo par bouquet",
-  "status": "empty-awaiting-redesign",
-  "note": "Les anciens bouquets ont été supprimés à la demande de l’utilisateur. Recréer les bouquets avant de rattacher des services vidéo.",
-  "bouquets": []
-}
