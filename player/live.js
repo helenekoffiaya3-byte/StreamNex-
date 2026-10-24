@@ -72,6 +72,7 @@ function showPlayerMessage(title,message,channel){
 }
 function selectChannel(c){
  selectedChannelId=c.id;
+ const playerPanel=document.querySelector('.live-player-panel');if(playerPanel)playerPanel.classList.add('player-visible');
  const title=document.getElementById('selected-channel-title');
  const desc=document.getElementById('selected-channel-description');
  const number=document.getElementById('selected-channel-number');
