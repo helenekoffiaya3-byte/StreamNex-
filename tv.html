@@ -20,7 +20,7 @@ body{background:#08080c;color:#fff;padding-bottom:88px}
 .row-info{min-width:0;flex:1}.row-info b{display:block;font-size:14px;line-height:1.35;overflow-wrap:anywhere}.desc{display:block;opacity:.55;font-size:12px;margin-top:5px;line-height:1.35}.status{display:inline-block;margin-top:7px;font-size:10px;color:#a8c4ff;background:#1a2a4a;border-radius:4px;padding:3px 6px}.status.off{color:#b0b0bc;background:#22222c}.arrow{margin-left:auto;color:#777;font-size:20px;padding-left:2px}
 .empty{padding:28px 18px;text-align:center;color:#aaa;font-size:13px}
 .modal{position:fixed;inset:0;background:#000b;display:none;align-items:center;justify-content:center;z-index:100;padding:24px}
-.player-overlay{position:fixed;inset:0;background:#000b;display:none;flex-direction:column;z-index:120;padding:18px;align-items:center;justify-content:center}.player-overlay[style*="display: flex"]{width:100%}.player-overlay .player-head,.player-overlay .player-actions,.player-overlay .player-screen{width:min(100%,760px)}.player-overlay .player-head{background:#08080c;border:1px solid #242430;border-bottom:0;border-radius:14px 14px 0 0}.player-overlay .player-screen{aspect-ratio:16/9;flex:none;min-height:0;background:#000}.player-overlay .player-actions{background:#11111a;border-radius:0 0 14px 14px}.player-overlay iframe{display:block;width:100%;height:100%;min-height:0}.player-overlay .player-message{padding:18px}.player-overlay .player-message .big{font-size:38px;margin-bottom:10px}.player-overlay .player-message h3{font-size:18px}.player-overlay .player-message p{font-size:13px}.player-head{height:58px;display:flex;align-items:center;gap:12px;padding:0 16px;border-bottom:1px solid #22222c}.player-head h2{font-size:16px;flex:1;overflow-wrap:anywhere}.player-close{border:0;border-radius:9px;background:#242430;color:#fff;padding:10px 13px;font-weight:800}.player-screen{flex:1;min-height:0;display:flex;align-items:center;justify-content:center;background:#000}.player-screen iframe{width:100%;height:100%;border:0;background:#08080c}.player-message{padding:24px;text-align:center;max-width:400px}.player-message .big{font-size:60px;margin-bottom:20px}.player-message h3{font-size:22px;margin-bottom:10px;overflow-wrap:anywhere}.player-message p{font-size:16px;opacity:.65;line-height:1.5}.player-actions{padding:14px 16px;background:#11111a;display:flex;gap:10px}.player-actions button{flex:1;border:0;border-radius:10px;padding:13px 10px;font-weight:800}.player-open{background:#2b7cff;color:#fff}.player-back{background:#272733;color:#fff}
+.player-overlay{position:fixed;inset:0;background:#000b;display:none;flex-direction:column;z-index:120;padding:18px;align-items:center;justify-content:center}.player-overlay[style*="display: flex"]{width:100%}.player-overlay .player-head,.player-overlay .player-actions,.player-overlay .player-screen{width:min(100%,760px)}.player-overlay .player-head{background:#08080c;border:1px solid #242430;border-bottom:0;border-radius:14px 14px 0 0}.player-overlay .player-screen{aspect-ratio:16/9;flex:none;min-height:0;background:#000}.player-overlay .player-actions{background:#11111a;border-radius:0 0 14px 14px}.player-overlay iframe{display:block;width:100%;height:100%;min-height:0}.player-overlay .player-message{padding:18px}.player-overlay .player-message .big{font-size:38px;margin-bottom:10px}.player-overlay .player-message h3{font-size:18px}.player-overlay .player-message p{font-size:13px}.player-head{height:58px;display:flex;align-items:center;gap:12px;padding:0 16px;border-bottom:1px solid #22222c}.player-head h2{font-size:16px;flex:1;overflow-wrap:anywhere}.player-close{border:0;border-radius:9px;background:#242430;color:#fff;padding:10px 13px;font-weight:800}.player-screen{flex:1;min-height:0;display:flex;align-items:center;justify-content:center;background:#000}.player-screen iframe,.player-screen video{width:100%;height:100%;border:0;background:#08080c}.player-screen video{object-fit:contain}.player-message{padding:24px;text-align:center;max-width:400px}.player-message .big{font-size:60px;margin-bottom:20px}.player-message h3{font-size:22px;margin-bottom:10px;overflow-wrap:anywhere}.player-message p{font-size:16px;opacity:.65;line-height:1.5}.player-actions{padding:14px 16px;background:#11111a;display:flex;gap:10px}.player-actions button{flex:1;border:0;border-radius:10px;padding:13px 10px;font-weight:800}.player-open{background:#2b7cff;color:#fff}.player-back{background:#272733;color:#fff}
 .modal-box{background:#13131a;border-radius:16px;padding:24px;text-align:center;width:100%;max-width:340px;border:1px solid #292936}
 .modal-box .icon{width:64px;height:64px;background:#1a2a55;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 16px;font-size:28px}
 .modal-box h3{font-size:17px;margin-bottom:7px}.modal-box p{opacity:.65;font-size:14px;line-height:1.5}
@@ -49,7 +49,7 @@ body{background:#08080c;color:#fff;padding-bottom:88px}
 </div>
 <section class="player-overlay" id="player" role="dialog" aria-modal="true" aria-labelledby="pTitle">
  <header class="player-head"><button class="player-close" id="closePlayer" type="button" aria-label="Retour">←</button><h2 id="pTitle">Lecture</h2><span>📺</span></header>
- <div class="player-screen"><iframe id="frame" title="Lecteur de chaîne" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen referrerpolicy="strict-origin-when-cross-origin" style="display:none"></iframe><div class="player-message" id="playerUnavailable" style="display:none"><div class="big">📺</div><h3 id="unavailableTitle"></h3><p>Indisponible pour le moment.<br>Veuillez réessayer dans un an.</p></div></div>
+ <div class="player-screen"><iframe id="frame" title="Lecteur de chaîne" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen referrerpolicy="strict-origin-when-cross-origin" style="display:none"></iframe><video id="nativePlayer" controls playsinline autoplay style="display:none"></video><div class="player-message" id="playerUnavailable" style="display:none"><div class="big">📺</div><h3 id="unavailableTitle"></h3><p>Indisponible pour le moment.<br>Veuillez réessayer dans un an.</p></div></div>
  <div class="player-actions"><button class="player-back" id="playerBack" type="button">Retour aux chaînes</button><button class="player-open" id="openOfficial" type="button" style="display:none">Ouvrir la page officielle ↗</button></div>
 </section>
 <nav class="bottom" aria-label="Navigation principale">
@@ -60,6 +60,7 @@ body{background:#08080c;color:#fff;padding-bottom:88px}
 <a href="/channels-apps.html"><span class="ico">⌕</span>Recherche</a>
 </nav>
 <script src="/config/channels.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/hls.js@1.6.13/dist/hls.min.js"></script>
 <script>
 (() => {
  const list = document.getElementById('list');
@@ -71,6 +72,8 @@ body{background:#08080c;color:#fff;padding-bottom:88px}
  const player = document.getElementById('player');
  const pTitle = document.getElementById('pTitle');
  const frame = document.getElementById('frame');
+ const nativePlayer = document.getElementById('nativePlayer');
+ let hlsInstance = null;
  const playerUnavailable = document.getElementById('playerUnavailable');
  const unavailableTitle = document.getElementById('unavailableTitle');
  const openOfficial = document.getElementById('openOfficial');
@@ -85,6 +88,11 @@ body{background:#08080c;color:#fff;padding-bottom:88px}
    player.style.display = 'none';
    frame.removeAttribute('src');
    frame.style.display = 'none';
+   nativePlayer.pause();
+   nativePlayer.removeAttribute('src');
+   nativePlayer.load();
+   nativePlayer.style.display = 'none';
+   if (hlsInstance) { hlsInstance.destroy(); hlsInstance = null; }
    playerUnavailable.style.display = 'none';
    openOfficial.style.display = 'none';
    activeChannel = null;
@@ -128,19 +136,51 @@ body{background:#08080c;color:#fff;padding-bottom:88px}
    activeChannel = channel;
    pTitle.textContent = channel.name || 'Chaîne sans nom';
    player.style.display = 'flex';
+   frame.removeAttribute('src');
+   frame.style.display = 'none';
+   nativePlayer.pause();
+   nativePlayer.removeAttribute('src');
+   nativePlayer.load();
+   nativePlayer.style.display = 'none';
+   if (hlsInstance) { hlsInstance.destroy(); hlsInstance = null; }
+   playerUnavailable.style.display = 'none';
+   openOfficial.style.display = 'none';
+
+   // Use France 24's official HLS feed in a native video player, avoiding YouTube embed restrictions.
+   if (channel.streamUrl) {
+     nativePlayer.style.display = 'block';
+     if (nativePlayer.canPlayType('application/vnd.apple.mpegurl')) {
+       nativePlayer.src = channel.streamUrl;
+       nativePlayer.play().catch(() => {});
+       return;
+     }
+     if (window.Hls && Hls.isSupported()) {
+       hlsInstance = new Hls();
+       hlsInstance.loadSource(channel.streamUrl);
+       hlsInstance.attachMedia(nativePlayer);
+       hlsInstance.on(Hls.Events.MANIFEST_PARSED, () => nativePlayer.play().catch(() => {}));
+       hlsInstance.on(Hls.Events.ERROR, (_event, data) => {
+         if (data && data.fatal) {
+           hlsInstance.destroy();
+           hlsInstance = null;
+           nativePlayer.style.display = 'none';
+           playerUnavailable.style.display = 'block';
+           unavailableTitle.textContent = channel.name || 'Chaîne sans nom';
+         }
+       });
+       return;
+     }
+     nativePlayer.style.display = 'none';
+   }
+
    const embedUrl = getEmbeddedUrl(channel.webUrl);
    if (!embedUrl) {
-     frame.removeAttribute('src');
-     frame.style.display = 'none';
      playerUnavailable.style.display = 'block';
      unavailableTitle.textContent = channel.name || 'Chaîne sans nom';
-     openOfficial.style.display = 'none';
      return;
    }
-   playerUnavailable.style.display = 'none';
    frame.style.display = 'block';
    frame.src = embedUrl;
-   // Keep playback inside StreamLive; do not expose an external redirect button.
  }
  document.getElementById('closePlayer').addEventListener('click', closePlayer);
  document.getElementById('playerBack').addEventListener('click', closePlayer);
