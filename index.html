@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BLEO TV - Le Cinéma Africain Authentique</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Inter',sans-serif}
+body{background:#08080a;color:white;overflow-x:hidden}
+header{display:flex;justify-content:space-between;align-items:center;padding:24px 60px;position:absolute;top:0;width:100%;z-index:10}
+.logo{font-weight:800;font-size:24px;letter-spacing:2px} .logo span{color:#ff6a00}
+.btn{padding:10px 20px;border-radius:6px;text-decoration:none;font-weight:600;font-size:14px}
+.btn-outline{border:1px solid #ffffff40;color:white}
+.btn-orange{background:#ff6a00;color:white;margin-left:12px}
+.hero{height:100vh;display:flex;align-items:center;padding:0 60px;background:linear-gradient(90deg, #0a0a0a 40%, rgba(0,0,0,0) 100%), url('https://images.unsplash.com/photo-1598899134739-24c46f58b8c0?q=80&w=2000');background-size:cover;background-position:center}
+.hero-content{max-width:600px}
+.hero h1{font-size:64px;line-height:1.05;font-weight:800;margin-bottom:24px}
+.hero h1 em{font-style:normal;color:#ff6a00}
+.stats{display:flex;gap:40px;margin:30px 0} .stats div b{display:block;font-size:28px;color:#ff6a00} .stats div span{font-size:13px;opacity:0.7;letter-spacing:1px}
+.posters{display:flex;gap:12px;margin-top:30px;opacity:0.6} .posters div{width:110px;height:160px;border-radius:8px;background:#222}
+.cta-box{margin-top:40px;padding:24px;background:#111;border-radius:12px;border:1px solid #ffffff14}
+.cta-box h3{margin-bottom:16px}
+@media(max-width:768px){header{padding:16px} .hero{padding:0 20px} .hero h1{font-size:38px} .stats{gap:20px}}
+</style>
+</head>
+<body>
+<header>
+<div class="logo">BLEO <span>TV</span></div>
+<div>
+<a href="login.html" class="btn btn-outline">Se connecter</a>
+<a href="register.html" class="btn btn-orange">Créer votre compte</a>
+</div>
+</header>
+<section class="hero">
+<div class="hero-content">
+<h1>Le Cinéma <em>Africain</em> Authentique</h1>
+<p style="opacity:0.7;line-height:1.6">Des histoires qui vous ressemblent. Films, séries et live 24/7 en haute qualité.</p>
+<div class="stats">
+<div><b>1,250+</b><span>FILMS EXCLUSIFS</span></div>
+<div><b>300</b><span>SÉRIES ORIGINALES</span></div>
+<div><b>24/7</b><span>LIVE</span></div>
+</div>
+<div class="posters">
+<div></div><div></div><div></div><div></div>
+</div>
+<div class="cta-box">
+<h3>Créez votre compte pour accéder à tout le catalogue</h3>
+<a href="register.html" class="btn btn-orange" style="display:inline-block;margin-right:10px">Créer votre compte</a>
+<a href="login.html" class="btn btn-outline">Se connecter</a>
+</div>
+</div>
+</section>
+</body>
+</html>
