@@ -19,7 +19,7 @@ body{background:#08080c;color:#fff;padding-bottom:88px}
 .thumb img{max-width:88%;max-height:76%;object-fit:contain}.logo-fallback{width:45px;height:45px;border-radius:10px;background:#252535;display:grid;place-items:center;font-size:21px;font-weight:900;color:#dce5ff}
 .row-info{min-width:0;flex:1}.row-info b{display:block;font-size:14px;line-height:1.35;overflow-wrap:anywhere}.desc{display:block;opacity:.55;font-size:12px;margin-top:5px;line-height:1.35}.status{display:inline-block;margin-top:7px;font-size:10px;color:#a8c4ff;background:#1a2a4a;border-radius:4px;padding:3px 6px}.status.off{color:#b0b0bc;background:#22222c}.arrow{margin-left:auto;color:#777;font-size:20px;padding-left:2px}
 .empty{padding:28px 18px;text-align:center;color:#aaa;font-size:13px}
-.modal{position:fixed;inset:0;background:#000b;display:none;align-items:center;justify-content:center;z-index:100;padding:24px}
+.modal{position:fixed;inset:0;background:#000b;display:none;align-items:center;justify-content:center;z-index:100;padding:24px}\n.player-overlay{position:fixed;inset:0;background:#08080c;display:none;flex-direction:column;z-index:120;padding:env(safe-area-inset-top) 0 env(safe-area-inset-bottom)}.player-head{height:58px;display:flex;align-items:center;gap:12px;padding:0 16px;border-bottom:1px solid #22222c}.player-head h2{font-size:16px;flex:1;overflow-wrap:anywhere}.player-close{border:0;border-radius:9px;background:#242430;color:#fff;padding:10px 13px;font-weight:800}.player-screen{flex:1;min-height:0;display:flex;align-items:center;justify-content:center;background:#000}.player-screen iframe{width:100%;height:100%;border:0;background:#08080c}.player-message{padding:24px;text-align:center;max-width:400px}.player-message .big{font-size:60px;margin-bottom:20px}.player-message h3{font-size:22px;margin-bottom:10px;overflow-wrap:anywhere}.player-message p{font-size:16px;opacity:.65;line-height:1.5}.player-actions{padding:14px 16px;background:#11111a;display:flex;gap:10px}.player-actions button{flex:1;border:0;border-radius:10px;padding:13px 10px;font-weight:800}.player-open{background:#2b7cff;color:#fff}.player-back{background:#272733;color:#fff}
 .modal-box{background:#13131a;border-radius:16px;padding:24px;text-align:center;width:100%;max-width:340px;border:1px solid #292936}
 .modal-box .icon{width:64px;height:64px;background:#1a2a55;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 16px;font-size:28px}
 .modal-box h3{font-size:17px;margin-bottom:7px}.modal-box p{opacity:.65;font-size:14px;line-height:1.5}
@@ -46,7 +46,7 @@ body{background:#08080c;color:#fff;padding-bottom:88px}
 <button class="btn" id="closeModal" type="button">Retour aux chaînes</button>
 </div>
 </div>
-<nav class="bottom" aria-label="Navigation principale">
+<section class="player-overlay" id="player" role="dialog" aria-modal="true" aria-labelledby="pTitle">\n <header class="player-head"><button class="player-close" id="closePlayer" type="button" aria-label="Retour">←</button><h2 id="pTitle">Lecture</h2><span>📺</span></header>\n <div class="player-screen"><iframe id="frame" title="Lecteur de chaîne" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen referrerpolicy="strict-origin-when-cross-origin" style="display:none"></iframe><div class="player-message" id="playerUnavailable" style="display:none"><div class="big">📺</div><h3 id="unavailableTitle"></h3><p>Indisponible pour le moment.<br>Veuillez réessayer dans un an.</p></div></div>\n <div class="player-actions"><button class="player-back" id="playerBack" type="button">Retour aux chaînes</button><button class="player-open" id="openOfficial" type="button" style="display:none">Ouvrir la page officielle ↗</button></div>\n</section>\n<nav class="bottom" aria-label="Navigation principale">
 <a href="/app.html"><span class="ico">⌂</span>Accueil</a>
 <a href="/channels-apps.html"><span class="ico">▦</span>Chaînes & Apps</a>
 <a class="active" href="/tv.html" aria-current="page"><span class="ico">📺</span>TV</a>
@@ -61,13 +61,13 @@ body{background:#08080c;color:#fff;padding-bottom:88px}
  const modalText = document.getElementById('modalText');
  const nowTab = document.getElementById('nowTab');
  const tonightTab = document.getElementById('tonightTab');
- const guideNote = document.getElementById('guideNote');
+ const guideNote = document.getElementById('guideNote');\n const player = document.getElementById('player');\n const pTitle = document.getElementById('pTitle');\n const frame = document.getElementById('frame');\n const playerUnavailable = document.getElementById('playerUnavailable');\n const unavailableTitle = document.getElementById('unavailableTitle');\n const openOfficial = document.getElementById('openOfficial');\n let activeChannel = null;
  const channels = Array.isArray(window.STREAMLIVE_CHANNELS) ? window.STREAMLIVE_CHANNELS : [];
  let period = 'now';
  const closeModal = () => { modal.style.display = 'none'; };
  document.getElementById('closeModal').addEventListener('click', closeModal);
  modal.addEventListener('click', event => { if (event.target === modal) closeModal(); });
- document.addEventListener('keydown', event => { if (event.key === 'Escape') closeModal(); });
+ document.addEventListener('keydown', event => { if (event.key === 'Escape') { closeModal(); closePlayer(); } });
  function openChannel(channel) {
    if (!channel.webUrl) {
      modalText.textContent = 'Aucun lien officiel n’est enregistré pour ' + (channel.name || 'cette chaîne') + '. Elle reste dans le catalogue, mais ne peut pas être ouverte pour le moment.';
