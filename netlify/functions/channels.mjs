@@ -1,4 +1,4 @@
-import channelModule from "../../config/channels.js";
+import * as channelModule from "../../config/channels.js";
 
 const channels = Array.isArray(channelModule)
   ? channelModule
