@@ -178,10 +178,22 @@ document.getElementById('search-official-source').addEventListener('click',async
   const data=await response.json();
   if(!response.ok)throw new Error(data.message||data.error||'Recherche indisponible');
   const items=Array.isArray(data.results)?data.results:[];
-  box.innerHTML='<h3>Résultats pour '+esc(name)+'</h3>'+ (items.length?items.map(item=>'<div class="source-result"><strong>'+esc(item.title)+'</strong><small>'+esc(item.snippet||item.url)+'</small><a href="'+esc(item.url)+'" target="_blank" rel="noopener noreferrer">Ouvrir la page ↗</a></div>').join(''):'<p>Aucun résultat exploitable trouvé. Réessayez plus tard ou utilisez une recherche manuelle.</p>')+'<p>'+esc(data.notice||'Vérifiez chaque résultat avant de l’utiliser.')+'</p>';
+  box.innerHTML='<h3>Résultats pour '+esc(name)+'</h3>'+ (items.length?items.map(item=>'<div class="source-result"><strong>'+esc(item.title)+'</strong><small>'+esc(item.snippet||item.url)+'</small><a href="'+esc(item.url)+'" target="_blank" rel="noopener noreferrer">Ouvrir la page ↗</a> <button type="button" class="verify-source-button" data-source-url="'+esc(item.url)+'">Vérifier le format</button></div>').join(''):'<p>Aucun résultat exploitable trouvé. Réessayez plus tard ou utilisez une recherche manuelle.</p>')+'<p>'+esc(data.notice||'Vérifiez chaque résultat avant de l’utiliser.')+'</p>';
  }catch(error){
   box.innerHTML='<p class="source-search-error">La recherche automatique n’a pas abouti : '+esc(error.message||error)+'. Vous pouvez réessayer plus tard.</p>';
  }finally{button.disabled=false;button.textContent='Rechercher automatiquement ↗'}
+});
+document.getElementById('source-discovery-results').addEventListener('click',async event=>{
+ const button=event.target.closest('.verify-source-button');if(!button)return;
+ const original=button.textContent;button.disabled=true;button.textContent='Vérification…';
+ let output=button.parentElement.querySelector('.verification-result');
+ if(!output){output=document.createElement('small');output.className='verification-result';button.parentElement.appendChild(output)}
+ try{
+  const response=await fetch('/api/source-verify?url='+encodeURIComponent(button.dataset.sourceUrl),{headers:{accept:'application/json'},cache:'no-store'});
+  const data=await response.json();if(!response.ok)throw new Error(data.message||data.error||'Vérification indisponible');
+  output.textContent='HTTP '+(data.httpStatus??'—')+' · Format : '+(data.format||'inconnu')+' · '+(data.playerHint||'')+' · Source officielle et droits : non vérifiés.';
+ }catch(error){output.textContent='Vérification impossible : '+(error.message||error)}
+ finally{button.disabled=false;button.textContent=original}
 });
 search.addEventListener('input',render);
 groupFilter.addEventListener('change',()=>{active=groupFilter.value||'__all__';renderTabs();render()});
