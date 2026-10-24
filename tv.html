@@ -89,21 +89,56 @@ body{background:#08080c;color:#fff;padding-bottom:88px}
    openOfficial.style.display = 'none';
    activeChannel = null;
  }
+ function getEmbeddedUrl(webUrl) {
+   if (!webUrl) return null;
+   try {
+     const url = new URL(webUrl);
+     const host = url.hostname.replace(/^www\\./, '').replace(/^m\\./, '');
+     if (host === 'youtube.com' || host === 'youtube-nocookie.com') {
+       const path = url.pathname;
+       // YouTube channel live URLs must use the embed endpoint, not the public /live page.
+       const channelMatch = path.match(/^\\/channel\\/(UC[\\w-]+)\\/live?$/) || path.match(/^\\/channel\\/(UC[\\w-]+)\\/live$/);
+       if (channelMatch) return 'https://www.youtube-nocookie.com/embed/live_stream?channel=' + encodeURIComponent(channelMatch[1]) + '&autoplay=1';
+       const watchId = url.searchParams.get('v');
+       if (watchId) return 'https://www.youtube-nocookie.com/embed/' + encodeURIComponent(watchId) + '?autoplay=1';
+       const videoMatch = path.match(/^\\/(?:live|embed)\\/([\\w-]+)/);
+       if (videoMatch) return 'https://www.youtube-nocookie.com/embed/' + encodeURIComponent(videoMatch[1]) + '?autoplay=1';
+       const handleMatch = path.match(/^\\/@([^/]+)\\/live$/);
+       if (handleMatch) {
+         // The /@handle/live page is not an embeddable player URL; use a known official channel ID when available.
+         const knownIds = {
+           CNN: 'UCupvZG-5ko_eiXAupbDfxWw'
+         };
+         const id = knownIds[handleMatch[1]];
+         if (id) return 'https://www.youtube-nocookie.com/embed/live_stream?channel=' + encodeURIComponent(id) + '&autoplay=1';
+       }
+       return null;
+     }
+     if (host === 'youtu.be') {
+       const id = url.pathname.split('/').filter(Boolean)[0];
+       return id ? 'https://www.youtube-nocookie.com/embed/' + encodeURIComponent(id) + '?autoplay=1' : null;
+     }
+     return webUrl;
+   } catch (_) {
+     return null;
+   }
+ }
  function openChannel(channel) {
    activeChannel = channel;
    pTitle.textContent = channel.name || 'Chaîne sans nom';
    player.style.display = 'flex';
-   if (!channel.webUrl) {
+   const embedUrl = getEmbeddedUrl(channel.webUrl);
+   if (!embedUrl) {
      frame.removeAttribute('src');
      frame.style.display = 'none';
      playerUnavailable.style.display = 'block';
      unavailableTitle.textContent = channel.name || 'Chaîne sans nom';
-     openOfficial.style.display = 'none';
+     openOfficial.style.display = 'block';
      return;
    }
    playerUnavailable.style.display = 'none';
    frame.style.display = 'block';
-   frame.src = channel.webUrl;
+   frame.src = embedUrl;
    openOfficial.style.display = 'block';
  }
  document.getElementById('closePlayer').addEventListener('click', closePlayer);
