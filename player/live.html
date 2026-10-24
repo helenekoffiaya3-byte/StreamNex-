@@ -108,6 +108,15 @@ body{padding-bottom:calc(76px + env(safe-area-inset-bottom))!important}
 
 
 .source-search-button{font:inherit;cursor:pointer}.source-discovery-results{margin-top:12px;padding:12px;border:1px solid #333;border-radius:10px;background:#151515;color:#eee}.source-discovery-results h3{font-size:14px;margin:0 0 8px}.source-discovery-results p{font-size:12px;line-height:1.5;color:#aaa}.source-result{display:block;padding:10px 0;border-top:1px solid #303030;overflow-wrap:anywhere}.source-result strong{display:block;font-size:12px;margin-bottom:4px}.source-result small{display:block;color:#aaa;font-size:11px;line-height:1.4}.source-result a{color:#ff426f;font-size:12px;display:inline-block;margin-top:5px}.source-search-error{color:#ff9ba9}
+
+/* Finition mobile : liste TV noire, visuels larges et lecteur ouvert uniquement après sélection. */
+@media(max-width:760px){main{padding-left:27px;padding-right:27px}}
+#list .channel{padding:9px 6px;border:0;border-radius:0;border-bottom:1px solid #202020;background:transparent}
+#list .channel:hover,#list .channel:focus-visible{background:#171717}
+#list .channel .channel-logo{width:clamp(130px,44vw,306px);height:auto;aspect-ratio:16/9;flex:none;border-radius:0;background:#252a30}
+#list .channel .channel-card-info .name{font-size:clamp(14px,3.5vw,20px);line-height:1.35}
+#list .channel .channel-card-info .group{font-size:clamp(11px,2.7vw,15px)}
+@media(max-width:520px){#list .channel{padding:8px 0;gap:9px}#list .channel .channel-logo{width:clamp(130px,44vw,306px)}#list .channel .channel-card-info{gap:9px}}
 </style></head>
 <body>
 <header><div class="head"><a class="brand" href="./live.html" aria-label="StreamLive TV en direct"><span class="brand-mark">▶</span><span>TV EN DIRECT</span></a><a class="profile" href="./index.html" aria-label="Profil utilisateur">◉</a></div><div class="reference-tabs"><span class="reference-tab active">MAINTENANT</span><span class="reference-tab">CE SOIR</span><span class="reference-calendar" aria-label="Programme TV">▣</span></div></header>
