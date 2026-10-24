@@ -24,8 +24,8 @@ header{display:flex;justify-content:space-between;align-items:center;padding:24p
 <header>
 <div class="logo">BLEO <span>TV</span></div>
 <div id="auth-buttons">
-<button onclick="netlifyIdentity.open('login')" class="btn" style="background:transparent;color:white;border:1px solid #ffffff30">Se connecter</button>
-<button onclick="netlifyIdentity.open('signup')" class="btn btn-orange" style="margin-left:10px">Créer votre compte</button>
+<button onclick="openIdentity('login')" class="btn" style="background:transparent;color:white;border:1px solid #ffffff30">Se connecter</button>
+<button onclick="openIdentity('signup')" class="btn btn-orange" style="margin-left:10px">Créer votre compte</button>
 </div>
 </header>
 <section class="hero">
@@ -39,14 +39,40 @@ header{display:flex;justify-content:space-between;align-items:center;padding:24p
 </div>
 <div style="margin-top:40px;padding:24px;background:#111;border-radius:12px;border:1px solid #ffffff14">
 <h3>Créez votre compte pour accéder à tout le catalogue</h3>
-<button onclick="netlifyIdentity.open('signup')" class="btn btn-orange" style="margin-top:16px">Créer votre compte Netlify</button>
+<button onclick="openIdentity('signup')" class="btn btn-orange" style="margin-top:16px">Créer votre compte Netlify</button>
 </div>
 </div>
 </section>
+<p id="auth-status" role="status" aria-live="polite" style="display:none;margin:14px 20px;color:#ffd0a8;font-size:14px"></p>
 <script>
-netlifyIdentity.on('login', () => { window.location.href = '/app.html'; });
-netlifyIdentity.on('signup', () => { window.location.href = '/app.html'; });
-netlifyIdentity.init();
+(function () {
+  const status = document.getElementById('auth-status');
+  function showStatus(message) {
+    status.textContent = message;
+    status.style.display = 'block';
+  }
+  window.openIdentity = function (mode) {
+    if (!window.netlifyIdentity || typeof window.netlifyIdentity.open !== 'function') {
+      showStatus("Le service de connexion ne s'est pas chargé. Vérifiez la connexion Internet puis rechargez la page.");
+      return;
+    }
+    window.netlifyIdentity.open(mode);
+  };
+  if (!window.netlifyIdentity) {
+    showStatus("Le service d'identification Netlify est indisponible. Vérifiez qu'il est activé pour ce site.");
+    return;
+  }
+  window.netlifyIdentity.on('login', function () {
+    window.location.assign('/app.html');
+  });
+  window.netlifyIdentity.on('signup', function () {
+    showStatus("Inscription envoyée. Si la confirmation par e-mail est demandée, ouvrez le message reçu puis connectez-vous.");
+  });
+  window.netlifyIdentity.on('error', function (error) {
+    showStatus(error && error.message ? error.message : "L'identification a échoué. Réessayez.");
+  });
+  window.netlifyIdentity.init();
+})();
 </script>
 </body>
 </html>
