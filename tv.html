@@ -74,6 +74,10 @@ body{background:#08080c;color:#fff;padding-bottom:88px}
  const frame = document.getElementById('frame');
  const nativePlayer = document.getElementById('nativePlayer');
  let hlsInstance = null;
+ const playerUnavailable = document.getElementById('playerUnavailable');
+ const unavailableTitle = document.getElementById('unavailableTitle');
+ const openOfficial = document.getElementById('openOfficial');
+ let activeChannel = null;
  nativePlayer.addEventListener('error', () => {
    if (activeChannel && activeChannel.streamUrl) {
      nativePlayer.style.display = 'none';
@@ -81,10 +85,6 @@ body{background:#08080c;color:#fff;padding-bottom:88px}
      unavailableTitle.textContent = activeChannel.name || 'Chaîne sans nom';
    }
  });
- const playerUnavailable = document.getElementById('playerUnavailable');
- const unavailableTitle = document.getElementById('unavailableTitle');
- const openOfficial = document.getElementById('openOfficial');
- let activeChannel = null;
  const channels = Array.isArray(window.STREAMLIVE_CHANNELS) ? window.STREAMLIVE_CHANNELS : [];
  let period = 'now';
  const closeModal = () => { modal.style.display = 'none'; };
