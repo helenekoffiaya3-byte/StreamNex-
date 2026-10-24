@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Créer un compte - BLEO TV</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Inter',sans-serif}
+body{display:flex;min-height:100vh;background:#08080a;color:white}
+.left{width:50%;background:url('https://images.unsplash.com/photo-1485846234645-a62644f84728?q=80&w=1200');background-size:cover;position:relative;display:flex;flex-direction:column;justify-content:flex-end;padding:60px}
+.left::after{content:'';position:absolute;inset:0;background:linear-gradient(0deg, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.2) 100%)}
+.left-content{position:relative;z-index:2}
+.left h1{font-size:56px;font-weight:800;line-height:1}
+.right{width:50%;display:flex;align-items:center;justify-content:center;padding:40px;background:#0f0f10}
+.form{width:100%;max-width:400px}
+.form h2{font-size:32px;margin-bottom:8px} .form p{opacity:0.6;margin-bottom:30px;font-size:14px}
+label{display:block;margin:16px 0 6px;font-size:13px;opacity:0.8}
+input{width:100%;padding:14px 16px;border-radius:8px;border:1px solid #ffffff20;background:#1c1c1e;color:white;outline:none}
+input:focus{border-color:#ff6a00}
+.btn-submit{width:100%;padding:15px;background:#ff6a00;border:none;border-radius:8px;color:white;font-weight:700;margin-top:24px;cursor:pointer;font-size:15px}
+.bottom{margin-top:20px;text-align:center;font-size:13px;opacity:0.7} .bottom a{color:#ff6a00;text-decoration:none;font-weight:600}
+@media(max-width:900px){.left{display:none} .right{width:100%}}
+</style>
+</head>
+<body>
+<div class="left">
+<div class="left-content">
+<h1>Créer<br>votre<br>compte</h1>
+<p style="margin-top:20px;opacity:0.7;max-width:300px">Rejoignez BLEO TV et accédez à tout le catalogue africain premium.</p>
+</div>
+</div>
+<div class="right">
+<div class="form">
+<h2>Créer un compte</h2>
+<p>Accédez à tout le catalogue BLEO TV</p>
+<label>Nom complet</label>
+<input type="text" placeholder="Votre nom complet">
+<label>Adresse email</label>
+<input type="email" placeholder="email@exemple.com">
+<label>Mot de passe</label>
+<input type="password" placeholder="••••••••">
+<label>Confirmer le mot de passe</label>
+<input type="password" placeholder="••••••••">
+<button class="btn-submit">Créer mon compte</button>
+<div class="bottom">Déjà un compte ? <a href="login.html">Se connecter</a></div>
+</div>
+</div>
+</body>
+</html>
