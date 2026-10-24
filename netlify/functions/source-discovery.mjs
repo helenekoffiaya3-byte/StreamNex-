@@ -91,7 +91,7 @@ export default async function handler(request) {
 
   const query = '"' + name + '" (site officiel OR direct OR live OR livestream)';
   try {
-    const apiKey = typeof Netlify !== "undefined" ? Netlify.env.get("BRAVE_SEARCH_API_KEY") : undefined;
+    const apiKey = process.env.BRAVE_SEARCH_API_KEY;
     let results;
     let provider;
     if (apiKey) {
