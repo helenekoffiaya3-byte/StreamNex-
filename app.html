@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BLEO TV — Espace abonné</title>
+<script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+<style>
+*{box-sizing:border-box}body{margin:0;padding:24px;background:#08080a;color:#fff;font-family:Arial,sans-serif}
+header{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap}
+button{padding:11px 16px;border:0;border-radius:8px;background:#ff6a00;color:#fff;font-weight:700;cursor:pointer}
+main{margin:48px auto;max-width:1100px}h1{font-size:clamp(28px,5vw,44px)}p{color:#bbb;line-height:1.6}
+#status{color:#ffb47d}
+</style>
+</head>
+<body>
+<header>
+<strong>BLEO <span style="color:#ff6a00">TV</span></strong>
+<button id="logout" type="button">Se déconnecter</button>
+</header>
+<main>
+<h1>Bienvenue sur BLEO TV</h1>
+<p id="status">Vérification de votre connexion…</p>
+<section id="member-content" hidden>
+<h2>Votre espace abonné</h2>
+<p>La zone réservée est prête à accueillir le catalogue et le lecteur LIVE 24/7.</p>
+<!-- Intégrer ici le catalogue et le lecteur autorisés. -->
+</section>
+</main>
+<script>
+const statusEl = document.getElementById('status');
+const memberContent = document.getElementById('member-content');
+netlifyIdentity.on('init', user => {
+  if (!user) {
+    window.location.replace('/');
+    return;
+  }
+  statusEl.textContent = 'Vous êtes connecté. Bienvenue !';
+  memberContent.hidden = false;
+});
+netlifyIdentity.on('logout', () => { window.location.replace('/'); });
+document.getElementById('logout').addEventListener('click', () => netlifyIdentity.logout());
+netlifyIdentity.init();
+</script>
+</body>
+</html>
