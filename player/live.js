@@ -78,9 +78,10 @@ function selectChannel(c){
  const status=document.getElementById('player-source-status');
  const open=document.getElementById('open-official-live');
  const searchSource=document.getElementById('search-official-source');
- const searchQuery='site officiel '+c.name+' direct live streaming';
- searchSource.href='https://www.google.com/search?q='+encodeURIComponent(searchQuery);
+ searchSource.dataset.channelName=c.name;
  searchSource.setAttribute('aria-label','Rechercher une source officielle pour '+c.name);
+ const discovery=document.getElementById('source-discovery-results');
+ discovery.hidden=true;discovery.innerHTML='';
  const streamSource=c.streamUrl||c.productionUrl||c.hlsUrl||c.directUrl||c.webUrl||null;
  const officialPage=c.webUrl||streamSource;
  title.textContent=c.name;
@@ -165,6 +166,23 @@ async function load(){
   const retry=document.getElementById('retry-live-catalogue');if(retry)retry.addEventListener('click',load);
  }
 }
+document.getElementById('search-official-source').addEventListener('click',async()=>{
+ const button=document.getElementById('search-official-source');
+ const box=document.getElementById('source-discovery-results');
+ const name=button.dataset.channelName;
+ if(!name){box.hidden=false;box.innerHTML='<p>Sélectionnez d’abord une chaîne.</p>';return}
+ box.hidden=false;box.innerHTML='<p>Recherche des pages publiques pour <strong>'+esc(name)+'</strong>…</p>';
+ button.disabled=true;button.textContent='Recherche en cours…';
+ try{
+  const response=await fetch('/api/source-discovery?name='+encodeURIComponent(name),{headers:{accept:'application/json'},cache:'no-store'});
+  const data=await response.json();
+  if(!response.ok)throw new Error(data.message||data.error||'Recherche indisponible');
+  const items=Array.isArray(data.results)?data.results:[];
+  box.innerHTML='<h3>Résultats pour '+esc(name)+'</h3>'+ (items.length?items.map(item=>'<div class="source-result"><strong>'+esc(item.title)+'</strong><small>'+esc(item.snippet||item.url)+'</small><a href="'+esc(item.url)+'" target="_blank" rel="noopener noreferrer">Ouvrir la page ↗</a></div>').join(''):'<p>Aucun résultat exploitable trouvé. Réessayez plus tard ou utilisez une recherche manuelle.</p>')+'<p>'+esc(data.notice||'Vérifiez chaque résultat avant de l’utiliser.')+'</p>';
+ }catch(error){
+  box.innerHTML='<p class="source-search-error">La recherche automatique n’a pas abouti : '+esc(error.message||error)+'. Vous pouvez réessayer plus tard.</p>';
+ }finally{button.disabled=false;button.textContent='Rechercher automatiquement ↗'}
+});
 search.addEventListener('input',render);
 groupFilter.addEventListener('change',()=>{active=groupFilter.value||'__all__';renderTabs();render()});
 const favoritesLink=document.getElementById('favorites-link');if(favoritesLink)favoritesLink.addEventListener('click',e=>{e.preventDefault();setActive('__fav__')});
