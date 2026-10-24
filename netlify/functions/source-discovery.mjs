@@ -63,6 +63,23 @@ function extractResults(html) {
   return results;
 }
 
+async function searchBrave(query, apiKey) {
+  const endpoint = "https://api.search.brave.com/res/v1/web/search";
+  const response = await fetch(endpoint + "?q=" + encodeURIComponent(query) + "&count=" + MAX_RESULTS + "&country=fr&search_lang=fr", {
+    headers: { "Accept": "application/json", "X-Subscription-Token": apiKey },
+    signal: AbortSignal.timeout(8000)
+  });
+  if (!response.ok) throw new Error("BRAVE_HTTP_" + response.status);
+  const payload = await response.json();
+  return (Array.isArray(payload.web?.results) ? payload.web.results : [])
+    .map((item) => {
+      const safeUrl = safeResultUrl(item.url || "");
+      return safeUrl ? { title: String(item.title || "").slice(0, 240), url: safeUrl, snippet: String(item.description || "").slice(0, 600), verification: "À vérifier", reachable: null } : null;
+    })
+    .filter((item, index, all) => item && item.title && all.findIndex((other) => other?.url === item.url) === index)
+    .slice(0, MAX_RESULTS);
+}
+
 export default async function handler(request) {
   if (request.method !== "GET") {
     return json({ error: "METHOD_NOT_ALLOWED" }, 405);
@@ -72,26 +89,30 @@ export default async function handler(request) {
   const name = (url.searchParams.get("name") || "").trim().slice(0, 100);
   if (name.length < 2) return json({ error: "CHANNEL_NAME_REQUIRED" }, 400);
 
-  const query = ' "' + name + '" (site officiel OR direct OR live OR livestream)';
+  const query = '"' + name + '" (site officiel OR direct OR live OR livestream)';
   try {
-    const response = await fetch(SEARCH_ENDPOINT + "?q=" + encodeURIComponent(query) + "&kl=fr-fr", {
-      headers: {
-        "user-agent": "Mozilla/5.0 (compatible; StreamLiveSourceFinder/1.0)",
-        "accept": "text/html"
-      },
-      signal: AbortSignal.timeout(8000),
-      redirect: "follow"
-    });
-    if (!response.ok) {
-      return json({ error: "SEARCH_PROVIDER_UNAVAILABLE", message: "Le moteur de recherche a répondu HTTP " + response.status }, 502);
+    const apiKey = typeof Netlify !== "undefined" ? Netlify.env.get("BRAVE_SEARCH_API_KEY") : undefined;
+    let results;
+    let provider;
+    if (apiKey) {
+      results = await searchBrave(query, apiKey);
+      provider = "Brave Search API";
+    } else {
+      const response = await fetch(SEARCH_ENDPOINT + "?q=" + encodeURIComponent(query) + "&kl=fr-fr", {
+        headers: { "user-agent": "Mozilla/5.0 (compatible; StreamLiveSourceFinder/1.0)", "accept": "text/html" },
+        signal: AbortSignal.timeout(8000),
+        redirect: "follow"
+      });
+      if (!response.ok) return json({ error: "SEARCH_PROVIDER_UNAVAILABLE", message: "Le moteur de recherche a répondu HTTP " + response.status }, 502);
+      results = extractResults(await response.text());
+      provider = "DuckDuckGo HTML (secours, disponibilité non garantie)";
     }
-    const html = await response.text();
-    const results = extractResults(html);
     return json({
       query: name + " source officielle direct live",
+      provider,
       count: results.length,
       results,
-      notice: "Les résultats sont des pistes de recherche, pas des sources officiellement validées. Ouvrez-les et vérifiez le diffuseur avant d'ajouter un lien au catalogue."
+      notice: "Les résultats sont des pistes de recherche. Ni le caractère officiel, ni la disponibilité, ni le droit de retransmission ne sont confirmés automatiquement. Ne les ajoutez pas au catalogue avant vérification."
     });
   } catch (error) {
     return json({
@@ -102,4 +123,4 @@ export default async function handler(request) {
   }
 }
 
-export const config = { path: "/api/source-discovery" };
+export const config = { path: "/api/source-discovery", rateLimit: { action: "rate_limit", aggregateBy: "ip", windowSize: 60, windowLimit: 20 } };
