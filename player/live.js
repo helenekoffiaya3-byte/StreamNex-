@@ -114,11 +114,23 @@ function selectChannel(c){
   }else{video.src=url;video.play().catch(()=>{});status.textContent='Flux vidéo — lecture en cours'}
   video.addEventListener('error',()=>{status.textContent='Flux non lisible';showPlayerMessage('Impossible de lire ce flux','La source peut être hors ligne, protégée ou incompatible avec ce navigateur.',c)},{once:true});
  }else{
+  // Lecteur intégré pour les pages officielles HTML (iframe responsive 16:9).
   const frame=document.createElement('iframe');
-  frame.title='Direct officiel de '+c.name;frame.src=url;frame.allow='autoplay; encrypted-media; picture-in-picture; fullscreen';frame.allowFullscreen=true;frame.referrerPolicy='strict-origin-when-cross-origin';
+  frame.title='Lecteur du direct officiel — '+c.name;
+  frame.src=url;
+  frame.loading='eager';
+  frame.allow='autoplay; encrypted-media; picture-in-picture; fullscreen; web-share';
+  frame.allowFullscreen=true;
+  frame.referrerPolicy='strict-origin-when-cross-origin';
+  frame.setAttribute('allowfullscreen','');
   stage.appendChild(frame);
-  status.textContent='Page officielle chargée si le diffuseur autorise l’intégration';
-  sourceLoadTimer=setTimeout(()=>{if(selectedChannelId===c.id){status.textContent='Si la vidéo ne démarre pas, ouvrez le site officiel';}},5000);
+
+  const fallback=document.createElement('div');
+  fallback.className='official-page-fallback';
+  fallback.innerHTML='<span>Si le diffuseur bloque la lecture intégrée, ouvrez son direct officiel.</span><a href="'+esc(url)+'" target="_blank" rel="noopener noreferrer">Regarder sur le site officiel ↗</a>';
+  stage.appendChild(fallback);
+  status.textContent='Chargement du lecteur officiel dans StreamLive…';
+  sourceLoadTimer=setTimeout(()=>{if(selectedChannelId===c.id){status.textContent='Vérifiez la lecture intégrée ou ouvrez le direct officiel';fallback.classList.add('visible');}},4500);
  }
  render();
  document.getElementById('live-player-stage').scrollIntoView({behavior:'smooth',block:'center'});
