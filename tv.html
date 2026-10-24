@@ -93,19 +93,19 @@ body{background:#08080c;color:#fff;padding-bottom:88px}
    if (!webUrl) return null;
    try {
      const url = new URL(webUrl);
-     const host = url.hostname.replace(/^www\\./, '').replace(/^m\\./, '');
+     const host = url.hostname.replace(/^www\./, '').replace(/^m\./, '');
      if (host === 'youtube.com' || host === 'youtube-nocookie.com') {
        const path = url.pathname;
        // YouTube channel live URLs must use the embed endpoint, not the public /live page.
-       const channelMatch = path.match(/^\\/channel\\/(UC[\\w-]+)\\/live?$/) || path.match(/^\\/channel\\/(UC[\\w-]+)\\/live$/);
+       const channelMatch = path.match(/^\/channel\/(UC[\w-]+)\/live$/);
        if (channelMatch) return 'https://www.youtube-nocookie.com/embed/live_stream?channel=' + encodeURIComponent(channelMatch[1]) + '&autoplay=1';
        const watchId = url.searchParams.get('v');
        if (watchId) return 'https://www.youtube-nocookie.com/embed/' + encodeURIComponent(watchId) + '?autoplay=1';
-       const videoMatch = path.match(/^\\/(?:live|embed)\\/([\\w-]+)/);
+       const videoMatch = path.match(/^\/(?:live|embed)\/([\w-]+)/);
        if (videoMatch) return 'https://www.youtube-nocookie.com/embed/' + encodeURIComponent(videoMatch[1]) + '?autoplay=1';
-       const handleMatch = path.match(/^\\/@([^/]+)\\/live$/);
+       const handleMatch = path.match(/^\/@([^/]+)\/live$/);
        if (handleMatch) {
-         // The /@handle/live page is not an embeddable player URL; use a known official channel ID when available.
+         // A handle is not an embeddable channel ID; map only IDs verified in this catalogue.
          const knownIds = {
            CNN: 'UCupvZG-5ko_eiXAupbDfxWw'
          };
