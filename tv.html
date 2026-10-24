@@ -74,6 +74,13 @@ body{background:#08080c;color:#fff;padding-bottom:88px}
  const frame = document.getElementById('frame');
  const nativePlayer = document.getElementById('nativePlayer');
  let hlsInstance = null;
+ nativePlayer.addEventListener('error', () => {
+   if (activeChannel && activeChannel.streamUrl) {
+     nativePlayer.style.display = 'none';
+     playerUnavailable.style.display = 'block';
+     unavailableTitle.textContent = activeChannel.name || 'Chaîne sans nom';
+   }
+ });
  const playerUnavailable = document.getElementById('playerUnavailable');
  const unavailableTitle = document.getElementById('unavailableTitle');
  const openOfficial = document.getElementById('openOfficial');
@@ -204,7 +211,7 @@ body{background:#08080c;color:#fff;padding-bottom:88px}
    const fragment = document.createDocumentFragment();
    channels.forEach(channel => {
      const row = document.createElement('article'); row.className='row'; row.tabIndex=0; row.setAttribute('role','button');
-     row.setAttribute('aria-label', (channel.name || 'Chaîne') + (channel.webUrl ? ', ouvrir la page officielle' : ', indisponible'));
+     row.setAttribute('aria-label', (channel.name || 'Chaîne') + (channel.streamUrl ? ', lecture directe disponible' : channel.webUrl ? ', lecture via le lien officiel' : ', indisponible'));
      const thumb = document.createElement('div'); thumb.className='thumb';
      if (channel.logoUrl) {
        const img = document.createElement('img'); img.src=channel.logoUrl; img.alt=''; img.loading='lazy';
@@ -216,7 +223,7 @@ body{background:#08080c;color:#fff;padding-bottom:88px}
      const info=document.createElement('div');info.className='row-info';
      const title=document.createElement('b');title.textContent=(channel.channelNumber ? channel.channelNumber + '. ' : '')+(channel.name||'Chaîne sans nom');
      const desc=document.createElement('span');desc.className='desc';desc.textContent=channel.group||'Catalogue BLEO TV';
-     const status=document.createElement('span');status.className='status'+(channel.webUrl?'':' off');status.textContent=channel.webUrl?'Page officielle disponible':'Indisponible';
+     const status=document.createElement('span');status.className='status'+(channel.webUrl?'':' off');status.textContent=channel.streamUrl?'Lecture directe disponible':channel.webUrl?'Page officielle disponible':'Indisponible';
      info.append(title,desc,status);
      const arrow=document.createElement('span');arrow.className='arrow';arrow.textContent=channel.webUrl?'›':'·';arrow.setAttribute('aria-hidden','true');
      row.append(thumb,info,arrow);
