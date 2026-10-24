@@ -35,13 +35,13 @@ body{padding-bottom:calc(68px + env(safe-area-inset-bottom))!important}
 /* Liste En direct : rangée classique, défilement continu jusqu'à la dernière chaîne.
    La navigation StreamLive existante reste inchangée. */
 #list.grid{display:flex;flex-direction:column;gap:8px;overflow:visible;max-height:none}
-#list .channel{display:flex;flex-direction:row;align-items:center;gap:12px;width:100%;min-height:0;padding:9px 12px;border-radius:12px;overflow:visible}
+#list .channel{display:flex;flex-direction:row;align-items:center;gap:12px;width:100%;min-height:0;padding:9px 6px;border:0;border-radius:0;border-bottom:1px solid #1e1e1e;background:transparent;overflow:visible}
 #list .channel:hover,#list .channel:focus-visible{transform:none}
 #list .channel .channel-card-info{flex:1;min-width:0;display:flex;align-items:center;gap:12px;padding:0}
-#list .channel .channel-logo{width:clamp(92px,18vw,144px);height:auto;aspect-ratio:16/9;flex:none;border-radius:7px}
+#list .channel .channel-logo{width:clamp(130px,44vw,306px);height:auto;aspect-ratio:16/9;flex:none;border-radius:0;background:#252a30}
 #list .channel .channel-logo img{padding:8px}
 #list .channel .channel-card-info .meta{flex:1;min-width:0;padding:0 38px 0 0}
-#list .channel .channel-card-info .name{font-size:14px;line-height:1.35;white-space:normal}
+#list .channel .channel-card-info .name{font-size:clamp(14px,3.5vw,20px);line-height:1.35;white-space:normal}
 #list .channel .channel-card-info .group{font-size:11px;margin-top:5px}
 #list .channel .channel-card-info .number{font-size:10px;margin-top:4px}
 #list .channel .channel-card-info .state{font-size:9px;margin-top:7px}
@@ -72,7 +72,7 @@ header{background:#0d0d0d;border:0;backdrop-filter:none}
 .reference-tab.active:after{content:"";position:absolute;left:0;right:0;bottom:0;height:4px;background:#e5094a}
 .reference-calendar{margin-left:auto;font-size:26px;color:#eee;padding-bottom:10px}
 main{max-width:950px;padding:8px 27px 35px}
-.catalogue-summary{font-size:11px;color:#999;padding:0 0 12px}
+.catalogue-summary{font-size:11px;color:#999;padding:0 0 12px;display:none}
 .hero{display:none}
 .toolbar{margin:8px 0 12px}
 .toolbar input,.toolbar select{background:#171717;border-color:#333;border-radius:8px}
@@ -81,7 +81,7 @@ main{max-width:950px;padding:8px 27px 35px}
 .tabs{display:none}
 .result-line{margin:8px 0 12px;font-size:11px}
 .result-line span:last-child{display:none}
-.live-player-panel{margin:8px 0 18px;padding:12px;background:#171717;border-color:#292929}
+.live-player-panel{display:none;margin:8px 0 18px;padding:12px;background:#171717;border-color:#292929}.live-player-panel.player-visible{display:block}
 .live-player-heading h2{font-size:18px}
 .live-player-heading p{font-size:11px}
 .player-number{border-color:#333}
@@ -104,7 +104,7 @@ body{padding-bottom:calc(76px + env(safe-area-inset-bottom))!important}
 #list .channel .channel-card-info .state{font-size:9px;margin-top:7px}
 #list .channel .fav{top:50%;right:12px;transform:translateY(-50%)}
 #list .channel[aria-pressed="true"]{border-color:#e5094a;background:#1b1115}
-@media(max-width:520px){main{padding:5px 14px 25px}.head{padding:17px 27px 8px}.reference-tabs{padding:10px 27px 0;gap:28px}#list.grid{gap:7px}#list .channel{padding:8px;gap:9px}#list .channel .channel-card-info{gap:9px}#list .channel .channel-logo{width:clamp(88px,31vw,124px);border-radius:6px}#list .channel .channel-card-info .meta{padding-right:28px}#list .channel .channel-card-info .name{font-size:12px}#list .channel .channel-card-info .group{font-size:10px}#list .channel .channel-card-info .state{font-size:8px}}
+@media(max-width:520px){main{padding:5px 27px 25px}.head{padding:17px 27px 8px}.reference-tabs{padding:10px 27px 0;gap:28px}#list.grid{gap:7px}#list .channel{padding:8px;gap:9px}#list .channel .channel-card-info{gap:9px}#list .channel .channel-logo{width:clamp(88px,31vw,124px);border-radius:6px}#list .channel .channel-card-info .meta{padding-right:28px}#list .channel .channel-card-info .name{font-size:12px}#list .channel .channel-card-info .group{font-size:10px}#list .channel .channel-card-info .state{font-size:8px}}
 
 
 .source-search-button{font:inherit;cursor:pointer}.source-discovery-results{margin-top:12px;padding:12px;border:1px solid #333;border-radius:10px;background:#151515;color:#eee}.source-discovery-results h3{font-size:14px;margin:0 0 8px}.source-discovery-results p{font-size:12px;line-height:1.5;color:#aaa}.source-result{display:block;padding:10px 0;border-top:1px solid #303030;overflow-wrap:anywhere}.source-result strong{display:block;font-size:12px;margin-bottom:4px}.source-result small{display:block;color:#aaa;font-size:11px;line-height:1.4}.source-result a{color:#ff426f;font-size:12px;display:inline-block;margin-top:5px}.source-search-error{color:#ff9ba9}
