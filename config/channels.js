@@ -536,7 +536,7 @@ for (const channel of CHANNELS) {
   if (channelIds.has(channel.id)) throw new Error(`Duplicate channel id: ${channel.id}`);
   if (channelTvgIds.has(channel.tvgId)) throw new Error(`Duplicate tvgId: ${channel.tvgId}`);
   if (channelNumbers.has(channel.channelNumber)) throw new Error(`Duplicate channel number: ${channel.channelNumber}`);
-  if (typeof channel.logoUrl !== "string" || (!channel.logoUrl && !channel.id.startsWith("s-plus"))) throw new Error(`Missing logoUrl: ${channel.id}`);
+  if (channel.logoUrl !== undefined && typeof channel.logoUrl !== "string") throw new Error(`Invalid logoUrl: ${channel.id}`);
   if (channel.webUrl !== undefined && (typeof channel.webUrl !== "string" || !(channel.webUrl.startsWith("https://") || channel.webUrl.startsWith("http://")))) throw new Error(`Invalid webUrl: ${channel.id}`);
   channelIds.add(channel.id);
   channelTvgIds.add(channel.tvgId);
