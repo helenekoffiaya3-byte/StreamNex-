@@ -117,7 +117,7 @@ export default async function handler(request) {
     return reply(await inspectUrl(target));
   }
   if (request.method === "POST" && url.pathname.endsWith("/source-review")) {
-    const expected = typeof Netlify !== "undefined" ? Netlify.env.get("STREAMLIVE_SOURCE_REVIEW_TOKEN") : undefined;
+    const expected = process.env.STREAMLIVE_SOURCE_REVIEW_TOKEN;
     if (!expected || request.headers.get("authorization") !== "Bearer " + expected) return reply({ error: "UNAUTHORIZED", message: "Validation administrative non configurée." }, 401);
     let body;
     try { body = await request.json(); } catch { return reply({ error: "INVALID_JSON" }, 400); }
