@@ -1,0 +1,4 @@
+# Netlify static-site configuration
+# The site pages (index.html, app.html, tv.html, etc.) are stored at the repository root.
+[build]
+  publish = "."
