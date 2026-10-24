@@ -3,43 +3,84 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>BLEO TV — Espace abonné</title>
+<title>BLEO TV - Accueil</title>
 <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
 <style>
-*{box-sizing:border-box}body{margin:0;padding:24px;background:#08080a;color:#fff;font-family:Arial,sans-serif}
-header{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap}
-button{padding:11px 16px;border:0;border-radius:8px;background:#ff6a00;color:#fff;font-weight:700;cursor:pointer}
-main{margin:48px auto;max-width:1100px}h1{font-size:clamp(28px,5vw,44px)}p{color:#bbb;line-height:1.6}
-#status{color:#ffb47d}
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Inter',sans-serif}
+body{background:#0a0a0e;color:white;padding-bottom:90px}
+.header{padding:18px 16px;text-align:center;position:sticky;top:0;background:#0a0a0e;z-index:10}
+.header h1{font-size:22px;font-weight:800;letter-spacing:2px}
+.hero{margin:0 12px;border-radius:16px;overflow:hidden;position:relative;height:420px;background:url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?q=80&w=1200') center/cover}
+.hero::after{content:'';position:absolute;inset:0;background:linear-gradient(0deg, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.1) 50%)}
+.hero-content{position:absolute;bottom:0;left:0;right:0;padding:20px;z-index:2}
+.hero h2{font-size:28px;line-height:1.1;font-weight:800}
+.hero p{font-size:15px;opacity:0.8;margin-top:4px}
+.dots{display:flex;justify-content:center;gap:8px;margin:16px 0}
+.dots span{width:8px;height:8px;border-radius:50%;background:#ffffff30}
+.dots span.active{background:#ff6a00}
+.categories{display:flex;gap:10px;padding:0 12px;margin:16px 0}
+.cat{flex:1;border-radius:12px;padding:22px 10px;text-align:center;font-weight:800;font-size:14px;letter-spacing:0.5px}
+.cat span{display:block;font-size:28px;margin-bottom:8px}
+.cat.series{background:#4a2020}
+.cat.sport{background:#1e3528}
+.cat.live{background:#1e2e4a}
+.section-title{padding:20px 16px 10px;font-size:18px;font-weight:700;display:flex;justify-content:space-between;align-items:center}
+.cards{display:flex;gap:12px;overflow-x:auto;padding:0 12px 10px;scrollbar-width:none}
+.cards::-webkit-scrollbar{display:none}
+.card{min-width:160px;background:#18181c;border-radius:12px;overflow:hidden;flex-shrink:0}
+.card img{width:100%;height:110px;object-fit:cover}
+.card-info{padding:10px}
+.card-info b{display:block;font-size:14px}
+.card-info span{font-size:12px;opacity:0.6}
+.bottom-nav{position:fixed;bottom:0;left:0;right:0;background:#15151a;border-radius:24px 24px 0 0;display:flex;justify-content:space-around;padding:12px 0 18px;border-top:1px solid #ffffff0f}
+.nav-item{text-align:center;font-size:10px;opacity:0.5;color:white;text-decoration:none}
+.nav-item.active{opacity:1}
+.nav-item.active div{background:#ff6a00;color:white;padding:6px 14px;border-radius:20px}
+.nav-item div{font-size:20px;margin-bottom:4px}
+@media(max-width:420px){.categories{gap:7px}.cat{padding:18px 6px;font-size:12px}.card{min-width:145px}}
 </style>
 </head>
 <body>
-<header>
-<strong>BLEO <span style="color:#ff6a00">TV</span></strong>
-<button id="logout" type="button">Se déconnecter</button>
-</header>
-<main>
-<h1>Bienvenue sur BLEO TV</h1>
-<p id="status">Vérification de votre connexion…</p>
-<section id="member-content" hidden>
-<h2>Votre espace abonné</h2>
-<p>La zone réservée est prête à accueillir le catalogue et le lecteur LIVE 24/7.</p>
-<!-- Intégrer ici le catalogue et le lecteur autorisés. -->
-</section>
-</main>
+<div class="header"><h1>BLEO TV</h1></div>
+<div class="hero">
+<div class="hero-content">
+<h2>Secret Story Afrique</h2>
+<p>Nouvelle Saison</p>
+</div>
+</div>
+<div class="dots"><span class="active"></span><span></span><span></span></div>
+<div class="categories">
+<div class="cat series"><span>🎬</span>SERIES</div>
+<div class="cat sport"><span>⚽</span>SPORT</div>
+<div class="cat live"><span>📡</span>LIVE 24/7</div>
+</div>
+<div class="section-title">BLEO TV Original <span style="opacity:0.3">›</span></div>
+<div class="cards">
+<div class="card"><img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?q=80&w=400" alt=""><div class="card-info"><b>Clash</b><span>Série • Suspense</span></div></div>
+<div class="card"><img src="https://images.unsplash.com/photo-1531123897727-8f129e1688ce?q=80&w=400" alt=""><div class="card-info"><b>Kèr Nafy</b><span>Série • Drame</span></div></div>
+<div class="card"><img src="https://images.unsplash.com/photo-1598899134739-24c46f58b8c0?q=80&w=400" alt=""><div class="card-info"><b>Bled Family</b><span>Série • Comédie</span></div></div>
+</div>
+<div class="section-title">Les émissions de BLEO TV <span style="opacity:0.3">›</span></div>
+<div class="cards">
+<div class="card"><img src="https://images.unsplash.com/photo-1515187029135-18ee286d815b?q=80&w=400" alt=""><div class="card-info"><b>Bleo Talk</b><span>Émission • Live</span></div></div>
+<div class="card"><img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?q=80&w=400" alt=""><div class="card-info"><b>Saveurs d'Afrique</b><span>Cuisine</span></div></div>
+</div>
+<div class="bottom-nav">
+<a class="nav-item active" href="/app.html"><div>🏠</div>Accueil</a>
+<a class="nav-item" href="#" aria-label="Recherche"><div>🔍</div>Recherche</a>
+<a class="nav-item" href="#" aria-label="En direct"><div>📺</div>En direct</a>
+<a class="nav-item" href="#" aria-label="Chaînes et applications"><div>⊞</div>Chaînes &amp; Apps</a>
+<a class="nav-item" href="#" aria-label="En plus"><div>•••</div>En plus</a>
+</div>
 <script>
-const statusEl = document.getElementById('status');
-const memberContent = document.getElementById('member-content');
 netlifyIdentity.on('init', user => {
   if (!user) {
     window.location.replace('/');
     return;
   }
-  statusEl.textContent = 'Vous êtes connecté. Bienvenue !';
-  memberContent.hidden = false;
 });
 netlifyIdentity.on('logout', () => { window.location.replace('/'); });
-document.getElementById('logout').addEventListener('click', () => netlifyIdentity.logout());
 netlifyIdentity.init();
 </script>
 </body>
