@@ -57,11 +57,60 @@ body{padding-bottom:calc(68px + env(safe-area-inset-bottom))!important}
  #list .channel .channel-card-info .group{font-size:10px}
  #list .channel .channel-card-info .state{font-size:8px}
 }
+
+/* Interface de référence TV EN DIRECT : noir, onglets rouges et liste verticale. */
+:root{--bg:#0d0d0d;--panel:#171717;--panel2:#222;--line:#292929;--text:#f5f5f5;--muted:#a5a5a5;--blue:#e5094a;--cyan:#e5094a;--red:#e5094a}
+body{background:#0d0d0d;color:#f5f5f5;font-family:Arial,system-ui,sans-serif}
+header{background:#0d0d0d;border:0;backdrop-filter:none}
+.head{max-width:none;padding:20px 27px 12px;gap:12px}
+.brand{font-size:clamp(20px,4vw,29px);font-style:italic;letter-spacing:-.7px}
+.brand-mark{display:none}
+.profile{margin-left:auto;width:42px;height:42px;border-radius:50%;justify-content:center;background:#17234a;font-size:19px;padding:0}
+.reference-tabs{display:flex;align-items:center;gap:36px;padding:12px 27px 0;min-height:52px}
+.reference-tab{position:relative;padding:8px 10px 13px;color:#bdbdbd;font-size:clamp(15px,3vw,21px);font-weight:900;font-style:italic;white-space:nowrap}
+.reference-tab.active{color:#fff}
+.reference-tab.active:after{content:"";position:absolute;left:0;right:0;bottom:0;height:4px;background:#e5094a}
+.reference-calendar{margin-left:auto;font-size:26px;color:#eee;padding-bottom:10px}
+main{max-width:950px;padding:8px 27px 35px}
+.catalogue-summary{font-size:11px;color:#999;padding:0 0 12px}
+.hero{display:none}
+.toolbar{margin:8px 0 12px}
+.toolbar input,.toolbar select{background:#171717;border-color:#333;border-radius:8px}
+.layout{display:block}
+.sidebar{display:none}
+.tabs{display:none}
+.result-line{margin:8px 0 12px;font-size:11px}
+.result-line span:last-child{display:none}
+.live-player-panel{margin:8px 0 18px;padding:12px;background:#171717;border-color:#292929}
+.live-player-heading h2{font-size:18px}
+.live-player-heading p{font-size:11px}
+.player-number{border-color:#333}
+.live-player-stage{border-color:#292929}
+.official-live-button{background:#e5094a}
+.sl-bottom-nav{background:#191919;border-top:1px solid #292929}
+.sl-bottom-nav .sl-tab.active{color:#e5094a}
+body{padding-bottom:calc(76px + env(safe-area-inset-bottom))!important}
+/* Toutes les chaînes restent dans une liste verticale à défilement continu. */
+#list.grid{display:flex;flex-direction:column;gap:8px;overflow:visible;max-height:none}
+#list .channel{display:flex;flex-direction:row;align-items:center;gap:12px;width:100%;min-height:0;padding:9px 12px;border-radius:12px;overflow:visible}
+#list .channel:hover,#list .channel:focus-visible{transform:none}
+#list .channel .channel-card-info{flex:1;min-width:0;display:flex;align-items:center;gap:12px;padding:0}
+#list .channel .channel-logo{width:clamp(92px,18vw,144px);height:auto;aspect-ratio:16/9;flex:none;border-radius:7px}
+#list .channel .channel-logo img{padding:8px}
+#list .channel .channel-card-info .meta{flex:1;min-width:0;padding:0 38px 0 0}
+#list .channel .channel-card-info .name{font-size:14px;line-height:1.35;white-space:normal}
+#list .channel .channel-card-info .group{font-size:11px;margin-top:5px}
+#list .channel .channel-card-info .number{font-size:10px;margin-top:4px}
+#list .channel .channel-card-info .state{font-size:9px;margin-top:7px}
+#list .channel .fav{top:50%;right:12px;transform:translateY(-50%)}
+#list .channel[aria-pressed="true"]{border-color:#e5094a;background:#1b1115}
+@media(max-width:520px){main{padding:5px 14px 25px}.head{padding:17px 27px 8px}.reference-tabs{padding:10px 27px 0;gap:28px}#list.grid{gap:7px}#list .channel{padding:8px;gap:9px}#list .channel .channel-card-info{gap:9px}#list .channel .channel-logo{width:clamp(88px,31vw,124px);border-radius:6px}#list .channel .channel-card-info .meta{padding-right:28px}#list .channel .channel-card-info .name{font-size:12px}#list .channel .channel-card-info .group{font-size:10px}#list .channel .channel-card-info .state{font-size:8px}}
+
 </style></head>
 <body>
-<header><div class="head"><a class="brand" href="./index.html"><span class="brand-mark">▶</span><span>Stream<em>Live</em></span></a><a class="profile" href="./index.html" aria-label="Espace utilisateur">Se connecter</a></div></header>
+<header><div class="head"><a class="brand" href="./live.html" aria-label="StreamLive TV en direct"><span class="brand-mark">▶</span><span>TV EN DIRECT</span></a><a class="profile" href="./index.html" aria-label="Profil utilisateur">◉</a></div><div class="reference-tabs"><span class="reference-tab active">MAINTENANT</span><span class="reference-tab">CE SOIR</span><span class="reference-calendar" aria-label="Programme TV">▣</span></div></header>
 <main>
-<section class="hero"><div class="hero-content"><div class="live-pill"><span class="dot"></span> EN DIRECT</div><h1>La télévision,<br><span>en direct</span></h1><p>Vos chaînes préférées en un seul endroit. Infos, sport, cinéma, divertissement et bien plus encore.</p><div class="stats"><div class="stat"><strong id="total-count">—</strong> chaînes</div><div class="stat"><strong>◉</strong> Lecteur StreamLive</div><div class="stat"><strong>☆</strong> Vos favoris</div></div></div></section>
+<div class="catalogue-summary"><span id="total-count">—</span> chaînes au catalogue</div>
 <section class="live-player-panel" aria-label="Lecteur de la chaîne sélectionnée">
   <div class="live-player-heading"><div><div class="eyebrow"><span class="dot"></span> LECTEUR EN DIRECT</div><h2 id="selected-channel-title">Sélectionnez une chaîne</h2><p id="selected-channel-description">Choisissez une chaîne dans la liste pour ouvrir son direct officiel ici.</p></div><span id="selected-channel-number" class="player-number">Aucune chaîne</span></div>
   <div id="live-player-stage" class="live-player-stage"><div class="player-placeholder"><span class="placeholder-screen">▶</span><strong>Votre direct apparaîtra ici</strong><span>Sélectionnez une chaîne dans le catalogue ci-dessous.</span></div></div>
