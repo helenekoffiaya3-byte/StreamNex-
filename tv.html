@@ -123,7 +123,9 @@ body{background:#08080c;color:#fff;padding-bottom:88px}
          // A handle is not an embeddable channel ID; map only IDs verified in this catalogue.
          const knownIds = {
            CNN: 'UCupvZG-5ko_eiXAupbDfxWw',
-           FRANCE24: 'UCCCPCZNChQdGa9EkATeye4g'
+           FRANCE24: 'UCCCPCZNChQdGa9EkATeye4g',
+           euronewsfr: 'UCW2QcKZiU8aUGg4yxCIditg',
+           msnow: 'UCaXkIU1QidjPwiAYu6GcHjg'
          };
          const id = knownIds[handleMatch[1]];
          if (id) return 'https://www.youtube-nocookie.com/embed/live_stream?channel=' + encodeURIComponent(id) + '&autoplay=1';
