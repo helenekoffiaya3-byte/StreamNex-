@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#08080c">
+<title>BLEO TV • TV EN DIRECT</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+body{background:#08080c;color:#fff;padding-bottom:88px}
+.header{height:54px;padding:0 16px;display:flex;justify-content:space-between;align-items:center;background:#08080c;position:sticky;top:0;z-index:20}
+.header h1{font-weight:900;font-style:italic;font-size:19px;letter-spacing:.5px}.screen-icon{font-size:21px}
+.tabs{display:flex;align-items:center;gap:28px;padding:0 16px;border-bottom:1px solid #1e1e26;background:#08080c;position:sticky;top:54px;z-index:10}
+.tab{padding:12px 2px 10px;font-weight:800;font-size:13px;opacity:.48;border:0;border-bottom:3px solid transparent;background:none;color:#fff;white-space:nowrap}
+.tab.active{opacity:1;border-color:#2b7cff}.calendar{margin-left:auto;font-size:19px;padding:8px 0}
+.intro{padding:13px 16px 5px;color:#9696a7;font-size:12px;line-height:1.45}
+#list{min-height:180px}.row{display:flex;align-items:center;gap:12px;padding:13px 16px;border-bottom:1px solid #12121a;min-height:108px;cursor:pointer}
+.thumb{width:145px;height:81px;background:#15151f;border-radius:6px;position:relative;overflow:hidden;flex-shrink:0;display:flex;align-items:center;justify-content:center}
+.thumb img{max-width:88%;max-height:76%;object-fit:contain}.logo-fallback{width:45px;height:45px;border-radius:10px;background:#252535;display:grid;place-items:center;font-size:21px;font-weight:900;color:#dce5ff}
+.row-info{min-width:0;flex:1}.row-info b{display:block;font-size:14px;line-height:1.35;overflow-wrap:anywhere}.desc{display:block;opacity:.55;font-size:12px;margin-top:5px;line-height:1.35}.status{display:inline-block;margin-top:7px;font-size:10px;color:#a8c4ff;background:#1a2a4a;border-radius:4px;padding:3px 6px}.status.off{color:#b0b0bc;background:#22222c}.arrow{margin-left:auto;color:#777;font-size:20px;padding-left:2px}
+.empty{padding:28px 18px;text-align:center;color:#aaa;font-size:13px}
+.modal{position:fixed;inset:0;background:#000b;display:none;align-items:center;justify-content:center;z-index:100;padding:24px}
+.modal-box{background:#13131a;border-radius:16px;padding:24px;text-align:center;width:100%;max-width:340px;border:1px solid #292936}
+.modal-box .icon{width:64px;height:64px;background:#1a2a55;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 16px;font-size:28px}
+.modal-box h3{font-size:17px;margin-bottom:7px}.modal-box p{opacity:.65;font-size:14px;line-height:1.5}
+.btn{margin-top:18px;background:#2b7cff;color:white;border:none;padding:12px;width:100%;border-radius:10px;font-weight:800;font-size:15px;cursor:pointer}
+.bottom{position:fixed;bottom:0;left:0;right:0;background:#11111a;display:flex;justify-content:space-around;padding:10px 0 calc(10px + env(safe-area-inset-bottom));border-top:1px solid #1e1e26;z-index:30}
+.bottom a{opacity:.48;color:white;text-decoration:none;font-size:10px;text-align:center;min-width:48px;line-height:1.45}.bottom a.active{opacity:1;color:#2b7cff}.bottom .ico{font-size:19px;display:block}
+@media(max-width:360px){.thumb{width:118px;height:70px}.row{gap:9px;padding:12px}.header h1{font-size:16px}.tabs{gap:20px}}
+</style>
+</head>
+<body>
+<header class="header"><h1>▶ BLEO TV • TV EN DIRECT</h1><div class="screen-icon" aria-hidden="true">📺</div></header>
+<div class="tabs" role="tablist" aria-label="Période du guide">
+<button class="tab active" id="nowTab" type="button" role="tab" aria-selected="true">MAINTENANT</button>
+<button class="tab" id="tonightTab" type="button" role="tab" aria-selected="false">CE SOIR</button>
+<span class="calendar" aria-hidden="true">▦</span>
+</div>
+<p class="intro" id="guideNote">Chaînes du catalogue. Les horaires et programmes ne sont affichés que lorsqu’ils sont disponibles.</p>
+<div id="list" aria-live="polite"><p class="empty">Chargement du catalogue…</p></div>
+<div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+<div class="modal-box">
+<div class="icon">📺</div>
+<h3 id="modalTitle">Indisponible pour le moment</h3>
+<p id="modalText">Aucun lien officiel n’est enregistré pour cette chaîne.</p>
+<button class="btn" id="closeModal" type="button">Retour aux chaînes</button>
+</div>
+</div>
+<nav class="bottom" aria-label="Navigation principale">
+<a href="/app.html"><span class="ico">⌂</span>Accueil</a>
+<a href="/channels-apps.html"><span class="ico">▦</span>Chaînes & Apps</a>
+<a class="active" href="/tv.html" aria-current="page"><span class="ico">📺</span>TV</a>
+<a href="/app.html#videos"><span class="ico">≡</span>Mes vidéos</a>
+<a href="/channels-apps.html"><span class="ico">⌕</span>Recherche</a>
+</nav>
+<script src="/config/channels.js"></script>
+<script>
+(() => {
+ const list = document.getElementById('list');
+ const modal = document.getElementById('modal');
+ const modalText = document.getElementById('modalText');
+ const nowTab = document.getElementById('nowTab');
+ const tonightTab = document.getElementById('tonightTab');
+ const guideNote = document.getElementById('guideNote');
+ const channels = Array.isArray(window.STREAMLIVE_CHANNELS) ? window.STREAMLIVE_CHANNELS : [];
+ let period = 'now';
+ const closeModal = () => { modal.style.display = 'none'; };
+ document.getElementById('closeModal').addEventListener('click', closeModal);
+ modal.addEventListener('click', event => { if (event.target === modal) closeModal(); });
+ document.addEventListener('keydown', event => { if (event.key === 'Escape') closeModal(); });
+ function openChannel(channel) {
+   if (!channel.webUrl) {
+     modalText.textContent = 'Aucun lien officiel n’est enregistré pour ' + (channel.name || 'cette chaîne') + '. Elle reste dans le catalogue, mais ne peut pas être ouverte pour le moment.';
+     modal.style.display = 'flex';
+     return;
+   }
+   window.open(channel.webUrl, '_blank', 'noopener,noreferrer');
+ }
+ function render() {
+   nowTab.classList.toggle('active', period === 'now');
+   tonightTab.classList.toggle('active', period === 'tonight');
+   nowTab.setAttribute('aria-selected', String(period === 'now'));
+   tonightTab.setAttribute('aria-selected', String(period === 'tonight'));
+   guideNote.textContent = period === 'now'
+     ? 'Chaînes du catalogue. Aucun programme en cours n’est inventé si le guide TV ne fournit pas d’information.'
+     : 'Vue du soir sélectionnée. Les horaires et programmes du soir ne sont pas renseignés dans le catalogue pour le moment.';
+   list.replaceChildren();
+   if (!channels.length) {
+     const p = document.createElement('p'); p.className='empty';
+     p.textContent='Le catalogue n’a pas pu être chargé. Vérifie que config/channels.js est accessible depuis cette page.';
+     list.appendChild(p); return;
+   }
+   const fragment = document.createDocumentFragment();
+   channels.forEach(channel => {
+     const row = document.createElement('article'); row.className='row'; row.tabIndex=0; row.setAttribute('role','button');
+     row.setAttribute('aria-label', (channel.name || 'Chaîne') + (channel.webUrl ? ', ouvrir la page officielle' : ', indisponible'));
+     const thumb = document.createElement('div'); thumb.className='thumb';
+     if (channel.logoUrl) {
+       const img = document.createElement('img'); img.src=channel.logoUrl; img.alt=''; img.loading='lazy';
+       img.onerror=()=>{const f=document.createElement('div');f.className='logo-fallback';f.textContent=(channel.name||'?').trim().charAt(0).toUpperCase();img.replaceWith(f);};
+       thumb.appendChild(img);
+     } else {
+       const f=document.createElement('div');f.className='logo-fallback';f.textContent=(channel.name||'?').trim().charAt(0).toUpperCase();thumb.appendChild(f);
+     }
+     const info=document.createElement('div');info.className='row-info';
+     const title=document.createElement('b');title.textContent=(channel.channelNumber ? channel.channelNumber + '. ' : '')+(channel.name||'Chaîne sans nom');
+     const desc=document.createElement('span');desc.className='desc';desc.textContent=channel.group||'Catalogue BLEO TV';
+     const status=document.createElement('span');status.className='status'+(channel.webUrl?'':' off');status.textContent=channel.webUrl?'Page officielle disponible':'Indisponible';
+     info.append(title,desc,status);
+     const arrow=document.createElement('span');arrow.className='arrow';arrow.textContent=channel.webUrl?'›':'·';arrow.setAttribute('aria-hidden','true');
+     row.append(thumb,info,arrow);
+     row.addEventListener('click',()=>openChannel(channel));
+     row.addEventListener('keydown',event=>{if(event.key==='Enter'||event.key===' '){event.preventDefault();openChannel(channel);}});
+     fragment.appendChild(row);
+   });
+   list.appendChild(fragment);
+ }
+ nowTab.addEventListener('click',()=>{period='now';render();});
+ tonightTab.addEventListener('click',()=>{period='tonight';render();});
+ render();
+})();
+</script>
+</body>
+</html>
