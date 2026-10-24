@@ -543,4 +543,6 @@ for (const channel of CHANNELS) {
   channelNumbers.add(channel.channelNumber);
 }
 
-module.exports = CHANNELS;
+// Expose le même catalogue à l'interface web sans casser les fonctions Node/Netlify.
+if (typeof window !== "undefined") window.STREAMLIVE_CHANNELS = CHANNELS;
+if (typeof module !== "undefined" && module.exports) module.exports = CHANNELS;
