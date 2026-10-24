@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#09090d">
+<title>BLEO TV — Chaînes & Apps</title>
+<style>
+:root{color-scheme:dark;--bg:#09090d;--panel:#15151d;--panel2:#20202a;--muted:#a3a3b3;--red:#e50920;--line:#2a2a35}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:#fff;font:15px/1.45 Inter,system-ui,-apple-system,Segoe UI,sans-serif;padding-bottom:82px}
+header{position:sticky;top:0;z-index:5;background:#09090df2;backdrop-filter:blur(14px);padding:16px 16px 12px;border-bottom:1px solid #ffffff0d}
+.top{display:flex;align-items:center;justify-content:space-between;gap:12px}.brand{font-size:21px;font-weight:900;letter-spacing:1.4px}.brand span{color:var(--red)}.back{color:#fff;text-decoration:none;background:var(--panel2);padding:9px 12px;border-radius:10px;font-size:13px}
+h1{font-size:25px;margin:19px 0 3px;letter-spacing:-.5px}.sub{color:var(--muted);font-size:13px;margin:0 0 15px}
+.search{width:100%;border:1px solid var(--line);background:var(--panel);color:#fff;padding:13px 14px;border-radius:12px;font:inherit;outline:none}.search:focus{border-color:var(--red)}
+.filters{display:flex;gap:8px;overflow:auto;padding:13px 0 2px;scrollbar-width:none}.filters button{white-space:nowrap;border:1px solid var(--line);background:var(--panel);color:#ddd;padding:8px 12px;border-radius:999px;font:inherit;font-size:12px}.filters button.active{background:var(--red);border-color:var(--red);color:#fff}
+main{padding:15px 13px}.resultline{display:flex;justify-content:space-between;align-items:center;margin:0 2px 12px;color:var(--muted);font-size:12px}.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.channel{min-width:0;background:var(--panel);border:1px solid #ffffff0a;border-radius:13px;padding:11px 8px 10px;text-align:center;display:flex;flex-direction:column;align-items:center;gap:8px;min-height:138px}
+.logo{height:62px;width:100%;display:flex;align-items:center;justify-content:center}.logo img{max-width:100%;max-height:58px;object-fit:contain}.fallback{height:54px;width:54px;border-radius:12px;display:grid;place-items:center;background:#292933;color:#fff;font-size:23px;font-weight:800}
+.name{font-weight:700;font-size:12px;line-height:1.25;overflow-wrap:anywhere}.meta{font-size:10px;color:var(--muted)}.open{border:0;border-radius:8px;background:#292933;color:white;padding:7px 9px;font:inherit;font-size:11px;width:100%;margin-top:auto}.open.ready{background:var(--red)}.empty{color:var(--muted);text-align:center;padding:38px 15px;grid-column:1/-1}
+nav{position:fixed;bottom:0;left:0;right:0;z-index:10;display:grid;grid-template-columns:repeat(4,1fr);padding:9px 5px calc(9px + env(safe-area-inset-bottom));background:#101016f5;border-top:1px solid var(--line);backdrop-filter:blur(12px)}
+nav a{color:#9292a1;text-decoration:none;text-align:center;font-size:10px;display:flex;flex-direction:column;align-items:center;gap:4px}nav a b{font-size:19px;font-weight:500}nav a.active{color:#fff}nav a.active b{color:var(--red)}
+@media(min-width:600px){header,main{padding-left:max(18px,calc((100% - 900px)/2));padding-right:max(18px,calc((100% - 900px)/2))}.grid{grid-template-columns:repeat(5,minmax(0,1fr));gap:13px}.channel{min-height:154px;padding:14px 10px}.name{font-size:13px}}
+</style>
+</head>
+<body>
+<header>
+  <div class="top"><div class="brand">BLEO <span>TV</span></div><a class="back" href="/app.html">‹ Accueil</a></div>
+  <h1>Chaînes & Apps</h1>
+  <p class="sub">Explore le catalogue et ouvre la page officielle de chaque chaîne.</p>
+  <input class="search" id="search" type="search" placeholder="Rechercher une chaîne…" autocomplete="off" aria-label="Rechercher une chaîne">
+  <div class="filters" id="filters" aria-label="Catégories"></div>
+</header>
+<main>
+  <div class="resultline"><span id="resultCount">Chargement du catalogue…</span><span>Catalogue StreamLive</span></div>
+  <section class="grid" id="grid" aria-live="polite"></section>
+</main>
+<nav aria-label="Navigation principale">
+  <a href="/app.html"><b>⌂</b>Accueil</a>
+  <a href="/app.html#recherche"><b>⌕</b>Recherche</a>
+  <a href="/player/"><b>▶</b>En direct</a>
+  <a class="active" href="/channels-apps.html"><b>▦</b>Chaînes & Apps</a>
+</nav>
+<script src="/config/channels.js"></script>
+<script>
+(() => {
+  const grid = document.getElementById('grid');
+  const search = document.getElementById('search');
+  const filters = document.getElementById('filters');
+  const resultCount = document.getElementById('resultCount');
+  let activeGroup = 'Toutes';
+  const escapeText = value => String(value ?? '').replace(/[&<>"']/g, ch => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));
+  const channels = Array.isArray(window.STREAMLIVE_CHANNELS) ? window.STREAMLIVE_CHANNELS : [];
+  const groups = ['Toutes', ...new Set(channels.map(c => c.group).filter(Boolean).sort((a,b)=>a.localeCompare(b,'fr')))];
+  function renderFilters(){
+    filters.innerHTML = '';
+    groups.forEach(group => {
+      const button = document.createElement('button');
+      button.type = 'button'; button.textContent = group;
+      button.className = group === activeGroup ? 'active' : '';
+      button.addEventListener('click', () => { activeGroup = group; renderFilters(); renderChannels(); });
+      filters.appendChild(button);
+    });
+  }
+  function renderChannels(){
+    const term = search.value.trim().toLocaleLowerCase('fr');
+    const shown = channels.filter(c => (activeGroup === 'Toutes' || c.group === activeGroup) &&
+      [c.name,c.group,c.channelNumber].some(v => String(v ?? '').toLocaleLowerCase('fr').includes(term)));
+    resultCount.textContent = shown.length + ' chaîne' + (shown.length > 1 ? 's' : '') + ' affichée' + (shown.length > 1 ? 's' : '');
+    grid.replaceChildren();
+    if (!channels.length) {
+      grid.innerHTML = '<p class="empty">Le catalogue ne s’est pas chargé. Vérifie que le fichier config/channels.js est publié avec cette page.</p>';
+      resultCount.textContent = 'Catalogue indisponible';
+      return;
+    }
+    if (!shown.length) { grid.innerHTML = '<p class="empty">Aucune chaîne ne correspond à cette recherche.</p>'; return; }
+    const fragment = document.createDocumentFragment();
+    shown.forEach(c => {
+      const card = document.createElement('article'); card.className = 'channel';
+      const logo = document.createElement('div'); logo.className = 'logo';
+      if (c.logoUrl) {
+        const img = document.createElement('img'); img.src = c.logoUrl; img.alt = ''; img.loading = 'lazy';
+        img.onerror = () => { const fallback = document.createElement('div'); fallback.className='fallback'; fallback.textContent=(c.name || '?').trim().charAt(0).toUpperCase(); img.replaceWith(fallback); };
+        logo.appendChild(img);
+      } else {
+        const fallback = document.createElement('div'); fallback.className='fallback'; fallback.textContent=(c.name || '?').trim().charAt(0).toUpperCase(); logo.appendChild(fallback);
+      }
+      const name = document.createElement('div'); name.className='name'; name.textContent = (c.channelNumber ? c.channelNumber + '. ' : '') + (c.name || 'Chaîne sans nom');
+      const meta = document.createElement('div'); meta.className='meta'; meta.textContent = c.group || 'Autre';
+      const button = document.createElement('button'); button.type='button'; button.className='open' + (c.webUrl ? ' ready' : '');
+      button.textContent = c.webUrl ? 'Ouvrir la chaîne' : 'Indisponible';
+      button.disabled = !c.webUrl; button.title = c.webUrl ? 'Ouvrir la page connue de cette chaîne' : 'Aucun lien officiel enregistré';
+      if (!c.webUrl) { button.style.opacity='.6'; button.style.cursor='not-allowed'; }
+      else button.addEventListener('click', () => window.open(c.webUrl, '_blank', 'noopener,noreferrer'));
+      card.append(logo,name,meta,button); fragment.appendChild(card);
+    });
+    grid.appendChild(fragment);
+  }
+  if (channels.length) { renderFilters(); renderChannels(); }
+  else { grid.innerHTML='<p class="empty">Le catalogue ne s’est pas chargé. Vérifie que le fichier config/channels.js est publié avec cette page.</p>'; resultCount.textContent='Catalogue indisponible'; }
+  search.addEventListener('input', renderChannels);
+})();
+</script>
+</body>
+</html>
