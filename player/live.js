@@ -77,6 +77,10 @@ function selectChannel(c){
  const number=document.getElementById('selected-channel-number');
  const status=document.getElementById('player-source-status');
  const open=document.getElementById('open-official-live');
+ const searchSource=document.getElementById('search-official-source');
+ const searchQuery='site officiel '+c.name+' direct live streaming';
+ searchSource.href='https://www.google.com/search?q='+encodeURIComponent(searchQuery);
+ searchSource.setAttribute('aria-label','Rechercher une source officielle pour '+c.name);
  const streamSource=c.streamUrl||c.productionUrl||c.hlsUrl||c.directUrl||c.webUrl||null;
  const officialPage=c.webUrl||streamSource;
  title.textContent=c.name;
