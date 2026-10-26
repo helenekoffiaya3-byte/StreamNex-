@@ -1,3 +1,5 @@
+import { randomUUID } from "node:crypto";
+
 const plans = { test: { amount: 0.10 }, basic: { amount: 3.99 }, standard: { amount: 6.99 } };
 
 export default async (request, context) => {
@@ -11,7 +13,7 @@ export default async (request, context) => {
   const email = String(body.email || "").trim().toLowerCase();
   if (!plan) return json({ error: "Unknown plan" }, 400);
   if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return json({ error: "Invalid email" }, 400);
-  const txRef = "sn-" + String(body.plan) + "-" + crypto.randomUUID();
+  const txRef = "sn-" + String(body.plan) + "-" + randomUUID();
   const siteUrl = (Netlify.env.get("STREAMNEX_SITE_URL") || context.site?.url || new URL(request.url).origin).replace(/\/$/, "");
   const payload = { tx_ref: txRef, amount: plan.amount.toFixed(2), currency: "EUR", redirect_url: siteUrl + "/?payment=return", payment_options: "card", customer: { email }, customizations: { title: "StreamNex", description: "StreamNex subscription" } };
   let response;
