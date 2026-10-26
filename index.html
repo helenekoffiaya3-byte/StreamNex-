@@ -259,7 +259,7 @@
 
             <div id="sub-step-1" class="space-y-6">
                 <div class="text-center space-y-2">
-                    <span class="text-brand-accent font-bold text-xs uppercase tracking-widest">Étape 1 sur 3</span>
+                    <span class="text-brand-accent font-bold text-xs uppercase tracking-widest">Étape 1 sur 2</span>
                     <h2 class="text-3xl font-black text-white">Sélectionnez votre offre StreamNex</h2>
                     <p class="text-slate-400 text-sm">Débloquez l'accès illimité instantanément. Sans engagement.</p>
                 </div>
@@ -307,5 +307,42 @@
                     <div onclick="selectPlan('premium')" id="plan-premium" class="plan-card glass-panel rounded-2xl p-5 border-2 border-slate-800 hover:border-brand-500 cursor-pointer transition-all space-y-3">
                         <div class="flex justify-between items-center">
                             <h3 class="font-extrabold text-sm text-white">Premium</h3>
-                            <span class="text-[10px] bg-brand-500/20 text-brand-accent px-1.5 py-0.5 rounded">4K+HDR</span>
-    
+                                                    </div>
+                        <p class="text-2xl font-black text-brand-accent">Prix à définir</p>
+                        <p class="text-xs text-slate-400">Le prix Premium doit être configuré avant son activation.</p>
+                    </div>
+                </div>
+                <div class="glass-panel rounded-2xl p-5 space-y-4">
+                    <h3 class="text-lg font-bold text-white">Paiement sécurisé par Flutterwave</h3>
+                    <p id="selected-plan-label" class="text-sm text-slate-300">Pass 24h — 0,10 €</p>
+                    <label for="checkout-email" class="block text-xs font-semibold text-slate-300">Adresse e-mail</label>
+                    <input id="checkout-email" type="email" autocomplete="email" required placeholder="vous@exemple.com" class="w-full bg-surface-900 border border-slate-700 rounded-xl px-4 py-3 text-sm text-white">
+                    <p class="text-xs text-slate-400">Visa et Mastercard. Le paiement est vérifié côté serveur avant l’activation de l’accès.</p>
+                    <button id="checkout-button" onclick="startCheckout()" class="w-full bg-brand-accent hover:bg-brand-400 text-slate-950 font-extrabold rounded-xl py-3">Continuer vers le paiement</button>
+                    <p id="checkout-message" role="status" aria-live="polite" class="text-sm text-slate-300"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="toast" class="fixed bottom-5 left-1/2 -translate-x-1/2 z-[60] hidden rounded-xl bg-surface-900 border border-slate-700 px-4 py-3 text-sm text-white shadow-2xl"></div>
+    <script>
+    const PLANS={test:{label:"Pass 24h",amount:0.10},basic:{label:"Basic",amount:3.99},standard:{label:"Standard",amount:6.99},premium:{label:"Premium",amount:null}};
+    let selectedPlan="test",activeHls=null,currentStreamUrl="";
+    function notify(s){const e=document.getElementById("toast");if(!e){alert(s);return;}e.textContent=s;e.classList.remove("hidden");clearTimeout(window.snTimer);window.snTimer=setTimeout(()=>e.classList.add("hidden"),4000);}
+    function switchTab(t){const m={home:"view-home",movies:"view-catalog",series:"view-catalog",mylist:"view-mylist",account:"view-account"};["view-home","view-catalog","view-mylist","view-account"].forEach(id=>document.getElementById(id)?.classList.add("hidden"));document.getElementById(m[t]||"view-home")?.classList.remove("hidden");document.querySelectorAll(".nav-btn").forEach(b=>{const a=b.dataset.tab===t;b.classList.toggle("text-brand-accent",a);b.classList.toggle("text-slate-300",!a);});if(t==="movies"||t==="series")document.getElementById("catalog-title").textContent=t==="movies"?"Films":"Séries";}
+    function openSubscriptionModal(){document.getElementById("sub-modal")?.classList.remove("hidden");}
+    function closeSubscriptionModal(){document.getElementById("sub-modal")?.classList.add("hidden");}
+    function selectPlan(p){if(!PLANS[p])return;if(p==="premium"){notify("Le prix Premium doit être configuré avant le paiement.");return;}selectedPlan=p;document.querySelectorAll(".plan-card").forEach(c=>c.classList.remove("border-brand-500","shadow-neon"));document.getElementById("plan-"+p)?.classList.add("border-brand-500","shadow-neon");const x=PLANS[p];document.getElementById("selected-plan-label").textContent=x.label+" — "+x.amount.toLocaleString("fr-FR",{minimumFractionDigits:2,maximumFractionDigits:2})+" €"+(p==="test"?" / 24h":" / mois");}
+    async function startCheckout(){const email=document.getElementById("checkout-email").value.trim(),msg=document.getElementById("checkout-message"),btn=document.getElementById("checkout-button");if(!/^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/.test(email)){msg.textContent="Saisis une adresse e-mail valide.";return;}btn.disabled=true;btn.textContent="Préparation…";try{const r=await fetch("/.netlify/functions/flutterwave-create-payment",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({plan:selectedPlan,email})}),d=await r.json();if(!r.ok||!d.checkoutUrl)throw Error(d.error||"Paiement indisponible.");location.assign(d.checkoutUrl);}catch(e){msg.textContent=e.message||"Erreur de paiement.";btn.disabled=false;btn.textContent="Continuer vers le paiement";}}
+    async function handlePaymentReturn(){const q=new URLSearchParams(location.search);if(!q.has("transaction_id")||!q.has("tx_ref"))return;openSubscriptionModal();const msg=document.getElementById("checkout-message");msg.textContent="Vérification du paiement…";try{const r=await fetch("/.netlify/functions/flutterwave-verify-payment",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({transaction_id:q.get("transaction_id"),tx_ref:q.get("tx_ref")})}),d=await r.json();if(!r.ok||!d.active)throw Error(d.error||"Paiement non confirmé; accès non activé.");msg.textContent="Paiement confirmé. Abonnement actif.";await refreshSession();}catch(e){msg.textContent=e.message||"Vérification impossible.";}finally{history.replaceState({},document.title,location.pathname+location.hash);}}
+    async function refreshSession(){try{const r=await fetch("/.netlify/functions/flutterwave-session",{cache:"no-store"}),d=await r.json(),a=r.ok&&d.active===true;document.getElementById("sub-badge-text").textContent=a?"ABONNÉ":"S'ABONNER";document.getElementById("user-status-text").textContent=a?"Abonnement actif":"Non Abonné (Accès Bloqué)";document.getElementById("account-plan-title").textContent=a?"Statut : Abonné":"Statut : Non Abonné";document.getElementById("account-plan-desc").textContent=a?"Accès actif jusqu’au "+new Date(d.expiresAt).toLocaleString("fr-FR"):"Souscris pour débloquer le lecteur.";return a;}catch{return false;}}
+    async function playStream(url,title){if(!(await refreshSession())){openSubscriptionModal();notify("Un abonnement actif est nécessaire.");return;}let u;try{u=new URL(url,location.href);}catch{notify("URL vidéo invalide.");return;}if(!/^https?:$/.test(u.protocol)){notify("URL HTTP(S) requise.");return;}currentStreamUrl=u.href;document.getElementById("player-title").textContent=title||"StreamNex";const f=document.getElementById("iframe-player"),v=document.getElementById("hls-player");f.classList.add("hidden");f.src="about:blank";v.classList.remove("hidden");if(activeHls){activeHls.destroy();activeHls=null;}v.pause();v.removeAttribute("src");v.load();if(/\\.m3u8(?:$|[?#])/i.test(u.href)&&window.Hls&&Hls.isSupported()){activeHls=new Hls();activeHls.loadSource(u.href);activeHls.attachMedia(v);activeHls.on(Hls.Events.ERROR,(_e,d)=>{if(d.fatal)notify("Flux HLS indisponible.");});}else v.src=u.href;document.getElementById("player-modal").classList.remove("hidden");document.getElementById("player-modal").classList.add("flex");v.play().catch(()=>{});}
+    function closePlayer(){if(activeHls){activeHls.destroy();activeHls=null;}const v=document.getElementById("hls-player");v.pause();v.removeAttribute("src");v.load();v.classList.add("hidden");const f=document.getElementById("iframe-player");f.src="about:blank";f.classList.remove("hidden");document.getElementById("player-modal").classList.add("hidden");document.getElementById("player-modal").classList.remove("flex");currentStreamUrl="";}
+    function handleMediaClick(){notify("Aucune source vidéo autorisée n’est configurée pour ce titre. Le catalogue TMDB ne fournit pas de flux de lecture.");}
+    function changePlayerSource(){if(currentStreamUrl)playStream(currentStreamUrl,document.getElementById("player-title").textContent);else notify("Aucune source vidéo sélectionnée.");}
+    function handleSearch(e){if(e.key==="Enter")switchTab("movies");}
+    window.playStream=playStream;window.switchTab=switchTab;window.selectPlan=selectPlan;window.openSubscriptionModal=openSubscriptionModal;window.closeSubscriptionModal=closeSubscriptionModal;window.handleMediaClick=handleMediaClick;window.toggleMyList=function(m){notify("La liste de favoris sera disponible après configuration du catalogue.");};window.changePlayerSource=changePlayerSource;window.handleSearch=handleSearch;window.closePlayer=closePlayer;
+    window.addEventListener("DOMContentLoaded",async()=>{await refreshSession();await handlePaymentReturn();});
+    </script>
+</body>
+</html>
