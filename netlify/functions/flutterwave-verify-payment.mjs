@@ -27,7 +27,10 @@ export default async (request) => {
   }
   const email = String(payment.customer?.email || "").trim().toLowerCase();
   if (!email) return json({ error: "The verified transaction has no customer email" }, 400);
-  const expiresAt = Date.now() + plan.days * 86400000;
+  const paidAt = new Date(payment["created_at"]).getTime();
+  if (!Number.isFinite(paidAt) || paidAt > Date.now() + 300000) return json({ error: "Invalid payment timestamp" }, 402);
+  const expiresAt = paidAt + plan.days * 86400000;
+  if (expiresAt <= Date.now()) return json({ error: "Subscription payment has expired" }, 402);
   const payload = Buffer.from(JSON.stringify({ email, plan: planId, expiresAt, nonce: randomUUID() })).toString("base64url");
   const value = payload + "." + sign(payload, sessionSecret);
   const cookie = "streamnex_session=" + value + "; Path=/; HttpOnly; Secure; SameSite=Lax; Max-Age=" + Math.floor((expiresAt - Date.now()) / 1000);
