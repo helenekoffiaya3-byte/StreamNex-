@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>STREAMNEX - Accueil</title>
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{
+    background:#0a0a0a;
+    color:#fff;
+    font-family: Inter, Arial, sans-serif;
+    padding: 30px 20px;
+  }
+  .header{
+    text-align:center;
+    margin-bottom: 40px;
+  }
+  .logo{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:10px;
+    margin-bottom: 25px;
+  }
+  .logo h1{
+    color:#2ECC71;
+    font-size: 48px;
+    font-weight: 900;
+    letter-spacing: 1px;
+  }
+  .logo .splash{
+    width:90px;
+    height:70px;
+    background:#2ECC71;
+    clip-path: polygon(10% 0, 100% 10%, 90% 100%, 0 90%);
+    border-radius: 20px;
+    position:relative;
+  }
+  .welcome h2{
+    font-size: 28px;
+    font-weight:700;
+  }
+  .welcome p{
+    color:#aaa;
+    margin-top:8px;
+    font-size:15px;
+  }
+  .section-title{
+    font-size:22px;
+    font-weight:700;
+    margin: 20px 0;
+    border-bottom:2px solid #333;
+    padding-bottom:8px;
+    width:fit-content;
+  }
+  .grid{
+    display:grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap:20px;
+  }
+  .card{
+    background:#1a1a1a;
+    border-radius:14px;
+    overflow:hidden;
+    cursor:pointer;
+    transition: transform .2s, box-shadow .2s;
+    border:1px solid #222;
+  }
+  .card:hover{
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(46,204,113,0.3);
+    border-color:#2ECC71;
+  }
+  .card img{
+    width:100%;
+    height:300px;
+    object-fit:cover;
+    display:block;
+  }
+  .card-info{
+    padding:14px;
+    text-align:center;
+  }
+  .card-info h3{
+    font-size:18px;
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="logo">
+    <div class="splash"></div>
+    <h1>STREAMNEX</h1>
+  </div>
+  <div class="welcome">
+    <h2>Bienvenue [Nom de l'utilisateur]</h2>
+    <p>Votre compte a été créé avec succès</p>
+  </div>
+</div>
+
+<h3 class="section-title">Recommandés pour vous</h3>
+
+<div class="grid">
+  <div class="card" onclick="play('lolirock')">
+    <img src="images/lolirock.jpg" alt="LoliRock">
+    <div class="card-info"><h3>LoliRock</h3></div>
+  </div>
+
+  <div class="card" onclick="play('ghost-force')">
+    <img src="images/ghost-force.jpg" alt="Ghost Force">
+    <div class="card-info"><h3>Ghost Force</h3></div>
+  </div>
+
+  <div class="card" onclick="play('miraculous')">
+    <img src="images/miraculous.jpg" alt="Miraculous">
+    <div class="card-info"><h3>Miraculous</h3></div>
+  </div>
+
+  <div class="card" onclick="play('jumanji')">
+    <img src="images/jumanji.jpg" alt="Jumanji">
+    <div class="card-info"><h3>Jumanji</h3></div>
+  </div>
+</div>
+
+<script>
+function play(id){
+  window.location.href = `/watch.html?film=${id}`;
+}
+</script>
+
+</body>
+</html>
