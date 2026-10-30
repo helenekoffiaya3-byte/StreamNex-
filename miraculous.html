@@ -57,7 +57,7 @@ h1 span{font-weight:400;color:#888;font-size:14px}
 <div class="card"><div class="thumb"><img src="ep21.jpg" alt="Miraculous - Reflekta"><div class="badge-ep">EP21</div></div><div class="title">EP21 REFLEKTA</div><button class="btn" type="button" onclick="playEpisode21()">▶ Lecture</button></div>
 <div class="card"><div class="thumb"><img src="ep22.jpg" alt="Miraculous - Climatika"><div class="badge-ep">EP22</div></div><div class="title">EP22 CLIMATIKA</div><button class="btn" type="button" onclick="playEpisode22()">▶ Lecture</button></div>
 
-<div class="card"><div class="thumb"><img src="ep23.jpg"><div class="badge-ep">EP23</div></div><div class="title">EP23 ANTIBUG</div><button class="btn">▶ Lecture</button></div>
+<div class="card"><div class="thumb"><img src="ep23.jpg" alt="Miraculous - Antibug"><div class="badge-ep">EP23</div></div><div class="title">EP23 ANTIBUG</div><button class="btn" type="button" onclick="playEpisode23()">▶ Lecture</button></div>
 
 <!-- CORRIGÉS -->
 <div class="card"><div class="thumb"><img src="ep24-kung-food.jpg"><div class="badge-ep">EP24</div><div class="badge-saison">EP 24<br><small>SAISON 1</small></div></div><div class="title">EP24 KUNG FOOD</div><button class="btn">▶ Lecture</button></div>
@@ -562,6 +562,30 @@ document.getElementById('episode22Modal').addEventListener('click',function(e){
 });
 document.addEventListener('keydown',function(e){
   if(e.key==='Escape') closeEpisode22();
+});
+</script>
+
+<div class="video-modal" id="episode23Modal" role="dialog" aria-modal="true" aria-label="Lecture de Miraculous Antibug">
+  <div class="video-modal-content">
+    <button class="video-modal-close" type="button" onclick="closeEpisode23()">✕ Fermer</button>
+    <iframe id="episode23Frame" title="Miraculous - Antibug" src="about:blank" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe>
+  </div>
+</div>
+<script>
+function playEpisode23(){
+  const modal=document.getElementById('episode23Modal');
+  document.getElementById('episode23Frame').src='https://www.youtube-nocookie.com/embed/LZSaE3sxxTc?autoplay=1&rel=0';
+  modal.classList.add('open');
+}
+function closeEpisode23(){
+  document.getElementById('episode23Modal').classList.remove('open');
+  document.getElementById('episode23Frame').src='about:blank';
+}
+document.getElementById('episode23Modal').addEventListener('click',function(e){
+  if(e.target===this) closeEpisode23();
+});
+document.addEventListener('keydown',function(e){
+  if(e.key==='Escape') closeEpisode23();
 });
 </script>
 <script src="/compte/lang-ui.js"></script>
