@@ -62,7 +62,7 @@ h1 span{font-weight:400;color:#888;font-size:14px}
 <!-- CORRIGÉS -->
 <div class="card"><div class="thumb"><img src="ep24-kung-food.jpg" alt="Miraculous - Kung Food"><div class="badge-ep">EP24</div><div class="badge-saison">EP 24<br><small>SAISON 1</small></div></div><div class="title">EP24 KUNG FOOD</div><button class="btn" type="button" onclick="playEpisode24()">▶ Lecture</button></div>
 
-<div class="card"><div class="thumb"><img src="ep25-dessinateur.jpg"><div class="badge-ep">EP25</div><div class="badge-saison">EP 25<br><small>SAISON 1</small></div></div><div class="title">EP25 DESSINATEUR</div><button class="btn">▶ Lecture</button></div>
+<div class="card"><div class="thumb"><img src="ep25-dessinateur.jpg" alt="Miraculous - Le Dessinateur"><div class="badge-ep">EP25</div><div class="badge-saison">EP 25<br><small>SAISON 1</small></div></div><div class="title">EP25 DESSINATEUR</div><button class="btn" type="button" onclick="playEpisode25()">▶ Lecture</button></div>
 
 <div class="card"><div class="thumb"><img src="ep26-volpina.jpg"><div class="badge-ep">EP26</div><div class="badge-saison">EP 26<br><small>SAISON 1</small></div></div><div class="title">EP26 VOLPINA</div><button class="btn">▶ Lecture</button></div>
 
@@ -610,6 +610,30 @@ document.getElementById('episode24Modal').addEventListener('click',function(e){
 });
 document.addEventListener('keydown',function(e){
   if(e.key==='Escape') closeEpisode24();
+});
+</script>
+
+<div class="video-modal" id="episode25Modal" role="dialog" aria-modal="true" aria-label="Lecture de Miraculous Le Dessinateur">
+  <div class="video-modal-content">
+    <button class="video-modal-close" type="button" onclick="closeEpisode25()">✕ Fermer</button>
+    <iframe id="episode25Frame" title="Miraculous - Le Dessinateur" src="about:blank" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe>
+  </div>
+</div>
+<script>
+function playEpisode25(){
+  const modal=document.getElementById('episode25Modal');
+  document.getElementById('episode25Frame').src='https://www.youtube-nocookie.com/embed/emiCyxunseo?autoplay=1&rel=0';
+  modal.classList.add('open');
+}
+function closeEpisode25(){
+  document.getElementById('episode25Modal').classList.remove('open');
+  document.getElementById('episode25Frame').src='about:blank';
+}
+document.getElementById('episode25Modal').addEventListener('click',function(e){
+  if(e.target===this) closeEpisode25();
+});
+document.addEventListener('keydown',function(e){
+  if(e.key==='Escape') closeEpisode25();
 });
 </script>
 <script src="/compte/lang-ui.js"></script>
