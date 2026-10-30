@@ -28,7 +28,7 @@ select{background:#303030;color:#fff;border:1px solid #555;border-radius:9px;pad
 .toggle.off{background:#444}
 .knob{width:26px;height:26px;background:#fff;border-radius:50%;position:absolute;top:2px;right:2px;transition:.2s}
 .toggle.off .knob{right:26px}
-.storage{background:#1e1e1e;border-radius:18px;padding:18px;margin:12px 0}
+.storage{background:#1e1e1e;border-radius:18px;padding:18px;margin:12px 0}\n#locationCard summary::-webkit-details-marker{display:none}\n#locationCard[open] summary{padding-bottom:4px}\n#locationCard summary>span:last-child{transition:transform .2s}\n#locationCard[open] summary>span:last-child{transform:rotate(90deg)}
 .bar{height:10px;background:#333;border-radius:10px;margin-top:12px;overflow:hidden}
 .fill{height:100%;width:0;background:#2ECC71;transition:width .2s}
 .info{display:flex;gap:10px;background:#16281c;border:1px solid #2ECC71;border-radius:14px;padding:14px;margin:14px 0;font-size:13px;color:#aaa}
@@ -49,8 +49,12 @@ select{background:#303030;color:#fff;border:1px solid #555;border-radius:9px;pad
     </select>
   </div>
 
-  <div class="storage" id="locationCard">
-    <div class="card-left"><div class="icon">📦</div><div><div class="label">Emplacement de stockage</div><div class="sub-gray">Choisissez où enregistrer vos téléchargements</div></div></div>
+  <details class="storage" id="locationCard">
+    <summary class="card-left" style="cursor:pointer;list-style:none">
+      <span class="icon">📦</span>
+      <span style="flex:1"><span class="label">Emplacement de stockage</span><br><span class="sub-gray" id="selectedLocationLabel">Stockage interne</span></span>
+      <span style="color:#888;font-size:22px">›</span>
+    </summary>
     <div style="display:grid;gap:10px;margin-top:16px">
       <label class="card" style="margin:0;cursor:pointer">
         <span class="card-left"><span class="icon">📱</span><span><span class="label">Stockage interne</span><br><span class="sub-gray">Espace de stockage de l’appareil</span></span></span>
@@ -61,9 +65,9 @@ select{background:#303030;color:#fff;border:1px solid #555;border-radius:9px;pad
         <input type="radio" name="storageLocation" value="sd" style="accent-color:#2ECC71;width:20px;height:20px">
       </label>
       <button class="btn" id="chooseSd" type="button" style="display:none;padding:13px;font-size:15px">Choisir le dossier de la carte SD</button>
-      <p class="status" id="locationNote" style="margin:0;text-align:left">Stockage interne sélectionné. Le navigateur gère l’espace de stockage du site.</p>
+      <p class="status" id="locationNote" style="margin:0;text-align:left">Stockage interne sélectionné.</p>
     </div>
-  </div>
+  </details>
 
   <div class="small-cards">
     <div class="card" id="clearCard" role="button" tabindex="0"><div class="card-left"><div class="icon" style="color:#ff4d4d">🗑️</div><div class="label">Effacer le cache de l’application</div></div><span class="sub-gray">Action séparée des téléchargements</span></div>
@@ -86,11 +90,11 @@ select{background:#303030;color:#fff;border:1px solid #555;border-radius:9px;pad
 <script>
 const locationRadios=document.querySelectorAll('input[name="storageLocation"]');
 const chooseSd=document.getElementById('chooseSd');
-const locationNote=document.getElementById('locationNote');
+const locationNote=document.getElementById('locationNote');\nconst selectedLocationLabel=document.getElementById('selectedLocationLabel');
 let storageLocation=localStorage.getItem('streamnex_storage_location')||'internal';
 function renderStorageLocation(){
   locationRadios.forEach(r=>r.checked=r.value===storageLocation);
-  chooseSd.style.display=storageLocation==='sd'?'block':'none';
+  chooseSd.style.display=storageLocation==='sd'?'block':'none';\n  selectedLocationLabel.textContent=storageLocation==='sd'?'Carte SD':'Stockage interne';
   locationNote.textContent=storageLocation==='sd'
     ?'Carte SD choisie comme préférence. Autorisez l’accès au dossier si votre navigateur le permet.'
     :'Stockage interne sélectionné. Le navigateur gère l’espace de stockage du site.';
