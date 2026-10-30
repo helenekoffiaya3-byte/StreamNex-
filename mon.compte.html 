@@ -66,7 +66,7 @@ body { background:#0a0a0a; color:white; display:flex; justify-content:center; }
   </div>
   <div class="field">
     <label>Email</label>
-    <div class="input-box"><input value="alex@streamnex.com" id="email"><span class="edit-icon">✉</span></div>
+    <a class="input-box" href="modifier-email.html" id="email-link" style="color:inherit;text-decoration:none"><input value="Chargement…" id="email" readonly aria-label="Adresse email actuelle" style="cursor:pointer"><span class="edit-icon">✉</span></a>
   </div>
 
   <div class="info">Cette application est 100% gratuite.</div>
@@ -87,7 +87,17 @@ body { background:#0a0a0a; color:white; display:flex; justify-content:center; }
   </div>
 </div>
 
-<script>
+<script type="module">
+import { getUser, handleAuthCallback } from "https://esm.sh/@netlify/identity";
+try {
+  await handleAuthCallback();
+  const currentUser = await getUser();
+  if (!currentUser) window.location.replace("connexion.html?redirect=" + encodeURIComponent("mon.compte.html%20"));
+  else {
+    document.getElementById("email").value = currentUser.email || "";
+    document.getElementById("username").value = currentUser.user_metadata?.full_name || currentUser.email?.split("@")[0] || "Utilisateur";
+  }
+} catch (error) { console.error("Netlify Identity:", error); }
 const avatars = document.querySelectorAll('.avatar');
 const mainPhoto = document.getElementById('mainPhoto');
 const pics = ["https://i.pravatar.cc/150?img=12","https://i.pravatar.cc/150?img=32","https://i.pravatar.cc/150?img=8","https://i.pravatar.cc/150?img=15","https://i.pravatar.cc/150?img=28","https://i.pravatar.cc/150?img=19"];
