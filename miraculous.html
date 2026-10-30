@@ -33,7 +33,7 @@ h1 span{font-weight:400;color:#888;font-size:14px}
 <div class="card"><div class="thumb"><img src="ep2.jpg" alt="Miraculous - Cœur de pierre, Origines Partie 2"><div class="badge-ep">EP2</div></div><div class="title">EP2 Les Coeurs de Pierre</div><button class="btn" type="button" onclick="playEpisode2()">▶ Lecture</button></div>
 <div class="card"><div class="thumb"><img src="ep3.jpg" alt="Miraculous - Lady Wifi"><div class="badge-ep">EP3</div></div><div class="title">EP3 Lady Wifi</div><button class="btn" type="button" onclick="playEpisode3()">▶ Lecture</button></div>
 
-<div class="card"><div class="thumb"><img src="ep4.jpg"><div class="badge-ep">EP4</div></div><div class="title">EP4 Princesse Fragrance</div><button class="btn">▶ Lecture</button></div>
+<div class="card"><div class="thumb"><img src="ep4.jpg" alt="Miraculous - Princesse Fragrance"><div class="badge-ep">EP4</div></div><div class="title">EP4 Princesse Fragrance</div><button class="btn" type="button" onclick="playEpisode4()">▶ Lecture</button></div>
 <div class="card"><div class="thumb"><img src="ep5.jpg"><div class="badge-ep">EP5</div></div><div class="title">EP5 Dislocoeur</div><button class="btn">▶ Lecture</button></div>
 <div class="card"><div class="thumb"><img src="ep6.jpg"><div class="badge-ep">EP6</div></div><div class="title">EP6 Mr. Pigeon - HAUT</div><button class="btn">▶ Lecture</button></div>
 
@@ -146,6 +146,31 @@ document.getElementById('episode3Modal').addEventListener('click',function(e){
 });
 document.addEventListener('keydown',function(e){
   if(e.key==='Escape') closeEpisode3();
+});
+</script>
+
+<div class="video-modal" id="episode4Modal" role="dialog" aria-modal="true" aria-label="Lecture de Miraculous Princesse Fragrance">
+  <div class="video-modal-content">
+    <button class="video-modal-close" type="button" onclick="closeEpisode4()">✕ Fermer</button>
+    <iframe id="episode4Frame" title="Miraculous - Princesse Fragrance" src="about:blank" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe>
+  </div>
+</div>
+
+<script>
+function playEpisode4(){
+  const modal=document.getElementById('episode4Modal');
+  document.getElementById('episode4Frame').src='https://www.youtube-nocookie.com/embed/52LW6iZBPJQ?autoplay=1&rel=0';
+  modal.classList.add('open');
+}
+function closeEpisode4(){
+  document.getElementById('episode4Modal').classList.remove('open');
+  document.getElementById('episode4Frame').src='about:blank';
+}
+document.getElementById('episode4Modal').addEventListener('click',function(e){
+  if(e.target===this) closeEpisode4();
+});
+document.addEventListener('keydown',function(e){
+  if(e.key==='Escape') closeEpisode4();
 });
 </script>
 <script src="/compte/lang-ui.js"></script>
