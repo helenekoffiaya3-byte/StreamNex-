@@ -45,7 +45,7 @@ h1 span{font-weight:400;color:#888;font-size:14px}
 <div class="card"><div class="thumb"><img src="ep11.jpg" alt="Miraculous - Rogercop"><div class="badge-ep">EP11</div></div><div class="title">EP11 Rogercop</div><button class="btn" type="button" onclick="playEpisode11()">▶ Lecture</button></div>
 <div class="card"><div class="thumb"><img src="ep12.jpg" alt="Miraculous - The Gamer"><div class="badge-ep">EP12</div></div><div class="title">EP12 The Gamer</div><button class="btn" type="button" onclick="playEpisode12()">▶ Lecture</button></div>
 
-<div class="card"><div class="thumb"><img src="ep13.jpg"><div class="badge-ep">EP13</div></div><div class="title">EP13 Animan</div><button class="btn">▶ Lecture</button></div>
+<div class="card"><div class="thumb"><img src="ep13.jpg" alt="Miraculous - Animan"><div class="badge-ep">EP13</div></div><div class="title">EP13 Animan</div><button class="btn" type="button" onclick="playEpisode13()">▶ Lecture</button></div>
 <div class="card"><div class="thumb"><img src="ep14.jpg"><div class="badge-ep">EP14</div></div><div class="title">EP14 Le Chevalier Noir</div><button class="btn">▶ Lecture</button></div>
 <div class="card"><div class="thumb"><img src="ep15.jpg"><div class="badge-ep">EP15</div></div><div class="title">EP15 Le Pharaon</div><button class="btn">▶ Lecture</button></div>
 
@@ -370,6 +370,30 @@ document.getElementById('episode12Modal').addEventListener('click',function(e){
 });
 document.addEventListener('keydown',function(e){
   if(e.key==='Escape') closeEpisode12();
+});
+</script>
+
+<div class="video-modal" id="episode13Modal" role="dialog" aria-modal="true" aria-label="Lecture de Miraculous Animan">
+  <div class="video-modal-content">
+    <button class="video-modal-close" type="button" onclick="closeEpisode13()">✕ Fermer</button>
+    <iframe id="episode13Frame" title="Miraculous - Animan" src="about:blank" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe>
+  </div>
+</div>
+<script>
+function playEpisode13(){
+  const modal=document.getElementById('episode13Modal');
+  document.getElementById('episode13Frame').src='https://www.youtube-nocookie.com/embed/bjmLq1gI20s?autoplay=1&rel=0';
+  modal.classList.add('open');
+}
+function closeEpisode13(){
+  document.getElementById('episode13Modal').classList.remove('open');
+  document.getElementById('episode13Frame').src='about:blank';
+}
+document.getElementById('episode13Modal').addEventListener('click',function(e){
+  if(e.target===this) closeEpisode13();
+});
+document.addEventListener('keydown',function(e){
+  if(e.key==='Escape') closeEpisode13();
 });
 </script>
 <script src="/compte/lang-ui.js"></script>
