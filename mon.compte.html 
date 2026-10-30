@@ -118,5 +118,6 @@ document.getElementById('confirmDelete').onclick = ()=>{
   modal.classList.remove('show');
 };
 </script>
+<script src="/compte/lang-ui.js"></script>
 </body>
 </html>
