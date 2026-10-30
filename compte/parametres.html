@@ -40,7 +40,7 @@ select{max-width:45%;background:#303035;color:#fff;border:1px solid #45454a;bord
   <button class="item action" id="account"><span class="ico">●</span><span class="label">Mon compte</span><span class="arrow">›</span></button>
   <a class="item action" href="qualite-video.html" style="text-decoration:none"><span class="ico">▣</span><span class="label">Qualité vidéo</span><span class="arrow">›</span></a>
   <a class="item action" href="langue-audio.html" style="text-decoration:none"><span class="ico">▣</span><span class="label">Langue Audio</span><span class="arrow">›</span></a>
-  <div class="item"><span class="ico">文</span><label class="label" for="language">Langue</label><select id="language"><option value="fr">Français</option><option value="en">English</option></select></div>
+  <a class="item action" href="langue.html" style="text-decoration:none"><span class="ico">文</span><span class="label">Langue de l’application</span><span class="arrow">›</span></a>
   <a class="item action" href="sous-titres.html" style="text-decoration:none"><span class="ico">CC</span><span class="label">Sous-titres</span><span class="arrow">›</span></a>
   <a class="item action" href="telechargements.html" style="text-decoration:none"><span class="ico">↓</span><span class="label">Téléchargements</span><span class="arrow">›</span></a>
   <label class="item"><span class="ico">♟</span><span class="label">Notifications</span><input class="switch" id="notifications" type="checkbox" checked></label>
@@ -52,7 +52,7 @@ select{max-width:45%;background:#303035;color:#fff;border:1px solid #45454a;bord
 <script>
 const notice=document.getElementById("notice");
 function say(message){notice.textContent=message}
-const prefs=["language","notifications","darkmode"];
+const prefs=["notifications","darkmode"];
 for(const id of prefs){
   const el=document.getElementById(id), saved=localStorage.getItem("streamnex_"+id);
   if(saved!==null){if(el.type==="checkbox")el.checked=saved==="true";else el.value=saved;}
