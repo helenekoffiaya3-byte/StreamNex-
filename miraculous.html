@@ -38,7 +38,7 @@ h1 span{font-weight:400;color:#888;font-size:14px}
 <div class="card"><div class="thumb"><img src="ep6.jpg" alt="Miraculous - Mr. Pigeon"><div class="badge-ep">EP6</div></div><div class="title">EP6 Mr. Pigeon - HAUT</div><button class="btn" type="button" onclick="playEpisode6()">▶ Lecture</button></div>
 
 <div class="card"><div class="thumb"><img src="ep7.jpg" alt="Miraculous - Numéric"><div class="badge-ep">EP7</div></div><div class="title">EP7 Numeric</div><button class="btn" type="button" onclick="playEpisode7()">▶ Lecture</button></div>
-<div class="card"><div class="thumb"><img src="ep8.jpg"><div class="badge-ep">EP8</div></div><div class="title">EP8 L'Imposteur</div><button class="btn">▶ Lecture</button></div>
+<div class="card"><div class="thumb"><img src="ep8.jpg" alt="Miraculous - L’Imposteur"><div class="badge-ep">EP8</div></div><div class="title">EP8 L'Imposteur</div><button class="btn" type="button" onclick="playEpisode8()">▶ Lecture</button></div>
 <div class="card"><div class="thumb"><img src="ep9.jpg"><div class="badge-ep">EP9</div></div><div class="title">EP9 Le Bulleur</div><button class="btn">▶ Lecture</button></div>
 
 <div class="card"><div class="thumb"><img src="ep10.jpg"><div class="badge-ep">EP10</div></div><div class="title">EP10 Jackady</div><button class="btn">▶ Lecture</button></div>
@@ -246,6 +246,31 @@ document.getElementById('episode7Modal').addEventListener('click',function(e){
 });
 document.addEventListener('keydown',function(e){
   if(e.key==='Escape') closeEpisode7();
+});
+</script>
+
+<div class="video-modal" id="episode8Modal" role="dialog" aria-modal="true" aria-label="Lecture de Miraculous L’Imposteur">
+  <div class="video-modal-content">
+    <button class="video-modal-close" type="button" onclick="closeEpisode8()">✕ Fermer</button>
+    <iframe id="episode8Frame" title="Miraculous - L’Imposteur" src="about:blank" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe>
+  </div>
+</div>
+
+<script>
+function playEpisode8(){
+  const modal=document.getElementById('episode8Modal');
+  document.getElementById('episode8Frame').src='https://www.youtube-nocookie.com/embed/GnuvrOa81dQ?autoplay=1&rel=0';
+  modal.classList.add('open');
+}
+function closeEpisode8(){
+  document.getElementById('episode8Modal').classList.remove('open');
+  document.getElementById('episode8Frame').src='about:blank';
+}
+document.getElementById('episode8Modal').addEventListener('click',function(e){
+  if(e.target===this) closeEpisode8();
+});
+document.addEventListener('keydown',function(e){
+  if(e.key==='Escape') closeEpisode8();
 });
 </script>
 <script src="/compte/lang-ui.js"></script>
