@@ -49,7 +49,21 @@ select{background:#303030;color:#fff;border:1px solid #555;border-radius:9px;pad
     </select>
   </div>
 
-  <div class="card"><div class="card-left"><div class="icon">📦</div><div><div class="label">Emplacement stockage</div><div class="sub-gray">Stockage du navigateur (interne)</div></div></div><span style="color:#888">›</span></div>
+  <div class="storage" id="locationCard">
+    <div class="card-left"><div class="icon">📦</div><div><div class="label">Emplacement de stockage</div><div class="sub-gray">Choisissez où enregistrer vos téléchargements</div></div></div>
+    <div style="display:grid;gap:10px;margin-top:16px">
+      <label class="card" style="margin:0;cursor:pointer">
+        <span class="card-left"><span class="icon">📱</span><span><span class="label">Stockage interne</span><br><span class="sub-gray">Espace de stockage de l’appareil</span></span></span>
+        <input type="radio" name="storageLocation" value="internal" style="accent-color:#2ECC71;width:20px;height:20px">
+      </label>
+      <label class="card" style="margin:0;cursor:pointer">
+        <span class="card-left"><span class="icon">💾</span><span><span class="label">Carte SD</span><br><span class="sub-gray">Si une carte SD est intégrée</span></span></span>
+        <input type="radio" name="storageLocation" value="sd" style="accent-color:#2ECC71;width:20px;height:20px">
+      </label>
+      <button class="btn" id="chooseSd" type="button" style="display:none;padding:13px;font-size:15px">Choisir le dossier de la carte SD</button>
+      <p class="status" id="locationNote" style="margin:0;text-align:left">Stockage interne sélectionné. Le navigateur gère l’espace de stockage du site.</p>
+    </div>
+  </div>
 
   <div class="small-cards">
     <div class="card" id="clearCard" role="button" tabindex="0"><div class="card-left"><div class="icon" style="color:#ff4d4d">🗑️</div><div class="label">Effacer le cache de l’application</div></div><span class="sub-gray">Action séparée des téléchargements</span></div>
@@ -70,6 +84,48 @@ select{background:#303030;color:#fff;border:1px solid #555;border-radius:9px;pad
 </div>
 
 <script>
+const locationRadios=document.querySelectorAll('input[name="storageLocation"]');
+const chooseSd=document.getElementById('chooseSd');
+const locationNote=document.getElementById('locationNote');
+let storageLocation=localStorage.getItem('streamnex_storage_location')||'internal';
+function renderStorageLocation(){
+  locationRadios.forEach(r=>r.checked=r.value===storageLocation);
+  chooseSd.style.display=storageLocation==='sd'?'block':'none';
+  locationNote.textContent=storageLocation==='sd'
+    ?'Carte SD choisie comme préférence. Autorisez l’accès au dossier si votre navigateur le permet.'
+    :'Stockage interne sélectionné. Le navigateur gère l’espace de stockage du site.';
+}
+locationRadios.forEach(r=>r.addEventListener('change',()=>{
+  if(r.value==='sd'){
+    storageLocation='sd';
+    localStorage.setItem('streamnex_storage_location','sd');
+    renderStorageLocation();
+    locationNote.textContent='Pour utiliser la carte SD, choisissez un dossier. Cette option dépend des capacités du navigateur et de ses autorisations.';
+  }else{
+    storageLocation='internal';
+    localStorage.setItem('streamnex_storage_location','internal');
+    renderStorageLocation();
+  }
+}));
+chooseSd.addEventListener('click',async()=>{
+  if(!('showDirectoryPicker' in window)){
+    locationNote.textContent='Ce navigateur ne permet pas de sélectionner directement un dossier de carte SD. Le stockage interne du navigateur reste disponible.';
+    return;
+  }
+  try{
+    const directory=await window.showDirectoryPicker({mode:'readwrite'});
+    if(!directory){
+      locationNote.textContent='Aucun dossier sélectionné.';
+      return;
+    }
+    locationNote.textContent='Dossier autorisé pour cette session : '+directory.name+'. Le lecteur doit encore utiliser cette autorisation pour y enregistrer les fichiers.';
+  }catch(error){
+    if(error.name==='AbortError')locationNote.textContent='Sélection du dossier annulée.';
+    else locationNote.textContent='Accès au dossier refusé ou indisponible.';
+  }
+});
+renderStorageLocation();
+
 const quality=document.getElementById('downloadQuality');
 quality.value=localStorage.getItem('streamnex_download_quality')||'auto';
 quality.addEventListener('change',()=>localStorage.setItem('streamnex_download_quality',quality.value));
