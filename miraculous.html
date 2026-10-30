@@ -64,7 +64,7 @@ h1 span{font-weight:400;color:#888;font-size:14px}
 
 <div class="card"><div class="thumb"><img src="ep25-dessinateur.jpg" alt="Miraculous - Le Dessinateur"><div class="badge-ep">EP25</div><div class="badge-saison">EP 25<br><small>SAISON 1</small></div></div><div class="title">EP25 DESSINATEUR</div><button class="btn" type="button" onclick="playEpisode25()">▶ Lecture</button></div>
 
-<div class="card"><div class="thumb"><img src="ep26-volpina.jpg"><div class="badge-ep">EP26</div><div class="badge-saison">EP 26<br><small>SAISON 1</small></div></div><div class="title">EP26 VOLPINA</div><button class="btn">▶ Lecture</button></div>
+<div class="card"><div class="thumb"><img src="ep26-volpina.jpg" alt="Miraculous - Volpina"><div class="badge-ep">EP26</div><div class="badge-saison">EP 26<br><small>SAISON 1</small></div></div><div class="title">EP26 VOLPINA</div><button class="btn" type="button" onclick="playEpisode26()">▶ Lecture</button></div>
 
 </div>
 
@@ -634,6 +634,30 @@ document.getElementById('episode25Modal').addEventListener('click',function(e){
 });
 document.addEventListener('keydown',function(e){
   if(e.key==='Escape') closeEpisode25();
+});
+</script>
+
+<div class="video-modal" id="episode26Modal" role="dialog" aria-modal="true" aria-label="Lecture de Miraculous Volpina">
+  <div class="video-modal-content">
+    <button class="video-modal-close" type="button" onclick="closeEpisode26()">✕ Fermer</button>
+    <iframe id="episode26Frame" title="Miraculous - Volpina" src="about:blank" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe>
+  </div>
+</div>
+<script>
+function playEpisode26(){
+  const modal=document.getElementById('episode26Modal');
+  document.getElementById('episode26Frame').src='https://www.youtube-nocookie.com/embed/SCEOBs6lSXY?autoplay=1&rel=0';
+  modal.classList.add('open');
+}
+function closeEpisode26(){
+  document.getElementById('episode26Modal').classList.remove('open');
+  document.getElementById('episode26Frame').src='about:blank';
+}
+document.getElementById('episode26Modal').addEventListener('click',function(e){
+  if(e.target===this) closeEpisode26();
+});
+document.addEventListener('keydown',function(e){
+  if(e.key==='Escape') closeEpisode26();
 });
 </script>
 <script src="/compte/lang-ui.js"></script>
