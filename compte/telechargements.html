@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Téléchargements - STREAMNEX</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:-apple-system,sans-serif}
+body{background:#0a0a0a;display:flex;justify-content:center;color:white}
+.container{width:100%;max-width:390px;min-height:100vh;background:#0f0f0f;padding:0 16px 30px}
+.header{display:flex;align-items:center;gap:12px;background:#0f0f0f;padding:14px 0}
+.back{font-size:28px;color:white;text-decoration:none}
+.logo{font-weight:900;color:#2ECC71;font-size:22px}
+.title{font-size:28px;font-weight:900;margin:12px 0 16px}
+.card{background:#1e1e1e;border-radius:18px;padding:18px;display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;gap:10px}
+.card-left{display:flex;align-items:center;gap:14px;min-width:0}
+.icon{width:48px;height:48px;flex:0 0 48px;background:#2a2a2a;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:22px}
+.label{font-weight:700;font-size:16px}
+.sub{color:#2ECC71;font-size:14px;margin-top:2px}
+.sub-gray{color:#888;font-size:14px;margin-top:3px}
+select{background:#303030;color:#fff;border:1px solid #555;border-radius:9px;padding:9px;max-width:130px}
+.small-cards{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px}
+.small-cards .card{min-height:150px;flex-direction:column;align-items:flex-start;justify-content:space-between;margin:0;padding:14px}
+.small-cards .card-left{align-items:flex-start;gap:9px}
+.small-cards .icon{width:38px;height:38px;flex-basis:38px;font-size:18px}
+.small-cards .label{font-size:13px;line-height:1.35}
+.toggle{width:54px;height:30px;background:#2ECC71;border-radius:20px;position:relative;transition:.2s;border:0;cursor:pointer}
+.toggle.off{background:#444}
+.knob{width:26px;height:26px;background:#fff;border-radius:50%;position:absolute;top:2px;right:2px;transition:.2s}
+.toggle.off .knob{right:26px}
+.storage{background:#1e1e1e;border-radius:18px;padding:18px;margin:12px 0}
+.bar{height:10px;background:#333;border-radius:10px;margin-top:12px;overflow:hidden}
+.fill{height:100%;width:0;background:#2ECC71;transition:width .2s}
+.info{display:flex;gap:10px;background:#16281c;border:1px solid #2ECC71;border-radius:14px;padding:14px;margin:14px 0;font-size:13px;color:#aaa}
+.btn{width:100%;background:#2ECC71;color:black;font-weight:900;padding:18px;border-radius:16px;border:none;font-size:18px;cursor:pointer}
+.status{color:#aaa;font-size:13px;line-height:1.5;margin:10px 2px;text-align:center}
+@media(max-width:350px){.small-cards{grid-template-columns:1fr}.small-cards .card{min-height:100px}}
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="header"><a class="back" href="parametres.html" aria-label="Retour aux paramètres">‹</a><span class="logo">STREAMNEX</span></div>
+  <div class="title">Téléchargements</div>
+
+  <div class="card">
+    <div class="card-left"><div class="icon">⬇️</div><div><div class="label">Qualité téléchargement</div><div class="sub">Qualité préférée</div></div></div>
+    <select id="downloadQuality" aria-label="Qualité téléchargement">
+      <option value="auto">Automatique</option><option value="1080">1080p</option><option value="720">720p</option><option value="480">480p</option><option value="360">360p</option>
+    </select>
+  </div>
+
+  <div class="card"><div class="card-left"><div class="icon">📦</div><div><div class="label">Emplacement stockage</div><div class="sub-gray">Stockage du navigateur (interne)</div></div></div><span style="color:#888">›</span></div>
+
+  <div class="small-cards">
+    <div class="card" id="clearCard" role="button" tabindex="0"><div class="card-left"><div class="icon" style="color:#ff4d4d">🗑️</div><div class="label">Effacer le cache de l’application</div></div><span class="sub-gray">Action séparée des téléchargements</span></div>
+    <div class="card"><div class="card-left"><div class="icon">📶</div><div class="label">Télécharger uniquement en Wi-Fi</div></div><button class="toggle" id="wifiToggle" type="button" role="switch" aria-checked="true" aria-label="Télécharger uniquement en Wi-Fi"><span class="knob"></span></button></div>
+  </div>
+
+  <div class="storage">
+    <div class="card-left"><div class="icon">📊</div><div class="label">Stockage du site utilisé</div></div>
+    <div style="display:flex;justify-content:space-between;gap:8px;margin-top:14px;font-size:14px"><span id="used">Calcul en cours…</span><span style="color:#888" id="quota">—</span></div>
+    <div class="bar"><div class="fill" id="fill"></div></div>
+    <p class="sub-gray" id="storageNote">Estimation fournie par le navigateur, si disponible.</p>
+  </div>
+
+  <div class="info"><span style="color:#2ECC71;font-size:20px">ⓘ</span><span><b style="color:white">STREAMNEX est gratuit.</b><br>La disponibilité des téléchargements hors ligne dépend des fonctions prises en charge par le lecteur et le navigateur.</span></div>
+
+  <div class="title" style="font-size:20px;margin-top:22px" id="managed">Gérer les téléchargements</div>
+  <p class="status" id="status" role="status" aria-live="polite">Aucun téléchargement hors ligne n’est actuellement répertorié par cette page.</p>
+</div>
+
+<script>
+const quality=document.getElementById('downloadQuality');
+quality.value=localStorage.getItem('streamnex_download_quality')||'auto';
+quality.addEventListener('change',()=>localStorage.setItem('streamnex_download_quality',quality.value));
+
+let wifi=localStorage.getItem('wifi_only');
+wifi=wifi===null?true:wifi==='true';
+const toggle=document.getElementById('wifiToggle');
+function renderWifi(){
+  toggle.classList.toggle('off',!wifi);
+  toggle.setAttribute('aria-checked',String(wifi));
+}
+toggle.addEventListener('click',()=>{
+  wifi=!wifi;
+  localStorage.setItem('wifi_only',String(wifi));
+  renderWifi();
+  document.getElementById('status').textContent=wifi?'Préférence enregistrée : Wi-Fi uniquement.':'Préférence enregistrée : Wi-Fi non obligatoire.';
+});
+renderWifi();
+
+function formatBytes(bytes){
+  if(!Number.isFinite(bytes)||bytes<0)return 'Indisponible';
+  const units=['o','Ko','Mo','Go','To'];
+  let value=bytes,index=0;
+  while(value>=1024&&index<units.length-1){value/=1024;index++;}
+  return value.toFixed(index===0?0:1)+' '+units[index];
+}
+async function loadStorage(){
+  const used=document.getElementById('used'),quota=document.getElementById('quota');
+  const fill=document.getElementById('fill'),note=document.getElementById('storageNote');
+  try{
+    if(!navigator.storage||!navigator.storage.estimate)throw new Error('unsupported');
+    const estimate=await navigator.storage.estimate();
+    if(!Number.isFinite(estimate.usage)||!Number.isFinite(estimate.quota))throw new Error('unavailable');
+    used.textContent=formatBytes(estimate.usage)+' utilisés';
+    quota.textContent=formatBytes(estimate.quota)+' estimés';
+    fill.style.width=(estimate.quota>0?Math.min(100,estimate.usage/estimate.quota*100):0)+'%';
+    note.textContent='Estimation de l’espace utilisé par le site dans ce navigateur.';
+  }catch(e){
+    used.textContent='Non disponible';quota.textContent='—';fill.style.width='0%';
+    note.textContent='Ce navigateur ne fournit pas de mesure du stockage.';
+  }
+}
+loadStorage();
+
+async function clearAppCache(){
+  if(!confirm('Effacer les caches temporaires de STREAMNEX ? Cela ne supprime pas des fichiers téléchargés dans d’autres emplacements.'))return;
+  try{
+    if(!('caches' in window)){document.getElementById('status').textContent='La suppression du cache n’est pas prise en charge par ce navigateur.';return;}
+    const keys=await caches.keys();
+    await Promise.all(keys.map(key=>caches.delete(key)));
+    document.getElementById('status').textContent='Caches temporaires supprimés.';
+    loadStorage();
+  }catch(e){
+    document.getElementById('status').textContent='Impossible de supprimer les caches temporaires.';
+  }
+}
+const clearCard=document.getElementById('clearCard');
+clearCard.addEventListener('click',clearAppCache);
+clearCard.addEventListener('keydown',event=>{if(event.key==='Enter'||event.key===' '){event.preventDefault();clearAppCache();}});
+</script>
+</body>
+</html>
