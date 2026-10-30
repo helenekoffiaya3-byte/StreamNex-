@@ -180,5 +180,6 @@ try {
   else document.getElementById("user-name").textContent = user.user_metadata?.full_name || user.email?.split("@")[0] || "Utilisateur";
 } catch (error) { console.error("Netlify Identity:", error); window.location.replace("connexion.html"); }
 </script>
+<script src="/compte/lang-ui.js"></script>
 </body>
 </html>
