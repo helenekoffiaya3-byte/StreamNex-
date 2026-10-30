@@ -95,7 +95,7 @@
     <h1>STREAMNEX</h1>
   </div>
   <div class="welcome">
-    <h2>Bienvenue [Nom de l'utilisateur]</h2>
+    <h2>Bienvenue <span id="user-name">…</span></h2>
     <p>Votre compte a été créé avec succès</p>
   </div>
 </div>
@@ -130,5 +130,15 @@ function play(id){
 }
 </script>
 
+
+<script type="module">
+import { getUser, handleAuthCallback } from "https://esm.sh/@netlify/identity";
+try {
+  await handleAuthCallback();
+  const user = await getUser();
+  if (!user) window.location.replace("connexion.html");
+  else document.getElementById("user-name").textContent = user.user_metadata?.full_name || user.email?.split("@")[0] || "Utilisateur";
+} catch (error) { console.error("Netlify Identity:", error); window.location.replace("connexion.html"); }
+</script>
 </body>
 </html>
