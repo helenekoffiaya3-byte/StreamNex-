@@ -47,7 +47,7 @@ h1 span{font-weight:400;color:#888;font-size:14px}
 
 <div class="card"><div class="thumb"><img src="ep13.jpg" alt="Miraculous - Animan"><div class="badge-ep">EP13</div></div><div class="title">EP13 Animan</div><button class="btn" type="button" onclick="playEpisode13()">▶ Lecture</button></div>
 <div class="card"><div class="thumb"><img src="ep14.jpg" alt="Miraculous - Le Chevalier Noir"><div class="badge-ep">EP14</div></div><div class="title">EP14 Le Chevalier Noir</div><button class="btn" type="button" onclick="playEpisode14()">▶ Lecture</button></div>
-<div class="card"><div class="thumb"><img src="ep15.jpg"><div class="badge-ep">EP15</div></div><div class="title">EP15 Le Pharaon</div><button class="btn">▶ Lecture</button></div>
+<div class="card"><div class="thumb"><img src="ep15.jpg" alt="Miraculous - Le Pharaon"><div class="badge-ep">EP15</div></div><div class="title">EP15 Le Pharaon</div><button class="btn" type="button" onclick="playEpisode15()">▶ Lecture</button></div>
 
 <div class="card"><div class="thumb"><img src="ep16.jpg"><div class="badge-ep">EP16</div></div><div class="title">EP16 Chronogirl</div><button class="btn">▶ Lecture</button></div>
 <div class="card"><div class="prochainement">EP17-18<br>PROCHAINEMENT</div></div>
@@ -418,6 +418,30 @@ document.getElementById('episode14Modal').addEventListener('click',function(e){
 });
 document.addEventListener('keydown',function(e){
   if(e.key==='Escape') closeEpisode14();
+});
+</script>
+
+<div class="video-modal" id="episode15Modal" role="dialog" aria-modal="true" aria-label="Lecture de Miraculous Le Pharaon">
+  <div class="video-modal-content">
+    <button class="video-modal-close" type="button" onclick="closeEpisode15()">✕ Fermer</button>
+    <iframe id="episode15Frame" title="Miraculous - Le Pharaon" src="about:blank" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe>
+  </div>
+</div>
+<script>
+function playEpisode15(){
+  const modal=document.getElementById('episode15Modal');
+  document.getElementById('episode15Frame').src='https://www.youtube-nocookie.com/embed/NCuPHiZJnwA?autoplay=1&rel=0';
+  modal.classList.add('open');
+}
+function closeEpisode15(){
+  document.getElementById('episode15Modal').classList.remove('open');
+  document.getElementById('episode15Frame').src='about:blank';
+}
+document.getElementById('episode15Modal').addEventListener('click',function(e){
+  if(e.target===this) closeEpisode15();
+});
+document.addEventListener('keydown',function(e){
+  if(e.key==='Escape') closeEpisode15();
 });
 </script>
 <script src="/compte/lang-ui.js"></script>
