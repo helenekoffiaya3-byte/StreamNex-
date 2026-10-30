@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Langue Audio - STREAMNEX</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:-apple-system,BlinkMacSystemFont,sans-serif}
+body{background:#0a0a0a;display:flex;justify-content:center;color:white}
+.container{width:100%;max-width:390px;min-height:100vh;background:#121212;padding:0 20px 30px}
+.header{display:flex;align-items:center;gap:12px;background:#181818;padding:16px 0 12px}
+.back{font-size:28px;cursor:pointer;color:white;text-decoration:none}
+.title{font-size:20px;font-weight:700;flex:1;text-align:center;margin-right:28px}
+.logo-img{width:100%;text-align:center;padding:8px 0 12px;font-weight:900;color:#2ECC71;font-size:28px;filter:drop-shadow(0 0 5px #2ECC71)}
+.card{background:#1a1a1a;border-radius:18px;padding:10px 18px;margin-top:12px}
+.row{display:flex;justify-content:space-between;align-items:center;padding:22px 0;border-bottom:1px solid #222;cursor:pointer}
+.row:last-child{border:none}
+.row-title{font-size:19px;font-weight:500;color:#999}
+.row.active .row-title{color:white;font-weight:700}
+.radio{width:28px;height:28px;border-radius:50%;border:2px solid #555;display:flex;align-items:center;justify-content:center;transition:0.2s;flex:0 0 28px}
+.radio.active{border-color:#2ECC71;background:#2ECC71}
+.dot{width:14px;height:14px;background:#000;border-radius:50%;display:none}
+.radio.active .dot{display:block;background:#0a5c28}
+.info{display:flex;gap:10px;color:#888;font-size:13px;margin:22px 0 0;line-height:1.4;background:#1e1e1e;padding:14px;border-radius:12px}
+.btn-green{width:100%;background:#2ECC71;color:black;font-weight:800;padding:20px;border-radius:18px;border:none;font-size:19px;cursor:pointer;margin-top:18px}
+.status{min-height:18px;color:#2ECC71;text-align:center;font-size:13px;margin-top:12px}
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="header"><a class="back" href="parametres.html" aria-label="Retour aux paramètres">←</a><span class="title">Langue Audio</span></div>
+  <div class="logo-img">STREAMNEX</div>
+  <div class="card" id="list">
+    <div class="row" data-lang="fr"><span class="row-title">Français</span><div class="radio"><div class="dot"></div></div></div>
+    <div class="row" data-lang="en"><span class="row-title">English</span><div class="radio"><div class="dot"></div></div></div>
+    <div class="row" data-lang="es"><span class="row-title">Español</span><div class="radio"><div class="dot"></div></div></div>
+    <div class="row" data-lang="ko"><span class="row-title">Coréen / 한국어</span><div class="radio"><div class="dot"></div></div></div>
+    <div class="row" data-lang="ja"><span class="row-title">Japonais / 日本語</span><div class="radio"><div class="dot"></div></div></div>
+    <div class="row" data-lang="orig"><span class="row-title">Original</span><div class="radio"><div class="dot"></div></div></div>
+  </div>
+  <div class="info"><span style="color:#2ECC71;font-size:18px">ⓘ</span><span><b style="color:#ddd">Votre langue audio préférée sera utilisée par défaut.</b><br><br>La piste choisie doit être proposée par la vidéo. Cette application est 100% gratuite.</span></div>
+  <button class="btn-green" id="save">Enregistrer</button>
+  <p class="status" id="status" role="status" aria-live="polite"></p>
+</div>
+<script>
+const key='streamnex_audio';
+const rows=[...document.querySelectorAll('.row')];
+let selected=localStorage.getItem(key)||'fr';
+if(!rows.some(row=>row.dataset.lang===selected))selected='fr';
+function render(){
+  rows.forEach(row=>{
+    const active=row.dataset.lang===selected;
+    row.classList.toggle('active',active);
+    row.querySelector('.radio').classList.toggle('active',active);
+  });
+}
+rows.forEach(row=>row.addEventListener('click',()=>{
+  selected=row.dataset.lang;
+  render();
+}));
+render();
+document.getElementById('save').addEventListener('click',()=>{
+  localStorage.setItem(key,selected);
+  const names={fr:'Français',en:'English',es:'Español',ko:'Coréen',ja:'Japonais',orig:'Original'};
+  document.getElementById('status').textContent='Langue audio enregistrée : '+names[selected]+'.';
+});
+</script>
+</body>
+</html>
