@@ -50,7 +50,8 @@ h1 span{font-weight:400;color:#888;font-size:14px}
 <div class="card"><div class="thumb"><img src="ep15.jpg" alt="Miraculous - Le Pharaon"><div class="badge-ep">EP15</div></div><div class="title">EP15 Le Pharaon</div><button class="btn" type="button" onclick="playEpisode15()">▶ Lecture</button></div>
 
 <div class="card"><div class="thumb"><img src="ep16.jpg" alt="Miraculous - Chronogirl"><div class="badge-ep">EP16</div></div><div class="title">EP16 Chronogirl</div><button class="btn" type="button" onclick="playEpisode16()">▶ Lecture</button></div>
-<div class="card"><div class="prochainement">EP17-18<br>PROCHAINEMENT</div></div>
+<div class="card"><div class="thumb"><img src="ep17-horripilateur.jpg" alt="Miraculous - Horripilateur"><div class="badge-ep">EP17</div><div class="badge-saison">EP 17<br><small>SAISON 1</small></div></div><div class="title">EP17 HORRIPILATEUR</div><button class="btn" type="button" onclick="playEpisode17()">▶ Lecture <small>(VO anglaise)</small></button></div>
+<div class="card"><div class="thumb"><img src="ep18-marionnettiste.jpg" alt="Miraculous - La Marionnettiste"><div class="badge-ep">EP18</div><div class="badge-saison">EP 18<br><small>SAISON 1</small></div></div><div class="title">EP18 LA MARIONNETTISTE</div><button class="btn" type="button" onclick="playEpisode18()">▶ Lecture</button></div>
 <div class="card"><div class="thumb"><img src="ep19.jpg" alt="Miraculous - Le Mime"><div class="badge-ep">EP19</div></div><div class="title">EP19 Le MIME</div><button class="btn" type="button" onclick="playEpisode19()">▶ Lecture</button></div>
 
 <div class="card"><div class="thumb"><img src="ep20.jpg" alt="Miraculous - Guitar Vilain"><div class="badge-ep">EP20</div></div><div class="title">EP20 GUITAR VILAIN</div><button class="btn" type="button" onclick="playEpisode20()">▶ Lecture</button></div>
@@ -658,6 +659,48 @@ document.getElementById('episode26Modal').addEventListener('click',function(e){
 });
 document.addEventListener('keydown',function(e){
   if(e.key==='Escape') closeEpisode26();
+});
+</script>
+
+<div class="video-modal" id="episode17Modal" role="dialog" aria-modal="true" aria-label="Lecture de Miraculous Horripilateur">
+  <div class="video-modal-content">
+    <button class="video-modal-close" type="button" onclick="closeEpisode17()">✕ Fermer</button>
+    <iframe id="episode17Frame" title="Miraculous - Horripilateur (version originale anglaise)" src="about:blank" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe>
+  </div>
+</div>
+<div class="video-modal" id="episode18Modal" role="dialog" aria-modal="true" aria-label="Lecture de Miraculous La Marionnettiste">
+  <div class="video-modal-content">
+    <button class="video-modal-close" type="button" onclick="closeEpisode18()">✕ Fermer</button>
+    <iframe id="episode18Frame" title="Miraculous - La Marionnettiste" src="about:blank" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe>
+  </div>
+</div>
+<script>
+function playEpisode17(){
+  document.getElementById('episode17Frame').src='https://www.youtube-nocookie.com/embed/eNWGPWk49EU?autoplay=1&rel=0';
+  document.getElementById('episode17Modal').classList.add('open');
+}
+function closeEpisode17(){
+  document.getElementById('episode17Modal').classList.remove('open');
+  document.getElementById('episode17Frame').src='about:blank';
+}
+function playEpisode18(){
+  document.getElementById('episode18Frame').src='https://www.youtube-nocookie.com/embed/paDTb0FbIxY?autoplay=1&rel=0';
+  document.getElementById('episode18Modal').classList.add('open');
+}
+function closeEpisode18(){
+  document.getElementById('episode18Modal').classList.remove('open');
+  document.getElementById('episode18Frame').src='about:blank';
+}
+['episode17Modal','episode18Modal'].forEach(function(id){
+  document.getElementById(id).addEventListener('click',function(e){
+    if(e.target===this){
+      this.classList.remove('open');
+      this.querySelector('iframe').src='about:blank';
+    }
+  });
+});
+document.addEventListener('keydown',function(e){
+  if(e.key==='Escape'){closeEpisode17();closeEpisode18();}
 });
 </script>
 <script src="/compte/lang-ui.js"></script>
