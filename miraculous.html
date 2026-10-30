@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>STREAMNEX - Miraculous Saison 1 COMPLET</title>
+<title>STREAMNEX - Miraculous | Choix des saisons</title>
 <style>
 body{background:#08080c;color:#fff;font-family:Arial,sans-serif;margin:0;padding:20px}
 h1{margin:0 0 20px 0;font-size:22px}
@@ -20,13 +20,48 @@ h1 span{font-weight:400;color:#888;font-size:14px}
 .title{padding:10px 10px 0 10px;font-size:13px;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .btn{display:block;margin:8px auto 12px auto;background:#22c55e;color:#fff;border:none;padding:6px 18px;border-radius:20px;font-size:12px;font-weight:700;cursor:pointer}
 .prochainement{background:#1a1a1a;display:flex;align-items:center;justify-content:center;color:#555;font-weight:700;font-size:14px;aspect-ratio:16/9}
+
+.season-screen{max-width:1100px;margin:0 auto 28px}
+.season-heading{font-size:25px;font-weight:800;margin:8px 0;color:#fff}
+.season-subtitle{color:#aaa;margin:0 0 18px}
+.season-options{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:14px}
+.season-option{background:linear-gradient(145deg,#1b1b26,#101016);border:1px solid #333;border-radius:14px;padding:18px;color:#fff;text-align:left;cursor:pointer;min-height:116px;transition:border-color .2s,transform .2s}
+.season-option:hover{border-color:#22c55e;transform:translateY(-2px)}
+.season-option strong{display:block;font-size:19px;margin-bottom:8px}
+.season-option span{color:#aaa;font-size:13px}
+.season-option.available{border-color:#22c55e}
+.season-option:disabled{cursor:not-allowed;opacity:.62}
+.episodes-header{display:flex;align-items:center;gap:14px;margin:18px 0}
+.back-seasons{background:#24242d;color:#fff;border:1px solid #444;border-radius:20px;padding:9px 15px;font-weight:700;cursor:pointer}
+.episodes-header h2{font-size:20px;margin:0}
+@media(max-width:600px){body{padding:14px}.season-heading{font-size:22px}}
 </style>
 </head>
 <body>
 
-<h1>STREAMNEX <span>- COMPLET - Miraculous Saison 1 VF</span></h1>
+<h1>STREAMNEX <span>- MIRACULOUS</span></h1>
 
-<div class="grid">
+<section class="season-screen" id="seasonScreen">
+  <h2 class="season-heading">Miraculous – Choisis ta saison</h2>
+  <p class="season-subtitle">Sélectionne une saison pour accéder à ses épisodes.</p>
+  <div class="season-options">
+    <button class="season-option available" type="button" onclick="showSeason1()">
+      <strong>🐞 Saison 1</strong>
+      <span>26 épisodes • Disponible</span>
+    </button>
+    <button class="season-option" type="button" disabled aria-label="Saison 2 bientôt disponible">
+      <strong>Saison 2</strong>
+      <span>Bientôt disponible</span>
+    </button>
+  </div>
+</section>
+
+<div class="episodes-header" id="episodesHeader" hidden>
+  <button class="back-seasons" type="button" onclick="showSeasonPicker()">← Saisons</button>
+  <h2>Miraculous – Saison 1</h2>
+</div>
+
+<div class="grid" id="episodeGrid" hidden>
 
 <!-- EP1-EP16 -->
 <div class="card"><div class="thumb"><img src="ep1.jpg" alt="Miraculous - Origines Partie 1"><div class="badge-ep">EP1</div><div class="badge-saison">EP 1<br><small>SAISON 1</small></div></div><div class="title">EP1 Origines Partie 1</div><button class="btn" type="button" onclick="playEpisode1()">▶ Lecture</button></div>
@@ -68,6 +103,21 @@ h1 span{font-weight:400;color:#888;font-size:14px}
 <div class="card"><div class="thumb"><img src="ep26-volpina.jpg" alt="Miraculous - Volpina"><div class="badge-ep">EP26</div><div class="badge-saison">EP 26<br><small>SAISON 1</small></div></div><div class="title">EP26 VOLPINA</div><button class="btn" type="button" onclick="playEpisode26()">▶ Lecture</button></div>
 
 </div>
+
+<script>
+function showSeason1(){
+  document.getElementById('seasonScreen').hidden=true;
+  document.getElementById('episodeGrid').hidden=false;
+  document.getElementById('episodesHeader').hidden=false;
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+function showSeasonPicker(){
+  document.getElementById('episodeGrid').hidden=true;
+  document.getElementById('episodesHeader').hidden=true;
+  document.getElementById('seasonScreen').hidden=false;
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+</script>
 
 <style>
 .video-modal{display:none;position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,.94);align-items:center;justify-content:center;padding:18px}
