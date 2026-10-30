@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Qualité vidéo - STREAMNEX</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:-apple-system,sans-serif}
+body{background:#0a0a0a;display:flex;justify-content:center;color:white}
+.container{width:100%;max-width:390px;min-height:100vh;background:#121212;padding:0 16px 30px}
+.header{display:flex;align-items:center;gap:12px;background:#181818;padding:16px 0}
+.back{font-size:24px;cursor:pointer;color:white;text-decoration:none}
+.logo{font-size:20px;font-weight:900;color:#2ECC71}
+.title{font-size:18px;font-weight:700;flex:1;text-align:center}
+.sub{color:#888;font-size:14px;margin:20px 0 12px}
+.option{background:#1e1e1e;border-radius:14px;padding:16px;display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;cursor:pointer;border:1.5px solid transparent;transition:0.2s}
+.option.selected{border-color:#2ECC71;background:#1a2e1f}
+.option-title{font-weight:700;font-size:16px}
+.option-desc{color:#aaa;font-size:12px;margin-top:4px}
+.radio{width:26px;height:26px;border-radius:50%;border:2px solid #555;display:flex;align-items:center;justify-content:center;flex:0 0 26px}
+.radio.active{border-color:#2ECC71}
+.radio-dot{width:14px;height:14px;background:#2ECC71;border-radius:50%;display:none}
+.radio.active .radio-dot{display:block}
+.badge{background:#2ECC71;color:black;font-size:10px;padding:2px 6px;border-radius:10px;margin-left:6px}
+.info-box{background:#2a2a2a;border-radius:14px;padding:14px;display:flex;gap:10px;margin-top:18px}
+.info-box span{color:#aaa;font-size:12px;line-height:1.4}
+.btn-green{width:100%;background:#2ECC71;color:black;font-weight:800;padding:18px;border-radius:30px;border:none;font-size:17px;cursor:pointer;margin-top:20px}
+#status{min-height:18px;color:#2ECC71;text-align:center;font-size:13px;margin-top:12px}
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="header">
+    <a class="back" href="parametres.html" aria-label="Retour aux paramètres">‹</a>
+    <span class="logo">STREAMNEX</span>
+    <span class="title">Qualité vidéo</span>
+  </div>
+  <div class="sub">Sélectionnez la qualité de lecture</div>
+  <div class="option" data-q="auto">
+    <div><div class="option-title">Auto (Recommandé) <span class="badge">✓</span></div><div class="option-desc">Qualité optimale automatiquement</div></div>
+    <div class="radio"><div class="radio-dot"></div></div>
+  </div>
+  <div class="option" data-q="1080">
+    <div><div class="option-title">1080p Full HD</div><div class="option-desc">Haute qualité, consomme plus de données</div></div>
+    <div class="radio"><div class="radio-dot"></div></div>
+  </div>
+  <div class="option" data-q="720">
+    <div><div class="option-title">720p HD</div><div class="option-desc">Bonne qualité, consommation modérée</div></div>
+    <div class="radio"><div class="radio-dot"></div></div>
+  </div>
+  <div class="option" data-q="480">
+    <div><div class="option-title">480p</div><div class="option-desc">Qualité standard, économise les données</div></div>
+    <div class="radio"><div class="radio-dot"></div></div>
+  </div>
+  <div class="option" data-q="360">
+    <div><div class="option-title">360p Économie de données</div><div class="option-desc">Qualité réduite, minimum de données</div></div>
+    <div class="radio"><div class="radio-dot"></div></div>
+  </div>
+  <div class="info-box">
+    <div style="color:#2ECC71">ⓘ</div>
+    <span>En mode automatique, la qualité peut s'adapter à votre connexion. Les résolutions disponibles dépendent aussi de la vidéo et de sa source.<br><br>Cette application est 100% gratuite.</span>
+  </div>
+  <button class="btn-green" id="save">Enregistrer</button>
+  <p id="status" role="status" aria-live="polite"></p>
+</div>
+<script>
+const options=[...document.querySelectorAll('.option')];
+const storageKey='streamnex_quality';
+let selected=localStorage.getItem(storageKey)||'auto';
+function render(){
+  options.forEach(option=>{
+    const active=option.dataset.q===selected;
+    option.classList.toggle('selected',active);
+    option.querySelector('.radio').classList.toggle('active',active);
+  });
+}
+options.forEach(option=>option.addEventListener('click',()=>{
+  selected=option.dataset.q;
+  render();
+}));
+render();
+document.getElementById('save').addEventListener('click',()=>{
+  localStorage.setItem(storageKey,selected);
+  const status=document.getElementById('status');
+  status.textContent='Qualité enregistrée : '+(selected==='auto'?'Automatique':selected+'p')+'.';
+});
+</script>
+</body>
+</html>
