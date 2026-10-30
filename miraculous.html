@@ -54,7 +54,7 @@ h1 span{font-weight:400;color:#888;font-size:14px}
 <div class="card"><div class="thumb"><img src="ep19.jpg" alt="Miraculous - Le Mime"><div class="badge-ep">EP19</div></div><div class="title">EP19 Le MIME</div><button class="btn" type="button" onclick="playEpisode19()">▶ Lecture</button></div>
 
 <div class="card"><div class="thumb"><img src="ep20.jpg" alt="Miraculous - Guitar Vilain"><div class="badge-ep">EP20</div></div><div class="title">EP20 GUITAR VILAIN</div><button class="btn" type="button" onclick="playEpisode20()">▶ Lecture</button></div>
-<div class="card"><div class="thumb"><img src="ep21.jpg"><div class="badge-ep">EP21</div></div><div class="title">EP21 REFLEKTA</div><button class="btn">▶ Lecture</button></div>
+<div class="card"><div class="thumb"><img src="ep21.jpg" alt="Miraculous - Reflekta"><div class="badge-ep">EP21</div></div><div class="title">EP21 REFLEKTA</div><button class="btn" type="button" onclick="playEpisode21()">▶ Lecture</button></div>
 <div class="card"><div class="thumb"><img src="ep22.jpg"><div class="badge-ep">EP22</div></div><div class="title">EP22 CLIMATIKA</div><button class="btn">▶ Lecture</button></div>
 
 <div class="card"><div class="thumb"><img src="ep23.jpg"><div class="badge-ep">EP23</div></div><div class="title">EP23 ANTIBUG</div><button class="btn">▶ Lecture</button></div>
@@ -514,6 +514,30 @@ document.getElementById('episode20Modal').addEventListener('click',function(e){
 });
 document.addEventListener('keydown',function(e){
   if(e.key==='Escape') closeEpisode20();
+});
+</script>
+
+<div class="video-modal" id="episode21Modal" role="dialog" aria-modal="true" aria-label="Lecture de Miraculous Reflekta">
+  <div class="video-modal-content">
+    <button class="video-modal-close" type="button" onclick="closeEpisode21()">✕ Fermer</button>
+    <iframe id="episode21Frame" title="Miraculous - Reflekta" src="about:blank" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe>
+  </div>
+</div>
+<script>
+function playEpisode21(){
+  const modal=document.getElementById('episode21Modal');
+  document.getElementById('episode21Frame').src='https://www.youtube-nocookie.com/embed/ia0AuYpz-hc?autoplay=1&rel=0';
+  modal.classList.add('open');
+}
+function closeEpisode21(){
+  document.getElementById('episode21Modal').classList.remove('open');
+  document.getElementById('episode21Frame').src='about:blank';
+}
+document.getElementById('episode21Modal').addEventListener('click',function(e){
+  if(e.target===this) closeEpisode21();
+});
+document.addEventListener('keydown',function(e){
+  if(e.key==='Escape') closeEpisode21();
 });
 </script>
 <script src="/compte/lang-ui.js"></script>
