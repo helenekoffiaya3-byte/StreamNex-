@@ -41,9 +41,20 @@ body{background:#08080a;color:#fff;font-family:Inter,system-ui,Arial,sans-serif;
   <div class="avatar">
     <img src="profile.jpg" alt="Photo de profil">
   </div>
-  <div class="name">Alex</div>
+  <div class="name" id="profile-name">Chargement…</div>
   <div class="btn">Gérer les profils</div>
 </div>
 
+
+<script type="module">
+import { getUser, handleAuthCallback } from "https://esm.sh/@netlify/identity";
+const name = document.getElementById("profile-name");
+try {
+  await handleAuthCallback();
+  const user = await getUser();
+  if (!user) window.location.replace("connexion.html");
+  else name.textContent = user.user_metadata?.full_name || user.email?.split("@")[0] || "Utilisateur";
+} catch (error) { name.textContent = "Profil indisponible"; console.error(error); }
+</script>
 </body>
 </html>
