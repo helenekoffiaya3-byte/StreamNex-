@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>STREAMNEX - Paramètres</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{color-scheme:dark}
+body{min-height:100vh;background:#050506;color:#fff;font-family:Inter,system-ui,Arial,sans-serif}
+.top{height:112px;background:#111113;display:flex;align-items:center;gap:16px;padding:20px max(18px,calc((100vw - 680px)/2));}
+.back{color:#fff;text-decoration:none;font-size:42px;line-height:1}
+.brand{background:#08b95e;color:white;font-weight:950;font-size:15px;letter-spacing:.3px;padding:12px 10px;border-radius:18px;transform:rotate(-3deg);white-space:nowrap}
+h1{font-size:clamp(25px,5vw,38px);font-weight:800}
+main{width:min(100% - 28px,650px);margin:26px auto 40px;display:flex;flex-direction:column;gap:8px}
+.item{width:100%;min-height:60px;background:linear-gradient(110deg,#202023,#19191c);border:1px solid #242428;border-radius:15px;color:#fff;display:flex;align-items:center;gap:15px;padding:9px 15px;text-align:left;font:inherit}
+.item.action{cursor:pointer}
+.item:active{filter:brightness(1.15)}
+.ico{width:42px;height:42px;flex:0 0 42px;border-radius:50%;background:#0bb96a;display:grid;place-items:center;font-size:22px;font-weight:800;color:white}
+.label{font-size:clamp(17px,4vw,23px);font-weight:650;flex:1}
+.arrow{font-size:32px;color:#68686d;line-height:1}
+select{max-width:45%;background:#303035;color:#fff;border:1px solid #45454a;border-radius:9px;padding:9px;font-size:14px}
+.switch{appearance:none;width:66px;height:38px;border-radius:30px;background:#555;position:relative;cursor:pointer;flex:0 0 66px;transition:.2s}
+.switch:before{content:"";position:absolute;width:28px;height:28px;border-radius:50%;background:#eee;top:5px;left:5px;transition:.2s}
+.switch:checked{background:#14c968}
+.switch:checked:before{left:33px;background:#fff}
+.danger .ico{background:#e84c55}
+.danger .label,.danger .arrow{color:#ed555d}
+.note{color:#999;font-size:13px;text-align:center;padding:12px 8px}
+@media(max-width:420px){.top{height:100px;gap:11px}.brand{font-size:12px;padding:10px 8px}.item{min-height:58px;padding:8px 11px;gap:11px}.ico{width:38px;height:38px;flex-basis:38px}.label{font-size:17px}select{max-width:43%;font-size:12px;padding:8px}}
+</style>
+</head>
+<body>
+<header class="top">
+  <a class="back" href="user.homepage.html" aria-label="Retour">‹</a>
+  <div class="brand">STREAMNEX</div>
+  <h1>Paramètres</h1>
+</header>
+<main>
+  <button class="item action" id="account"><span class="ico">●</span><span class="label">Mon compte</span><span class="arrow">›</span></button>
+  <div class="item"><span class="ico">▣</span><label class="label" for="quality">Qualité vidéo</label><select id="quality"><option value="auto">Automatique</option><option value="1080">1080p</option><option value="720">720p</option><option value="480">480p</option><option value="360">360p</option></select></div>
+  <div class="item"><span class="ico">▣</span><label class="label" for="audio">Langue Audio</label><select id="audio"><option value="auto">Automatique</option><option value="fr">Français</option><option value="en">Anglais</option><option value="original">Langue originale</option></select></div>
+  <div class="item"><span class="ico">文</span><label class="label" for="language">Langue</label><select id="language"><option value="fr">Français</option><option value="en">English</option></select></div>
+  <div class="item"><span class="ico">CC</span><label class="label" for="subtitles">Sous-titres</label><select id="subtitles"><option value="off">Désactivés</option><option value="fr">Français</option><option value="en">Anglais</option><option value="auto">Automatiques</option></select></div>
+  <button class="item action" id="downloads"><span class="ico">↓</span><span class="label">Téléchargements</span><span class="arrow">›</span></button>
+  <label class="item"><span class="ico">♟</span><span class="label">Notifications</span><input class="switch" id="notifications" type="checkbox" checked></label>
+  <label class="item"><span class="ico">☾</span><span class="label">Mode sombre activé</span><input class="switch" id="darkmode" type="checkbox" checked></label>
+  <button class="item action" id="clear-cache"><span class="ico">▤</span><span class="label">Vider le cache</span><span class="arrow">›</span></button>
+  <button class="item action danger" id="logout"><span class="ico">⇥</span><span class="label">Déconnexion</span><span class="arrow">›</span></button>
+  <p class="note" id="notice" role="status" aria-live="polite"></p>
+</main>
+<script>
+const notice=document.getElementById("notice");
+function say(message){notice.textContent=message}
+const prefs=["quality","audio","language","subtitles","notifications","darkmode"];
+for(const id of prefs){
+  const el=document.getElementById(id), saved=localStorage.getItem("streamnex_"+id);
+  if(saved!==null){if(el.type==="checkbox")el.checked=saved==="true";else el.value=saved;}
+  el.addEventListener("change",()=>{localStorage.setItem("streamnex_"+id,el.type==="checkbox"?String(el.checked):el.value);say("Préférence enregistrée.");});
+}
+document.getElementById("account").addEventListener("click",()=>location.href="Profil.html");
+document.getElementById("downloads").addEventListener("click",()=>say("La rubrique Téléchargements sera bientôt disponible."));
+document.getElementById("clear-cache").addEventListener("click",async()=>{
+  try{if("caches" in window){const keys=await caches.keys();await Promise.all(keys.map(key=>caches.delete(key)));}say("Cache temporaire vidé.");}
+  catch(e){say("Impossible de vider le cache de cet appareil.");}
+});
+document.getElementById("logout").addEventListener("click",async()=>{
+  if(!confirm("Voulez-vous vraiment vous déconnecter ?"))return;
+  try{const {logout}=await import("https://esm.sh/@netlify/identity");await logout();location.replace("connexion.html");}
+  catch(e){say("Déconnexion impossible. Réessayez.");console.error(e);}
+});
+</script>
+</body>
+</html>
