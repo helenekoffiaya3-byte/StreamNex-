@@ -41,7 +41,7 @@ select{max-width:45%;background:#303035;color:#fff;border:1px solid #45454a;bord
   <a class="item action" href="qualite-video.html" style="text-decoration:none"><span class="ico">▣</span><span class="label">Qualité vidéo</span><span class="arrow">›</span></a>
   <a class="item action" href="langue-audio.html" style="text-decoration:none"><span class="ico">▣</span><span class="label">Langue Audio</span><span class="arrow">›</span></a>
   <div class="item"><span class="ico">文</span><label class="label" for="language">Langue</label><select id="language"><option value="fr">Français</option><option value="en">English</option></select></div>
-  <div class="item"><span class="ico">CC</span><label class="label" for="subtitles">Sous-titres</label><select id="subtitles"><option value="off">Désactivés</option><option value="fr">Français</option><option value="en">Anglais</option><option value="auto">Automatiques</option></select></div>
+  <a class="item action" href="sous-titres.html" style="text-decoration:none"><span class="ico">CC</span><span class="label">Sous-titres</span><span class="arrow">›</span></a>
   <button class="item action" id="downloads"><span class="ico">↓</span><span class="label">Téléchargements</span><span class="arrow">›</span></button>
   <label class="item"><span class="ico">♟</span><span class="label">Notifications</span><input class="switch" id="notifications" type="checkbox" checked></label>
   <label class="item"><span class="ico">☾</span><span class="label">Mode sombre activé</span><input class="switch" id="darkmode" type="checkbox" checked></label>
@@ -52,7 +52,7 @@ select{max-width:45%;background:#303035;color:#fff;border:1px solid #45454a;bord
 <script>
 const notice=document.getElementById("notice");
 function say(message){notice.textContent=message}
-const prefs=["language","subtitles","notifications","darkmode"];
+const prefs=["language","notifications","darkmode"];
 for(const id of prefs){
   const el=document.getElementById(id), saved=localStorage.getItem("streamnex_"+id);
   if(saved!==null){if(el.type==="checkbox")el.checked=saved==="true";else el.value=saved;}
