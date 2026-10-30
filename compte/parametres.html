@@ -42,7 +42,7 @@ select{max-width:45%;background:#303035;color:#fff;border:1px solid #45454a;bord
   <a class="item action" href="langue-audio.html" style="text-decoration:none"><span class="ico">▣</span><span class="label">Langue Audio</span><span class="arrow">›</span></a>
   <div class="item"><span class="ico">文</span><label class="label" for="language">Langue</label><select id="language"><option value="fr">Français</option><option value="en">English</option></select></div>
   <a class="item action" href="sous-titres.html" style="text-decoration:none"><span class="ico">CC</span><span class="label">Sous-titres</span><span class="arrow">›</span></a>
-  <button class="item action" id="downloads"><span class="ico">↓</span><span class="label">Téléchargements</span><span class="arrow">›</span></button>
+  <a class="item action" href="telechargements.html" style="text-decoration:none"><span class="ico">↓</span><span class="label">Téléchargements</span><span class="arrow">›</span></a>
   <label class="item"><span class="ico">♟</span><span class="label">Notifications</span><input class="switch" id="notifications" type="checkbox" checked></label>
   <label class="item"><span class="ico">☾</span><span class="label">Mode sombre activé</span><input class="switch" id="darkmode" type="checkbox" checked></label>
   <button class="item action" id="clear-cache"><span class="ico">▤</span><span class="label">Vider le cache</span><span class="arrow">›</span></button>
@@ -59,7 +59,6 @@ for(const id of prefs){
   el.addEventListener("change",()=>{localStorage.setItem("streamnex_"+id,el.type==="checkbox"?String(el.checked):el.value);say("Préférence enregistrée.");});
 }
 document.getElementById("account").addEventListener("click",()=>location.href="../Profil.html");
-document.getElementById("downloads").addEventListener("click",()=>say("La rubrique Téléchargements sera bientôt disponible."));
 document.getElementById("clear-cache").addEventListener("click",async()=>{
   try{if("caches" in window){const keys=await caches.keys();await Promise.all(keys.map(key=>caches.delete(key)));}say("Cache temporaire vidé.");}
   catch(e){say("Impossible de vider le cache de cet appareil.");}
