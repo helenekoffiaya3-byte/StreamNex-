@@ -64,7 +64,7 @@ document.getElementById("logout").addEventListener("click",async()=>{
   if(!confirm("Voulez-vous vraiment vous déconnecter ?"))return;
   const button=document.getElementById("logout");
   button.disabled=true;say("Déconnexion en cours…");
-  try{await logout();location.replace("/connexion.html");}
+  try{await logout();location.replace("/public.homepage.html");}
   catch(e){button.disabled=false;say("Déconnexion impossible. Vérifiez votre connexion puis réessayez.");console.error("StreamNex logout:",e);}
 });
 </script>
