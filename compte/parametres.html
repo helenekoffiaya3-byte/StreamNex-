@@ -43,7 +43,7 @@ select{max-width:45%;background:#303035;color:#fff;border:1px solid #45454a;bord
   <a class="item action" href="langue.html" style="text-decoration:none"><span class="ico">文</span><span class="label">Langue de l’application</span><span class="arrow">›</span></a>
   <a class="item action" href="sous-titres.html" style="text-decoration:none"><span class="ico">CC</span><span class="label">Sous-titres</span><span class="arrow">›</span></a>
   <a class="item action" href="telechargements.html" style="text-decoration:none"><span class="ico">↓</span><span class="label">Téléchargements</span><span class="arrow">›</span></a>
-  <label class="item"><span class="ico">♟</span><span class="label">Notifications</span><input class="switch" id="notifications" type="checkbox" checked></label>
+  <a class="item action" href="notifications.html" style="text-decoration:none"><span class="ico">♟</span><span class="label">Notifications</span><span class="arrow">›</span></a>
   <label class="item"><span class="ico">☾</span><span class="label">Mode sombre activé</span><input class="switch" id="darkmode" type="checkbox" checked></label>
   <button class="item action" id="clear-cache"><span class="ico">▤</span><span class="label">Vider le cache</span><span class="arrow">›</span></button>
   <button class="item action danger" id="logout"><span class="ico">⇥</span><span class="label">Déconnexion</span><span class="arrow">›</span></button>
@@ -52,7 +52,7 @@ select{max-width:45%;background:#303035;color:#fff;border:1px solid #45454a;bord
 <script>
 const notice=document.getElementById("notice");
 function say(message){notice.textContent=message}
-const prefs=["notifications","darkmode"];
+const prefs=["darkmode"];
 for(const id of prefs){
   const el=document.getElementById(id), saved=localStorage.getItem("streamnex_"+id);
   if(saved!==null){if(el.type==="checkbox")el.checked=saved==="true";else el.value=saved;}
