@@ -45,7 +45,7 @@ select{max-width:45%;background:#303035;color:#fff;border:1px solid #45454a;bord
   <a class="item action" href="telechargements.html" style="text-decoration:none"><span class="ico">↓</span><span class="label">Téléchargements</span><span class="arrow">›</span></a>
   <a class="item action" href="notifications.html" style="text-decoration:none"><span class="ico">♟</span><span class="label">Notifications</span><span class="arrow">›</span></a>
   <label class="item"><span class="ico">☾</span><span class="label">Mode sombre activé</span><input class="switch" id="darkmode" type="checkbox" checked></label>
-  <button class="item action" id="clear-cache"><span class="ico">▤</span><span class="label">Vider le cache</span><span class="arrow">›</span></button>
+  <a class="item action" href="cache.html" style="text-decoration:none"><span class="ico">▤</span><span class="label">Vider le cache</span><span class="arrow">›</span></a>
   <button class="item action danger" id="logout"><span class="ico">⇥</span><span class="label">Déconnexion</span><span class="arrow">›</span></button>
   <p class="note" id="notice" role="status" aria-live="polite"></p>
 </main>
@@ -59,10 +59,6 @@ for(const id of prefs){
   el.addEventListener("change",()=>{localStorage.setItem("streamnex_"+id,el.type==="checkbox"?String(el.checked):el.value);say("Préférence enregistrée.");});
 }
 document.getElementById("account").addEventListener("click",()=>location.href="../Profil.html");
-document.getElementById("clear-cache").addEventListener("click",async()=>{
-  try{if("caches" in window){const keys=await caches.keys();await Promise.all(keys.map(key=>caches.delete(key)));}say("Cache temporaire vidé.");}
-  catch(e){say("Impossible de vider le cache de cet appareil.");}
-});
 document.getElementById("logout").addEventListener("click",async()=>{
   if(!confirm("Voulez-vous vraiment vous déconnecter ?"))return;
   try{const {logout}=await import("https://esm.sh/@netlify/identity");await logout();location.replace("connexion.html");}
