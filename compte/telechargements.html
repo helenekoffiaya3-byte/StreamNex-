@@ -28,7 +28,11 @@ select{background:#303030;color:#fff;border:1px solid #555;border-radius:9px;pad
 .toggle.off{background:#444}
 .knob{width:26px;height:26px;background:#fff;border-radius:50%;position:absolute;top:2px;right:2px;transition:.2s}
 .toggle.off .knob{right:26px}
-.storage{background:#1e1e1e;border-radius:18px;padding:18px;margin:12px 0}\n#locationCard summary::-webkit-details-marker{display:none}\n#locationCard[open] summary{padding-bottom:4px}\n#locationCard summary>span:last-child{transition:transform .2s}\n#locationCard[open] summary>span:last-child{transform:rotate(90deg)}
+.storage{background:#1e1e1e;border-radius:18px;padding:18px;margin:12px 0}
+#locationCard summary::-webkit-details-marker{display:none}
+#locationCard[open] summary{padding-bottom:4px}
+#locationCard summary>span:last-child{transition:transform .2s}
+#locationCard[open] summary>span:last-child{transform:rotate(90deg)}
 .bar{height:10px;background:#333;border-radius:10px;margin-top:12px;overflow:hidden}
 .fill{height:100%;width:0;background:#2ECC71;transition:width .2s}
 .info{display:flex;gap:10px;background:#16281c;border:1px solid #2ECC71;border-radius:14px;padding:14px;margin:14px 0;font-size:13px;color:#aaa}
@@ -90,11 +94,13 @@ select{background:#303030;color:#fff;border:1px solid #555;border-radius:9px;pad
 <script>
 const locationRadios=document.querySelectorAll('input[name="storageLocation"]');
 const chooseSd=document.getElementById('chooseSd');
-const locationNote=document.getElementById('locationNote');\nconst selectedLocationLabel=document.getElementById('selectedLocationLabel');
+const locationNote=document.getElementById('locationNote');
+const selectedLocationLabel=document.getElementById('selectedLocationLabel');
 let storageLocation=localStorage.getItem('streamnex_storage_location')||'internal';
 function renderStorageLocation(){
   locationRadios.forEach(r=>r.checked=r.value===storageLocation);
-  chooseSd.style.display=storageLocation==='sd'?'block':'none';\n  selectedLocationLabel.textContent=storageLocation==='sd'?'Carte SD':'Stockage interne';
+  chooseSd.style.display=storageLocation==='sd'?'block':'none';
+  selectedLocationLabel.textContent=storageLocation==='sd'?'Carte SD':'Stockage interne';
   locationNote.textContent=storageLocation==='sd'
     ?'Carte SD choisie comme préférence. Autorisez l’accès au dossier si votre navigateur le permet.'
     :'Stockage interne sélectionné. Le navigateur gère l’espace de stockage du site.';
@@ -190,5 +196,6 @@ const clearCard=document.getElementById('clearCard');
 clearCard.addEventListener('click',clearAppCache);
 clearCard.addEventListener('keydown',event=>{if(event.key==='Enter'||event.key===' '){event.preventDefault();clearAppCache();}});
 </script>
+  <script src="lang-ui.js"></script>
 </body>
 </html>
