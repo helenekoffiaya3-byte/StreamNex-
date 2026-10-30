@@ -29,7 +29,7 @@ h1 span{font-weight:400;color:#888;font-size:14px}
 <div class="grid">
 
 <!-- EP1-EP16 -->
-<div class="card"><div class="thumb"><img src="ep1.jpg"><div class="badge-ep">EP1</div><div class="badge-saison">EP 1<br><small>SAISON 1</small></div></div><div class="title">EP1 Origines Partie 1</div><button class="btn">▶ Lecture</button></div>
+<div class="card"><div class="thumb"><img src="ep1.jpg" alt="Miraculous - Origines Partie 1"><div class="badge-ep">EP1</div><div class="badge-saison">EP 1<br><small>SAISON 1</small></div></div><div class="title">EP1 Origines Partie 1</div><button class="btn" type="button" onclick="playEpisode1()">▶ Lecture</button></div>
 <div class="card"><div class="thumb"><img src="ep2.jpg"><div class="badge-ep">EP2</div></div><div class="title">EP2 Les Coeurs de Pierre</div><button class="btn">▶ Lecture</button></div>
 <div class="card"><div class="thumb"><img src="ep3.jpg"><div class="badge-ep">EP3</div></div><div class="title">EP3 Lady Wifi</div><button class="btn">▶ Lecture</button></div>
 
@@ -67,6 +67,37 @@ h1 span{font-weight:400;color:#888;font-size:14px}
 <div class="card"><div class="thumb"><img src="ep26-volpina.jpg"><div class="badge-ep">EP26</div><div class="badge-saison">EP 26<br><small>SAISON 1</small></div></div><div class="title">EP26 VOLPINA</div><button class="btn">▶ Lecture</button></div>
 
 </div>
+
+<style>
+.video-modal{display:none;position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,.94);align-items:center;justify-content:center;padding:18px}
+.video-modal.open{display:flex}
+.video-modal-content{width:min(100%,960px);position:relative}
+.video-modal iframe{display:block;width:100%;aspect-ratio:16/9;border:0;border-radius:12px;background:#000}
+.video-modal-close{display:block;margin:0 0 10px auto;background:#f07ab8;color:#fff;border:0;border-radius:20px;padding:9px 16px;font-weight:700;cursor:pointer}
+</style>
+<div class="video-modal" id="episode1Modal" role="dialog" aria-modal="true" aria-label="Lecture de Miraculous Origines Partie 1">
+  <div class="video-modal-content">
+    <button class="video-modal-close" type="button" onclick="closeEpisode1()">✕ Fermer</button>
+    <iframe id="episode1Frame" title="Miraculous - Origines Partie 1" src="about:blank" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe>
+  </div>
+</div>
+<script>
+function playEpisode1(){
+  const modal=document.getElementById('episode1Modal');
+  document.getElementById('episode1Frame').src='https://www.youtube-nocookie.com/embed/U4vjoBn6VGs?autoplay=1&rel=0';
+  modal.classList.add('open');
+}
+function closeEpisode1(){
+  document.getElementById('episode1Modal').classList.remove('open');
+  document.getElementById('episode1Frame').src='about:blank';
+}
+document.getElementById('episode1Modal').addEventListener('click',function(e){
+  if(e.target===this) closeEpisode1();
+});
+document.addEventListener('keydown',function(e){
+  if(e.key==='Escape') closeEpisode1();
+});
+</script>
 <script src="/compte/lang-ui.js"></script>
 </body>
 </html>
