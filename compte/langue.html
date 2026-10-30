@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Langue - STREAMNEX</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;font-family:Inter,system-ui,Arial,sans-serif}
+body{min-height:100vh;background:#050506;color:#fff;display:flex;justify-content:center}
+.container{width:100%;max-width:650px;padding:0 16px 32px}
+header{height:100px;display:flex;align-items:center;gap:14px}
+.back{color:#fff;text-decoration:none;font-size:38px}
+.brand{background:#08b95e;padding:11px 10px;border-radius:15px;font-weight:950}
+h1{font-size:28px;margin:18px 0 8px}
+.description{color:#999;font-size:14px;line-height:1.5;margin-bottom:20px}
+.option{display:flex;align-items:center;gap:12px;padding:17px;background:#1d1d20;border:1px solid #303035;border-radius:14px;margin-bottom:10px;cursor:pointer}
+.option span{flex:1;font-size:17px;font-weight:650}
+input{width:20px;height:20px;accent-color:#14c968}
+.status{min-height:24px;text-align:center;color:#aaa;font-size:13px;margin-top:14px}
+</style>
+</head>
+<body>
+<main class="container">
+<header><a class="back" href="parametres.html" aria-label="Retour aux paramètres">‹</a><span class="brand">STREAMNEX</span></header>
+<h1>Langue de l'application</h1>
+<p class="description">Choisissez la langue que vous souhaitez utiliser dans STREAMNEX.</p>
+<div id="options">
+<label class="option"><span>Français</span><input type="radio" name="appLanguage" value="fr"></label>
+<label class="option"><span>English</span><input type="radio" name="appLanguage" value="en"></label>
+<label class="option"><span>Español</span><input type="radio" name="appLanguage" value="es"></label>
+<label class="option"><span>Português</span><input type="radio" name="appLanguage" value="pt"></label>
+</div>
+<p class="status" id="status" role="status" aria-live="polite"></p>
+</main>
+<script>
+const radios=document.querySelectorAll('input[name="appLanguage"]');
+const status=document.getElementById('status');
+const saved=localStorage.getItem('streamnex_language')||'fr';
+radios.forEach(radio=>{
+  radio.checked=radio.value===saved;
+  radio.addEventListener('change',()=>{
+    if(!radio.checked)return;
+    localStorage.setItem('streamnex_language',radio.value);
+    status.textContent='Langue préférée enregistrée : '+radio.parentElement.querySelector('span').textContent+'.';
+  });
+});
+</script>
+</body>
+</html>
