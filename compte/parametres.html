@@ -49,7 +49,8 @@ select{max-width:45%;background:#303035;color:#fff;border:1px solid #45454a;bord
   <button class="item action danger" id="logout"><span class="ico">⇥</span><span class="label">Déconnexion</span><span class="arrow">›</span></button>
   <p class="note" id="notice" role="status" aria-live="polite"></p>
 </main>
-<script>
+<script type="module">
+import { logout } from "https://esm.sh/@netlify/identity@2.0.0";
 const notice=document.getElementById("notice");
 function say(message){notice.textContent=message}
 const prefs=["darkmode"];
@@ -61,8 +62,10 @@ for(const id of prefs){
 document.getElementById("account").addEventListener("click",()=>location.href="../Profil.html");
 document.getElementById("logout").addEventListener("click",async()=>{
   if(!confirm("Voulez-vous vraiment vous déconnecter ?"))return;
-  try{const {logout}=await import("https://esm.sh/@netlify/identity");await logout();location.replace("connexion.html");}
-  catch(e){say("Déconnexion impossible. Réessayez.");console.error(e);}
+  const button=document.getElementById("logout");
+  button.disabled=true;say("Déconnexion en cours…");
+  try{await logout();location.replace("/connexion.html");}
+  catch(e){button.disabled=false;say("Déconnexion impossible. Vérifiez votre connexion puis réessayez.");console.error("StreamNex logout:",e);}
 });
 </script>
   <script src="lang-ui.js"></script>
