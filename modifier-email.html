@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Modifier l'email - STREAMNEX</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+body{min-height:100vh;background:#0a0a0a;color:#fff;display:flex;justify-content:center}
+.container{width:100%;max-width:390px;min-height:100vh;background:#121212;padding:0 20px 30px}
+.header{padding:20px 0 28px}.top{display:flex;align-items:center;gap:12px}.back{color:#fff;text-decoration:none;font-size:26px;width:28px}.logo{flex:1;text-align:center;color:#2ECC71;font-size:25px;font-weight:900;letter-spacing:-1px}.spacer{width:28px}
+h1{text-align:center;font-size:23px;margin-top:24px}
+.subtitle{text-align:center;color:#888;font-size:13px;margin-top:8px;line-height:1.5}
+.field{margin-top:25px}.field label{display:block;color:#aaa;font-size:13px;margin-bottom:8px}
+.field input{width:100%;background:#1e1e1e;border:1.5px solid #2a4a30;border-radius:13px;padding:15px;color:#fff;font-size:15px;outline:none}
+.field input:focus{border-color:#2ECC71}.field input[readonly]{color:#999}
+.hint{font-size:11px;color:#777;margin-top:7px}
+.message{min-height:42px;margin:18px 0 8px;text-align:center;font-size:13px;line-height:1.5;color:#aaa}
+.message.error{color:#ff7777}.message.success{color:#2ECC71}
+.btn{width:100%;border:0;border-radius:28px;padding:16px;background:#0fd068;color:#071b10;font-weight:800;font-size:16px;cursor:pointer}
+.btn:disabled{opacity:.55;cursor:not-allowed}
+.cancel{display:block;text-align:center;margin-top:22px;color:#aaa;text-decoration:none;font-size:14px}
+.info{margin-top:25px;padding:14px;border:1px solid #293b2e;border-radius:12px;color:#8eb99a;font-size:12px;line-height:1.55}
+</style>
+</head>
+<body>
+<main class="container">
+  <header class="header">
+    <div class="top"><a class="back" href="mon.compte.html%20" aria-label="Retour">←</a><div class="logo">STREAMNEX</div><span class="spacer"></span></div>
+    <h1>Modifier l'email</h1>
+    <p class="subtitle">Mettez à jour l'adresse associée à votre compte.</p>
+  </header>
+  <form id="email-form" novalidate>
+    <div class="field"><label for="current-email">Email actuel</label><input id="current-email" type="email" readonly value="Chargement…"></div>
+    <div class="field"><label for="new-email">Nouvelle adresse email</label><input id="new-email" type="email" autocomplete="email" placeholder="nouvelle@email.com" required></div>
+    <div class="field"><label for="confirm-email">Confirmer la nouvelle adresse</label><input id="confirm-email" type="email" autocomplete="email" placeholder="Confirmez votre adresse" required></div>
+    <p class="hint">Les deux nouvelles adresses doivent être identiques.</p>
+    <p class="message" id="message" role="status" aria-live="polite"></p>
+    <button class="btn" id="save" type="submit">Enregistrer le nouvel email</button>
+  </form>
+  <div class="info">Pour protéger votre compte, Netlify Identity enverra un email de confirmation à votre nouvelle adresse. Le changement ne sera effectif qu'après avoir ouvert le lien reçu.</div>
+  <a class="cancel" href="mon.compte.html%20">Annuler</a>
+</main>
+<script type="module">
+import { getUser, handleAuthCallback } from "https://esm.sh/@netlify/identity";
+const form=document.getElementById("email-form");
+const current=document.getElementById("current-email");
+const next=document.getElementById("new-email");
+const confirm=document.getElementById("confirm-email");
+const message=document.getElementById("message");
+const save=document.getElementById("save");
+let user=null;
+try {
+  await handleAuthCallback();
+  user=await getUser();
+  if(!user){window.location.replace("connexion.html?redirect="+encodeURIComponent("modifier-email.html"));throw new Error("Session absente");}
+  current.value=user.email||"";
+} catch(error) {
+  if(error.message!=="Session absente"){message.textContent="Impossible de charger votre compte. Reconnectez-vous puis réessayez.";message.className="message error";}
+}
+form.addEventListener("submit",async event=>{
+  event.preventDefault();message.textContent="";message.className="message";
+  const email=next.value.trim().toLowerCase();
+  const repeated=confirm.value.trim().toLowerCase();
+  if(!user){message.textContent="Vous devez être connecté pour modifier votre email.";message.className="message error";return;}
+  if(!email||!repeated){message.textContent="Veuillez remplir les deux champs.";message.className="message error";return;}
+  if(email===user.email?.toLowerCase()){message.textContent="Cette adresse est déjà celle de votre compte.";message.className="message error";return;}
+  if(email!==repeated){message.textContent="Les deux adresses email ne correspondent pas.";message.className="message error";return;}
+  save.disabled=true;save.textContent="Envoi en cours…";
+  try{
+    await user.update({email});
+    message.textContent="Demande envoyée ! Consultez la boîte de réception de "+email+" et cliquez sur le lien de confirmation. Votre adresse actuelle reste active jusqu'à confirmation.";
+    message.className="message success";form.reset();current.value=user.email||current.value;
+  }catch(error){
+    message.textContent=error?.message||"Impossible d'envoyer la demande. Vérifiez l'adresse et réessayez.";
+    message.className="message error";
+  }finally{save.disabled=false;save.textContent="Enregistrer le nouvel email";}
+});
+</script>
+</body>
+</html>
