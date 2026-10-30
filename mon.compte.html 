@@ -62,7 +62,7 @@ body { background:#0a0a0a; color:white; display:flex; justify-content:center; }
 
   <div class="field">
     <label>Nom d'utilisateur</label>
-    <div class="input-box"><input value="Alex" id="username"><span class="edit-icon">✎</span></div>
+    <a class="input-box" href="modifier-nom.html" id="username-link" style="color:inherit;text-decoration:none"><input value="Chargement…" id="username" readonly aria-label="Nom d’utilisateur actuel" style="cursor:pointer"><span class="edit-icon">✎</span></a>
   </div>
   <div class="field">
     <label>Email</label>
