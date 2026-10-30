@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>STREAMNEX - Notifications</title>
+<style>
+*{box-sizing:border-box}body{margin:0;min-height:100vh;background:#050506;color:#fff;font-family:Inter,system-ui,Arial,sans-serif}
+header{height:88px;background:#111113;display:flex;align-items:center;gap:14px;padding:0 18px}
+.back{color:#fff;text-decoration:none;font-size:38px}.brand{background:#08b95e;padding:10px;border-radius:14px;font-weight:900}
+h1{font-size:clamp(22px,5vw,30px);margin:0}
+main{width:min(100% - 28px,620px);margin:28px auto}
+.panel{background:#1b1b1f;border:1px solid #303036;border-radius:18px;padding:22px}
+p{color:#bbb;line-height:1.55}.status{margin-top:18px;padding:13px;border-radius:12px;background:#101014;color:#ddd;min-height:24px}
+button{width:100%;border:0;border-radius:13px;background:#18c76b;color:#06150c;font-weight:800;font-size:16px;padding:15px;margin-top:16px;cursor:pointer}
+.small{font-size:13px;color:#999}
+</style>
+</head>
+<body>
+<header><a class="back" href="parametres.html" aria-label="Retour">‹</a><div class="brand">STREAMNEX</div><h1>Notifications</h1></header>
+<main><section class="panel">
+<h2>Autorisation des notifications</h2>
+<p>Choisissez si STREAMNEX peut afficher des notifications via ce navigateur. Votre choix est enregistré sur cet appareil.</p>
+<button id="enable" type="button">Autoriser les notifications</button>
+<div class="status" id="status" role="status" aria-live="polite">Vérification de l’autorisation…</div>
+<p class="small">Remarque : autoriser le navigateur ne suffit pas à envoyer des notifications à distance. L’envoi réel nécessitera un service push et sa configuration serveur.</p>
+</section></main>
+<script>
+const statusBox=document.getElementById('status'),button=document.getElementById('enable');
+function refresh(){
+ if(!('Notification' in window)){statusBox.textContent='Les notifications du navigateur ne sont pas prises en charge sur cet appareil.';button.disabled=true;return;}
+ const p=Notification.permission;
+ if(p==='granted'){statusBox.textContent='Autorisation accordée sur ce navigateur.';button.textContent='Autorisation déjà accordée';}
+ else if(p==='denied'){statusBox.textContent='Autorisation refusée. Modifiez-la dans les paramètres du navigateur.';button.textContent='Autorisation bloquée';button.disabled=true;}
+ else {statusBox.textContent='Aucune autorisation accordée pour le moment.';button.textContent='Autoriser les notifications';}
+ localStorage.setItem('streamnex_notifications',String(p==='granted'));
+}
+button.addEventListener('click',async()=>{
+ if(!('Notification' in window)){refresh();return;}
+ try{const result=await Notification.requestPermission();refresh();if(result==='granted')statusBox.textContent='Autorisation accordée. Le service d’envoi push reste à configurer.';}
+ catch(e){statusBox.textContent='Impossible de demander l’autorisation sur ce navigateur.';}
+});
+refresh();
+</script>
+<script src="lang-ui.js"></script>
+</body></html>
