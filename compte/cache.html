@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>STREAMNEX - Vider le cache</title>
+<style>
+*{box-sizing:border-box}body{margin:0;min-height:100vh;background:#08080a;color:#fff;font-family:Inter,system-ui,Arial,sans-serif}
+header{height:86px;background:#141417;display:flex;align-items:center;gap:14px;padding:0 18px}
+.back{font-size:38px;color:#fff;text-decoration:none}.brand{background:#08b95e;padding:10px 12px;border-radius:14px;font-weight:950}
+main{width:min(100% - 28px,620px);margin:28px auto}.panel{background:#1c1c20;border:1px solid #303036;border-radius:18px;padding:22px}
+h1{font-size:clamp(24px,5vw,32px);margin:0 0 12px}p{color:#b8b8c0;line-height:1.55}
+.info{background:#111115;border-radius:12px;padding:14px;margin:18px 0;color:#d0d0d6;font-size:14px;line-height:1.5}
+button{width:100%;border:0;border-radius:13px;background:#18c76b;color:#06150c;font-weight:850;font-size:16px;padding:15px;cursor:pointer}
+.status{margin-top:16px;min-height:24px;padding:12px;border-radius:12px;background:#111115;color:#ddd;font-size:14px}
+</style>
+</head>
+<body>
+<header><a class="back" href="parametres.html" aria-label="Retour">‹</a><div class="brand">STREAMNEX</div></header>
+<main><section class="panel">
+<h1>Vider le cache</h1>
+<p>Supprime les fichiers temporaires mis en cache par StreamNex dans ce navigateur.</p>
+<div class="info"><strong>À savoir :</strong> cette action ne supprime pas ton compte, tes préférences, ni tes fichiers téléchargés. Le cache HTTP interne du navigateur ne peut pas être vidé directement par une page web.</div>
+<button id="clear" type="button">Vider le cache temporaire</button>
+<div class="status" id="status" role="status" aria-live="polite">Prêt.</div>
+</section></main>
+<script>
+const status=document.getElementById('status');
+document.getElementById('clear').addEventListener('click',async()=>{
+ if(!confirm('Supprimer les caches temporaires de StreamNex pour ce site ?'))return;
+ const button=document.getElementById('clear');button.disabled=true;status.textContent='Nettoyage en cours…';
+ try{
+  if(!('caches' in window)){status.textContent='La suppression du cache n’est pas prise en charge par ce navigateur.';return;}
+  const names=await caches.keys();
+  const results=await Promise.all(names.map(name=>caches.delete(name)));
+  const removed=results.filter(Boolean).length;
+  status.textContent=removed+' cache(s) temporaire(s) supprimé(s).';
+ }catch(error){status.textContent='Impossible de vider le cache temporaire sur cet appareil.';console.error(error);}
+ finally{button.disabled=false;}
+});
+</script>
+<script src="lang-ui.js"></script>
+<script src="/compte/theme-ui.js"></script>
+</body>
+</html>
