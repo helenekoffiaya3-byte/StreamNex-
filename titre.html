@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>StreamNex • Fiche</title>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#090909;color:#fff;font-family:Arial,sans-serif;padding:20px 16px 60px}.back{color:#2ecc71;text-decoration:none;font-weight:700}.hero{display:flex;gap:20px;margin:25px 0;align-items:flex-start}.hero img{width:145px;border-radius:12px}.details h1{margin:0 0 10px}.muted{color:#aaa;line-height:1.5}.season-list{display:flex;gap:10px;overflow:auto;padding:12px 0}.season-list button{background:#202020;color:#fff;border:1px solid #444;border-radius:9px;padding:12px 16px;white-space:nowrap}.season-list button.active{border-color:#2ecc71;color:#2ecc71}.episodes{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px}.episode{background:#191919;border:1px solid #292929;border-radius:12px;padding:14px}.episode img{width:100%;aspect-ratio:16/9;object-fit:cover;border-radius:8px;background:#222}.episode h3{font-size:16px}.note{color:#aaa;font-size:13px}@media(max-width:520px){.hero img{width:110px}.hero{gap:14px}}
+</style></head><body>
+<a class="back" href="user.homepage.html">← Retour au catalogue</a>
+<section class="hero" id="hero"><p>Chargement de la fiche…</p></section>
+<h2 id="season-heading">Saisons et épisodes</h2><div class="season-list" id="seasons"></div><section class="episodes" id="episodes"></section>
+<script>
+const qs=new URLSearchParams(location.search),type=qs.get('type'),id=qs.get('id'),proxy='/.netlify/functions/tmdb';
+const poster=p=>p?'https://image.tmdb.org/t/p/w500'+p:'https://placehold.co/500x750/171717/777?text=STREAMNEX';
+async function api(url){const r=await fetch(url),d=await r.json();if(!r.ok)throw Error(d.error||'Erreur TMDB');return d;}
+async function init(){
+ if(!id||!/^\d+$/.test(id)||!['tv','movie'].includes(type))throw Error('Fiche invalide');
+ const item=await api(proxy+'?action=details&type='+type+'&id='+id);
+ document.title=(item.name||item.title)+' • StreamNex';
+ const hero=document.getElementById('hero');hero.innerHTML='<img src="'+poster(item.poster_path)+'" alt=""><div class="details"><h1></h1><p class="muted"></p></div>';
+ hero.querySelector('h1').textContent=item.name||item.title;hero.querySelector('p').textContent=item.overview||'Aucun résumé disponible.';
+ if(type==='tv'&&item.seasons?.length){
+  item.seasons.filter(s=>s.season_number>=0).forEach((s,i)=>{const b=document.createElement('button');b.textContent=s.name||'Saison '+s.season_number;b.onclick=()=>loadSeason(s.season_number,b);document.getElementById('seasons').append(b);if(i===0)loadSeason(s.season_number,b);});
+ }else{document.getElementById('season-heading').textContent='Informations';document.getElementById('episodes').textContent='Ce titre est un film.';}
+}
+async function loadSeason(number,button){
+ document.querySelectorAll('.season-list button').forEach(b=>b.classList.remove('active'));button.classList.add('active');
+ const area=document.getElementById('episodes');area.textContent='Chargement des épisodes…';
+ try{const season=await api(proxy+'?action=season&id='+id+'&season='+number);area.innerHTML='';
+  (season.episodes||[]).forEach(ep=>{const card=document.createElement('article');card.className='episode';const img=document.createElement('img');img.src=ep.still_path?'https://image.tmdb.org/t/p/w500'+ep.still_path:poster(null);img.alt='';const title=document.createElement('h3');title.textContent='Épisode '+ep.episode_number+' — '+ep.name;const desc=document.createElement('p');desc.className='muted';desc.textContent=ep.overview||'Résumé indisponible.';const note=document.createElement('p');note.className='note';note.textContent='Source vidéo à connecter';card.append(img,title,desc,note);area.append(card);});
+  if(!season.episodes?.length)area.textContent='Aucun épisode renseigné pour cette saison.';
+ }catch(e){area.textContent=e.message;}
+}
+init().catch(e=>{document.getElementById('hero').textContent=e.message;});
+</script></body></html>
