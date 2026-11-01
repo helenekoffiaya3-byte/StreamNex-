@@ -92,9 +92,14 @@
     padding:14px;
     text-align:center;
   }
-  .card-info h3{
-    font-size:18px;
-  }
+  .card-info h3{font-size:18px}
+.search-wrap{max-width:760px;margin:0 auto 28px}
+.search-wrap input{width:100%;padding:15px 18px;border-radius:12px;border:1px solid #383838;background:#171717;color:#fff;font-size:16px;outline:none}
+.search-wrap input:focus{border-color:#2ECC71}
+.catalogue-status{color:#aaa;margin:12px 0;font-size:14px}
+.card img{background:#222}
+.card-info p{color:#aaa;font-size:13px;margin-top:7px;line-height:1.4}
+@media(max-width:560px){.grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.card img{height:220px}.card-info{padding:10px}.card-info h3{font-size:15px}}
 </style>
 </head>
 <body>
@@ -113,29 +118,9 @@
   </div>
 </div>
 
-<h3 class="section-title">Recommandés pour vous</h3>
-
-<div class="grid">
-  <div class="card" onclick="play('lolirock')">
-    <img src="images/lolirock.jpg" alt="LoliRock">
-    <div class="card-info"><h3>LoliRock</h3></div>
-  </div>
-
-  <div class="card" onclick="play('ghost-force')">
-    <img src="images/ghost-force.jpg" alt="Ghost Force">
-    <div class="card-info"><h3>Ghost Force</h3></div>
-  </div>
-
-  <div class="card" onclick="window.location.href='miraculous.html'" role="link" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();window.location.href='miraculous.html'}">
-    <img src="images/miraculous.jpg" alt="Miraculous">
-    <div class="card-info"><h3>Miraculous</h3></div>
-  </div>
-
-  <div class="card" onclick="play('jumanji')">
-    <img src="images/jumanji.jpg" alt="Jumanji">
-    <div class="card-info"><h3>Jumanji</h3></div>
-  </div>
-</div>
+<div class="search-wrap"><input id="catalogue-search" type="search" placeholder="Rechercher un film ou une série..." autocomplete="off" aria-label="Rechercher dans le catalogue TMDB"><p id="catalogue-status" class="catalogue-status">Chargement du catalogue…</p></div>
+<h3 class="section-title" id="catalogue-heading">À découvrir</h3>
+<div class="grid" id="tmdb-catalogue" aria-live="polite"></div>
 
 <nav class="bottom-nav" aria-label="Navigation principale">
   <a class="nav-item active" href="user.homepage.html" aria-current="page">
@@ -166,8 +151,44 @@ document.querySelectorAll('[data-coming-soon]').forEach(item => item.addEventLis
   window.streamNexNavNotice = window.setTimeout(() => notice.style.display = 'none', 2200);
 }));
 function play(id){
-  window.location.href = `/watch.html?film=${id}`;
+  window.location.href = `/watch.html?film=${encodeURIComponent(id)}`;
 }
+const TMDB_PROXY='/.netlify/functions/tmdb';
+const catalogue=document.getElementById('tmdb-catalogue');
+const status=document.getElementById('catalogue-status');
+const searchInput=document.getElementById('catalogue-search');
+let searchTimer;
+function poster(path){return path?'https://image.tmdb.org/t/p/w500'+path:'https://placehold.co/500x750/171717/777?text=STREAMNEX'}
+function renderTitles(items){
+  catalogue.innerHTML='';
+  const valid=items.filter(item=>['tv','movie'].includes(item.media_type));
+  if(!valid.length){status.textContent='Aucun résultat trouvé.';return;}
+  status.textContent=valid.length+' résultat(s)';
+  valid.forEach(item=>{
+    const type=item.media_type, title=item.title||item.name||'Sans titre';
+    const card=document.createElement('article');card.className='card';card.tabIndex=0;card.setAttribute('role','link');
+    const img=document.createElement('img');img.src=poster(item.poster_path);img.alt=title;img.loading='lazy';
+    const info=document.createElement('div');info.className='card-info';
+    const heading=document.createElement('h3');heading.textContent=title;
+    const meta=document.createElement('p');meta.textContent=type==='tv'?'Série':'Film';
+    info.append(heading,meta);card.append(img,info);
+    const open=()=>location.href=`titre.html?type=${type}&id=${item.id}`;
+    card.addEventListener('click',open);card.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();open();}});
+    catalogue.append(card);
+  });
+}
+async function loadCatalogue(query=''){
+  status.textContent='Chargement…';
+  try{
+    const action=query?'search':'trending';
+    const url=TMDB_PROXY+'?action='+action+(query?'&query='+encodeURIComponent(query):'');
+    const response=await fetch(url),data=await response.json();
+    if(!response.ok)throw new Error(data.error||'Erreur TMDB');
+    renderTitles(data.results||[]);
+  }catch(error){status.textContent='Impossible de charger le catalogue. Vérifie la configuration TMDB.';console.error(error);}
+}
+searchInput.addEventListener('input',()=>{clearTimeout(searchTimer);searchTimer=setTimeout(()=>loadCatalogue(searchInput.value.trim()),350);});
+loadCatalogue();
 </script>
 
 
